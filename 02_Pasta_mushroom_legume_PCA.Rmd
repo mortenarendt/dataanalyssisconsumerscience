@@ -26,7 +26,7 @@ load('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Meal Systems and Techn
 ```
 
 
-![](https://www.youtube.com/watch?v=NFIkD9-MuTY&list=PL4L59zaizb3FmBdxuDLRdzGsknTrZN6Ys&index=3&t=6s){width="90%"}
+![](https://youtu.be/NFIkD9-MuTY){width="90%"}
 
 
 PCA is a tool for looking a correlation structure between variabels, and groupings of samples. All through visualizations.  
