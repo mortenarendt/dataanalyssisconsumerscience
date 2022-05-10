@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAME HERE"
+title: "Data Analysis in R for Consumer Science"
+author: "Morten Arendt Rasmussens"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
