@@ -2,7 +2,7 @@
 # PCA on survey answers
 
 ```{r}
-knitr::include_url("https://youtu.be/NFIkD9-MuTY")
+knitr::include_url("https://youtu.be/embed/NFIkD9-MuTY")
 ```
 
 ![](https://youtu.be/NFIkD9-MuTY){width="90%"}
