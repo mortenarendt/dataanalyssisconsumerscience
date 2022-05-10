@@ -1,6 +1,12 @@
 
 # PCA on survey answers
 
+```{r}
+knitr::include_url("https://youtu.be/NFIkD9-MuTY")
+```
+
+![](https://youtu.be/NFIkD9-MuTY){width="90%"}
+
 We use a package called ggbiplot for plotting the PCA model. 
 It is located on github and installed by:
 
@@ -26,7 +32,7 @@ load('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Meal Systems and Techn
 ```
 
 
-![](https://youtu.be/NFIkD9-MuTY){width="90%"}
+
 
 
 PCA is a tool for looking a correlation structure between variabels, and groupings of samples. All through visualizations.  
