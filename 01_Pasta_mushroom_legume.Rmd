@@ -1,0 +1,176 @@
+
+# Libraries
+
+We use tidyverse coding as this makes life much easier. 
+
+```{r}
+library(ggplot2) # lets plot dadta
+library(tidyverse)
+library(ggpubr) # lets add stats to the plots
+library(knitr) # lets make nice tables
+```
+
+# Data
+
+The data is already imported, and formated (see _Getting_data_in.pdf_ for details). We simply load this file. 
+
+```{r,eval=FALSE, include=TRUE}
+load('BuffetSurveyData.RData')
+```
+
+```{r,eval=T, include=F}
+load('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Meal Systems and Technology/data/BuffetData2/BuffetSurveyData.RData')
+```
+
+
+# Descriptive statistics and plotting
+
+## Distributions of count data
+
+The table function is good in getting how many observations there are within a given vector, or combinations of several vectors.
+
+Here used on the Survey answers. 
+```{r}
+table(Surveylong$answ) # across everything
+table(Surveylong$question,Surveylong$answ ) # across question
+```
+You see that most of the answers are in agreement with question, and that there are no observations in the _Strongly disagree_ category. 
+
+_The tidyverse way_ 
+
+Lets do exactly the same just using tidyverse functions count(), group_by(), mutate(), and  summarise().
+
+Further, lets print the results in a nice looking table using kable() from the knitr package. 
+
+```{r}
+# tb <- Surveylong %>% 
+  # count(question,answ,Day,name = "no_rows", .drop = F) 
+
+# kable(tb, caption = 'some caption')
+```
+
+The numbers are absolute, but may be better represented by proportions. 
+
+```{r}
+tb <- Surveylong %>% 
+  group_by(question,Day) %>% 
+  dplyr::mutate(ntot = n()) %>% 
+  group_by(question,answ,Day) %>% 
+  dplyr::summarise(n = n(), 
+            prc = 100*n / ntot[1])
+
+kable(tb, caption = 'some caption', digits = 1)
+```
+
+... and a plot of it
+
+```{r}
+tb %>% 
+  ggplot(data = ., aes(answ,prc, fill = factor(Day))) + 
+  geom_bar(stat = 'identity', position = position_dodge()) + 
+  facet_wrap(~question) + 
+  theme(axis.text.x = element_text(angle = 45,hjust = 1), 
+        legend.position = 'top')
+```
+
+### Descriptives for a continouos variable
+
+Here just across the entire sample set. 
+
+```{r}
+mean(Buffet_survey$Consumption)
+median(Buffet_survey$Consumption)
+sd(Buffet_survey$Consumption)
+IQR(Buffet_survey$Consumption)
+summary(Buffet_survey$Consumption)
+```
+
+
+This is a very high level representation, and we usually want to compare means (or other metrics) between different groups. 
+
+We use the consumption and split it according to day and pasta-type.
+
+```{r}
+tb2 <- Buffet_survey %>% 
+  group_by(StationName, Day) %>% 
+  dplyr::summarise(nobs = n(),
+            mean = mean(Consumption), 
+            median = median(Consumption),
+            sd = sd(Consumption),
+            iqr = IQR(Consumption), 
+            q25 = quantile(Consumption,0.25), 
+            q75 = quantile(Consumption,0.75))
+
+kable(tb2, digits = 1, caption = 'some relevant caption')
+```
+
+Corresponding plot of data 
+
+```{r}
+Buffet_survey %>% 
+  ggplot(data = ., aes(StationName,Consumption, fill = factor(Day))) + 
+  geom_violin()
+
+Buffet_survey %>% 
+  ggplot(data = ., aes(StationName,Consumption, fill = factor(Day))) + 
+  geom_boxplot() +
+  geom_jitter()
+
+```
+
+Corresponding plots of the results
+
+```{r}
+ggplot(data= tb2, aes(factor(StationName):factor(Day),mean, 
+                      color = factor(Day), ymin = mean-sd, ymax = mean + sd)) +
+  geom_point() + 
+  geom_errorbar(width = 0.3)+
+  theme(axis.text.x = element_text(angle = 45,hjust = 1)) + 
+  ylab('mean+/- 1*sd')
+```
+
+#### In relation to protein considerations
+
+Try to make these descriptive analysis and plots taking into account whether the participants considered protein content, and why they did.
+
+Here is some inspiration. 
+
+```{r}
+Buffet_survey %>% 
+  ggplot(data = ., 
+         aes(`Did you consider the protein content of the dish(es) you chose?`,
+             Consumption)) + 
+  geom_boxplot() + 
+  geom_jitter() + 
+  facet_wrap(~StationName)
+
+```
+
+
+## Scatter plots
+
+Lets plot the consumption as a function of the answers to the liking-scale questions of the survey, and split it into day and type of vegetable. 
+If you think about it, it is pretty many plots, but the ggplot2 functionality facet_wrap() on a long format data frame does it in few lines: 
+
+
+```{r, fig.height=9}
+Surveylong_buffet %>% 
+  filter(!is.na(StationName )) %>% 
+  mutate(question2 = question %>% substr(1,34)) %>% # The label is to long, so lets just represent the first 30 letters.
+  ggplot(data = .,  aes(answnum,Consumption, color = factor(Day))) +
+  geom_point() + 
+  stat_smooth(se = F, method = lm) + 
+  stat_cor() +
+  facet_grid(question2 ~ StationName) + 
+  theme_bw() + theme(legend.position = 'bottom')
+```
+
+```{r}
+kable(Surveyscales, caption = 'Just a table to have what the 7point likert scale numbers mean')
+```
+
+Get this stuff to work, and try to interpret what you see: which factors seems important for the portion size ( _Consumption_ )? 
+
+The summary-stats in the scatter plots above: What is this? How is it interpreted? 
+
+  

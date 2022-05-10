@@ -5,5 +5,16 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
-# Down the rabbit-hole
+![Alt text](init_frontpage.jpg)
+    
+# Introduction
 
+This material is to cover data analysis using R for consumer science targeting the courses: 
+
+* Meal systems technology 
+* Food consumer research 
+* Meal consumer research 
+* Thematic course in food innovation
+* Public health nutrition
+
+But others may benefit from the material as well....

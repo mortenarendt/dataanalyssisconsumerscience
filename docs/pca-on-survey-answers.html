@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 PCA on survey answers | Data Analysis in R for Consumer Science</title>
+  <meta name="description" content="Chapter 5 PCA on survey answers | Data Analysis in R for Consumer Science" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 PCA on survey answers | Data Analysis in R for Consumer Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 PCA on survey answers | Data Analysis in R for Consumer Science" />
+  
+  
+  
+
+<meta name="author" content="Morten Arendt Rasmussens" />
+
+
+<meta name="date" content="2022-05-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="descriptive-statistics-and-plotting.html"/>
+<link rel="next" href="linear-models.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis in R for Consumer Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>2</b> Libraries</a></li>
+<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics and plotting</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#distributions-of-count-data"><i class="fa fa-check"></i><b>4.1</b> Distributions of count data</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>4.1.1</b> Descriptives for a continouos variable</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#scatter-plots"><i class="fa fa-check"></i><b>4.2</b> Scatter plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>5</b> PCA on survey answers</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>5.1</b> Bi-plot</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>5.1.1</b> Extract the components and run all associations.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>6</b> Linear models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>6.1</b> Example</a></li>
+<li class="chapter" data-level="6.2" data-path="linear-models.html"><a href="linear-models.html#run-a-bunch-of-models-at-once"><i class="fa fa-check"></i><b>6.2</b> Run a bunch of models at once</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="linear-models.html"><a href="linear-models.html#a-plot"><i class="fa fa-check"></i><b>6.2.1</b> A plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>7</b> Mixed models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>7.1</b> With several variables</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>8</b> Consumer Segmentation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>8.1</b> Kmeans</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>9</b> More PCA</a></li>
+<li class="chapter" data-level="10" data-path="pls-for-product-profiling.html"><a href="pls-for-product-profiling.html"><i class="fa fa-check"></i><b>10</b> PLS for product profiling</a></li>
+<li class="chapter" data-level="11" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>11</b> Logistic Regression</a></li>
+<li class="chapter" data-level="12" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>12</b> Confirmatory Factor Analysis using lavaan</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>12.1</b> Example - Food Neophobia</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>13</b> Structured Equation Modelling</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>13.1</b> Example - Theory of Planned Behaviour</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis in R for Consumer Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pca-on-survey-answers" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> PCA on survey answers<a href="pca-on-survey-answers.html#pca-on-survey-answers" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We use a package called ggbiplot for plotting the PCA model.
+It is located on github and installed by:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="pca-on-survey-answers.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;devtools&#39;</span>)</span>
+<span id="cb32-2"><a href="pca-on-survey-answers.html#cb32-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;vqv/ggbiplot&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="pca-on-survey-answers.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># lets plot dadta</span></span>
+<span id="cb33-2"><a href="pca-on-survey-answers.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb33-3"><a href="pca-on-survey-answers.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb33-4"><a href="pca-on-survey-answers.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
+<span id="cb33-5"><a href="pca-on-survey-answers.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb33-6"><a href="pca-on-survey-answers.html#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggbiplot)</span>
+<span id="cb33-7"><a href="pca-on-survey-answers.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># lets add stats to the plots</span></span>
+<span id="cb33-8"><a href="pca-on-survey-answers.html#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># lets make nice tables</span></span></code></pre></div>
+<p><img src="https://www.youtube.com/watch?v=NFIkD9-MuTY&amp;list=PL4L59zaizb3FmBdxuDLRdzGsknTrZN6Ys&amp;index=3&amp;t=6s" style="width:90.0%" /></p>
+<p>PCA is a tool for looking a correlation structure between variabels, and groupings of samples. All through visualizations.<br />
+Check out youtube on the subject for an introduction.</p>
+<p>PCA takes numerical data as input, so we use the likert-scales in the form of 1 to 7.
+Further the yes/no answers are included, and also needs to be changed.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="pca-on-survey-answers.html#cb34-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="pca-on-survey-answers.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Did you take food from both Dish 1 and Dish 2? </span><span class="st">`</span> <span class="ot">=</span> </span>
+<span id="cb34-3"><a href="pca-on-survey-answers.html#cb34-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">Did you take food from both Dish 1 and Dish 2? </span><span class="st">`</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb34-4"><a href="pca-on-survey-answers.html#cb34-4" aria-hidden="true" tabindex="-1"></a>           factor <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>(), </span>
+<span id="cb34-5"><a href="pca-on-survey-answers.html#cb34-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">Did you consider the protein content of the dish(es) you chose?</span><span class="st">`</span> <span class="ot">=</span> </span>
+<span id="cb34-6"><a href="pca-on-survey-answers.html#cb34-6" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">Did you consider the protein content of the dish(es) you chose?</span><span class="st">`</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb34-7"><a href="pca-on-survey-answers.html#cb34-7" aria-hidden="true" tabindex="-1"></a>           factor <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-8"><a href="pca-on-survey-answers.html#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># the survey part is the same for both days and both stations. That is what we keep. </span></span>
+<span id="cb34-9"><a href="pca-on-survey-answers.html#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;leg&#39;</span>))</span>
+<span id="cb34-10"><a href="pca-on-survey-answers.html#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="pca-on-survey-answers.html#cb34-11" aria-hidden="true" tabindex="-1"></a>PCAmdl <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(x[,<span class="fu">c</span>(<span class="dv">6</span><span class="sc">:</span><span class="dv">7</span>,<span class="dv">9</span><span class="sc">:</span><span class="dv">12</span>)],<span class="at">scale. =</span> T)</span></code></pre></div>
+<div id="bi-plot" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Bi-plot<a href="pca-on-survey-answers.html#bi-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>And a plot of the model</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="pca-on-survey-answers.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">varname.size =</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">5</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>What does component 1 (PC1) reflect? What does PC2 reflect?</p>
+<p>Lets plot the model and color the samples according to the consumption (of legumes) cutted at the median.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="pca-on-survey-answers.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">groups =</span> <span class="fu">factor</span>(x<span class="sc">$</span>Consumption<span class="sc">&gt;</span><span class="dv">130</span>), <span class="at">ellipse =</span> T,</span>
+<span id="cb36-2"><a href="pca-on-survey-answers.html#cb36-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">varname.size =</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">5</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div id="extract-the-components-and-run-all-associations." class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Extract the components and run all associations.<a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We are interested in if any of the likert/survey traits reflected by PCA is correlated with consumption.
+It is a little complicated, but here goes</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="pca-on-survey-answers.html#cb37-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Person =</span> x<span class="sc">$</span>Person, PCAmdl<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]) <span class="co"># take out the first two components. </span></span>
+<span id="cb37-2"><a href="pca-on-survey-answers.html#cb37-2" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="pca-on-survey-answers.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(scores, <span class="at">by =</span> <span class="st">&#39;Person&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-4"><a href="pca-on-survey-answers.html#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(comp,score,PC1<span class="sc">:</span>PC2) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-5"><a href="pca-on-survey-answers.html#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName,comp) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-6"><a href="pca-on-survey-answers.html#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Consumption<span class="sc">~</span>score <span class="sc">+</span> Day <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Person)) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span></code></pre></div>
+<p>… Make a table and a plot of the results.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="pca-on-survey-answers.html#cb38-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="pca-on-survey-answers.html#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;score&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="pca-on-survey-answers.html#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>effect,<span class="sc">-</span>group) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-4"><a href="pca-on-survey-answers.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">x =</span> .,<span class="at">caption =</span> <span class="st">&#39;Slopes according to components&#39;</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-22">Table 5.1: </span>Slopes according to components</caption>
+<thead>
+<tr class="header">
+<th align="left">StationName</th>
+<th align="left">comp</th>
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">conf.low</th>
+<th align="right">conf.high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Pasta with legumes</td>
+<td align="left">PC1</td>
+<td align="left">score</td>
+<td align="right">14.28</td>
+<td align="right">13.26</td>
+<td align="right">1.08</td>
+<td align="right">-11.70</td>
+<td align="right">40.27</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with legumes</td>
+<td align="left">PC2</td>
+<td align="left">score</td>
+<td align="right">-19.47</td>
+<td align="right">17.80</td>
+<td align="right">-1.09</td>
+<td align="right">-54.34</td>
+<td align="right">15.41</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with mushroom</td>
+<td align="left">PC1</td>
+<td align="left">score</td>
+<td align="right">5.15</td>
+<td align="right">10.69</td>
+<td align="right">0.48</td>
+<td align="right">-15.80</td>
+<td align="right">26.11</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with mushroom</td>
+<td align="left">PC2</td>
+<td align="left">score</td>
+<td align="right">-4.93</td>
+<td align="right">14.43</td>
+<td align="right">-0.34</td>
+<td align="right">-33.21</td>
+<td align="right">23.35</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="pca-on-survey-answers.html#cb39-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="pca-on-survey-answers.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;score&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-3"><a href="pca-on-survey-answers.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(comp,estimate,<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high)) <span class="sc">+</span> </span>
+<span id="cb39-4"><a href="pca-on-survey-answers.html#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb39-5"><a href="pca-on-survey-answers.html#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb39-6"><a href="pca-on-survey-answers.html#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
+<span id="cb39-7"><a href="pca-on-survey-answers.html#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>Interpret the results.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="descriptive-statistics-and-plotting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/02_Pasta_mushroom_legume_PCA.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/02_Pasta_mushroom_legume_PCA.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
