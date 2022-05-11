@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Data | Data Analysis in R for Consumer Science</title>
-  <meta name="description" content="Chapter 3 Data | Data Analysis in R for Consumer Science" />
+  <title>Chapter 2 Data | Data Analysis in R for Consumer Science</title>
+  <meta name="description" content="Chapter 2 Data | Data Analysis in R for Consumer Science" />
   <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Data | Data Analysis in R for Consumer Science" />
+  <meta property="og:title" content="Chapter 2 Data | Data Analysis in R for Consumer Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Data | Data Analysis in R for Consumer Science" />
+  <meta name="twitter:title" content="Chapter 2 Data | Data Analysis in R for Consumer Science" />
   
   
   
@@ -23,15 +23,15 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-05-10" />
+<meta name="date" content="2022-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="libraries.html"/>
-<link rel="next" href="descriptive-statistics-and-plotting.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="libraries.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -137,8 +137,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>2</b> Libraries</a></li>
-<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#read-in-data-from-excel---ibuffet"><i class="fa fa-check"></i><b>2.1</b> Read in data from Excel - iBuffet</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#example-of-survey-data"><i class="fa fa-check"></i><b>2.1.1</b> Example of Survey data</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data.html"><a href="data.html#example-of-survey-scale"><i class="fa fa-check"></i><b>2.1.2</b> Example of Survey Scale</a></li>
+<li class="chapter" data-level="2.1.3" data-path="data.html"><a href="data.html#edit-in-excel"><i class="fa fa-check"></i><b>2.1.3</b> Edit in excel</a></li>
+<li class="chapter" data-level="2.1.4" data-path="data.html"><a href="data.html#importing-to-r"><i class="fa fa-check"></i><b>2.1.4</b> Importing to R</a></li>
+<li class="chapter" data-level="2.1.5" data-path="data.html"><a href="data.html#editing-in-r"><i class="fa fa-check"></i><b>2.1.5</b> Editing in R</a></li>
+<li class="chapter" data-level="2.1.6" data-path="data.html"><a href="data.html#merging-the-data"><i class="fa fa-check"></i><b>2.1.6</b> Merging the data</a></li>
+<li class="chapter" data-level="2.1.7" data-path="data.html"><a href="data.html#save-the-data"><i class="fa fa-check"></i><b>2.1.7</b> Save the data</a></li>
+<li class="chapter" data-level="2.1.8" data-path="data.html"><a href="data.html#ready-for-analysis"><i class="fa fa-check"></i><b>2.1.8</b> Ready for analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>3</b> Libraries</a></li>
 <li class="chapter" data-level="4" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics and plotting</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#distributions-of-count-data"><i class="fa fa-check"></i><b>4.1</b> Distributions of count data</a>
@@ -200,18 +213,155 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Data<a href="data.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The data is already imported, and formated (see <em>Getting_data_in.pdf</em> for details). We simply load this file.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;BuffetSurveyData.RData&#39;</span>)</span></code></pre></div>
+<div id="data" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Data<a href="data.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this book several datasets are used targeting different reesearch questions.
+However, a fair part of the analysis tools are common. That is, deescriptive analysis, plots, response correlations etc.</p>
+<p>The data is included in the R-packgage you get by running the code below.
+Be aware that you need devtools package to install from github.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install data-package</span></span></code></pre></div>
+<p>The data is also available as excel sheets, and can be loaded using packages capable of reading from excel.
+Below is an example using data from the so-called <em>iBuffet</em></p>
+<div id="read-in-data-from-excel---ibuffet" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Read in data from Excel - iBuffet<a href="data.html#read-in-data-from-excel---ibuffet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The data from the iBuffet comes in the form of csv or excel files.</p>
+<p>These can be in the form of</p>
+<ul>
+<li>Consumption data from the Buffet</li>
+<li>Survey data on liking, motivation, choices etc attaced to the particular buffet</li>
+<li>Survey data on demographics for the participants such as age, gender, eating habits etc. These are general and different from the former, in that they have nothing to do with the current buffet.</li>
+</ul>
+<div class="figure">
+<img src="buffetdata.png" width="500" alt="" />
+<p class="caption">Example of Buffet data</p>
+</div>
+<div id="example-of-survey-data" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Example of Survey data<a href="data.html#example-of-survey-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure">
+<img src="surveydata.png" width="500" alt="" />
+<p class="caption">Example of Survey data</p>
+</div>
+</div>
+<div id="example-of-survey-scale" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Example of Survey Scale<a href="data.html#example-of-survey-scale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure">
+<img src="surveyscale.png" width="200" alt="" />
+<p class="caption">Survey Scale used</p>
+</div>
+</div>
+<div id="edit-in-excel" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Edit in excel<a href="data.html#edit-in-excel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Turn the files into sheets in excel having all in one file.</p>
+<p>Setup the data in excel such that they match the above in terms of format.</p>
+<p>What is important is:</p>
+<ul>
+<li>First row is used on headings and none of these are repeated. I.e. all unique within a sheet</li>
+<li>Data comes from row 2.</li>
+<li>All rows should contain data (empty cell as also data), so all empty rows are removed</li>
+<li>Headings between sheets refering to the same: e.g. participant ID should have exactly similar heading.</li>
+<li>If you have calculated stuff within excel such as a sum of the numbers in a coloum, then these should be removed from the sheet. It is not data!</li>
+</ul>
+<p>We suggest that you keep both the original version of the data as a sheet, and the ready-to-import as a sheet.</p>
+</div>
+<div id="importing-to-r" class="section level3 hasAnchor" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Importing to R<a href="data.html#importing-to-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Each of the sheets are imported seperately. Here we use the package readxl with the function read_excel.
+If the data is not in the same folder as your script, then include the path to the data, or move the data to the location.
+Be aware that the SurveyScale sheet does not have a heading. Here we import without (col_names = F), and set it manually afterwards, but you can also put it in manually.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-2"><a href="data.html#cb2-2" aria-hidden="true" tabindex="-1"></a>Buffet <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/iBuffet.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BuffetData&#39;</span>)</span>
+<span id="cb2-3"><a href="data.html#cb2-3" aria-hidden="true" tabindex="-1"></a>Survey <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/iBuffet.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;SurveyData&#39;</span>)</span>
+<span id="cb2-4"><a href="data.html#cb2-4" aria-hidden="true" tabindex="-1"></a>Surveyscales <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/iBuffet.xlsx&#39;</span>,</span>
+<span id="cb2-5"><a href="data.html#cb2-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">sheet =</span> <span class="st">&#39;SurveyScale&#39;</span>, <span class="at">col_names =</span>  F)</span></code></pre></div>
+<pre><code>## New names:
+## • `` -&gt; `...1`
+## • `` -&gt; `...2`</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Surveyscales) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;answ&#39;</span>,<span class="st">&#39;number&#39;</span>)</span></code></pre></div>
+<p>Have a look at the imported elements to ensure that indeed, they mimic the excel-sheets. head(), str() and View() is your tools.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Buffet)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   Person   Day StationName         Consumption
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt;
+## 1 P01        1 Pasta with legumes           90
+## 2 P01        1 Pasta with mushroom         148
+## 3 P02        1 Pasta with legumes          172
+## 4 P02        1 Pasta with mushroom          40
+## 5 P03        1 Pasta with legumes           56
+## 6 P03        1 Pasta with mushroom          52</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="data.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Buffet)</span></code></pre></div>
+<pre><code>## tibble [60 × 4] (S3: tbl_df/tbl/data.frame)
+##  $ Person     : chr [1:60] &quot;P01&quot; &quot;P01&quot; &quot;P02&quot; &quot;P02&quot; ...
+##  $ Day        : num [1:60] 1 1 1 1 1 1 1 1 1 1 ...
+##  $ StationName: chr [1:60] &quot;Pasta with legumes&quot; &quot;Pasta with mushroom&quot; &quot;Pasta with legumes&quot; &quot;Pasta with mushroom&quot; ...
+##  $ Consumption: num [1:60] 90 148 172 40 56 52 66 86 304 336 ...</code></pre>
+<p>We see that the coloum with names (Person and StationName) is interpreted as characters (chr) while the stuff which should be numbers (Comsuption) is numeric (num). If that is not the case, you will need to transform them using as.numeric() or as.character().</p>
+</div>
+<div id="editing-in-r" class="section level3 hasAnchor" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Editing in R<a href="data.html#editing-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Buffet data is optimal as is. We have the data as long format with all repsonse in <em>one</em> coloumn and then coloums clearifying the design, time, type, person etc.</p>
+<p>However the Survey data is not optimal directly.</p>
+<p>Things to fix:
+* The 7-point for the last four questions we want en encode as a numerical factor correctly leveled.
+* The data can additionally be versioned in both long and wide format</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="data.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-2"><a href="data.html#cb9-2" aria-hidden="true" tabindex="-1"></a>Surveylong <span class="ot">&lt;-</span> Survey <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="data.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(question,answ, <span class="st">`</span><span class="at">Pasta with legumes is visually appealing to me. </span><span class="st">`</span><span class="sc">:</span></span>
+<span id="cb9-4"><a href="data.html#cb9-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="data.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">answ =</span> answ <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">levels =</span> Surveyscales<span class="sc">$</span>answ), </span>
+<span id="cb9-6"><a href="data.html#cb9-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">answnum =</span> answ <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>())</span>
+<span id="cb9-7"><a href="data.html#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="data.html#cb9-8" aria-hidden="true" tabindex="-1"></a>Surveywide <span class="ot">&lt;-</span> Surveylong <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>answ) <span class="sc">%&gt;%</span> <span class="fu">spread</span>(question,answnum)</span></code></pre></div>
+</div>
+<div id="merging-the-data" class="section level3 hasAnchor" number="2.1.6">
+<h3><span class="header-section-number">2.1.6</span> Merging the data<a href="data.html#merging-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For the sake of being able to compare consumption (obtained from buffet data) with liking and motives (obtained from the survey data) these data frames needs to be merged. There are several merge options, here we use left_join() but full_join() and right_join() might more suited in some situations.</p>
+<div id="adding-survey-to-buffets" class="section level4 hasAnchor" number="2.1.6.1">
+<h4><span class="header-section-number">2.1.6.1</span> Adding survey to buffets<a href="data.html#adding-survey-to-buffets" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Merging should be done such that Person and Day match.
+If you additionally have demographic data (gender, age, etc.) then obviously only Person should match, as the data is constant over Days.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data.html#cb10-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="ot">&lt;-</span> Buffet <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="data.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(Surveywide, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;Person&#39;</span>,<span class="st">&#39;Day&#39;</span>))</span></code></pre></div>
+</div>
+<div id="adding-buffet-to-survey" class="section level4 hasAnchor" number="2.1.6.2">
+<h4><span class="header-section-number">2.1.6.2</span> Adding buffet to survey<a href="data.html#adding-buffet-to-survey" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Similarly, merging should be done such that Person and Day match.
+If you additionally have demographic data (gender, age, etc.) then obviously only Person should match, as the data is constant over Days.
+Further, we use the long format of the survey data here.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data.html#cb11-1" aria-hidden="true" tabindex="-1"></a>Surveylong_buffet <span class="ot">&lt;-</span> Surveylong <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="data.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(Buffet, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;Person&#39;</span>,<span class="st">&#39;Day&#39;</span>))</span></code></pre></div>
+<p>Due to not having a total overlap of information, some responses (here for consumption) will be missing. That you can see using the table function.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(Surveylong_buffet<span class="sc">$</span>Consumption))</span></code></pre></div>
+<pre><code>## 
+## FALSE 
+##   240</code></pre>
+</div>
+</div>
+<div id="save-the-data" class="section level3 hasAnchor" number="2.1.7">
+<h3><span class="header-section-number">2.1.7</span> Save the data<a href="data.html#save-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can export any data frame from R to excel (for instance using the <em>rio</em> package), as well as saving it as .RData for further analysis.</p>
+<p>Use save.image() to save everything, or use save() to specify which elements to save</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> <span class="st">&#39;iBuffetSurveyDataEverything.RData&#39;</span>) <span class="co"># everything</span></span>
+<span id="cb14-2"><a href="data.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(<span class="at">file =</span> <span class="st">&#39;iBuffetSurveyData.RData&#39;</span>,</span>
+<span id="cb14-3"><a href="data.html#cb14-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">list =</span> <span class="fu">c</span>(<span class="st">&#39;Survey&#39;</span>,<span class="st">&#39;Surveylong_buffet&#39;</span>,</span>
+<span id="cb14-4"><a href="data.html#cb14-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">&#39;Surveylong&#39;</span>,<span class="st">&#39;Buffet_survey&#39;</span>,<span class="st">&#39;Surveyscales&#39;</span>)) <span class="co"># just the usesul and non-redundant stuff.</span></span>
+<span id="cb14-5"><a href="data.html#cb14-5" aria-hidden="true" tabindex="-1"></a>rio<span class="sc">::</span><span class="fu">export</span>(Surveylong_buffet,<span class="at">file =</span> <span class="st">&#39;Surveylong_buffet.xlsx&#39;</span>) <span class="co"># export one data frame</span></span></code></pre></div>
+</div>
+<div id="ready-for-analysis" class="section level3 hasAnchor" number="2.1.8">
+<h3><span class="header-section-number">2.1.8</span> Ready for analysis<a href="data.html#ready-for-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now you can simply load the data directly, and do not need to do the import-setup every time you want to do an analysis on the data.</p>
+<p>This part is not a part of the data import, but it is a good idea just to check that the data indeed is setup as expected.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;iBuffetSurveyData.RData&#39;</span>) </span></code></pre></div>
+
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="libraries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="descriptive-statistics-and-plotting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="libraries.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -242,7 +392,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/01_Pasta_mushroom_legume.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/00_Data.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -250,7 +400,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/01_Pasta_mushroom_legume.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/00_Data.Rmd",
 "text": null
 },
 "download": null,

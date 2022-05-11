@@ -23,7 +23,7 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-05-10" />
+<meta name="date" content="2022-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -137,8 +137,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>2</b> Libraries</a></li>
-<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#read-in-data-from-excel---ibuffet"><i class="fa fa-check"></i><b>2.1</b> Read in data from Excel - iBuffet</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#example-of-survey-data"><i class="fa fa-check"></i><b>2.1.1</b> Example of Survey data</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data.html"><a href="data.html#example-of-survey-scale"><i class="fa fa-check"></i><b>2.1.2</b> Example of Survey Scale</a></li>
+<li class="chapter" data-level="2.1.3" data-path="data.html"><a href="data.html#edit-in-excel"><i class="fa fa-check"></i><b>2.1.3</b> Edit in excel</a></li>
+<li class="chapter" data-level="2.1.4" data-path="data.html"><a href="data.html#importing-to-r"><i class="fa fa-check"></i><b>2.1.4</b> Importing to R</a></li>
+<li class="chapter" data-level="2.1.5" data-path="data.html"><a href="data.html#editing-in-r"><i class="fa fa-check"></i><b>2.1.5</b> Editing in R</a></li>
+<li class="chapter" data-level="2.1.6" data-path="data.html"><a href="data.html#merging-the-data"><i class="fa fa-check"></i><b>2.1.6</b> Merging the data</a></li>
+<li class="chapter" data-level="2.1.7" data-path="data.html"><a href="data.html#save-the-data"><i class="fa fa-check"></i><b>2.1.7</b> Save the data</a></li>
+<li class="chapter" data-level="2.1.8" data-path="data.html"><a href="data.html#ready-for-analysis"><i class="fa fa-check"></i><b>2.1.8</b> Ready for analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>3</b> Libraries</a></li>
 <li class="chapter" data-level="4" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics and plotting</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#distributions-of-count-data"><i class="fa fa-check"></i><b>4.1</b> Distributions of count data</a>
@@ -204,12 +217,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 7</span> Mixed models<a href="mixed-models.html#mixed-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Mixed models are used when there is repetitions in the response due to (here) the person conducting the trial.
 The two days are repetitions, and hence we can use all the data (not splitting in to days), but need to account for the person in the model.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="mixed-models.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the data</span></span>
-<span id="cb52-2"><a href="mixed-models.html#cb52-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb52-3"><a href="mixed-models.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) </span>
-<span id="cb52-4"><a href="mixed-models.html#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-5"><a href="mixed-models.html#cb52-5" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span><span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span> <span class="sc">+</span> Day <span class="sc">+</span>  (<span class="dv">1</span><span class="sc">|</span>Person)) </span>
-<span id="cb52-6"><a href="mixed-models.html#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="mixed-models.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the data</span></span>
+<span id="cb70-2"><a href="mixed-models.html#cb70-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb70-3"><a href="mixed-models.html#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) </span>
+<span id="cb70-4"><a href="mixed-models.html#cb70-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-5"><a href="mixed-models.html#cb70-5" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span><span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span> <span class="sc">+</span> Day <span class="sc">+</span>  (<span class="dv">1</span><span class="sc">|</span>Person)) </span>
+<span id="cb70-6"><a href="mixed-models.html#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
 ## Formula: Consumption ~ `I like the taste of pasta with mushrooms! ` +      Day + (1 | Person)
 ##    Data: x
@@ -241,17 +254,17 @@ The two days are repetitions, and hence we can use all the data (not splitting i
 <p>This is the joint effect between the two days. Think of an average of the two slopes - one for each day -. Here taking into account that each person has provided two responses of the consumption of pasta with mushrooms.</p>
 <p>This can also be accomplised using the tidyverse setup engined by the broom.mixed package.</p>
 <p>In principle, we simply do not loop over Day, but include it in the formula along with person.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="mixed-models.html#cb58-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="ot">&lt;-</span> Surveylong_buffet <span class="sc">%&gt;%</span> </span>
-<span id="cb58-2"><a href="mixed-models.html#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
-<span id="cb58-3"><a href="mixed-models.html#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName,question) <span class="sc">%&gt;%</span> </span>
-<span id="cb58-4"><a href="mixed-models.html#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Consumption<span class="sc">~</span>answnum <span class="sc">+</span> Day <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Person)) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="mixed-models.html#cb76-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="ot">&lt;-</span> Surveylong_buffet <span class="sc">%&gt;%</span> </span>
+<span id="cb76-2"><a href="mixed-models.html#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
+<span id="cb76-3"><a href="mixed-models.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName,question) <span class="sc">%&gt;%</span> </span>
+<span id="cb76-4"><a href="mixed-models.html#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Consumption<span class="sc">~</span>answnum <span class="sc">+</span> Day <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Person)) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span></code></pre></div>
 <p>The output here is a bit different than the lm() model. But it is still the slope of answnum which carries the interesting stuff.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="mixed-models.html#cb59-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="sc">%&gt;%</span> </span>
-<span id="cb59-2"><a href="mixed-models.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb59-3"><a href="mixed-models.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>effect,<span class="sc">-</span>group) <span class="sc">%&gt;%</span> </span>
-<span id="cb59-4"><a href="mixed-models.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">x =</span> .,<span class="at">caption =</span> <span class="st">&#39;All mixed linear models&#39;</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="mixed-models.html#cb77-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="sc">%&gt;%</span> </span>
+<span id="cb77-2"><a href="mixed-models.html#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb77-3"><a href="mixed-models.html#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>effect,<span class="sc">-</span>group) <span class="sc">%&gt;%</span> </span>
+<span id="cb77-4"><a href="mixed-models.html#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">x =</span> .,<span class="at">caption =</span> <span class="st">&#39;All mixed linear models&#39;</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <table style="width:100%;">
-<caption><span id="tab:unnamed-chunk-33">Table 7.1: </span>All mixed linear models</caption>
+<caption><span id="tab:unnamed-chunk-44">Table 7.1: </span>All mixed linear models</caption>
 <colgroup>
 <col width="15%" />
 <col width="40%" />
@@ -357,26 +370,26 @@ The two days are repetitions, and hence we can use all the data (not splitting i
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="mixed-models.html#cb60-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="sc">%&gt;%</span> </span>
-<span id="cb60-2"><a href="mixed-models.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb60-3"><a href="mixed-models.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(question,estimate,<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high)) <span class="sc">+</span> </span>
-<span id="cb60-4"><a href="mixed-models.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> </span>
-<span id="cb60-5"><a href="mixed-models.html#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb60-6"><a href="mixed-models.html#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
-<span id="cb60-7"><a href="mixed-models.html#cb60-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="mixed-models.html#cb78-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="sc">%&gt;%</span> </span>
+<span id="cb78-2"><a href="mixed-models.html#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb78-3"><a href="mixed-models.html#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(question,estimate,<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high)) <span class="sc">+</span> </span>
+<span id="cb78-4"><a href="mixed-models.html#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb78-5"><a href="mixed-models.html#cb78-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb78-6"><a href="mixed-models.html#cb78-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
+<span id="cb78-7"><a href="mixed-models.html#cb78-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <p>Do the associations match as expected?</p>
 <div id="with-several-variables" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> With several variables<a href="mixed-models.html#with-several-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can add several predictors to the model, here that could several likert-scale questions, and maybe demographics with the consumption as response.
 This is in principle the same for both linear models and linear mixed models.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="mixed-models.html#cb61-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb61-2"><a href="mixed-models.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>))</span>
-<span id="cb61-3"><a href="mixed-models.html#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-4"><a href="mixed-models.html#cb61-4" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span><span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span> <span class="sc">+</span> </span>
-<span id="cb61-5"><a href="mixed-models.html#cb61-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">`</span><span class="at">Pasta with mushrooms is visually appealing to me. </span><span class="st">`</span> <span class="sc">+</span> Day <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Person))</span>
-<span id="cb61-6"><a href="mixed-models.html#cb61-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-7"><a href="mixed-models.html#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="mixed-models.html#cb79-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb79-2"><a href="mixed-models.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>))</span>
+<span id="cb79-3"><a href="mixed-models.html#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="mixed-models.html#cb79-4" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span><span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span> <span class="sc">+</span> </span>
+<span id="cb79-5"><a href="mixed-models.html#cb79-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">`</span><span class="at">Pasta with mushrooms is visually appealing to me. </span><span class="st">`</span> <span class="sc">+</span> Day <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Person))</span>
+<span id="cb79-6"><a href="mixed-models.html#cb79-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-7"><a href="mixed-models.html#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
 ## Formula: Consumption ~ `I like the taste of pasta with mushrooms! ` +      `Pasta with mushrooms is visually appealing to me. ` +      Day + (1 | Person)
 ##    Data: x
@@ -407,7 +420,7 @@ This is in principle the same for both linear models and linear mixed models.</p
 ## `Iltt pwm!  -0.605                
 ## `Pwm vatm ` -0.177 -0.645         
 ## Day         -0.354 -0.130   0.263</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="mixed-models.html#cb67-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="mixed-models.html#cb85-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##   effect   group    term                                                 estimate std.error statistic conf.low conf.high
 ##   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;                                                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;

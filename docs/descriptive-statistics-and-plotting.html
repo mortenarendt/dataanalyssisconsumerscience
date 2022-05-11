@@ -23,14 +23,14 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-05-10" />
+<meta name="date" content="2022-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data.html"/>
+<link rel="prev" href="libraries.html"/>
 <link rel="next" href="pca-on-survey-answers.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -137,8 +137,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>2</b> Libraries</a></li>
-<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#read-in-data-from-excel---ibuffet"><i class="fa fa-check"></i><b>2.1</b> Read in data from Excel - iBuffet</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#example-of-survey-data"><i class="fa fa-check"></i><b>2.1.1</b> Example of Survey data</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data.html"><a href="data.html#example-of-survey-scale"><i class="fa fa-check"></i><b>2.1.2</b> Example of Survey Scale</a></li>
+<li class="chapter" data-level="2.1.3" data-path="data.html"><a href="data.html#edit-in-excel"><i class="fa fa-check"></i><b>2.1.3</b> Edit in excel</a></li>
+<li class="chapter" data-level="2.1.4" data-path="data.html"><a href="data.html#importing-to-r"><i class="fa fa-check"></i><b>2.1.4</b> Importing to R</a></li>
+<li class="chapter" data-level="2.1.5" data-path="data.html"><a href="data.html#editing-in-r"><i class="fa fa-check"></i><b>2.1.5</b> Editing in R</a></li>
+<li class="chapter" data-level="2.1.6" data-path="data.html"><a href="data.html#merging-the-data"><i class="fa fa-check"></i><b>2.1.6</b> Merging the data</a></li>
+<li class="chapter" data-level="2.1.7" data-path="data.html"><a href="data.html#save-the-data"><i class="fa fa-check"></i><b>2.1.7</b> Save the data</a></li>
+<li class="chapter" data-level="2.1.8" data-path="data.html"><a href="data.html#ready-for-analysis"><i class="fa fa-check"></i><b>2.1.8</b> Ready for analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>3</b> Libraries</a></li>
 <li class="chapter" data-level="4" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics and plotting</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#distributions-of-count-data"><i class="fa fa-check"></i><b>4.1</b> Distributions of count data</a>
@@ -202,17 +215,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="descriptive-statistics-and-plotting" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Descriptive statistics and plotting<a href="descriptive-statistics-and-plotting.html#descriptive-statistics-and-plotting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="descriptive-statistics-and-plotting.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;iBuffetSurveyData.RData&#39;</span>)</span></code></pre></div>
 <div id="distributions-of-count-data" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Distributions of count data<a href="descriptive-statistics-and-plotting.html#distributions-of-count-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The table function is good in getting how many observations there are within a given vector, or combinations of several vectors.</p>
 <p>Here used on the Survey answers.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="descriptive-statistics-and-plotting.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Surveylong<span class="sc">$</span>answ) <span class="co"># across everything</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="descriptive-statistics-and-plotting.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Surveylong<span class="sc">$</span>answ) <span class="co"># across everything</span></span></code></pre></div>
 <pre><code>## 
 ##          A. Strongly disagree                   B. Disagree      C. More or less disagree D. Neither agree nor disagree         E. More or less agree 
 ##                             0                             2                             6                             7                            21 
 ##                      F. Agree             G. Strongly agree 
 ##                            32                            52</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="descriptive-statistics-and-plotting.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Surveylong<span class="sc">$</span>question,Surveylong<span class="sc">$</span>answ ) <span class="co"># across question</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="descriptive-statistics-and-plotting.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Surveylong<span class="sc">$</span>question,Surveylong<span class="sc">$</span>answ ) <span class="co"># across question</span></span></code></pre></div>
 <pre><code>##                                                     
 ##                                                      A. Strongly disagree B. Disagree C. More or less disagree D. Neither agree nor disagree
 ##   I like the taste of pasta with legumes!                               0           1                        3                             2
@@ -229,21 +243,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><em>The tidyverse way</em></p>
 <p>Lets do exactly the same just using tidyverse functions count(), group_by(), mutate(), and summarise().</p>
 <p>Further, lets print the results in a nice looking table using kable() from the knitr package.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="descriptive-statistics-and-plotting.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tb &lt;- Surveylong %&gt;% </span></span>
-<span id="cb7-2"><a href="descriptive-statistics-and-plotting.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># count(question,answ,Day,name = &quot;no_rows&quot;, .drop = F) </span></span>
-<span id="cb7-3"><a href="descriptive-statistics-and-plotting.html#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="descriptive-statistics-and-plotting.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># kable(tb, caption = &#39;some caption&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="descriptive-statistics-and-plotting.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tb &lt;- Surveylong %&gt;% </span></span>
+<span id="cb25-2"><a href="descriptive-statistics-and-plotting.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># count(question,answ,Day,name = &quot;no_rows&quot;, .drop = F) </span></span>
+<span id="cb25-3"><a href="descriptive-statistics-and-plotting.html#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="descriptive-statistics-and-plotting.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># kable(tb, caption = &#39;some caption&#39;)</span></span></code></pre></div>
 <p>The numbers are absolute, but may be better represented by proportions.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="descriptive-statistics-and-plotting.html#cb8-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> Surveylong <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="descriptive-statistics-and-plotting.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(question,Day) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="descriptive-statistics-and-plotting.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ntot =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="descriptive-statistics-and-plotting.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(question,answ,Day) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-5"><a href="descriptive-statistics-and-plotting.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), </span>
-<span id="cb8-6"><a href="descriptive-statistics-and-plotting.html#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">prc =</span> <span class="dv">100</span><span class="sc">*</span>n <span class="sc">/</span> ntot[<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="descriptive-statistics-and-plotting.html#cb26-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> Surveylong <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="descriptive-statistics-and-plotting.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(question,Day) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="descriptive-statistics-and-plotting.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ntot =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-4"><a href="descriptive-statistics-and-plotting.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(question,answ,Day) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-5"><a href="descriptive-statistics-and-plotting.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), </span>
+<span id="cb26-6"><a href="descriptive-statistics-and-plotting.html#cb26-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">prc =</span> <span class="dv">100</span><span class="sc">*</span>n <span class="sc">/</span> ntot[<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;question&#39;, &#39;answ&#39;. You can override using the `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="descriptive-statistics-and-plotting.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tb, <span class="at">caption =</span> <span class="st">&#39;some caption&#39;</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="descriptive-statistics-and-plotting.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tb, <span class="at">caption =</span> <span class="st">&#39;some caption&#39;</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div>
 <table style="width:100%;">
-<caption><span id="tab:unnamed-chunk-6">Table 4.1: </span>some caption</caption>
+<caption><span id="tab:unnamed-chunk-17">Table 4.1: </span>some caption</caption>
 <colgroup>
 <col width="54%" />
 <col width="32%" />
@@ -502,42 +516,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>… and a plot of it</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="descriptive-statistics-and-plotting.html#cb11-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="descriptive-statistics-and-plotting.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(answ,prc, <span class="at">fill =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
-<span id="cb11-3"><a href="descriptive-statistics-and-plotting.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span> </span>
-<span id="cb11-4"><a href="descriptive-statistics-and-plotting.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>question) <span class="sc">+</span> </span>
-<span id="cb11-5"><a href="descriptive-statistics-and-plotting.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>,<span class="at">hjust =</span> <span class="dv">1</span>), </span>
-<span id="cb11-6"><a href="descriptive-statistics-and-plotting.html#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&#39;top&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="descriptive-statistics-and-plotting.html#cb29-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="descriptive-statistics-and-plotting.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(answ,prc, <span class="at">fill =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
+<span id="cb29-3"><a href="descriptive-statistics-and-plotting.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span> </span>
+<span id="cb29-4"><a href="descriptive-statistics-and-plotting.html#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>question) <span class="sc">+</span> </span>
+<span id="cb29-5"><a href="descriptive-statistics-and-plotting.html#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>,<span class="at">hjust =</span> <span class="dv">1</span>), </span>
+<span id="cb29-6"><a href="descriptive-statistics-and-plotting.html#cb29-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&#39;top&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <div id="descriptives-for-a-continouos-variable" class="section level3 hasAnchor" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Descriptives for a continouos variable<a href="descriptive-statistics-and-plotting.html#descriptives-for-a-continouos-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here just across the entire sample set.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="descriptive-statistics-and-plotting.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="descriptive-statistics-and-plotting.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
 <pre><code>## [1] 138</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="descriptive-statistics-and-plotting.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="descriptive-statistics-and-plotting.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
 <pre><code>## [1] 126</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="descriptive-statistics-and-plotting.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="descriptive-statistics-and-plotting.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
 <pre><code>## [1] 85.45472</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="descriptive-statistics-and-plotting.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="descriptive-statistics-and-plotting.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
 <pre><code>## [1] 112.5</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="descriptive-statistics-and-plotting.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="descriptive-statistics-and-plotting.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     0.0    74.0   126.0   138.0   186.5   378.0</code></pre>
 <p>This is a very high level representation, and we usually want to compare means (or other metrics) between different groups.</p>
 <p>We use the consumption and split it according to day and pasta-type.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="descriptive-statistics-and-plotting.html#cb22-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb22-2"><a href="descriptive-statistics-and-plotting.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName, Day) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-3"><a href="descriptive-statistics-and-plotting.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">nobs =</span> <span class="fu">n</span>(),</span>
-<span id="cb22-4"><a href="descriptive-statistics-and-plotting.html#cb22-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean =</span> <span class="fu">mean</span>(Consumption), </span>
-<span id="cb22-5"><a href="descriptive-statistics-and-plotting.html#cb22-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(Consumption),</span>
-<span id="cb22-6"><a href="descriptive-statistics-and-plotting.html#cb22-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(Consumption),</span>
-<span id="cb22-7"><a href="descriptive-statistics-and-plotting.html#cb22-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">iqr =</span> <span class="fu">IQR</span>(Consumption), </span>
-<span id="cb22-8"><a href="descriptive-statistics-and-plotting.html#cb22-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">q25 =</span> <span class="fu">quantile</span>(Consumption,<span class="fl">0.25</span>), </span>
-<span id="cb22-9"><a href="descriptive-statistics-and-plotting.html#cb22-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">q75 =</span> <span class="fu">quantile</span>(Consumption,<span class="fl">0.75</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="descriptive-statistics-and-plotting.html#cb40-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="descriptive-statistics-and-plotting.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName, Day) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-3"><a href="descriptive-statistics-and-plotting.html#cb40-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">nobs =</span> <span class="fu">n</span>(),</span>
+<span id="cb40-4"><a href="descriptive-statistics-and-plotting.html#cb40-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean =</span> <span class="fu">mean</span>(Consumption), </span>
+<span id="cb40-5"><a href="descriptive-statistics-and-plotting.html#cb40-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(Consumption),</span>
+<span id="cb40-6"><a href="descriptive-statistics-and-plotting.html#cb40-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(Consumption),</span>
+<span id="cb40-7"><a href="descriptive-statistics-and-plotting.html#cb40-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">iqr =</span> <span class="fu">IQR</span>(Consumption), </span>
+<span id="cb40-8"><a href="descriptive-statistics-and-plotting.html#cb40-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">q25 =</span> <span class="fu">quantile</span>(Consumption,<span class="fl">0.25</span>), </span>
+<span id="cb40-9"><a href="descriptive-statistics-and-plotting.html#cb40-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">q75 =</span> <span class="fu">quantile</span>(Consumption,<span class="fl">0.75</span>))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;StationName&#39;. You can override using the `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="descriptive-statistics-and-plotting.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tb2, <span class="at">digits =</span> <span class="dv">1</span>, <span class="at">caption =</span> <span class="st">&#39;some relevant caption&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="descriptive-statistics-and-plotting.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tb2, <span class="at">digits =</span> <span class="dv">1</span>, <span class="at">caption =</span> <span class="st">&#39;some relevant caption&#39;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-9">Table 4.2: </span>some relevant caption</caption>
+<caption><span id="tab:unnamed-chunk-20">Table 4.2: </span>some relevant caption</caption>
 <thead>
 <tr class="header">
 <th align="left">StationName</th>
@@ -599,35 +613,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Corresponding plot of data</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="descriptive-statistics-and-plotting.html#cb25-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb25-2"><a href="descriptive-statistics-and-plotting.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(StationName,Consumption, <span class="at">fill =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
-<span id="cb25-3"><a href="descriptive-statistics-and-plotting.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="descriptive-statistics-and-plotting.html#cb26-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb26-2"><a href="descriptive-statistics-and-plotting.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(StationName,Consumption, <span class="at">fill =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
-<span id="cb26-3"><a href="descriptive-statistics-and-plotting.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb26-4"><a href="descriptive-statistics-and-plotting.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics-and-plotting.html#cb43-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb43-2"><a href="descriptive-statistics-and-plotting.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(StationName,Consumption, <span class="at">fill =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
+<span id="cb43-3"><a href="descriptive-statistics-and-plotting.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="descriptive-statistics-and-plotting.html#cb44-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb44-2"><a href="descriptive-statistics-and-plotting.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(StationName,Consumption, <span class="at">fill =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
+<span id="cb44-3"><a href="descriptive-statistics-and-plotting.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb44-4"><a href="descriptive-statistics-and-plotting.html#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
 <p>Corresponding plots of the results</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="descriptive-statistics-and-plotting.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span> tb2, <span class="fu">aes</span>(<span class="fu">factor</span>(StationName)<span class="sc">:</span><span class="fu">factor</span>(Day),mean, </span>
-<span id="cb27-2"><a href="descriptive-statistics-and-plotting.html#cb27-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">color =</span> <span class="fu">factor</span>(Day), <span class="at">ymin =</span> mean<span class="sc">-</span>sd, <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
-<span id="cb27-3"><a href="descriptive-statistics-and-plotting.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb27-4"><a href="descriptive-statistics-and-plotting.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.3</span>)<span class="sc">+</span></span>
-<span id="cb27-5"><a href="descriptive-statistics-and-plotting.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>,<span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb27-6"><a href="descriptive-statistics-and-plotting.html#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;mean+/- 1*sd&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="descriptive-statistics-and-plotting.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span> tb2, <span class="fu">aes</span>(<span class="fu">factor</span>(StationName)<span class="sc">:</span><span class="fu">factor</span>(Day),mean, </span>
+<span id="cb45-2"><a href="descriptive-statistics-and-plotting.html#cb45-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">color =</span> <span class="fu">factor</span>(Day), <span class="at">ymin =</span> mean<span class="sc">-</span>sd, <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
+<span id="cb45-3"><a href="descriptive-statistics-and-plotting.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb45-4"><a href="descriptive-statistics-and-plotting.html#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb45-5"><a href="descriptive-statistics-and-plotting.html#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>,<span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb45-6"><a href="descriptive-statistics-and-plotting.html#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;mean+/- 1*sd&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <div id="in-relation-to-protein-considerations" class="section level4 hasAnchor" number="4.1.1.1">
 <h4><span class="header-section-number">4.1.1.1</span> In relation to protein considerations<a href="descriptive-statistics-and-plotting.html#in-relation-to-protein-considerations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Try to make these descriptive analysis and plots taking into account whether the participants considered protein content, and why they did.</p>
 <p>Here is some inspiration.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="descriptive-statistics-and-plotting.html#cb28-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb28-2"><a href="descriptive-statistics-and-plotting.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., </span>
-<span id="cb28-3"><a href="descriptive-statistics-and-plotting.html#cb28-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(<span class="st">`</span><span class="at">Did you consider the protein content of the dish(es) you chose?</span><span class="st">`</span>,</span>
-<span id="cb28-4"><a href="descriptive-statistics-and-plotting.html#cb28-4" aria-hidden="true" tabindex="-1"></a>             Consumption)) <span class="sc">+</span> </span>
-<span id="cb28-5"><a href="descriptive-statistics-and-plotting.html#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb28-6"><a href="descriptive-statistics-and-plotting.html#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
-<span id="cb28-7"><a href="descriptive-statistics-and-plotting.html#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>StationName)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="descriptive-statistics-and-plotting.html#cb46-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="descriptive-statistics-and-plotting.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., </span>
+<span id="cb46-3"><a href="descriptive-statistics-and-plotting.html#cb46-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(<span class="st">`</span><span class="at">Did you consider the protein content of the dish(es) you chose?</span><span class="st">`</span>,</span>
+<span id="cb46-4"><a href="descriptive-statistics-and-plotting.html#cb46-4" aria-hidden="true" tabindex="-1"></a>             Consumption)) <span class="sc">+</span> </span>
+<span id="cb46-5"><a href="descriptive-statistics-and-plotting.html#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb46-6"><a href="descriptive-statistics-and-plotting.html#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
+<span id="cb46-7"><a href="descriptive-statistics-and-plotting.html#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>StationName)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 </div>
 </div>
@@ -635,20 +649,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.2</span> Scatter plots<a href="descriptive-statistics-and-plotting.html#scatter-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lets plot the consumption as a function of the answers to the liking-scale questions of the survey, and split it into day and type of vegetable.
 If you think about it, it is pretty many plots, but the ggplot2 functionality facet_wrap() on a long format data frame does it in few lines:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="descriptive-statistics-and-plotting.html#cb29-1" aria-hidden="true" tabindex="-1"></a>Surveylong_buffet <span class="sc">%&gt;%</span> </span>
-<span id="cb29-2"><a href="descriptive-statistics-and-plotting.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-3"><a href="descriptive-statistics-and-plotting.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question2 =</span> question <span class="sc">%&gt;%</span> <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="co"># The label is to long, so lets just represent the first 30 letters.</span></span>
-<span id="cb29-4"><a href="descriptive-statistics-and-plotting.html#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> .,  <span class="fu">aes</span>(answnum,Consumption, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span></span>
-<span id="cb29-5"><a href="descriptive-statistics-and-plotting.html#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb29-6"><a href="descriptive-statistics-and-plotting.html#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
-<span id="cb29-7"><a href="descriptive-statistics-and-plotting.html#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_cor</span>() <span class="sc">+</span></span>
-<span id="cb29-8"><a href="descriptive-statistics-and-plotting.html#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(question2 <span class="sc">~</span> StationName) <span class="sc">+</span> </span>
-<span id="cb29-9"><a href="descriptive-statistics-and-plotting.html#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="descriptive-statistics-and-plotting.html#cb47-1" aria-hidden="true" tabindex="-1"></a>Surveylong_buffet <span class="sc">%&gt;%</span> </span>
+<span id="cb47-2"><a href="descriptive-statistics-and-plotting.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-3"><a href="descriptive-statistics-and-plotting.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question2 =</span> question <span class="sc">%&gt;%</span> <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="co"># The label is to long, so lets just represent the first 30 letters.</span></span>
+<span id="cb47-4"><a href="descriptive-statistics-and-plotting.html#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> .,  <span class="fu">aes</span>(answnum,Consumption, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="descriptive-statistics-and-plotting.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb47-6"><a href="descriptive-statistics-and-plotting.html#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
+<span id="cb47-7"><a href="descriptive-statistics-and-plotting.html#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_cor</span>() <span class="sc">+</span></span>
+<span id="cb47-8"><a href="descriptive-statistics-and-plotting.html#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(question2 <span class="sc">~</span> StationName) <span class="sc">+</span> </span>
+<span id="cb47-9"><a href="descriptive-statistics-and-plotting.html#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="descriptive-statistics-and-plotting.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(Surveyscales, <span class="at">caption =</span> <span class="st">&#39;Just a table to have what the 7point likert scale numbers mean&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="descriptive-statistics-and-plotting.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(Surveyscales, <span class="at">caption =</span> <span class="st">&#39;Just a table to have what the 7point likert scale numbers mean&#39;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-14">Table 4.3: </span>Just a table to have what the 7point likert scale numbers mean</caption>
+<caption><span id="tab:unnamed-chunk-25">Table 4.3: </span>Just a table to have what the 7point likert scale numbers mean</caption>
 <thead>
 <tr class="header">
 <th align="left">answ</th>
@@ -696,7 +710,7 @@ If you think about it, it is pretty many plots, but the ggplot2 functionality fa
           </div>
         </div>
       </div>
-<a href="data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="libraries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="pca-on-survey-answers.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

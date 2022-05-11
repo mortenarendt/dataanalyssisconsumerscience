@@ -23,7 +23,7 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-05-10" />
+<meta name="date" content="2022-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -137,8 +137,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>2</b> Libraries</a></li>
-<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#read-in-data-from-excel---ibuffet"><i class="fa fa-check"></i><b>2.1</b> Read in data from Excel - iBuffet</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#example-of-survey-data"><i class="fa fa-check"></i><b>2.1.1</b> Example of Survey data</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data.html"><a href="data.html#example-of-survey-scale"><i class="fa fa-check"></i><b>2.1.2</b> Example of Survey Scale</a></li>
+<li class="chapter" data-level="2.1.3" data-path="data.html"><a href="data.html#edit-in-excel"><i class="fa fa-check"></i><b>2.1.3</b> Edit in excel</a></li>
+<li class="chapter" data-level="2.1.4" data-path="data.html"><a href="data.html#importing-to-r"><i class="fa fa-check"></i><b>2.1.4</b> Importing to R</a></li>
+<li class="chapter" data-level="2.1.5" data-path="data.html"><a href="data.html#editing-in-r"><i class="fa fa-check"></i><b>2.1.5</b> Editing in R</a></li>
+<li class="chapter" data-level="2.1.6" data-path="data.html"><a href="data.html#merging-the-data"><i class="fa fa-check"></i><b>2.1.6</b> Merging the data</a></li>
+<li class="chapter" data-level="2.1.7" data-path="data.html"><a href="data.html#save-the-data"><i class="fa fa-check"></i><b>2.1.7</b> Save the data</a></li>
+<li class="chapter" data-level="2.1.8" data-path="data.html"><a href="data.html#ready-for-analysis"><i class="fa fa-check"></i><b>2.1.8</b> Ready for analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>3</b> Libraries</a></li>
 <li class="chapter" data-level="4" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics and plotting</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#distributions-of-count-data"><i class="fa fa-check"></i><b>4.1</b> Distributions of count data</a>
@@ -206,35 +219,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[  y = a + b \cdot x + e \]</span>
 Here the informative parameter is the slope (<span class="math inline">\(b\)</span>) which indicates the relation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. (<span class="math inline">\(e\)</span> is the missfit / residuals of the model).</p>
 <p>We use tidyverse coding as this makes life much easier. As an tidyverse add on, we use broom for the linear models, broom.mixed and lme4 for the linear mixed models.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="linear-models.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># lets plot dadta</span></span>
-<span id="cb41-2"><a href="linear-models.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb41-3"><a href="linear-models.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb41-4"><a href="linear-models.html#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
-<span id="cb41-5"><a href="linear-models.html#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb41-6"><a href="linear-models.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># lets add stats to the plots</span></span>
-<span id="cb41-7"><a href="linear-models.html#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># lets make nice tables</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="linear-models.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># lets plot dadta</span></span>
+<span id="cb59-2"><a href="linear-models.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb59-3"><a href="linear-models.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb59-4"><a href="linear-models.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
+<span id="cb59-5"><a href="linear-models.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb59-6"><a href="linear-models.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># lets add stats to the plots</span></span>
+<span id="cb59-7"><a href="linear-models.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># lets make nice tables</span></span></code></pre></div>
 <p>The data is already imported, and formated (see <em>Getting_data_in.pdf</em> for details). We simply load this file.</p>
 <div id="example" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Example<a href="linear-models.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As response variable, the amount of Consumption of <em>Pasta with mushrooms</em> and use the likert scale <em><code>I like the taste of pasta with mushrooms!</code></em> as predictor. We use ONLY Day 1 results.</p>
 <p>First a plot:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="linear-models.html#cb42-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb42-2"><a href="linear-models.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb42-3"><a href="linear-models.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb42-4"><a href="linear-models.html#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(<span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span>,Consumption)) <span class="sc">+</span> </span>
-<span id="cb42-5"><a href="linear-models.html#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb42-6"><a href="linear-models.html#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="linear-models.html#cb60-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb60-2"><a href="linear-models.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb60-3"><a href="linear-models.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb60-4"><a href="linear-models.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(<span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span>,Consumption)) <span class="sc">+</span> </span>
+<span id="cb60-5"><a href="linear-models.html#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb60-6"><a href="linear-models.html#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> F)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <p>It seems as there is something.
 So lets build a linear model on this</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="linear-models.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the data</span></span>
-<span id="cb44-2"><a href="linear-models.html#cb44-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb44-3"><a href="linear-models.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb44-4"><a href="linear-models.html#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) </span>
-<span id="cb44-5"><a href="linear-models.html#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-6"><a href="linear-models.html#cb44-6" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span><span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span>) </span>
-<span id="cb44-7"><a href="linear-models.html#cb44-7" aria-hidden="true" tabindex="-1"></a>mdl  </span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="linear-models.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the data</span></span>
+<span id="cb62-2"><a href="linear-models.html#cb62-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb62-3"><a href="linear-models.html#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb62-4"><a href="linear-models.html#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) </span>
+<span id="cb62-5"><a href="linear-models.html#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="linear-models.html#cb62-6" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span><span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span>) </span>
+<span id="cb62-7"><a href="linear-models.html#cb62-7" aria-hidden="true" tabindex="-1"></a>mdl  </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Consumption ~ `I like the taste of pasta with mushrooms! `, 
@@ -243,7 +256,7 @@ So lets build a linear model on this</p>
 ## Coefficients:
 ##                                  (Intercept)  `I like the taste of pasta with mushrooms! `  
 ##                                      -186.28                                         50.21</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="linear-models.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="linear-models.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Consumption ~ `I like the taste of pasta with mushrooms! `, 
@@ -268,29 +281,29 @@ So lets build a linear model on this</p>
 <p>We want to model consumption of both pasta with mushrooms andd legumes, and look at all the likert scales questions as predictors. Further we want to do this for both days.</p>
 <div id="a-plot" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> A plot<a href="linear-models.html#a-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="linear-models.html#cb48-1" aria-hidden="true" tabindex="-1"></a>Surveylong_buffet <span class="sc">%&gt;%</span> </span>
-<span id="cb48-2"><a href="linear-models.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
-<span id="cb48-3"><a href="linear-models.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question2 =</span> question <span class="sc">%&gt;%</span> <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="co"># The label is to long, so lets just represent the first 30 letters.</span></span>
-<span id="cb48-4"><a href="linear-models.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> .,  <span class="fu">aes</span>(answnum,Consumption, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span></span>
-<span id="cb48-5"><a href="linear-models.html#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb48-6"><a href="linear-models.html#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
-<span id="cb48-7"><a href="linear-models.html#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_cor</span>() <span class="sc">+</span></span>
-<span id="cb48-8"><a href="linear-models.html#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(question2 <span class="sc">~</span> StationName) <span class="sc">+</span> </span>
-<span id="cb48-9"><a href="linear-models.html#cb48-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="linear-models.html#cb66-1" aria-hidden="true" tabindex="-1"></a>Surveylong_buffet <span class="sc">%&gt;%</span> </span>
+<span id="cb66-2"><a href="linear-models.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-3"><a href="linear-models.html#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question2 =</span> question <span class="sc">%&gt;%</span> <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="co"># The label is to long, so lets just represent the first 30 letters.</span></span>
+<span id="cb66-4"><a href="linear-models.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> .,  <span class="fu">aes</span>(answnum,Consumption, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span></span>
+<span id="cb66-5"><a href="linear-models.html#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb66-6"><a href="linear-models.html#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
+<span id="cb66-7"><a href="linear-models.html#cb66-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_cor</span>() <span class="sc">+</span></span>
+<span id="cb66-8"><a href="linear-models.html#cb66-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(question2 <span class="sc">~</span> StationName) <span class="sc">+</span> </span>
+<span id="cb66-9"><a href="linear-models.html#cb66-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <p>This we similary can run as several linear models.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="linear-models.html#cb50-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> Surveylong_buffet <span class="sc">%&gt;%</span> </span>
-<span id="cb50-2"><a href="linear-models.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
-<span id="cb50-3"><a href="linear-models.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName,question,Day) <span class="sc">%&gt;%</span> </span>
-<span id="cb50-4"><a href="linear-models.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lm</span>(<span class="at">data =</span> ., Consumption<span class="sc">~</span>answnum) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span>
-<span id="cb50-5"><a href="linear-models.html#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-6"><a href="linear-models.html#cb50-6" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb50-7"><a href="linear-models.html#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb50-8"><a href="linear-models.html#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>statistic) <span class="sc">%&gt;%</span> </span>
-<span id="cb50-9"><a href="linear-models.html#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">x =</span> .,<span class="at">caption =</span> <span class="st">&#39;All linear models&#39;</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="linear-models.html#cb68-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> Surveylong_buffet <span class="sc">%&gt;%</span> </span>
+<span id="cb68-2"><a href="linear-models.html#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
+<span id="cb68-3"><a href="linear-models.html#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName,question,Day) <span class="sc">%&gt;%</span> </span>
+<span id="cb68-4"><a href="linear-models.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lm</span>(<span class="at">data =</span> ., Consumption<span class="sc">~</span>answnum) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span>
+<span id="cb68-5"><a href="linear-models.html#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-6"><a href="linear-models.html#cb68-6" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb68-7"><a href="linear-models.html#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb68-8"><a href="linear-models.html#cb68-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>statistic) <span class="sc">%&gt;%</span> </span>
+<span id="cb68-9"><a href="linear-models.html#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">x =</span> .,<span class="at">caption =</span> <span class="st">&#39;All linear models&#39;</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-29">Table 6.1: </span>All linear models</caption>
+<caption><span id="tab:unnamed-chunk-40">Table 6.1: </span>All linear models</caption>
 <colgroup>
 <col width="15%" />
 <col width="39%" />
@@ -495,14 +508,14 @@ So lets build a linear model on this</p>
 </tbody>
 </table>
 <p>.. A plot of these results for a quick interpretation.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="linear-models.html#cb51-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb51-2"><a href="linear-models.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb51-3"><a href="linear-models.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(question,estimate,<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
-<span id="cb51-4"><a href="linear-models.html#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> </span>
-<span id="cb51-5"><a href="linear-models.html#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb51-6"><a href="linear-models.html#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
-<span id="cb51-7"><a href="linear-models.html#cb51-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="linear-models.html#cb69-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb69-2"><a href="linear-models.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb69-3"><a href="linear-models.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(question,estimate,<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
+<span id="cb69-4"><a href="linear-models.html#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb69-5"><a href="linear-models.html#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb69-6"><a href="linear-models.html#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
+<span id="cb69-7"><a href="linear-models.html#cb69-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>Seems as some of the legume consumptions there is a significant association with likert scales. Not as strong for consumption of mushrooms.</p>
 </div>
 </div>

@@ -1,29 +1,43 @@
 
 # Libraries
 
-We use tidyverse coding as this makes life much easier. 
+R comes with a bit of functionality. However, most of the useful tools in R is distributed as packages. There are +10.000 package for R, so it is a jungle to figure out what the most easy solution to your problem at hand is. However, the teams who have made tidyverse and ggplot2 etc. have made a lot of things much more easy, and we strongly rely on their tools and routines in data analysis. 
+
+To install packages from CRAN (the main repo where R-packages are distributed)
+
+```{r, eval=FALSE}
+install.packages('somepackage')
+```
+
+To install packages from github (the place where all the development and general code sharing is distributed)
+
+```{r,eval=FALSE}
+devtools::install_github('developername/packagename')
+```
+
+To make packages available within your analysis use library(), or use the package name followed by :: and the function
 
 ```{r}
 library(ggplot2) # lets plot dadta
 library(tidyverse)
 library(ggpubr) # lets add stats to the plots
 library(knitr) # lets make nice tables
+
+ggplot2::qplot(rnorm(100)) # example of a function call without library'ing the package.
 ```
 
-# Data
 
-The data is already imported, and formated (see _Getting_data_in.pdf_ for details). We simply load this file. 
+
+
+# Descriptive statistics and plotting
 
 ```{r,eval=FALSE, include=TRUE}
-load('BuffetSurveyData.RData')
+load('iBuffetSurveyData.RData')
 ```
 
 ```{r,eval=T, include=F}
 load('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Meal Systems and Technology/data/BuffetData2/BuffetSurveyData.RData')
 ```
-
-
-# Descriptive statistics and plotting
 
 ## Distributions of count data
 

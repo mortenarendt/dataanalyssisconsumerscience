@@ -18,3 +18,5 @@ This material is to cover data analysis using R for consumer science targeting t
 * Public health nutrition
 
 But others may benefit from the material as well....
+
+
