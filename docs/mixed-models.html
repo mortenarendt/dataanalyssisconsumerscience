@@ -23,7 +23,7 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-05-11" />
+<meta name="date" content="2022-06-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -217,63 +217,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 7</span> Mixed models<a href="mixed-models.html#mixed-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Mixed models are used when there is repetitions in the response due to (here) the person conducting the trial.
 The two days are repetitions, and hence we can use all the data (not splitting in to days), but need to account for the person in the model.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="mixed-models.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the data</span></span>
-<span id="cb70-2"><a href="mixed-models.html#cb70-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb70-3"><a href="mixed-models.html#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) </span>
-<span id="cb70-4"><a href="mixed-models.html#cb70-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-5"><a href="mixed-models.html#cb70-5" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span><span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span> <span class="sc">+</span> Day <span class="sc">+</span>  (<span class="dv">1</span><span class="sc">|</span>Person)) </span>
-<span id="cb70-6"><a href="mixed-models.html#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="mixed-models.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the data</span></span>
+<span id="cb99-2"><a href="mixed-models.html#cb99-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> pasta <span class="sc">%&gt;%</span> </span>
+<span id="cb99-3"><a href="mixed-models.html#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) </span>
+<span id="cb99-4"><a href="mixed-models.html#cb99-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-5"><a href="mixed-models.html#cb99-5" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span>I_like_taste_of_pasta_with_mushrooms <span class="sc">+</span> Day <span class="sc">+</span>  (<span class="dv">1</span><span class="sc">|</span>Person)) </span>
+<span id="cb99-6"><a href="mixed-models.html#cb99-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
-## Formula: Consumption ~ `I like the taste of pasta with mushrooms! ` +      Day + (1 | Person)
+## Formula: Consumption ~ I_like_taste_of_pasta_with_mushrooms + Day + (1 |      Person)
 ##    Data: x
 ## 
-## REML criterion at convergence: 319.8
+## REML criterion at convergence: 309
 ## 
 ## Scaled residuals: 
 ##     Min      1Q  Median      3Q     Max 
-## -1.2986 -0.6573 -0.1820  0.4409  2.0326 
+## -1.1229 -0.5717 -0.1507  0.4085  2.0757 
 ## 
 ## Random effects:
 ##  Groups   Name        Variance Std.Dev.
-##  Person   (Intercept) 1325     36.40   
-##  Residual             4871     69.79   
+##  Person   (Intercept) 1561     39.51   
+##  Residual             4794     69.24   
 ## Number of obs: 30, groups:  Person, 15
 ## 
 ## Fixed effects:
-##                                              Estimate Std. Error t value
-## (Intercept)                                   -56.368    142.864  -0.395
-## `I like the taste of pasta with mushrooms! `   30.552     21.146   1.445
-## Day                                            -4.097     25.523  -0.161</code></pre>
-<pre><code>## Warning in abbreviate(rn, minlength = 11): abbreviate used with non-ASCII chars</code></pre>
-<pre><code>## 
-## Correlation of Fixed Effects:</code></pre>
-<pre><code>## Warning in abbreviate(rn, minlength = 6): abbreviate used with non-ASCII chars</code></pre>
-<pre><code>##             (Intr) `lttpwm
-## `Iltt pwm!  -0.957        
-## Day         -0.320  0.055</code></pre>
+##                                                    Estimate Std. Error t value
+## (Intercept)                                         112.594     56.211   2.003
+## I_like_taste_of_pasta_with_mushroomsAgree            -1.222     47.725  -0.026
+## I_like_taste_of_pasta_with_mushroomsStrongly agree   48.220     46.189   1.044
+## Day                                                  -2.837     25.380  -0.112
+## 
+## Correlation of Fixed Effects:
+##             (Intr) I_____ I____a
+## I_lk_t____A -0.595              
+## I_lk_____Sa -0.662  0.748       
+## Day         -0.678 -0.035  0.028</code></pre>
 <p>This is the joint effect between the two days. Think of an average of the two slopes - one for each day -. Here taking into account that each person has provided two responses of the consumption of pasta with mushrooms.</p>
 <p>This can also be accomplised using the tidyverse setup engined by the broom.mixed package.</p>
 <p>In principle, we simply do not loop over Day, but include it in the formula along with person.</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="mixed-models.html#cb76-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="ot">&lt;-</span> Surveylong_buffet <span class="sc">%&gt;%</span> </span>
-<span id="cb76-2"><a href="mixed-models.html#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
-<span id="cb76-3"><a href="mixed-models.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName,question) <span class="sc">%&gt;%</span> </span>
-<span id="cb76-4"><a href="mixed-models.html#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Consumption<span class="sc">~</span>answnum <span class="sc">+</span> Day <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Person)) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="mixed-models.html#cb101-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="ot">&lt;-</span> pastalong <span class="sc">%&gt;%</span> </span>
+<span id="cb101-2"><a href="mixed-models.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
+<span id="cb101-3"><a href="mixed-models.html#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName,question) <span class="sc">%&gt;%</span> </span>
+<span id="cb101-4"><a href="mixed-models.html#cb101-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Consumption<span class="sc">~</span>answnum <span class="sc">+</span> Day <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Person)) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span></code></pre></div>
 <p>The output here is a bit different than the lm() model. But it is still the slope of answnum which carries the interesting stuff.</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="mixed-models.html#cb77-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="sc">%&gt;%</span> </span>
-<span id="cb77-2"><a href="mixed-models.html#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb77-3"><a href="mixed-models.html#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>effect,<span class="sc">-</span>group) <span class="sc">%&gt;%</span> </span>
-<span id="cb77-4"><a href="mixed-models.html#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">x =</span> .,<span class="at">caption =</span> <span class="st">&#39;All mixed linear models&#39;</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
-<table style="width:100%;">
-<caption><span id="tab:unnamed-chunk-44">Table 7.1: </span>All mixed linear models</caption>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="mixed-models.html#cb102-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="sc">%&gt;%</span> </span>
+<span id="cb102-2"><a href="mixed-models.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb102-3"><a href="mixed-models.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>effect,<span class="sc">-</span>group) <span class="sc">%&gt;%</span> </span>
+<span id="cb102-4"><a href="mixed-models.html#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">x =</span> .,<span class="at">caption =</span> <span class="st">&#39;All mixed linear models&#39;</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-45">Table 7.1: </span>All mixed linear models</caption>
 <colgroup>
-<col width="15%" />
-<col width="40%" />
+<col width="16%" />
+<col width="36%" />
 <col width="6%" />
 <col width="7%" />
+<col width="8%" />
+<col width="8%" />
 <col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
+<col width="8%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -290,146 +290,153 @@ The two days are repetitions, and hence we can use all the data (not splitting i
 <tbody>
 <tr class="odd">
 <td align="left">Pasta with legumes</td>
-<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">I_like_taste_of_pasta_with_legumes</td>
 <td align="left">answnum</td>
-<td align="right">37.17</td>
-<td align="right">11.37</td>
-<td align="right">3.27</td>
-<td align="right">14.88</td>
-<td align="right">59.45</td>
+<td align="right">1.71</td>
+<td align="right">7.86</td>
+<td align="right">0.22</td>
+<td align="right">-13.71</td>
+<td align="right">17.12</td>
 </tr>
 <tr class="even">
 <td align="left">Pasta with legumes</td>
-<td align="left">I like the taste of pasta with mushrooms! </td>
+<td align="left">I_like_taste_of_pasta_with_mushrooms</td>
 <td align="left">answnum</td>
-<td align="right">30.95</td>
-<td align="right">23.93</td>
-<td align="right">1.29</td>
-<td align="right">-15.95</td>
-<td align="right">77.85</td>
+<td align="right">6.12</td>
+<td align="right">7.65</td>
+<td align="right">0.80</td>
+<td align="right">-8.87</td>
+<td align="right">21.11</td>
 </tr>
 <tr class="odd">
 <td align="left">Pasta with legumes</td>
-<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">Pasta_with_legumes_is_visually_appealing</td>
 <td align="left">answnum</td>
-<td align="right">13.60</td>
-<td align="right">13.12</td>
-<td align="right">1.04</td>
-<td align="right">-12.11</td>
-<td align="right">39.30</td>
+<td align="right">14.16</td>
+<td align="right">8.17</td>
+<td align="right">1.73</td>
+<td align="right">-1.86</td>
+<td align="right">30.18</td>
 </tr>
 <tr class="even">
 <td align="left">Pasta with legumes</td>
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
+<td align="left">Pasta_with_mushrooms_is_visually_appealing</td>
 <td align="left">answnum</td>
-<td align="right">-7.68</td>
-<td align="right">19.63</td>
-<td align="right">-0.39</td>
-<td align="right">-46.15</td>
-<td align="right">30.79</td>
+<td align="right">6.23</td>
+<td align="right">8.83</td>
+<td align="right">0.71</td>
+<td align="right">-11.08</td>
+<td align="right">23.53</td>
 </tr>
 <tr class="odd">
 <td align="left">Pasta with mushroom</td>
-<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">I_like_taste_of_pasta_with_legumes</td>
 <td align="left">answnum</td>
-<td align="right">2.08</td>
-<td align="right">11.29</td>
-<td align="right">0.18</td>
-<td align="right">-20.04</td>
-<td align="right">24.21</td>
+<td align="right">-2.12</td>
+<td align="right">7.36</td>
+<td align="right">-0.29</td>
+<td align="right">-16.56</td>
+<td align="right">12.31</td>
 </tr>
 <tr class="even">
 <td align="left">Pasta with mushroom</td>
-<td align="left">I like the taste of pasta with mushrooms! </td>
+<td align="left">I_like_taste_of_pasta_with_mushrooms</td>
 <td align="left">answnum</td>
-<td align="right">30.55</td>
-<td align="right">21.15</td>
-<td align="right">1.44</td>
-<td align="right">-10.89</td>
-<td align="right">72.00</td>
+<td align="right">10.25</td>
+<td align="right">6.53</td>
+<td align="right">1.57</td>
+<td align="right">-2.55</td>
+<td align="right">23.05</td>
 </tr>
 <tr class="odd">
 <td align="left">Pasta with mushroom</td>
-<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">Pasta_with_legumes_is_visually_appealing</td>
 <td align="left">answnum</td>
-<td align="right">10.26</td>
-<td align="right">11.21</td>
-<td align="right">0.91</td>
-<td align="right">-11.72</td>
-<td align="right">32.24</td>
+<td align="right">-4.21</td>
+<td align="right">7.87</td>
+<td align="right">-0.54</td>
+<td align="right">-19.63</td>
+<td align="right">11.20</td>
 </tr>
 <tr class="even">
 <td align="left">Pasta with mushroom</td>
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
+<td align="left">Pasta_with_mushrooms_is_visually_appealing</td>
 <td align="left">answnum</td>
-<td align="right">8.16</td>
-<td align="right">16.73</td>
-<td align="right">0.49</td>
-<td align="right">-24.63</td>
-<td align="right">40.94</td>
+<td align="right">-4.33</td>
+<td align="right">8.38</td>
+<td align="right">-0.52</td>
+<td align="right">-20.76</td>
+<td align="right">12.10</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="mixed-models.html#cb78-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="sc">%&gt;%</span> </span>
-<span id="cb78-2"><a href="mixed-models.html#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb78-3"><a href="mixed-models.html#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(question,estimate,<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high)) <span class="sc">+</span> </span>
-<span id="cb78-4"><a href="mixed-models.html#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> </span>
-<span id="cb78-5"><a href="mixed-models.html#cb78-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb78-6"><a href="mixed-models.html#cb78-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
-<span id="cb78-7"><a href="mixed-models.html#cb78-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="mixed-models.html#cb103-1" aria-hidden="true" tabindex="-1"></a>tbmixed <span class="sc">%&gt;%</span> </span>
+<span id="cb103-2"><a href="mixed-models.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb103-3"><a href="mixed-models.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(question,estimate,<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high)) <span class="sc">+</span> </span>
+<span id="cb103-4"><a href="mixed-models.html#cb103-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb103-5"><a href="mixed-models.html#cb103-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb103-6"><a href="mixed-models.html#cb103-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
+<span id="cb103-7"><a href="mixed-models.html#cb103-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 <p>Do the associations match as expected?</p>
 <div id="with-several-variables" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> With several variables<a href="mixed-models.html#with-several-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can add several predictors to the model, here that could several likert-scale questions, and maybe demographics with the consumption as response.
 This is in principle the same for both linear models and linear mixed models.</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="mixed-models.html#cb79-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb79-2"><a href="mixed-models.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>))</span>
-<span id="cb79-3"><a href="mixed-models.html#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-4"><a href="mixed-models.html#cb79-4" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span><span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span> <span class="sc">+</span> </span>
-<span id="cb79-5"><a href="mixed-models.html#cb79-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">`</span><span class="at">Pasta with mushrooms is visually appealing to me. </span><span class="st">`</span> <span class="sc">+</span> Day <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Person))</span>
-<span id="cb79-6"><a href="mixed-models.html#cb79-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-7"><a href="mixed-models.html#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="mixed-models.html#cb104-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> pasta <span class="sc">%&gt;%</span> </span>
+<span id="cb104-2"><a href="mixed-models.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>))</span>
+<span id="cb104-3"><a href="mixed-models.html#cb104-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-4"><a href="mixed-models.html#cb104-4" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span>I_like_taste_of_pasta_with_mushrooms <span class="sc">+</span> </span>
+<span id="cb104-5"><a href="mixed-models.html#cb104-5" aria-hidden="true" tabindex="-1"></a>       Pasta_with_mushrooms_is_visually_appealing <span class="sc">+</span> Day <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Person))</span>
+<span id="cb104-6"><a href="mixed-models.html#cb104-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-7"><a href="mixed-models.html#cb104-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
-## Formula: Consumption ~ `I like the taste of pasta with mushrooms! ` +      `Pasta with mushrooms is visually appealing to me. ` +      Day + (1 | Person)
+## Formula: Consumption ~ I_like_taste_of_pasta_with_mushrooms + Pasta_with_mushrooms_is_visually_appealing +      Day + (1 | Person)
 ##    Data: x
 ## 
-## REML criterion at convergence: 311.5
+## REML criterion at convergence: 278.8
 ## 
 ## Scaled residuals: 
 ##     Min      1Q  Median      3Q     Max 
-## -1.1024 -0.6475 -0.2450  0.4295  2.0689 
+## -1.0180 -0.6058 -0.2061  0.3717  1.9421 
 ## 
 ## Random effects:
 ##  Groups   Name        Variance Std.Dev.
-##  Person   (Intercept) 1168     34.18   
-##  Residual             5144     71.73   
+##  Person   (Intercept) 1602     40.03   
+##  Residual             5399     73.48   
 ## Number of obs: 30, groups:  Person, 15
 ## 
 ## Fixed effects:
-##                                                      Estimate Std. Error t value
-## (Intercept)                                           -41.738    146.340  -0.285
-## `I like the taste of pasta with mushrooms! `           41.162     27.855   1.478
-## `Pasta with mushrooms is visually appealing to me. `  -12.242     20.899  -0.586
-## Day                                                    -8.286     27.189  -0.305</code></pre>
-<pre><code>## Warning in abbreviate(rn, minlength = 11): abbreviate used with non-ASCII chars</code></pre>
-<pre><code>## 
-## Correlation of Fixed Effects:</code></pre>
-<pre><code>## Warning in abbreviate(rn, minlength = 6): abbreviate used with non-ASCII chars</code></pre>
-<pre><code>##             (Intr) `lttpwm `wmvatm
-## `Iltt pwm!  -0.605                
-## `Pwm vatm ` -0.177 -0.645         
-## Day         -0.354 -0.130   0.263</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="mixed-models.html#cb85-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 8
-##   effect   group    term                                                 estimate std.error statistic conf.low conf.high
-##   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;                                                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-## 1 fixed    &lt;NA&gt;     (Intercept)                                            -41.7      146.     -0.285   -329.      245. 
-## 2 fixed    &lt;NA&gt;     `I like the taste of pasta with mushrooms! `            41.2       27.9     1.48     -13.4      95.8
-## 3 fixed    &lt;NA&gt;     `Pasta with mushrooms is visually appealing to me. `   -12.2       20.9    -0.586    -53.2      28.7
-## 4 fixed    &lt;NA&gt;     Day                                                     -8.29      27.2    -0.305    -61.6      45.0
-## 5 ran_pars Person   sd__(Intercept)                                         34.2       NA      NA         NA        NA  
-## 6 ran_pars Residual sd__Observation                                         71.7       NA      NA         NA        NA</code></pre>
+##                                                              Estimate Std. Error t value
+## (Intercept)                                                   106.913     86.627   1.234
+## I_like_taste_of_pasta_with_mushroomsAgree                       9.942     59.439   0.167
+## I_like_taste_of_pasta_with_mushroomsStrongly agree             62.756     70.044   0.896
+## Pasta_with_mushrooms_is_visually_appealingMore or less agree   26.432     74.905   0.353
+## Pasta_with_mushrooms_is_visually_appealingAgree                23.132     85.788   0.270
+## Pasta_with_mushrooms_is_visually_appealingStrongly agree       -1.810     79.813  -0.023
+## Day                                                           -12.589     32.740  -0.385
+## 
+## Correlation of Fixed Effects:
+##             (Intr) I_____ I____a P__ola P_____ P____a
+## I_lk_t____A -0.325                                   
+## I_lk_____Sa -0.307  0.824                            
+## Ps_____Mola -0.659  0.001 -0.005                     
+## Pst_wt____A -0.331 -0.313 -0.452  0.682              
+## Pst_w____Sa -0.531 -0.365 -0.486  0.726  0.849       
+## Day         -0.556 -0.032  0.044 -0.008 -0.247  0.061</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="mixed-models.html#cb106-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T)</span></code></pre></div>
+<pre><code>## # A tibble: 9 × 8
+##   effect   group    term                                                         estimate std.error statistic conf.low conf.high
+##   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;                                                           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 fixed    &lt;NA&gt;     (Intercept)                                                    107.        86.6    1.23      -62.9     277. 
+## 2 fixed    &lt;NA&gt;     I_like_taste_of_pasta_with_mushroomsAgree                        9.94      59.4    0.167    -107.      126. 
+## 3 fixed    &lt;NA&gt;     I_like_taste_of_pasta_with_mushroomsStrongly agree              62.8       70.0    0.896     -74.5     200. 
+## 4 fixed    &lt;NA&gt;     Pasta_with_mushrooms_is_visually_appealingMore or less agree    26.4       74.9    0.353    -120.      173. 
+## 5 fixed    &lt;NA&gt;     Pasta_with_mushrooms_is_visually_appealingAgree                 23.1       85.8    0.270    -145.      191. 
+## 6 fixed    &lt;NA&gt;     Pasta_with_mushrooms_is_visually_appealingStrongly agree        -1.81      79.8   -0.0227   -158.      155. 
+## 7 fixed    &lt;NA&gt;     Day                                                            -12.6       32.7   -0.385     -76.8      51.6
+## 8 ran_pars Person   sd__(Intercept)                                                 40.0       NA     NA          NA        NA  
+## 9 ran_pars Residual sd__Observation                                                 73.5       NA     NA          NA        NA</code></pre>
 <p>Try to interpret the slopes? Are the slopes significantly different from 0 (i.e. the point of no association). .. And hey! Why is the slope for visual all of a sudden negative?… Does that mean that consumption increase the less you like the visual appearance? .. Or what?</p>
 <p>Complete the same analysis with legumes.</p>
 

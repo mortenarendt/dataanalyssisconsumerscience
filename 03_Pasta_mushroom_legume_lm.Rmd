@@ -22,10 +22,11 @@ library(knitr) # lets make nice tables
 
 The data is already imported, and formated (see _Getting_data_in.pdf_ for details). We simply load this file. 
 
-
-```{r,eval=T, include=F}
-load('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Meal Systems and Technology/data/BuffetData2/BuffetSurveyData.RData')
+```{r}
+library(data4consumerscience)
 ```
+
+
 
 ## Example
 
@@ -34,10 +35,10 @@ As response variable, the amount of Consumption of _Pasta with mushrooms_ and us
 First a plot:
 
 ```{r}
-Buffet_survey %>% 
+pasta %>% 
   filter(str_detect(StationName,'mush')) %>% 
   filter(Day==1) %>% 
-  ggplot(data = ., aes(`I like the taste of pasta with mushrooms! `,Consumption)) + 
+  ggplot(data = ., aes(I_like_taste_of_pasta_with_mushrooms,Consumption)) + 
   geom_point() + 
   stat_smooth(method = lm, se = F)
 ```
@@ -47,11 +48,11 @@ So lets build a linear model on this
 
 ```{r}
 # subset the data
-x <- Buffet_survey %>% 
+x <- pasta %>% 
   filter(str_detect(StationName,'mush')) %>% 
   filter(Day==1) 
 
-mdl <- lm(data = x, Consumption~`I like the taste of pasta with mushrooms! `) 
+mdl <- lm(data = x, Consumption~I_like_taste_of_pasta_with_mushrooms) 
 mdl  
 summary(mdl)
 ```
@@ -62,10 +63,19 @@ The the slope indicates that by increasing liking by one unit the consumption in
 
 We want to model consumption of both pasta with mushrooms andd legumes, and look at all the likert scales questions as predictors. Further we want to do this for both days. 
 
+First we create a new long format data frame
+
+```{r}
+pastalong <- pasta %>% 
+  gather(question,answ,I_like_taste_of_pasta_with_legumes:Pasta_with_mushrooms_is_visually_appealing) %>% 
+  mutate(answnum = factor(answ,labels = c('Disagree','More or less disagree','Neither agree nor disagree','More or less agree','Agree','Strongly agree')) %>% as.numeric())
+```
+
+
 ### A plot 
 
 ```{r, fig.height=9}
-Surveylong_buffet %>% 
+pastalong %>% 
   filter(!is.na(StationName )) %>% 
   mutate(question2 = question %>% substr(1,34)) %>% # The label is to long, so lets just represent the first 30 letters.
   ggplot(data = .,  aes(answnum,Consumption, color = factor(Day))) +
@@ -78,8 +88,10 @@ Surveylong_buffet %>%
 
 This we similary can run as several linear models. 
 
+
+
 ```{r}
-tb <- Surveylong_buffet %>% 
+tb <- pastalong %>% 
   filter(!is.na(StationName )) %>% 
   group_by(StationName,question,Day) %>% 
   do(lm(data = ., Consumption~answnum) %>% tidy(conf.int = T))
@@ -112,10 +124,10 @@ The two days are repetitions, and hence we can use all the data (not splitting i
 
 ```{r}
 # subset the data
-x <- Buffet_survey %>% 
+x <- pasta %>% 
   filter(str_detect(StationName,'mush')) 
 
-mdl <- lmer(data = x, Consumption~`I like the taste of pasta with mushrooms! ` + Day +  (1|Person)) 
+mdl <- lmer(data = x, Consumption~I_like_taste_of_pasta_with_mushrooms + Day +  (1|Person)) 
 summary(mdl)
 ```
 
@@ -127,7 +139,7 @@ In principle, we simply do not loop over Day, but include it in the formula alon
 
 
 ```{r}
-tbmixed <- Surveylong_buffet %>% 
+tbmixed <- pastalong %>% 
   filter(!is.na(StationName )) %>% 
   group_by(StationName,question) %>% 
   do(lmer(data = ., Consumption~answnum + Day + (1|Person)) %>% tidy(conf.int = T))
@@ -158,11 +170,11 @@ We can add several predictors to the model, here that could several likert-scale
 This is in principle the same for both linear models and linear mixed models. 
 
 ```{r}
-x <- Buffet_survey %>% 
+x <- pasta %>% 
   filter(str_detect(StationName,'mush'))
 
-mdl <- lmer(data = x, Consumption~`I like the taste of pasta with mushrooms! ` + 
-       `Pasta with mushrooms is visually appealing to me. ` + Day + (1|Person))
+mdl <- lmer(data = x, Consumption~I_like_taste_of_pasta_with_mushrooms + 
+       Pasta_with_mushrooms_is_visually_appealing + Day + (1|Person))
 
 summary(mdl)
 mdl %>% tidy(conf.int = T)
@@ -173,11 +185,11 @@ Try to interpret the slopes? Are the slopes significantly different from 0 (i.e.
 Complete the same analysis with legumes. 
 
 ```{r, eval=F, include=F}
-x <- Buffet_survey %>% 
+x <- pasta %>% 
   filter(str_detect(StationName,'legu'))
 
-mdl <- lmer(data = x, Consumption~`I like the taste of pasta with legumes! `+
-       `Pasta with legumes is visually appealing to me. ` + Day + (1|Person))
+mdl <- lmer(data = x, Consumption~I_like_taste_of_pasta_with_legumes +
+              Pasta_with_legumes_is_visually_appealing + Day + (1|Person))
 
 summary(mdl)
 mdl %>% tidy(conf.int = T)

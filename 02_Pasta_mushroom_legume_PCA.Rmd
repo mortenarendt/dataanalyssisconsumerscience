@@ -27,8 +27,8 @@ library(knitr) # lets make nice tables
 ```
 
 
-```{r,eval=T, include=F}
-load('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Meal Systems and Technology/data/BuffetData2/BuffetSurveyData.RData')
+```{r}
+library(data4consumerscience)
 ```
 
 
@@ -42,17 +42,18 @@ PCA takes numerical data as input, so we use the likert-scales in the form of 1 
 Further the yes/no answers are included, and also needs to be changed.
 
 ```{r}
-x <- Buffet_survey %>% 
-  mutate(`Did you take food from both Dish 1 and Dish 2? ` = 
-           `Did you take food from both Dish 1 and Dish 2? ` %>% 
-           factor %>% as.numeric(), 
-          `Did you consider the protein content of the dish(es) you chose?` = 
-           `Did you consider the protein content of the dish(es) you chose?` %>% 
-           factor %>% as.numeric()) %>% 
+
+x <- pasta %>% 
+  mutate(Did_you_take_food_from_both_Dish1_and_Dish2 = 
+           Did_you_take_food_from_both_Dish1_and_Dish2 %>% factor %>% as.numeric(),
+         Did_you_consider_the_proteincontent_of_the_dishes_you_choose = 
+           Did_you_consider_the_proteincontent_of_the_dishes_you_choose %>% 
+           factor() %>% as.numeric()) %>% 
+  mutate_if(is.factor, as.numeric) %>% 
   filter(Day==1) %>%  # the survey part is the same for both days and both stations. That is what we keep. 
   filter(str_detect(StationName,'leg'))
 
-PCAmdl <- prcomp(x[,c(6:7,9:12)],scale. = T)
+PCAmdl <- prcomp(x[,c(5:6,8:11)],scale. = T)
 
 ```
 
@@ -80,7 +81,7 @@ It is a little complicated, but here goes
 
 ```{r}
 scores <- data.frame(Person = x$Person, PCAmdl$x[,1:2]) # take out the first two components. 
-tbmixed <- Buffet_survey %>% 
+tbmixed <- pasta %>% 
   left_join(scores, by = 'Person') %>% 
   gather(comp,score,PC1:PC2) %>% 
   group_by(StationName,comp) %>% 

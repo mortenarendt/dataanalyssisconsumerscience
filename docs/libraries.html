@@ -23,7 +23,7 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-05-11" />
+<meta name="date" content="2022-06-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -217,16 +217,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 3</span> Libraries<a href="libraries.html#libraries" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>R comes with a bit of functionality. However, most of the useful tools in R is distributed as packages. There are +10.000 package for R, so it is a jungle to figure out what the most easy solution to your problem at hand is. However, the teams who have made tidyverse and ggplot2 etc. have made a lot of things much more easy, and we strongly rely on their tools and routines in data analysis.</p>
 <p>To install packages from CRAN (the main repo where R-packages are distributed)</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="libraries.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;somepackage&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="libraries.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;somepackage&#39;</span>)</span></code></pre></div>
 <p>To install packages from github (the place where all the development and general code sharing is distributed)</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="libraries.html#cb17-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;developername/packagename&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="libraries.html#cb24-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;developername/packagename&#39;</span>)</span></code></pre></div>
 <p>To make packages available within your analysis use library(), or use the package name followed by :: and the function</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="libraries.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># lets plot dadta</span></span>
-<span id="cb18-2"><a href="libraries.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb18-3"><a href="libraries.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># lets add stats to the plots</span></span>
-<span id="cb18-4"><a href="libraries.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># lets make nice tables</span></span>
-<span id="cb18-5"><a href="libraries.html#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="libraries.html#cb18-6" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">qplot</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="co"># example of a function call without library&#39;ing the package.</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="libraries.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># lets plot dadta</span></span>
+<span id="cb25-2"><a href="libraries.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb25-3"><a href="libraries.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># lets add stats to the plots</span></span>
+<span id="cb25-4"><a href="libraries.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># lets make nice tables</span></span>
+<span id="cb25-5"><a href="libraries.html#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="libraries.html#cb25-6" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">qplot</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="co"># example of a function call without library&#39;ing the package.</span></span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>

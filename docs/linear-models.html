@@ -23,7 +23,7 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-05-11" />
+<meta name="date" content="2022-06-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -219,101 +219,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[  y = a + b \cdot x + e \]</span>
 Here the informative parameter is the slope (<span class="math inline">\(b\)</span>) which indicates the relation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. (<span class="math inline">\(e\)</span> is the missfit / residuals of the model).</p>
 <p>We use tidyverse coding as this makes life much easier. As an tidyverse add on, we use broom for the linear models, broom.mixed and lme4 for the linear mixed models.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="linear-models.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># lets plot dadta</span></span>
-<span id="cb59-2"><a href="linear-models.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb59-3"><a href="linear-models.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb59-4"><a href="linear-models.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
-<span id="cb59-5"><a href="linear-models.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb59-6"><a href="linear-models.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># lets add stats to the plots</span></span>
-<span id="cb59-7"><a href="linear-models.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># lets make nice tables</span></span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="linear-models.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># lets plot dadta</span></span>
+<span id="cb85-2"><a href="linear-models.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb85-3"><a href="linear-models.html#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb85-4"><a href="linear-models.html#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
+<span id="cb85-5"><a href="linear-models.html#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb85-6"><a href="linear-models.html#cb85-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># lets add stats to the plots</span></span>
+<span id="cb85-7"><a href="linear-models.html#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># lets make nice tables</span></span></code></pre></div>
 <p>The data is already imported, and formated (see <em>Getting_data_in.pdf</em> for details). We simply load this file.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="linear-models.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span></code></pre></div>
 <div id="example" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Example<a href="linear-models.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As response variable, the amount of Consumption of <em>Pasta with mushrooms</em> and use the likert scale <em><code>I like the taste of pasta with mushrooms!</code></em> as predictor. We use ONLY Day 1 results.</p>
 <p>First a plot:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="linear-models.html#cb60-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb60-2"><a href="linear-models.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb60-3"><a href="linear-models.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb60-4"><a href="linear-models.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(<span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span>,Consumption)) <span class="sc">+</span> </span>
-<span id="cb60-5"><a href="linear-models.html#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb60-6"><a href="linear-models.html#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="linear-models.html#cb87-1" aria-hidden="true" tabindex="-1"></a>pasta <span class="sc">%&gt;%</span> </span>
+<span id="cb87-2"><a href="linear-models.html#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-3"><a href="linear-models.html#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-4"><a href="linear-models.html#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(I_like_taste_of_pasta_with_mushrooms,Consumption)) <span class="sc">+</span> </span>
+<span id="cb87-5"><a href="linear-models.html#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb87-6"><a href="linear-models.html#cb87-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> F)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <p>It seems as there is something.
 So lets build a linear model on this</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="linear-models.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the data</span></span>
-<span id="cb62-2"><a href="linear-models.html#cb62-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb62-3"><a href="linear-models.html#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb62-4"><a href="linear-models.html#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) </span>
-<span id="cb62-5"><a href="linear-models.html#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-6"><a href="linear-models.html#cb62-6" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span><span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span>) </span>
-<span id="cb62-7"><a href="linear-models.html#cb62-7" aria-hidden="true" tabindex="-1"></a>mdl  </span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="linear-models.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the data</span></span>
+<span id="cb89-2"><a href="linear-models.html#cb89-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> pasta <span class="sc">%&gt;%</span> </span>
+<span id="cb89-3"><a href="linear-models.html#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-4"><a href="linear-models.html#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) </span>
+<span id="cb89-5"><a href="linear-models.html#cb89-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-6"><a href="linear-models.html#cb89-6" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span>I_like_taste_of_pasta_with_mushrooms) </span>
+<span id="cb89-7"><a href="linear-models.html#cb89-7" aria-hidden="true" tabindex="-1"></a>mdl  </span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Consumption ~ `I like the taste of pasta with mushrooms! `, 
+## lm(formula = Consumption ~ I_like_taste_of_pasta_with_mushrooms, 
 ##     data = x)
 ## 
 ## Coefficients:
-##                                  (Intercept)  `I like the taste of pasta with mushrooms! `  
-##                                      -186.28                                         50.21</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="linear-models.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+##                                        (Intercept)           I_like_taste_of_pasta_with_mushroomsAgree  
+##                                              89.00                                                6.60  
+## I_like_taste_of_pasta_with_mushroomsStrongly agree  
+##                                              82.25</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="linear-models.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Consumption ~ `I like the taste of pasta with mushrooms! `, 
+## lm(formula = Consumption ~ I_like_taste_of_pasta_with_mushrooms, 
 ##     data = x)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -113.19  -68.98   12.81   35.02  170.81 
+## -119.25  -49.60   -3.00   35.58  164.75 
 ## 
 ## Coefficients:
-##                                              Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)                                   -186.28     195.41  -0.953    0.358
-## `I like the taste of pasta with mushrooms! `    50.21      30.35   1.655    0.122
+##                                                    Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)                                           89.00      60.43   1.473    0.167
+## I_like_taste_of_pasta_with_mushroomsAgree              6.60      71.50   0.092    0.928
+## I_like_taste_of_pasta_with_mushroomsStrongly agree    82.25      67.56   1.217    0.247
 ## 
-## Residual standard error: 83.66 on 13 degrees of freedom
-## Multiple R-squared:  0.174,  Adjusted R-squared:  0.1104 
-## F-statistic: 2.738 on 1 and 13 DF,  p-value: 0.1219</code></pre>
+## Residual standard error: 85.46 on 12 degrees of freedom
+## Multiple R-squared:  0.2043, Adjusted R-squared:  0.07173 
+## F-statistic: 1.541 on 2 and 12 DF,  p-value: 0.2537</code></pre>
 <p>The the slope indicates that by increasing liking by one unit the consumption increase is <span class="math inline">\(50.2 \pm 30.4\)</span>, however, this apparent effect is not statistically significant (<span class="math inline">\(p = 0.12\)</span>).</p>
 </div>
 <div id="run-a-bunch-of-models-at-once" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Run a bunch of models at once<a href="linear-models.html#run-a-bunch-of-models-at-once" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We want to model consumption of both pasta with mushrooms andd legumes, and look at all the likert scales questions as predictors. Further we want to do this for both days.</p>
+<p>First we create a new long format data frame</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="linear-models.html#cb93-1" aria-hidden="true" tabindex="-1"></a>pastalong <span class="ot">&lt;-</span> pasta <span class="sc">%&gt;%</span> </span>
+<span id="cb93-2"><a href="linear-models.html#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(question,answ,I_like_taste_of_pasta_with_legumes<span class="sc">:</span>Pasta_with_mushrooms_is_visually_appealing) <span class="sc">%&gt;%</span> </span>
+<span id="cb93-3"><a href="linear-models.html#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">answnum =</span> <span class="fu">factor</span>(answ,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Disagree&#39;</span>,<span class="st">&#39;More or less disagree&#39;</span>,<span class="st">&#39;Neither agree nor disagree&#39;</span>,<span class="st">&#39;More or less agree&#39;</span>,<span class="st">&#39;Agree&#39;</span>,<span class="st">&#39;Strongly agree&#39;</span>)) <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>())</span></code></pre></div>
+<pre><code>## Warning: attributes are not identical across measure variables;
+## they will be dropped</code></pre>
 <div id="a-plot" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> A plot<a href="linear-models.html#a-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="linear-models.html#cb66-1" aria-hidden="true" tabindex="-1"></a>Surveylong_buffet <span class="sc">%&gt;%</span> </span>
-<span id="cb66-2"><a href="linear-models.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
-<span id="cb66-3"><a href="linear-models.html#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question2 =</span> question <span class="sc">%&gt;%</span> <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="co"># The label is to long, so lets just represent the first 30 letters.</span></span>
-<span id="cb66-4"><a href="linear-models.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> .,  <span class="fu">aes</span>(answnum,Consumption, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span></span>
-<span id="cb66-5"><a href="linear-models.html#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb66-6"><a href="linear-models.html#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
-<span id="cb66-7"><a href="linear-models.html#cb66-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_cor</span>() <span class="sc">+</span></span>
-<span id="cb66-8"><a href="linear-models.html#cb66-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(question2 <span class="sc">~</span> StationName) <span class="sc">+</span> </span>
-<span id="cb66-9"><a href="linear-models.html#cb66-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="linear-models.html#cb95-1" aria-hidden="true" tabindex="-1"></a>pastalong <span class="sc">%&gt;%</span> </span>
+<span id="cb95-2"><a href="linear-models.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
+<span id="cb95-3"><a href="linear-models.html#cb95-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question2 =</span> question <span class="sc">%&gt;%</span> <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="co"># The label is to long, so lets just represent the first 30 letters.</span></span>
+<span id="cb95-4"><a href="linear-models.html#cb95-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> .,  <span class="fu">aes</span>(answnum,Consumption, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span></span>
+<span id="cb95-5"><a href="linear-models.html#cb95-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb95-6"><a href="linear-models.html#cb95-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
+<span id="cb95-7"><a href="linear-models.html#cb95-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_cor</span>() <span class="sc">+</span></span>
+<span id="cb95-8"><a href="linear-models.html#cb95-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(question2 <span class="sc">~</span> StationName) <span class="sc">+</span> </span>
+<span id="cb95-9"><a href="linear-models.html#cb95-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <p>This we similary can run as several linear models.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="linear-models.html#cb68-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> Surveylong_buffet <span class="sc">%&gt;%</span> </span>
-<span id="cb68-2"><a href="linear-models.html#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
-<span id="cb68-3"><a href="linear-models.html#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName,question,Day) <span class="sc">%&gt;%</span> </span>
-<span id="cb68-4"><a href="linear-models.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lm</span>(<span class="at">data =</span> ., Consumption<span class="sc">~</span>answnum) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span>
-<span id="cb68-5"><a href="linear-models.html#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-6"><a href="linear-models.html#cb68-6" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb68-7"><a href="linear-models.html#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb68-8"><a href="linear-models.html#cb68-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>statistic) <span class="sc">%&gt;%</span> </span>
-<span id="cb68-9"><a href="linear-models.html#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">x =</span> .,<span class="at">caption =</span> <span class="st">&#39;All linear models&#39;</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="linear-models.html#cb97-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> pastalong <span class="sc">%&gt;%</span> </span>
+<span id="cb97-2"><a href="linear-models.html#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
+<span id="cb97-3"><a href="linear-models.html#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName,question,Day) <span class="sc">%&gt;%</span> </span>
+<span id="cb97-4"><a href="linear-models.html#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lm</span>(<span class="at">data =</span> ., Consumption<span class="sc">~</span>answnum) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span>
+<span id="cb97-5"><a href="linear-models.html#cb97-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-6"><a href="linear-models.html#cb97-6" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb97-7"><a href="linear-models.html#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb97-8"><a href="linear-models.html#cb97-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>statistic) <span class="sc">%&gt;%</span> </span>
+<span id="cb97-9"><a href="linear-models.html#cb97-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">x =</span> .,<span class="at">caption =</span> <span class="st">&#39;All linear models&#39;</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-40">Table 6.1: </span>All linear models</caption>
+<caption><span id="tab:unnamed-chunk-41">Table 6.1: </span>All linear models</caption>
 <colgroup>
-<col width="15%" />
-<col width="39%" />
+<col width="16%" />
+<col width="35%" />
 <col width="3%" />
 <col width="6%" />
+<col width="7%" />
+<col width="8%" />
 <col width="6%" />
 <col width="7%" />
-<col width="6%" />
-<col width="6%" />
-<col width="7%" />
+<col width="8%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -331,191 +341,191 @@ So lets build a linear model on this</p>
 <tbody>
 <tr class="odd">
 <td align="left">Pasta with legumes</td>
-<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">I_like_taste_of_pasta_with_legumes</td>
 <td align="right">1</td>
 <td align="left">answnum</td>
-<td align="right">28.79</td>
-<td align="right">13.48</td>
-<td align="right">0.05</td>
-<td align="right">-0.33</td>
-<td align="right">57.91</td>
+<td align="right">8.51</td>
+<td align="right">10.65</td>
+<td align="right">0.44</td>
+<td align="right">-14.49</td>
+<td align="right">31.51</td>
 </tr>
 <tr class="even">
 <td align="left">Pasta with legumes</td>
-<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">I_like_taste_of_pasta_with_legumes</td>
 <td align="right">2</td>
 <td align="left">answnum</td>
-<td align="right">39.55</td>
-<td align="right">14.94</td>
-<td align="right">0.02</td>
-<td align="right">7.27</td>
-<td align="right">71.83</td>
+<td align="right">-4.24</td>
+<td align="right">13.27</td>
+<td align="right">0.75</td>
+<td align="right">-32.91</td>
+<td align="right">24.42</td>
 </tr>
 <tr class="odd">
 <td align="left">Pasta with legumes</td>
-<td align="left">I like the taste of pasta with mushrooms! </td>
+<td align="left">I_like_taste_of_pasta_with_mushrooms</td>
 <td align="right">1</td>
 <td align="left">answnum</td>
-<td align="right">16.63</td>
-<td align="right">30.22</td>
-<td align="right">0.59</td>
-<td align="right">-48.66</td>
-<td align="right">81.92</td>
+<td align="right">1.93</td>
+<td align="right">9.47</td>
+<td align="right">0.84</td>
+<td align="right">-18.53</td>
+<td align="right">22.39</td>
 </tr>
 <tr class="even">
 <td align="left">Pasta with legumes</td>
-<td align="left">I like the taste of pasta with mushrooms! </td>
+<td align="left">I_like_taste_of_pasta_with_mushrooms</td>
 <td align="right">2</td>
 <td align="left">answnum</td>
-<td align="right">55.27</td>
-<td align="right">36.68</td>
-<td align="right">0.16</td>
-<td align="right">-23.97</td>
-<td align="right">134.52</td>
+<td align="right">15.10</td>
+<td align="right">11.16</td>
+<td align="right">0.20</td>
+<td align="right">-9.00</td>
+<td align="right">39.21</td>
 </tr>
 <tr class="odd">
 <td align="left">Pasta with legumes</td>
-<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">Pasta_with_legumes_is_visually_appealing</td>
 <td align="right">1</td>
 <td align="left">answnum</td>
-<td align="right">24.01</td>
-<td align="right">12.43</td>
-<td align="right">0.08</td>
-<td align="right">-2.84</td>
-<td align="right">50.85</td>
+<td align="right">23.36</td>
+<td align="right">7.75</td>
+<td align="right">0.01</td>
+<td align="right">6.61</td>
+<td align="right">40.10</td>
 </tr>
 <tr class="even">
 <td align="left">Pasta with legumes</td>
-<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">Pasta_with_legumes_is_visually_appealing</td>
 <td align="right">2</td>
 <td align="left">answnum</td>
-<td align="right">15.07</td>
-<td align="right">20.01</td>
-<td align="right">0.46</td>
-<td align="right">-28.16</td>
-<td align="right">58.30</td>
-</tr>
-<tr class="odd">
-<td align="left">Pasta with legumes</td>
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
-<td align="right">1</td>
-<td align="left">answnum</td>
-<td align="right">11.05</td>
-<td align="right">21.12</td>
+<td align="right">8.50</td>
+<td align="right">16.06</td>
 <td align="right">0.61</td>
-<td align="right">-34.57</td>
-<td align="right">56.67</td>
+<td align="right">-26.19</td>
+<td align="right">43.19</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with legumes</td>
+<td align="left">Pasta_with_mushrooms_is_visually_appealing</td>
+<td align="right">1</td>
+<td align="left">answnum</td>
+<td align="right">11.75</td>
+<td align="right">17.95</td>
+<td align="right">0.52</td>
+<td align="right">-27.04</td>
+<td align="right">50.54</td>
 </tr>
 <tr class="even">
 <td align="left">Pasta with legumes</td>
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
+<td align="left">Pasta_with_mushrooms_is_visually_appealing</td>
 <td align="right">2</td>
 <td align="left">answnum</td>
-<td align="right">-3.17</td>
-<td align="right">31.07</td>
-<td align="right">0.92</td>
-<td align="right">-70.28</td>
-<td align="right">63.95</td>
+<td align="right">13.17</td>
+<td align="right">12.21</td>
+<td align="right">0.30</td>
+<td align="right">-13.21</td>
+<td align="right">39.55</td>
 </tr>
 <tr class="odd">
 <td align="left">Pasta with mushroom</td>
-<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">I_like_taste_of_pasta_with_legumes</td>
 <td align="right">1</td>
 <td align="left">answnum</td>
-<td align="right">21.16</td>
-<td align="right">16.07</td>
-<td align="right">0.21</td>
-<td align="right">-13.57</td>
-<td align="right">55.89</td>
+<td align="right">-10.34</td>
+<td align="right">11.56</td>
+<td align="right">0.39</td>
+<td align="right">-35.32</td>
+<td align="right">14.63</td>
 </tr>
 <tr class="even">
 <td align="left">Pasta with mushroom</td>
-<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">I_like_taste_of_pasta_with_legumes</td>
 <td align="right">2</td>
 <td align="left">answnum</td>
-<td align="right">-10.36</td>
-<td align="right">12.41</td>
-<td align="right">0.42</td>
-<td align="right">-37.16</td>
-<td align="right">16.44</td>
+<td align="right">4.33</td>
+<td align="right">9.07</td>
+<td align="right">0.64</td>
+<td align="right">-15.27</td>
+<td align="right">23.93</td>
 </tr>
 <tr class="odd">
 <td align="left">Pasta with mushroom</td>
-<td align="left">I like the taste of pasta with mushrooms! </td>
+<td align="left">I_like_taste_of_pasta_with_mushrooms</td>
 <td align="right">1</td>
 <td align="left">answnum</td>
-<td align="right">50.21</td>
-<td align="right">30.35</td>
-<td align="right">0.12</td>
-<td align="right">-15.35</td>
-<td align="right">115.77</td>
-</tr>
-<tr class="even">
-<td align="left">Pasta with mushroom</td>
-<td align="left">I like the taste of pasta with mushrooms! </td>
-<td align="right">2</td>
-<td align="left">answnum</td>
-<td align="right">11.36</td>
-<td align="right">27.13</td>
-<td align="right">0.68</td>
-<td align="right">-47.25</td>
-<td align="right">69.98</td>
-</tr>
-<tr class="odd">
-<td align="left">Pasta with mushroom</td>
-<td align="left">Pasta with legumes is visually appealing to me. </td>
-<td align="right">1</td>
-<td align="left">answnum</td>
-<td align="right">23.94</td>
-<td align="right">13.89</td>
+<td align="right">16.00</td>
+<td align="right">9.36</td>
 <td align="right">0.11</td>
-<td align="right">-6.07</td>
-<td align="right">53.95</td>
+<td align="right">-4.22</td>
+<td align="right">36.23</td>
 </tr>
 <tr class="even">
 <td align="left">Pasta with mushroom</td>
-<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">I_like_taste_of_pasta_with_mushrooms</td>
 <td align="right">2</td>
 <td align="left">answnum</td>
-<td align="right">-9.25</td>
-<td align="right">13.81</td>
-<td align="right">0.51</td>
-<td align="right">-39.08</td>
-<td align="right">20.58</td>
+<td align="right">3.75</td>
+<td align="right">8.12</td>
+<td align="right">0.65</td>
+<td align="right">-13.80</td>
+<td align="right">21.29</td>
 </tr>
 <tr class="odd">
 <td align="left">Pasta with mushroom</td>
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
+<td align="left">Pasta_with_legumes_is_visually_appealing</td>
 <td align="right">1</td>
 <td align="left">answnum</td>
-<td align="right">21.77</td>
-<td align="right">22.51</td>
-<td align="right">0.35</td>
-<td align="right">-26.86</td>
-<td align="right">70.40</td>
+<td align="right">8.89</td>
+<td align="right">10.75</td>
+<td align="right">0.42</td>
+<td align="right">-14.35</td>
+<td align="right">32.12</td>
 </tr>
 <tr class="even">
 <td align="left">Pasta with mushroom</td>
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
+<td align="left">Pasta_with_legumes_is_visually_appealing</td>
 <td align="right">2</td>
 <td align="left">answnum</td>
-<td align="right">-12.67</td>
-<td align="right">21.06</td>
-<td align="right">0.56</td>
-<td align="right">-58.17</td>
-<td align="right">32.83</td>
+<td align="right">-13.86</td>
+<td align="right">10.47</td>
+<td align="right">0.21</td>
+<td align="right">-36.48</td>
+<td align="right">8.75</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with mushroom</td>
+<td align="left">Pasta_with_mushrooms_is_visually_appealing</td>
+<td align="right">1</td>
+<td align="left">answnum</td>
+<td align="right">16.81</td>
+<td align="right">19.38</td>
+<td align="right">0.40</td>
+<td align="right">-25.05</td>
+<td align="right">58.67</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with mushroom</td>
+<td align="left">Pasta_with_mushrooms_is_visually_appealing</td>
+<td align="right">2</td>
+<td align="left">answnum</td>
+<td align="right">-10.72</td>
+<td align="right">8.24</td>
+<td align="right">0.22</td>
+<td align="right">-28.52</td>
+<td align="right">7.08</td>
 </tr>
 </tbody>
 </table>
 <p>.. A plot of these results for a quick interpretation.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="linear-models.html#cb69-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb69-2"><a href="linear-models.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb69-3"><a href="linear-models.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(question,estimate,<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
-<span id="cb69-4"><a href="linear-models.html#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> </span>
-<span id="cb69-5"><a href="linear-models.html#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb69-6"><a href="linear-models.html#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
-<span id="cb69-7"><a href="linear-models.html#cb69-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="linear-models.html#cb98-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb98-2"><a href="linear-models.html#cb98-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb98-3"><a href="linear-models.html#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(question,estimate,<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
+<span id="cb98-4"><a href="linear-models.html#cb98-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb98-5"><a href="linear-models.html#cb98-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb98-6"><a href="linear-models.html#cb98-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
+<span id="cb98-7"><a href="linear-models.html#cb98-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <p>Seems as some of the legume consumptions there is a significant association with likert scales. Not as strong for consumption of mushrooms.</p>
 </div>
 </div>

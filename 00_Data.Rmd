@@ -1,14 +1,16 @@
 
 # Data
 
-In this book several datasets are used targeting different reesearch questions. 
-However, a fair part of the analysis tools are common. That is, deescriptive analysis, plots, response correlations etc. 
+In this book several datasets are used targeting different research questions. 
+However, a fair part of the analysis tools are common. That is, descriptive analysis, plots, response correlations etc. 
 
 The data is included in the R-packgage you get by running the code below. 
 Be aware that you need devtools package to install from github. 
 
 ```{r}
 # install data-package
+install.packages('devtools')
+devtools::install_github('mortenarendt/data4consumerscience')
 ```
 
 The data is also available as excel sheets, and can be loaded using packages capable of reading from excel. 
