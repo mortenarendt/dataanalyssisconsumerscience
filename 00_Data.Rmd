@@ -20,6 +20,8 @@ Below is an example using data from the so-called _iBuffet_
 
 The data from the iBuffet comes in the form of csv or excel files. 
 
+Lad os se om skidtet virker... - take 2
+
 These can be in the form of 
 
 * Consumption data from the Buffet 
