@@ -1,0 +1,33 @@
+# Preference Mapping
+
+[some narrative]
+
+## Example of Preference Mapping
+
+[Which???]
+
+```{r}
+
+```
+
+## PCA
+
+[on beerliking]
+
+```{r}
+library(data4consumerscience)
+data("beerliking")
+mdlPCA <- prcomp(beerliking[complete.cases(beerliking),-1])
+ggbiplot::ggbiplot(mdlPCA)
+```
+
+Those who like Ravnsborg red also likes NY Lager and to some extend Brown ale.... [some more narrative]
+
+## Analysis by PLS
+
+Predictors can be objective characteristics of the products or CATA type data, while response is hedonik liking data. 
+[minimum 5 samples]
+
+
+
+

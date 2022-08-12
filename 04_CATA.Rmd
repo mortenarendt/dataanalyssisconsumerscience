@@ -25,6 +25,8 @@ length(unique(beercata$Consumer.ID))
 - RAW data with each row being responses from one evaluation
 - Agglomerated to counts, with each row being one product
 
+[Put in the pictures from Rinnan et al 2015]
+
 The agglomerated version is computed by: 
 
 ```{r}

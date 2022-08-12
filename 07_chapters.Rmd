@@ -6,8 +6,6 @@
 
 # More PCA
 
-# PLS for product profiling 
-
 # Logistic Regression
 
 # Confirmatory Factor Analysis using lavaan
