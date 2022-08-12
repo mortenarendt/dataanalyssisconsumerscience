@@ -24,6 +24,12 @@ The responses is the 2D coordinates of the procetive mapping, for each judge ind
 
 ## PCA on Collated data
 
-[downweeeigting of attributes]
+- downweeeigting of attributes.
+- On everything with normal scaling. 
+- Include judge-loadings in the output plots.
+  
+
+
+
 
 ##

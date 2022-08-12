@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 Preference Mapping | Data Analysis in R for Consumer Science</title>
-  <meta name="description" content="Chapter 10 Preference Mapping | Data Analysis in R for Consumer Science" />
+  <title>Chapter 11 Preference Mapping | Data Analysis in R for Consumer Science</title>
+  <meta name="description" content="Chapter 11 Preference Mapping | Data Analysis in R for Consumer Science" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 Preference Mapping | Data Analysis in R for Consumer Science" />
+  <meta property="og:title" content="Chapter 11 Preference Mapping | Data Analysis in R for Consumer Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 Preference Mapping | Data Analysis in R for Consumer Science" />
+  <meta name="twitter:title" content="Chapter 11 Preference Mapping | Data Analysis in R for Consumer Science" />
   
   
   
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="projective-mapping.html"/>
-<link rel="next" href="consumer-segmentation.html"/>
+<link rel="next" href="lpls.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -179,44 +179,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>7.1</b> With several variables</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html"><i class="fa fa-check"></i><b>8</b> Check All That Applies (CATA)</a>
+<li class="chapter" data-level="8" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>8</b> Latent Factor Models</a></li>
+<li class="chapter" data-level="9" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html"><i class="fa fa-check"></i><b>9</b> Check All That Applies (CATA)</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#an-example-from-beer-profiling"><i class="fa fa-check"></i><b>8.1</b> An example from Beer profiling</a></li>
-<li class="chapter" data-level="8.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>8.2</b> Two versions of the data</a></li>
-<li class="chapter" data-level="8.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#pca"><i class="fa fa-check"></i><b>8.3</b> PCA</a></li>
-<li class="chapter" data-level="8.4" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#cochranes-q-test"><i class="fa fa-check"></i><b>8.4</b> Cochranes Q-test</a>
+<li class="chapter" data-level="9.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#an-example-from-beer-profiling"><i class="fa fa-check"></i><b>9.1</b> An example from Beer profiling</a></li>
+<li class="chapter" data-level="9.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>9.2</b> Two versions of the data</a></li>
+<li class="chapter" data-level="9.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#pca"><i class="fa fa-check"></i><b>9.3</b> PCA</a></li>
+<li class="chapter" data-level="9.4" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#cochranes-q-test"><i class="fa fa-check"></i><b>9.4</b> Cochranes Q-test</a>
 <ul>
-<li class="chapter" data-level="8.4.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#post-hoc-contrasts"><i class="fa fa-check"></i><b>8.4.1</b> Post hoc contrasts</a></li>
-<li class="chapter" data-level="8.4.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#for-all-attributes"><i class="fa fa-check"></i><b>8.4.2</b> For all Attributes</a></li>
-<li class="chapter" data-level="8.4.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#plsda"><i class="fa fa-check"></i><b>8.4.3</b> PLSDA</a></li>
+<li class="chapter" data-level="9.4.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#post-hoc-contrasts"><i class="fa fa-check"></i><b>9.4.1</b> Post hoc contrasts</a></li>
+<li class="chapter" data-level="9.4.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#for-all-attributes"><i class="fa fa-check"></i><b>9.4.2</b> For all Attributes</a></li>
+<li class="chapter" data-level="9.4.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#plsda"><i class="fa fa-check"></i><b>9.4.3</b> PLSDA</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>9</b> Projective mapping</a>
+<li class="chapter" data-level="10" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>10</b> Projective mapping</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>9.1</b> Example from mapping of XX</a></li>
-<li class="chapter" data-level="9.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>9.2</b> A Collated version of the data</a></li>
-<li class="chapter" data-level="9.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>9.3</b> PCA on Collated data</a></li>
-<li class="chapter" data-level="9.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>9.4</b> </a></li>
+<li class="chapter" data-level="10.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>10.1</b> Example from mapping of XX</a></li>
+<li class="chapter" data-level="10.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>10.2</b> A Collated version of the data</a></li>
+<li class="chapter" data-level="10.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>10.3</b> PCA on Collated data</a></li>
+<li class="chapter" data-level="10.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>10.4</b> </a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>10</b> Preference Mapping</a>
+<li class="chapter" data-level="11" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>11</b> Preference Mapping</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>10.1</b> Example of Preference Mapping</a></li>
-<li class="chapter" data-level="10.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca-1"><i class="fa fa-check"></i><b>10.2</b> PCA</a></li>
-<li class="chapter" data-level="10.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>10.3</b> Analysis by PLS</a></li>
+<li class="chapter" data-level="11.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>11.1</b> Example of Preference Mapping</a></li>
+<li class="chapter" data-level="11.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca-1"><i class="fa fa-check"></i><b>11.2</b> PCA</a></li>
+<li class="chapter" data-level="11.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>11.3</b> Analysis by PLS</a></li>
+<li class="chapter" data-level="11.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>11.4</b> L-PLS [For the future…]</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>11</b> Consumer Segmentation</a>
+<li class="chapter" data-level="12" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>12</b> LPLS</a></li>
+<li class="chapter" data-level="13" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>13</b> Consumer Segmentation</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>11.1</b> Kmeans</a></li>
+<li class="chapter" data-level="13.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>13.1</b> Kmeans</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>12</b> More PCA</a></li>
-<li class="chapter" data-level="13" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>13</b> Logistic Regression</a></li>
-<li class="chapter" data-level="14" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>14</b> Confirmatory Factor Analysis using lavaan</a>
+<li class="chapter" data-level="14" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>14</b> More PCA</a></li>
+<li class="chapter" data-level="15" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>15</b> Logistic Regression</a></li>
+<li class="chapter" data-level="16" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>16</b> Confirmatory Factor Analysis using lavaan</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>14.1</b> Example - Food Neophobia</a></li>
+<li class="chapter" data-level="16.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>16.1</b> Example - Food Neophobia</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>15</b> Structured Equation Modelling</a>
+<li class="chapter" data-level="17" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>17</b> Structured Equation Modelling</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>15.1</b> Example - Theory of Planned Behaviour</a></li>
+<li class="chapter" data-level="17.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>17.1</b> Example - Theory of Planned Behaviour</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -237,15 +240,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="preference-mapping" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chapter 10</span> Preference Mapping<a href="preference-mapping.html#preference-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="preference-mapping" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Preference Mapping<a href="preference-mapping.html#preference-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>[some narrative]</p>
-<div id="example-of-preference-mapping" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> Example of Preference Mapping<a href="preference-mapping.html#example-of-preference-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="example-of-preference-mapping" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Example of Preference Mapping<a href="preference-mapping.html#example-of-preference-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>[Which???]</p>
 </div>
-<div id="pca-1" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> PCA<a href="preference-mapping.html#pca-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pca-1" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> PCA<a href="preference-mapping.html#pca-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>PCA is nice….</p>
 <p>[on beerliking]</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="preference-mapping.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
 <span id="cb140-2"><a href="preference-mapping.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span>
@@ -254,10 +258,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
 <p>Those who like Ravnsborg red also likes NY Lager and to some extend Brown ale…. [some more narrative]</p>
 </div>
-<div id="analysis-by-pls" class="section level2 hasAnchor" number="10.3">
-<h2><span class="header-section-number">10.3</span> Analysis by PLS<a href="preference-mapping.html#analysis-by-pls" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="analysis-by-pls" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Analysis by PLS<a href="preference-mapping.html#analysis-by-pls" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Predictors can be objective characteristics of the products or CATA type data, while response is hedonik liking data.
-[minimum 5 samples]</p>
+[minimum 5 samples</p>
+<p>X = CATA (Beer_XYZmatrix.xlsx, sheet = X CATA (coll.)+Y liking (aver.)),
+Y = Living average
+Y2 = Liking for each consumer = t(Y (long thin))</p>
+<p>Objective = Visualize to get patterns related to liking, and which deescriptors are merely irrelevant.</p>
+</div>
+<div id="l-pls-for-the-future" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> L-PLS [For the future…]<a href="preference-mapping.html#l-pls-for-the-future" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>
@@ -267,7 +278,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="projective-mapping.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="consumer-segmentation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lpls.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

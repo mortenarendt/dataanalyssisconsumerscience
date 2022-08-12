@@ -1,3 +1,7 @@
+# Latent Factor Models
+
+There are many....
+
 
 # Check All That Applies (CATA)
 

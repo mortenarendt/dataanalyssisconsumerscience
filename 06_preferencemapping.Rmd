@@ -12,6 +12,8 @@
 
 ## PCA
 
+PCA is nice....
+
 [on beerliking]
 
 ```{r}
@@ -26,8 +28,12 @@ Those who like Ravnsborg red also likes NY Lager and to some extend Brown ale...
 ## Analysis by PLS
 
 Predictors can be objective characteristics of the products or CATA type data, while response is hedonik liking data. 
-[minimum 5 samples]
+[minimum 5 samples
 
+X = CATA (Beer_XYZmatrix.xlsx, sheet = X CATA (coll.)+Y liking (aver.)), 
+Y = Living average
+Y2 = Liking for each consumer = t(Y (long thin))
 
+Objective = Visualize to get patterns related to liking, and which deescriptors are merely irrelevant. 
 
-
+## L-PLS [For the future...]

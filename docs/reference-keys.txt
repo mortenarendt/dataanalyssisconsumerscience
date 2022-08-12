@@ -32,6 +32,7 @@ run-a-bunch-of-models-at-once
 a-plot
 mixed-models
 with-several-variables
+latent-factor-models
 check-all-that-applies-cata
 an-example-from-beer-profiling
 two-versions-of-the-data
@@ -49,6 +50,8 @@ preference-mapping
 example-of-preference-mapping
 pca-1
 analysis-by-pls
+l-pls-for-the-future
+lpls
 consumer-segmentation
 kmeans
 more-pca

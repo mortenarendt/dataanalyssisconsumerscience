@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Libraries | Data Analysis in R for Consumer Science</title>
-  <meta name="description" content="Chapter 3 Libraries | Data Analysis in R for Consumer Science" />
+  <title>Chapter 12 LPLS | Data Analysis in R for Consumer Science</title>
+  <meta name="description" content="Chapter 12 LPLS | Data Analysis in R for Consumer Science" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Libraries | Data Analysis in R for Consumer Science" />
+  <meta property="og:title" content="Chapter 12 LPLS | Data Analysis in R for Consumer Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Libraries | Data Analysis in R for Consumer Science" />
+  <meta name="twitter:title" content="Chapter 12 LPLS | Data Analysis in R for Consumer Science" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data.html"/>
-<link rel="next" href="descriptive-statistics-and-plotting.html"/>
+<link rel="prev" href="preference-mapping.html"/>
+<link rel="next" href="consumer-segmentation.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -240,30 +240,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="libraries" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Libraries<a href="libraries.html#libraries" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>R comes with a bit of functionality. However, most of the useful tools in R is distributed as packages. There are +10.000 package for R, so it is a jungle to figure out what the most easy solution to your problem at hand is. However, the teams who have made tidyverse and ggplot2 etc. have made a lot of things much more easy, and we strongly rely on their tools and routines in data analysis.</p>
-<p>To install packages from CRAN (the main repo where R-packages are distributed)</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="libraries.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;somepackage&#39;</span>)</span></code></pre></div>
-<p>To install packages from github (the place where all the development and general code sharing is distributed)</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="libraries.html#cb19-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;developername/packagename&#39;</span>)</span></code></pre></div>
-<p>To make packages available within your analysis use library(), or use the package name followed by :: and the function</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="libraries.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># lets plot dadta</span></span>
-<span id="cb20-2"><a href="libraries.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb20-3"><a href="libraries.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># lets add stats to the plots</span></span>
-<span id="cb20-4"><a href="libraries.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># lets make nice tables</span></span>
-<span id="cb20-5"><a href="libraries.html#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="libraries.html#cb20-6" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">qplot</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="co"># example of a function call without library&#39;ing the package.</span></span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div id="lpls" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> LPLS<a href="lpls.html#lpls" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>L-PLS - include reference.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="descriptive-statistics-and-plotting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="preference-mapping.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="consumer-segmentation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -294,7 +281,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/01_Pasta_mushroom_legume.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/07_chapters.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -302,7 +289,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/01_Pasta_mushroom_legume.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/07_chapters.Rmd",
 "text": null
 },
 "download": null,
