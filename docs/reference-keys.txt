@@ -32,6 +32,14 @@ run-a-bunch-of-models-at-once
 a-plot
 mixed-models
 with-several-variables
+check-all-that-applies-cata
+an-example-from-beer-profiling
+two-versions-of-the-data
+pca
+cochranes-q-test
+post-hoc-contrasts
+for-all-attributes
+plsda
 consumer-segmentation
 kmeans
 more-pca

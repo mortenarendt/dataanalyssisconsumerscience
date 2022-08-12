@@ -7,7 +7,7 @@ However, a fair part of the analysis tools are common. That is, descriptive anal
 The data is included in the R-packgage you get by running the code below. 
 Be aware that you need devtools package to install from github. 
 
-```{r}
+```{r, eval=FALSE}
 # install data-package
 install.packages('devtools')
 devtools::install_github('mortenarendt/data4consumerscience')
