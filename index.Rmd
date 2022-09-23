@@ -9,14 +9,16 @@ site: bookdown::bookdown_site
     
 # Introduction
 
-This material is to cover data analysis using R for consumer science targeting the courses: 
+This material is to cover data analysis using R for consumer science targeting the following courses: 
 
-* Meal systems technology 
-* Food consumer research 
-* Meal consumer research 
-* Thematic course in food innovation
-* Public health nutrition
+* Meal Systems and Technologies
+* Food Consumer Research 
+* Meal Consumer Research 
+* Thematic Course in Food Innovation and Health
+* Public Health Nutrition
 
 But others may benefit from the material as well....
 
+The initial chapters of the book introduce R and the background for the different statistical methods used in the book. The following parts of the book is divided according to the course hence the data types encountered in the above mentioned courses, 
 
+The format of the book is simple - first read the written text and when you reach a code, copy the code and try it out yourself. 

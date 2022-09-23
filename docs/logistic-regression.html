@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 15 Logistic Regression | Data Analysis in R for Consumer Science</title>
-  <meta name="description" content="Chapter 15 Logistic Regression | Data Analysis in R for Consumer Science" />
+  <title>Chapter 17 Logistic Regression | Data Analysis in R for Consumer Science</title>
+  <meta name="description" content="Chapter 17 Logistic Regression | Data Analysis in R for Consumer Science" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 15 Logistic Regression | Data Analysis in R for Consumer Science" />
+  <meta property="og:title" content="Chapter 17 Logistic Regression | Data Analysis in R for Consumer Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 15 Logistic Regression | Data Analysis in R for Consumer Science" />
+  <meta name="twitter:title" content="Chapter 17 Logistic Regression | Data Analysis in R for Consumer Science" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-08-12" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -137,89 +137,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Data</a>
+<li class="chapter" data-level="2" data-path="introduction-to-pca.html"><a href="introduction-to-pca.html"><i class="fa fa-check"></i><b>2</b> Introduction to PCA</a></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#read-in-data-from-excel---ibuffet"><i class="fa fa-check"></i><b>2.1</b> Read in data from Excel - iBuffet</a>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-import-data"><i class="fa fa-check"></i><b>3.1</b> How to import data</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#example-of-survey-data"><i class="fa fa-check"></i><b>2.1.1</b> Example of Survey data</a></li>
-<li class="chapter" data-level="2.1.2" data-path="data.html"><a href="data.html#example-of-survey-scale"><i class="fa fa-check"></i><b>2.1.2</b> Example of Survey Scale</a></li>
-<li class="chapter" data-level="2.1.3" data-path="data.html"><a href="data.html#edit-in-excel"><i class="fa fa-check"></i><b>2.1.3</b> Edit in excel</a></li>
-<li class="chapter" data-level="2.1.4" data-path="data.html"><a href="data.html#importing-to-r"><i class="fa fa-check"></i><b>2.1.4</b> Importing to R</a></li>
-<li class="chapter" data-level="2.1.5" data-path="data.html"><a href="data.html#editing-in-r"><i class="fa fa-check"></i><b>2.1.5</b> Editing in R</a></li>
-<li class="chapter" data-level="2.1.6" data-path="data.html"><a href="data.html#merging-the-data"><i class="fa fa-check"></i><b>2.1.6</b> Merging the data</a></li>
-<li class="chapter" data-level="2.1.7" data-path="data.html"><a href="data.html#save-the-data"><i class="fa fa-check"></i><b>2.1.7</b> Save the data</a></li>
-<li class="chapter" data-level="2.1.8" data-path="data.html"><a href="data.html#ready-for-analysis"><i class="fa fa-check"></i><b>2.1.8</b> Ready for analysis</a></li>
+<li class="chapter" data-level="3.1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-a-csv-file"><i class="fa fa-check"></i><b>3.1.1</b> Importing a csv file</a></li>
+<li class="chapter" data-level="3.1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-an-excel-filesheet"><i class="fa fa-check"></i><b>3.1.2</b> Importing an Excel file/sheet</a></li>
+<li class="chapter" data-level="3.1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-at-the-imported-elements"><i class="fa fa-check"></i><b>3.1.3</b> Looking at the imported elements</a></li>
+<li class="chapter" data-level="3.1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#save-the-data"><i class="fa fa-check"></i><b>3.1.4</b> Save the data</a></li>
+<li class="chapter" data-level="3.1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#ready-for-analysis"><i class="fa fa-check"></i><b>3.1.5</b> Ready for analysis</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>3</b> Libraries</a></li>
-<li class="chapter" data-level="4" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics and plotting</a>
+<li class="chapter" data-level="4" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html"><i class="fa fa-check"></i><b>4</b> How to import your data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#distributions-of-count-data"><i class="fa fa-check"></i><b>4.1</b> Distributions of count data</a>
+<li class="chapter" data-level="4.1" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#ibuffet-data---read-in-data-from-excel"><i class="fa fa-check"></i><b>4.1</b> iBuffet data - Read in data from Excel</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>4.1.1</b> Descriptives for a continouos variable</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#scatter-plots"><i class="fa fa-check"></i><b>4.2</b> Scatter plots</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>5</b> PCA on survey answers</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>5.1</b> Bi-plot</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>5.1.1</b> Extract the components and run all associations.</a></li>
+<li class="chapter" data-level="4.1.1" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#example-of-survey-data"><i class="fa fa-check"></i><b>4.1.1</b> Example of Survey data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#example-of-survey-scale"><i class="fa fa-check"></i><b>4.1.2</b> Example of Survey Scale</a></li>
+<li class="chapter" data-level="4.1.3" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#edit-your-dataset-in-excel"><i class="fa fa-check"></i><b>4.1.3</b> Edit your dataset in Excel</a></li>
+<li class="chapter" data-level="4.1.4" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#importing-to-r"><i class="fa fa-check"></i><b>4.1.4</b> Importing to R</a></li>
+<li class="chapter" data-level="4.1.5" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#editing-in-r"><i class="fa fa-check"></i><b>4.1.5</b> Editing in R</a></li>
+<li class="chapter" data-level="4.1.6" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#merging-the-data"><i class="fa fa-check"></i><b>4.1.6</b> Merging the data</a></li>
+<li class="chapter" data-level="4.1.7" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#save-the-data-1"><i class="fa fa-check"></i><b>4.1.7</b> Save the data</a></li>
+<li class="chapter" data-level="4.1.8" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#ready-for-analysis-1"><i class="fa fa-check"></i><b>4.1.8</b> Ready for analysis</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>6</b> Linear models</a>
+<li class="chapter" data-level="5" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>5</b> Libraries</a></li>
+<li class="chapter" data-level="6" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html"><i class="fa fa-check"></i><b>6</b> Descriptive statistics and plotting</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>6.1</b> Example</a></li>
-<li class="chapter" data-level="6.2" data-path="linear-models.html"><a href="linear-models.html#run-a-bunch-of-models-at-once"><i class="fa fa-check"></i><b>6.2</b> Run a bunch of models at once</a>
+<li class="chapter" data-level="6.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#distributions-of-count-data"><i class="fa fa-check"></i><b>6.1</b> Distributions of count data</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="linear-models.html"><a href="linear-models.html#a-plot"><i class="fa fa-check"></i><b>6.2.1</b> A plot</a></li>
+<li class="chapter" data-level="6.1.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>6.1.1</b> Descriptives for a continouos variable</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#scatter-plots"><i class="fa fa-check"></i><b>6.2</b> Scatter plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>7</b> PCA on survey answers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>7.1</b> Bi-plot</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>7.1.1</b> Extract the components and run all associations.</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>7</b> Mixed models</a>
+<li class="chapter" data-level="8" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>8</b> Linear models</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>7.1</b> With several variables</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>8</b> Latent Factor Models</a></li>
-<li class="chapter" data-level="9" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html"><i class="fa fa-check"></i><b>9</b> Check All That Applies (CATA)</a>
+<li class="chapter" data-level="8.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>8.1</b> Example</a></li>
+<li class="chapter" data-level="8.2" data-path="linear-models.html"><a href="linear-models.html#run-a-bunch-of-models-at-once"><i class="fa fa-check"></i><b>8.2</b> Run a bunch of models at once</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#an-example-from-beer-profiling"><i class="fa fa-check"></i><b>9.1</b> An example from Beer profiling</a></li>
-<li class="chapter" data-level="9.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>9.2</b> Two versions of the data</a></li>
-<li class="chapter" data-level="9.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#pca"><i class="fa fa-check"></i><b>9.3</b> PCA</a></li>
-<li class="chapter" data-level="9.4" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#cochranes-q-test"><i class="fa fa-check"></i><b>9.4</b> Cochranes Q-test</a>
-<ul>
-<li class="chapter" data-level="9.4.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#post-hoc-contrasts"><i class="fa fa-check"></i><b>9.4.1</b> Post hoc contrasts</a></li>
-<li class="chapter" data-level="9.4.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#for-all-attributes"><i class="fa fa-check"></i><b>9.4.2</b> For all Attributes</a></li>
-<li class="chapter" data-level="9.4.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#plsda"><i class="fa fa-check"></i><b>9.4.3</b> PLSDA</a></li>
+<li class="chapter" data-level="8.2.1" data-path="linear-models.html"><a href="linear-models.html#a-plot"><i class="fa fa-check"></i><b>8.2.1</b> A plot</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>10</b> Projective mapping</a>
+<li class="chapter" data-level="9" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>9</b> Mixed models</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>10.1</b> Example from mapping of XX</a></li>
-<li class="chapter" data-level="10.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>10.2</b> A Collated version of the data</a></li>
-<li class="chapter" data-level="10.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>10.3</b> PCA on Collated data</a></li>
-<li class="chapter" data-level="10.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>10.4</b> </a></li>
+<li class="chapter" data-level="9.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>9.1</b> With several variables</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>11</b> Preference Mapping</a>
+<li class="chapter" data-level="10" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>10</b> Latent Factor Models</a></li>
+<li class="chapter" data-level="11" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html"><i class="fa fa-check"></i><b>11</b> Check All That Applies (CATA)</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>11.1</b> Example of Preference Mapping</a></li>
-<li class="chapter" data-level="11.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca-1"><i class="fa fa-check"></i><b>11.2</b> PCA</a></li>
-<li class="chapter" data-level="11.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>11.3</b> Analysis by PLS</a></li>
-<li class="chapter" data-level="11.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>11.4</b> L-PLS [For the future…]</a></li>
+<li class="chapter" data-level="11.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#an-example-from-beer-profiling"><i class="fa fa-check"></i><b>11.1</b> An example from Beer profiling</a></li>
+<li class="chapter" data-level="11.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>11.2</b> Two versions of the data</a></li>
+<li class="chapter" data-level="11.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#pca"><i class="fa fa-check"></i><b>11.3</b> PCA</a></li>
+<li class="chapter" data-level="11.4" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#cochranes-q-test"><i class="fa fa-check"></i><b>11.4</b> Cochranes Q-test</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#post-hoc-contrasts"><i class="fa fa-check"></i><b>11.4.1</b> Post hoc contrasts</a></li>
+<li class="chapter" data-level="11.4.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#for-all-attributes"><i class="fa fa-check"></i><b>11.4.2</b> For all Attributes</a></li>
+<li class="chapter" data-level="11.4.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#plsda"><i class="fa fa-check"></i><b>11.4.3</b> PLSDA</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>12</b> LPLS</a></li>
-<li class="chapter" data-level="13" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>13</b> Consumer Segmentation</a>
+<li class="chapter" data-level="11.5" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exerecise"><i class="fa fa-check"></i><b>11.5</b> Exerecise</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>13.1</b> Kmeans</a></li>
+<li class="chapter" data-level="11.5.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-1-pca-on-consumer-background"><i class="fa fa-check"></i><b>11.5.1</b> Exercise 1: PCA on consumer background</a></li>
+<li class="chapter" data-level="11.5.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-2-pca-on-cata-counts"><i class="fa fa-check"></i><b>11.5.2</b> Exercise 2: PCA on CATA counts</a></li>
+<li class="chapter" data-level="11.5.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-3-pca-on-liking"><i class="fa fa-check"></i><b>11.5.3</b> Exercise 3: PCA on liking</a></li>
+<li class="chapter" data-level="11.5.4" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-4-pls-on-cata-counts-and-liking"><i class="fa fa-check"></i><b>11.5.4</b> Exercise 4: PLS on CATA counts and liking</a></li>
+<li class="chapter" data-level="11.5.5" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-5-mixed-modelling-on-the-liking"><i class="fa fa-check"></i><b>11.5.5</b> Exercise 5: Mixed modelling on the liking</a></li>
+<li class="chapter" data-level="11.5.6" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-6-comparing-cata-binary-data-and-counts"><i class="fa fa-check"></i><b>11.5.6</b> Exercise 6: Comparing CATA binary data and counts</a></li>
+<li class="chapter" data-level="11.5.7" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-7-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>11.5.7</b> Exercise 7: Cochran’s Q test on CATA binary data</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>14</b> More PCA</a></li>
-<li class="chapter" data-level="15" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>15</b> Logistic Regression</a></li>
-<li class="chapter" data-level="16" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>16</b> Confirmatory Factor Analysis using lavaan</a>
-<ul>
-<li class="chapter" data-level="16.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>16.1</b> Example - Food Neophobia</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>17</b> Structured Equation Modelling</a>
+<li class="chapter" data-level="12" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>12</b> Projective mapping</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>17.1</b> Example - Theory of Planned Behaviour</a></li>
+<li class="chapter" data-level="12.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>12.1</b> Example from mapping of XX</a></li>
+<li class="chapter" data-level="12.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>12.2</b> A Collated version of the data</a></li>
+<li class="chapter" data-level="12.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>12.3</b> PCA on Collated data</a></li>
+<li class="chapter" data-level="12.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>12.4</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>13</b> Preference Mapping</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>13.1</b> Example of Preference Mapping</a></li>
+<li class="chapter" data-level="13.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca-1"><i class="fa fa-check"></i><b>13.2</b> PCA</a></li>
+<li class="chapter" data-level="13.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>13.3</b> Analysis by PLS</a></li>
+<li class="chapter" data-level="13.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>13.4</b> L-PLS [For the future…]</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>14</b> LPLS</a></li>
+<li class="chapter" data-level="15" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>15</b> Consumer Segmentation</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>15.1</b> Kmeans</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>16</b> More PCA</a></li>
+<li class="chapter" data-level="17" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>17</b> Logistic Regression</a></li>
+<li class="chapter" data-level="18" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>18</b> Confirmatory Factor Analysis using lavaan</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>18.1</b> Example - Food Neophobia</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>19</b> Structured Equation Modelling</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>19.1</b> Example - Theory of Planned Behaviour</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -240,8 +262,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="logistic-regression" class="section level1 hasAnchor" number="15">
-<h1><span class="header-section-number">Chapter 15</span> Logistic Regression<a href="logistic-regression.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="logistic-regression" class="section level1 hasAnchor" number="17">
+<h1><span class="header-section-number">Chapter 17</span> Logistic Regression<a href="logistic-regression.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 </div>
             </section>
 
@@ -280,7 +302,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/07_chapters.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/20_chapters.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -288,7 +310,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/07_chapters.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/20_chapters.Rmd",
 "text": null
 },
 "download": null,

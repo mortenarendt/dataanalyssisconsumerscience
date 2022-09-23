@@ -1,0 +1,168 @@
+
+# Introduction to PCA
+
+In this book Principal Component Analysis (PCA) is used several times. This chapter will shortly explain the theory behind PCA and the interpretation of relevant plots.  
+
+PCA is a tool for looking a correlation structure between variables, and groupings of samples. All through visualizations.  
+Check out youtube on the subject for an introduction.
+
+[TILFØJ: skrives kort om PCA, skal der ikke stå lidt mere???]
+
+
+```{r}
+knitr::include_url("https://youtube.com/embed/NFIkD9-MuTY")
+```
+
+![](https://youtu.be/NFIkD9-MuTY){width="90%"}
+
+
+[INDSÆTTE: flere film // you tube klip]
+
+
+# Introduction to R
+
+R is a free software with a complete programming language for statistical computing and graphics. It is used at many universities and companies since it is always updated and open source.
+
+Before staring your calculations in R you should always update the R version on your computer. You can install a graphical interface for R, called R studio. It will use the underlying version of R on your computer – so you have to have R installed too. The principles by R and R Studio are the same – BUT R Studio has a better interface for non-programmers. Both R and R Studio can be used on all types of computers. 
+
+R is command-line based and it provides a wide variety of statistical methods (linear and nonlinear modelling, classical statistical tests, classification, clustering, ...). Advanced methods are available via extension packages (more than 10.000 at the moment)
+
+Always be sure to have the latest version of both R and R Studio on your computer - update version just before you need to use the program. 
+
+
+[INDSÆTTE: Bodil der snakker om opsætningen af R Studio. Forslag er slide 4-5-6 i Bodils R intro præsentation]
+
+##How to get started - understanding R
+To get started go to upper left corner and open a new script. Remember to save your script as well. To out our codes: 
+
+```{r}
+1+2
+a <- 2+2
+b <- 5+3
+```
+
+What happens if you write the letter a in the editor and run it? What about the letter b? 
+
+```{r}
+a
+b
+a+b
+```
+
+... or this one? 
+
+```{r, eval=FALSE}
+A+B
+```
+
+R is essentially one really but case sensitive calculator. 
+
+
+In the Editor: 
+"#" is the start of a comment (means: will not evaluated/ read by the program). This is how you can make comments in your script
+":"Generates a sequence (e.g. 1:10 is the numbers from 1 to 10)
+
+In the Console:
+">" indicates that R is ready for a new code.
+"+" Instead of ">" means that the program is waiting for you. (you probably made a mistake in the script you tried to run) – by [ESC] the "+" turns to a ">" again
+"NA"      (Not Available) is indicating a missing value
+"NaN" 	  (Not a Number) is the result of an 'illegal' operation e.g. log(-1)
+Red sentences means there is an error. R will stop calculating at the first error it meets.
+
+
+## How to import data
+Before you start you data import, you have to make sure the data set contains all the information you need and the format of the data (columns and rows) is correct. You can import in many different ways. This book will show you two:
+
+[LAVE PUNKTOPSTILLLING?? MEN VED IKKE HVORDAN??]
+
+*Importing a csv file
+*Importing an Excel file/sheet
+
+
+### Importing a csv file
+[TEKST MANGLER]
+
+
+
+### Importing an Excel file/sheet
+If your Excel file contains more than one sheet, you have to import each sheet separately. 
+
+Here we use the package readxl with the function read_excel.If the data is not in the same folder as your script, then include the path to the data, or move the data to the script's location. 
+
+When you have to find the path for the file on your computer, you .... [INDSÆT BESKRIVELSE af hvordan man gør dette med Tabulator knappen til at finde stien].
+
+The first part of the model sentence is what we want to call our dataset, here "DATASET1". You decide the names/titles of your datasets and model, just do not use other signs than "." and avoid non-English letters. 
+
+[SPØRGSMÅL // INDSÆT: Vi skal bruge et datasæt til at lave import af, skal det bare det samme for for buffet data? ]
+
+
+
+```{r, eval=FALSE}
+library(readxl)
+DATASET1 <- read_excel('./data/iBuffet.xlsx',sheet = 'BuffetData')
+DATASET2 <- read_excel('./data/iBuffet.xlsx',sheet = 'SurveyData')
+```
+
+
+
+### Looking at the imported elements
+Have a look at the imported elements to ensure that indeed, they mimic the Excel-sheets. Use the functions head(), str() and View() is your tools. They will give you the headlines in your data, how your variables are categorised and open the dataset in a new tab. 
+
+```{r, eval = F}
+head(DATASET1)
+str(DATASET1)
+View(DATASET1)
+```
+
+[NEW STUFF NEEDED IF DATA CHANGED: We see that the coloum with names (Person and StationName) is interpreted as characters (chr) while the stuff which should be numbers (Comsuption) is numeric (num). If that is not the case, you will need to transform them using as.numeric() or as.character().]
+
+
+
+
+##How to save the data (MANGLER!!)
+
+##How to export tables and plots (MANGLER!!)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Save the data 
+
+You can export any data frame from R to excel (for instance using the _rio_ package), as well as saving it as .RData for further analysis. 
+
+Use save.image() to save everything, or use save() to specify which elements to save
+
+```{r, eval=FALSE}
+save.image(file = 'iBuffetSurveyDataEverything.RData') # everything
+save(file = 'iBuffetSurveyData.RData',
+     list = c('Survey','Surveylong_buffet',
+              'Surveylong','Buffet_survey','Surveyscales')) # just the usesul and non-redundant stuff.
+rio::export(Surveylong_buffet,file = 'Surveylong_buffet.xlsx') # export one data frame
+```
+
+[TILFØJ: Indtalt forklaring på koderne?]
+
+### Ready for analysis 
+
+Once you have saved the data, you can simply load the data directly, and you do not need to do the import-setup every time you want to do an analysis on the data. 
+
+This part is not a part of the data import, but it is a good idea just to check that the data indeed is setup as expected. 
+
+```{r, eval=FALSE}
+load('iBuffetSurveyData.RData') 
+```

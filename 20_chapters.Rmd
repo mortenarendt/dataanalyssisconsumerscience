@@ -1,0 +1,24 @@
+# LPLS
+
+L-PLS - include reference. 
+
+# Consumer Segmentation 
+
+## Kmeans
+
+# More PCA
+
+# Logistic Regression
+
+# Confirmatory Factor Analysis using lavaan
+
+## Example - Food Neophobia
+
+# Structured Equation Modelling
+
+## Example - Theory of Planned Behaviour
+
+```{r}
+2+2
+```
+

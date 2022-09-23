@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Linear models | Data Analysis in R for Consumer Science</title>
-  <meta name="description" content="Chapter 6 Linear models | Data Analysis in R for Consumer Science" />
+  <title>Chapter 8 Linear models | Data Analysis in R for Consumer Science</title>
+  <meta name="description" content="Chapter 8 Linear models | Data Analysis in R for Consumer Science" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Linear models | Data Analysis in R for Consumer Science" />
+  <meta property="og:title" content="Chapter 8 Linear models | Data Analysis in R for Consumer Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Linear models | Data Analysis in R for Consumer Science" />
+  <meta name="twitter:title" content="Chapter 8 Linear models | Data Analysis in R for Consumer Science" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-08-12" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -137,89 +137,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Data</a>
+<li class="chapter" data-level="2" data-path="introduction-to-pca.html"><a href="introduction-to-pca.html"><i class="fa fa-check"></i><b>2</b> Introduction to PCA</a></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#read-in-data-from-excel---ibuffet"><i class="fa fa-check"></i><b>2.1</b> Read in data from Excel - iBuffet</a>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-import-data"><i class="fa fa-check"></i><b>3.1</b> How to import data</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#example-of-survey-data"><i class="fa fa-check"></i><b>2.1.1</b> Example of Survey data</a></li>
-<li class="chapter" data-level="2.1.2" data-path="data.html"><a href="data.html#example-of-survey-scale"><i class="fa fa-check"></i><b>2.1.2</b> Example of Survey Scale</a></li>
-<li class="chapter" data-level="2.1.3" data-path="data.html"><a href="data.html#edit-in-excel"><i class="fa fa-check"></i><b>2.1.3</b> Edit in excel</a></li>
-<li class="chapter" data-level="2.1.4" data-path="data.html"><a href="data.html#importing-to-r"><i class="fa fa-check"></i><b>2.1.4</b> Importing to R</a></li>
-<li class="chapter" data-level="2.1.5" data-path="data.html"><a href="data.html#editing-in-r"><i class="fa fa-check"></i><b>2.1.5</b> Editing in R</a></li>
-<li class="chapter" data-level="2.1.6" data-path="data.html"><a href="data.html#merging-the-data"><i class="fa fa-check"></i><b>2.1.6</b> Merging the data</a></li>
-<li class="chapter" data-level="2.1.7" data-path="data.html"><a href="data.html#save-the-data"><i class="fa fa-check"></i><b>2.1.7</b> Save the data</a></li>
-<li class="chapter" data-level="2.1.8" data-path="data.html"><a href="data.html#ready-for-analysis"><i class="fa fa-check"></i><b>2.1.8</b> Ready for analysis</a></li>
+<li class="chapter" data-level="3.1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-a-csv-file"><i class="fa fa-check"></i><b>3.1.1</b> Importing a csv file</a></li>
+<li class="chapter" data-level="3.1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-an-excel-filesheet"><i class="fa fa-check"></i><b>3.1.2</b> Importing an Excel file/sheet</a></li>
+<li class="chapter" data-level="3.1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-at-the-imported-elements"><i class="fa fa-check"></i><b>3.1.3</b> Looking at the imported elements</a></li>
+<li class="chapter" data-level="3.1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#save-the-data"><i class="fa fa-check"></i><b>3.1.4</b> Save the data</a></li>
+<li class="chapter" data-level="3.1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#ready-for-analysis"><i class="fa fa-check"></i><b>3.1.5</b> Ready for analysis</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>3</b> Libraries</a></li>
-<li class="chapter" data-level="4" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics and plotting</a>
+<li class="chapter" data-level="4" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html"><i class="fa fa-check"></i><b>4</b> How to import your data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#distributions-of-count-data"><i class="fa fa-check"></i><b>4.1</b> Distributions of count data</a>
+<li class="chapter" data-level="4.1" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#ibuffet-data---read-in-data-from-excel"><i class="fa fa-check"></i><b>4.1</b> iBuffet data - Read in data from Excel</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>4.1.1</b> Descriptives for a continouos variable</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#scatter-plots"><i class="fa fa-check"></i><b>4.2</b> Scatter plots</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>5</b> PCA on survey answers</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>5.1</b> Bi-plot</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>5.1.1</b> Extract the components and run all associations.</a></li>
+<li class="chapter" data-level="4.1.1" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#example-of-survey-data"><i class="fa fa-check"></i><b>4.1.1</b> Example of Survey data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#example-of-survey-scale"><i class="fa fa-check"></i><b>4.1.2</b> Example of Survey Scale</a></li>
+<li class="chapter" data-level="4.1.3" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#edit-your-dataset-in-excel"><i class="fa fa-check"></i><b>4.1.3</b> Edit your dataset in Excel</a></li>
+<li class="chapter" data-level="4.1.4" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#importing-to-r"><i class="fa fa-check"></i><b>4.1.4</b> Importing to R</a></li>
+<li class="chapter" data-level="4.1.5" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#editing-in-r"><i class="fa fa-check"></i><b>4.1.5</b> Editing in R</a></li>
+<li class="chapter" data-level="4.1.6" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#merging-the-data"><i class="fa fa-check"></i><b>4.1.6</b> Merging the data</a></li>
+<li class="chapter" data-level="4.1.7" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#save-the-data-1"><i class="fa fa-check"></i><b>4.1.7</b> Save the data</a></li>
+<li class="chapter" data-level="4.1.8" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#ready-for-analysis-1"><i class="fa fa-check"></i><b>4.1.8</b> Ready for analysis</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>6</b> Linear models</a>
+<li class="chapter" data-level="5" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>5</b> Libraries</a></li>
+<li class="chapter" data-level="6" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html"><i class="fa fa-check"></i><b>6</b> Descriptive statistics and plotting</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>6.1</b> Example</a></li>
-<li class="chapter" data-level="6.2" data-path="linear-models.html"><a href="linear-models.html#run-a-bunch-of-models-at-once"><i class="fa fa-check"></i><b>6.2</b> Run a bunch of models at once</a>
+<li class="chapter" data-level="6.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#distributions-of-count-data"><i class="fa fa-check"></i><b>6.1</b> Distributions of count data</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="linear-models.html"><a href="linear-models.html#a-plot"><i class="fa fa-check"></i><b>6.2.1</b> A plot</a></li>
+<li class="chapter" data-level="6.1.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>6.1.1</b> Descriptives for a continouos variable</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#scatter-plots"><i class="fa fa-check"></i><b>6.2</b> Scatter plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>7</b> PCA on survey answers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>7.1</b> Bi-plot</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>7.1.1</b> Extract the components and run all associations.</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>7</b> Mixed models</a>
+<li class="chapter" data-level="8" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>8</b> Linear models</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>7.1</b> With several variables</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>8</b> Latent Factor Models</a></li>
-<li class="chapter" data-level="9" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html"><i class="fa fa-check"></i><b>9</b> Check All That Applies (CATA)</a>
+<li class="chapter" data-level="8.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>8.1</b> Example</a></li>
+<li class="chapter" data-level="8.2" data-path="linear-models.html"><a href="linear-models.html#run-a-bunch-of-models-at-once"><i class="fa fa-check"></i><b>8.2</b> Run a bunch of models at once</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#an-example-from-beer-profiling"><i class="fa fa-check"></i><b>9.1</b> An example from Beer profiling</a></li>
-<li class="chapter" data-level="9.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>9.2</b> Two versions of the data</a></li>
-<li class="chapter" data-level="9.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#pca"><i class="fa fa-check"></i><b>9.3</b> PCA</a></li>
-<li class="chapter" data-level="9.4" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#cochranes-q-test"><i class="fa fa-check"></i><b>9.4</b> Cochranes Q-test</a>
-<ul>
-<li class="chapter" data-level="9.4.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#post-hoc-contrasts"><i class="fa fa-check"></i><b>9.4.1</b> Post hoc contrasts</a></li>
-<li class="chapter" data-level="9.4.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#for-all-attributes"><i class="fa fa-check"></i><b>9.4.2</b> For all Attributes</a></li>
-<li class="chapter" data-level="9.4.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#plsda"><i class="fa fa-check"></i><b>9.4.3</b> PLSDA</a></li>
+<li class="chapter" data-level="8.2.1" data-path="linear-models.html"><a href="linear-models.html#a-plot"><i class="fa fa-check"></i><b>8.2.1</b> A plot</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>10</b> Projective mapping</a>
+<li class="chapter" data-level="9" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>9</b> Mixed models</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>10.1</b> Example from mapping of XX</a></li>
-<li class="chapter" data-level="10.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>10.2</b> A Collated version of the data</a></li>
-<li class="chapter" data-level="10.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>10.3</b> PCA on Collated data</a></li>
-<li class="chapter" data-level="10.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>10.4</b> </a></li>
+<li class="chapter" data-level="9.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>9.1</b> With several variables</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>11</b> Preference Mapping</a>
+<li class="chapter" data-level="10" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>10</b> Latent Factor Models</a></li>
+<li class="chapter" data-level="11" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html"><i class="fa fa-check"></i><b>11</b> Check All That Applies (CATA)</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>11.1</b> Example of Preference Mapping</a></li>
-<li class="chapter" data-level="11.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca-1"><i class="fa fa-check"></i><b>11.2</b> PCA</a></li>
-<li class="chapter" data-level="11.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>11.3</b> Analysis by PLS</a></li>
-<li class="chapter" data-level="11.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>11.4</b> L-PLS [For the future…]</a></li>
+<li class="chapter" data-level="11.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#an-example-from-beer-profiling"><i class="fa fa-check"></i><b>11.1</b> An example from Beer profiling</a></li>
+<li class="chapter" data-level="11.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>11.2</b> Two versions of the data</a></li>
+<li class="chapter" data-level="11.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#pca"><i class="fa fa-check"></i><b>11.3</b> PCA</a></li>
+<li class="chapter" data-level="11.4" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#cochranes-q-test"><i class="fa fa-check"></i><b>11.4</b> Cochranes Q-test</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#post-hoc-contrasts"><i class="fa fa-check"></i><b>11.4.1</b> Post hoc contrasts</a></li>
+<li class="chapter" data-level="11.4.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#for-all-attributes"><i class="fa fa-check"></i><b>11.4.2</b> For all Attributes</a></li>
+<li class="chapter" data-level="11.4.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#plsda"><i class="fa fa-check"></i><b>11.4.3</b> PLSDA</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>12</b> LPLS</a></li>
-<li class="chapter" data-level="13" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>13</b> Consumer Segmentation</a>
+<li class="chapter" data-level="11.5" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exerecise"><i class="fa fa-check"></i><b>11.5</b> Exerecise</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>13.1</b> Kmeans</a></li>
+<li class="chapter" data-level="11.5.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-1-pca-on-consumer-background"><i class="fa fa-check"></i><b>11.5.1</b> Exercise 1: PCA on consumer background</a></li>
+<li class="chapter" data-level="11.5.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-2-pca-on-cata-counts"><i class="fa fa-check"></i><b>11.5.2</b> Exercise 2: PCA on CATA counts</a></li>
+<li class="chapter" data-level="11.5.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-3-pca-on-liking"><i class="fa fa-check"></i><b>11.5.3</b> Exercise 3: PCA on liking</a></li>
+<li class="chapter" data-level="11.5.4" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-4-pls-on-cata-counts-and-liking"><i class="fa fa-check"></i><b>11.5.4</b> Exercise 4: PLS on CATA counts and liking</a></li>
+<li class="chapter" data-level="11.5.5" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-5-mixed-modelling-on-the-liking"><i class="fa fa-check"></i><b>11.5.5</b> Exercise 5: Mixed modelling on the liking</a></li>
+<li class="chapter" data-level="11.5.6" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-6-comparing-cata-binary-data-and-counts"><i class="fa fa-check"></i><b>11.5.6</b> Exercise 6: Comparing CATA binary data and counts</a></li>
+<li class="chapter" data-level="11.5.7" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-7-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>11.5.7</b> Exercise 7: Cochran’s Q test on CATA binary data</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>14</b> More PCA</a></li>
-<li class="chapter" data-level="15" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>15</b> Logistic Regression</a></li>
-<li class="chapter" data-level="16" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>16</b> Confirmatory Factor Analysis using lavaan</a>
-<ul>
-<li class="chapter" data-level="16.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>16.1</b> Example - Food Neophobia</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>17</b> Structured Equation Modelling</a>
+<li class="chapter" data-level="12" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>12</b> Projective mapping</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>17.1</b> Example - Theory of Planned Behaviour</a></li>
+<li class="chapter" data-level="12.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>12.1</b> Example from mapping of XX</a></li>
+<li class="chapter" data-level="12.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>12.2</b> A Collated version of the data</a></li>
+<li class="chapter" data-level="12.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>12.3</b> PCA on Collated data</a></li>
+<li class="chapter" data-level="12.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>12.4</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>13</b> Preference Mapping</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>13.1</b> Example of Preference Mapping</a></li>
+<li class="chapter" data-level="13.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca-1"><i class="fa fa-check"></i><b>13.2</b> PCA</a></li>
+<li class="chapter" data-level="13.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>13.3</b> Analysis by PLS</a></li>
+<li class="chapter" data-level="13.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>13.4</b> L-PLS [For the future…]</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>14</b> LPLS</a></li>
+<li class="chapter" data-level="15" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>15</b> Consumer Segmentation</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>15.1</b> Kmeans</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>16</b> More PCA</a></li>
+<li class="chapter" data-level="17" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>17</b> Logistic Regression</a></li>
+<li class="chapter" data-level="18" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>18</b> Confirmatory Factor Analysis using lavaan</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>18.1</b> Example - Food Neophobia</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>19</b> Structured Equation Modelling</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>19.1</b> Example - Theory of Planned Behaviour</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -240,55 +262,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="linear-models" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Linear models<a href="linear-models.html#linear-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="linear-models" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Linear models<a href="linear-models.html#linear-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Linear models is a general term for models with a single univariate response (dependent variable - <span class="math inline">\(y\)</span> in the formula below), which we want to describe using one or several predictors (independent variables - <span class="math inline">\(x\)</span> in the formula below).</p>
 <p><span class="math display">\[  y = a + b \cdot x + e \]</span>
 Here the informative parameter is the slope (<span class="math inline">\(b\)</span>) which indicates the relation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. (<span class="math inline">\(e\)</span> is the missfit / residuals of the model).</p>
 <p>We use tidyverse coding as this makes life much easier. As an tidyverse add on, we use broom for the linear models, broom.mixed and lme4 for the linear mixed models.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="linear-models.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># lets plot dadta</span></span>
-<span id="cb80-2"><a href="linear-models.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb80-3"><a href="linear-models.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb80-4"><a href="linear-models.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
-<span id="cb80-5"><a href="linear-models.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb80-6"><a href="linear-models.html#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># lets add stats to the plots</span></span>
-<span id="cb80-7"><a href="linear-models.html#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># lets make nice tables</span></span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="linear-models.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># lets plot dadta</span></span>
+<span id="cb91-2"><a href="linear-models.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb91-3"><a href="linear-models.html#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb91-4"><a href="linear-models.html#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
+<span id="cb91-5"><a href="linear-models.html#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb91-6"><a href="linear-models.html#cb91-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># lets add stats to the plots</span></span>
+<span id="cb91-7"><a href="linear-models.html#cb91-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># lets make nice tables</span></span></code></pre></div>
 <p>The data is already imported, and formated (see <em>Getting_data_in.pdf</em> for details). We simply load this file.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="linear-models.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span></code></pre></div>
-<div id="example" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Example<a href="linear-models.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="linear-models.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span></code></pre></div>
+<div id="example" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Example<a href="linear-models.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As response variable, the amount of Consumption of <em>Pasta with mushrooms</em> and use the likert scale <em><code>I like the taste of pasta with mushrooms!</code></em> as predictor. We use ONLY Day 1 results.</p>
 <p>First a plot:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="linear-models.html#cb82-1" aria-hidden="true" tabindex="-1"></a>pasta <span class="sc">%&gt;%</span> </span>
-<span id="cb82-2"><a href="linear-models.html#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb82-3"><a href="linear-models.html#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb82-4"><a href="linear-models.html#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(I_like_taste_of_pasta_with_mushrooms,Consumption)) <span class="sc">+</span> </span>
-<span id="cb82-5"><a href="linear-models.html#cb82-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb82-6"><a href="linear-models.html#cb82-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="linear-models.html#cb93-1" aria-hidden="true" tabindex="-1"></a>pasta <span class="sc">%&gt;%</span> </span>
+<span id="cb93-2"><a href="linear-models.html#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb93-3"><a href="linear-models.html#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb93-4"><a href="linear-models.html#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(I_like_taste_of_pasta_with_mushrooms,Consumption)) <span class="sc">+</span> </span>
+<span id="cb93-5"><a href="linear-models.html#cb93-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb93-6"><a href="linear-models.html#cb93-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> F)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p>It seems as there is something.
 So lets build a linear model on this</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="linear-models.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the data</span></span>
-<span id="cb84-2"><a href="linear-models.html#cb84-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> pasta <span class="sc">%&gt;%</span> </span>
-<span id="cb84-3"><a href="linear-models.html#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb84-4"><a href="linear-models.html#cb84-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) </span>
-<span id="cb84-5"><a href="linear-models.html#cb84-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-6"><a href="linear-models.html#cb84-6" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span>I_like_taste_of_pasta_with_mushrooms) </span>
-<span id="cb84-7"><a href="linear-models.html#cb84-7" aria-hidden="true" tabindex="-1"></a>mdl  </span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="linear-models.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the data</span></span>
+<span id="cb95-2"><a href="linear-models.html#cb95-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> pasta <span class="sc">%&gt;%</span> </span>
+<span id="cb95-3"><a href="linear-models.html#cb95-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(StationName,<span class="st">&#39;mush&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb95-4"><a href="linear-models.html#cb95-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Day<span class="sc">==</span><span class="dv">1</span>) </span>
+<span id="cb95-5"><a href="linear-models.html#cb95-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-6"><a href="linear-models.html#cb95-6" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> x, Consumption<span class="sc">~</span>I_like_taste_of_pasta_with_mushrooms) </span>
+<span id="cb95-7"><a href="linear-models.html#cb95-7" aria-hidden="true" tabindex="-1"></a>mdl  </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Consumption ~ I_like_taste_of_pasta_with_mushrooms, 
 ##     data = x)
 ## 
 ## Coefficients:
-##                                        (Intercept)  
-##                                              89.00  
-##          I_like_taste_of_pasta_with_mushroomsAgree  
-##                                               6.60  
+##                                        (Intercept)           I_like_taste_of_pasta_with_mushroomsAgree  
+##                                              89.00                                                6.60  
 ## I_like_taste_of_pasta_with_mushroomsStrongly agree  
 ##                                              82.25</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="linear-models.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="linear-models.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Consumption ~ I_like_taste_of_pasta_with_mushrooms, 
@@ -299,54 +319,50 @@ So lets build a linear model on this</p>
 ## -119.25  -49.60   -3.00   35.58  164.75 
 ## 
 ## Coefficients:
-##                                                    Estimate Std. Error t value
-## (Intercept)                                           89.00      60.43   1.473
-## I_like_taste_of_pasta_with_mushroomsAgree              6.60      71.50   0.092
-## I_like_taste_of_pasta_with_mushroomsStrongly agree    82.25      67.56   1.217
-##                                                    Pr(&gt;|t|)
-## (Intercept)                                           0.167
-## I_like_taste_of_pasta_with_mushroomsAgree             0.928
-## I_like_taste_of_pasta_with_mushroomsStrongly agree    0.247
+##                                                    Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)                                           89.00      60.43   1.473    0.167
+## I_like_taste_of_pasta_with_mushroomsAgree              6.60      71.50   0.092    0.928
+## I_like_taste_of_pasta_with_mushroomsStrongly agree    82.25      67.56   1.217    0.247
 ## 
 ## Residual standard error: 85.46 on 12 degrees of freedom
 ## Multiple R-squared:  0.2043, Adjusted R-squared:  0.07173 
 ## F-statistic: 1.541 on 2 and 12 DF,  p-value: 0.2537</code></pre>
 <p>The the slope indicates that by increasing liking by one unit the consumption increase is <span class="math inline">\(50.2 \pm 30.4\)</span>, however, this apparent effect is not statistically significant (<span class="math inline">\(p = 0.12\)</span>).</p>
 </div>
-<div id="run-a-bunch-of-models-at-once" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Run a bunch of models at once<a href="linear-models.html#run-a-bunch-of-models-at-once" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="run-a-bunch-of-models-at-once" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Run a bunch of models at once<a href="linear-models.html#run-a-bunch-of-models-at-once" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We want to model consumption of both pasta with mushrooms andd legumes, and look at all the likert scales questions as predictors. Further we want to do this for both days.</p>
 <p>First we create a new long format data frame</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="linear-models.html#cb88-1" aria-hidden="true" tabindex="-1"></a>pastalong <span class="ot">&lt;-</span> pasta <span class="sc">%&gt;%</span> </span>
-<span id="cb88-2"><a href="linear-models.html#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(question,answ,I_like_taste_of_pasta_with_legumes<span class="sc">:</span>Pasta_with_mushrooms_is_visually_appealing) <span class="sc">%&gt;%</span> </span>
-<span id="cb88-3"><a href="linear-models.html#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">answnum =</span> <span class="fu">factor</span>(answ,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Disagree&#39;</span>,<span class="st">&#39;More or less disagree&#39;</span>,<span class="st">&#39;Neither agree nor disagree&#39;</span>,<span class="st">&#39;More or less agree&#39;</span>,<span class="st">&#39;Agree&#39;</span>,<span class="st">&#39;Strongly agree&#39;</span>)) <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="linear-models.html#cb99-1" aria-hidden="true" tabindex="-1"></a>pastalong <span class="ot">&lt;-</span> pasta <span class="sc">%&gt;%</span> </span>
+<span id="cb99-2"><a href="linear-models.html#cb99-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(question,answ,I_like_taste_of_pasta_with_legumes<span class="sc">:</span>Pasta_with_mushrooms_is_visually_appealing) <span class="sc">%&gt;%</span> </span>
+<span id="cb99-3"><a href="linear-models.html#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">answnum =</span> <span class="fu">factor</span>(answ,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Disagree&#39;</span>,<span class="st">&#39;More or less disagree&#39;</span>,<span class="st">&#39;Neither agree nor disagree&#39;</span>,<span class="st">&#39;More or less agree&#39;</span>,<span class="st">&#39;Agree&#39;</span>,<span class="st">&#39;Strongly agree&#39;</span>)) <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>())</span></code></pre></div>
 <pre><code>## Warning: attributes are not identical across measure variables;
 ## they will be dropped</code></pre>
-<div id="a-plot" class="section level3 hasAnchor" number="6.2.1">
-<h3><span class="header-section-number">6.2.1</span> A plot<a href="linear-models.html#a-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="linear-models.html#cb90-1" aria-hidden="true" tabindex="-1"></a>pastalong <span class="sc">%&gt;%</span> </span>
-<span id="cb90-2"><a href="linear-models.html#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
-<span id="cb90-3"><a href="linear-models.html#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question2 =</span> question <span class="sc">%&gt;%</span> <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="co"># The label is to long, so lets just represent the first 30 letters.</span></span>
-<span id="cb90-4"><a href="linear-models.html#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> .,  <span class="fu">aes</span>(answnum,Consumption, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span></span>
-<span id="cb90-5"><a href="linear-models.html#cb90-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb90-6"><a href="linear-models.html#cb90-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
-<span id="cb90-7"><a href="linear-models.html#cb90-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_cor</span>() <span class="sc">+</span></span>
-<span id="cb90-8"><a href="linear-models.html#cb90-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(question2 <span class="sc">~</span> StationName) <span class="sc">+</span> </span>
-<span id="cb90-9"><a href="linear-models.html#cb90-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
+<div id="a-plot" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> A plot<a href="linear-models.html#a-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="linear-models.html#cb101-1" aria-hidden="true" tabindex="-1"></a>pastalong <span class="sc">%&gt;%</span> </span>
+<span id="cb101-2"><a href="linear-models.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
+<span id="cb101-3"><a href="linear-models.html#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question2 =</span> question <span class="sc">%&gt;%</span> <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="co"># The label is to long, so lets just represent the first 30 letters.</span></span>
+<span id="cb101-4"><a href="linear-models.html#cb101-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> .,  <span class="fu">aes</span>(answnum,Consumption, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span></span>
+<span id="cb101-5"><a href="linear-models.html#cb101-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb101-6"><a href="linear-models.html#cb101-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
+<span id="cb101-7"><a href="linear-models.html#cb101-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_cor</span>() <span class="sc">+</span></span>
+<span id="cb101-8"><a href="linear-models.html#cb101-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(question2 <span class="sc">~</span> StationName) <span class="sc">+</span> </span>
+<span id="cb101-9"><a href="linear-models.html#cb101-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <p>This we similary can run as several linear models.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="linear-models.html#cb92-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> pastalong <span class="sc">%&gt;%</span> </span>
-<span id="cb92-2"><a href="linear-models.html#cb92-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
-<span id="cb92-3"><a href="linear-models.html#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName,question,Day) <span class="sc">%&gt;%</span> </span>
-<span id="cb92-4"><a href="linear-models.html#cb92-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lm</span>(<span class="at">data =</span> ., Consumption<span class="sc">~</span>answnum) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span>
-<span id="cb92-5"><a href="linear-models.html#cb92-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-6"><a href="linear-models.html#cb92-6" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb92-7"><a href="linear-models.html#cb92-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb92-8"><a href="linear-models.html#cb92-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>statistic) <span class="sc">%&gt;%</span> </span>
-<span id="cb92-9"><a href="linear-models.html#cb92-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">x =</span> .,<span class="at">caption =</span> <span class="st">&#39;All linear models&#39;</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="linear-models.html#cb103-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> pastalong <span class="sc">%&gt;%</span> </span>
+<span id="cb103-2"><a href="linear-models.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
+<span id="cb103-3"><a href="linear-models.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName,question,Day) <span class="sc">%&gt;%</span> </span>
+<span id="cb103-4"><a href="linear-models.html#cb103-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lm</span>(<span class="at">data =</span> ., Consumption<span class="sc">~</span>answnum) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span>
+<span id="cb103-5"><a href="linear-models.html#cb103-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-6"><a href="linear-models.html#cb103-6" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb103-7"><a href="linear-models.html#cb103-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb103-8"><a href="linear-models.html#cb103-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>statistic) <span class="sc">%&gt;%</span> </span>
+<span id="cb103-9"><a href="linear-models.html#cb103-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">x =</span> .,<span class="at">caption =</span> <span class="st">&#39;All linear models&#39;</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-41">Table 6.1: </span>All linear models</caption>
+<caption><span id="tab:unnamed-chunk-52">Table 8.1: </span>All linear models</caption>
 <colgroup>
 <col width="16%" />
 <col width="35%" />
@@ -551,14 +567,14 @@ So lets build a linear model on this</p>
 </tbody>
 </table>
 <p>.. A plot of these results for a quick interpretation.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="linear-models.html#cb93-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb93-2"><a href="linear-models.html#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb93-3"><a href="linear-models.html#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(question,estimate,<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
-<span id="cb93-4"><a href="linear-models.html#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> </span>
-<span id="cb93-5"><a href="linear-models.html#cb93-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb93-6"><a href="linear-models.html#cb93-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
-<span id="cb93-7"><a href="linear-models.html#cb93-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="linear-models.html#cb104-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb104-2"><a href="linear-models.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answnum&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb104-3"><a href="linear-models.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(question,estimate,<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
+<span id="cb104-4"><a href="linear-models.html#cb104-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb104-5"><a href="linear-models.html#cb104-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb104-6"><a href="linear-models.html#cb104-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
+<span id="cb104-7"><a href="linear-models.html#cb104-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <p>Seems as some of the legume consumptions there is a significant association with likert scales. Not as strong for consumption of mushrooms.</p>
 </div>
 </div>
@@ -600,7 +616,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/03_Pasta_mushroom_legume_lm.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/06_Pasta_mushroom_legume_lm.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -608,7 +624,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/03_Pasta_mushroom_legume_lm.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/06_Pasta_mushroom_legume_lm.Rmd",
 "text": null
 },
 "download": null,
