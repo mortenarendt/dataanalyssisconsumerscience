@@ -131,9 +131,9 @@ mdl <- lmer(data = x, Consumption~I_like_taste_of_pasta_with_mushrooms + Day +  
 summary(mdl)
 ```
 
-This is the joint effect between the two days. Think of an average of the two slopes - one for each day -. Here taking into account that each person has provided two responses of the consumption of pasta with mushrooms. 
+This is the joined effect between the two days. Think of an average of the two slopes - one for each day -. Here taking into account that each person has provided two responses of the consumption of pasta with mushrooms. 
 
-This can also be accomplised using the tidyverse setup engined by the broom.mixed package.
+This can also be accomplished using the tidyverse setup engined by the broom.mixed package.
 
 In principle, we simply do not loop over Day, but include it in the formula along with person.
 

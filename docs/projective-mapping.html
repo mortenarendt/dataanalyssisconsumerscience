@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 Projective mapping | Data Analysis in R for Consumer Science</title>
-  <meta name="description" content="Chapter 12 Projective mapping | Data Analysis in R for Consumer Science" />
+  <title>Chapter 14 Projective mapping | Data Analysis in R for Consumer Science</title>
+  <meta name="description" content="Chapter 14 Projective mapping | Data Analysis in R for Consumer Science" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 Projective mapping | Data Analysis in R for Consumer Science" />
+  <meta property="og:title" content="Chapter 14 Projective mapping | Data Analysis in R for Consumer Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 Projective mapping | Data Analysis in R for Consumer Science" />
+  <meta name="twitter:title" content="Chapter 14 Projective mapping | Data Analysis in R for Consumer Science" />
   
   
   
@@ -23,15 +23,15 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-09-23" />
+<meta name="date" content="2022-09-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="check-all-that-applies-cata.html"/>
-<link rel="next" href="preference-mapping.html"/>
+<link rel="prev" href="pca-on-cata-and-liking-scores.html"/>
+<link rel="next" href="tfih-exercises.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -137,111 +137,125 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="introduction-to-pca.html"><a href="introduction-to-pca.html"><i class="fa fa-check"></i><b>2</b> Introduction to PCA</a></li>
-<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a>
+<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-import-data"><i class="fa fa-check"></i><b>3.1</b> How to import data</a>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-import-data"><i class="fa fa-check"></i><b>2.2</b> How to import data</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-a-csv-file"><i class="fa fa-check"></i><b>3.1.1</b> Importing a csv file</a></li>
-<li class="chapter" data-level="3.1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-an-excel-filesheet"><i class="fa fa-check"></i><b>3.1.2</b> Importing an Excel file/sheet</a></li>
-<li class="chapter" data-level="3.1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-at-the-imported-elements"><i class="fa fa-check"></i><b>3.1.3</b> Looking at the imported elements</a></li>
-<li class="chapter" data-level="3.1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#save-the-data"><i class="fa fa-check"></i><b>3.1.4</b> Save the data</a></li>
-<li class="chapter" data-level="3.1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#ready-for-analysis"><i class="fa fa-check"></i><b>3.1.5</b> Ready for analysis</a></li>
+<li class="chapter" data-level="2.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-data-from-r-package"><i class="fa fa-check"></i><b>2.2.1</b> Import data from R-package</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-a-csv-file"><i class="fa fa-check"></i><b>2.2.2</b> Importing a csv file</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-an-excel-filesheet"><i class="fa fa-check"></i><b>2.2.3</b> Importing an Excel file/sheet</a></li>
+<li class="chapter" data-level="2.2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#clipboard-import"><i class="fa fa-check"></i><b>2.2.4</b> Clipboard import</a></li>
+<li class="chapter" data-level="2.2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-at-the-imported-elements"><i class="fa fa-check"></i><b>2.2.5</b> Looking at the imported elements</a></li>
+<li class="chapter" data-level="2.2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#numbers-and-factors---changing-categorisation"><i class="fa fa-check"></i><b>2.2.6</b> Numbers and factors - changing categorisation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#organise-and-save-scripts"><i class="fa fa-check"></i><b>2.3</b> Organise and save scripts</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-save-the-data"><i class="fa fa-check"></i><b>2.4</b> How to save the data</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-export-data-results"><i class="fa fa-check"></i><b>2.5</b> How to export data / results</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#ready-for-analysis"><i class="fa fa-check"></i><b>2.6</b> Ready for analysis</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-merge-two-datasets"><i class="fa fa-check"></i><b>2.7</b> How to merge two datasets</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-edit-and-merge-in-r"><i class="fa fa-check"></i><b>2.7.1</b> Import, edit and merge in R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html"><i class="fa fa-check"></i><b>4</b> How to import your data</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#ibuffet-data---read-in-data-from-excel"><i class="fa fa-check"></i><b>4.1</b> iBuffet data - Read in data from Excel</a>
-<ul>
-<li class="chapter" data-level="4.1.1" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#example-of-survey-data"><i class="fa fa-check"></i><b>4.1.1</b> Example of Survey data</a></li>
-<li class="chapter" data-level="4.1.2" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#example-of-survey-scale"><i class="fa fa-check"></i><b>4.1.2</b> Example of Survey Scale</a></li>
-<li class="chapter" data-level="4.1.3" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#edit-your-dataset-in-excel"><i class="fa fa-check"></i><b>4.1.3</b> Edit your dataset in Excel</a></li>
-<li class="chapter" data-level="4.1.4" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#importing-to-r"><i class="fa fa-check"></i><b>4.1.4</b> Importing to R</a></li>
-<li class="chapter" data-level="4.1.5" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#editing-in-r"><i class="fa fa-check"></i><b>4.1.5</b> Editing in R</a></li>
-<li class="chapter" data-level="4.1.6" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#merging-the-data"><i class="fa fa-check"></i><b>4.1.6</b> Merging the data</a></li>
-<li class="chapter" data-level="4.1.7" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#save-the-data-1"><i class="fa fa-check"></i><b>4.1.7</b> Save the data</a></li>
-<li class="chapter" data-level="4.1.8" data-path="how-to-import-your-data.html"><a href="how-to-import-your-data.html#ready-for-analysis-1"><i class="fa fa-check"></i><b>4.1.8</b> Ready for analysis</a></li>
-</ul></li>
-</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-pca.html"><a href="introduction-to-pca.html"><i class="fa fa-check"></i><b>3</b> Introduction to PCA</a></li>
+<li class="chapter" data-level="4" data-path="introduction-linear-and-mixed-models.html"><a href="introduction-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>4</b> Introduction linear and mixed models</a></li>
 <li class="chapter" data-level="5" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>5</b> Libraries</a></li>
-<li class="chapter" data-level="6" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html"><i class="fa fa-check"></i><b>6</b> Descriptive statistics and plotting</a>
+<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive statistics</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#distributions-of-count-data"><i class="fa fa-check"></i><b>6.1</b> Distributions of count data</a>
+<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#loading-data"><i class="fa fa-check"></i><b>6.1</b> Loading data</a></li>
+<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>6.2</b> Distributions of count data</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>6.1.1</b> Descriptives for a continouos variable</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="descriptive-statistics-and-plotting.html"><a href="descriptive-statistics-and-plotting.html#scatter-plots"><i class="fa fa-check"></i><b>6.2</b> Scatter plots</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>7</b> PCA on survey answers</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>7.1</b> Bi-plot</a>
-<ul>
-<li class="chapter" data-level="7.1.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>7.1.1</b> Extract the components and run all associations.</a></li>
+<li class="chapter" data-level="6.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>6.2.1</b> Descriptives for a continouos variable</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>8</b> Linear models</a>
+<li class="chapter" data-level="7" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>7</b> Plotting data</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>8.1</b> Example</a></li>
-<li class="chapter" data-level="8.2" data-path="linear-models.html"><a href="linear-models.html#run-a-bunch-of-models-at-once"><i class="fa fa-check"></i><b>8.2</b> Run a bunch of models at once</a>
+<li class="chapter" data-level="7.1" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>7.1</b> Scatter plots</a></li>
+<li class="chapter" data-level="7.2" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>7.2</b> How to export plots</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>8</b> PCA on survey answers</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="linear-models.html"><a href="linear-models.html#a-plot"><i class="fa fa-check"></i><b>8.2.1</b> A plot</a></li>
+<li class="chapter" data-level="8.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>8.1</b> Bi-plot</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>8.1.1</b> Extract the components and run all associations.</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>9</b> Mixed models</a>
+<li class="chapter" data-level="9" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>9</b> Linear models</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>9.1</b> With several variables</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>10</b> Latent Factor Models</a></li>
-<li class="chapter" data-level="11" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html"><i class="fa fa-check"></i><b>11</b> Check All That Applies (CATA)</a>
+<li class="chapter" data-level="9.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>9.1</b> Example</a></li>
+<li class="chapter" data-level="9.2" data-path="linear-models.html"><a href="linear-models.html#run-a-bunch-of-models-at-once"><i class="fa fa-check"></i><b>9.2</b> Run a bunch of models at once</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#an-example-from-beer-profiling"><i class="fa fa-check"></i><b>11.1</b> An example from Beer profiling</a></li>
-<li class="chapter" data-level="11.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>11.2</b> Two versions of the data</a></li>
-<li class="chapter" data-level="11.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#pca"><i class="fa fa-check"></i><b>11.3</b> PCA</a></li>
-<li class="chapter" data-level="11.4" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#cochranes-q-test"><i class="fa fa-check"></i><b>11.4</b> Cochranes Q-test</a>
-<ul>
-<li class="chapter" data-level="11.4.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#post-hoc-contrasts"><i class="fa fa-check"></i><b>11.4.1</b> Post hoc contrasts</a></li>
-<li class="chapter" data-level="11.4.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#for-all-attributes"><i class="fa fa-check"></i><b>11.4.2</b> For all Attributes</a></li>
-<li class="chapter" data-level="11.4.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#plsda"><i class="fa fa-check"></i><b>11.4.3</b> PLSDA</a></li>
-</ul></li>
-<li class="chapter" data-level="11.5" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exerecise"><i class="fa fa-check"></i><b>11.5</b> Exerecise</a>
-<ul>
-<li class="chapter" data-level="11.5.1" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-1-pca-on-consumer-background"><i class="fa fa-check"></i><b>11.5.1</b> Exercise 1: PCA on consumer background</a></li>
-<li class="chapter" data-level="11.5.2" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-2-pca-on-cata-counts"><i class="fa fa-check"></i><b>11.5.2</b> Exercise 2: PCA on CATA counts</a></li>
-<li class="chapter" data-level="11.5.3" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-3-pca-on-liking"><i class="fa fa-check"></i><b>11.5.3</b> Exercise 3: PCA on liking</a></li>
-<li class="chapter" data-level="11.5.4" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-4-pls-on-cata-counts-and-liking"><i class="fa fa-check"></i><b>11.5.4</b> Exercise 4: PLS on CATA counts and liking</a></li>
-<li class="chapter" data-level="11.5.5" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-5-mixed-modelling-on-the-liking"><i class="fa fa-check"></i><b>11.5.5</b> Exercise 5: Mixed modelling on the liking</a></li>
-<li class="chapter" data-level="11.5.6" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-6-comparing-cata-binary-data-and-counts"><i class="fa fa-check"></i><b>11.5.6</b> Exercise 6: Comparing CATA binary data and counts</a></li>
-<li class="chapter" data-level="11.5.7" data-path="check-all-that-applies-cata.html"><a href="check-all-that-applies-cata.html#exercise-7-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>11.5.7</b> Exercise 7: Cochran’s Q test on CATA binary data</a></li>
+<li class="chapter" data-level="9.2.1" data-path="linear-models.html"><a href="linear-models.html#a-plot"><i class="fa fa-check"></i><b>9.2.1</b> A plot</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>12</b> Projective mapping</a>
+<li class="chapter" data-level="10" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>10</b> Mixed models</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>12.1</b> Example from mapping of XX</a></li>
-<li class="chapter" data-level="12.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>12.2</b> A Collated version of the data</a></li>
-<li class="chapter" data-level="12.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>12.3</b> PCA on Collated data</a></li>
-<li class="chapter" data-level="12.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>12.4</b> </a></li>
+<li class="chapter" data-level="10.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>10.1</b> With several variables</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>13</b> Preference Mapping</a>
+<li class="chapter" data-level="11" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html"><i class="fa fa-check"></i><b>11</b> CATA data (Check-All-That-Apply)</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>13.1</b> Example of Preference Mapping</a></li>
-<li class="chapter" data-level="13.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca-1"><i class="fa fa-check"></i><b>13.2</b> PCA</a></li>
-<li class="chapter" data-level="13.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>13.3</b> Analysis by PLS</a></li>
-<li class="chapter" data-level="13.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>13.4</b> L-PLS [For the future…]</a></li>
+<li class="chapter" data-level="11.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#importing-and-looking-at-the-beer-data"><i class="fa fa-check"></i><b>11.1</b> Importing and looking at the beer data</a></li>
+<li class="chapter" data-level="11.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>11.2</b> Two versions of the data</a></li>
+<li class="chapter" data-level="11.3" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#cochrans-q-test"><i class="fa fa-check"></i><b>11.3</b> Cochran’s Q test</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#post-hoc-contrasts"><i class="fa fa-check"></i><b>11.3.1</b> Post hoc contrasts</a></li>
+<li class="chapter" data-level="11.3.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#for-all-attributes-in-one-run-nice-to-know"><i class="fa fa-check"></i><b>11.3.2</b> For all attributes in one run (nice to know)</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>14</b> LPLS</a></li>
-<li class="chapter" data-level="15" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>15</b> Consumer Segmentation</a>
-<ul>
-<li class="chapter" data-level="15.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>15.1</b> Kmeans</a></li>
+<li class="chapter" data-level="11.4" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#pca-on-cata-data"><i class="fa fa-check"></i><b>11.4</b> PCA on CATA data</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>16</b> More PCA</a></li>
-<li class="chapter" data-level="17" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>17</b> Logistic Regression</a></li>
-<li class="chapter" data-level="18" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>18</b> Confirmatory Factor Analysis using lavaan</a>
+<li class="chapter" data-level="12" data-path="liking-scores.html"><a href="liking-scores.html"><i class="fa fa-check"></i><b>12</b> Liking scores</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>18.1</b> Example - Food Neophobia</a></li>
+<li class="chapter" data-level="12.1" data-path="liking-scores.html"><a href="liking-scores.html#plotting-liking-scores"><i class="fa fa-check"></i><b>12.1</b> Plotting liking scores</a></li>
+<li class="chapter" data-level="12.2" data-path="liking-scores.html"><a href="liking-scores.html#simple-mixed-models"><i class="fa fa-check"></i><b>12.2</b> Simple mixed models</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="liking-scores.html"><a href="liking-scores.html#post-hoc-contrasts-1"><i class="fa fa-check"></i><b>12.2.1</b> Post hoc contrasts</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>19</b> Structured Equation Modelling</a>
+<li class="chapter" data-level="12.3" data-path="liking-scores.html"><a href="liking-scores.html#multiway-mixed-models"><i class="fa fa-check"></i><b>12.3</b> Multiway mixed models</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="pca-on-cata-and-liking-scores.html"><a href="pca-on-cata-and-liking-scores.html"><i class="fa fa-check"></i><b>13</b> PCA on CATA and liking scores</a></li>
+<li class="chapter" data-level="14" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>14</b> Projective mapping</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>19.1</b> Example - Theory of Planned Behaviour</a></li>
+<li class="chapter" data-level="14.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>14.1</b> Example from mapping of XX</a></li>
+<li class="chapter" data-level="14.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>14.2</b> A Collated version of the data</a></li>
+<li class="chapter" data-level="14.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>14.3</b> PCA on Collated data</a></li>
+<li class="chapter" data-level="14.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>14.4</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="tfih-exercises.html"><a href="tfih-exercises.html"><i class="fa fa-check"></i><b>15</b> TFIH Exercises</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-1-pca-on-consumer-background"><i class="fa fa-check"></i><b>15.1</b> Exercise 1: PCA on consumer background</a></li>
+<li class="chapter" data-level="15.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-2-pca-on-cata-counts"><i class="fa fa-check"></i><b>15.2</b> Exercise 2: PCA on CATA counts</a></li>
+<li class="chapter" data-level="15.3" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-3-pca-on-liking"><i class="fa fa-check"></i><b>15.3</b> Exercise 3: PCA on liking</a></li>
+<li class="chapter" data-level="15.4" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-4-pls-on-cata-counts-and-liking"><i class="fa fa-check"></i><b>15.4</b> Exercise 4: PLS on CATA counts and liking</a></li>
+<li class="chapter" data-level="15.5" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-5-mixed-modelling-on-the-liking"><i class="fa fa-check"></i><b>15.5</b> Exercise 5: Mixed modelling on the liking</a></li>
+<li class="chapter" data-level="15.6" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-6-comparing-cata-binary-data-and-counts"><i class="fa fa-check"></i><b>15.6</b> Exercise 6: Comparing CATA binary data and counts</a></li>
+<li class="chapter" data-level="15.7" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-7-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>15.7</b> Exercise 7: Cochran’s Q test on CATA binary data</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>16</b> Preference Mapping</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>16.1</b> Example of Preference Mapping</a></li>
+<li class="chapter" data-level="16.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca"><i class="fa fa-check"></i><b>16.2</b> PCA</a></li>
+<li class="chapter" data-level="16.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>16.3</b> Analysis by PLS</a></li>
+<li class="chapter" data-level="16.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>16.4</b> L-PLS [For the future…]</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>17</b> Latent Factor Models</a></li>
+<li class="chapter" data-level="18" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>18</b> LPLS</a></li>
+<li class="chapter" data-level="19" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>19</b> Consumer Segmentation</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>19.1</b> Kmeans</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>20</b> More PCA</a></li>
+<li class="chapter" data-level="21" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>21</b> Logistic Regression</a></li>
+<li class="chapter" data-level="22" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>22</b> Confirmatory Factor Analysis using lavaan</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>22.1</b> Example - Food Neophobia</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>23</b> Structured Equation Modelling</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>23.1</b> Example - Theory of Planned Behaviour</a>
+<ul>
+<li class="chapter" data-level="23.1.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#plsda-cataon-cata-and-liking"><i class="fa fa-check"></i><b>23.1.1</b> PLSDA (CATA??)on CATA and liking??</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -262,114 +276,738 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="projective-mapping" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chapter 12</span> Projective mapping<a href="projective-mapping.html#projective-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="projective-mapping" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Projective mapping<a href="projective-mapping.html#projective-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>[An image of a PM]</p>
-<div id="example-from-mapping-of-xx" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Example from mapping of XX<a href="projective-mapping.html#example-from-mapping-of-xx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="projective-mapping.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb168-2"><a href="projective-mapping.html#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;tempetotemperature&quot;</span>)</span>
-<span id="cb168-3"><a href="projective-mapping.html#cb168-3" aria-hidden="true" tabindex="-1"></a>tempetotemperature</span></code></pre></div>
-<pre><code>##    Productname  Product Sousvidetemperature_C Sousvidetime_days  id Assessor   X1   Y1   X2   Y2 X3 Y3 X4
-## 1       45C-2D Sample 1                    45                 2 903        1 32.2 34.9  0.0  0.0  0  0  0
-## 2       45C-3D Sample 2                    45                 3 714        1 15.1 23.2  0.0  0.0  0  0  0
-## 3       45C-4D Sample 3                    45                 4  31        1  6.6 34.6  0.0  0.0  0  0  0
-## 4       50C-2D Sample 4                    50                 2 487        1 30.1 16.5  0.0  0.0  0  0  0
-## 5       50C-3D Sample 5                    50                 3 133        1 42.8 20.1  0.0  0.0  0  0  0
-## 6       50C-4D Sample 6                    50                 4 827        1 38.6  8.0  0.0  0.0  0  0  0
-## 7       55C-2D Sample 7                    55                 2 538        1  3.8 17.1  0.0  0.0  0  0  0
-## 8       55C-3D Sample 8                    55                 3 215        1 44.8 12.4  0.0  0.0  0  0  0
-## 9       55C-4D Sample 9                    55                 4 341        1 45.4  4.2  0.0  0.0  0  0  0
-## 10      45C-2D Sample 1                    45                 2 903        2  0.0  0.0 41.8 20.0  0  0  0
-## 11      45C-3D Sample 2                    45                 3 714        2  0.0  0.0 42.5 36.6  0  0  0
-## 12      45C-4D Sample 3                    45                 4  31        2  0.0  0.0 23.3 25.1  0  0  0
-## 13      50C-2D Sample 4                    50                 2 487        2  0.0  0.0 32.6 23.7  0  0  0
-## 14      50C-3D Sample 5                    50                 3 133        2  0.0  0.0 26.5 30.3  0  0  0
-##    Y4 X5 Y5 X6 Y6 X7 Y7 X8 Y8 X9 Y9 X10 Y10 X11 Y11 Miso Soft Bitter Sweet Sour Mild Caramel Umami Deep
-## 1   0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      0     1    1    0       1     1    1
-## 2   0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    1      0     1    1    1       0     0    0
-## 3   0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    1    1      1     1    1    1       0     0    0
-## 4   0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    1    0      0     1    1    0       0     0    0
-## 5   0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    1      1     0    0    1       1     0    0
-## 6   0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    1      0     0    0    1       0     0    0
-## 7   0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      0     0    1    1       0     0    0
-## 8   0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      1     1    0    0       0     0    0
-## 9   0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      1     1    0    0       0     0    0
-## 10  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      1     0    1    0       0     0    0
-## 11  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      0     1    1    0       1     0    0
-## 12  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    1    0      0     0    1    0       0     0    0
-## 13  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      1     0    1    0       0     0    0
-## 14  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    1    0      0     0    1    0       0     0    0
-##    Balanced Nutty Hard Dry Roasted Strong Fish sauce Dark Chocolate Moisty Brown Dried fruits Beany Smooth
-## 1         0     0    0   0       0      0          0    0         0      0     0            0     0      0
-## 2         1     1    0   0       0      0          0    0         0      0     0            0     0      0
-## 3         0     0    0   0       0      0          0    0         0      0     0            0     0      0
-## 4         0     0    0   1       0      0          0    0         0      0     0            0     0      0
-## 5         0     0    0   0       1      0          0    0         0      0     0            0     0      0
-## 6         0     0    0   0       0      1          0    0         0      0     0            0     0      0
-## 7         0     0    1   1       0      0          0    0         0      0     0            0     0      0
-## 8         0     0    0   1       0      0          1    1         1      0     0            0     0      0
-## 9         0     0    0   1       1      1          0    0         0      0     0            0     0      0
-## 10        0     0    0   0       0      0          0    0         0      1     0            0     0      0
-## 11        0     0    0   0       0      0          0    0         0      1     0            0     0      0
-## 12        0     0    0   0       0      0          0    1         0      1     0            0     0      0
-## 13        0     0    0   0       0      0          0    0         0      1     0            0     0      0
-## 14        0     0    0   0       0      0          0    0         0      1     0            0     0      0
-##    Dense Alcoholic Firm Grainy Soy sauce Chewy Yeasty Fruity Wine Gummy Malty Liquorise Bread Salty Meaty
-## 1      0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 2      0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 3      0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 4      0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 5      0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 6      0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 7      0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 8      0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 9      0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 10     0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 11     0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 12     0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 13     0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-## 14     0         0    0      0         0     0      0      0    0     0     0         0     0     0     0
-##    Creamy Stout
-## 1       0     0
-## 2       0     0
-## 3       0     0
-## 4       0     0
-## 5       0     0
-## 6       0     0
-## 7       0     0
-## 8       0     0
-## 9       0     0
-## 10      0     0
-## 11      0     0
-## 12      0     0
-## 13      0     0
-## 14      0     0
-##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 85 rows ]</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="projective-mapping.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tempetotemperature<span class="sc">$</span>Productname)</span></code></pre></div>
+<div id="example-from-mapping-of-xx" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Example from mapping of XX<a href="projective-mapping.html#example-from-mapping-of-xx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="projective-mapping.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb173-2"><a href="projective-mapping.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;tempetotemperature&quot;</span>)</span>
+<span id="cb173-3"><a href="projective-mapping.html#cb173-3" aria-hidden="true" tabindex="-1"></a>tempetotemperature</span></code></pre></div>
+<pre><code>##    Productname  Product Sousvidetemperature_C Sousvidetime_days  id Assessor
+## 1       45C-2D Sample 1                    45                 2 903        1
+## 2       45C-3D Sample 2                    45                 3 714        1
+## 3       45C-4D Sample 3                    45                 4  31        1
+## 4       50C-2D Sample 4                    50                 2 487        1
+## 5       50C-3D Sample 5                    50                 3 133        1
+## 6       50C-4D Sample 6                    50                 4 827        1
+## 7       55C-2D Sample 7                    55                 2 538        1
+## 8       55C-3D Sample 8                    55                 3 215        1
+## 9       55C-4D Sample 9                    55                 4 341        1
+## 10      45C-2D Sample 1                    45                 2 903        2
+## 11      45C-3D Sample 2                    45                 3 714        2
+## 12      45C-4D Sample 3                    45                 4  31        2
+## 13      50C-2D Sample 4                    50                 2 487        2
+## 14      50C-3D Sample 5                    50                 3 133        2
+## 15      50C-4D Sample 6                    50                 4 827        2
+## 16      55C-2D Sample 7                    55                 2 538        2
+## 17      55C-3D Sample 8                    55                 3 215        2
+## 18      55C-4D Sample 9                    55                 4 341        2
+## 19      45C-2D Sample 1                    45                 2 903        3
+## 20      45C-3D Sample 2                    45                 3 714        3
+## 21      45C-4D Sample 3                    45                 4  31        3
+## 22      50C-2D Sample 4                    50                 2 487        3
+## 23      50C-3D Sample 5                    50                 3 133        3
+## 24      50C-4D Sample 6                    50                 4 827        3
+## 25      55C-2D Sample 7                    55                 2 538        3
+## 26      55C-3D Sample 8                    55                 3 215        3
+## 27      55C-4D Sample 9                    55                 4 341        3
+## 28      45C-2D Sample 1                    45                 2 903        4
+## 29      45C-3D Sample 2                    45                 3 714        4
+## 30      45C-4D Sample 3                    45                 4  31        4
+## 31      50C-2D Sample 4                    50                 2 487        4
+## 32      50C-3D Sample 5                    50                 3 133        4
+## 33      50C-4D Sample 6                    50                 4 827        4
+## 34      55C-2D Sample 7                    55                 2 538        4
+## 35      55C-3D Sample 8                    55                 3 215        4
+## 36      55C-4D Sample 9                    55                 4 341        4
+## 37      45C-2D Sample 1                    45                 2 903        5
+## 38      45C-3D Sample 2                    45                 3 714        5
+## 39      45C-4D Sample 3                    45                 4  31        5
+## 40      50C-2D Sample 4                    50                 2 487        5
+## 41      50C-3D Sample 5                    50                 3 133        5
+## 42      50C-4D Sample 6                    50                 4 827        5
+## 43      55C-2D Sample 7                    55                 2 538        5
+## 44      55C-3D Sample 8                    55                 3 215        5
+## 45      55C-4D Sample 9                    55                 4 341        5
+## 46      45C-2D Sample 1                    45                 2 903        6
+## 47      45C-3D Sample 2                    45                 3 714        6
+## 48      45C-4D Sample 3                    45                 4  31        6
+## 49      50C-2D Sample 4                    50                 2 487        6
+## 50      50C-3D Sample 5                    50                 3 133        6
+## 51      50C-4D Sample 6                    50                 4 827        6
+## 52      55C-2D Sample 7                    55                 2 538        6
+## 53      55C-3D Sample 8                    55                 3 215        6
+## 54      55C-4D Sample 9                    55                 4 341        6
+## 55      45C-2D Sample 1                    45                 2 903        7
+## 56      45C-3D Sample 2                    45                 3 714        7
+## 57      45C-4D Sample 3                    45                 4  31        7
+## 58      50C-2D Sample 4                    50                 2 487        7
+## 59      50C-3D Sample 5                    50                 3 133        7
+## 60      50C-4D Sample 6                    50                 4 827        7
+## 61      55C-2D Sample 7                    55                 2 538        7
+## 62      55C-3D Sample 8                    55                 3 215        7
+## 63      55C-4D Sample 9                    55                 4 341        7
+## 64      45C-2D Sample 1                    45                 2 903        8
+## 65      45C-3D Sample 2                    45                 3 714        8
+## 66      45C-4D Sample 3                    45                 4  31        8
+## 67      50C-2D Sample 4                    50                 2 487        8
+## 68      50C-3D Sample 5                    50                 3 133        8
+## 69      50C-4D Sample 6                    50                 4 827        8
+## 70      55C-2D Sample 7                    55                 2 538        8
+## 71      55C-3D Sample 8                    55                 3 215        8
+## 72      55C-4D Sample 9                    55                 4 341        8
+## 73      45C-2D Sample 1                    45                 2 903        9
+## 74      45C-3D Sample 2                    45                 3 714        9
+## 75      45C-4D Sample 3                    45                 4  31        9
+## 76      50C-2D Sample 4                    50                 2 487        9
+## 77      50C-3D Sample 5                    50                 3 133        9
+## 78      50C-4D Sample 6                    50                 4 827        9
+## 79      55C-2D Sample 7                    55                 2 538        9
+## 80      55C-3D Sample 8                    55                 3 215        9
+## 81      55C-4D Sample 9                    55                 4 341        9
+## 82      45C-2D Sample 1                    45                 2 903       10
+## 83      45C-3D Sample 2                    45                 3 714       10
+## 84      45C-4D Sample 3                    45                 4  31       10
+## 85      50C-2D Sample 4                    50                 2 487       10
+## 86      50C-3D Sample 5                    50                 3 133       10
+## 87      50C-4D Sample 6                    50                 4 827       10
+## 88      55C-2D Sample 7                    55                 2 538       10
+## 89      55C-3D Sample 8                    55                 3 215       10
+## 90      55C-4D Sample 9                    55                 4 341       10
+## 91      45C-2D Sample 1                    45                 2 903       11
+## 92      45C-3D Sample 2                    45                 3 714       11
+## 93      45C-4D Sample 3                    45                 4  31       11
+## 94      50C-2D Sample 4                    50                 2 487       11
+## 95      50C-3D Sample 5                    50                 3 133       11
+## 96      50C-4D Sample 6                    50                 4 827       11
+## 97      55C-2D Sample 7                    55                 2 538       11
+## 98      55C-3D Sample 8                    55                 3 215       11
+## 99      55C-4D Sample 9                    55                 4 341       11
+##      X1   Y1   X2   Y2   X3   Y3   X4   Y4   X5   Y5   X6   Y6   X7   Y7   X8
+## 1  32.2 34.9  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 2  15.1 23.2  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 3   6.6 34.6  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 4  30.1 16.5  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 5  42.8 20.1  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 6  38.6  8.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 7   3.8 17.1  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 8  44.8 12.4  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 9  45.4  4.2  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 10  0.0  0.0 41.8 20.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 11  0.0  0.0 42.5 36.6  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 12  0.0  0.0 23.3 25.1  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 13  0.0  0.0 32.6 23.7  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 14  0.0  0.0 26.5 30.3  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 15  0.0  0.0 12.2 27.5  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 16  0.0  0.0 36.9 14.1  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 17  0.0  0.0 11.9 14.2  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 18  0.0  0.0  1.5 18.9  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 19  0.0  0.0  0.0  0.0  1.4  1.1  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 20  0.0  0.0  0.0  0.0 10.3 12.6  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 21  0.0  0.0  0.0  0.0 26.6 14.7  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 22  0.0  0.0  0.0  0.0 16.6  4.3  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 23  0.0  0.0  0.0  0.0 34.5 16.5  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 24  0.0  0.0  0.0  0.0 43.8 31.9  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 25  0.0  0.0  0.0  0.0 27.6 23.7  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 26  0.0  0.0  0.0  0.0 49.9 24.8  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 27  0.0  0.0  0.0  0.0 58.8 38.6  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 28  0.0  0.0  0.0  0.0  0.0  0.0 14.3 36.4  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 29  0.0  0.0  0.0  0.0  0.0  0.0  4.2 36.6  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 30  0.0  0.0  0.0  0.0  0.0  0.0  9.2 28.4  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 31  0.0  0.0  0.0  0.0  0.0  0.0 48.3 32.7  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 32  0.0  0.0  0.0  0.0  0.0  0.0 29.7 21.9  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 33  0.0  0.0  0.0  0.0  0.0  0.0 46.1 11.4  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 34  0.0  0.0  0.0  0.0  0.0  0.0 29.1 29.4  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 35  0.0  0.0  0.0  0.0  0.0  0.0 48.7 17.8  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 36  0.0  0.0  0.0  0.0  0.0  0.0 53.4  9.5  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 37  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  7.4 10.6  0.0  0.0  0.0  0.0  0.0
+## 38  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  7.3 38.4  0.0  0.0  0.0  0.0  0.0
+## 39  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  7.6 30.9  0.0  0.0  0.0  0.0  0.0
+## 40  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  8.2 22.7  0.0  0.0  0.0  0.0  0.0
+## 41  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 42.3 22.9  0.0  0.0  0.0  0.0  0.0
+## 42  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 52.2 15.8  0.0  0.0  0.0  0.0  0.0
+## 43  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 28.5 36.7  0.0  0.0  0.0  0.0  0.0
+## 44  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 43.3 35.9  0.0  0.0  0.0  0.0  0.0
+## 45  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 55.0 35.5  0.0  0.0  0.0  0.0  0.0
+## 46  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 45.8 31.8  0.0  0.0  0.0
+## 47  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 55.9 37.2  0.0  0.0  0.0
+## 48  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 37.9 26.2  0.0  0.0  0.0
+## 49  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 54.7 32.2  0.0  0.0  0.0
+## 50  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 32.9 16.1  0.0  0.0  0.0
+## 51  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 13.8 12.0  0.0  0.0  0.0
+## 52  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 22.7 23.4  0.0  0.0  0.0
+## 53  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  9.1 23.0  0.0  0.0  0.0
+## 54  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  5.7  8.9  0.0  0.0  0.0
+## 55  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.9  7.6  0.0
+## 56  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.5 38.5  0.0
+## 57  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 18.4 32.2  0.0
+## 58  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 22.4 21.1  0.0
+## 59  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 44.3 17.0  0.0
+## 60  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 42.2 31.8  0.0
+## 61  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 26.1  6.8  0.0
+## 62  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 43.7  7.4  0.0
+## 63  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 51.9 38.6  0.0
+## 64  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 56.3
+## 65  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 45.2
+## 66  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 45.6
+## 67  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 56.1
+## 68  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 32.7
+## 69  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 15.1
+## 70  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 28.0
+## 71  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 11.5
+## 72  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  6.6
+## 73  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 74  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 75  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 76  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 77  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 78  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 79  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 80  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 81  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 82  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 83  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 84  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 85  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 86  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 87  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 88  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 89  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 90  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 91  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 92  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 93  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 94  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 95  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 96  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 97  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 98  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+## 99  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+##      Y8   X9   Y9  X10  Y10  X11  Y11 Miso Soft Bitter Sweet Sour Mild Caramel
+## 1   0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     1    1    0       1
+## 2   0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      0     1    1    1       0
+## 3   0.0  0.0  0.0  0.0  0.0  0.0  0.0    1    1      1     1    1    1       0
+## 4   0.0  0.0  0.0  0.0  0.0  0.0  0.0    1    0      0     1    1    0       0
+## 5   0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      1     0    0    1       1
+## 6   0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      0     0    0    1       0
+## 7   0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    1    1       0
+## 8   0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    0    0       0
+## 9   0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    0    0       0
+## 10  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     0    1    0       0
+## 11  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     1    1    0       1
+## 12  0.0  0.0  0.0  0.0  0.0  0.0  0.0    1    0      0     0    1    0       0
+## 13  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     0    1    0       0
+## 14  0.0  0.0  0.0  0.0  0.0  0.0  0.0    1    0      0     0    1    0       0
+## 15  0.0  0.0  0.0  0.0  0.0  0.0  0.0    1    0      0     0    1    0       0
+## 16  0.0  0.0  0.0  0.0  0.0  0.0  0.0    1    0      0     0    1    0       0
+## 17  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     0    1    0       0
+## 18  0.0  0.0  0.0  0.0  0.0  0.0  0.0    1    0      0     0    1    0       0
+## 19  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      0     1    1    0       0
+## 20  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     1    1    0       1
+## 21  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    1    0       0
+## 22  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     1    1    0       0
+## 23  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    1    0       0
+## 24  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    1    0       1
+## 25  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     1    1    0       0
+## 26  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     1    1    0       0
+## 27  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    1    0       1
+## 28  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     1    1    0       0
+## 29  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    1    0       0
+## 30  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     1    1    0       1
+## 31  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     1    1    0       0
+## 32  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    1    0       0
+## 33  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    0    0       1
+## 34  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    1    0       1
+## 35  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       1
+## 36  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    1    0       0
+## 37  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      0     1    0    0       0
+## 38  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     0    1    0       0
+## 39  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      1     0    1    0       0
+## 40  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      0     1    1    0       0
+## 41  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      0     0    0    0       0
+## 42  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      0     0    1    0       0
+## 43  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    1    0       0
+## 44  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    1    0       0
+## 45  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 46  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      0     0    1    0       0
+## 47  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      0     0    0    0       0
+## 48  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      0     0    1    0       0
+## 49  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      0     0    0    0       0
+## 50  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    1      0     0    0    0       0
+## 51  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 52  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     0    0    0       0
+## 53  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     0    1    0       0
+## 54  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 55  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     0    1    0       0
+## 56  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    1    0       0
+## 57  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     0    1    0       0
+## 58  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     0    1    0       0
+## 59  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     0    1    0       0
+## 60  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    0    0       0
+## 61  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     0    1    0       0
+## 62  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 63  0.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      1     1    1    0       0
+## 64 30.7  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 65  1.3  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 66 11.9  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 67 15.3  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 68 10.1  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 69 13.8  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 70 26.6  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 71 24.7  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     1    0    0       1
+## 72 14.0  0.0  0.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 73  0.0 53.4 35.0  0.0  0.0  0.0  0.0    0    0      0     1    1    0       0
+## 74  0.0  6.8 34.4  0.0  0.0  0.0  0.0    0    0      0     1    0    1       0
+## 75  0.0 12.0 21.6  0.0  0.0  0.0  0.0    0    0      0     1    0    0       0
+## 76  0.0 54.6 12.7  0.0  0.0  0.0  0.0    0    0      0     0    1    0       0
+## 77  0.0 38.9 13.7  0.0  0.0  0.0  0.0    0    0      0     1    1    0       0
+## 78  0.0  9.7  7.0  0.0  0.0  0.0  0.0    0    0      0     0    0    0       0
+## 79  0.0 49.8 28.3  0.0  0.0  0.0  0.0    0    0      0     1    1    0       0
+## 80  0.0 30.0 27.5  0.0  0.0  0.0  0.0    0    0      1     1    1    0       0
+## 81  0.0  6.0  9.2  0.0  0.0  0.0  0.0    0    0      0     1    0    0       0
+## 82  0.0  0.0  0.0  5.5  7.6  0.0  0.0    0    0      0     0    0    0       0
+## 83  0.0  0.0  0.0 49.5 35.5  0.0  0.0    0    0      0     0    0    0       0
+## 84  0.0  0.0  0.0 31.0 12.9  0.0  0.0    0    0      0     1    0    0       0
+## 85  0.0  0.0  0.0 21.1 21.8  0.0  0.0    0    0      0     0    0    0       0
+## 86  0.0  0.0  0.0 53.8 18.9  0.0  0.0    0    0      0     0    0    0       0
+## 87  0.0  0.0  0.0 40.6 27.8  0.0  0.0    0    0      0     1    0    0       0
+## 88  0.0  0.0  0.0  8.9 33.2  0.0  0.0    0    0      0     0    0    0       0
+## 89  0.0  0.0  0.0 46.6  8.8  0.0  0.0    0    0      0     1    0    0       0
+## 90  0.0  0.0  0.0 56.6  8.2  0.0  0.0    0    0      0     0    0    0       0
+## 91  0.0  0.0  0.0  0.0  0.0 18.3 12.5    0    0      0     1    0    0       0
+## 92  0.0  0.0  0.0  0.0  0.0  4.6 26.2    0    0      1     0    0    0       0
+## 93  0.0  0.0  0.0  0.0  0.0 30.2  4.6    0    0      0     0    0    0       0
+## 94  0.0  0.0  0.0  0.0  0.0 16.8 22.0    0    0      0     0    0    1       0
+## 95  0.0  0.0  0.0  0.0  0.0 45.3 31.3    0    0      0     0    0    0       0
+## 96  0.0  0.0  0.0  0.0  0.0 27.2 24.3    0    0      0     0    0    1       0
+## 97  0.0  0.0  0.0  0.0  0.0 19.2 31.2    0    0      0     0    0    0       0
+## 98  0.0  0.0  0.0  0.0  0.0 29.0 34.2    0    0      0     0    0    0       0
+## 99  0.0  0.0  0.0  0.0  0.0 34.6 17.9    0    0      0     0    0    0       0
+##    Umami Deep Balanced Nutty Hard Dry Roasted Strong Fish sauce Dark Chocolate
+## 1      1    1        0     0    0   0       0      0          0    0         0
+## 2      0    0        1     1    0   0       0      0          0    0         0
+## 3      0    0        0     0    0   0       0      0          0    0         0
+## 4      0    0        0     0    0   1       0      0          0    0         0
+## 5      0    0        0     0    0   0       1      0          0    0         0
+## 6      0    0        0     0    0   0       0      1          0    0         0
+## 7      0    0        0     0    1   1       0      0          0    0         0
+## 8      0    0        0     0    0   1       0      0          1    1         1
+## 9      0    0        0     0    0   1       1      1          0    0         0
+## 10     0    0        0     0    0   0       0      0          0    0         0
+## 11     0    0        0     0    0   0       0      0          0    0         0
+## 12     0    0        0     0    0   0       0      0          0    1         0
+## 13     0    0        0     0    0   0       0      0          0    0         0
+## 14     0    0        0     0    0   0       0      0          0    0         0
+## 15     0    0        0     0    0   0       0      0          0    1         0
+## 16     1    0        0     0    0   1       0      0          0    0         0
+## 17     0    0        0     0    0   1       0      0          0    0         0
+## 18     0    0        0     0    0   0       0      0          0    1         0
+## 19     0    0        0     0    0   0       0      0          0    0         0
+## 20     1    0        0     0    0   0       0      0          0    0         0
+## 21     1    0        0     0    0   0       0      0          0    1         0
+## 22     1    0        0     0    0   0       0      0          0    0         0
+## 23     1    0        0     0    0   0       0      0          0    1         0
+## 24     1    0        0     0    0   1       0      0          1    1         0
+## 25     1    0        0     0    0   0       0      0          0    0         0
+## 26     1    0        0     0    0   0       0      0          0    1         0
+## 27     1    0        0     0    0   1       0      0          0    1         0
+## 28     0    0        0     0    0   0       0      0          0    0         0
+## 29     0    0        0     0    0   0       0      0          0    0         0
+## 30     0    0        0     0    0   0       0      0          0    0         0
+## 31     0    0        0     0    0   0       0      0          0    0         0
+## 32     0    0        1     0    0   0       0      0          0    0         0
+## 33     0    0        0     0    0   0       0      0          0    1         0
+## 34     0    0        1     1    0   0       0      0          0    0         0
+## 35     0    0        0     0    0   0       0      0          0    0         0
+## 36     0    0        0     0    0   0       0      0          0    1         0
+## 37     0    0        0     0    0   0       0      0          0    0         0
+## 38     0    0        0     0    0   0       0      1          0    0         0
+## 39     0    0        0     0    0   0       0      0          0    0         0
+## 40     0    0        0     0    0   0       0      0          0    0         0
+## 41     0    0        0     0    0   0       0      0          0    0         0
+## 42     0    0        0     0    0   0       0      0          0    1         0
+## 43     0    0        0     0    0   1       0      0          0    0         0
+## 44     0    0        0     0    0   1       0      1          0    1         0
+## 45     0    0        0     0    0   1       0      1          0    1         0
+## 46     0    0        0     0    0   0       0      0          0    0         0
+## 47     0    0        0     0    0   0       0      0          0    0         0
+## 48     0    0        0     0    0   0       0      0          0    0         0
+## 49     0    0        0     0    0   0       0      0          0    0         0
+## 50     0    0        0     0    0   0       0      0          0    0         0
+## 51     0    0        0     0    0   0       0      0          0    1         0
+## 52     0    0        0     0    0   0       0      0          0    0         0
+## 53     0    0        0     0    0   0       0      0          0    1         0
+## 54     0    0        0     0    0   0       0      0          0    1         0
+## 55     0    0        1     0    0   0       0      0          0    0         0
+## 56     0    0        1     0    0   0       0      0          0    0         0
+## 57     0    0        1     0    0   0       0      0          0    0         0
+## 58     0    0        0     0    0   0       0      0          0    0         0
+## 59     0    0        1     0    0   0       0      0          0    0         0
+## 60     0    0        0     0    0   0       0      0          0    0         0
+## 61     0    0        0     0    0   0       0      0          0    0         0
+## 62     0    0        0     0    0   0       1      0          0    1         0
+## 63     0    0        0     0    0   0       0      0          0    0         1
+## 64     0    0        0     0    0   0       0      0          0    0         0
+## 65     0    0        0     0    0   0       0      0          0    0         0
+## 66     0    0        0     0    0   0       0      0          0    0         0
+## 67     0    0        0     0    0   0       0      0          0    0         0
+## 68     1    0        0     0    0   0       0      0          0    0         0
+## 69     0    0        0     0    0   0       0      0          0    0         0
+## 70     0    0        0     0    0   0       0      0          0    0         0
+## 71     0    0        0     0    0   0       0      0          0    0         0
+## 72     0    0        0     0    0   0       0      0          0    0         0
+## 73     0    0        0     0    0   0       0      0          0    0         0
+## 74     0    0        0     0    0   0       0      0          0    0         0
+## 75     0    0        0     0    0   0       0      0          0    0         0
+## 76     0    0        0     0    0   0       0      0          0    0         0
+## 77     0    0        0     0    0   0       0      0          0    0         0
+## 78     0    0        0     0    0   0       0      0          0    0         0
+## 79     0    0        0     0    0   1       0      0          0    0         0
+## 80     0    0        0     0    0   0       0      0          0    0         0
+## 81     0    0        0     0    0   0       0      0          0    0         0
+## 82     0    0        0     0    0   0       0      0          0    0         0
+## 83     0    1        0     0    0   0       0      0          0    0         0
+## 84     0    0        0     0    0   0       0      0          0    0         0
+## 85     0    0        0     0    0   0       0      0          0    0         0
+## 86     0    0        0     0    0   0       0      0          0    0         0
+## 87     0    0        0     0    0   0       0      0          0    0         0
+## 88     0    0        0     0    0   0       0      0          0    0         0
+## 89     0    0        0     0    0   0       0      0          0    0         0
+## 90     0    1        0     0    0   0       0      0          0    0         0
+## 91     0    0        0     0    0   0       0      0          0    0         0
+## 92     0    0        0     0    0   0       0      0          0    0         0
+## 93     0    0        0     0    0   0       0      0          0    0         0
+## 94     0    0        0     0    0   0       0      0          0    0         0
+## 95     0    0        0     0    0   0       0      0          0    0         0
+## 96     0    0        0     0    0   0       0      0          0    0         0
+## 97     0    0        0     0    0   0       0      0          0    0         0
+## 98     0    0        0     0    0   0       0      0          0    0         0
+## 99     0    0        0     0    1   0       0      0          0    0         0
+##    Moisty Brown Dried fruits Beany Smooth Dense Alcoholic Firm Grainy Soy sauce
+## 1       0     0            0     0      0     0         0    0      0         0
+## 2       0     0            0     0      0     0         0    0      0         0
+## 3       0     0            0     0      0     0         0    0      0         0
+## 4       0     0            0     0      0     0         0    0      0         0
+## 5       0     0            0     0      0     0         0    0      0         0
+## 6       0     0            0     0      0     0         0    0      0         0
+## 7       0     0            0     0      0     0         0    0      0         0
+## 8       0     0            0     0      0     0         0    0      0         0
+## 9       0     0            0     0      0     0         0    0      0         0
+## 10      1     0            0     0      0     0         0    0      0         0
+## 11      1     0            0     0      0     0         0    0      0         0
+## 12      1     0            0     0      0     0         0    0      0         0
+## 13      1     0            0     0      0     0         0    0      0         0
+## 14      1     0            0     0      0     0         0    0      0         0
+## 15      1     0            0     0      0     0         0    0      0         0
+## 16      0     0            0     0      0     0         0    0      0         0
+## 17      0     1            0     0      0     0         0    0      0         0
+## 18      1     0            0     0      0     0         0    0      0         0
+## 19      0     0            1     0      0     0         0    0      0         0
+## 20      0     0            1     0      0     0         0    0      0         0
+## 21      0     0            1     0      0     0         1    0      0         0
+## 22      0     0            1     1      1     1         0    0      0         0
+## 23      0     0            0     1      0     0         0    0      0         0
+## 24      0     0            0     1      0     1         0    0      0         1
+## 25      0     0            0     1      0     0         0    1      1         0
+## 26      0     0            0     0      0     0         0    0      0         1
+## 27      0     0            0     1      0     0         0    0      1         1
+## 28      0     0            0     0      0     0         0    0      0         0
+## 29      0     1            0     0      0     1         0    0      0         0
+## 30      0     0            0     0      1     1         0    0      0         0
+## 31      0     0            0     0      1     0         0    1      0         0
+## 32      0     1            0     0      1     0         0    1      0         0
+## 33      0     0            0     0      0     0         1    0      0         0
+## 34      0     1            0     0      0     0         0    0      0         0
+## 35      0     1            0     1      0     0         0    1      1         0
+## 36      0     0            0     0      0     0         0    1      1         0
+## 37      0     0            0     0      0     0         0    0      0         0
+## 38      0     0            0     0      0     0         0    0      0         0
+## 39      0     0            0     0      0     0         0    0      0         0
+## 40      0     0            0     0      0     0         0    0      0         0
+## 41      0     0            0     0      0     0         0    0      0         0
+## 42      0     0            0     0      0     0         0    0      0         0
+## 43      0     0            0     0      0     0         0    0      0         0
+## 44      0     0            0     0      0     0         0    0      0         0
+## 45      0     0            0     0      0     0         0    0      0         0
+## 46      0     1            0     0      0     0         0    0      0         0
+## 47      0     1            0     0      0     0         0    0      0         0
+## 48      0     1            0     0      0     0         0    0      0         0
+## 49      0     1            0     0      0     0         0    0      0         0
+## 50      0     1            0     0      0     0         0    0      0         0
+## 51      0     0            0     1      0     0         0    0      0         0
+## 52      0     1            0     0      0     0         0    0      0         0
+## 53      0     0            0     0      0     0         0    0      1         0
+## 54      0     0            0     1      0     0         0    0      1         0
+## 55      1     0            0     0      0     0         1    0      0         0
+## 56      1     0            0     0      0     0         1    0      0         0
+## 57      0     0            0     0      0     0         0    0      0         0
+## 58      0     0            0     0      0     0         0    0      0         0
+## 59      0     1            0     0      0     0         1    0      0         0
+## 60      0     0            0     0      0     0         0    0      0         0
+## 61      0     0            0     0      0     0         0    0      1         0
+## 62      0     0            0     0      0     0         0    0      1         0
+## 63      0     0            0     0      0     0         0    0      0         0
+## 64      0     0            0     0      0     0         0    0      0         0
+## 65      0     0            0     0      0     0         0    0      0         0
+## 66      0     0            0     0      0     0         0    0      0         0
+## 67      0     0            0     0      0     0         0    0      0         0
+## 68      0     0            0     0      0     0         0    0      0         0
+## 69      0     0            0     0      0     0         0    0      0         1
+## 70      0     0            0     0      0     1         0    0      0         0
+## 71      0     0            0     0      0     0         0    0      0         1
+## 72      0     0            0     0      0     0         0    0      0         1
+## 73      0     0            0     0      0     0         1    0      0         0
+## 74      0     0            0     0      0     0         0    0      0         0
+## 75      0     0            0     0      0     0         0    0      0         0
+## 76      0     0            0     0      0     0         0    0      0         0
+## 77      0     0            0     0      0     0         0    0      0         0
+## 78      0     0            0     0      0     0         0    0      0         1
+## 79      0     0            0     0      0     0         1    0      0         0
+## 80      0     0            0     0      0     0         0    0      1         0
+## 81      0     0            1     0      0     0         0    0      0         1
+## 82      0     0            0     0      0     0         0    0      0         0
+## 83      0     0            0     0      0     0         0    0      0         0
+## 84      0     0            0     0      0     0         0    0      0         0
+## 85      0     0            0     0      0     0         0    0      0         0
+## 86      0     0            0     0      0     0         0    0      0         0
+## 87      0     0            0     0      0     0         0    0      0         0
+## 88      0     0            0     0      0     0         0    0      0         0
+## 89      0     0            0     0      0     0         0    0      0         0
+## 90      0     0            0     0      0     0         0    0      0         0
+## 91      0     0            0     0      0     0         0    0      0         0
+## 92      0     0            0     0      0     0         0    0      0         0
+## 93      0     0            0     0      0     0         0    0      0         0
+## 94      0     0            0     0      0     0         0    0      0         0
+## 95      0     0            0     0      0     0         0    0      1         0
+## 96      0     0            0     0      0     0         0    0      0         0
+## 97      0     0            0     0      0     0         0    0      0         0
+## 98      0     0            0     0      0     0         0    0      1         0
+## 99      0     0            0     0      0     0         0    0      1         0
+##    Chewy Yeasty Fruity Wine Gummy Malty Liquorise Bread Salty Meaty Creamy
+## 1      0      0      0    0     0     0         0     0     0     0      0
+## 2      0      0      0    0     0     0         0     0     0     0      0
+## 3      0      0      0    0     0     0         0     0     0     0      0
+## 4      0      0      0    0     0     0         0     0     0     0      0
+## 5      0      0      0    0     0     0         0     0     0     0      0
+## 6      0      0      0    0     0     0         0     0     0     0      0
+## 7      0      0      0    0     0     0         0     0     0     0      0
+## 8      0      0      0    0     0     0         0     0     0     0      0
+## 9      0      0      0    0     0     0         0     0     0     0      0
+## 10     0      0      0    0     0     0         0     0     0     0      0
+## 11     0      0      0    0     0     0         0     0     0     0      0
+## 12     0      0      0    0     0     0         0     0     0     0      0
+## 13     0      0      0    0     0     0         0     0     0     0      0
+## 14     0      0      0    0     0     0         0     0     0     0      0
+## 15     0      0      0    0     0     0         0     0     0     0      0
+## 16     0      0      0    0     0     0         0     0     0     0      0
+## 17     0      0      0    0     0     0         0     0     0     0      0
+## 18     0      0      0    0     0     0         0     0     0     0      0
+## 19     0      0      0    0     0     0         0     0     0     0      0
+## 20     0      0      0    0     0     0         0     0     0     0      0
+## 21     0      0      0    0     0     0         0     0     0     0      0
+## 22     0      0      0    0     0     0         0     0     0     0      0
+## 23     0      0      0    0     0     0         0     0     0     0      0
+## 24     0      0      0    0     0     0         0     0     0     0      0
+## 25     0      0      0    0     0     0         0     0     0     0      0
+## 26     1      0      0    0     0     0         0     0     0     0      0
+## 27     0      0      0    0     0     0         0     0     0     0      0
+## 28     0      0      1    0     0     0         0     0     0     0      0
+## 29     1      1      1    0     0     0         0     0     0     0      0
+## 30     1      0      1    0     0     0         0     0     0     0      0
+## 31     0      0      0    0     0     0         0     0     0     0      0
+## 32     0      0      0    0     1     0         0     0     0     0      0
+## 33     0      0      0    0     0     0         0     0     0     0      0
+## 34     0      0      0    1     0     0         0     0     0     0      0
+## 35     0      0      1    0     0     0         0     0     0     0      0
+## 36     0      0      0    0     0     0         0     0     0     0      0
+## 37     0      0      1    0     0     0         0     0     0     0      0
+## 38     0      0      0    0     0     0         0     0     0     0      0
+## 39     0      0      0    0     0     0         0     0     0     0      0
+## 40     0      0      0    0     0     0         0     0     0     0      0
+## 41     0      0      0    0     0     1         0     0     0     0      0
+## 42     0      0      0    0     0     1         0     0     0     0      0
+## 43     0      0      0    0     0     1         0     0     0     0      0
+## 44     0      0      0    0     0     1         0     0     0     0      0
+## 45     0      0      0    0     0     1         0     0     0     0      0
+## 46     0      0      0    0     0     0         0     0     0     0      0
+## 47     0      0      1    0     0     0         0     0     0     0      0
+## 48     0      0      0    0     0     0         0     0     0     0      1
+## 49     0      0      1    0     0     0         0     0     0     0      0
+## 50     0      1      0    0     0     0         0     0     0     0      0
+## 51     0      0      0    0     0     0         0     0     0     0      0
+## 52     0      1      0    0     0     0         0     0     0     0      0
+## 53     0      1      0    0     0     0         0     0     0     0      0
+## 54     0      0      0    0     0     1         1     0     0     0      0
+## 55     0      0      0    0     0     0         0     0     0     0      0
+## 56     0      0      0    0     0     0         0     0     0     0      0
+## 57     0      0      0    0     0     0         0     0     0     0      0
+## 58     0      0      0    0     0     0         0     0     0     0      0
+## 59     0      0      0    0     0     0         0     0     0     0      0
+## 60     0      0      0    0     0     1         0     0     0     0      0
+## 61     0      0      0    0     0     0         0     0     0     0      0
+## 62     0      0      0    0     0     0         0     0     0     0      0
+## 63     0      0      0    0     0     0         1     1     0     0      0
+## 64     0      0      0    0     1     0         0     1     0     0      0
+## 65     0      0      0    0     0     0         0     0     0     0      0
+## 66     0      0      0    0     0     0         0     0     0     0      0
+## 67     0      0      0    0     0     0         0     1     0     0      0
+## 68     0      0      0    0     0     0         0     0     0     0      0
+## 69     0      0      0    0     0     0         0     0     1     0      0
+## 70     0      0      1    0     0     0         0     0     0     0      0
+## 71     0      0      0    0     0     0         0     0     0     0      0
+## 72     0      0      0    0     0     0         0     0     1     0      0
+## 73     0      0      0    0     0     0         0     0     0     0      0
+## 74     0      0      0    0     0     0         0     0     0     0      0
+## 75     0      0      0    0     0     0         0     0     1     1      0
+## 76     0      0      0    0     0     0         0     0     0     0      0
+## 77     0      0      0    0     0     0         0     0     0     0      0
+## 78     0      0      0    0     0     0         0     0     0     1      0
+## 79     0      0      0    0     0     0         0     0     0     0      0
+## 80     0      0      0    0     0     0         0     0     0     0      0
+## 81     0      0      0    0     0     0         0     0     0     0      0
+## 82     0      0      0    0     0     0         0     0     0     0      0
+## 83     0      1      0    0     0     0         0     0     0     0      0
+## 84     0      0      0    0     0     0         0     0     0     0      0
+## 85     0      1      0    0     0     0         0     0     0     0      0
+## 86     0      0      0    1     0     0         0     0     0     0      0
+## 87     0      0      0    0     0     0         0     0     0     0      0
+## 88     0      0      0    0     0     0         0     0     0     0      0
+## 89     0      0      0    0     0     0         0     0     0     0      0
+## 90     0      0      0    0     0     0         0     0     0     1      0
+## 91     0      0      1    0     0     0         0     0     0     0      0
+## 92     0      0      0    0     0     0         0     0     0     0      1
+## 93     0      0      0    0     0     0         0     0     0     0      1
+## 94     0      0      0    0     0     0         0     0     0     0      0
+## 95     0      0      0    0     0     0         0     0     0     0      0
+## 96     0      0      0    0     0     0         0     0     0     0      1
+## 97     0      0      0    0     0     0         0     0     0     0      0
+## 98     0      0      0    0     0     1         0     0     0     0      0
+## 99     0      0      0    0     0     1         0     0     0     0      0
+##    Stout
+## 1      0
+## 2      0
+## 3      0
+## 4      0
+## 5      0
+## 6      0
+## 7      0
+## 8      0
+## 9      0
+## 10     0
+## 11     0
+## 12     0
+## 13     0
+## 14     0
+## 15     0
+## 16     0
+## 17     0
+## 18     0
+## 19     0
+## 20     0
+## 21     0
+## 22     0
+## 23     0
+## 24     0
+## 25     0
+## 26     0
+## 27     0
+## 28     0
+## 29     0
+## 30     0
+## 31     0
+## 32     0
+## 33     0
+## 34     0
+## 35     0
+## 36     0
+## 37     0
+## 38     0
+## 39     0
+## 40     0
+## 41     0
+## 42     0
+## 43     0
+## 44     0
+## 45     0
+## 46     0
+## 47     0
+## 48     0
+## 49     0
+## 50     0
+## 51     1
+## 52     0
+## 53     0
+## 54     1
+## 55     0
+## 56     0
+## 57     0
+## 58     0
+## 59     0
+## 60     0
+## 61     0
+## 62     0
+## 63     0
+## 64     0
+## 65     0
+## 66     0
+## 67     0
+## 68     0
+## 69     0
+## 70     0
+## 71     0
+## 72     0
+## 73     0
+## 74     0
+## 75     0
+## 76     0
+## 77     0
+## 78     0
+## 79     0
+## 80     0
+## 81     0
+## 82     0
+## 83     0
+## 84     0
+## 85     0
+## 86     0
+## 87     0
+## 88     0
+## 89     1
+## 90     0
+## 91     0
+## 92     0
+## 93     0
+## 94     0
+## 95     0
+## 96     0
+## 97     0
+## 98     0
+## 99     0</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="projective-mapping.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tempetotemperature<span class="sc">$</span>Productname)</span></code></pre></div>
 <pre><code>## 
 ## 45C-2D 45C-3D 45C-4D 50C-2D 50C-3D 50C-4D 55C-2D 55C-3D 55C-4D 
 ##     11     11     11     11     11     11     11     11     11</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="projective-mapping.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tempetotemperature<span class="sc">$</span>Assessor)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="projective-mapping.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tempetotemperature<span class="sc">$</span>Assessor)</span></code></pre></div>
 <pre><code>## 
 ##  1  2  3  4  5  6  7  8  9 10 11 
 ##  9  9  9  9  9  9  9  9  9  9  9</code></pre>
 <p>This dataset consists of 9 products evaluateed by 11 judges.
 The responses is the 2D coordinates of the procetive mapping, for each judge individually (X1, Y1, X2,…, Y11), and CATA data on 30 attribues (Miso, Soft, Bitter,…, Stout).</p>
 </div>
-<div id="a-collated-version-of-the-data" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> A Collated version of the data<a href="projective-mapping.html#a-collated-version-of-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="a-collated-version-of-the-data" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> A Collated version of the data<a href="projective-mapping.html#a-collated-version-of-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
-<div id="pca-on-collated-data" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> PCA on Collated data<a href="projective-mapping.html#pca-on-collated-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pca-on-collated-data" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> PCA on Collated data<a href="projective-mapping.html#pca-on-collated-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>downweeeigting of attributes.</li>
 <li>On everything with normal scaling.</li>
 <li>Include judge-loadings in the output plots.</li>
 </ul>
 </div>
-<div id="section" class="section level2" number="12.4">
-<h2><span class="header-section-number">12.4</span> </h2>
+<div id="section" class="section level2" number="14.4">
+<h2><span class="header-section-number">14.4</span> </h2>
 
 </div>
 </div>
@@ -378,8 +1016,8 @@ The responses is the 2D coordinates of the procetive mapping, for each judge ind
           </div>
         </div>
       </div>
-<a href="check-all-that-applies-cata.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="preference-mapping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pca-on-cata-and-liking-scores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tfih-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -410,7 +1048,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/14_projectivemapping.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/12_Projectivemapping.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -418,7 +1056,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/14_projectivemapping.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/12_Projectivemapping.Rmd",
 "text": null
 },
 "download": null,

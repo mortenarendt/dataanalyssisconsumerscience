@@ -1,4 +1,32 @@
 
+# Introduction to PCA
+
+In this book Principal Component Analysis (PCA) is used several times. This chapter will shortly explain the theory behind PCA and the interpretation of relevant plots.  
+
+PCA is a tool for looking a correlation structure between variables, and groupings of samples. All through visualizations.  
+Check out youtube on the subject for an introduction.
+
+[TILFØJ: skrives kort om PCA, skal der ikke stå lidt mere???]
+
+
+```{r}
+knitr::include_url("https://youtube.com/embed/NFIkD9-MuTY")
+```
+
+![](https://youtu.be/NFIkD9-MuTY){width="90%"}
+
+
+[INDSÆTTE: flere film // you tube klip]
+
+
+
+# Introduction linear and mixed models 
+[ALT MANGLER - forslag er at lave et kortere afsnit her som en pendant til PCA. Håber I synes det er en god ide?]
+
+
+
+
+
 # Libraries
 
 R comes with a bit of functionality. However, most of the useful tools in R is distributed as packages. There are +10.000 package for R, so it is a jungle to figure out what the most easy solution to your problem at hand is. However, the teams who have made tidyverse and ggplot2 etc. have made a lot of things much more easy, and we strongly rely on their tools and routines in data analysis. 
@@ -6,16 +34,16 @@ R comes with a bit of functionality. However, most of the useful tools in R is d
 To install packages from CRAN (the main repo where R-packages are distributed)
 
 ```{r, eval=FALSE}
-install.packages('somepackage')
+install.packages('somepackagename')
 ```
 
-To install packages from github (the place where all the development and general code sharing is distributed)
+To install packages from github (the online place where all the development and general code sharing is distributed)
 
 ```{r,eval=FALSE}
-devtools::install_github('developername/packagename')
+devtools::install_github('developername/somepackagename')
 ```
 
-To make packages available within your analysis use library(), or use the package name followed by :: and the function
+To make packages available within your analysis use library(), or use the package name followed by :: and the function. The library function will activate the installed package. 
 
 ```{r}
 library(ggplot2) # lets plot dadta
@@ -26,18 +54,37 @@ library(knitr) # lets make nice tables
 ggplot2::qplot(rnorm(100)) # example of a function call without library'ing the package.
 ```
 
+[MANGLER: info på tidyverse]
 
 
 
-# Descriptive statistics and plotting
 
+# Descriptive statistics
+In this Chapter we will go through the main elements you need to 
+
+
+[MANGLER: bla bla bla introtekst.... inklu ]
+
+
+We are using the combined buffet consumption and survey dataset. We have already made a merged version for you, so yo just need to load the data. 
+
+
+## Loading data
+
+First we need to load the data. If you do not have a saved data set (*.RData), please go to the chapters about "How to import data" and "How to save the data" for more info on import and data saving. 
+
+Use this if your data is in the same folder as your script: 
 ```{r,eval=FALSE, include=TRUE}
 load('iBuffetSurveyData.RData')
 ```
 
+Use this, if you need to browse for your *.RData file: 
 ```{r,eval=T, include=F}
 load('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Meal Systems and Technology/data/BuffetData2/BuffetSurveyData.RData')
 ```
+
+[MORTEN: skal vi stadig kalde RData filen dette her? Giver det mening?]
+
 
 ## Distributions of count data
 
@@ -49,6 +96,12 @@ table(Surveylong$answ) # across everything
 table(Surveylong$question,Surveylong$answ ) # across question
 ```
 You see that most of the answers are in agreement with question, and that there are no observations in the _Strongly disagree_ category. 
+
+[MORTEN: kan vi lave en anden form for tabel her? Meld gerne ind hvad type data det kunne være?? for den man får ud giver ikke så meget mening set fra vores side. og så skal vi overveje om "tidyverse" er nice to know viden?]
+
+
+
+[MÅSKE: The nice to know part:]
 
 _The tidyverse way_ 
 
@@ -62,6 +115,8 @@ Further, lets print the results in a nice looking table using kable() from the k
 
 # kable(tb, caption = 'some caption')
 ```
+
+
 
 The numbers are absolute, but may be better represented by proportions. 
 
@@ -87,7 +142,10 @@ tb %>%
         legend.position = 'top')
 ```
 
+
 ### Descriptives for a continouos variable
+
+[MORTEN: skal denne også ændres til noget smartere? datasættet er opsæt anderledes end vi normalt ville gøre det, og jeg tænker mere og mere på, om det er hensigtsmæssigt? Hjææælp...]
 
 Here just across the entire sample set. 
 
@@ -117,6 +175,10 @@ tb2 <- Buffet_survey %>%
 
 kable(tb2, digits = 1, caption = 'some relevant caption')
 ```
+
+
+
+# Plotting data
 
 Corresponding plot of data 
 
@@ -166,7 +228,6 @@ Buffet_survey %>%
 Lets plot the consumption as a function of the answers to the liking-scale questions of the survey, and split it into day and type of vegetable. 
 If you think about it, it is pretty many plots, but the ggplot2 functionality facet_wrap() on a long format data frame does it in few lines: 
 
-
 ```{r, fig.height=9}
 Surveylong_buffet %>% 
   filter(!is.na(StationName )) %>% 
@@ -179,6 +240,32 @@ Surveylong_buffet %>%
   theme_bw() + theme(legend.position = 'bottom')
 ```
 
+
+## How to export plots 
+
+The plots shown in the _Plots_ pane (lower right of RStudio) can be saved using the _Export_ bottom. 
+
+You can also save the plots to a file using the ggsave() function. 
+If you run ggsave() without specifying which plot to export, it will use the latest. 
+You can also directly specify the plot to export: 
+
+```{r, fig.height=9, eval = F}
+myplot <- Surveylong_buffet %>% 
+  filter(!is.na(StationName )) %>% 
+  mutate(question2 = question %>% substr(1,34)) %>% # The label is to long, so lets just represent the first 30 letters.
+  ggplot(data = .,  aes(answnum,Consumption, color = factor(Day))) +
+  geom_point() + 
+  stat_smooth(se = F, method = lm) + 
+  stat_cor() +
+  facet_grid(question2 ~ StationName) + 
+  theme_bw() + theme(legend.position = 'bottom')
+
+ggsave('liking_vs_consumption.pdf',myplot)
+
+```
+
+ggsave() supports different formats (.png, .tiff, .pdf,...) and further allows for editing the size (height = , width = ). 
+
 ```{r}
 kable(Surveyscales, caption = 'Just a table to have what the 7point likert scale numbers mean')
 ```
@@ -186,5 +273,3 @@ kable(Surveyscales, caption = 'Just a table to have what the 7point likert scale
 Get this stuff to work, and try to interpret what you see: which factors seems important for the portion size ( _Consumption_ )? 
 
 The summary-stats in the scatter plots above: What is this? How is it interpreted? 
-
-  

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Liking scores | Data Analysis in R for Consumer Science</title>
+  <meta name="description" content="Chapter 12 Liking scores | Data Analysis in R for Consumer Science" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 Liking scores | Data Analysis in R for Consumer Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 Liking scores | Data Analysis in R for Consumer Science" />
+  
+  
+  
+
+<meta name="author" content="Morten Arendt Rasmussens" />
+
+
+<meta name="date" content="2022-09-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="cata-data-check-all-that-apply.html"/>
+<link rel="next" href="pca-on-cata-and-liking-scores.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis in R for Consumer Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-import-data"><i class="fa fa-check"></i><b>2.2</b> How to import data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-data-from-r-package"><i class="fa fa-check"></i><b>2.2.1</b> Import data from R-package</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-a-csv-file"><i class="fa fa-check"></i><b>2.2.2</b> Importing a csv file</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-an-excel-filesheet"><i class="fa fa-check"></i><b>2.2.3</b> Importing an Excel file/sheet</a></li>
+<li class="chapter" data-level="2.2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#clipboard-import"><i class="fa fa-check"></i><b>2.2.4</b> Clipboard import</a></li>
+<li class="chapter" data-level="2.2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-at-the-imported-elements"><i class="fa fa-check"></i><b>2.2.5</b> Looking at the imported elements</a></li>
+<li class="chapter" data-level="2.2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#numbers-and-factors---changing-categorisation"><i class="fa fa-check"></i><b>2.2.6</b> Numbers and factors - changing categorisation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#organise-and-save-scripts"><i class="fa fa-check"></i><b>2.3</b> Organise and save scripts</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-save-the-data"><i class="fa fa-check"></i><b>2.4</b> How to save the data</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-export-data-results"><i class="fa fa-check"></i><b>2.5</b> How to export data / results</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#ready-for-analysis"><i class="fa fa-check"></i><b>2.6</b> Ready for analysis</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-merge-two-datasets"><i class="fa fa-check"></i><b>2.7</b> How to merge two datasets</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-edit-and-merge-in-r"><i class="fa fa-check"></i><b>2.7.1</b> Import, edit and merge in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-pca.html"><a href="introduction-to-pca.html"><i class="fa fa-check"></i><b>3</b> Introduction to PCA</a></li>
+<li class="chapter" data-level="4" data-path="introduction-linear-and-mixed-models.html"><a href="introduction-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>4</b> Introduction linear and mixed models</a></li>
+<li class="chapter" data-level="5" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>5</b> Libraries</a></li>
+<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#loading-data"><i class="fa fa-check"></i><b>6.1</b> Loading data</a></li>
+<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>6.2</b> Distributions of count data</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>6.2.1</b> Descriptives for a continouos variable</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>7</b> Plotting data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>7.1</b> Scatter plots</a></li>
+<li class="chapter" data-level="7.2" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>7.2</b> How to export plots</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>8</b> PCA on survey answers</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>8.1</b> Bi-plot</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>8.1.1</b> Extract the components and run all associations.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>9</b> Linear models</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>9.1</b> Example</a></li>
+<li class="chapter" data-level="9.2" data-path="linear-models.html"><a href="linear-models.html#run-a-bunch-of-models-at-once"><i class="fa fa-check"></i><b>9.2</b> Run a bunch of models at once</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="linear-models.html"><a href="linear-models.html#a-plot"><i class="fa fa-check"></i><b>9.2.1</b> A plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>10</b> Mixed models</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>10.1</b> With several variables</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html"><i class="fa fa-check"></i><b>11</b> CATA data (Check-All-That-Apply)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#importing-and-looking-at-the-beer-data"><i class="fa fa-check"></i><b>11.1</b> Importing and looking at the beer data</a></li>
+<li class="chapter" data-level="11.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>11.2</b> Two versions of the data</a></li>
+<li class="chapter" data-level="11.3" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#cochrans-q-test"><i class="fa fa-check"></i><b>11.3</b> Cochran’s Q test</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#post-hoc-contrasts"><i class="fa fa-check"></i><b>11.3.1</b> Post hoc contrasts</a></li>
+<li class="chapter" data-level="11.3.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#for-all-attributes-in-one-run-nice-to-know"><i class="fa fa-check"></i><b>11.3.2</b> For all attributes in one run (nice to know)</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#pca-on-cata-data"><i class="fa fa-check"></i><b>11.4</b> PCA on CATA data</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="liking-scores.html"><a href="liking-scores.html"><i class="fa fa-check"></i><b>12</b> Liking scores</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="liking-scores.html"><a href="liking-scores.html#plotting-liking-scores"><i class="fa fa-check"></i><b>12.1</b> Plotting liking scores</a></li>
+<li class="chapter" data-level="12.2" data-path="liking-scores.html"><a href="liking-scores.html#simple-mixed-models"><i class="fa fa-check"></i><b>12.2</b> Simple mixed models</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="liking-scores.html"><a href="liking-scores.html#post-hoc-contrasts-1"><i class="fa fa-check"></i><b>12.2.1</b> Post hoc contrasts</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="liking-scores.html"><a href="liking-scores.html#multiway-mixed-models"><i class="fa fa-check"></i><b>12.3</b> Multiway mixed models</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="pca-on-cata-and-liking-scores.html"><a href="pca-on-cata-and-liking-scores.html"><i class="fa fa-check"></i><b>13</b> PCA on CATA and liking scores</a></li>
+<li class="chapter" data-level="14" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>14</b> Projective mapping</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>14.1</b> Example from mapping of XX</a></li>
+<li class="chapter" data-level="14.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>14.2</b> A Collated version of the data</a></li>
+<li class="chapter" data-level="14.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>14.3</b> PCA on Collated data</a></li>
+<li class="chapter" data-level="14.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>14.4</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="tfih-exercises.html"><a href="tfih-exercises.html"><i class="fa fa-check"></i><b>15</b> TFIH Exercises</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-1-pca-on-consumer-background"><i class="fa fa-check"></i><b>15.1</b> Exercise 1: PCA on consumer background</a></li>
+<li class="chapter" data-level="15.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-2-pca-on-cata-counts"><i class="fa fa-check"></i><b>15.2</b> Exercise 2: PCA on CATA counts</a></li>
+<li class="chapter" data-level="15.3" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-3-pca-on-liking"><i class="fa fa-check"></i><b>15.3</b> Exercise 3: PCA on liking</a></li>
+<li class="chapter" data-level="15.4" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-4-pls-on-cata-counts-and-liking"><i class="fa fa-check"></i><b>15.4</b> Exercise 4: PLS on CATA counts and liking</a></li>
+<li class="chapter" data-level="15.5" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-5-mixed-modelling-on-the-liking"><i class="fa fa-check"></i><b>15.5</b> Exercise 5: Mixed modelling on the liking</a></li>
+<li class="chapter" data-level="15.6" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-6-comparing-cata-binary-data-and-counts"><i class="fa fa-check"></i><b>15.6</b> Exercise 6: Comparing CATA binary data and counts</a></li>
+<li class="chapter" data-level="15.7" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-7-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>15.7</b> Exercise 7: Cochran’s Q test on CATA binary data</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>16</b> Preference Mapping</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>16.1</b> Example of Preference Mapping</a></li>
+<li class="chapter" data-level="16.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca"><i class="fa fa-check"></i><b>16.2</b> PCA</a></li>
+<li class="chapter" data-level="16.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>16.3</b> Analysis by PLS</a></li>
+<li class="chapter" data-level="16.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>16.4</b> L-PLS [For the future…]</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>17</b> Latent Factor Models</a></li>
+<li class="chapter" data-level="18" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>18</b> LPLS</a></li>
+<li class="chapter" data-level="19" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>19</b> Consumer Segmentation</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>19.1</b> Kmeans</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>20</b> More PCA</a></li>
+<li class="chapter" data-level="21" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>21</b> Logistic Regression</a></li>
+<li class="chapter" data-level="22" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>22</b> Confirmatory Factor Analysis using lavaan</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>22.1</b> Example - Food Neophobia</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>23</b> Structured Equation Modelling</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>23.1</b> Example - Theory of Planned Behaviour</a>
+<ul>
+<li class="chapter" data-level="23.1.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#plsda-cataon-cata-and-liking"><i class="fa fa-check"></i><b>23.1.1</b> PLSDA (CATA??)on CATA and liking??</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis in R for Consumer Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="liking-scores" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Liking scores<a href="liking-scores.html#liking-scores" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>[INTRO NEEDED]</p>
+<p>Liking scores is often 1-5, 1-7 or 1-9 [more Bom?]</p>
+<p>Most often we want to know if the liking scored significantly different (not just different by chance) depending on the samples. We might also wna to know if other factors have an influence on the liking. e.g. household income. We also want to know what are the actual differences are.</p>
+<div id="plotting-liking-scores" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Plotting liking scores<a href="liking-scores.html#plotting-liking-scores" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>[MORTEN: meget simpel kode til fx histogram med sprednigner på - gennemsnit per øl]</p>
+<p>For the beer data we have the liking in a long matrix. We need to import the data:</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="liking-scores.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb148-2"><a href="liking-scores.html#cb148-2" aria-hidden="true" tabindex="-1"></a>beerliking <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;DatasetRbook.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BeerLiking&#39;</span>)</span></code></pre></div>
+</div>
+<div id="simple-mixed-models" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Simple mixed models<a href="liking-scores.html#simple-mixed-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Mixed models are used when there is repetitions in the response due to (here) the person tasting more than one product.</p>
+<p>[MERE TEKST PÅ HER]
+[Forklar fixed og random effects? Måske bruge dette:Fixed effects are effects that we anticipate have the same direction, e.g., mutual differences between products. Would typically be the same from one experiment to another as the products are unchanging entities. Random effects are effects that we cannot predict, e.g., mutual differences between consumers may differ from one experiment to another as consumers are affected by various emotional, environmental, physiological or other influences in their lives]</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="liking-scores.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;lmerTest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:lme4&#39;:
+## 
+##     lmer</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     step</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="liking-scores.html#cb153-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) </span>
+<span id="cb153-2"><a href="liking-scores.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdl)</span></code></pre></div>
+<pre><code>## Type III Analysis of Variance Table with Satterthwaite&#39;s method
+##      Sum Sq Mean Sq NumDF  DenDF F value    Pr(&gt;F)    
+## Beer 110.52  22.105     5 763.12  8.3054 1.175e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>[MORTEN: Sensorikere er virkelig glade for p-værdier for en variabel - det kan jeg ikke se, jeg kan få ud med lme4, derfor foreslår jeg pakken lmerTest i stedet for. Lavet af Per Brockhoff til sensorikdata. og så også anova() i stedet for summary(). Så kommer der een overordnet p-værdi ud ]</p>
+<p>To explain the model: take the dataset called <em>beerliking</em> and calculate a model where <em>Beer</em> is the fixed effect and the consumer is the random effect for the response variable <em>Liking</em>. Use the function <em>lmer</em> and save the output as <em>mdl</em>. The anova() function will provide you with the p value(s). Remember you choose your own title of your model.</p>
+<p>[MANGLER: forklaring på output; At least two of the products by name are scored significantly different for the liking.]</p>
+<div id="post-hoc-contrasts-1" class="section level3 hasAnchor" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> Post hoc contrasts<a href="liking-scores.html#post-hoc-contrasts-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>[HEDDER DET DET? korrekt titel?]
+[SKAL SKRIVES DET HELE]</p>
+<p>To calculate pairwise comparisons between e.g. samples and find letter-based representation you need a the package <em>multcomp</em>.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="liking-scores.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span></code></pre></div>
+<pre><code>## Loading required package: mvtnorm</code></pre>
+<pre><code>## Loading required package: survival</code></pre>
+<pre><code>## Loading required package: TH.data</code></pre>
+<pre><code>## Loading required package: MASS</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<pre><code>## 
+## Attaching package: &#39;TH.data&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     geyser</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="liking-scores.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(<span class="fu">glht</span>(mdl, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Beer =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
+<pre><code>##     Brown Ale      NY Lager    Porse Bock Ravnsborg Red    River Beer 
+##           &quot;c&quot;          &quot;ab&quot;           &quot;a&quot;          &quot;bc&quot;           &quot;a&quot; 
+##     Wheat IPA 
+##           &quot;a&quot;</code></pre>
+<p>[MANGLER: forklaring på model og output]</p>
+<p>The letters are based on the Post Hoc test Tukey, and they are calculated on the basis of the model <em>mdl</em>. Samples with the same letters are not significantly different. You can only use this function on factors.</p>
+<p>[MORTEN: Hvis man nu har kontinuerte variable, hvordan fortolkes det så?]</p>
+</div>
+</div>
+<div id="multiway-mixed-models" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Multiway mixed models<a href="liking-scores.html#multiway-mixed-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>[explain + output + interpret]</p>
+<p>In multiway models, we start with the largest possible, i.e., including all relevant explanatory variables (e.g., including the product variable). We then have to eliminate non-significant variables manually one by one (backwards step-wise elimination). The final model will only contain the significant variables.</p>
+<p>In the beer dataset it could be nice to calculate if the liking is affected by the gender and age of the consumer.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="liking-scores.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb166-2"><a href="liking-scores.html#cb166-2" aria-hidden="true" tabindex="-1"></a>mdl<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> Gender <span class="sc">+</span> Age <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) </span>
+<span id="cb166-3"><a href="liking-scores.html#cb166-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl<span class="fl">.2</span>)</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
+## lmerModLmerTest]
+## Formula: Liking ~ Beer + Gender + Age + (1 | Consumer.ID)
+##    Data: beerliking
+## 
+## REML criterion at convergence: 3600.9
+## 
+## Scaled residuals: 
+##      Min       1Q   Median       3Q      Max 
+## -2.41056 -0.72755  0.08595  0.74181  2.07687 
+## 
+## Random effects:
+##  Groups      Name        Variance Std.Dev.
+##  Consumer.ID (Intercept) 0.3144   0.5607  
+##  Residual                2.6621   1.6316  
+## Number of obs: 920, groups:  Consumer.ID, 155
+## 
+## Fixed effects:
+##                   Estimate Std. Error       df t value Pr(&gt;|t|)    
+## (Intercept)         4.5904     0.1954 357.9021  23.487  &lt; 2e-16 ***
+## BeerNY Lager       -0.6437     0.1869 763.4365  -3.443 0.000606 ***
+## BeerPorse Bock     -0.8393     0.1866 762.7991  -4.498 7.94e-06 ***
+## BeerRavnsborg Red  -0.2354     0.1866 762.7991  -1.261 0.207542    
+## BeerRiver Beer     -0.8378     0.1867 764.6555  -4.488 8.30e-06 ***
+## BeerWheat IPA      -0.9433     0.1869 763.5511  -5.046 5.63e-07 ***
+## GenderM             0.1070     0.1448 148.5136   0.739 0.461235    
+## Age26 - 35          0.3992     0.2329 149.8802   1.714 0.088585 .  
+## Age36 - 45          0.4326     0.2521 146.4248   1.716 0.088203 .  
+## Age46 - 55          0.5538     0.2145 149.6847   2.582 0.010785 *  
+## Age56 - 65          0.2041     0.2040 147.5124   1.001 0.318700    
+## Age66 - 75          0.2173     0.2730 146.4260   0.796 0.427381    
+## AgeOver 75          0.2224     0.5953 173.5838   0.374 0.709194    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre><code>## 
+## Correlation matrix not shown by default, as p = 13 &gt; 12.
+## Use print(x, correlation=TRUE)  or
+##     vcov(x)        if you need it</code></pre>
+<p>[MANGLER: FORTOLKNING AF OUTPUT]</p>
+<p>It could be ice to calculate if the liking of specific sample are affected by the age, so we include the interaction between <em>Beer</em> and <em>Age</em>:</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="liking-scores.html#cb169-1" aria-hidden="true" tabindex="-1"></a>mdl<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> Beer<span class="sc">*</span>Age <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) </span>
+<span id="cb169-2"><a href="liking-scores.html#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl<span class="fl">.2</span>)</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
+## lmerModLmerTest]
+## Formula: Liking ~ Beer + Gender + Age + (1 | Consumer.ID)
+##    Data: beerliking
+## 
+## REML criterion at convergence: 3600.9
+## 
+## Scaled residuals: 
+##      Min       1Q   Median       3Q      Max 
+## -2.41056 -0.72755  0.08595  0.74181  2.07687 
+## 
+## Random effects:
+##  Groups      Name        Variance Std.Dev.
+##  Consumer.ID (Intercept) 0.3144   0.5607  
+##  Residual                2.6621   1.6316  
+## Number of obs: 920, groups:  Consumer.ID, 155
+## 
+## Fixed effects:
+##                   Estimate Std. Error       df t value Pr(&gt;|t|)    
+## (Intercept)         4.5904     0.1954 357.9021  23.487  &lt; 2e-16 ***
+## BeerNY Lager       -0.6437     0.1869 763.4365  -3.443 0.000606 ***
+## BeerPorse Bock     -0.8393     0.1866 762.7991  -4.498 7.94e-06 ***
+## BeerRavnsborg Red  -0.2354     0.1866 762.7991  -1.261 0.207542    
+## BeerRiver Beer     -0.8378     0.1867 764.6555  -4.488 8.30e-06 ***
+## BeerWheat IPA      -0.9433     0.1869 763.5511  -5.046 5.63e-07 ***
+## GenderM             0.1070     0.1448 148.5136   0.739 0.461235    
+## Age26 - 35          0.3992     0.2329 149.8802   1.714 0.088585 .  
+## Age36 - 45          0.4326     0.2521 146.4248   1.716 0.088203 .  
+## Age46 - 55          0.5538     0.2145 149.6847   2.582 0.010785 *  
+## Age56 - 65          0.2041     0.2040 147.5124   1.001 0.318700    
+## Age66 - 75          0.2173     0.2730 146.4260   0.796 0.427381    
+## AgeOver 75          0.2224     0.5953 173.5838   0.374 0.709194    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre><code>## 
+## Correlation matrix not shown by default, as p = 13 &gt; 12.
+## Use print(x, correlation=TRUE)  or
+##     vcov(x)        if you need it</code></pre>
+<p>Remember you choose your own “name” for the model
+“+” between variables defines (additive) main effects
+“:” between variables defines an interaction
+“*” between variables defines a parameterization with both interaction and main effect terms</p>
+<p>For model selection here, you start by removing the interaction with the hight p-value and then recalculate the model. You cannot remove a single variable if an interaction including it is significant.</p>
+<p>[MANGLER: FORTOLKNING AF OUTPUT]</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="cata-data-check-all-that-apply.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pca-on-cata-and-liking-scores.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/10_LikingScores.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/10_LikingScores.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

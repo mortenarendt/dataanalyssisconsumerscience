@@ -1,0 +1,190 @@
+
+# CATA data (Check-All-That-Apply)
+
+Check-All-That-Apply (CATA) data is in its raw form binary indicating whether a participant finds a product to have the attribute (1) or not (0). 
+
+Usually, such data is organized in a matrix where each row corresponds to the evaluation of one product by one judge. And the coloumns are then the attributes. 
+
+Say you for instance have 26 participants and 4 products, and further that all products are evaluated by all judges once on 13 attributes. Your data matrix would then have 104 rows and 13 coloumns (with responses) and additionally columns indicating judge, product, record id, date, etc. 
+
+In the CATA section of this book, we will use a data set with Beer. Six different commercial beers from Danish craft brewers were evaluated by $160$ consumers on a range of different questions:  
+
+ * Background information: a range of questions, including appropriateness ratings for 27 sensory descriptors on a 7-points scale (e.g. _how appropriate do you think it is for a beer to be bitter?_). The two semantic anchors were _1 = not at all appropriate_ and _7 = extremely appropriate_. This dataset is called _beercata_.
+ * Hedonics: Their liking/hedonic responses of the beer on a 7-point Likert scale (1-7). This dataset is called _Beerliking_.
+
+[NB NB NB nye navne ift det nye Exceldatasæt, så det skal rettes i scripts nedenfor og tjekkes om de rette Excel ark er kopieret med over? Bør måske se ud som det vil for de studerende?]
+
+[BOM: skrive mere info til her om data måske?]
+
+
+[Der skal i alt være load data//import data, view datastructure, histogrammer, fortolkning af disse, cochrans Q test + fortolkning heraf, post hos en eller anden form + fortolkning heraf + PCA]
+
+
+## Importing and looking at the beer data 
+
+We first have to import or load the data. Here is the import, remember to change the path for the Excel file to match your own settings:
+
+```{r}
+library(readxl)
+beercata <- read_excel('DatasetRbook.xlsx',sheet = 'BeerCATA')
+BeerBackground <- read_excel('DatasetRbook.xlsx',sheet = 'BeerBackground')
+beerliking <- read_excel('DatasetRbook.xlsx',sheet = 'BeerLiking')
+
+```
+
+
+[PAKKEN data4consumerscience FINDES IKKE?]
+[BODIL: liking datasæt skal sættes ind i Excel filen i Dropbox]
+
+The packages you need to run the analyses are activated with the library function and the package name. If the package is not installed, please do this first: 
+
+```{r}
+library(data4consumerscience)
+library(tidyverse)
+
+data("beercata")
+beercata %>% head()
+table(beercata$Beer) 
+length(unique(beercata$Consumer.ID))
+
+```
+
+From the above functions, you can see the data structure. Using the str() function will give you all the variable names. The lentgh() function is counting the number of participants as we have asked for the Consumer.ID variable in the dataset beercata. 
+
+
+## Two versions of the data
+For analyses of CATA data, we need to versions of the data: 
+
+- Raw data (binary, 0/1) with each row being responses from one evaluation (beercata dataset)
+- Agglomerated to counts, with each row being one product
+
+[Put in the pictures from Rinnan et al 2015]
+
+The agglomerated version is computed by: 
+
+```{r}
+# Questions we want answer using these data
+# - Are the products different / similar? 
+  # - Which attributes drives discrimination? 
+  # - Are there any judges who are really of? 
+  
+beercatasum <- beercata %>% 
+  gather(attrib, val, S_Flowers:S_Vinous) %>% 
+  group_by(Beer,attrib) %>%
+  dplyr::summarize(n = sum(val)) %>% 
+  spread(attrib,n)
+
+beercatasum
+```
+
+We call our new dataset _beercatasum_. Gather all the variables from _S_Flower_ to _S_Vinous_ and call them _attrib_. Group all data by the _Beer_ variable (sample name column) and _attrib_ (all of our CATA variables), then sum up the values (val) and call them _n_. Make a table of _attrib_ and _n_. Save it all as the new name _beercatasum_. Then finally shown us the new data set. 
+
+[MORTEN: er det korrekt fortolket af mig?]
+
+
+... and visualized by for instance a barplot. 
+
+```{r}
+# summary counts over attribute
+beercatasum %>% 
+  gather(attrib, n, S_Flowers:S_Vinous) %>% 
+  ggplot(data = ., aes(attrib,n, fill = Beer)) + 
+  geom_bar(stat = 'identity', position = position_dodge()) + 
+  coord_flip()
+```
+
+For more plot types go to the Chapter on "Plotting data". 
+
+## Cochran's Q test
+
+Cochran's Q test is a statistical test for the comparison of several products, where the response is binary, and there is repeated responses across several judges. We need a package (_RVAideeeeMemoire_).The data needs to be structured as the _beercata_ is. 
+
+We can only run the model independently for one variable at a time. 
+
+For one response variable: _S_Flowers_
+
+```{r}
+library(RVAideMemoire)
+m <- cochran.qtest(S_Flowers ~ Beer | Consumer.ID,
+                   data = beercata)
+
+m
+```
+
+The p.value is strongly significant, indicating that we cannot assumme the same level of S_Flower in all beers. I.e. the beers seems different based on this characteristics. This is in agreement with the barplot above, where S_Flower is high in NY Lager and really low for Brown ale. 
+
+But in reality we only know that the beers are different overall, not which specific beers that are different. For this we need at post hoc test. 
+
+### Post hoc contrasts
+
+As we observe differences based on this attribute, we pursue the question on which products stick out? And are there products which are similar? This is done by pairwise comparisons, for this we need the package _rcompanion_: 
+
+```{r}
+library(rcompanion)
+PT = pairwiseMcnemar(S_Flowers ~ Beer | Consumer.ID,
+                     data   = beercata,
+                     test   = "permutation",
+                     method = "fdr",
+                     digits = 3)
+PT$Pairwise %>% 
+  arrange(-abs(as.numeric(Z))) %>% 
+  data.frame()
+```
+
+[MORTEN: Forklaring af koden, taaaaak :-)]
+
+The table is sorted with the most different pairs at the top, and the least different at the bottom. Hence most products are significantly different, while _Porse Bock_ and _Ravnsborg Red_ are fairly alike.
+
+[MORTEN: skal man bruge p.value eller p.adjust?]
+
+### For all attributes in one run (nice to know)
+
+We use the packages _tidyverse_ and _broom_ for this, but need a function capable of handling Cochran's Q-test outputs.  
+
+```{r}
+library(broom)
+tidy.RVtest <- function(m){
+  r <- data.frame(statistic = m$statistic,df = m$parameter,
+                  p.value= m$p.value,
+                  method = m$method.test)
+  return(r)
+}
+
+tb_cochran <- beercata %>% 
+  gather(attrib, val, S_Flowers:S_Vinous) %>% 
+  group_by(attrib) %>%
+  do(cochran.qtest(val ~ Beer | Consumer.ID,
+                   data = .) %>% tidy)
+
+tb_cochran %>% 
+  arrange(p.value) 
+```
+
+[MORTEN: MORTEN: Forklaring af koden, taaaaak :-)]
+
+Again the table is sorted with the most sigficant at the top, and the least significant at the bottom. This output indicates that _S_Beans_ is the most discriminatory attribute, while _S_Pungent_ is the least. 
+
+For the pairwise comparisons, please apply the code above per attribute. 
+
+
+
+## PCA on CATA data
+
+For an introduction PCA, please go to the Chapter "Introduction to PCA" in the first part of the book.
+
+A PCA on the agglomerated CATA counts will reveal the attributes associated with the individual products:  
+
+[MANGLER der ikke hvilken pakke man skal installere?]
+
+```{r}
+mdlPCA <- prcomp(beercatasum[,-1], scale. = T)
+ggbiplot::ggbiplot(mdlPCA, labels = beercatasum$Beer)
+```
+
+[MORTEN: Forklaing på koden]
+
+
+The attributes Bean, Caramel, Warming, Aromatic etc is associated to the beer _Brown ale_, while Berrie, Dessert, Pungent, etc. is characteristic of _Wheat IPA_ 
+
+[BOM: Add some more narrative]
+

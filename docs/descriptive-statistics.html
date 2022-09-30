@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Descriptive statistics | Data Analysis in R for Consumer Science</title>
+  <meta name="description" content="Chapter 6 Descriptive statistics | Data Analysis in R for Consumer Science" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Descriptive statistics | Data Analysis in R for Consumer Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Descriptive statistics | Data Analysis in R for Consumer Science" />
+  
+  
+  
+
+<meta name="author" content="Morten Arendt Rasmussens" />
+
+
+<meta name="date" content="2022-09-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="libraries.html"/>
+<link rel="next" href="plotting-data.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis in R for Consumer Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-import-data"><i class="fa fa-check"></i><b>2.2</b> How to import data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-data-from-r-package"><i class="fa fa-check"></i><b>2.2.1</b> Import data from R-package</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-a-csv-file"><i class="fa fa-check"></i><b>2.2.2</b> Importing a csv file</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-an-excel-filesheet"><i class="fa fa-check"></i><b>2.2.3</b> Importing an Excel file/sheet</a></li>
+<li class="chapter" data-level="2.2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#clipboard-import"><i class="fa fa-check"></i><b>2.2.4</b> Clipboard import</a></li>
+<li class="chapter" data-level="2.2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-at-the-imported-elements"><i class="fa fa-check"></i><b>2.2.5</b> Looking at the imported elements</a></li>
+<li class="chapter" data-level="2.2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#numbers-and-factors---changing-categorisation"><i class="fa fa-check"></i><b>2.2.6</b> Numbers and factors - changing categorisation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#organise-and-save-scripts"><i class="fa fa-check"></i><b>2.3</b> Organise and save scripts</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-save-the-data"><i class="fa fa-check"></i><b>2.4</b> How to save the data</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-export-data-results"><i class="fa fa-check"></i><b>2.5</b> How to export data / results</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#ready-for-analysis"><i class="fa fa-check"></i><b>2.6</b> Ready for analysis</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-merge-two-datasets"><i class="fa fa-check"></i><b>2.7</b> How to merge two datasets</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-edit-and-merge-in-r"><i class="fa fa-check"></i><b>2.7.1</b> Import, edit and merge in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-pca.html"><a href="introduction-to-pca.html"><i class="fa fa-check"></i><b>3</b> Introduction to PCA</a></li>
+<li class="chapter" data-level="4" data-path="introduction-linear-and-mixed-models.html"><a href="introduction-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>4</b> Introduction linear and mixed models</a></li>
+<li class="chapter" data-level="5" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>5</b> Libraries</a></li>
+<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#loading-data"><i class="fa fa-check"></i><b>6.1</b> Loading data</a></li>
+<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>6.2</b> Distributions of count data</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>6.2.1</b> Descriptives for a continouos variable</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>7</b> Plotting data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>7.1</b> Scatter plots</a></li>
+<li class="chapter" data-level="7.2" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>7.2</b> How to export plots</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>8</b> PCA on survey answers</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>8.1</b> Bi-plot</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>8.1.1</b> Extract the components and run all associations.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>9</b> Linear models</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>9.1</b> Example</a></li>
+<li class="chapter" data-level="9.2" data-path="linear-models.html"><a href="linear-models.html#run-a-bunch-of-models-at-once"><i class="fa fa-check"></i><b>9.2</b> Run a bunch of models at once</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="linear-models.html"><a href="linear-models.html#a-plot"><i class="fa fa-check"></i><b>9.2.1</b> A plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>10</b> Mixed models</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>10.1</b> With several variables</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html"><i class="fa fa-check"></i><b>11</b> CATA data (Check-All-That-Apply)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#importing-and-looking-at-the-beer-data"><i class="fa fa-check"></i><b>11.1</b> Importing and looking at the beer data</a></li>
+<li class="chapter" data-level="11.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>11.2</b> Two versions of the data</a></li>
+<li class="chapter" data-level="11.3" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#cochrans-q-test"><i class="fa fa-check"></i><b>11.3</b> Cochran’s Q test</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#post-hoc-contrasts"><i class="fa fa-check"></i><b>11.3.1</b> Post hoc contrasts</a></li>
+<li class="chapter" data-level="11.3.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#for-all-attributes-in-one-run-nice-to-know"><i class="fa fa-check"></i><b>11.3.2</b> For all attributes in one run (nice to know)</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#pca-on-cata-data"><i class="fa fa-check"></i><b>11.4</b> PCA on CATA data</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="liking-scores.html"><a href="liking-scores.html"><i class="fa fa-check"></i><b>12</b> Liking scores</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="liking-scores.html"><a href="liking-scores.html#plotting-liking-scores"><i class="fa fa-check"></i><b>12.1</b> Plotting liking scores</a></li>
+<li class="chapter" data-level="12.2" data-path="liking-scores.html"><a href="liking-scores.html#simple-mixed-models"><i class="fa fa-check"></i><b>12.2</b> Simple mixed models</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="liking-scores.html"><a href="liking-scores.html#post-hoc-contrasts-1"><i class="fa fa-check"></i><b>12.2.1</b> Post hoc contrasts</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="liking-scores.html"><a href="liking-scores.html#multiway-mixed-models"><i class="fa fa-check"></i><b>12.3</b> Multiway mixed models</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="pca-on-cata-and-liking-scores.html"><a href="pca-on-cata-and-liking-scores.html"><i class="fa fa-check"></i><b>13</b> PCA on CATA and liking scores</a></li>
+<li class="chapter" data-level="14" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>14</b> Projective mapping</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>14.1</b> Example from mapping of XX</a></li>
+<li class="chapter" data-level="14.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>14.2</b> A Collated version of the data</a></li>
+<li class="chapter" data-level="14.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>14.3</b> PCA on Collated data</a></li>
+<li class="chapter" data-level="14.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>14.4</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="tfih-exercises.html"><a href="tfih-exercises.html"><i class="fa fa-check"></i><b>15</b> TFIH Exercises</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-1-pca-on-consumer-background"><i class="fa fa-check"></i><b>15.1</b> Exercise 1: PCA on consumer background</a></li>
+<li class="chapter" data-level="15.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-2-pca-on-cata-counts"><i class="fa fa-check"></i><b>15.2</b> Exercise 2: PCA on CATA counts</a></li>
+<li class="chapter" data-level="15.3" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-3-pca-on-liking"><i class="fa fa-check"></i><b>15.3</b> Exercise 3: PCA on liking</a></li>
+<li class="chapter" data-level="15.4" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-4-pls-on-cata-counts-and-liking"><i class="fa fa-check"></i><b>15.4</b> Exercise 4: PLS on CATA counts and liking</a></li>
+<li class="chapter" data-level="15.5" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-5-mixed-modelling-on-the-liking"><i class="fa fa-check"></i><b>15.5</b> Exercise 5: Mixed modelling on the liking</a></li>
+<li class="chapter" data-level="15.6" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-6-comparing-cata-binary-data-and-counts"><i class="fa fa-check"></i><b>15.6</b> Exercise 6: Comparing CATA binary data and counts</a></li>
+<li class="chapter" data-level="15.7" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-7-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>15.7</b> Exercise 7: Cochran’s Q test on CATA binary data</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>16</b> Preference Mapping</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>16.1</b> Example of Preference Mapping</a></li>
+<li class="chapter" data-level="16.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca"><i class="fa fa-check"></i><b>16.2</b> PCA</a></li>
+<li class="chapter" data-level="16.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>16.3</b> Analysis by PLS</a></li>
+<li class="chapter" data-level="16.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>16.4</b> L-PLS [For the future…]</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>17</b> Latent Factor Models</a></li>
+<li class="chapter" data-level="18" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>18</b> LPLS</a></li>
+<li class="chapter" data-level="19" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>19</b> Consumer Segmentation</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>19.1</b> Kmeans</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>20</b> More PCA</a></li>
+<li class="chapter" data-level="21" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>21</b> Logistic Regression</a></li>
+<li class="chapter" data-level="22" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>22</b> Confirmatory Factor Analysis using lavaan</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>22.1</b> Example - Food Neophobia</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>23</b> Structured Equation Modelling</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>23.1</b> Example - Theory of Planned Behaviour</a>
+<ul>
+<li class="chapter" data-level="23.1.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#plsda-cataon-cata-and-liking"><i class="fa fa-check"></i><b>23.1.1</b> PLSDA (CATA??)on CATA and liking??</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis in R for Consumer Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="descriptive-statistics" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Descriptive statistics<a href="descriptive-statistics.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this Chapter we will go through the main elements you need to</p>
+<p>[MANGLER: bla bla bla introtekst…. inklu ]</p>
+<p>We are using the combined buffet consumption and survey dataset. We have already made a merged version for you, so yo just need to load the data.</p>
+<div id="loading-data" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Loading data<a href="descriptive-statistics.html#loading-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First we need to load the data. If you do not have a saved data set (*.RData), please go to the chapters about “How to import data” and “How to save the data” for more info on import and data saving.</p>
+<p>Use this if your data is in the same folder as your script:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="descriptive-statistics.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;iBuffetSurveyData.RData&#39;</span>)</span></code></pre></div>
+<p>Use this, if you need to browse for your *.RData file:</p>
+<p>[MORTEN: skal vi stadig kalde RData filen dette her? Giver det mening?]</p>
+</div>
+<div id="distributions-of-count-data" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Distributions of count data<a href="descriptive-statistics.html#distributions-of-count-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The table function is good in getting how many observations there are within a given vector, or combinations of several vectors.</p>
+<p>Here used on the Survey answers.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Surveylong<span class="sc">$</span>answ) <span class="co"># across everything</span></span></code></pre></div>
+<pre><code>## 
+##          A. Strongly disagree                   B. Disagree 
+##                             0                             2 
+##      C. More or less disagree D. Neither agree nor disagree 
+##                             6                             7 
+##         E. More or less agree                      F. Agree 
+##                            21                            32 
+##             G. Strongly agree 
+##                            52</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="descriptive-statistics.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Surveylong<span class="sc">$</span>question,Surveylong<span class="sc">$</span>answ ) <span class="co"># across question</span></span></code></pre></div>
+<pre><code>##                                                     
+##                                                      A. Strongly disagree
+##   I like the taste of pasta with legumes!                               0
+##   I like the taste of pasta with mushrooms!                             0
+##   Pasta with legumes is visually appealing to me.                       0
+##   Pasta with mushrooms is visually appealing to me.                     0
+##                                                     
+##                                                      B. Disagree
+##   I like the taste of pasta with legumes!                      1
+##   I like the taste of pasta with mushrooms!                    0
+##   Pasta with legumes is visually appealing to me.              1
+##   Pasta with mushrooms is visually appealing to me.            0
+##                                                     
+##                                                      C. More or less disagree
+##   I like the taste of pasta with legumes!                                   3
+##   I like the taste of pasta with mushrooms!                                 0
+##   Pasta with legumes is visually appealing to me.                           3
+##   Pasta with mushrooms is visually appealing to me.                         0
+##                                                     
+##                                                      D. Neither agree nor disagree
+##   I like the taste of pasta with legumes!                                        2
+##   I like the taste of pasta with mushrooms!                                      0
+##   Pasta with legumes is visually appealing to me.                                3
+##   Pasta with mushrooms is visually appealing to me.                              2
+##                                                     
+##                                                      E. More or less agree
+##   I like the taste of pasta with legumes!                                5
+##   I like the taste of pasta with mushrooms!                              4
+##   Pasta with legumes is visually appealing to me.                        6
+##   Pasta with mushrooms is visually appealing to me.                      6
+##                                                     
+##                                                      F. Agree G. Strongly agree
+##   I like the taste of pasta with legumes!                   8                11
+##   I like the taste of pasta with mushrooms!                11                15
+##   Pasta with legumes is visually appealing to me.           7                10
+##   Pasta with mushrooms is visually appealing to me.         6                16</code></pre>
+<p>You see that most of the answers are in agreement with question, and that there are no observations in the <em>Strongly disagree</em> category.</p>
+<p>[MORTEN: kan vi lave en anden form for tabel her? Meld gerne ind hvad type data det kunne være?? for den man får ud giver ikke så meget mening set fra vores side. og så skal vi overveje om “tidyverse” er nice to know viden?]</p>
+<p>[MÅSKE: The nice to know part:]</p>
+<p><em>The tidyverse way</em></p>
+<p>Lets do exactly the same just using tidyverse functions count(), group_by(), mutate(), and summarise().</p>
+<p>Further, lets print the results in a nice looking table using kable() from the knitr package.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="descriptive-statistics.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tb &lt;- Surveylong %&gt;% </span></span>
+<span id="cb47-2"><a href="descriptive-statistics.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># count(question,answ,Day,name = &quot;no_rows&quot;, .drop = F) </span></span>
+<span id="cb47-3"><a href="descriptive-statistics.html#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="descriptive-statistics.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># kable(tb, caption = &#39;some caption&#39;)</span></span></code></pre></div>
+<p>The numbers are absolute, but may be better represented by proportions.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="descriptive-statistics.html#cb48-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> Surveylong <span class="sc">%&gt;%</span> </span>
+<span id="cb48-2"><a href="descriptive-statistics.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(question,Day) <span class="sc">%&gt;%</span> </span>
+<span id="cb48-3"><a href="descriptive-statistics.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ntot =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb48-4"><a href="descriptive-statistics.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(question,answ,Day) <span class="sc">%&gt;%</span> </span>
+<span id="cb48-5"><a href="descriptive-statistics.html#cb48-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), </span>
+<span id="cb48-6"><a href="descriptive-statistics.html#cb48-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">prc =</span> <span class="dv">100</span><span class="sc">*</span>n <span class="sc">/</span> ntot[<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;question&#39;, &#39;answ&#39;. You can override using
+## the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="descriptive-statistics.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tb, <span class="at">caption =</span> <span class="st">&#39;some caption&#39;</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div>
+<table style="width:100%;">
+<caption><span id="tab:unnamed-chunk-31">Table 6.1: </span>some caption</caption>
+<colgroup>
+<col width="54%" />
+<col width="32%" />
+<col width="4%" />
+<col width="3%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">question</th>
+<th align="left">answ</th>
+<th align="right">Day</th>
+<th align="right">n</th>
+<th align="right">prc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">B. Disagree</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">6.7</td>
+</tr>
+<tr class="even">
+<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">C. More or less disagree</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">20.0</td>
+</tr>
+<tr class="odd">
+<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">D. Neither agree nor disagree</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">6.7</td>
+</tr>
+<tr class="even">
+<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">D. Neither agree nor disagree</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">6.7</td>
+</tr>
+<tr class="odd">
+<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">E. More or less agree</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">26.7</td>
+</tr>
+<tr class="even">
+<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">E. More or less agree</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">6.7</td>
+</tr>
+<tr class="odd">
+<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">F. Agree</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">20.0</td>
+</tr>
+<tr class="even">
+<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">F. Agree</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">33.3</td>
+</tr>
+<tr class="odd">
+<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">G. Strongly agree</td>
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="right">40.0</td>
+</tr>
+<tr class="even">
+<td align="left">I like the taste of pasta with legumes! </td>
+<td align="left">G. Strongly agree</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">33.3</td>
+</tr>
+<tr class="odd">
+<td align="left">I like the taste of pasta with mushrooms! </td>
+<td align="left">E. More or less agree</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">13.3</td>
+</tr>
+<tr class="even">
+<td align="left">I like the taste of pasta with mushrooms! </td>
+<td align="left">E. More or less agree</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">13.3</td>
+</tr>
+<tr class="odd">
+<td align="left">I like the taste of pasta with mushrooms! </td>
+<td align="left">F. Agree</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">33.3</td>
+</tr>
+<tr class="even">
+<td align="left">I like the taste of pasta with mushrooms! </td>
+<td align="left">F. Agree</td>
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">40.0</td>
+</tr>
+<tr class="odd">
+<td align="left">I like the taste of pasta with mushrooms! </td>
+<td align="left">G. Strongly agree</td>
+<td align="right">1</td>
+<td align="right">8</td>
+<td align="right">53.3</td>
+</tr>
+<tr class="even">
+<td align="left">I like the taste of pasta with mushrooms! </td>
+<td align="left">G. Strongly agree</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">46.7</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">B. Disagree</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">6.7</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">C. More or less disagree</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">6.7</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">C. More or less disagree</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">13.3</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">D. Neither agree nor disagree</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">13.3</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">D. Neither agree nor disagree</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">6.7</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">E. More or less agree</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">6.7</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">E. More or less agree</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">33.3</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">F. Agree</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">33.3</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">F. Agree</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">13.3</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">G. Strongly agree</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">33.3</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with legumes is visually appealing to me. </td>
+<td align="left">G. Strongly agree</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">33.3</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with mushrooms is visually appealing to me. </td>
+<td align="left">D. Neither agree nor disagree</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">6.7</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with mushrooms is visually appealing to me. </td>
+<td align="left">D. Neither agree nor disagree</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">6.7</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with mushrooms is visually appealing to me. </td>
+<td align="left">E. More or less agree</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">20.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with mushrooms is visually appealing to me. </td>
+<td align="left">E. More or less agree</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">20.0</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with mushrooms is visually appealing to me. </td>
+<td align="left">F. Agree</td>
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">40.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with mushrooms is visually appealing to me. </td>
+<td align="left">G. Strongly agree</td>
+<td align="right">1</td>
+<td align="right">11</td>
+<td align="right">73.3</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with mushrooms is visually appealing to me. </td>
+<td align="left">G. Strongly agree</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">33.3</td>
+</tr>
+</tbody>
+</table>
+<p>… and a plot of it</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="descriptive-statistics.html#cb51-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb51-2"><a href="descriptive-statistics.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(answ,prc, <span class="at">fill =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
+<span id="cb51-3"><a href="descriptive-statistics.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span> </span>
+<span id="cb51-4"><a href="descriptive-statistics.html#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>question) <span class="sc">+</span> </span>
+<span id="cb51-5"><a href="descriptive-statistics.html#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>,<span class="at">hjust =</span> <span class="dv">1</span>), </span>
+<span id="cb51-6"><a href="descriptive-statistics.html#cb51-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&#39;top&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<div id="descriptives-for-a-continouos-variable" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Descriptives for a continouos variable<a href="descriptive-statistics.html#descriptives-for-a-continouos-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>[MORTEN: skal denne også ændres til noget smartere? datasættet er opsæt anderledes end vi normalt ville gøre det, og jeg tænker mere og mere på, om det er hensigtsmæssigt? Hjææælp…]</p>
+<p>Here just across the entire sample set.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="descriptive-statistics.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
+<pre><code>## [1] 138</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="descriptive-statistics.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
+<pre><code>## [1] 126</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="descriptive-statistics.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
+<pre><code>## [1] 85.45472</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="descriptive-statistics.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
+<pre><code>## [1] 112.5</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="descriptive-statistics.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     0.0    74.0   126.0   138.0   186.5   378.0</code></pre>
+<p>This is a very high level representation, and we usually want to compare means (or other metrics) between different groups.</p>
+<p>We use the consumption and split it according to day and pasta-type.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="descriptive-statistics.html#cb62-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb62-2"><a href="descriptive-statistics.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName, Day) <span class="sc">%&gt;%</span> </span>
+<span id="cb62-3"><a href="descriptive-statistics.html#cb62-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">nobs =</span> <span class="fu">n</span>(),</span>
+<span id="cb62-4"><a href="descriptive-statistics.html#cb62-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean =</span> <span class="fu">mean</span>(Consumption), </span>
+<span id="cb62-5"><a href="descriptive-statistics.html#cb62-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(Consumption),</span>
+<span id="cb62-6"><a href="descriptive-statistics.html#cb62-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(Consumption),</span>
+<span id="cb62-7"><a href="descriptive-statistics.html#cb62-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">iqr =</span> <span class="fu">IQR</span>(Consumption), </span>
+<span id="cb62-8"><a href="descriptive-statistics.html#cb62-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">q25 =</span> <span class="fu">quantile</span>(Consumption,<span class="fl">0.25</span>), </span>
+<span id="cb62-9"><a href="descriptive-statistics.html#cb62-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">q75 =</span> <span class="fu">quantile</span>(Consumption,<span class="fl">0.75</span>))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;StationName&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="descriptive-statistics.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tb2, <span class="at">digits =</span> <span class="dv">1</span>, <span class="at">caption =</span> <span class="st">&#39;some relevant caption&#39;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-34">Table 6.2: </span>some relevant caption</caption>
+<thead>
+<tr class="header">
+<th align="left">StationName</th>
+<th align="right">Day</th>
+<th align="right">nobs</th>
+<th align="right">mean</th>
+<th align="right">median</th>
+<th align="right">sd</th>
+<th align="right">iqr</th>
+<th align="right">q25</th>
+<th align="right">q75</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Pasta with legumes</td>
+<td align="right">1</td>
+<td align="right">15</td>
+<td align="right">132.3</td>
+<td align="right">130</td>
+<td align="right">81.2</td>
+<td align="right">101</td>
+<td align="right">71</td>
+<td align="right">172</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with legumes</td>
+<td align="right">2</td>
+<td align="right">15</td>
+<td align="right">155.7</td>
+<td align="right">138</td>
+<td align="right">103.7</td>
+<td align="right">139</td>
+<td align="right">71</td>
+<td align="right">210</td>
+</tr>
+<tr class="odd">
+<td align="left">Pasta with mushroom</td>
+<td align="right">1</td>
+<td align="right">15</td>
+<td align="right">135.1</td>
+<td align="right">92</td>
+<td align="right">88.7</td>
+<td align="right">99</td>
+<td align="right">76</td>
+<td align="right">175</td>
+</tr>
+<tr class="even">
+<td align="left">Pasta with mushroom</td>
+<td align="right">2</td>
+<td align="right">15</td>
+<td align="right">128.9</td>
+<td align="right">124</td>
+<td align="right">71.3</td>
+<td align="right">85</td>
+<td align="right">86</td>
+<td align="right">171</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="libraries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="plotting-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/02_IntroChaptersGeneric2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/02_IntroChaptersGeneric2.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
