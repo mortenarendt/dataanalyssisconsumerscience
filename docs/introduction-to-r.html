@@ -23,7 +23,7 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-09-30" />
+<meta name="date" content="2022-10-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -317,17 +317,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>“&gt;” indicates that R is ready for a new code.</p>
 <p>“+” Instead of “&gt;” means that the program is waiting for you. (you probably made a mistake in the script you tried to run) – by [ESC] the “+” turns to a “&gt;” again</p>
 <p>“NA” (Not Available) is indicating a missing value</p>
-<p>“NaN” (Not a Number) is the result of an ‘illegal’ operation e.g. log(-1)
-Red sentences means there is an error. R will stop calculating at the first error it meets.</p>
+<p>“NaN” (Not a Number) is the result of an ‘illegal’ operation e.g. log(-1) Red sentences means there is an error. R will stop calculating at the first error it meets.</p>
 </div>
 <div id="how-to-import-data" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> How to import data<a href="introduction-to-r.html#how-to-import-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="import-data-from-r-package" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Import data from R-package<a href="introduction-to-r.html#import-data-from-r-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In this book several datasets are used targeting different research questions.
-However, a fair part of the analysis tools are common. That is, descriptive analysis, plots, response correlations etc.</p>
-<p>The data is included in the R-packgage <em>data4consumerscience</em> you get by running the code below.
-Be aware that you need devtools package to install packages from github, so you need to run both code lines.</p>
+<p>In this book several datasets are used targeting different research questions. However, a fair part of the analysis tools are common. That is, descriptive analysis, plots, response correlations etc.</p>
+<p>The data is included in the R-packgage <em>data4consumerscience</em> you get by running the code below. Be aware that you need devtools package to install packages from github, so you need to run both code lines.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="introduction-to-r.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install data-package</span></span>
 <span id="cb18-2"><a href="introduction-to-r.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;devtools&#39;</span>)</span>
 <span id="cb18-3"><a href="introduction-to-r.html#cb18-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;mortenarendt/data4consumerscience&#39;</span>)</span></code></pre></div>
@@ -336,8 +333,7 @@ Be aware that you need devtools package to install packages from github, so you 
 </div>
 <div id="importing-a-csv-file" class="section level3 hasAnchor" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Importing a csv file<a href="introduction-to-r.html#importing-a-csv-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>If the data is not already an csv file, but an excel file, you need to convert it:
-Open your Excel file, as it is in xls or xlsx format. Convert this file to csv format. NB: Some data collection tools will provide you with your data in csv and some xlsx/xls format. In Excel, you choose the “save as” and then choose *.csv.</p>
+<p>If the data is not already an csv file, but an excel file, you need to convert it: Open your Excel file, as it is in xls or xlsx format. Convert this file to csv format. NB: Some data collection tools will provide you with your data in csv and some xlsx/xls format. In Excel, you choose the “save as” and then choose *.csv.</p>
 <p>Then move in to R, and write:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="introduction-to-r.html#cb19-1" aria-hidden="true" tabindex="-1"></a>DATASET1 <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="fu">file.choose</span>())</span></code></pre></div>
 <p>The file.choose() function makes you point towards the file you want. You can also simply write the path to the file directly.</p>
@@ -345,10 +341,7 @@ Open your Excel file, as it is in xls or xlsx format. Convert this file to csv f
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="introduction-to-r.html#cb20-1" aria-hidden="true" tabindex="-1"></a>DATASET1 <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&#39;~/path/to/the/data/myfile.csv&#39;</span>)</span></code></pre></div>
 <p>You decide the names/titles of your datasets and model, just do not use other signs than “.” and avoid non-English letters. We called it “DATASET1”. R will open a new window (sometimes hidden behind your other open windows), open the window to choose the wanted csv file. The data set will now also appear in the upper right corner as a line. If you double click a data set in this box, it will open in the editor window</p>
 <p>You can import any *.csv format dataset, when you try it out.</p>
-<p>Trouble shooting:
-* Try new csv format in Excel whan saving the file in csv format
-* Try to write read.csv(file.choose()) instead
-* Try another import function (see below)</p>
+<p>Trouble shooting: * Try new csv format in Excel whan saving the file in csv format * Try to write read.csv(file.choose()) instead * Try another import function (see below)</p>
 </div>
 <div id="importing-an-excel-filesheet" class="section level3 hasAnchor" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Importing an Excel file/sheet<a href="introduction-to-r.html#importing-an-excel-filesheet" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -357,13 +350,14 @@ Open your Excel file, as it is in xls or xlsx format. Convert this file to csv f
 <p>Here we use the package <strong>readxl</strong> with the function read_excel. If the data is not in the same folder as your script, then include the path to the data, or move the data to the script’s location.</p>
 <p>When you have to find the path for the file on your computer, you place your cursor within the ’’ in the command and click the tabulator button. Your computer files will appear, and you can find the path for your file easily. If you cannot find the path, try to use the file.choose() command to find the file, and then copy paste the path from the Console (where you find your output).</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="introduction-to-r.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb21-2"><a href="introduction-to-r.html#cb21-2" aria-hidden="true" tabindex="-1"></a>BuffetConsumption <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/DatasetRbook.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BuffetConsumption&#39;</span>)</span>
-<span id="cb21-3"><a href="introduction-to-r.html#cb21-3" aria-hidden="true" tabindex="-1"></a>BuffetSurvey <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/iBuffet.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BuffetSurvey&#39;</span>)</span></code></pre></div>
-<p>[NB NB NB: Jeg har lavet en ny og forbedret version af buffet data, så det skal ændres i dine koder - jeg lægger filen i mappen på Dropbox!!]</p>
+<span id="cb21-2"><a href="introduction-to-r.html#cb21-2" aria-hidden="true" tabindex="-1"></a>BuffetConsumption <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/iBuffet.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BuffetData&#39;</span>)</span>
+<span id="cb21-3"><a href="introduction-to-r.html#cb21-3" aria-hidden="true" tabindex="-1"></a>BuffetSurvey <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/iBuffet.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BuffetSurvey&#39;</span>)</span>
+<span id="cb21-4"><a href="introduction-to-r.html#cb21-4" aria-hidden="true" tabindex="-1"></a>SurveyScale <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/iBuffet.xlsx&#39;</span>, <span class="at">sheet =</span> <span class="st">&#39;SurveyScale&#39;</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&#39;answ&#39;</span>,<span class="st">&#39;answnum&#39;</span>))</span></code></pre></div>
 <p>The first part of the model sentence is what we want to call our dataset, here we chose “BuffetConsumption” in the first line (that is the same as the sheet in the Excel file for simplicity). You decide the names/titles of your datasets and model, just do not use other signs than “.” and avoid non-English letters.</p>
 <p>Try to import both the BuffetConsumption sheet and the BuffetSurvey sheet.</p>
-<p>BuffetConsumption is consumption data in grams from a buffet. The data is from 16 different persons, who cam on Day 1 and Day 2 to eat Pasta with legumes and/or Pasta with mushroom. In the dataset, there is one line per buffet station per participant per experimental day.</p>
+<p>BuffetConsumption is consumption data in grams from a buffet. The data is from 16 different persons, who came on Day 1 and Day 2 to eat Pasta with legumes and/or Pasta with mushroom. In the dataset, there is one line per buffet station per participant per experimental day.</p>
 <p>BuffetSurvey is survey data collected in SurveyXact. The dataset contains data on liking, motivation, choices etc. linked to the particular buffet data. Survey could also contain demographics for the participants such as age, gender, eating habits etc. These are general and different from the former, in that they have nothing to do with the current buffet. This type of data is not included in the SurveyData.</p>
+<p>The last part of the code imports the scale used in the survey - these will be used later. But have a look at what the <em>col_names = c(‘answ’,‘answnum’)</em> does, and also what happens if you remove it or change it to <em>col_names = TRUE</em>.</p>
 </div>
 <div id="clipboard-import" class="section level3 hasAnchor" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Clipboard import<a href="introduction-to-r.html#clipboard-import" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -391,16 +385,10 @@ Open your Excel file, as it is in xls or xlsx format. Convert this file to csv f
 </div>
 <div id="organise-and-save-scripts" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Organise and save scripts<a href="introduction-to-r.html#organise-and-save-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A script is a rundown from A-Z (start to end) of data analysis.
-A script should be self-contained. I.e. the first lines sets the libraries and imports the data, there after you may want to wrangle the data a bit (changing features as.numeric, as.factor,…, renaming coloumns, etc.). Thereafter the analysis starts.</p>
-<p>Think of a script like making a meal
-You need raw-materials (carrots, onions,…) - That is the data
-You need a kitchen - That is R as the software
-You need knifes, pots and pans - That is the packages</p>
+<p>A script is a rundown from A-Z (start to end) of data analysis. A script should be self-contained. I.e. the first lines sets the libraries and imports the data, there after you may want to wrangle the data a bit (changing features as.numeric, as.factor,…, renaming columns, etc.). Thereafter the analysis starts.</p>
+<p>Think of a script like making a meal You need raw-materials (carrots, onions,…) - That is the data You need a kitchen - That is R as the software You need knifes, pots and pans - That is the packages</p>
 <p>All is needed to work and hence you need to specify them in the script.</p>
-<p>In larger projects where the same dataset may be used for several different analysis, it may be wise to have several scripts. One for importing data and modifying it (starts with import and ends with save() as an .RData file). One for descriptive analysis, one for inference, one for plots etc. So you can create a sequence of scripts to keep overview. However, this is only needed for larger projects. In small analysis you can easily include all in one script.
-)
-Remember to put a little narrative (after a “#” at the top off you script explaining the purpose.</p>
+<p>In larger projects where the same dataset may be used for several different analysis, it may be wise to have several scripts. One for importing data and modifying it (starts with import and ends with save() as an .RData file). One for descriptive analysis, one for inference, one for plots etc. So you can create a sequence of scripts to keep overview. However, this is only needed for larger projects. In small analysis you can easily include all in one script. ) Remember to put a little narrative (after a “#” at the top off you script explaining the purpose.</p>
 <p>Remember to save your scripts!</p>
 </div>
 <div id="how-to-save-the-data" class="section level2 hasAnchor" number="2.4">
@@ -409,14 +397,15 @@ Remember to put a little narrative (after a “#” at the top off you script ex
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="introduction-to-r.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> <span class="st">&#39;iBuffetSurveyDataEverything.RData&#39;</span>) <span class="co"># everything</span></span>
 <span id="cb26-2"><a href="introduction-to-r.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(<span class="at">file =</span> <span class="st">&#39;iBuffetSurveyData.RData&#39;</span>,</span>
 <span id="cb26-3"><a href="introduction-to-r.html#cb26-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">list =</span> <span class="fu">c</span>(<span class="st">&#39;Survey&#39;</span>,<span class="st">&#39;Surveylong_buffet&#39;</span>,</span>
-<span id="cb26-4"><a href="introduction-to-r.html#cb26-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">&#39;Surveylong&#39;</span>,<span class="st">&#39;Buffet_survey&#39;</span>,<span class="st">&#39;Surveyscales&#39;</span>)) <span class="co"># just the usesul and non-redundant stuff.</span></span></code></pre></div>
+<span id="cb26-4"><a href="introduction-to-r.html#cb26-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">&#39;Surveylong&#39;</span>,<span class="st">&#39;Buffet_survey&#39;</span>,<span class="st">&#39;SurveyScale&#39;</span>)) <span class="co"># just the usual and non-redundant stuff.</span></span></code></pre></div>
 </div>
 <div id="how-to-export-data-results" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> How to export data / results<a href="introduction-to-r.html#how-to-export-data-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You can export any data frame from R to excel (for instance using the <em>rio</em> package), as well as saving it as .RData for further analysis.</p>
 <p>This can obviously be used for exporting your data after some modifications. BUT it is also very useful for exporting data frames with <em>results</em> from analysis.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="introduction-to-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a>rio<span class="sc">::</span><span class="fu">export</span>(Surveylong_buffet,<span class="at">file =</span> <span class="st">&#39;Surveylong_buffet.xlsx&#39;</span>) <span class="co"># export one data frame</span></span></code></pre></div>
-<p>[TILFØJ: Indtalt forklaring på koderne? ellers noget mere skriv? fx hvordan man bestemmer stien og navnet]</p>
+<p>When exporting data, it is also important to tell R where to place the exported file. You do this by specifying the path to the desired folder, followed by the name that <strong>you</strong> choose for the exported file (often it makes sense to choose the same name as the data frame in R).</p>
+<p>It is also important to specify the file-extension, to ensure that you create the right file type - in this case <strong>.xlsx</strong>, but rio can also export to other formats such as .txt or .csv.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="introduction-to-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a>rio<span class="sc">::</span><span class="fu">export</span>(Surveylong_buffet,<span class="at">file =</span> <span class="st">&#39;./data/YourFolderForNiceTables/Surveylong_buffet.xlsx&#39;</span>) <span class="co"># export one data frame</span></span></code></pre></div>
 </div>
 <div id="ready-for-analysis" class="section level2 hasAnchor" number="2.6">
 <h2><span class="header-section-number">2.6</span> Ready for analysis<a href="introduction-to-r.html#ready-for-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -426,7 +415,7 @@ Remember to put a little narrative (after a “#” at the top off you script ex
 </div>
 <div id="how-to-merge-two-datasets" class="section level2 hasAnchor" number="2.7">
 <h2><span class="header-section-number">2.7</span> How to merge two datasets<a href="introduction-to-r.html#how-to-merge-two-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Sometimes you have to merge two datasets. This is needed if you have for instance consumption data in one Excel sheet and survey data in another Excel sheet.</p>
+<p>Sometimes you have to merge two data sets. This is needed if you have for instance consumption data in one Excel sheet and survey data in another Excel sheet.</p>
 <p>Setup the data in Excel such that they match the below in terms of format.</p>
 <p>What is important is:</p>
 <ul>
@@ -445,8 +434,9 @@ Remember to put a little narrative (after a “#” at the top off you script ex
 <h4><span class="header-section-number">2.7.1.1</span> Import<a href="introduction-to-r.html#import" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If the data is not in the same folder as your script, then include the path to the data, or move the data to the script’s location.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="introduction-to-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb29-2"><a href="introduction-to-r.html#cb29-2" aria-hidden="true" tabindex="-1"></a>BuffetConsumption <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/DatasetRbook.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BuffetConsumption&#39;</span>)</span>
-<span id="cb29-3"><a href="introduction-to-r.html#cb29-3" aria-hidden="true" tabindex="-1"></a>BuffetSurvey <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/iBuffet.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BuffetSurvey&#39;</span>)</span></code></pre></div>
+<span id="cb29-2"><a href="introduction-to-r.html#cb29-2" aria-hidden="true" tabindex="-1"></a>BuffetConsumption <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/iBuffet.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BuffetData&#39;</span>)</span>
+<span id="cb29-3"><a href="introduction-to-r.html#cb29-3" aria-hidden="true" tabindex="-1"></a>BuffetSurvey <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/iBuffet.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BuffetSurvey&#39;</span>)</span>
+<span id="cb29-4"><a href="introduction-to-r.html#cb29-4" aria-hidden="true" tabindex="-1"></a>SurveyScale <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;./data/iBuffet.xlsx&#39;</span>, <span class="at">sheet =</span> <span class="st">&#39;SurveyScale&#39;</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&#39;answ&#39;</span>,<span class="st">&#39;answnum&#39;</span>))</span></code></pre></div>
 <p>Have a look at the imported elements to ensure that indeed, they mimic the Excel-sheets. head(), str() and View() is your tools.</p>
 <p>We see that the coloum with names (Person and StationName) is interpreted as characters (chr) while the stuff which should be numbers (Comsuption) is numeric (num). If that is not the case, you will need to transform them using as.numeric() or as.character().</p>
 <p>[MORTEN: check at disse koder stemmer overens med mit script længere oppe med faktorer og numbers, mere så vi bruger de samme koder]</p>
@@ -455,41 +445,47 @@ Remember to put a little narrative (after a “#” at the top off you script ex
 <h4><span class="header-section-number">2.7.1.2</span> Edit<a href="introduction-to-r.html#edit" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The comsumption data is optimal as is. We have the data as long format with all repsonses in <em>one</em> coloumn and then the next columns clarifying the design, time, type, person etc. However the Survey data is not optimal directly. We need to revert the data to both long and wide format.</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="introduction-to-r.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb30-2"><a href="introduction-to-r.html#cb30-2" aria-hidden="true" tabindex="-1"></a>Surveylong <span class="ot">&lt;-</span> Survey <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="introduction-to-r.html#cb30-2" aria-hidden="true" tabindex="-1"></a>Surveylong <span class="ot">&lt;-</span> BuffetSurvey <span class="sc">%&gt;%</span> </span>
 <span id="cb30-3"><a href="introduction-to-r.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(question,answ, <span class="st">`</span><span class="at">Pasta with legumes is visually appealing to me. </span><span class="st">`</span><span class="sc">:</span></span>
 <span id="cb30-4"><a href="introduction-to-r.html#cb30-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">I like the taste of pasta with mushrooms! </span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb30-5"><a href="introduction-to-r.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">answ =</span> answ <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">levels =</span> Surveyscales<span class="sc">$</span>answ), </span>
 <span id="cb30-6"><a href="introduction-to-r.html#cb30-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">answnum =</span> answ <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>())</span>
 <span id="cb30-7"><a href="introduction-to-r.html#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-8"><a href="introduction-to-r.html#cb30-8" aria-hidden="true" tabindex="-1"></a>Surveywide <span class="ot">&lt;-</span> Surveylong <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>answ) <span class="sc">%&gt;%</span> <span class="fu">spread</span>(question,answnum)</span></code></pre></div>
-<p>[MORTEN: Koden ovenfor skal rettes til med den nye Excelfil OG der skal stå noget mere tekst på nedenunder den på hvad det er vi gør. Det skal også forklares at når vi har sætninger som variabel navne, så kan man skrive XXXXXsådan her i R. Hvis det er først gang vi bruger %&gt;% skal dette også forklares]</p>
+<p>The code above does exactly that, with <em>Surveylong</em> and <em>Surveywide</em> as the resulting data sets.</p>
+<p>What is also introduced here is the operator <strong>%&gt;%</strong>. It originates from the <em>dplyr</em>-package inside the <em>tidyverse</em>-package, and is a handy tool for data manipulation. The way it works is, that whatever is written on the <strong>right</strong> side of the operator, will be used as the first argument in the function written on the <strong>left</strong> side of the operator. This means, that x %&gt;% f(y) will result in f(x,y) - or in our case:</p>
+<p>BuffetSurvey %&gt;% gather(question,answ, <code>Pasta with legumes is visually appealing to me.</code>:<code>I like the taste of pasta with mushrooms!</code>) will be equal to: gather(BuffetSurvey,question,answ, <code>Pasta with legumes is visually appealing to me.</code>: <code>I like the taste of pasta with mushrooms!</code>)</p>
+<p>The idea is then to “chain” (or “pipe” as it is also known) %&gt;% together line after line, using different functions in a sequence, which makes the code more readable and often shorter as well.</p>
+<p><strong>gather</strong> will lengthen the data, by stacking the columns we specified on top of each other, resulting in each row being one single answer to one of the 4 questions. The answer will be in the <em>answ</em>-column, the question in the <em>question</em>-column, and the rest of the columns can then be used to e.g. group the data.</p>
+<p><strong>mutate</strong> will add a column to the data as specified, in our case it will add the numerical equivalent of the answers to each question.</p>
+<p><strong>select</strong> will (surprise) select the columns specified, in our case all columns BUT the <em>answ</em>-column (hence the “-” in front of <em>answ</em>.</p>
+<p><strong>spread</strong> will do the opposite as <strong>gather</strong>, and spread one column in several columns depending on what the columns contains. In our case the <em>question</em>-column in spread into 4 columns, one for each question from the survey, with the numerical values of the answers as their values.</p>
+<p>You might have also noticed, that when a variable name contains a space, R needs help understanding that this is indeed a variable. Different symbols are added, and while you CAN write everything just the way R know how to read it, there is an easier way to make sure that everything is written correctly. You can call the variables from the data frame that they originate from, using <strong>“dataframe$”</strong> and then hit TAB. A list of the variables of which the data frame consist will appear, and from this you can choose the right one - always spelled correctly, and the way R knows how the interpret it.</p>
+<p>[JULIUS: Tjek om ovenstående giver mening]</p>
 </div>
 <div id="merge" class="section level4 hasAnchor" number="2.7.1.3">
 <h4><span class="header-section-number">2.7.1.3</span> Merge<a href="introduction-to-r.html#merge" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>For the sake of being able to compare consumption (obtained from buffet data) with liking and motives (obtained from the survey data) these data frames needs to be merged. There are several merge options, here we use left_join() but full_join() and right_join() might more suited in some situations.</p>
-<p>[MORTEN: Du skal forklare forskelle på disse tre funktioner ellers kun bruge en, da det er forvirrende hvad forskellen er]</p>
+<p>For the sake of being able to compare consumption (obtained from buffet data) with liking and motives (obtained from the survey data) these data frames needs to be merged. There are several merge options, here we use left_join() but full_join() and right_join() might more suited in some situations - depending on which data set you want to have appear first, and how you want to merge them.</p>
 <p>If you feel more comfortable with Excel, you can also merge the two data frames in one Excel sheet before importing it to R.</p>
 <div id="adding-survey-to-buffets" class="section level5 hasAnchor" number="2.7.1.3.1">
 <h5><span class="header-section-number">2.7.1.3.1</span> Adding survey to buffets<a href="introduction-to-r.html#adding-survey-to-buffets" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>Merging should be done such that Person and Day in each separate sheet match.
-If you additionally have demographic data (gender, age, etc.) then obviously only Person should match, as the data is constant over Days.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introduction-to-r.html#cb31-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="ot">&lt;-</span> Buffet <span class="sc">%&gt;%</span> </span>
+<p>Merging should be done such that Person and Day in each separate sheet match. If you additionally have demographic data (gender, age, etc.) then obviously only Person should match, as the data is constant over Days.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introduction-to-r.html#cb31-1" aria-hidden="true" tabindex="-1"></a>Buffet_plus_survey <span class="ot">&lt;-</span> BuffetConsumption <span class="sc">%&gt;%</span> </span>
 <span id="cb31-2"><a href="introduction-to-r.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(Surveywide, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;Person&#39;</span>,<span class="st">&#39;Day&#39;</span>))</span></code></pre></div>
-<p>[TILFØJ: Forklaring på koden nedenfor her]</p>
+<p><strong>left_join</strong> checks in <em>Surveywide</em> and <em>BuffetConsumption</em> in columns “Person” and “Day”, and will add rows from <em>Surveywide</em> to <em>BuffetConsumption</em> when values in both columns are the same.</p>
 </div>
 <div id="adding-buffet-to-survey" class="section level5 hasAnchor" number="2.7.1.3.2">
 <h5><span class="header-section-number">2.7.1.3.2</span> Adding buffet to survey<a href="introduction-to-r.html#adding-buffet-to-survey" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>Similarly, merging should be done such that Person and Day match.
-If you additionally have demographic data (gender, age, etc.) then obviously only Person should match, as the data is constant over Days.
-Further, we use the long format of the survey data here.</p>
+<p>Similarly, merging should be done such that Person and Day match. If you additionally have demographic data (gender, age, etc.) then obviously only Person should match, as the data is constant over Days. Further, we use the long format of the survey data here.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="introduction-to-r.html#cb32-1" aria-hidden="true" tabindex="-1"></a>Surveylong_buffet <span class="ot">&lt;-</span> Surveylong <span class="sc">%&gt;%</span> </span>
-<span id="cb32-2"><a href="introduction-to-r.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(Buffet, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;Person&#39;</span>,<span class="st">&#39;Day&#39;</span>))</span></code></pre></div>
+<span id="cb32-2"><a href="introduction-to-r.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(BuffetConsumption, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;Person&#39;</span>,<span class="st">&#39;Day&#39;</span>))</span></code></pre></div>
 <p>Due to not having a total overlap of information, some responses (here for consumption) will be missing. That you can see using the table function.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="introduction-to-r.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(Surveylong_buffet<span class="sc">$</span>Consumption))</span></code></pre></div>
 <pre><code>## 
 ## FALSE 
 ##    60</code></pre>
 <p>[TILFØJ: Forklaring på koderne nedenunder dem OG så skal koderne rettes til så det passer med mine nye Excelnavne]</p>
+<p>[Julius: Forstår ikke hvad der skal vises her, der er ikke nogen NA når jeg kører koden?]</p>
 
 </div>
 </div>

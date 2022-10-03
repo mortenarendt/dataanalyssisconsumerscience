@@ -23,7 +23,7 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-09-30" />
+<meta name="date" content="2022-10-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -291,6 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>[Der skal i alt være load data//import data, view datastructure, histogrammer, fortolkning af disse, cochrans Q test + fortolkning heraf, post hos en eller anden form + fortolkning heraf + PCA]</p>
 <div id="importing-and-looking-at-the-beer-data" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Importing and looking at the beer data<a href="cata-data-check-all-that-apply.html#importing-and-looking-at-the-beer-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The data appear as a part of the data4consumerscience package (see <a href="introduction-to-r.html#import-data-from-r-package">Import data from R-package</a>)</p>
 <p>We first have to import or load the data. Here is the import, remember to change the path for the Excel file to match your own settings:</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="cata-data-check-all-that-apply.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb124-2"><a href="cata-data-check-all-that-apply.html#cb124-2" aria-hidden="true" tabindex="-1"></a>beercata <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;DatasetRbook.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BeerCATA&#39;</span>)</span>

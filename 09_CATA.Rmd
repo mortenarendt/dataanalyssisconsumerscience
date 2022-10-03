@@ -22,6 +22,8 @@ In the CATA section of this book, we will use a data set with Beer. Six differen
 
 ## Importing and looking at the beer data 
 
+The data appear as a part of the data4consumerscience package (see [Import data from R-package])
+
 We first have to import or load the data. Here is the import, remember to change the path for the Excel file to match your own settings:
 
 ```{r}

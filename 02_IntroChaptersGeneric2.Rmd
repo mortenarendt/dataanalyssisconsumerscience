@@ -83,7 +83,7 @@ Use this, if you need to browse for your *.RData file:
 load('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Meal Systems and Technology/data/BuffetData2/BuffetSurveyData.RData')
 ```
 
-[MORTEN: skal vi stadig kalde RData filen dette her? Giver det mening?]
+[MORTEN: skal vi stadig kalde RData filen dette her? Giver det mening?] Ja.
 
 
 ## Distributions of count data
@@ -93,7 +93,7 @@ The table function is good in getting how many observations there are within a g
 Here used on the Survey answers. 
 ```{r}
 table(Surveylong$answ) # across everything
-table(Surveylong$question,Surveylong$answ ) # across question
+table(Surveylong$answ,Surveylong$question) # across question
 ```
 You see that most of the answers are in agreement with question, and that there are no observations in the _Strongly disagree_ category. 
 
@@ -231,7 +231,7 @@ If you think about it, it is pretty many plots, but the ggplot2 functionality fa
 ```{r, fig.height=9}
 Surveylong_buffet %>% 
   filter(!is.na(StationName )) %>% 
-  mutate(question2 = question %>% substr(1,34)) %>% # The label is to long, so lets just represent the first 30 letters.
+  mutate(question2 = question %>% substr(1,34)) %>% # The label is too long, so lets just represent the first 30 letters.
   ggplot(data = .,  aes(answnum,Consumption, color = factor(Day))) +
   geom_point() + 
   stat_smooth(se = F, method = lm) + 

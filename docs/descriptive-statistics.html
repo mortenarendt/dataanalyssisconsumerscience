@@ -23,7 +23,7 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-09-30" />
+<meta name="date" content="2022-10-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -287,7 +287,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Use this if your data is in the same folder as your script:</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="descriptive-statistics.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;iBuffetSurveyData.RData&#39;</span>)</span></code></pre></div>
 <p>Use this, if you need to browse for your *.RData file:</p>
-<p>[MORTEN: skal vi stadig kalde RData filen dette her? Giver det mening?]</p>
+<p>[MORTEN: skal vi stadig kalde RData filen dette her? Giver det mening?] Ja.</p>
 </div>
 <div id="distributions-of-count-data" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Distributions of count data<a href="descriptive-statistics.html#distributions-of-count-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -303,43 +303,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                            21                            32 
 ##             G. Strongly agree 
 ##                            52</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="descriptive-statistics.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Surveylong<span class="sc">$</span>question,Surveylong<span class="sc">$</span>answ ) <span class="co"># across question</span></span></code></pre></div>
-<pre><code>##                                                     
-##                                                      A. Strongly disagree
-##   I like the taste of pasta with legumes!                               0
-##   I like the taste of pasta with mushrooms!                             0
-##   Pasta with legumes is visually appealing to me.                       0
-##   Pasta with mushrooms is visually appealing to me.                     0
-##                                                     
-##                                                      B. Disagree
-##   I like the taste of pasta with legumes!                      1
-##   I like the taste of pasta with mushrooms!                    0
-##   Pasta with legumes is visually appealing to me.              1
-##   Pasta with mushrooms is visually appealing to me.            0
-##                                                     
-##                                                      C. More or less disagree
-##   I like the taste of pasta with legumes!                                   3
-##   I like the taste of pasta with mushrooms!                                 0
-##   Pasta with legumes is visually appealing to me.                           3
-##   Pasta with mushrooms is visually appealing to me.                         0
-##                                                     
-##                                                      D. Neither agree nor disagree
-##   I like the taste of pasta with legumes!                                        2
-##   I like the taste of pasta with mushrooms!                                      0
-##   Pasta with legumes is visually appealing to me.                                3
-##   Pasta with mushrooms is visually appealing to me.                              2
-##                                                     
-##                                                      E. More or less agree
-##   I like the taste of pasta with legumes!                                5
-##   I like the taste of pasta with mushrooms!                              4
-##   Pasta with legumes is visually appealing to me.                        6
-##   Pasta with mushrooms is visually appealing to me.                      6
-##                                                     
-##                                                      F. Agree G. Strongly agree
-##   I like the taste of pasta with legumes!                   8                11
-##   I like the taste of pasta with mushrooms!                11                15
-##   Pasta with legumes is visually appealing to me.           7                10
-##   Pasta with mushrooms is visually appealing to me.         6                16</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="descriptive-statistics.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Surveylong<span class="sc">$</span>answ,Surveylong<span class="sc">$</span>question) <span class="co"># across question</span></span></code></pre></div>
+<pre><code>##                                
+##                                 I like the taste of pasta with legumes! 
+##   A. Strongly disagree                                                 0
+##   B. Disagree                                                          1
+##   C. More or less disagree                                             3
+##   D. Neither agree nor disagree                                        2
+##   E. More or less agree                                                5
+##   F. Agree                                                             8
+##   G. Strongly agree                                                   11
+##                                
+##                                 I like the taste of pasta with mushrooms! 
+##   A. Strongly disagree                                                   0
+##   B. Disagree                                                            0
+##   C. More or less disagree                                               0
+##   D. Neither agree nor disagree                                          0
+##   E. More or less agree                                                  4
+##   F. Agree                                                              11
+##   G. Strongly agree                                                     15
+##                                
+##                                 Pasta with legumes is visually appealing to me. 
+##   A. Strongly disagree                                                         0
+##   B. Disagree                                                                  1
+##   C. More or less disagree                                                     3
+##   D. Neither agree nor disagree                                                3
+##   E. More or less agree                                                        6
+##   F. Agree                                                                     7
+##   G. Strongly agree                                                           10
+##                                
+##                                 Pasta with mushrooms is visually appealing to me. 
+##   A. Strongly disagree                                                           0
+##   B. Disagree                                                                    0
+##   C. More or less disagree                                                       0
+##   D. Neither agree nor disagree                                                  2
+##   E. More or less agree                                                          6
+##   F. Agree                                                                       6
+##   G. Strongly agree                                                             16</code></pre>
 <p>You see that most of the answers are in agreement with question, and that there are no observations in the <em>Strongly disagree</em> category.</p>
 <p>[MORTEN: kan vi lave en anden form for tabel her? Meld gerne ind hvad type data det kunne være?? for den man får ud giver ikke så meget mening set fra vores side. og så skal vi overveje om “tidyverse” er nice to know viden?]</p>
 <p>[MÅSKE: The nice to know part:]</p>

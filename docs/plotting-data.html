@@ -23,7 +23,7 @@
 <meta name="author" content="Morten Arendt Rasmussens" />
 
 
-<meta name="date" content="2022-09-30" />
+<meta name="date" content="2022-10-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -315,7 +315,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 If you think about it, it is pretty many plots, but the ggplot2 functionality facet_wrap() on a long format data frame does it in few lines:</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="plotting-data.html#cb69-1" aria-hidden="true" tabindex="-1"></a>Surveylong_buffet <span class="sc">%&gt;%</span> </span>
 <span id="cb69-2"><a href="plotting-data.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
-<span id="cb69-3"><a href="plotting-data.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question2 =</span> question <span class="sc">%&gt;%</span> <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="co"># The label is to long, so lets just represent the first 30 letters.</span></span>
+<span id="cb69-3"><a href="plotting-data.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question2 =</span> question <span class="sc">%&gt;%</span> <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="co"># The label is too long, so lets just represent the first 30 letters.</span></span>
 <span id="cb69-4"><a href="plotting-data.html#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> .,  <span class="fu">aes</span>(answnum,Consumption, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span></span>
 <span id="cb69-5"><a href="plotting-data.html#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb69-6"><a href="plotting-data.html#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
