@@ -1,0 +1,84 @@
+
+# Plotting data
+
+Visualizing data is of utmost importance. 
+Especially, looking at the raw data will enable you to point towards outliers and tendencies which may be lost when representing the data with descriptive statistics. 
+
+ggplot2 is a wide spread library for plotting data and used by a lot of users. Check it out on videos
+
+```{r}
+vembedr::embed_youtube("https://www.youtube.com/watch?v=HPJn1CMvtmI")
+```
+
+
+There is a very condensed cheat-sheet for ggplot2 on [RStudios webpage](https://www.rstudio.com/embed/resources/cheatsheets/)
+s
+
+```{r}
+library(data4consumerscience)
+data(chili)
+data(pasta)
+# we subset to only have the "Pasta with legumes" data. 
+pasta <- pasta[pasta$StationName=='Pasta with legumes',]
+```
+
+To show the total consumption a histogram is useful
+
+```{r}
+ggplot(data = chili, aes(Totalg)) + geom_histogram()
+```
+
+Here there is a clear bi-modal distribution with an upper tail. 
+
+These observations comes from 5 different treatments, 27 different judges and at 10 test days. We can infer this using a boxplot with jittered raw data on top. 
+
+```{r}
+ggplot(data = chili, aes(Treatment,Totalg)) + 
+  geom_boxplot() + geom_jitter()
+```
+
+```{r}
+ggplot(data = chili, aes(factor(Judge),Totalg)) + 
+  geom_boxplot() + geom_jitter()
+```
+
+None of these explains the bi-modality. 
+However, we can combine test-day information, which essentially is reflecting whether it is first or second trial splitting at day 5: (TestDay>5)
+
+```{r}
+ggplot(data = chili, aes(factor(Judge),Totalg, color = factor(TestDay>5))) + 
+  geom_boxplot(aes(group = factor(Judge))) + geom_jitter()
+```
+
+
+## Scatter plots
+
+Lets plot the consumption (Totalg) as a function of LikingAppearance, and add a tendency line: 
+
+```{r}
+ggplot(data = chili, aes(LikingAppearance,Totalg)) + 
+  geom_point() + stat_smooth()
+```
+Now, lets funk this up by splitting into test-days and get colors according to product: 
+
+```{r}
+ggplot(data = chili, aes(Hunger,Totalg, color = Treatment)) + 
+  geom_point() + stat_smooth(se = F, method = lm) + facet_wrap(~ TestDay>5)
+```
+
+## How to export plots 
+
+The plots shown in the _Plots_ pane (lower right of RStudio) can be saved using the _Export_ bottom. 
+
+You can also save the plots to a file using the ggsave() function. 
+If you run ggsave() without specifying which plot to export, it will use the latest. 
+You can also directly specify the plot to export: 
+
+```{r, fig.height=9, eval = F}
+myplot <- ggplot(data = chili, aes(Hunger,Totalg, color = Treatment)) + 
+  geom_point() + stat_smooth(se = F, method = lm) + facet_wrap(~ TestDay>5)
+
+ggsave('./data/YourFolderForNicePlots/hunger_vs_consumption.pdf',myplot)
+```
+
+ggsave() supports different formats (.png, .tiff, .pdf,...) and further allows for editing the size (height = , width = ). 

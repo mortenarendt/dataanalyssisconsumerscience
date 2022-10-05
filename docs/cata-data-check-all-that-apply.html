@@ -20,10 +20,10 @@
   
   
 
-<meta name="author" content="Morten Arendt Rasmussens" />
+<meta name="author" content="Morten Arendt Rasmussen" />
 
 
-<meta name="date" content="2022-10-03" />
+<meta name="date" content="2022-10-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -136,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Data Analysis in R for Consumer Science</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to the book</a></li>
 <li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a></li>
@@ -158,22 +159,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-edit-and-merge-in-r"><i class="fa fa-check"></i><b>2.7.1</b> Import, edit and merge in R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introduction-to-pca.html"><a href="introduction-to-pca.html"><i class="fa fa-check"></i><b>3</b> Introduction to PCA</a></li>
-<li class="chapter" data-level="4" data-path="introduction-linear-and-mixed-models.html"><a href="introduction-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>4</b> Introduction linear and mixed models</a></li>
-<li class="chapter" data-level="5" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>5</b> Libraries</a></li>
-<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive statistics</a>
+<li class="chapter" data-level="3" data-path="introduction-linear-and-mixed-models.html"><a href="introduction-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>3</b> Introduction linear and mixed models</a></li>
+<li class="chapter" data-level="4" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>4</b> Libraries</a></li>
+<li class="chapter" data-level="5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>5</b> Descriptive statistics</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#loading-data"><i class="fa fa-check"></i><b>6.1</b> Loading data</a></li>
-<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>6.2</b> Distributions of count data</a>
+<li class="chapter" data-level="5.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>5.1</b> Descriptives for a continouos variable</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>6.2.1</b> Descriptives for a continouos variable</a></li>
+<li class="chapter" data-level="5.1.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-median"><i class="fa fa-check"></i><b>5.1.1</b> Mean / median</a></li>
+<li class="chapter" data-level="5.1.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>5.1.2</b> Variance</a></li>
+<li class="chapter" data-level="5.1.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>5.1.3</b> Standard deviation</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>5.2</b> Distributions of count data</a></li>
+<li class="chapter" data-level="5.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#aggregate"><i class="fa fa-check"></i><b>5.3</b> Aggregate</a></li>
+<li class="chapter" data-level="5.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tidyverse"><i class="fa fa-check"></i><b>5.4</b> Tidyverse</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>7</b> Plotting data</a>
+<li class="chapter" data-level="6" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>6</b> Plotting data</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>7.1</b> Scatter plots</a></li>
-<li class="chapter" data-level="7.2" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>7.2</b> How to export plots</a></li>
+<li class="chapter" data-level="6.1" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>6.1</b> Scatter plots</a></li>
+<li class="chapter" data-level="6.2" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>6.2</b> How to export plots</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html"><i class="fa fa-check"></i><b>7</b> Introduction to PCA and multivariate data</a></li>
 <li class="chapter" data-level="8" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>8</b> PCA on survey answers</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>8.1</b> Bi-plot</a>
@@ -293,18 +298,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.1</span> Importing and looking at the beer data<a href="cata-data-check-all-that-apply.html#importing-and-looking-at-the-beer-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The data appear as a part of the data4consumerscience package (see <a href="introduction-to-r.html#import-data-from-r-package">Import data from R-package</a>)</p>
 <p>We first have to import or load the data. Here is the import, remember to change the path for the Excel file to match your own settings:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="cata-data-check-all-that-apply.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb124-2"><a href="cata-data-check-all-that-apply.html#cb124-2" aria-hidden="true" tabindex="-1"></a>beercata <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;DatasetRbook.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BeerCATA&#39;</span>)</span>
-<span id="cb124-3"><a href="cata-data-check-all-that-apply.html#cb124-3" aria-hidden="true" tabindex="-1"></a>BeerBackground <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;DatasetRbook.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BeerBackground&#39;</span>)</span>
-<span id="cb124-4"><a href="cata-data-check-all-that-apply.html#cb124-4" aria-hidden="true" tabindex="-1"></a>beerliking <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;DatasetRbook.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BeerLiking&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="cata-data-check-all-that-apply.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb137-2"><a href="cata-data-check-all-that-apply.html#cb137-2" aria-hidden="true" tabindex="-1"></a>beercata <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;DatasetRbook.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BeerCATA&#39;</span>)</span>
+<span id="cb137-3"><a href="cata-data-check-all-that-apply.html#cb137-3" aria-hidden="true" tabindex="-1"></a>BeerBackground <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;DatasetRbook.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BeerBackground&#39;</span>)</span>
+<span id="cb137-4"><a href="cata-data-check-all-that-apply.html#cb137-4" aria-hidden="true" tabindex="-1"></a>beerliking <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;DatasetRbook.xlsx&#39;</span>,<span class="at">sheet =</span> <span class="st">&#39;BeerLiking&#39;</span>)</span></code></pre></div>
 <p>[PAKKEN data4consumerscience FINDES IKKE?]
 [BODIL: liking datasæt skal sættes ind i Excel filen i Dropbox]</p>
 <p>The packages you need to run the analyses are activated with the library function and the package name. If the package is not installed, please do this first:</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="cata-data-check-all-that-apply.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb125-2"><a href="cata-data-check-all-that-apply.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb125-3"><a href="cata-data-check-all-that-apply.html#cb125-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-4"><a href="cata-data-check-all-that-apply.html#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span>
-<span id="cb125-5"><a href="cata-data-check-all-that-apply.html#cb125-5" aria-hidden="true" tabindex="-1"></a>beercata <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="cata-data-check-all-that-apply.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb138-2"><a href="cata-data-check-all-that-apply.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb138-3"><a href="cata-data-check-all-that-apply.html#cb138-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-4"><a href="cata-data-check-all-that-apply.html#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span>
+<span id="cb138-5"><a href="cata-data-check-all-that-apply.html#cb138-5" aria-hidden="true" tabindex="-1"></a>beercata <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>##   Consumer.ID      Beer S_Flowers S_Beans S_Intense berries S_Caramel S_Nuts
 ## 1         a01 Wheat IPA         0       0                 0         0      1
 ## 2         a02 Wheat IPA         0       0                 0         0      0
@@ -340,13 +345,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4         0        0
 ## 5         0        0
 ## 6         0        0</code></pre>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="cata-data-check-all-that-apply.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(beercata<span class="sc">$</span>Beer) </span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="cata-data-check-all-that-apply.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(beercata<span class="sc">$</span>Beer) </span></code></pre></div>
 <pre><code>## 
 ##     Brown Ale      NY Lager    Porse Bock Ravnsborg Red    River Beer 
 ##           160           160           160           160           160 
 ##     Wheat IPA 
 ##           160</code></pre>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="cata-data-check-all-that-apply.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(beercata<span class="sc">$</span>Consumer.ID))</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="cata-data-check-all-that-apply.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(beercata<span class="sc">$</span>Consumer.ID))</span></code></pre></div>
 <pre><code>## [1] 160</code></pre>
 <p>From the above functions, you can see the data structure. Using the str() function will give you all the variable names. The lentgh() function is counting the number of participants as we have asked for the Consumer.ID variable in the dataset beercata.</p>
 </div>
@@ -359,19 +364,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>[Put in the pictures from Rinnan et al 2015]</p>
 <p>The agglomerated version is computed by:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="cata-data-check-all-that-apply.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Questions we want answer using these data</span></span>
-<span id="cb131-2"><a href="cata-data-check-all-that-apply.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="co"># - Are the products different / similar? </span></span>
-<span id="cb131-3"><a href="cata-data-check-all-that-apply.html#cb131-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># - Which attributes drives discrimination? </span></span>
-<span id="cb131-4"><a href="cata-data-check-all-that-apply.html#cb131-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># - Are there any judges who are really of? </span></span>
-<span id="cb131-5"><a href="cata-data-check-all-that-apply.html#cb131-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb131-6"><a href="cata-data-check-all-that-apply.html#cb131-6" aria-hidden="true" tabindex="-1"></a>beercatasum <span class="ot">&lt;-</span> beercata <span class="sc">%&gt;%</span> </span>
-<span id="cb131-7"><a href="cata-data-check-all-that-apply.html#cb131-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(attrib, val, S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
-<span id="cb131-8"><a href="cata-data-check-all-that-apply.html#cb131-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Beer,attrib) <span class="sc">%&gt;%</span></span>
-<span id="cb131-9"><a href="cata-data-check-all-that-apply.html#cb131-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">sum</span>(val)) <span class="sc">%&gt;%</span> </span>
-<span id="cb131-10"><a href="cata-data-check-all-that-apply.html#cb131-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(attrib,n)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="cata-data-check-all-that-apply.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Questions we want answer using these data</span></span>
+<span id="cb144-2"><a href="cata-data-check-all-that-apply.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="co"># - Are the products different / similar? </span></span>
+<span id="cb144-3"><a href="cata-data-check-all-that-apply.html#cb144-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># - Which attributes drives discrimination? </span></span>
+<span id="cb144-4"><a href="cata-data-check-all-that-apply.html#cb144-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># - Are there any judges who are really of? </span></span>
+<span id="cb144-5"><a href="cata-data-check-all-that-apply.html#cb144-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb144-6"><a href="cata-data-check-all-that-apply.html#cb144-6" aria-hidden="true" tabindex="-1"></a>beercatasum <span class="ot">&lt;-</span> beercata <span class="sc">%&gt;%</span> </span>
+<span id="cb144-7"><a href="cata-data-check-all-that-apply.html#cb144-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(attrib, val, S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
+<span id="cb144-8"><a href="cata-data-check-all-that-apply.html#cb144-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Beer,attrib) <span class="sc">%&gt;%</span></span>
+<span id="cb144-9"><a href="cata-data-check-all-that-apply.html#cb144-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">sum</span>(val)) <span class="sc">%&gt;%</span> </span>
+<span id="cb144-10"><a href="cata-data-check-all-that-apply.html#cb144-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(attrib,n)</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;Beer&#39;. You can override using the
 ## `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="cata-data-check-all-that-apply.html#cb133-1" aria-hidden="true" tabindex="-1"></a>beercatasum</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="cata-data-check-all-that-apply.html#cb146-1" aria-hidden="true" tabindex="-1"></a>beercatasum</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 28
 ## # Groups:   Beer [6]
 ##   Beer   S_Aro…¹ S_Beans S_Ber…² S_Bit…³ S_Car…⁴ S_Cit…⁵ S_Des…⁶ S_Dri…⁷ S_Flo…⁸
@@ -392,13 +397,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We call our new dataset <em>beercatasum</em>. Gather all the variables from <em>S_Flower</em> to <em>S_Vinous</em> and call them <em>attrib</em>. Group all data by the <em>Beer</em> variable (sample name column) and <em>attrib</em> (all of our CATA variables), then sum up the values (val) and call them <em>n</em>. Make a table of <em>attrib</em> and <em>n</em>. Save it all as the new name <em>beercatasum</em>. Then finally shown us the new data set.</p>
 <p>[MORTEN: er det korrekt fortolket af mig?]</p>
 <p>… and visualized by for instance a barplot.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="cata-data-check-all-that-apply.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary counts over attribute</span></span>
-<span id="cb135-2"><a href="cata-data-check-all-that-apply.html#cb135-2" aria-hidden="true" tabindex="-1"></a>beercatasum <span class="sc">%&gt;%</span> </span>
-<span id="cb135-3"><a href="cata-data-check-all-that-apply.html#cb135-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(attrib, n, S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
-<span id="cb135-4"><a href="cata-data-check-all-that-apply.html#cb135-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(attrib,n, <span class="at">fill =</span> Beer)) <span class="sc">+</span> </span>
-<span id="cb135-5"><a href="cata-data-check-all-that-apply.html#cb135-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span> </span>
-<span id="cb135-6"><a href="cata-data-check-all-that-apply.html#cb135-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="cata-data-check-all-that-apply.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary counts over attribute</span></span>
+<span id="cb148-2"><a href="cata-data-check-all-that-apply.html#cb148-2" aria-hidden="true" tabindex="-1"></a>beercatasum <span class="sc">%&gt;%</span> </span>
+<span id="cb148-3"><a href="cata-data-check-all-that-apply.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(attrib, n, S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
+<span id="cb148-4"><a href="cata-data-check-all-that-apply.html#cb148-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(attrib,n, <span class="at">fill =</span> Beer)) <span class="sc">+</span> </span>
+<span id="cb148-5"><a href="cata-data-check-all-that-apply.html#cb148-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span> </span>
+<span id="cb148-6"><a href="cata-data-check-all-that-apply.html#cb148-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
 <p>For more plot types go to the Chapter on “Plotting data”.</p>
 </div>
 <div id="cochrans-q-test" class="section level2 hasAnchor" number="11.3">
@@ -406,7 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Cochran’s Q test is a statistical test for the comparison of several products, where the response is binary, and there is repeated responses across several judges. We need a package (<em>RVAideeeeMemoire</em>).The data needs to be structured as the <em>beercata</em> is.</p>
 <p>We can only run the model independently for one variable at a time.</p>
 <p>For one response variable: <em>S_Flowers</em></p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="cata-data-check-all-that-apply.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RVAideMemoire)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="cata-data-check-all-that-apply.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RVAideMemoire)</span></code></pre></div>
 <pre><code>## *** Package RVAideMemoire v 0.9-81-2 ***</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;RVAideMemoire&#39;</code></pre>
@@ -416,10 +421,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following object is masked from &#39;package:broom&#39;:
 ## 
 ##     bootstrap</code></pre>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="cata-data-check-all-that-apply.html#cb141-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">cochran.qtest</span>(S_Flowers <span class="sc">~</span> Beer <span class="sc">|</span> Consumer.ID,</span>
-<span id="cb141-2"><a href="cata-data-check-all-that-apply.html#cb141-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> beercata)</span>
-<span id="cb141-3"><a href="cata-data-check-all-that-apply.html#cb141-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb141-4"><a href="cata-data-check-all-that-apply.html#cb141-4" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="cata-data-check-all-that-apply.html#cb154-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">cochran.qtest</span>(S_Flowers <span class="sc">~</span> Beer <span class="sc">|</span> Consumer.ID,</span>
+<span id="cb154-2"><a href="cata-data-check-all-that-apply.html#cb154-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> beercata)</span>
+<span id="cb154-3"><a href="cata-data-check-all-that-apply.html#cb154-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-4"><a href="cata-data-check-all-that-apply.html#cb154-4" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
 <pre><code>## 
 ##  Cochran&#39;s Q test
 ## 
@@ -436,15 +441,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="post-hoc-contrasts" class="section level3 hasAnchor" number="11.3.1">
 <h3><span class="header-section-number">11.3.1</span> Post hoc contrasts<a href="cata-data-check-all-that-apply.html#post-hoc-contrasts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As we observe differences based on this attribute, we pursue the question on which products stick out? And are there products which are similar? This is done by pairwise comparisons, for this we need the package <em>rcompanion</em>:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="cata-data-check-all-that-apply.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rcompanion)</span>
-<span id="cb143-2"><a href="cata-data-check-all-that-apply.html#cb143-2" aria-hidden="true" tabindex="-1"></a>PT <span class="ot">=</span> <span class="fu">pairwiseMcnemar</span>(S_Flowers <span class="sc">~</span> Beer <span class="sc">|</span> Consumer.ID,</span>
-<span id="cb143-3"><a href="cata-data-check-all-that-apply.html#cb143-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data   =</span> beercata,</span>
-<span id="cb143-4"><a href="cata-data-check-all-that-apply.html#cb143-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">test   =</span> <span class="st">&quot;permutation&quot;</span>,</span>
-<span id="cb143-5"><a href="cata-data-check-all-that-apply.html#cb143-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method =</span> <span class="st">&quot;fdr&quot;</span>,</span>
-<span id="cb143-6"><a href="cata-data-check-all-that-apply.html#cb143-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb143-7"><a href="cata-data-check-all-that-apply.html#cb143-7" aria-hidden="true" tabindex="-1"></a>PT<span class="sc">$</span>Pairwise <span class="sc">%&gt;%</span> </span>
-<span id="cb143-8"><a href="cata-data-check-all-that-apply.html#cb143-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span><span class="fu">abs</span>(<span class="fu">as.numeric</span>(Z))) <span class="sc">%&gt;%</span> </span>
-<span id="cb143-9"><a href="cata-data-check-all-that-apply.html#cb143-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="cata-data-check-all-that-apply.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rcompanion)</span>
+<span id="cb156-2"><a href="cata-data-check-all-that-apply.html#cb156-2" aria-hidden="true" tabindex="-1"></a>PT <span class="ot">=</span> <span class="fu">pairwiseMcnemar</span>(S_Flowers <span class="sc">~</span> Beer <span class="sc">|</span> Consumer.ID,</span>
+<span id="cb156-3"><a href="cata-data-check-all-that-apply.html#cb156-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data   =</span> beercata,</span>
+<span id="cb156-4"><a href="cata-data-check-all-that-apply.html#cb156-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">test   =</span> <span class="st">&quot;permutation&quot;</span>,</span>
+<span id="cb156-5"><a href="cata-data-check-all-that-apply.html#cb156-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method =</span> <span class="st">&quot;fdr&quot;</span>,</span>
+<span id="cb156-6"><a href="cata-data-check-all-that-apply.html#cb156-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb156-7"><a href="cata-data-check-all-that-apply.html#cb156-7" aria-hidden="true" tabindex="-1"></a>PT<span class="sc">$</span>Pairwise <span class="sc">%&gt;%</span> </span>
+<span id="cb156-8"><a href="cata-data-check-all-that-apply.html#cb156-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span><span class="fu">abs</span>(<span class="fu">as.numeric</span>(Z))) <span class="sc">%&gt;%</span> </span>
+<span id="cb156-9"><a href="cata-data-check-all-that-apply.html#cb156-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span></code></pre></div>
 <pre><code>##                        Comparison      Z  p.value p.adjust
 ## 1        Brown Ale - NY Lager = 0  -6.48 9.13e-11 1.37e-09
 ## 2       Brown Ale - Wheat IPA = 0  -5.86 4.71e-09 3.53e-08
@@ -468,22 +473,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="for-all-attributes-in-one-run-nice-to-know" class="section level3 hasAnchor" number="11.3.2">
 <h3><span class="header-section-number">11.3.2</span> For all attributes in one run (nice to know)<a href="cata-data-check-all-that-apply.html#for-all-attributes-in-one-run-nice-to-know" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We use the packages <em>tidyverse</em> and <em>broom</em> for this, but need a function capable of handling Cochran’s Q-test outputs.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="cata-data-check-all-that-apply.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb145-2"><a href="cata-data-check-all-that-apply.html#cb145-2" aria-hidden="true" tabindex="-1"></a>tidy.RVtest <span class="ot">&lt;-</span> <span class="cf">function</span>(m){</span>
-<span id="cb145-3"><a href="cata-data-check-all-that-apply.html#cb145-3" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">statistic =</span> m<span class="sc">$</span>statistic,<span class="at">df =</span> m<span class="sc">$</span>parameter,</span>
-<span id="cb145-4"><a href="cata-data-check-all-that-apply.html#cb145-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">p.value=</span> m<span class="sc">$</span>p.value,</span>
-<span id="cb145-5"><a href="cata-data-check-all-that-apply.html#cb145-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">method =</span> m<span class="sc">$</span>method.test)</span>
-<span id="cb145-6"><a href="cata-data-check-all-that-apply.html#cb145-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(r)</span>
-<span id="cb145-7"><a href="cata-data-check-all-that-apply.html#cb145-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb145-8"><a href="cata-data-check-all-that-apply.html#cb145-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb145-9"><a href="cata-data-check-all-that-apply.html#cb145-9" aria-hidden="true" tabindex="-1"></a>tb_cochran <span class="ot">&lt;-</span> beercata <span class="sc">%&gt;%</span> </span>
-<span id="cb145-10"><a href="cata-data-check-all-that-apply.html#cb145-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(attrib, val, S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
-<span id="cb145-11"><a href="cata-data-check-all-that-apply.html#cb145-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(attrib) <span class="sc">%&gt;%</span></span>
-<span id="cb145-12"><a href="cata-data-check-all-that-apply.html#cb145-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">cochran.qtest</span>(val <span class="sc">~</span> Beer <span class="sc">|</span> Consumer.ID,</span>
-<span id="cb145-13"><a href="cata-data-check-all-that-apply.html#cb145-13" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> .) <span class="sc">%&gt;%</span> tidy)</span>
-<span id="cb145-14"><a href="cata-data-check-all-that-apply.html#cb145-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb145-15"><a href="cata-data-check-all-that-apply.html#cb145-15" aria-hidden="true" tabindex="-1"></a>tb_cochran <span class="sc">%&gt;%</span> </span>
-<span id="cb145-16"><a href="cata-data-check-all-that-apply.html#cb145-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value) </span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="cata-data-check-all-that-apply.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb158-2"><a href="cata-data-check-all-that-apply.html#cb158-2" aria-hidden="true" tabindex="-1"></a>tidy.RVtest <span class="ot">&lt;-</span> <span class="cf">function</span>(m){</span>
+<span id="cb158-3"><a href="cata-data-check-all-that-apply.html#cb158-3" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">statistic =</span> m<span class="sc">$</span>statistic,<span class="at">df =</span> m<span class="sc">$</span>parameter,</span>
+<span id="cb158-4"><a href="cata-data-check-all-that-apply.html#cb158-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">p.value=</span> m<span class="sc">$</span>p.value,</span>
+<span id="cb158-5"><a href="cata-data-check-all-that-apply.html#cb158-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">method =</span> m<span class="sc">$</span>method.test)</span>
+<span id="cb158-6"><a href="cata-data-check-all-that-apply.html#cb158-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(r)</span>
+<span id="cb158-7"><a href="cata-data-check-all-that-apply.html#cb158-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb158-8"><a href="cata-data-check-all-that-apply.html#cb158-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-9"><a href="cata-data-check-all-that-apply.html#cb158-9" aria-hidden="true" tabindex="-1"></a>tb_cochran <span class="ot">&lt;-</span> beercata <span class="sc">%&gt;%</span> </span>
+<span id="cb158-10"><a href="cata-data-check-all-that-apply.html#cb158-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(attrib, val, S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
+<span id="cb158-11"><a href="cata-data-check-all-that-apply.html#cb158-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(attrib) <span class="sc">%&gt;%</span></span>
+<span id="cb158-12"><a href="cata-data-check-all-that-apply.html#cb158-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">cochran.qtest</span>(val <span class="sc">~</span> Beer <span class="sc">|</span> Consumer.ID,</span>
+<span id="cb158-13"><a href="cata-data-check-all-that-apply.html#cb158-13" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> .) <span class="sc">%&gt;%</span> tidy)</span>
+<span id="cb158-14"><a href="cata-data-check-all-that-apply.html#cb158-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-15"><a href="cata-data-check-all-that-apply.html#cb158-15" aria-hidden="true" tabindex="-1"></a>tb_cochran <span class="sc">%&gt;%</span> </span>
+<span id="cb158-16"><a href="cata-data-check-all-that-apply.html#cb158-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value) </span></code></pre></div>
 <pre><code>## # A tibble: 27 × 5
 ## # Groups:   attrib [27]
 ##    attrib         statistic    df  p.value method          
@@ -509,9 +514,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For an introduction PCA, please go to the Chapter “Introduction to PCA” in the first part of the book.</p>
 <p>A PCA on the agglomerated CATA counts will reveal the attributes associated with the individual products:</p>
 <p>[MANGLER der ikke hvilken pakke man skal installere?]</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="cata-data-check-all-that-apply.html#cb147-1" aria-hidden="true" tabindex="-1"></a>mdlPCA <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(beercatasum[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">scale. =</span> T)</span>
-<span id="cb147-2"><a href="cata-data-check-all-that-apply.html#cb147-2" aria-hidden="true" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(mdlPCA, <span class="at">labels =</span> beercatasum<span class="sc">$</span>Beer)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="cata-data-check-all-that-apply.html#cb160-1" aria-hidden="true" tabindex="-1"></a>mdlPCA <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(beercatasum[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">scale. =</span> T)</span>
+<span id="cb160-2"><a href="cata-data-check-all-that-apply.html#cb160-2" aria-hidden="true" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(mdlPCA, <span class="at">labels =</span> beercatasum<span class="sc">$</span>Beer)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
 <p>[MORTEN: Forklaing på koden]</p>
 <p>The attributes Bean, Caramel, Warming, Aromatic etc is associated to the beer <em>Brown ale</em>, while Berrie, Dessert, Pungent, etc. is characteristic of <em>Wheat IPA</em></p>
 <p>[BOM: Add some more narrative]</p>

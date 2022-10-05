@@ -20,10 +20,10 @@
   
   
 
-<meta name="author" content="Morten Arendt Rasmussens" />
+<meta name="author" content="Morten Arendt Rasmussen" />
 
 
-<meta name="date" content="2022-10-03" />
+<meta name="date" content="2022-10-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -136,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Data Analysis in R for Consumer Science</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to the book</a></li>
 <li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a></li>
@@ -158,22 +159,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-edit-and-merge-in-r"><i class="fa fa-check"></i><b>2.7.1</b> Import, edit and merge in R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introduction-to-pca.html"><a href="introduction-to-pca.html"><i class="fa fa-check"></i><b>3</b> Introduction to PCA</a></li>
-<li class="chapter" data-level="4" data-path="introduction-linear-and-mixed-models.html"><a href="introduction-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>4</b> Introduction linear and mixed models</a></li>
-<li class="chapter" data-level="5" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>5</b> Libraries</a></li>
-<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive statistics</a>
+<li class="chapter" data-level="3" data-path="introduction-linear-and-mixed-models.html"><a href="introduction-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>3</b> Introduction linear and mixed models</a></li>
+<li class="chapter" data-level="4" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>4</b> Libraries</a></li>
+<li class="chapter" data-level="5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>5</b> Descriptive statistics</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#loading-data"><i class="fa fa-check"></i><b>6.1</b> Loading data</a></li>
-<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>6.2</b> Distributions of count data</a>
+<li class="chapter" data-level="5.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>5.1</b> Descriptives for a continouos variable</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>6.2.1</b> Descriptives for a continouos variable</a></li>
+<li class="chapter" data-level="5.1.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-median"><i class="fa fa-check"></i><b>5.1.1</b> Mean / median</a></li>
+<li class="chapter" data-level="5.1.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>5.1.2</b> Variance</a></li>
+<li class="chapter" data-level="5.1.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>5.1.3</b> Standard deviation</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>5.2</b> Distributions of count data</a></li>
+<li class="chapter" data-level="5.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#aggregate"><i class="fa fa-check"></i><b>5.3</b> Aggregate</a></li>
+<li class="chapter" data-level="5.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tidyverse"><i class="fa fa-check"></i><b>5.4</b> Tidyverse</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>7</b> Plotting data</a>
+<li class="chapter" data-level="6" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>6</b> Plotting data</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>7.1</b> Scatter plots</a></li>
-<li class="chapter" data-level="7.2" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>7.2</b> How to export plots</a></li>
+<li class="chapter" data-level="6.1" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>6.1</b> Scatter plots</a></li>
+<li class="chapter" data-level="6.2" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>6.2</b> How to export plots</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html"><i class="fa fa-check"></i><b>7</b> Introduction to PCA and multivariate data</a></li>
 <li class="chapter" data-level="8" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>8</b> PCA on survey answers</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>8.1</b> Bi-plot</a>
@@ -280,12 +285,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 23</span> Structured Equation Modelling<a href="structured-equation-modelling.html#structured-equation-modelling" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="example---theory-of-planned-behaviour" class="section level2 hasAnchor" number="23.1">
 <h2><span class="header-section-number">23.1</span> Example - Theory of Planned Behaviour<a href="structured-equation-modelling.html#example---theory-of-planned-behaviour" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="structured-equation-modelling.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="structured-equation-modelling.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <div id="plsda-cataon-cata-and-liking" class="section level3 hasAnchor" number="23.1.1">
 <h3><span class="header-section-number">23.1.1</span> PLSDA (CATA??)on CATA and liking??<a href="structured-equation-modelling.html#plsda-cataon-cata-and-liking" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>[This needs more love. Skal vente til 2023! hvordan får vi det ud af bogen så?]</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="structured-equation-modelling.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="structured-equation-modelling.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span></code></pre></div>
 <pre><code>## Loading required package: lattice</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;caret&#39;</code></pre>
@@ -295,86 +300,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following object is masked from &#39;package:purrr&#39;:
 ## 
 ##     lift</code></pre>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="structured-equation-modelling.html#cb200-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">plsda</span>(<span class="fu">data.frame</span>(beercata[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>]),<span class="fu">factor</span>(beercata<span class="sc">$</span>Beer),<span class="at">ncomp =</span> <span class="dv">3</span>)</span>
-<span id="cb200-2"><a href="structured-equation-modelling.html#cb200-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-3"><a href="structured-equation-modelling.html#cb200-3" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> mdl<span class="sc">$</span>scores <span class="sc">%&gt;%</span> </span>
-<span id="cb200-4"><a href="structured-equation-modelling.html#cb200-4" aria-hidden="true" tabindex="-1"></a>  unclass <span class="sc">%&gt;%</span> </span>
-<span id="cb200-5"><a href="structured-equation-modelling.html#cb200-5" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span> </span>
-<span id="cb200-6"><a href="structured-equation-modelling.html#cb200-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(beercata)</span>
-<span id="cb200-7"><a href="structured-equation-modelling.html#cb200-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-8"><a href="structured-equation-modelling.html#cb200-8" aria-hidden="true" tabindex="-1"></a>loadings <span class="ot">&lt;-</span> mdl<span class="sc">$</span>loadings <span class="sc">%&gt;%</span> </span>
-<span id="cb200-9"><a href="structured-equation-modelling.html#cb200-9" aria-hidden="true" tabindex="-1"></a>  unclass <span class="sc">%&gt;%</span> </span>
-<span id="cb200-10"><a href="structured-equation-modelling.html#cb200-10" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span> </span>
-<span id="cb200-11"><a href="structured-equation-modelling.html#cb200-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">&#39;attrib&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb200-12"><a href="structured-equation-modelling.html#cb200-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">attrib2 =</span> <span class="fu">substr</span>(attrib,<span class="dv">3</span>,<span class="dv">50</span>)) <span class="co"># lets remove the S_</span></span>
-<span id="cb200-13"><a href="structured-equation-modelling.html#cb200-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-14"><a href="structured-equation-modelling.html#cb200-14" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> loadings, <span class="fu">aes</span>(<span class="st">`</span><span class="at">Comp 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp 2</span><span class="st">`</span>, <span class="at">label =</span> attrib2)) <span class="sc">+</span> </span>
-<span id="cb200-15"><a href="structured-equation-modelling.html#cb200-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point() + </span></span>
-<span id="cb200-16"><a href="structured-equation-modelling.html#cb200-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>()</span>
-<span id="cb200-17"><a href="structured-equation-modelling.html#cb200-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-18"><a href="structured-equation-modelling.html#cb200-18" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> scores, <span class="fu">aes</span>(<span class="st">`</span><span class="at">Comp 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp 2</span><span class="st">`</span>, <span class="at">color =</span> Beer)) <span class="sc">+</span> </span>
-<span id="cb200-19"><a href="structured-equation-modelling.html#cb200-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point() + </span></span>
-<span id="cb200-20"><a href="structured-equation-modelling.html#cb200-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>(<span class="at">level =</span> <span class="fl">0.5</span>)</span>
-<span id="cb200-21"><a href="structured-equation-modelling.html#cb200-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-22"><a href="structured-equation-modelling.html#cb200-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="structured-equation-modelling.html#cb213-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">plsda</span>(<span class="fu">data.frame</span>(beercata[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>]),<span class="fu">factor</span>(beercata<span class="sc">$</span>Beer),<span class="at">ncomp =</span> <span class="dv">3</span>)</span>
+<span id="cb213-2"><a href="structured-equation-modelling.html#cb213-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb213-3"><a href="structured-equation-modelling.html#cb213-3" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> mdl<span class="sc">$</span>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb213-4"><a href="structured-equation-modelling.html#cb213-4" aria-hidden="true" tabindex="-1"></a>  unclass <span class="sc">%&gt;%</span> </span>
+<span id="cb213-5"><a href="structured-equation-modelling.html#cb213-5" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span> </span>
+<span id="cb213-6"><a href="structured-equation-modelling.html#cb213-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(beercata)</span>
+<span id="cb213-7"><a href="structured-equation-modelling.html#cb213-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb213-8"><a href="structured-equation-modelling.html#cb213-8" aria-hidden="true" tabindex="-1"></a>loadings <span class="ot">&lt;-</span> mdl<span class="sc">$</span>loadings <span class="sc">%&gt;%</span> </span>
+<span id="cb213-9"><a href="structured-equation-modelling.html#cb213-9" aria-hidden="true" tabindex="-1"></a>  unclass <span class="sc">%&gt;%</span> </span>
+<span id="cb213-10"><a href="structured-equation-modelling.html#cb213-10" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span> </span>
+<span id="cb213-11"><a href="structured-equation-modelling.html#cb213-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">&#39;attrib&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb213-12"><a href="structured-equation-modelling.html#cb213-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">attrib2 =</span> <span class="fu">substr</span>(attrib,<span class="dv">3</span>,<span class="dv">50</span>)) <span class="co"># lets remove the S_</span></span>
+<span id="cb213-13"><a href="structured-equation-modelling.html#cb213-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb213-14"><a href="structured-equation-modelling.html#cb213-14" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> loadings, <span class="fu">aes</span>(<span class="st">`</span><span class="at">Comp 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp 2</span><span class="st">`</span>, <span class="at">label =</span> attrib2)) <span class="sc">+</span> </span>
+<span id="cb213-15"><a href="structured-equation-modelling.html#cb213-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point() + </span></span>
+<span id="cb213-16"><a href="structured-equation-modelling.html#cb213-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>()</span>
+<span id="cb213-17"><a href="structured-equation-modelling.html#cb213-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb213-18"><a href="structured-equation-modelling.html#cb213-18" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> scores, <span class="fu">aes</span>(<span class="st">`</span><span class="at">Comp 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp 2</span><span class="st">`</span>, <span class="at">color =</span> Beer)) <span class="sc">+</span> </span>
+<span id="cb213-19"><a href="structured-equation-modelling.html#cb213-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point() + </span></span>
+<span id="cb213-20"><a href="structured-equation-modelling.html#cb213-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>(<span class="at">level =</span> <span class="fl">0.5</span>)</span>
+<span id="cb213-21"><a href="structured-equation-modelling.html#cb213-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb213-22"><a href="structured-equation-modelling.html#cb213-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;patchwork&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:MASS&#39;:
 ## 
 ##     area</code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="structured-equation-modelling.html#cb203-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> g2</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="structured-equation-modelling.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># do multiple splithalfs</span></span>
-<span id="cb204-2"><a href="structured-equation-modelling.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="co"># INPUT: judge id. CATA, class, ncomp</span></span>
-<span id="cb204-3"><a href="structured-equation-modelling.html#cb204-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> beercata[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>]</span>
-<span id="cb204-4"><a href="structured-equation-modelling.html#cb204-4" aria-hidden="true" tabindex="-1"></a>clss <span class="ot">&lt;-</span> <span class="fu">factor</span>(beercata<span class="sc">$</span>Beer)</span>
-<span id="cb204-5"><a href="structured-equation-modelling.html#cb204-5" aria-hidden="true" tabindex="-1"></a>judge <span class="ot">&lt;-</span> beercata<span class="sc">$</span>Consumer.ID</span>
-<span id="cb204-6"><a href="structured-equation-modelling.html#cb204-6" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb204-7"><a href="structured-equation-modelling.html#cb204-7" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb204-8"><a href="structured-equation-modelling.html#cb204-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-9"><a href="structured-equation-modelling.html#cb204-9" aria-hidden="true" tabindex="-1"></a>mdl0 <span class="ot">&lt;-</span> <span class="fu">plsda</span>(X,clss,<span class="at">ncomp =</span> k)</span>
-<span id="cb204-10"><a href="structured-equation-modelling.html#cb204-10" aria-hidden="true" tabindex="-1"></a>lds0 <span class="ot">&lt;-</span> mdl0<span class="sc">$</span>loadings <span class="sc">%&gt;%</span> </span>
-<span id="cb204-11"><a href="structured-equation-modelling.html#cb204-11" aria-hidden="true" tabindex="-1"></a>  unclass <span class="sc">%&gt;%</span> </span>
-<span id="cb204-12"><a href="structured-equation-modelling.html#cb204-12" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span> </span>
-<span id="cb204-13"><a href="structured-equation-modelling.html#cb204-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">&#39;attrib&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-14"><a href="structured-equation-modelling.html#cb204-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cmp,val0,<span class="sc">-</span>attrib) </span>
-<span id="cb204-15"><a href="structured-equation-modelling.html#cb204-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-16"><a href="structured-equation-modelling.html#cb204-16" aria-hidden="true" tabindex="-1"></a>unjudge <span class="ot">&lt;-</span> <span class="fu">unique</span>(judge)</span>
-<span id="cb204-17"><a href="structured-equation-modelling.html#cb204-17" aria-hidden="true" tabindex="-1"></a>nindiv <span class="ot">&lt;-</span> <span class="fu">length</span>(unjudge)</span>
-<span id="cb204-18"><a href="structured-equation-modelling.html#cb204-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-19"><a href="structured-equation-modelling.html#cb204-19" aria-hidden="true" tabindex="-1"></a>LOADS <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb204-20"><a href="structured-equation-modelling.html#cb204-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>A){</span>
-<span id="cb204-21"><a href="structured-equation-modelling.html#cb204-21" aria-hidden="true" tabindex="-1"></a>  ic <span class="ot">&lt;-</span> judge <span class="sc">%in%</span> <span class="fu">sample</span>(unjudge)[<span class="dv">1</span><span class="sc">:</span><span class="fu">round</span>(nindiv<span class="sc">/</span><span class="dv">2</span>)]</span>
-<span id="cb204-22"><a href="structured-equation-modelling.html#cb204-22" aria-hidden="true" tabindex="-1"></a>  mdlSH <span class="ot">&lt;-</span> <span class="fu">plsda</span>(X[ic,],clss[ic],<span class="at">ncomp =</span> k)</span>
-<span id="cb204-23"><a href="structured-equation-modelling.html#cb204-23" aria-hidden="true" tabindex="-1"></a>  df_flip <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sng =</span> <span class="fu">sign</span>(<span class="fu">diag</span>(<span class="fu">t</span>(mdl0<span class="sc">$</span>loadings) <span class="sc">%*%</span> mdlSH<span class="sc">$</span>loadings))) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-24"><a href="structured-equation-modelling.html#cb204-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">&#39;cmp&#39;</span>)</span>
-<span id="cb204-25"><a href="structured-equation-modelling.html#cb204-25" aria-hidden="true" tabindex="-1"></a>  lds <span class="ot">&lt;-</span> mdlSH<span class="sc">$</span>loadings <span class="sc">%&gt;%</span> </span>
-<span id="cb204-26"><a href="structured-equation-modelling.html#cb204-26" aria-hidden="true" tabindex="-1"></a>    unclass <span class="sc">%&gt;%</span> </span>
-<span id="cb204-27"><a href="structured-equation-modelling.html#cb204-27" aria-hidden="true" tabindex="-1"></a>    as.data.frame <span class="sc">%&gt;%</span> </span>
-<span id="cb204-28"><a href="structured-equation-modelling.html#cb204-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">&#39;attrib&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-29"><a href="structured-equation-modelling.html#cb204-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gather</span>(cmp,val,<span class="sc">-</span>attrib) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-30"><a href="structured-equation-modelling.html#cb204-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(df_flip, <span class="at">by =</span> <span class="st">&#39;cmp&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-31"><a href="structured-equation-modelling.html#cb204-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">SHiter =</span> i, </span>
-<span id="cb204-32"><a href="structured-equation-modelling.html#cb204-32" aria-hidden="true" tabindex="-1"></a>           <span class="at">val =</span> val<span class="sc">*</span>sng)  </span>
-<span id="cb204-33"><a href="structured-equation-modelling.html#cb204-33" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb204-34"><a href="structured-equation-modelling.html#cb204-34" aria-hidden="true" tabindex="-1"></a>  LOADS <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(LOADS,lds)</span>
-<span id="cb204-35"><a href="structured-equation-modelling.html#cb204-35" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb204-36"><a href="structured-equation-modelling.html#cb204-36" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">/</span> A)<span class="sc">*</span>((A <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span>A)</span>
-<span id="cb204-37"><a href="structured-equation-modelling.html#cb204-37" aria-hidden="true" tabindex="-1"></a>sdloads <span class="ot">&lt;-</span> LOADS <span class="sc">%&gt;%</span> </span>
-<span id="cb204-38"><a href="structured-equation-modelling.html#cb204-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(lds0, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;attrib&#39;</span>,<span class="st">&#39;cmp&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-39"><a href="structured-equation-modelling.html#cb204-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(attrib,cmp) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-40"><a href="structured-equation-modelling.html#cb204-40" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">sd =</span> <span class="fu">sum</span>((val<span class="sc">-</span>val0)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span>fc) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-41"><a href="structured-equation-modelling.html#cb204-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cmp =</span> <span class="fu">paste</span>(<span class="st">&#39;sd&#39;</span>,cmp,<span class="at">sep =</span> <span class="st">&#39;&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-42"><a href="structured-equation-modelling.html#cb204-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cmp,sd)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="structured-equation-modelling.html#cb216-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> g2</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="structured-equation-modelling.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># do multiple splithalfs</span></span>
+<span id="cb217-2"><a href="structured-equation-modelling.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="co"># INPUT: judge id. CATA, class, ncomp</span></span>
+<span id="cb217-3"><a href="structured-equation-modelling.html#cb217-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> beercata[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>]</span>
+<span id="cb217-4"><a href="structured-equation-modelling.html#cb217-4" aria-hidden="true" tabindex="-1"></a>clss <span class="ot">&lt;-</span> <span class="fu">factor</span>(beercata<span class="sc">$</span>Beer)</span>
+<span id="cb217-5"><a href="structured-equation-modelling.html#cb217-5" aria-hidden="true" tabindex="-1"></a>judge <span class="ot">&lt;-</span> beercata<span class="sc">$</span>Consumer.ID</span>
+<span id="cb217-6"><a href="structured-equation-modelling.html#cb217-6" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb217-7"><a href="structured-equation-modelling.html#cb217-7" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb217-8"><a href="structured-equation-modelling.html#cb217-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb217-9"><a href="structured-equation-modelling.html#cb217-9" aria-hidden="true" tabindex="-1"></a>mdl0 <span class="ot">&lt;-</span> <span class="fu">plsda</span>(X,clss,<span class="at">ncomp =</span> k)</span>
+<span id="cb217-10"><a href="structured-equation-modelling.html#cb217-10" aria-hidden="true" tabindex="-1"></a>lds0 <span class="ot">&lt;-</span> mdl0<span class="sc">$</span>loadings <span class="sc">%&gt;%</span> </span>
+<span id="cb217-11"><a href="structured-equation-modelling.html#cb217-11" aria-hidden="true" tabindex="-1"></a>  unclass <span class="sc">%&gt;%</span> </span>
+<span id="cb217-12"><a href="structured-equation-modelling.html#cb217-12" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span> </span>
+<span id="cb217-13"><a href="structured-equation-modelling.html#cb217-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">&#39;attrib&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb217-14"><a href="structured-equation-modelling.html#cb217-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cmp,val0,<span class="sc">-</span>attrib) </span>
+<span id="cb217-15"><a href="structured-equation-modelling.html#cb217-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb217-16"><a href="structured-equation-modelling.html#cb217-16" aria-hidden="true" tabindex="-1"></a>unjudge <span class="ot">&lt;-</span> <span class="fu">unique</span>(judge)</span>
+<span id="cb217-17"><a href="structured-equation-modelling.html#cb217-17" aria-hidden="true" tabindex="-1"></a>nindiv <span class="ot">&lt;-</span> <span class="fu">length</span>(unjudge)</span>
+<span id="cb217-18"><a href="structured-equation-modelling.html#cb217-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb217-19"><a href="structured-equation-modelling.html#cb217-19" aria-hidden="true" tabindex="-1"></a>LOADS <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb217-20"><a href="structured-equation-modelling.html#cb217-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>A){</span>
+<span id="cb217-21"><a href="structured-equation-modelling.html#cb217-21" aria-hidden="true" tabindex="-1"></a>  ic <span class="ot">&lt;-</span> judge <span class="sc">%in%</span> <span class="fu">sample</span>(unjudge)[<span class="dv">1</span><span class="sc">:</span><span class="fu">round</span>(nindiv<span class="sc">/</span><span class="dv">2</span>)]</span>
+<span id="cb217-22"><a href="structured-equation-modelling.html#cb217-22" aria-hidden="true" tabindex="-1"></a>  mdlSH <span class="ot">&lt;-</span> <span class="fu">plsda</span>(X[ic,],clss[ic],<span class="at">ncomp =</span> k)</span>
+<span id="cb217-23"><a href="structured-equation-modelling.html#cb217-23" aria-hidden="true" tabindex="-1"></a>  df_flip <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sng =</span> <span class="fu">sign</span>(<span class="fu">diag</span>(<span class="fu">t</span>(mdl0<span class="sc">$</span>loadings) <span class="sc">%*%</span> mdlSH<span class="sc">$</span>loadings))) <span class="sc">%&gt;%</span> </span>
+<span id="cb217-24"><a href="structured-equation-modelling.html#cb217-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">&#39;cmp&#39;</span>)</span>
+<span id="cb217-25"><a href="structured-equation-modelling.html#cb217-25" aria-hidden="true" tabindex="-1"></a>  lds <span class="ot">&lt;-</span> mdlSH<span class="sc">$</span>loadings <span class="sc">%&gt;%</span> </span>
+<span id="cb217-26"><a href="structured-equation-modelling.html#cb217-26" aria-hidden="true" tabindex="-1"></a>    unclass <span class="sc">%&gt;%</span> </span>
+<span id="cb217-27"><a href="structured-equation-modelling.html#cb217-27" aria-hidden="true" tabindex="-1"></a>    as.data.frame <span class="sc">%&gt;%</span> </span>
+<span id="cb217-28"><a href="structured-equation-modelling.html#cb217-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">&#39;attrib&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb217-29"><a href="structured-equation-modelling.html#cb217-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gather</span>(cmp,val,<span class="sc">-</span>attrib) <span class="sc">%&gt;%</span> </span>
+<span id="cb217-30"><a href="structured-equation-modelling.html#cb217-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(df_flip, <span class="at">by =</span> <span class="st">&#39;cmp&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb217-31"><a href="structured-equation-modelling.html#cb217-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">SHiter =</span> i, </span>
+<span id="cb217-32"><a href="structured-equation-modelling.html#cb217-32" aria-hidden="true" tabindex="-1"></a>           <span class="at">val =</span> val<span class="sc">*</span>sng)  </span>
+<span id="cb217-33"><a href="structured-equation-modelling.html#cb217-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb217-34"><a href="structured-equation-modelling.html#cb217-34" aria-hidden="true" tabindex="-1"></a>  LOADS <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(LOADS,lds)</span>
+<span id="cb217-35"><a href="structured-equation-modelling.html#cb217-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb217-36"><a href="structured-equation-modelling.html#cb217-36" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">/</span> A)<span class="sc">*</span>((A <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span>A)</span>
+<span id="cb217-37"><a href="structured-equation-modelling.html#cb217-37" aria-hidden="true" tabindex="-1"></a>sdloads <span class="ot">&lt;-</span> LOADS <span class="sc">%&gt;%</span> </span>
+<span id="cb217-38"><a href="structured-equation-modelling.html#cb217-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(lds0, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;attrib&#39;</span>,<span class="st">&#39;cmp&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb217-39"><a href="structured-equation-modelling.html#cb217-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(attrib,cmp) <span class="sc">%&gt;%</span> </span>
+<span id="cb217-40"><a href="structured-equation-modelling.html#cb217-40" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">sd =</span> <span class="fu">sum</span>((val<span class="sc">-</span>val0)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span>fc) <span class="sc">%&gt;%</span> </span>
+<span id="cb217-41"><a href="structured-equation-modelling.html#cb217-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cmp =</span> <span class="fu">paste</span>(<span class="st">&#39;sd&#39;</span>,cmp,<span class="at">sep =</span> <span class="st">&#39;&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb217-42"><a href="structured-equation-modelling.html#cb217-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cmp,sd)</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;attrib&#39;. You can override using the
 ## `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="structured-equation-modelling.html#cb206-1" aria-hidden="true" tabindex="-1"></a>loadsSH <span class="ot">&lt;-</span> lds0 <span class="sc">%&gt;%</span> </span>
-<span id="cb206-2"><a href="structured-equation-modelling.html#cb206-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cmp,val0) <span class="sc">%&gt;%</span> </span>
-<span id="cb206-3"><a href="structured-equation-modelling.html#cb206-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(sdloads, <span class="at">by =</span> <span class="st">&#39;attrib&#39;</span>)</span>
-<span id="cb206-4"><a href="structured-equation-modelling.html#cb206-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb206-5"><a href="structured-equation-modelling.html#cb206-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
-<span id="cb206-6"><a href="structured-equation-modelling.html#cb206-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> loadsSH, <span class="fu">aes</span>(<span class="at">x0 =</span> <span class="st">`</span><span class="at">Comp 1</span><span class="st">`</span>,<span class="at">y0 =</span> <span class="st">`</span><span class="at">Comp 2</span><span class="st">`</span>,<span class="at">a =</span> <span class="st">`</span><span class="at">sdComp 1</span><span class="st">`</span>,<span class="at">b =</span> <span class="st">`</span><span class="at">sdComp 2</span><span class="st">`</span>,<span class="at">angle =</span> <span class="dv">0</span>)) <span class="sc">+</span> <span class="fu">geom_ellipse</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-97-2.png" width="672" /></p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="structured-equation-modelling.html#cb219-1" aria-hidden="true" tabindex="-1"></a>loadsSH <span class="ot">&lt;-</span> lds0 <span class="sc">%&gt;%</span> </span>
+<span id="cb219-2"><a href="structured-equation-modelling.html#cb219-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cmp,val0) <span class="sc">%&gt;%</span> </span>
+<span id="cb219-3"><a href="structured-equation-modelling.html#cb219-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(sdloads, <span class="at">by =</span> <span class="st">&#39;attrib&#39;</span>)</span>
+<span id="cb219-4"><a href="structured-equation-modelling.html#cb219-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb219-5"><a href="structured-equation-modelling.html#cb219-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb219-6"><a href="structured-equation-modelling.html#cb219-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> loadsSH, <span class="fu">aes</span>(<span class="at">x0 =</span> <span class="st">`</span><span class="at">Comp 1</span><span class="st">`</span>,<span class="at">y0 =</span> <span class="st">`</span><span class="at">Comp 2</span><span class="st">`</span>,<span class="at">a =</span> <span class="st">`</span><span class="at">sdComp 1</span><span class="st">`</span>,<span class="at">b =</span> <span class="st">`</span><span class="at">sdComp 2</span><span class="st">`</span>,<span class="at">angle =</span> <span class="dv">0</span>)) <span class="sc">+</span> <span class="fu">geom_ellipse</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-103-2.png" width="672" /></p>
 
 </div>
 </div>

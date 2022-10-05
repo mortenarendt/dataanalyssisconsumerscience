@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Plotting data | Data Analysis in R for Consumer Science</title>
-  <meta name="description" content="Chapter 7 Plotting data | Data Analysis in R for Consumer Science" />
+  <title>Chapter 6 Plotting data | Data Analysis in R for Consumer Science</title>
+  <meta name="description" content="Chapter 6 Plotting data | Data Analysis in R for Consumer Science" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Plotting data | Data Analysis in R for Consumer Science" />
+  <meta property="og:title" content="Chapter 6 Plotting data | Data Analysis in R for Consumer Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Plotting data | Data Analysis in R for Consumer Science" />
+  <meta name="twitter:title" content="Chapter 6 Plotting data | Data Analysis in R for Consumer Science" />
   
   
   
 
-<meta name="author" content="Morten Arendt Rasmussens" />
+<meta name="author" content="Morten Arendt Rasmussen" />
 
 
-<meta name="date" content="2022-10-03" />
+<meta name="date" content="2022-10-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="descriptive-statistics.html"/>
-<link rel="next" href="pca-on-survey-answers.html"/>
+<link rel="next" href="introduction-to-pca-and-multivariate-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,6 +52,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -136,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Data Analysis in R for Consumer Science</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to the book</a></li>
 <li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a></li>
@@ -158,22 +159,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-edit-and-merge-in-r"><i class="fa fa-check"></i><b>2.7.1</b> Import, edit and merge in R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introduction-to-pca.html"><a href="introduction-to-pca.html"><i class="fa fa-check"></i><b>3</b> Introduction to PCA</a></li>
-<li class="chapter" data-level="4" data-path="introduction-linear-and-mixed-models.html"><a href="introduction-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>4</b> Introduction linear and mixed models</a></li>
-<li class="chapter" data-level="5" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>5</b> Libraries</a></li>
-<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive statistics</a>
+<li class="chapter" data-level="3" data-path="introduction-linear-and-mixed-models.html"><a href="introduction-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>3</b> Introduction linear and mixed models</a></li>
+<li class="chapter" data-level="4" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>4</b> Libraries</a></li>
+<li class="chapter" data-level="5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>5</b> Descriptive statistics</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#loading-data"><i class="fa fa-check"></i><b>6.1</b> Loading data</a></li>
-<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>6.2</b> Distributions of count data</a>
+<li class="chapter" data-level="5.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>5.1</b> Descriptives for a continouos variable</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>6.2.1</b> Descriptives for a continouos variable</a></li>
+<li class="chapter" data-level="5.1.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-median"><i class="fa fa-check"></i><b>5.1.1</b> Mean / median</a></li>
+<li class="chapter" data-level="5.1.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>5.1.2</b> Variance</a></li>
+<li class="chapter" data-level="5.1.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>5.1.3</b> Standard deviation</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>5.2</b> Distributions of count data</a></li>
+<li class="chapter" data-level="5.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#aggregate"><i class="fa fa-check"></i><b>5.3</b> Aggregate</a></li>
+<li class="chapter" data-level="5.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tidyverse"><i class="fa fa-check"></i><b>5.4</b> Tidyverse</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>7</b> Plotting data</a>
+<li class="chapter" data-level="6" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>6</b> Plotting data</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>7.1</b> Scatter plots</a></li>
-<li class="chapter" data-level="7.2" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>7.2</b> How to export plots</a></li>
+<li class="chapter" data-level="6.1" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>6.1</b> Scatter plots</a></li>
+<li class="chapter" data-level="6.2" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>6.2</b> How to export plots</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html"><i class="fa fa-check"></i><b>7</b> Introduction to PCA and multivariate data</a></li>
 <li class="chapter" data-level="8" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>8</b> PCA on survey answers</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>8.1</b> Bi-plot</a>
@@ -276,117 +281,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="plotting-data" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Plotting data<a href="plotting-data.html#plotting-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Corresponding plot of data</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="plotting-data.html#cb65-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb65-2"><a href="plotting-data.html#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(StationName,Consumption, <span class="at">fill =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
-<span id="cb65-3"><a href="plotting-data.html#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="plotting-data.html#cb66-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb66-2"><a href="plotting-data.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(StationName,Consumption, <span class="at">fill =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
-<span id="cb66-3"><a href="plotting-data.html#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb66-4"><a href="plotting-data.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-35-2.png" width="672" /></p>
-<p>Corresponding plots of the results</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="plotting-data.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span> tb2, <span class="fu">aes</span>(<span class="fu">factor</span>(StationName)<span class="sc">:</span><span class="fu">factor</span>(Day),mean, </span>
-<span id="cb67-2"><a href="plotting-data.html#cb67-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">color =</span> <span class="fu">factor</span>(Day), <span class="at">ymin =</span> mean<span class="sc">-</span>sd, <span class="at">ymax =</span> mean <span class="sc">+</span> sd)) <span class="sc">+</span></span>
-<span id="cb67-3"><a href="plotting-data.html#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb67-4"><a href="plotting-data.html#cb67-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">width =</span> <span class="fl">0.3</span>)<span class="sc">+</span></span>
-<span id="cb67-5"><a href="plotting-data.html#cb67-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>,<span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb67-6"><a href="plotting-data.html#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;mean+/- 1*sd&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
-<div id="in-relation-to-protein-considerations" class="section level4 hasAnchor" number="7.0.0.1">
-<h4><span class="header-section-number">7.0.0.1</span> In relation to protein considerations<a href="plotting-data.html#in-relation-to-protein-considerations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Try to make these descriptive analysis and plots taking into account whether the participants considered protein content, and why they did.</p>
-<p>Here is some inspiration.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="plotting-data.html#cb68-1" aria-hidden="true" tabindex="-1"></a>Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb68-2"><a href="plotting-data.html#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., </span>
-<span id="cb68-3"><a href="plotting-data.html#cb68-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(<span class="st">`</span><span class="at">Did you consider the protein content of the dish(es) you chose?</span><span class="st">`</span>,</span>
-<span id="cb68-4"><a href="plotting-data.html#cb68-4" aria-hidden="true" tabindex="-1"></a>             Consumption)) <span class="sc">+</span> </span>
-<span id="cb68-5"><a href="plotting-data.html#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb68-6"><a href="plotting-data.html#cb68-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
-<span id="cb68-7"><a href="plotting-data.html#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>StationName)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div id="plotting-data" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Plotting data<a href="plotting-data.html#plotting-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Visualizing data is of utmost importance.
+Especially, looking at the raw data will enable you to point towards outliers and tendencies which may be lost when representing the data with descriptive statistics.</p>
+<p>ggplot2 is a wide spread library for plotting data and used by a lot of users. Check it out on videos</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="plotting-data.html#cb69-1" aria-hidden="true" tabindex="-1"></a>vembedr<span class="sc">::</span><span class="fu">embed_youtube</span>(<span class="st">&quot;https://www.youtube.com/watch?v=HPJn1CMvtmI&quot;</span>)</span></code></pre></div>
+<div class="vembedr">
+<div>
+<iframe src="https://www.youtube.com/embed/https://www.youtube.com/watch?v=HPJn1CMvtmI" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
 </div>
-<div id="scatter-plots" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Scatter plots<a href="plotting-data.html#scatter-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Lets plot the consumption as a function of the answers to the liking-scale questions of the survey, and split it into day and type of vegetable.
-If you think about it, it is pretty many plots, but the ggplot2 functionality facet_wrap() on a long format data frame does it in few lines:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="plotting-data.html#cb69-1" aria-hidden="true" tabindex="-1"></a>Surveylong_buffet <span class="sc">%&gt;%</span> </span>
-<span id="cb69-2"><a href="plotting-data.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
-<span id="cb69-3"><a href="plotting-data.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question2 =</span> question <span class="sc">%&gt;%</span> <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="co"># The label is too long, so lets just represent the first 30 letters.</span></span>
-<span id="cb69-4"><a href="plotting-data.html#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> .,  <span class="fu">aes</span>(answnum,Consumption, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span></span>
-<span id="cb69-5"><a href="plotting-data.html#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb69-6"><a href="plotting-data.html#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
-<span id="cb69-7"><a href="plotting-data.html#cb69-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_cor</span>() <span class="sc">+</span></span>
-<span id="cb69-8"><a href="plotting-data.html#cb69-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(question2 <span class="sc">~</span> StationName) <span class="sc">+</span> </span>
-<span id="cb69-9"><a href="plotting-data.html#cb69-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
+</div>
+<p>There is a very condensed cheat-sheet for ggplot2 on <a href="https://www.rstudio.com/embed/resources/cheatsheets/">RStudios webpage</a>
+s</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="plotting-data.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb70-2"><a href="plotting-data.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(chili)</span>
+<span id="cb70-3"><a href="plotting-data.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
+<span id="cb70-4"><a href="plotting-data.html#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we subset to only have the &quot;Pasta with legumes&quot; data. </span></span>
+<span id="cb70-5"><a href="plotting-data.html#cb70-5" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> pasta[pasta<span class="sc">$</span>StationName<span class="sc">==</span><span class="st">&#39;Pasta with legumes&#39;</span>,]</span></code></pre></div>
+<p>To show the total consumption a histogram is useful</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="plotting-data.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(Totalg)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p>Here there is a clear bi-modal distribution with an upper tail.</p>
+<p>These observations comes from 5 different treatments, 27 different judges and at 10 test days. We can infer this using a boxplot with jittered raw data on top.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="plotting-data.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(Treatment,Totalg)) <span class="sc">+</span> </span>
+<span id="cb73-2"><a href="plotting-data.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="plotting-data.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="fu">factor</span>(Judge),Totalg)) <span class="sc">+</span> </span>
+<span id="cb74-2"><a href="plotting-data.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p>None of these explains the bi-modality.
+However, we can combine test-day information, which essentially is reflecting whether it is first or second trial splitting at day 5: (TestDay&gt;5)</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="plotting-data.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="fu">factor</span>(Judge),Totalg, <span class="at">color =</span> <span class="fu">factor</span>(TestDay<span class="sc">&gt;</span><span class="dv">5</span>))) <span class="sc">+</span> </span>
+<span id="cb75-2"><a href="plotting-data.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">group =</span> <span class="fu">factor</span>(Judge))) <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<div id="scatter-plots" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Scatter plots<a href="plotting-data.html#scatter-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Lets plot the consumption (Totalg) as a function of LikingAppearance, and add a tendency line:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="plotting-data.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(LikingAppearance,Totalg)) <span class="sc">+</span> </span>
+<span id="cb76-2"><a href="plotting-data.html#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 6 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 6 rows containing missing values (geom_point).</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-43-1.png" width="672" />
+Now, lets funk this up by splitting into test-days and get colors according to product:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="plotting-data.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(Hunger,Totalg, <span class="at">color =</span> Treatment)) <span class="sc">+</span> </span>
+<span id="cb80-2"><a href="plotting-data.html#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> TestDay<span class="sc">&gt;</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<pre><code>## Warning: Removed 1 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 </div>
-<div id="how-to-export-plots" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> How to export plots<a href="plotting-data.html#how-to-export-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="how-to-export-plots" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> How to export plots<a href="plotting-data.html#how-to-export-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The plots shown in the <em>Plots</em> pane (lower right of RStudio) can be saved using the <em>Export</em> bottom.</p>
 <p>You can also save the plots to a file using the ggsave() function.
 If you run ggsave() without specifying which plot to export, it will use the latest.
 You can also directly specify the plot to export:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="plotting-data.html#cb71-1" aria-hidden="true" tabindex="-1"></a>myplot <span class="ot">&lt;-</span> Surveylong_buffet <span class="sc">%&gt;%</span> </span>
-<span id="cb71-2"><a href="plotting-data.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(StationName )) <span class="sc">%&gt;%</span> </span>
-<span id="cb71-3"><a href="plotting-data.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question2 =</span> question <span class="sc">%&gt;%</span> <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="co"># The label is to long, so lets just represent the first 30 letters.</span></span>
-<span id="cb71-4"><a href="plotting-data.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> .,  <span class="fu">aes</span>(answnum,Consumption, <span class="at">color =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span></span>
-<span id="cb71-5"><a href="plotting-data.html#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb71-6"><a href="plotting-data.html#cb71-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
-<span id="cb71-7"><a href="plotting-data.html#cb71-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_cor</span>() <span class="sc">+</span></span>
-<span id="cb71-8"><a href="plotting-data.html#cb71-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(question2 <span class="sc">~</span> StationName) <span class="sc">+</span> </span>
-<span id="cb71-9"><a href="plotting-data.html#cb71-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span>
-<span id="cb71-10"><a href="plotting-data.html#cb71-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-11"><a href="plotting-data.html#cb71-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&#39;liking_vs_consumption.pdf&#39;</span>,myplot)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="plotting-data.html#cb84-1" aria-hidden="true" tabindex="-1"></a>myplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(Hunger,Totalg, <span class="at">color =</span> Treatment)) <span class="sc">+</span> </span>
+<span id="cb84-2"><a href="plotting-data.html#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> TestDay<span class="sc">&gt;</span><span class="dv">5</span>)</span>
+<span id="cb84-3"><a href="plotting-data.html#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="plotting-data.html#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&#39;./data/YourFolderForNicePlots/hunger_vs_consumption.pdf&#39;</span>,myplot)</span></code></pre></div>
 <p>ggsave() supports different formats (.png, .tiff, .pdf,…) and further allows for editing the size (height = , width = ).</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="plotting-data.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(Surveyscales, <span class="at">caption =</span> <span class="st">&#39;Just a table to have what the 7point likert scale numbers mean&#39;</span>)</span></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-40">Table 7.1: </span>Just a table to have what the 7point likert scale numbers mean</caption>
-<thead>
-<tr class="header">
-<th align="left">answ</th>
-<th align="right">number</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">A. Strongly disagree</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">B. Disagree</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">C. More or less disagree</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="left">D. Neither agree nor disagree</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="left">E. More or less agree</td>
-<td align="right">5</td>
-</tr>
-<tr class="even">
-<td align="left">F. Agree</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td align="left">G. Strongly agree</td>
-<td align="right">7</td>
-</tr>
-</tbody>
-</table>
-<p>Get this stuff to work, and try to interpret what you see: which factors seems important for the portion size ( <em>Consumption</em> )?</p>
-<p>The summary-stats in the scatter plots above: What is this? How is it interpreted?</p>
-
-<p>test4</p>
 
 </div>
 </div>
@@ -396,7 +353,7 @@ You can also directly specify the plot to export:</p>
         </div>
       </div>
 <a href="descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="pca-on-survey-answers.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-pca-and-multivariate-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -427,7 +384,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/02_IntroChaptersGeneric2.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/04_Plotting.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -435,7 +392,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/02_IntroChaptersGeneric2.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/04_Plotting.Rmd",
 "text": null
 },
 "download": null,

@@ -1,13 +1,13 @@
 --- 
 title: "Data Analysis in R for Consumer Science"
-author: "Morten Arendt Rasmussens"
+author: "Morten Arendt Rasmussen"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
 ![Alt text](init_frontpage.jpg)
     
-# Introduction
+# Introduction to the book
 
 This material is to cover data analysis using R for consumer science targeting the following courses: 
 

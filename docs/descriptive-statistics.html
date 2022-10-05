@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Descriptive statistics | Data Analysis in R for Consumer Science</title>
-  <meta name="description" content="Chapter 6 Descriptive statistics | Data Analysis in R for Consumer Science" />
+  <title>Chapter 5 Descriptive statistics | Data Analysis in R for Consumer Science</title>
+  <meta name="description" content="Chapter 5 Descriptive statistics | Data Analysis in R for Consumer Science" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Descriptive statistics | Data Analysis in R for Consumer Science" />
+  <meta property="og:title" content="Chapter 5 Descriptive statistics | Data Analysis in R for Consumer Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Descriptive statistics | Data Analysis in R for Consumer Science" />
+  <meta name="twitter:title" content="Chapter 5 Descriptive statistics | Data Analysis in R for Consumer Science" />
   
   
   
 
-<meta name="author" content="Morten Arendt Rasmussens" />
+<meta name="author" content="Morten Arendt Rasmussen" />
 
 
-<meta name="date" content="2022-10-03" />
+<meta name="date" content="2022-10-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -136,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Data Analysis in R for Consumer Science</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to the book</a></li>
 <li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a></li>
@@ -158,22 +159,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-edit-and-merge-in-r"><i class="fa fa-check"></i><b>2.7.1</b> Import, edit and merge in R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introduction-to-pca.html"><a href="introduction-to-pca.html"><i class="fa fa-check"></i><b>3</b> Introduction to PCA</a></li>
-<li class="chapter" data-level="4" data-path="introduction-linear-and-mixed-models.html"><a href="introduction-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>4</b> Introduction linear and mixed models</a></li>
-<li class="chapter" data-level="5" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>5</b> Libraries</a></li>
-<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive statistics</a>
+<li class="chapter" data-level="3" data-path="introduction-linear-and-mixed-models.html"><a href="introduction-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>3</b> Introduction linear and mixed models</a></li>
+<li class="chapter" data-level="4" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>4</b> Libraries</a></li>
+<li class="chapter" data-level="5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>5</b> Descriptive statistics</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#loading-data"><i class="fa fa-check"></i><b>6.1</b> Loading data</a></li>
-<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>6.2</b> Distributions of count data</a>
+<li class="chapter" data-level="5.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>5.1</b> Descriptives for a continouos variable</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continouos-variable"><i class="fa fa-check"></i><b>6.2.1</b> Descriptives for a continouos variable</a></li>
+<li class="chapter" data-level="5.1.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-median"><i class="fa fa-check"></i><b>5.1.1</b> Mean / median</a></li>
+<li class="chapter" data-level="5.1.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>5.1.2</b> Variance</a></li>
+<li class="chapter" data-level="5.1.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>5.1.3</b> Standard deviation</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>5.2</b> Distributions of count data</a></li>
+<li class="chapter" data-level="5.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#aggregate"><i class="fa fa-check"></i><b>5.3</b> Aggregate</a></li>
+<li class="chapter" data-level="5.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tidyverse"><i class="fa fa-check"></i><b>5.4</b> Tidyverse</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>7</b> Plotting data</a>
+<li class="chapter" data-level="6" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>6</b> Plotting data</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>7.1</b> Scatter plots</a></li>
-<li class="chapter" data-level="7.2" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>7.2</b> How to export plots</a></li>
+<li class="chapter" data-level="6.1" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>6.1</b> Scatter plots</a></li>
+<li class="chapter" data-level="6.2" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>6.2</b> How to export plots</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html"><i class="fa fa-check"></i><b>7</b> Introduction to PCA and multivariate data</a></li>
 <li class="chapter" data-level="8" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>8</b> PCA on survey answers</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>8.1</b> Bi-plot</a>
@@ -276,449 +281,193 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="descriptive-statistics" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Descriptive statistics<a href="descriptive-statistics.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In this Chapter we will go through the main elements you need to</p>
-<p>[MANGLER: bla bla bla introtekst…. inklu ]</p>
-<p>We are using the combined buffet consumption and survey dataset. We have already made a merged version for you, so yo just need to load the data.</p>
-<div id="loading-data" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Loading data<a href="descriptive-statistics.html#loading-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>First we need to load the data. If you do not have a saved data set (*.RData), please go to the chapters about “How to import data” and “How to save the data” for more info on import and data saving.</p>
-<p>Use this if your data is in the same folder as your script:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="descriptive-statistics.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;iBuffetSurveyData.RData&#39;</span>)</span></code></pre></div>
-<p>Use this, if you need to browse for your *.RData file:</p>
-<p>[MORTEN: skal vi stadig kalde RData filen dette her? Giver det mening?] Ja.</p>
+<div id="descriptive-statistics" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Descriptive statistics<a href="descriptive-statistics.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this Chapter we will go through the main elements of descriptive statistics.</p>
+<p>In principle, descriptive statistics is the act of taking a bunch of data and represent them in few numbers, such as mean, median, standard deviation etc.</p>
+<p>For a more thorough introduction you can check every introductory stats book: The first couple of chapters will cover this.</p>
+<div id="descriptives-for-a-continouos-variable" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Descriptives for a continouos variable<a href="descriptive-statistics.html#descriptives-for-a-continouos-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mean-median" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Mean / median<a href="descriptive-statistics.html#mean-median" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="descriptive-statistics.html#cb41-1" aria-hidden="true" tabindex="-1"></a>vembedr<span class="sc">::</span><span class="fu">embed_youtube</span>(<span class="st">&quot;https://www.youtube.com/watch?v=uhxtUt_-GyM&amp;list=PL1328115D3D8A2566&amp;index=1&quot;</span>)</span></code></pre></div>
+<div class="vembedr">
+<div>
+<iframe src="https://www.youtube.com/embed/https://www.youtube.com/watch?v=uhxtUt_-GyM&amp;list=PL1328115D3D8A2566&amp;index=1" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
 </div>
-<div id="distributions-of-count-data" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Distributions of count data<a href="descriptive-statistics.html#distributions-of-count-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The table function is good in getting how many observations there are within a given vector, or combinations of several vectors.</p>
-<p>Here used on the Survey answers.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Surveylong<span class="sc">$</span>answ) <span class="co"># across everything</span></span></code></pre></div>
-<pre><code>## 
-##          A. Strongly disagree                   B. Disagree 
-##                             0                             2 
-##      C. More or less disagree D. Neither agree nor disagree 
-##                             6                             7 
-##         E. More or less agree                      F. Agree 
-##                            21                            32 
-##             G. Strongly agree 
-##                            52</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="descriptive-statistics.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Surveylong<span class="sc">$</span>answ,Surveylong<span class="sc">$</span>question) <span class="co"># across question</span></span></code></pre></div>
-<pre><code>##                                
-##                                 I like the taste of pasta with legumes! 
-##   A. Strongly disagree                                                 0
-##   B. Disagree                                                          1
-##   C. More or less disagree                                             3
-##   D. Neither agree nor disagree                                        2
-##   E. More or less agree                                                5
-##   F. Agree                                                             8
-##   G. Strongly agree                                                   11
-##                                
-##                                 I like the taste of pasta with mushrooms! 
-##   A. Strongly disagree                                                   0
-##   B. Disagree                                                            0
-##   C. More or less disagree                                               0
-##   D. Neither agree nor disagree                                          0
-##   E. More or less agree                                                  4
-##   F. Agree                                                              11
-##   G. Strongly agree                                                     15
-##                                
-##                                 Pasta with legumes is visually appealing to me. 
-##   A. Strongly disagree                                                         0
-##   B. Disagree                                                                  1
-##   C. More or less disagree                                                     3
-##   D. Neither agree nor disagree                                                3
-##   E. More or less agree                                                        6
-##   F. Agree                                                                     7
-##   G. Strongly agree                                                           10
-##                                
-##                                 Pasta with mushrooms is visually appealing to me. 
-##   A. Strongly disagree                                                           0
-##   B. Disagree                                                                    0
-##   C. More or less disagree                                                       0
-##   D. Neither agree nor disagree                                                  2
-##   E. More or less agree                                                          6
-##   F. Agree                                                                       6
-##   G. Strongly agree                                                             16</code></pre>
-<p>You see that most of the answers are in agreement with question, and that there are no observations in the <em>Strongly disagree</em> category.</p>
-<p>[MORTEN: kan vi lave en anden form for tabel her? Meld gerne ind hvad type data det kunne være?? for den man får ud giver ikke så meget mening set fra vores side. og så skal vi overveje om “tidyverse” er nice to know viden?]</p>
-<p>[MÅSKE: The nice to know part:]</p>
-<p><em>The tidyverse way</em></p>
-<p>Lets do exactly the same just using tidyverse functions count(), group_by(), mutate(), and summarise().</p>
-<p>Further, lets print the results in a nice looking table using kable() from the knitr package.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="descriptive-statistics.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tb &lt;- Surveylong %&gt;% </span></span>
-<span id="cb47-2"><a href="descriptive-statistics.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># count(question,answ,Day,name = &quot;no_rows&quot;, .drop = F) </span></span>
-<span id="cb47-3"><a href="descriptive-statistics.html#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-4"><a href="descriptive-statistics.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># kable(tb, caption = &#39;some caption&#39;)</span></span></code></pre></div>
-<p>The numbers are absolute, but may be better represented by proportions.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="descriptive-statistics.html#cb48-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> Surveylong <span class="sc">%&gt;%</span> </span>
-<span id="cb48-2"><a href="descriptive-statistics.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(question,Day) <span class="sc">%&gt;%</span> </span>
-<span id="cb48-3"><a href="descriptive-statistics.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ntot =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb48-4"><a href="descriptive-statistics.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(question,answ,Day) <span class="sc">%&gt;%</span> </span>
-<span id="cb48-5"><a href="descriptive-statistics.html#cb48-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), </span>
-<span id="cb48-6"><a href="descriptive-statistics.html#cb48-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">prc =</span> <span class="dv">100</span><span class="sc">*</span>n <span class="sc">/</span> ntot[<span class="dv">1</span>])</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;question&#39;, &#39;answ&#39;. You can override using
-## the `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="descriptive-statistics.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tb, <span class="at">caption =</span> <span class="st">&#39;some caption&#39;</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div>
-<table style="width:100%;">
-<caption><span id="tab:unnamed-chunk-31">Table 6.1: </span>some caption</caption>
-<colgroup>
-<col width="54%" />
-<col width="32%" />
-<col width="4%" />
-<col width="3%" />
-<col width="5%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">question</th>
-<th align="left">answ</th>
-<th align="right">Day</th>
-<th align="right">n</th>
-<th align="right">prc</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">I like the taste of pasta with legumes! </td>
-<td align="left">B. Disagree</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">6.7</td>
-</tr>
-<tr class="even">
-<td align="left">I like the taste of pasta with legumes! </td>
-<td align="left">C. More or less disagree</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">20.0</td>
-</tr>
-<tr class="odd">
-<td align="left">I like the taste of pasta with legumes! </td>
-<td align="left">D. Neither agree nor disagree</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">6.7</td>
-</tr>
-<tr class="even">
-<td align="left">I like the taste of pasta with legumes! </td>
-<td align="left">D. Neither agree nor disagree</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">6.7</td>
-</tr>
-<tr class="odd">
-<td align="left">I like the taste of pasta with legumes! </td>
-<td align="left">E. More or less agree</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">26.7</td>
-</tr>
-<tr class="even">
-<td align="left">I like the taste of pasta with legumes! </td>
-<td align="left">E. More or less agree</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">6.7</td>
-</tr>
-<tr class="odd">
-<td align="left">I like the taste of pasta with legumes! </td>
-<td align="left">F. Agree</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">20.0</td>
-</tr>
-<tr class="even">
-<td align="left">I like the taste of pasta with legumes! </td>
-<td align="left">F. Agree</td>
-<td align="right">2</td>
-<td align="right">5</td>
-<td align="right">33.3</td>
-</tr>
-<tr class="odd">
-<td align="left">I like the taste of pasta with legumes! </td>
-<td align="left">G. Strongly agree</td>
-<td align="right">1</td>
-<td align="right">6</td>
-<td align="right">40.0</td>
-</tr>
-<tr class="even">
-<td align="left">I like the taste of pasta with legumes! </td>
-<td align="left">G. Strongly agree</td>
-<td align="right">2</td>
-<td align="right">5</td>
-<td align="right">33.3</td>
-</tr>
-<tr class="odd">
-<td align="left">I like the taste of pasta with mushrooms! </td>
-<td align="left">E. More or less agree</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">13.3</td>
-</tr>
-<tr class="even">
-<td align="left">I like the taste of pasta with mushrooms! </td>
-<td align="left">E. More or less agree</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">13.3</td>
-</tr>
-<tr class="odd">
-<td align="left">I like the taste of pasta with mushrooms! </td>
-<td align="left">F. Agree</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">33.3</td>
-</tr>
-<tr class="even">
-<td align="left">I like the taste of pasta with mushrooms! </td>
-<td align="left">F. Agree</td>
-<td align="right">2</td>
-<td align="right">6</td>
-<td align="right">40.0</td>
-</tr>
-<tr class="odd">
-<td align="left">I like the taste of pasta with mushrooms! </td>
-<td align="left">G. Strongly agree</td>
-<td align="right">1</td>
-<td align="right">8</td>
-<td align="right">53.3</td>
-</tr>
-<tr class="even">
-<td align="left">I like the taste of pasta with mushrooms! </td>
-<td align="left">G. Strongly agree</td>
-<td align="right">2</td>
-<td align="right">7</td>
-<td align="right">46.7</td>
-</tr>
-<tr class="odd">
-<td align="left">Pasta with legumes is visually appealing to me. </td>
-<td align="left">B. Disagree</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">6.7</td>
-</tr>
-<tr class="even">
-<td align="left">Pasta with legumes is visually appealing to me. </td>
-<td align="left">C. More or less disagree</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">6.7</td>
-</tr>
-<tr class="odd">
-<td align="left">Pasta with legumes is visually appealing to me. </td>
-<td align="left">C. More or less disagree</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">13.3</td>
-</tr>
-<tr class="even">
-<td align="left">Pasta with legumes is visually appealing to me. </td>
-<td align="left">D. Neither agree nor disagree</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">13.3</td>
-</tr>
-<tr class="odd">
-<td align="left">Pasta with legumes is visually appealing to me. </td>
-<td align="left">D. Neither agree nor disagree</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">6.7</td>
-</tr>
-<tr class="even">
-<td align="left">Pasta with legumes is visually appealing to me. </td>
-<td align="left">E. More or less agree</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">6.7</td>
-</tr>
-<tr class="odd">
-<td align="left">Pasta with legumes is visually appealing to me. </td>
-<td align="left">E. More or less agree</td>
-<td align="right">2</td>
-<td align="right">5</td>
-<td align="right">33.3</td>
-</tr>
-<tr class="even">
-<td align="left">Pasta with legumes is visually appealing to me. </td>
-<td align="left">F. Agree</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">33.3</td>
-</tr>
-<tr class="odd">
-<td align="left">Pasta with legumes is visually appealing to me. </td>
-<td align="left">F. Agree</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">13.3</td>
-</tr>
-<tr class="even">
-<td align="left">Pasta with legumes is visually appealing to me. </td>
-<td align="left">G. Strongly agree</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">33.3</td>
-</tr>
-<tr class="odd">
-<td align="left">Pasta with legumes is visually appealing to me. </td>
-<td align="left">G. Strongly agree</td>
-<td align="right">2</td>
-<td align="right">5</td>
-<td align="right">33.3</td>
-</tr>
-<tr class="even">
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
-<td align="left">D. Neither agree nor disagree</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">6.7</td>
-</tr>
-<tr class="odd">
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
-<td align="left">D. Neither agree nor disagree</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">6.7</td>
-</tr>
-<tr class="even">
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
-<td align="left">E. More or less agree</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">20.0</td>
-</tr>
-<tr class="odd">
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
-<td align="left">E. More or less agree</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">20.0</td>
-</tr>
-<tr class="even">
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
-<td align="left">F. Agree</td>
-<td align="right">2</td>
-<td align="right">6</td>
-<td align="right">40.0</td>
-</tr>
-<tr class="odd">
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
-<td align="left">G. Strongly agree</td>
-<td align="right">1</td>
-<td align="right">11</td>
-<td align="right">73.3</td>
-</tr>
-<tr class="even">
-<td align="left">Pasta with mushrooms is visually appealing to me. </td>
-<td align="left">G. Strongly agree</td>
-<td align="right">2</td>
-<td align="right">5</td>
-<td align="right">33.3</td>
-</tr>
-</tbody>
-</table>
-<p>… and a plot of it</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="descriptive-statistics.html#cb51-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb51-2"><a href="descriptive-statistics.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(answ,prc, <span class="at">fill =</span> <span class="fu">factor</span>(Day))) <span class="sc">+</span> </span>
-<span id="cb51-3"><a href="descriptive-statistics.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span> </span>
-<span id="cb51-4"><a href="descriptive-statistics.html#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>question) <span class="sc">+</span> </span>
-<span id="cb51-5"><a href="descriptive-statistics.html#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>,<span class="at">hjust =</span> <span class="dv">1</span>), </span>
-<span id="cb51-6"><a href="descriptive-statistics.html#cb51-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&#39;top&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
-<div id="descriptives-for-a-continouos-variable" class="section level3 hasAnchor" number="6.2.1">
-<h3><span class="header-section-number">6.2.1</span> Descriptives for a continouos variable<a href="descriptive-statistics.html#descriptives-for-a-continouos-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>[MORTEN: skal denne også ændres til noget smartere? datasættet er opsæt anderledes end vi normalt ville gøre det, og jeg tænker mere og mere på, om det er hensigtsmæssigt? Hjææælp…]</p>
-<p>Here just across the entire sample set.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="descriptive-statistics.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
-<pre><code>## [1] 138</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="descriptive-statistics.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
-<pre><code>## [1] 126</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="descriptive-statistics.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
-<pre><code>## [1] 85.45472</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="descriptive-statistics.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
-<pre><code>## [1] 112.5</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="descriptive-statistics.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Buffet_survey<span class="sc">$</span>Consumption)</span></code></pre></div>
+</div>
+</div>
+<div id="variance" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Variance<a href="descriptive-statistics.html#variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="descriptive-statistics.html#cb42-1" aria-hidden="true" tabindex="-1"></a>vembedr<span class="sc">::</span><span class="fu">embed_youtube</span>(<span class="st">&quot;https://www.youtube.com/watch?v=Qf3RMGXR-h8&amp;list=PL1328115D3D8A2566&amp;index=4&quot;</span>)</span></code></pre></div>
+<div class="vembedr">
+<div>
+<iframe src="https://www.youtube.com/embed/https://www.youtube.com/watch?v=Qf3RMGXR-h8&amp;list=PL1328115D3D8A2566&amp;index=4" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
+</div>
+</div>
+</div>
+<div id="standard-deviation" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Standard deviation<a href="descriptive-statistics.html#standard-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" aria-hidden="true" tabindex="-1"></a>vembedr<span class="sc">::</span><span class="fu">embed_youtube</span>(<span class="st">&quot;https://www.youtube.com/watch?v=HvDqbzu0i0E&amp;list=PL1328115D3D8A2566&amp;index=5&quot;</span>)</span></code></pre></div>
+<div class="vembedr">
+<div>
+<iframe src="https://www.youtube.com/embed/https://www.youtube.com/watch?v=HvDqbzu0i0E&amp;list=PL1328115D3D8A2566&amp;index=5" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
+</div>
+</div>
+<p>For examples we will use two datasets: <em>chili</em>: where and green tea in combination is added to meals and the resulting ad-libitum consumption is recorded, and <em>pasta</em> which is iBuffet data with a survey of preferences for each Person.</p>
+<p>The data is made available by:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="descriptive-statistics.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb44-2"><a href="descriptive-statistics.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(chili)</span>
+<span id="cb44-3"><a href="descriptive-statistics.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
+<span id="cb44-4"><a href="descriptive-statistics.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we subset to only have the &quot;Pasta with legumes&quot; data. </span></span>
+<span id="cb44-5"><a href="descriptive-statistics.html#cb44-5" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> pasta[pasta<span class="sc">$</span>StationName<span class="sc">==</span><span class="st">&#39;Pasta with legumes&#39;</span>,]</span></code></pre></div>
+<p>If you do not have imported the <em>data4consumerscience</em> package see: <a href="introduction-to-r.html#import-data-from-r-package">Import data from R-package</a>
+If you need to import data see: <a href="introduction-to-r.html#how-to-import-data">How to import data</a></p>
+<p>To compute mean, median, variance, standard deviation, etc. there are functions working directly on vectors:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="descriptive-statistics.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
+<pre><code>## [1] 1699.977</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="descriptive-statistics.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
+<pre><code>## [1] 1740.4</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="descriptive-statistics.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
+<pre><code>## [1] 459.6292</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="descriptive-statistics.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
+<pre><code>## [1] 211259</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="descriptive-statistics.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
+<pre><code>## [1] 660.6</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="descriptive-statistics.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##     0.0    74.0   126.0   138.0   186.5   378.0</code></pre>
-<p>This is a very high level representation, and we usually want to compare means (or other metrics) between different groups.</p>
-<p>We use the consumption and split it according to day and pasta-type.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="descriptive-statistics.html#cb62-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> Buffet_survey <span class="sc">%&gt;%</span> </span>
-<span id="cb62-2"><a href="descriptive-statistics.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(StationName, Day) <span class="sc">%&gt;%</span> </span>
-<span id="cb62-3"><a href="descriptive-statistics.html#cb62-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">nobs =</span> <span class="fu">n</span>(),</span>
-<span id="cb62-4"><a href="descriptive-statistics.html#cb62-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean =</span> <span class="fu">mean</span>(Consumption), </span>
-<span id="cb62-5"><a href="descriptive-statistics.html#cb62-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(Consumption),</span>
-<span id="cb62-6"><a href="descriptive-statistics.html#cb62-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(Consumption),</span>
-<span id="cb62-7"><a href="descriptive-statistics.html#cb62-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">iqr =</span> <span class="fu">IQR</span>(Consumption), </span>
-<span id="cb62-8"><a href="descriptive-statistics.html#cb62-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">q25 =</span> <span class="fu">quantile</span>(Consumption,<span class="fl">0.25</span>), </span>
-<span id="cb62-9"><a href="descriptive-statistics.html#cb62-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">q75 =</span> <span class="fu">quantile</span>(Consumption,<span class="fl">0.75</span>))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;StationName&#39;. You can override using the
-## `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="descriptive-statistics.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tb2, <span class="at">digits =</span> <span class="dv">1</span>, <span class="at">caption =</span> <span class="st">&#39;some relevant caption&#39;</span>)</span></code></pre></div>
+##   849.6  1289.1  1740.4  1700.0  1949.7  2905.2</code></pre>
+</div>
+</div>
+<div id="distributions-of-count-data" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Distributions of count data<a href="descriptive-statistics.html#distributions-of-count-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If the response can take certain values or categories, then the table function is good in getting how many observations there are within a given vector, or combinations of several vectors.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="descriptive-statistics.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pasta<span class="sc">$</span>I_like_taste_of_pasta_with_legumes)</span></code></pre></div>
+<pre><code>## 
+##                   Disagree      More or less disagree 
+##                          1                          3 
+## Neither agree nor disagree         More or less agree 
+##                          2                          5 
+##                      Agree             Strongly agree 
+##                          8                         11</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="descriptive-statistics.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pasta<span class="sc">$</span>I_like_taste_of_pasta_with_legumes, pasta<span class="sc">$</span>Did_you_consider_the_proteincontent_of_the_dishes_you_choose)</span></code></pre></div>
+<pre><code>##                             
+##                              No Yes
+##   Disagree                    0   1
+##   More or less disagree       2   1
+##   Neither agree nor disagree  1   1
+##   More or less agree          1   4
+##   Agree                       0   8
+##   Strongly agree              5   6</code></pre>
+<p>You see that most of the answers are in agreement with question, and that there are no observations in the <em>Strongly disagree</em> category.</p>
+<p>This is a very high level representation, and we usually want to compare means (or other metrics) between different groups. That is to compute descriptive statistics for subsets of the data.
+There are two ways to do this. Either using the aggregate() function or use the group_by() and summarize() from the tidyverse framework.</p>
+<p>Below both is shown to characterize <em>Totalg</em> on each of the products</p>
+</div>
+<div id="aggregate" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Aggregate<a href="descriptive-statistics.html#aggregate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="descriptive-statistics.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(chili<span class="sc">$</span>Totalg,<span class="at">by =</span> <span class="fu">list</span>(chili<span class="sc">$</span>Treatment),mean)</span></code></pre></div>
+<pre><code>##                Group.1        x
+## 1            Capsaicin 1716.195
+## 2            Green tea 1664.504
+## 3                 CH19 1708.977
+## 4 Capsaicin+ Green tea 1649.495
+## 5              placebo 1759.754</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="descriptive-statistics.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(chili<span class="sc">$</span>Totalg,<span class="at">by =</span> <span class="fu">list</span>(chili<span class="sc">$</span>Treatment),sd)</span></code></pre></div>
+<pre><code>##                Group.1        x
+## 1            Capsaicin 473.1042
+## 2            Green tea 462.2564
+## 3                 CH19 452.1225
+## 4 Capsaicin+ Green tea 450.3940
+## 5              placebo 468.4211</code></pre>
+</div>
+<div id="tidyverse" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Tidyverse<a href="descriptive-statistics.html#tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="descriptive-statistics.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb65-2"><a href="descriptive-statistics.html#cb65-2" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> chili <span class="sc">%&gt;%</span> </span>
+<span id="cb65-3"><a href="descriptive-statistics.html#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Treatment) <span class="sc">%&gt;%</span> <span class="co"># specify which grouping vector to use</span></span>
+<span id="cb65-4"><a href="descriptive-statistics.html#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="co"># compute n</span></span>
+<span id="cb65-5"><a href="descriptive-statistics.html#cb65-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">mn =</span> <span class="fu">mean</span>(Totalg), <span class="co"># compute mean</span></span>
+<span id="cb65-6"><a href="descriptive-statistics.html#cb65-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">s =</span> <span class="fu">sd</span>(Totalg), <span class="co"># compute s</span></span>
+<span id="cb65-7"><a href="descriptive-statistics.html#cb65-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">q1 =</span> <span class="fu">quantile</span>(Totalg,<span class="fl">0.25</span>), <span class="co"># compute lower 25% quartile</span></span>
+<span id="cb65-8"><a href="descriptive-statistics.html#cb65-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">q3 =</span> <span class="fu">quantile</span>(Totalg,<span class="fl">0.75</span>)) <span class="co"># compute upper 75% quartile</span></span>
+<span id="cb65-9"><a href="descriptive-statistics.html#cb65-9" aria-hidden="true" tabindex="-1"></a>tb  </span></code></pre></div>
+<pre><code>## # A tibble: 5 × 6
+##   Treatment                n    mn     s    q1    q3
+##   &lt;fct&gt;                &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Capsaicin               55 1716.  473. 1314. 1943.
+## 2 Green tea               53 1665.  462. 1213. 1912.
+## 3 CH19                    54 1709.  452. 1323. 1959.
+## 4 Capsaicin+ Green tea    54 1649.  450. 1271. 1906.
+## 5 placebo                 54 1760.  468. 1302. 1992</code></pre>
+<p>Further, lets print the results in a nice looking table using kable() from the knitr package.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="descriptive-statistics.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb67-2"><a href="descriptive-statistics.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tb, <span class="at">caption =</span> <span class="st">&#39;some caption&#39;</span>, <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">format =</span> <span class="st">&#39;simple&#39;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-34">Table 6.2: </span>some relevant caption</caption>
+<caption><span id="tab:unnamed-chunk-35">Table 5.1: </span>some caption</caption>
 <thead>
 <tr class="header">
-<th align="left">StationName</th>
-<th align="right">Day</th>
-<th align="right">nobs</th>
-<th align="right">mean</th>
-<th align="right">median</th>
-<th align="right">sd</th>
-<th align="right">iqr</th>
-<th align="right">q25</th>
-<th align="right">q75</th>
+<th align="left">Treatment</th>
+<th align="right">n</th>
+<th align="right">mn</th>
+<th align="right">s</th>
+<th align="right">q1</th>
+<th align="right">q3</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Pasta with legumes</td>
-<td align="right">1</td>
-<td align="right">15</td>
-<td align="right">132.3</td>
-<td align="right">130</td>
-<td align="right">81.2</td>
-<td align="right">101</td>
-<td align="right">71</td>
-<td align="right">172</td>
+<td align="left">Capsaicin</td>
+<td align="right">55</td>
+<td align="right">1716</td>
+<td align="right">473</td>
+<td align="right">1314</td>
+<td align="right">1943</td>
 </tr>
 <tr class="even">
-<td align="left">Pasta with legumes</td>
-<td align="right">2</td>
-<td align="right">15</td>
-<td align="right">155.7</td>
-<td align="right">138</td>
-<td align="right">103.7</td>
-<td align="right">139</td>
-<td align="right">71</td>
-<td align="right">210</td>
+<td align="left">Green tea</td>
+<td align="right">53</td>
+<td align="right">1665</td>
+<td align="right">462</td>
+<td align="right">1213</td>
+<td align="right">1912</td>
 </tr>
 <tr class="odd">
-<td align="left">Pasta with mushroom</td>
-<td align="right">1</td>
-<td align="right">15</td>
-<td align="right">135.1</td>
-<td align="right">92</td>
-<td align="right">88.7</td>
-<td align="right">99</td>
-<td align="right">76</td>
-<td align="right">175</td>
+<td align="left">CH19</td>
+<td align="right">54</td>
+<td align="right">1709</td>
+<td align="right">452</td>
+<td align="right">1323</td>
+<td align="right">1959</td>
 </tr>
 <tr class="even">
-<td align="left">Pasta with mushroom</td>
-<td align="right">2</td>
-<td align="right">15</td>
-<td align="right">128.9</td>
-<td align="right">124</td>
-<td align="right">71.3</td>
-<td align="right">85</td>
-<td align="right">86</td>
-<td align="right">171</td>
+<td align="left">Capsaicin+ Green tea</td>
+<td align="right">54</td>
+<td align="right">1649</td>
+<td align="right">450</td>
+<td align="right">1271</td>
+<td align="right">1906</td>
+</tr>
+<tr class="odd">
+<td align="left">placebo</td>
+<td align="right">54</td>
+<td align="right">1760</td>
+<td align="right">468</td>
+<td align="right">1302</td>
+<td align="right">1992</td>
 </tr>
 </tbody>
 </table>
-</div>
+<p>[MORTEN: kan vi lave en anden form for tabel her? Meld gerne ind hvad type data det kunne være?? for den man får ud giver ikke så meget mening set fra vores side. og så skal vi overveje om “tidyverse” er nice to know viden?]</p>
+<p>… and a plot of it</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="descriptive-statistics.html#cb68-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb68-2"><a href="descriptive-statistics.html#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(Treatment,mn, <span class="at">ymin =</span> q1, <span class="at">ymax =</span> q3)) <span class="sc">+</span> </span>
+<span id="cb68-3"><a href="descriptive-statistics.html#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb68-4"><a href="descriptive-statistics.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+
+<p>test4</p>
+
 </div>
 </div>
             </section>
@@ -758,7 +507,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/02_IntroChaptersGeneric2.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/03_DescriptiveStats.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -766,7 +515,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/02_IntroChaptersGeneric2.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/03_DescriptiveStats.Rmd",
 "text": null
 },
 "download": null,

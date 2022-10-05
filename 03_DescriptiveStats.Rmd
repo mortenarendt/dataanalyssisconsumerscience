@@ -1,0 +1,116 @@
+# Descriptive statistics
+
+In this Chapter we will go through the main elements of descriptive statistics.
+
+In principle, descriptive statistics is the act of taking a bunch of data and represent them in few numbers, such as mean, median, standard deviation etc. 
+
+For a more thorough introduction you can check every introductory stats book: The first couple of chapters will cover this. 
+
+
+## Descriptives for a continouos variable
+
+### Mean / median 
+
+```{r}
+vembedr::embed_youtube("https://www.youtube.com/watch?v=uhxtUt_-GyM&list=PL1328115D3D8A2566&index=1")
+```
+
+
+### Variance
+
+```{r}
+vembedr::embed_youtube("https://www.youtube.com/watch?v=Qf3RMGXR-h8&list=PL1328115D3D8A2566&index=4")
+```
+
+### Standard deviation
+
+```{r}
+vembedr::embed_youtube("https://www.youtube.com/watch?v=HvDqbzu0i0E&list=PL1328115D3D8A2566&index=5")
+```
+
+For examples we will use two datasets: _chili_: where and green tea in combination is added to meals and the resulting ad-libitum consumption is recorded, and _pasta_ which is iBuffet data with a survey of preferences for each Person.
+
+The data is made available by: 
+
+```{r}
+library(data4consumerscience)
+data(chili)
+data(pasta)
+# we subset to only have the "Pasta with legumes" data. 
+pasta <- pasta[pasta$StationName=='Pasta with legumes',]
+```
+
+If you do not have imported the _data4consumerscience_ package see: [Import data from R-package]
+If you need to import data see: [How to import data]
+
+To compute mean, median, variance, standard deviation, etc. there are functions working directly on vectors: 
+
+```{r}
+mean(chili$Totalg)
+median(chili$Totalg)
+sd(chili$Totalg)
+var(chili$Totalg)
+IQR(chili$Totalg)
+summary(chili$Totalg)
+```
+
+
+## Distributions of count data
+
+If the response can take certain values or categories, then the table function is good in getting how many observations there are within a given vector, or combinations of several vectors.
+
+```{r}
+table(pasta$I_like_taste_of_pasta_with_legumes)
+```
+
+```{r}
+table(pasta$I_like_taste_of_pasta_with_legumes, pasta$Did_you_consider_the_proteincontent_of_the_dishes_you_choose)
+```
+
+You see that most of the answers are in agreement with question, and that there are no observations in the _Strongly disagree_ category. 
+
+This is a very high level representation, and we usually want to compare means (or other metrics) between different groups. That is to compute descriptive statistics for subsets of the data. 
+There are two ways to do this. Either using the aggregate() function or use the group_by() and summarize() from the tidyverse framework. 
+
+Below both is shown to characterize _Totalg_ on each of the products
+
+## Aggregate
+
+```{r}
+aggregate(chili$Totalg,by = list(chili$Treatment),mean)
+aggregate(chili$Totalg,by = list(chili$Treatment),sd)
+```
+
+## Tidyverse
+
+```{r}
+library(tidyverse)
+tb <- chili %>% 
+  group_by(Treatment) %>% # specify which grouping vector to use
+  summarise(n = n(), # compute n
+            mn = mean(Totalg), # compute mean
+            s = sd(Totalg), # compute s
+            q1 = quantile(Totalg,0.25), # compute lower 25% quartile
+            q3 = quantile(Totalg,0.75)) # compute upper 75% quartile
+tb  
+```
+
+
+Further, lets print the results in a nice looking table using kable() from the knitr package. 
+
+```{r}
+library(knitr)
+kable(tb, caption = 'some caption', digits = 0, format = 'simple')
+```
+
+[MORTEN: kan vi lave en anden form for tabel her? Meld gerne ind hvad type data det kunne være?? for den man får ud giver ikke så meget mening set fra vores side. og så skal vi overveje om "tidyverse" er nice to know viden?]
+
+
+... and a plot of it
+
+```{r}
+tb %>% 
+  ggplot(data = ., aes(Treatment,mn, ymin = q1, ymax = q3)) + 
+  geom_point() + 
+  geom_errorbar()
+```

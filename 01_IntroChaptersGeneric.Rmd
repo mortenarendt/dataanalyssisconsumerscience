@@ -101,11 +101,11 @@ Actually, by using the file.choose() the first time you import data will prombt 
 DATASET1 <- read.csv2('~/path/to/the/data/myfile.csv')
 ```
 
-You decide the names/titles of your datasets and model, just do not use other signs than "." and avoid non-English letters. We called it "DATASET1". R will open a new window (sometimes hidden behind your other open windows), open the window to choose the wanted csv file. The data set will now also appear in the upper right corner as a line. If you double click a data set in this box, it will open in the editor window
+You decide the names/titles of your datasets and models, just do not use other signs than "." and avoid non-English letters. We called it "DATASET1". R will open a new window (sometimes hidden behind your other open windows), open the window to choose the wanted csv file. The data set will now also appear in the upper right corner as a line. If you double click a data set in this box, it will open in the editor window
 
 You can import any \*.csv format dataset, when you try it out.
 
-Trouble shooting: \* Try new csv format in Excel whan saving the file in csv format \* Try to write read.csv(file.choose()) instead \* Try another import function (see below)
+Trouble shooting: \* Try new csv format in Excel when saving the file in csv format \* Try to write read.csv(file.choose()) instead \* Try another import function (see below)
 
 ### Importing an Excel file/sheet
 
@@ -123,6 +123,8 @@ BuffetConsumption <- read_excel('./data/iBuffet.xlsx',sheet = 'BuffetData')
 BuffetSurvey <- read_excel('./data/iBuffet.xlsx',sheet = 'BuffetSurvey')
 SurveyScale <- read_excel('./data/iBuffet.xlsx', sheet = 'SurveyScale', col_names = c('answ','answnum'))
 ```
+
+[MORTEN: Datasæt navnene skal rettes her - Excelfilen hedder ikke dette mere og vi bruger ikke SurveyScale delen mere]
 
 The first part of the model sentence is what we want to call our dataset, here we chose "BuffetConsumption" in the first line (that is the same as the sheet in the Excel file for simplicity). You decide the names/titles of your datasets and model, just do not use other signs than "." and avoid non-English letters.
 
@@ -150,7 +152,7 @@ You can import from any Excel dataset, when you try it out.
 
 ### Looking at the imported elements
 
-Have a look at the imported elements to ensure that indeed, they mimic the Excel sheets. Use the functions head(), str() and View() is your tools. They will give you the headlines in your data, how your variables are categorised and open the dataset in a new tab.
+Have a look at the imported elements to ensure that indeed, they mimic the Excel sheets. Use the functions head(), str() and View() is your tools. They will give you the headlines in your data, how your variables are categorized and open the dataset in a new tab.
 
 ```{r, eval = F}
 head(BuffetConsumption)
@@ -258,7 +260,6 @@ Have a look at the imported elements to ensure that indeed, they mimic the Excel
 
 We see that the coloum with names (Person and StationName) is interpreted as characters (chr) while the stuff which should be numbers (Comsuption) is numeric (num). If that is not the case, you will need to transform them using as.numeric() or as.character().
 
-[MORTEN: check at disse koder stemmer overens med mit script længere oppe med faktorer og numbers, mere så vi bruger de samme koder]
 
 #### Edit
 
