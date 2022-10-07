@@ -6,29 +6,7 @@ In principle, descriptive statistics is the act of taking a bunch of data and re
 
 For a more thorough introduction you can check every introductory stats book: The first couple of chapters will cover this. 
 
-
-## Descriptives for a continouos variable
-
-### Mean / median 
-
-```{r}
-vembedr::embed_youtube("https://www.youtube.com/watch?v=uhxtUt_-GyM&list=PL1328115D3D8A2566&index=1")
-```
-
-
-### Variance
-
-```{r}
-vembedr::embed_youtube("https://www.youtube.com/watch?v=Qf3RMGXR-h8&list=PL1328115D3D8A2566&index=4")
-```
-
-### Standard deviation
-
-```{r}
-vembedr::embed_youtube("https://www.youtube.com/watch?v=HvDqbzu0i0E&list=PL1328115D3D8A2566&index=5")
-```
-
-For examples we will use two datasets: _chili_: where and green tea in combination is added to meals and the resulting ad-libitum consumption is recorded, and _pasta_ which is iBuffet data with a survey of preferences for each Person.
+For examples in this chapter we will use two datasets: _chili_: where and green tea in combination is added to meals and the resulting ad-libitum consumption is recorded, and _pasta_ which is iBuffet data with a survey of preferences for each Person.
 
 The data is made available by: 
 
@@ -43,13 +21,43 @@ pasta <- pasta[pasta$StationName=='Pasta with legumes',]
 If you do not have imported the _data4consumerscience_ package see: [Import data from R-package]
 If you need to import data see: [How to import data]
 
-To compute mean, median, variance, standard deviation, etc. there are functions working directly on vectors: 
+
+## Descriptives for a continuous variable
+
+Below we will first explain the different descriptive measures, and then describe calculations of them. Continuous variables could be sensory scores (e.g. 15 cm continuous line scale), consumption data (in gram) or liking scores (e.g. on a scale from 1 to 9).
+
+### Mean / median
+
+Here you get an introduction to statistics, descriptive statistics and the terms average/mean and median: 
+```{r}
+vembedr::embed_youtube("https://www.youtube.com/watch?v=uhxtUt_-GyM&list=PL1328115D3D8A2566&index=1")
+```
+
+### Variance
+
+Here you get an introduction to variance:
+
+```{r}
+vembedr::embed_youtube("https://www.youtube.com/watch?v=Qf3RMGXR-h8&list=PL1328115D3D8A2566&index=4")
+```
+
+### Standard deviation
+
+Here you get an introduction to the standard deviation:
+
+```{r}
+vembedr::embed_youtube("https://www.youtube.com/watch?v=HvDqbzu0i0E&list=PL1328115D3D8A2566&index=5")
+```
+
+### Calculations
+
+For the calculations, we use the _chili_ dataset. To compute mean, median, variance, standard deviation, etc. there are functions working directly on vectors: 
 
 ```{r}
 mean(chili$Totalg)
 median(chili$Totalg)
-sd(chili$Totalg)
 var(chili$Totalg)
+sd(chili$Totalg)
 IQR(chili$Totalg)
 summary(chili$Totalg)
 ```
@@ -67,6 +75,9 @@ table(pasta$I_like_taste_of_pasta_with_legumes)
 table(pasta$I_like_taste_of_pasta_with_legumes, pasta$Did_you_consider_the_proteincontent_of_the_dishes_you_choose)
 ```
 
+
+[MANGLER: skal vi overveje at lave dette med CATA data i stedet for? jeg er ikke helt vild med legumes datasættet nemlig.... men kan også bare blive stående]
+
 You see that most of the answers are in agreement with question, and that there are no observations in the _Strongly disagree_ category. 
 
 This is a very high level representation, and we usually want to compare means (or other metrics) between different groups. That is to compute descriptive statistics for subsets of the data. 
@@ -77,9 +88,15 @@ Below both is shown to characterize _Totalg_ on each of the products
 ## Aggregate
 
 ```{r}
-aggregate(chili$Totalg,by = list(chili$Treatment),mean)
-aggregate(chili$Totalg,by = list(chili$Treatment),sd)
+aggregate(chili$Totalg,by = list(chili$Treatment),FUN = mean)
+aggregate(chili$Totalg,by = list(chili$Treatment),FUN = sd)
 ```
+
+aggregate() will apply a function to a column or data set, using the list provided to group the column or dataset. 
+
+In our case, the column we want to apply our function to is chili\$Totalg, the functions are FUN = mean or FUN = sd (finding the mean and standard deviation, respectively) and the column we use for grouping the data is chili\$Treatment.
+
+This results in a data frame, where one column shows each unique group in chili\$Treatment, and another column shows the mean or standard deviation of chili\$Totalg corresponding to each group.
 
 ## Tidyverse
 
@@ -95,6 +112,11 @@ tb <- chili %>%
 tb  
 ```
 
+**group_by** will use the column specified to group the data, and the groups are then used when further manipulation is applied to the data frame.
+
+**summarise** will create a summary of the input data, with the columns specified in the code, calculation the statistics also written in the code (e.g. mn = mean(Totalg) will create a column with the mean of Totalg, for each group in Treatment, as specified by group_by()).
+
+For more information about data manipulation with tidyverse, see [Edit using Tidyverse] or check out [tidyverse-homepage](https://www.tidyverse.org/).
 
 Further, lets print the results in a nice looking table using kable() from the knitr package. 
 
@@ -105,7 +127,6 @@ kable(tb, caption = 'some caption', digits = 0, format = 'simple')
 
 [MORTEN: kan vi lave en anden form for tabel her? Meld gerne ind hvad type data det kunne være?? for den man får ud giver ikke så meget mening set fra vores side. og så skal vi overveje om "tidyverse" er nice to know viden?]
 
-
 ... and a plot of it
 
 ```{r}
@@ -114,3 +135,6 @@ tb %>%
   geom_point() + 
   geom_errorbar()
 ```
+
+More information on plotting will come in a future chapter (see [Plotting data]). But try and see if you can make sense of the inputs, and what they correspond to in the plot.
+

@@ -1,7 +1,7 @@
 --- 
 title: "Data Analysis in R for Consumer Science"
-author: "Morten Arendt Rasmussen"
-date: "`r Sys.Date()`"
+author: "Morten Arendt Rasmussen, Julius Terp, Helene Reinbach and Bodil Allesen Holm"
+date: "October 2022"
 site: bookdown::bookdown_site
 ---
 

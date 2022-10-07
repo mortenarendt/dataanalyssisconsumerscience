@@ -8,11 +8,32 @@ R is command-line based and it provides a wide variety of statistical methods (l
 
 Always be sure to have the latest version of both R and R Studio on your computer - update version just before you need to use the program.
 
-[INDSÆTTE: Bodil der snakker om opsætningen af R Studio. Forslag er slide 4-5-6 i Bodils R intro præsentation]
 
 ## How to get started - understanding R (and RStudio)
 
-To get started go to upper left corner and open a new script. Remember to save your script as well. To out our codes:
+A quick intro-tour of R Studio is given here:
+
+```{r, eval=F, include=FALSE}
+vembedr::embed_youtube("https://www.youtube.com/watch?v=FIrsOBy5k58")
+```
+
+And a short intro from our courses: 
+
+```{r}
+vembedr::embed_youtube("https://www.youtube.com/watch?v=MA0B4VzNeDM")
+```
+
+### Organise and save scripts
+
+A script is a rundown from A-Z (start to end) of data analysis. A script should be self-contained. I.e. the first lines sets the libraries and imports the data, there after you may want to wrangle the data a bit (changing features as.numeric, as.factor,..., renaming columns, etc.). Thereafter the analysis starts.
+
+Think of a script like making a meal: You need raw-materials (carrots, onions,...) - That is the data You need a kitchen - That is R as the software. You need knifes, pots and pans - That is the packages.
+
+All is needed to work and hence you need to specify them in the script.
+
+In larger projects where the same dataset may be used for several different analysis, it may be wise to have several scripts. One for importing data and modifying it (starts with import and ends with save() as an .RData file). One for descriptive analysis, one for inference, one for plots etc. So you can create a sequence of scripts to keep overview. However, this is only needed for larger projects. In small analysis you can easily include all in one script. ) Remember to put a little narrative (after a "\#" at the top off you script explaining the purpose.
+
+To get started go to upper left corner and open a new script. **Remember to save your script as well**. After you've created a new script, try out our codes:
 
 ```{r}
 1+2
@@ -34,7 +55,7 @@ a+b
 A+B
 ```
 
-R is essentially (also a) calculator, but case sensitive.
+R is essentially (also a) calculator, but it is case sensitive.
 
 In the Editor:
 
@@ -65,6 +86,7 @@ In the Console:
 
 "NaN" (Not a Number) is the result of an 'illegal' operation e.g. log(-1) Red sentences means there is an error. R will stop calculating at the first error it meets.
 
+
 ## How to import data
 
 ### Import data from R-package
@@ -81,7 +103,7 @@ devtools::install_github('mortenarendt/data4consumerscience')
 
 The data is also available as excel sheets, and can be loaded using packages capable of reading from Excel.
 
-Before you start you data import, you have to make sure the data set contains all the information you need and the format of the data (columns and rows) is correct. You can import in many different ways. This book will show you two:
+Before you start you data import, you have to make sure the data set contains all the information you need and the format of the data (columns and rows) is correct. You can import in many different ways. 
 
 ### Importing a csv file
 
@@ -113,28 +135,24 @@ If you have data as excel, you may utilize packages for directly importing, with
 
 If your Excel file contains more than one sheet, you have to import each sheet separately.
 
-Here we use the package **readxl** with the function read_excel. If the data is not in the same folder as your script, then include the path to the data, or move the data to the script's location.
+Here we use the package **readxl** with the function read_excel. If the data is not in the same folder as your script, then include the path to the data, or move the data to the script's location. The example below imports from an excel file ( _DatasetRbook.xlsx_) a sheet (named e.g. _BuffetData_ ), positioned in a folder (named _data_ ) in the current position. 
+You can download this dataset from [here](https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/data/iBuffet.xlsx).
 
 When you have to find the path for the file on your computer, you place your cursor within the '' in the command and click the tabulator button. Your computer files will appear, and you can find the path for your file easily. If you cannot find the path, try to use the file.choose() command to find the file, and then copy paste the path from the Console (where you find your output).
 
 ```{r, eval=FALSE}
 library(readxl)
-BuffetConsumption <- read_excel('./data/iBuffet.xlsx',sheet = 'BuffetData')
-BuffetSurvey <- read_excel('./data/iBuffet.xlsx',sheet = 'BuffetSurvey')
-SurveyScale <- read_excel('./data/iBuffet.xlsx', sheet = 'SurveyScale', col_names = c('answ','answnum'))
+BuffetConsumption <- read_excel('./data/DatasetRbook.xlsx',sheet = 'BuffetData')
+BuffetSurvey <- read_excel('./data/DatasetRbook.xlsx',sheet = 'BuffetSurvey')
 ```
-
-[MORTEN: Datasæt navnene skal rettes her - Excelfilen hedder ikke dette mere og vi bruger ikke SurveyScale delen mere]
 
 The first part of the model sentence is what we want to call our dataset, here we chose "BuffetConsumption" in the first line (that is the same as the sheet in the Excel file for simplicity). You decide the names/titles of your datasets and model, just do not use other signs than "." and avoid non-English letters.
 
-Try to import both the BuffetConsumption sheet and the BuffetSurvey sheet.
+Try to import sheets from an excel file.
 
 BuffetConsumption is consumption data in grams from a buffet. The data is from 16 different persons, who came on Day 1 and Day 2 to eat Pasta with legumes and/or Pasta with mushroom. In the dataset, there is one line per buffet station per participant per experimental day.
 
 BuffetSurvey is survey data collected in SurveyXact. The dataset contains data on liking, motivation, choices etc. linked to the particular buffet data. Survey could also contain demographics for the participants such as age, gender, eating habits etc. These are general and different from the former, in that they have nothing to do with the current buffet. This type of data is not included in the SurveyData.
-
-The last part of the code imports the scale used in the survey - these will be used later. But have a look at what the *col_names = c('answ','answnum')* does, and also what happens if you remove it or change it to *col_names = TRUE*.
 
 ### Clipboard import
 
@@ -176,54 +194,7 @@ Meaning take the variable Day in the dataset you called BuffetConsumption, make 
 BuffetConsumption$DayFactor<-as.factor(BuffetConsumption$Day) 
 ```
 
-## Organise and save scripts
-
-A script is a rundown from A-Z (start to end) of data analysis. A script should be self-contained. I.e. the first lines sets the libraries and imports the data, there after you may want to wrangle the data a bit (changing features as.numeric, as.factor,..., renaming columns, etc.). Thereafter the analysis starts.
-
-Think of a script like making a meal You need raw-materials (carrots, onions,...) - That is the data You need a kitchen - That is R as the software You need knifes, pots and pans - That is the packages
-
-All is needed to work and hence you need to specify them in the script.
-
-In larger projects where the same dataset may be used for several different analysis, it may be wise to have several scripts. One for importing data and modifying it (starts with import and ends with save() as an .RData file). One for descriptive analysis, one for inference, one for plots etc. So you can create a sequence of scripts to keep overview. However, this is only needed for larger projects. In small analysis you can easily include all in one script. ) Remember to put a little narrative (after a "\#" at the top off you script explaining the purpose.
-
-Remember to save your scripts!
-
-## How to save the data
-
-Use save.image() to save everything in the *Environment*, or use save() to specify which elements to save
-
-```{r, eval=FALSE}
-save.image(file = 'iBuffetSurveyDataEverything.RData') # everything
-save(file = 'iBuffetSurveyData.RData',
-     list = c('Survey','Surveylong_buffet',
-              'Surveylong','Buffet_survey','SurveyScale')) # just the usual and non-redundant stuff.
-```
-
-## How to export data / results
-
-You can export any data frame from R to excel (for instance using the *rio* package), as well as saving it as .RData for further analysis.
-
-This can obviously be used for exporting your data after some modifications. BUT it is also very useful for exporting data frames with *results* from analysis.
-
-When exporting data, it is also important to tell R where to place the exported file. You do this by specifying the path to the desired folder, followed by the name that **you** choose for the exported file (often it makes sense to choose the same name as the data frame in R).
-
-It is also important to specify the file-extension, to ensure that you create the right file type - in this case **.xlsx**, but rio can also export to other formats such as .txt or .csv.
-
-```{r, eval=FALSE}
-rio::export(Surveylong_buffet,file = './data/YourFolderForNiceTables/Surveylong_buffet.xlsx') # export one data frame
-```
-
-## Ready for analysis
-
-Once you have saved the data, you can simply load the data directly, and you do not need to do the import-setup every time you want to do an analysis on the data.
-
-This part is not a part of the data import, but it is a good idea just to check that the data indeed is setup as expected.
-
-```{r, eval=FALSE}
-load('iBuffetSurveyData.RData') 
-```
-
-## How to merge two datasets
+## How to edit and merge datasets
 
 Sometimes you have to merge two data sets. This is needed if you have for instance consumption data in one Excel sheet and survey data in another Excel sheet.
 
@@ -239,46 +210,30 @@ What is important is:
 
 We suggest that you keep both the original version of the data as a sheet, and the ready-to-import version as a sheet, so you do not accidentally delete data.
 
-### Import, edit and merge in R
+#### Edit using Tidyverse
 
-Each of the Excel sheets are imported separately. Here we use the package readxl with the function read_excel.
+The _Consumption_ data is optimal as is. We have the data as long format with all repsonses in *one* coloumn and then the next columns clarifying the design, time, type, person etc. However the _Survey_ data is not optimal directly. We need to revert the data to both long and wide format.
 
-[NB NB NB: Herfra og så til efter koden er 100% magen til tekst og kode for import ovenfor i tidligere afsnit - copy-paste]
+There are several ways to do this, including editing in Excel. Here we show how it can be done in R using _tidyverse_. Tidyverse is a larger framework. For introduction see:
 
-#### Import
-
-If the data is not in the same folder as your script, then include the path to the data, or move the data to the script's location.
-
-```{r, eval=FALSE}
-library(readxl)
-BuffetConsumption <- read_excel('./data/iBuffet.xlsx',sheet = 'BuffetData')
-BuffetSurvey <- read_excel('./data/iBuffet.xlsx',sheet = 'BuffetSurvey')
-SurveyScale <- read_excel('./data/iBuffet.xlsx', sheet = 'SurveyScale', col_names = c('answ','answnum'))
+```{r}
+vembedr::embed_youtube("https://www.youtube.com/watch?v=HPJn1CMvtmI")
 ```
 
-Have a look at the imported elements to ensure that indeed, they mimic the Excel-sheets. head(), str() and View() is your tools.
-
-We see that the coloum with names (Person and StationName) is interpreted as characters (chr) while the stuff which should be numbers (Comsuption) is numeric (num). If that is not the case, you will need to transform them using as.numeric() or as.character().
-
-
-#### Edit
-
-The comsumption data is optimal as is. We have the data as long format with all repsonses in *one* coloumn and then the next columns clarifying the design, time, type, person etc. However the Survey data is not optimal directly. We need to revert the data to both long and wide format.
+and maybe visit [tidyverse-homepage](https://www.tidyverse.org/) for resources.
 
 ```{r, eval=FALSE}
 library(tidyverse)
 Surveylong <- BuffetSurvey %>% 
   gather(question,answ, `Pasta with legumes is visually appealing to me. `:
-           `I like the taste of pasta with mushrooms! `) %>% 
-  mutate(answ = answ %>% factor(levels = Surveyscales$answ), 
-         answnum = answ %>% as.numeric())
+           `I like the taste of pasta with mushrooms! `)
 
-Surveywide <- Surveylong %>% select(-answ) %>% spread(question,answnum)
+Surveywide <- Surveylong %>% spread(question,answnum)
 ```
 
-The code above does exactly that, with *Surveylong* and *Surveywide* as the resulting data sets.
+The code above does exactly that, with *Surveylong* and *Surveywide* as the resulting data sets. Try to compare BuffetSurvey with Surveywide - did we already have a wide version of the dataset?
 
-What is also introduced here is the operator **%\>%**. It originates from the *dplyr*-package inside the *tidyverse*-package, and is a handy tool for data manipulation. The way it works is, that whatever is written on the **right** side of the operator, will be used as the first argument in the function written on the **left** side of the operator. This means, that x %\>% f(y) will result in f(x,y) - or in our case:
+What is also introduced here is the _pipe_ operator **%\>%**. It originates from the *dplyr*-package inside the *tidyverse*-package, and is a handy tool for data manipulation. The way it works is, that whatever is written on the **right** side of the operator, will be used as the first argument in the function written on the **left** side of the operator. This means, that x %\>% f(y) will result in f(x,y) - or in our case:
 
 BuffetSurvey %\>% gather(question,answ, `Pasta with legumes is visually appealing to me.`:`I like the taste of pasta with mushrooms!`) will be equal to: gather(BuffetSurvey,question,answ, `Pasta with legumes is visually appealing to me.`: `I like the taste of pasta with mushrooms!`)
 
@@ -286,17 +241,11 @@ The idea is then to "chain" (or "pipe" as it is also known) %\>% together line a
 
 **gather** will lengthen the data, by stacking the columns we specified on top of each other, resulting in each row being one single answer to one of the 4 questions. The answer will be in the *answ*-column, the question in the *question*-column, and the rest of the columns can then be used to e.g. group the data.
 
-**mutate** will add a column to the data as specified, in our case it will add the numerical equivalent of the answers to each question.
-
-**select** will (surprise) select the columns specified, in our case all columns BUT the *answ*-column (hence the "-" in front of *answ*.
-
 **spread** will do the opposite as **gather**, and spread one column in several columns depending on what the columns contains. In our case the *question*-column in spread into 4 columns, one for each question from the survey, with the numerical values of the answers as their values.
 
 You might have also noticed, that when a variable name contains a space, R needs help understanding that this is indeed a variable. Different symbols are added, and while you CAN write everything just the way R know how to read it, there is an easier way to make sure that everything is written correctly. You can call the variables from the data frame that they originate from, using **"dataframe\$"** and then hit TAB. A list of the variables of which the data frame consist will appear, and from this you can choose the right one - always spelled correctly, and the way R knows how the interpret it.
 
-[JULIUS: Tjek om ovenstående giver mening]
-
-#### Merge
+#### Merging datasets
 
 For the sake of being able to compare consumption (obtained from buffet data) with liking and motives (obtained from the survey data) these data frames needs to be merged. There are several merge options, here we use left_join() but full_join() and right_join() might more suited in some situations - depending on which data set you want to have appear first, and how you want to merge them.
 
@@ -334,4 +283,43 @@ table(is.na(Surveylong_buffet$Consumption))
 
 [TILFØJ: Forklaring på koderne nedenunder dem OG så skal koderne rettes til så det passer med mine nye Excelnavne]
 
-[Julius: Forstår ikke hvad der skal vises her, der er ikke nogen NA når jeg kører koden?]
+[Julius spørger: Forstår ikke hvad der skal vises her, der er ikke nogen NA når jeg kører koden?]
+
+
+## How to save the data
+
+Use save.image() to save everything in the *Environment* (all variables shown in the "Environment"-tab in the upper right corner of RStudio), or use save() to specify which elements to save using the "list"-input.
+
+```{r, eval=FALSE}
+# Saving everything to the folder of your choice
+save.image(file = './data/FolderYouWantToSaveYourProjectTo/AllMyData.RData') 
+
+# Saving just the specified datasets and other elements to your folder of choice
+save(file = './data/FolderYouWantToSaveYourProjectTo/SomeOfMyData.RData', list = c('Survey','Surveylong_buffet','Surveylong','Buffet_survey'')) 
+```
+
+## How to export data / results
+
+You can export any data frame from R to excel (for instance using the *rio* package), as well as saving it as .RData for further analysis.
+
+This can obviously be used for exporting your data after some modifications. BUT it is also very useful for exporting data frames with *results* from analysis.
+
+When exporting data, it is also important to tell R where to place the exported file. You do this by specifying the path to the desired folder, followed by the name that **you** choose for the exported file (often it makes sense to choose the same name as the data frame in R).
+
+It is also important to specify the file-extension, to ensure that you create the right file type - in this case **.xlsx**, but rio can also export to other formats such as .txt or .csv.
+
+```{r, eval=FALSE}
+# export one data frame
+rio::export(Surveylong_buffet,file = './data/YourFolderForNiceTables/Surveylong_buffet.xlsx') 
+```
+
+## Ready for analysis
+
+Once you have saved the data, you can simply load the data directly, and you do not need to do the import-setup every time you want to do an analysis on the data.
+
+This part is not a part of the data import, but it is a good idea just to check that the data indeed is setup as expected.
+
+```{r, eval=FALSE}
+load('./data/FolderWhereYourDataAreStored/YourData.RData') 
+```
+
