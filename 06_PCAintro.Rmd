@@ -1,0 +1,43 @@
+# Introduction to PCA and multivariate data
+
+Multivariate data is defined as a set of (multiple) response variables measured on the same set of samples. In principle these response variables can be of any nature (continuous, ordinal, binary), but mostly PCA is used for analysis of continuous. 
+
+In this book Principal Component Analysis (PCA) is used several times. This chapter will shortly explain the theory behind PCA and the interpretation of relevant plots.  
+
+PCA is a tool for looking a correlation structure between variables, and groupings of samples. _All through visualizations_.  
+Check out youtube on the subject for an introduction.
+
+A conceptual introduction is given here: 
+
+```{r}
+knitr::include_url("https://youtube.com/embed/NFIkD9-MuTY")
+```
+
+A bit of math
+
+The multivariate dataset is organized in a matrix $\mathbf{X}$ with $n$ samples and $p$ variables. 
+This matrix is factorized into so called scores ($\mathbf{T}$) and loadings ($\mathbf{P}$).
+
+$$ \mathbf{X} = \mathbf{T}\mathbf{P} + \mathbf{E} $$
+
+This estimation is done such that the residuals ($\mathbf{E}$) is minimized in a least squares sense. 
+The upside of using PCA is that we characterize the sample distribution (what is similar and different) using plots of $\mathbf{T}$, and the correlation of the responses using plots of $\mathbf{P}$. 
+
+In addition to PCA there exists a range of methods for factorizing multivariate datasets including Partial Least Squares (PLS), confirmatory factor analysis (CFA), Correspondence Analysis (CA), Redundancy Analysis (RA), and a lot more. 
+Conceptually, all these methods aims to make a latent-factor model just like PCA, and hence understanding the idea and especially how PCA is used, opens up for using a wide range of variants. 
+
+
+[Question to Aasmund: What should we extend with? - another video?]
+
+## Interpreting model output
+
+[MORTEN: ved ikke om dette skal være her, men HVIS det skal, så foreslår jeg en PCA på sensorik datasæt lagt ind I Excel filen DatasetRbook: BeefSensory]
+
+[Forslag kunne være simpelt score plot og loading plot?]
+
+[MORTEN: skal vi ikke have chili datasættet ind Excel også? eller fungerer det ikke sådan?]
+
+For calculating a PCA model, we will use the dataset _beef_. It is a sensory descriptive profile on vacuum packed beef steaks heat treated in water baths at different temperatures for different times (sous vide). The samples are coded as e.g. 56-03, meaning the sample has been treated for 56 degrees for 3 hours. There are 9 assessors in the panel and four sensory repetitions. 
+
+[PLOT PLOT PLOT + beskrivelse af plots :-)]
+

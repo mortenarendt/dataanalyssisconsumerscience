@@ -1,0 +1,32 @@
+# Libraries
+
+R comes with a bit of functionality. However, most of the useful tools in R is distributed as packages. There are +10.000 package for R, so it is a jungle to figure out what the most easy solution to your problem at hand is. However, the teams who have made tidyverse and ggplot2 etc. have made a lot of things much more easy, and we strongly rely on their tools and routines in data analysis. 
+
+To install packages from CRAN (the main repo where R-packages are distributed)
+
+```{r, eval=FALSE}
+install.packages('SomePackageName')
+```
+
+To install packages from github (the online place where all the development and general code sharing is distributed)
+
+```{r,eval=FALSE}
+devtools::install_github('DeveloperName/SomePackageName')
+```
+
+To make packages available within your analysis use library(), or use the package name followed by :: and the function. The library function will activate the installed package. 
+
+```{r}
+library(ggplot2) # lets plot data
+library(tidyverse)
+library(ggpubr) # lets add stats to the plots
+library(knitr) # lets make nice tables
+
+ggplot2::qplot(rnorm(100)) # example of a function call without library'ing the package.
+```
+
+Tidyverse is a large framework build to handle and manipulate data in a variety of different ways. An example of said manipulation is shown in chapter 1 under [Edit using Tidyverse].
+
+You can find even more information here [tidyverse-homepage](https://www.tidyverse.org/).
+
+

@@ -1,0 +1,30 @@
+# PCA on CATA and liking scores
+
+To include liking scores and CATA data in one analysis, we use PCA.  
+
+
+[Dette afsnit bliver i 2022 i en light version, jeg foreslår at vi i 2023 includerer et ##pca og ##pls]
+
+
+[ALT HER SKAL LAVES]
+
+
+
+A PCA on the agglomerated CATA counts including the liking will reveal the attributes associated with the individual products, and which attributes are correlated with the liking:  
+
+[MODEL RETTES MORTEN - jeg har bare kopieret ind fra tidligere. vi skal  også have et led/kode, hvor vi putter liking ind i CATA data sættet? det laves vel på rådata? Skal vi så også lave en model 2 på gennemsnitsdata? eller er det ikke nødvendigt?]
+
+```{r}
+mdlPCAcataliking <- prcomp(beercatasum[,-1], scale. = T)
+ggbiplot::ggbiplot(mdlPCAcataliking, labels = beercatasum$Beer)
+```
+
+[MORTEN: Forklaring på koden]
+
+
+The attributes Bean, Caramel, Warming, Aromatic etc is associated to the beer _Brown ale_, while Berrie, Dessert, Pungent, etc. is characteristic of _Wheat IPA_ 
+
+[skulle meget gerne vise hvad der driver liking, ved godt PLS er bedre her, men det når vi ikke i år. ydermere har de studerende heller ikke PCA færdigheder når de kommer til os, så det bliver alt for meget for dem med flere metoder....]
+
+[BOM: Add some more narrative?]
+
