@@ -22,7 +22,7 @@ $$y = a + b\cdot x + e$$
 The assumption is that the uncertainty is captured by one entry, namely the residuals ($e$). 
 For instance, the relation between _Hunger_ and the intake  _AdLibg_ of dishes with Capsaicin can be visualized and modelled by: 
 
-```{r}
+```{r, message=FALSE}
 library(data4consumerscience)
 data(chili)
 x <- chili %>% 
@@ -31,7 +31,7 @@ x <- chili %>%
   # only include the first trial for each judge
   filter(!duplicated(Judge)) 
 
-ggplot(data = x, aes(Hunger,AdLibg)) + 
+ggplot(data = x, aes(x = Hunger, y = AdLibg)) + 
   geom_point() + 
   stat_smooth(method = lm, se = F)
 ```
@@ -49,14 +49,13 @@ Here we see that consumption increases by $3.45g$ per increase in $1$ hunger sca
 
 More details on the use of linear models in R and how-to can be viewed in these videos: 
 
-```{r}
-vembedr::embed_youtube("https://youtu.be/66z_MRwtFJM")
+```{r, echo=FALSE}
+vembedr::embed_youtube("66z_MRwtFJM")
 ```
 
-```{r}
-vembedr::embed_youtube("https://youtu.be/2mAqgL0Xc-s")
+```{r,echo=FALSE}
+vembedr::embed_youtube("2mAqgL0Xc-s")
 ```
-
 
 
 ### Mixed model
@@ -64,18 +63,54 @@ vembedr::embed_youtube("https://youtu.be/2mAqgL0Xc-s")
 A _mixed_ model refers to the situation, where more than one part of the model is handling the uncertainty. 
 For instance, in the chili data set there are two instances for each judge, and hence the uncertainty can be split into _between_ judges and _within_ judged. 
 
+In this plot the intake is shown across products (_Treatment_) and labelled with the _Judge_ number. For instance, Judge 1 is in general high and 24 generally low. Further, the plot is splitted according to the two test-repetition (First:  TestDays = 1,..,5, Second: TestDays = 6,..,10). 
 
-[ALT MANGLER - forslag er at lave et kortere afsnit her som en pendant til PCA. Håber I synes det er en god ide?]
+This structure is encoded in the modelling. 
+
+```{r, message=FALSE}
+ggplot(data = chili, aes(x = Hunger, y = AdLibg, color = Treatment, label = Judge)) + 
+  geom_text() + 
+  stat_smooth(method = lm, se = F) + 
+  facet_wrap(~TestDay>5)
+```
+
+```{r, message=FALSE}
+library(lme4)
+library(lmerTest)
+chili$TestDay2 <- factor(chili$TestDay>5) # adding a new testday variable
+mdlmix <- lmer(data = chili, AdLibg ~ Hunger*Treatment + (1|Judge)  + (1|(TestDay2)))
+summary(mdlmix)
+```
+
+The summary spits out the model estimates, and especially the random effects shows that the within individual residual variation is $130g$ while the between individual variation is larger: $164g$. I.e. the consumption is more depend on the individual than the repetitions. Further, the testday also has a little effect ($54g$).
 
 
+We can evaluate the systematic effect overall by **anova**
+
+```{r}
+anova(mdlmix)
+```
+
+This shows that Hunger indeed will make you eat more, but the slopes and offsets in relation to the different products is non-significant. 
+
+
+To learn more and see how to conduct the analysis in R, see here: [More on ANOVA and mixed models](https://stat.ethz.ch/~meier/teaching/anova/index.html)
+
+```{r, include=F,eval=F}
+#[ALT MANGLER - forslag er at lave et kortere afsnit her som en pendant til PCA. Håber I synes det er en god ide?]
+```
+
+
+```{r, include=F,eval=F}
 ### ANOVA
 
+#[More on ANOVA](https://stat.ethz.ch/~meier/teaching/anova/index.html)
+
+#An analysis of variance (ANOVA)
 
 
 #### Tukey's Honest Significant Difference (HSD)
 
-
-
-
+```
 
 

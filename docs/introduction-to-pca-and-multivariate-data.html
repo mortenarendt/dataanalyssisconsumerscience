@@ -4,23 +4,23 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Introduction to PCA and multivariate data | Data Analysis in R for Consumer Science</title>
-  <meta name="description" content="Chapter 6 Introduction to PCA and multivariate data | Data Analysis in R for Consumer Science" />
+  <title>Chapter 6 Introduction to PCA and multivariate data | Data Analysis in R for Sensory and Consumer Science</title>
+  <meta name="description" content="Chapter 6 Introduction to PCA and multivariate data | Data Analysis in R for Sensory and Consumer Science" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Introduction to PCA and multivariate data | Data Analysis in R for Consumer Science" />
+  <meta property="og:title" content="Chapter 6 Introduction to PCA and multivariate data | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Introduction to PCA and multivariate data | Data Analysis in R for Consumer Science" />
+  <meta name="twitter:title" content="Chapter 6 Introduction to PCA and multivariate data | Data Analysis in R for Sensory and Consumer Science" />
   
   
   
 
-<meta name="author" content="Morten Arendt Rasmussen, Julius Terp, Helene Reinbach and Bodil Allesen Holm" />
+<meta name="author" content="Morten Arendt Rasmussen, Julius Terp, Helene Reinbach and Bodil Allesen-Holm" />
 
 
 
@@ -179,7 +179,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html"><i class="fa fa-check"></i><b>6</b> Introduction to PCA and multivariate data</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#interpreting-model-output"><i class="fa fa-check"></i><b>6.1</b> Interpreting model output</a></li>
+<li class="chapter" data-level="6.1" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#interpreting-model-output"><i class="fa fa-check"></i><b>6.1</b> Interpreting model output</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#biplot"><i class="fa fa-check"></i><b>6.1.1</b> Biplot</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="introduction-to-linear-and-mixed-models.html"><a href="introduction-to-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>7</b> Introduction to linear and mixed models</a>
 <ul>
@@ -188,7 +191,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="introduction-to-linear-and-mixed-models.html"><a href="introduction-to-linear-and-mixed-models.html#normal-model"><i class="fa fa-check"></i><b>7.2.1</b> Normal model</a></li>
 <li class="chapter" data-level="7.2.2" data-path="introduction-to-linear-and-mixed-models.html"><a href="introduction-to-linear-and-mixed-models.html#mixed-model"><i class="fa fa-check"></i><b>7.2.2</b> Mixed model</a></li>
-<li class="chapter" data-level="7.2.3" data-path="introduction-to-linear-and-mixed-models.html"><a href="introduction-to-linear-and-mixed-models.html#anova"><i class="fa fa-check"></i><b>7.2.3</b> ANOVA</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html"><i class="fa fa-check"></i><b>8</b> CATA data (Check-All-That-Apply)</a>
@@ -197,21 +199,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>8.2</b> Two versions of the data</a></li>
 <li class="chapter" data-level="8.3" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#cochrans-q-test"><i class="fa fa-check"></i><b>8.3</b> Cochran’s Q test</a>
 <ul>
-<li class="chapter" data-level="8.3.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#post-hoc-contrasts"><i class="fa fa-check"></i><b>8.3.1</b> Post hoc contrasts</a></li>
+<li class="chapter" data-level="8.3.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#post-hoc-test"><i class="fa fa-check"></i><b>8.3.1</b> Post hoc test</a></li>
 <li class="chapter" data-level="8.3.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#for-all-attributes-in-one-run-nice-to-know"><i class="fa fa-check"></i><b>8.3.2</b> For all attributes in one run (nice to know)</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#pca-on-cata-data"><i class="fa fa-check"></i><b>8.4</b> PCA on CATA data</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="liking-scores.html"><a href="liking-scores.html"><i class="fa fa-check"></i><b>9</b> Liking scores</a>
+<li class="chapter" data-level="9" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html"><i class="fa fa-check"></i><b>9</b> Hedonic rating (e.g. liking scores)</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="liking-scores.html"><a href="liking-scores.html#plotting-liking-scores"><i class="fa fa-check"></i><b>9.1</b> Plotting liking scores</a></li>
-<li class="chapter" data-level="9.2" data-path="liking-scores.html"><a href="liking-scores.html#simple-mixed-models"><i class="fa fa-check"></i><b>9.2</b> Simple mixed models</a>
+<li class="chapter" data-level="9.1" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html#plotting-liking-scores"><i class="fa fa-check"></i><b>9.1</b> Plotting liking scores</a></li>
+<li class="chapter" data-level="9.2" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html#simple-mixed-models"><i class="fa fa-check"></i><b>9.2</b> Simple mixed models</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="liking-scores.html"><a href="liking-scores.html#post-hoc-contrasts-1"><i class="fa fa-check"></i><b>9.2.1</b> Post hoc contrasts</a></li>
+<li class="chapter" data-level="9.2.1" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html#post-hoc-test-1"><i class="fa fa-check"></i><b>9.2.1</b> Post hoc test</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="liking-scores.html"><a href="liking-scores.html#multiway-mixed-models"><i class="fa fa-check"></i><b>9.3</b> Multiway mixed models</a></li>
+<li class="chapter" data-level="9.3" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html#multifactor-models"><i class="fa fa-check"></i><b>9.3</b> Multifactor models</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html#additive-models"><i class="fa fa-check"></i><b>9.3.1</b> Additive models</a></li>
+<li class="chapter" data-level="9.3.2" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html#effect-modification-and-interactions"><i class="fa fa-check"></i><b>9.3.2</b> Effect modification and Interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="pca-on-cata-and-liking-scores.html"><a href="pca-on-cata-and-liking-scores.html"><i class="fa fa-check"></i><b>10</b> PCA on CATA and liking scores</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html"><i class="fa fa-check"></i><b>10</b> CATA and Hedonics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#individual-attributes-and-liking"><i class="fa fa-check"></i><b>10.1</b> Individual attributes and liking</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#an-example-with-refreshing"><i class="fa fa-check"></i><b>10.1.1</b> An example with Refreshing</a></li>
+<li class="chapter" data-level="10.1.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#all-attributes"><i class="fa fa-check"></i><b>10.1.2</b> All attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pca-on-cata-and-liking"><i class="fa fa-check"></i><b>10.2</b> PCA on CATA and Liking</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#a-beer-centric-model"><i class="fa fa-check"></i><b>10.2.1</b> A beer centric model</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>11</b> Projective mapping</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>11.1</b> Example from mapping of XX</a></li>
@@ -221,13 +238,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="tfih-exercises.html"><a href="tfih-exercises.html"><i class="fa fa-check"></i><b>12</b> TFIH Exercises</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-1-pca-on-consumer-background"><i class="fa fa-check"></i><b>12.1</b> Exercise 1: PCA on consumer background</a></li>
-<li class="chapter" data-level="12.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-2-pca-on-cata-counts"><i class="fa fa-check"></i><b>12.2</b> Exercise 2: PCA on CATA counts</a></li>
-<li class="chapter" data-level="12.3" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-3-pca-on-liking"><i class="fa fa-check"></i><b>12.3</b> Exercise 3: PCA on liking</a></li>
-<li class="chapter" data-level="12.4" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-4-pls-on-cata-counts-and-liking"><i class="fa fa-check"></i><b>12.4</b> Exercise 4: PLS on CATA counts and liking</a></li>
-<li class="chapter" data-level="12.5" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-5-mixed-modelling-on-the-liking"><i class="fa fa-check"></i><b>12.5</b> Exercise 5: Mixed modelling on the liking</a></li>
-<li class="chapter" data-level="12.6" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-6-comparing-cata-binary-data-and-counts"><i class="fa fa-check"></i><b>12.6</b> Exercise 6: Comparing CATA binary data and counts</a></li>
-<li class="chapter" data-level="12.7" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-7-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>12.7</b> Exercise 7: Cochran’s Q test on CATA binary data</a></li>
+<li class="chapter" data-level="12.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-1-descriptive-statistics-and-plots"><i class="fa fa-check"></i><b>12.1</b> Exercise 1: Descriptive statistics and plots</a></li>
+<li class="chapter" data-level="12.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-2-pca-on-consumer-background"><i class="fa fa-check"></i><b>12.2</b> Exercise 2: PCA on consumer background</a></li>
+<li class="chapter" data-level="12.3" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-3-pca-on-cata-counts"><i class="fa fa-check"></i><b>12.3</b> Exercise 3: PCA on CATA counts</a></li>
+<li class="chapter" data-level="12.4" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-4-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>12.4</b> Exercise 4: Cochran’s Q test on CATA binary data</a></li>
+<li class="chapter" data-level="12.5" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-5-pca-on-hedonic-ratings"><i class="fa fa-check"></i><b>12.5</b> Exercise 5: PCA on hedonic ratings</a></li>
+<li class="chapter" data-level="12.6" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-6-pca-on-cata-counts-and-hedonic-ratings"><i class="fa fa-check"></i><b>12.6</b> Exercise 6: PCA on CATA counts and hedonic ratings</a></li>
+<li class="chapter" data-level="12.7" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-7-mixed-modelling-on-hedonic-ratings"><i class="fa fa-check"></i><b>12.7</b> Exercise 7: Mixed modelling on hedonic ratings</a>
+<ul>
+<li class="chapter" data-level="12.7.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#simple"><i class="fa fa-check"></i><b>12.7.1</b> simple</a></li>
+<li class="chapter" data-level="12.7.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#multifactorial"><i class="fa fa-check"></i><b>12.7.2</b> multifactorial</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>13</b> Preference Mapping</a>
 <ul>
@@ -285,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis in R for Consumer Science</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis in R for Sensory and Consumer Science</a>
           </h1>
         </div>
 
@@ -300,9 +321,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>PCA is a tool for looking a correlation structure between variables, and groupings of samples. <em>All through visualizations</em>.<br />
 Check out youtube on the subject for an introduction.</p>
 <p>A conceptual introduction is given here:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="introduction-to-pca-and-multivariate-data.html#cb86-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_url</span>(<span class="st">&quot;https://youtube.com/embed/NFIkD9-MuTY&quot;</span>)</span></code></pre></div>
-<iframe src="https://youtube.com/embed/NFIkD9-MuTY" width="672" height="400px" data-external="1">
-</iframe>
+<div class="vembedr">
+<div>
+<iframe src="https://www.youtube.com/embed/NFIkD9-MuTY" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
+</div>
+</div>
 <p>A bit of math</p>
 <p>The multivariate dataset is organized in a matrix <span class="math inline">\(\mathbf{X}\)</span> with <span class="math inline">\(n\)</span> samples and <span class="math inline">\(p\)</span> variables.
 This matrix is factorized into so called scores (<span class="math inline">\(\mathbf{T}\)</span>) and loadings (<span class="math inline">\(\mathbf{P}\)</span>).</p>
@@ -311,15 +334,34 @@ This matrix is factorized into so called scores (<span class="math inline">\(\ma
 The upside of using PCA is that we characterize the sample distribution (what is similar and different) using plots of <span class="math inline">\(\mathbf{T}\)</span>, and the correlation of the responses using plots of <span class="math inline">\(\mathbf{P}\)</span>.</p>
 <p>In addition to PCA there exists a range of methods for factorizing multivariate datasets including Partial Least Squares (PLS), confirmatory factor analysis (CFA), Correspondence Analysis (CA), Redundancy Analysis (RA), and a lot more.
 Conceptually, all these methods aims to make a latent-factor model just like PCA, and hence understanding the idea and especially how PCA is used, opens up for using a wide range of variants.</p>
-<p>[Question to Aasmund: What should we extend with? - another video?]</p>
 <div id="interpreting-model-output" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Interpreting model output<a href="introduction-to-pca-and-multivariate-data.html#interpreting-model-output" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>[MORTEN: ved ikke om dette skal være her, men HVIS det skal, så foreslår jeg en PCA på sensorik datasæt lagt ind I Excel filen DatasetRbook: BeefSensory]</p>
-<p>[Forslag kunne være simpelt score plot og loading plot?]</p>
-<p>[MORTEN: skal vi ikke have chili datasættet ind Excel også? eller fungerer det ikke sådan?]</p>
-<p>For calculating a PCA model, we will use the dataset <em>beef</em>. It is a sensory descriptive profile on vacuum packed beef steaks heat treated in water baths at different temperatures for different times (sous vide). The samples are coded as e.g. 56-03, meaning the sample has been treated for 56 degrees for 3 hours. There are 9 assessors in the panel and four sensory repetitions.</p>
-<p>[PLOT PLOT PLOT + beskrivelse af plots :-)]</p>
+<p>For calculating a PCA model, we will use the dataset <em>beef</em>. It is a sensory descriptive profile on vacuum packed beef steaks heat treated in water baths at different temperatures for different times (sous vide) In total 12 combinations. The samples are coded as e.g. 56-03, meaning the sample has been treated for 56 degrees for 3 hours. There are 10 assessors in the panel, four sensory repetitions and 22 attrributes (A-Brownsurface to T-Salt).</p>
+<p>The first 3 colooumns of the dataset is used for the design.
+The PCA is computed on the response variables <em>only</em></p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="introduction-to-pca-and-multivariate-data.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb68-2"><a href="introduction-to-pca-and-multivariate-data.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(beef)</span>
+<span id="cb68-3"><a href="introduction-to-pca-and-multivariate-data.html#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="introduction-to-pca-and-multivariate-data.html#cb68-4" aria-hidden="true" tabindex="-1"></a>mdlPCA <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(beef[,<span class="dv">4</span><span class="sc">:</span><span class="dv">25</span>], <span class="at">scale. =</span> T)</span></code></pre></div>
+<div id="biplot" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Biplot<a href="introduction-to-pca-and-multivariate-data.html#biplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The ggbiplot package (and function) is a need tool to plot the PCA model.</p>
+<p>Installation of this is done by:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="introduction-to-pca-and-multivariate-data.html#cb69-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;vqv/ggbiplot&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="introduction-to-pca-and-multivariate-data.html#cb70-1" aria-hidden="true" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(mdlPCA)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p>The PCA tries to capture the maximum structure of the data in a few dimensions called principal components (PC1, PC2,…).</p>
+<p>The arrows and labels reflects the correlation structure between the responses. I.e we see that the <em>Bouillon</em> characteristics is correlated and explains PC2, while textural properties like <em>Rubberband</em>, <em>Chewtime</em> is correlated, and oppositely correlated of <em>Tender</em>, and collectively explains PC1.</p>
+<p>We can deecorate the scores with design information, such as beef type as well as judge</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="introduction-to-pca-and-multivariate-data.html#cb71-1" aria-hidden="true" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(mdlPCA, <span class="at">groups =</span> beef<span class="sc">$</span>ProductName, <span class="at">ellipse =</span> T)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p>All though this plot is a bit messy, we see that higher temperature promotes higher position on PC2: I.e. moving from bloody to bouillon. While PC1 to some extend captures trends in cooking time.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="introduction-to-pca-and-multivariate-data.html#cb72-1" aria-hidden="true" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(mdlPCA, <span class="at">groups =</span>  beef<span class="sc">$</span>Assessor, <span class="at">ellipse =</span> T)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p>Coloring according to judge reveal that judge A04 is low in range (variance), and hence do not utilize the entire response scale, A03 tends to rate higher on <em>rubberband</em>, <em>chewtime</em>, <em>bloodmetal</em>, etc. especilly compared to A10, which is higher in <em>bouillon</em> / PC2.
+This plot indicates how well trained the panel is, as we optimally have only smaller impact of the individual judges.</p>
 
+</div>
 </div>
 </div>
             </section>

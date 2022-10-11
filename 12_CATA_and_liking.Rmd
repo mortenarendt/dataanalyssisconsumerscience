@@ -1,30 +1,159 @@
-# PCA on CATA and liking scores
+# CATA and Hedonics
 
-To include liking scores and CATA data in one analysis, we use PCA.  
+Certain attributes like floral is wanted in beer, while others may be unwanted, and hence detection of these attributes can have hedonic impact. This analysis can be evaluated for each attribute separately or all collectively using PCA. 
 
-
-[Dette afsnit bliver i 2022 i en light version, jeg foreslår at vi i 2023 includerer et ##pca og ##pls]
-
-
-[ALT HER SKAL LAVES]
-
-
-
-A PCA on the agglomerated CATA counts including the liking will reveal the attributes associated with the individual products, and which attributes are correlated with the liking:  
-
-[MODEL RETTES MORTEN - jeg har bare kopieret ind fra tidligere. vi skal  også have et led/kode, hvor vi putter liking ind i CATA data sættet? det laves vel på rådata? Skal vi så også lave en model 2 på gennemsnitsdata? eller er det ikke nødvendigt?]
+These data appears as two separate dataset, and hence need to be joint: 
 
 ```{r}
-mdlPCAcataliking <- prcomp(beercatasum[,-1], scale. = T)
-ggbiplot::ggbiplot(mdlPCAcataliking, labels = beercatasum$Beer)
+library(data4consumerscience)
+library(tidyverse)
+data("beercata")
+data("beerliking")
+xbeer <- beerliking %>% 
+  left_join(beercata, by = c('Beer','Consumer.ID'))
 ```
 
-[MORTEN: Forklaring på koden]
+## Individual attributes and liking
+
+### An example with Refreshing
+
+```{r}
+ggplot(data = xbeer, aes(Beer,  Liking, fill = factor(S_Refreshing))) + 
+  geom_boxplot() 
+```
+
+From this plot it seems as if checking of the attribute _Refreshing_ leads to higher liking score. 
+Further, this is even more so for light-colored beers like _Wheat IPA_ and _Porse Bock_. 
+
+A model capturing this phenomena could be a linear model with interactions: 
+
+```{r}
+library(lme4)
+library(lmerTest)
+mdl <- lmer(data = xbeer, Liking~factor(S_Refreshing)*Beer + (1|Consumer.ID))
+anova(mdl)
+
+```
+All terms are significant and we are interested in the individual beer effects. We re-parametrice the model by removing the intercept (adding -1 at the end of the formula) and not including the main effect of S_Refreshing (change * to : in interaction, and add Beer as main effect). 
+
+```{r}
+mdl <- lmer(data = xbeer, Liking~Beer + factor(S_Refreshing):Beer + (1|Consumer.ID) - 1)
+summary(mdl)
+```
+
+Here we see that the attribute will increase the liking by $0.7$ points for _Brown Ale_ and up to $2.4$ points for _Wheat IPA_. 
+
+### All attributes
+
+We can visualize for all attributes: 
+
+```{r, fig.height=9}
+g1 <- xbeer %>% 
+  gather(cata, val,S_Flowers:S_Vinous) %>% 
+  ggplot(data = ., aes(Beer,  Liking, fill = factor(val))) + 
+  geom_boxplot() + 
+  theme(axis.text.x = element_text(angle = 79, hjust = 1), legend.position = 'bottom') + 
+  facet_wrap(~cata, ncol = 4)
+g1 
+```
+
+For each attribute a interaction model will be used to qualify further analysis. 
+
+```{r, message=FALSE, warning=FALSE}
+library(broom)
+library(broom.mixed)
+tb <- xbeer %>% 
+  gather(cata, val,S_Flowers:S_Vinous) %>% 
+  group_by(cata) %>% 
+  do(lmer(data = ., Liking~factor(val)*Beer + (1|Consumer.ID)) %>% anova %>% tidy)
+```
+
+This table has both main effect of the beer and cata-attribute as well their interaction. 
+
+This print out shows the attributes related to liking - overall. 
+
+```{r}
+tb %>% 
+  filter(term=='factor(val)') %>% 
+  arrange(p.value)
+```
+
+The strongest ones are S_Refreshing, S_Sour, etc. while the presence of S_Warming, S_Pungent etc. has no effect on liking. 
+
+```{r}
+tb %>% 
+  filter(term=='factor(val):Beer') %>% 
+  arrange(p.value) %>% 
+  head(6)
+```
+
+This table shows that S_Refreshing, S_Fruity, etc. has differential impact on the liking dependent on the beer it is detected in. 
+
+A deep dive into the effect can be done using the setup with a single variable above using the _tidyverse_ and _broom_ framework. 
+
+```{r}
+tb2 <- xbeer %>% 
+  gather(cata, val,S_Flowers:S_Vinous) %>% 
+  group_by(cata) %>% 
+  do(lmer(data = ., Liking~Beer + factor(val):Beer + (1|Consumer.ID) - 1) %>% tidy(conf.int = T))
+
+```
+
+```{r}
+tb2 %>% 
+  filter(str_detect(term,'factor')) %>%  # filter to get individual beer differences. 
+  filter(cata %in% tb$cata[tb$term=='factor(val):Beer' & tb$p.value<0.05]) %>% # include only interesting ones. 
+  ggplot(data = ., aes(substr(term,5,14), estimate, ymin = conf.low, ymax = conf.high)) + 
+  geom_point() + 
+  geom_errorbar() + facet_wrap(~cata) + 
+  geom_hline(yintercept = 0) + theme(axis.text.x = element_text(angle = 79, hjust = 1)) + 
+  xlab('Beer')
+```
+
+The interpretation is that detecting _Smoked_ in e.g. _Ravnsborg Red_ tends to be positive, while it is pretty bad in _Wheat IPA_. 
+Similarly, _Fruity_ is related to higher liking in _Wheat IPA_ and _Porse Bock_ but a bad thing in _River Beer_. 
+_Nutty_ only matters on liking in _Ravnsborg Red_ and _River beer_. 
+
+## PCA on CATA and Liking
+
+A PCA on the agglomerated CATA counts including the liking will reveal the attributes associated with the individual products, and which attributes are correlated with the liking.  
+
+```{r}
+xbeeragglom <- xbeer %>% 
+  gather(cata, val,S_Flowers:S_Vinous, Liking) %>% #looong format for all variables
+  group_by(Beer,cata) %>% # summarize for each beer type
+  dplyr::summarise(yy = mean(val, na.rm = T)) %>% 
+  spread(cata,yy) # wide format
+```
+
+```{r}
+mdlPCAcataliking <- prcomp(xbeeragglom[,-1], scale. = T)
+ggbiplot::ggbiplot(mdlPCAcataliking, labels = xbeeragglom$Beer)
+```
 
 
-The attributes Bean, Caramel, Warming, Aromatic etc is associated to the beer _Brown ale_, while Berrie, Dessert, Pungent, etc. is characteristic of _Wheat IPA_ 
+
+The attributes Bean, Caramel, Warming, Aromatic etc is associated to the beer _Brown ale_, while Berrie, Dessert, Pungent, etc. is characteristic of _Wheat IPA_. Further, _Liking_ is associated with all attributes on the first component, such as Aromatic, Warming, etc. 
+
+### A beer centric model 
+
+The above PCA shows general good- and bad attributes in terms of liking. However, the univariate analysis indicated that for some beers e.g. Smoked was a good thing while for others not so much. 
+
+For that reason we can build a PCA for each beer to see which attributes that drives liking 
+
+```{r}
+xbeer <- xbeer[complete.cases(xbeer),]
+PCAmdl_RR <- prcomp(xbeer[xbeer$Beer=='Ravnsborg Red',14:41], scale. = T)
+ggbiplot::ggbiplot(PCAmdl_RR)
+```
+
+Caramel, Savoury spices and Reefreshing is promoting liking, while Sour is not. 
+
+
+```{r, eval=F, include=FALSE}
+
 
 [skulle meget gerne vise hvad der driver liking, ved godt PLS er bedre her, men det når vi ikke i år. ydermere har de studerende heller ikke PCA færdigheder når de kommer til os, så det bliver alt for meget for dem med flere metoder....]
 
-[BOM: Add some more narrative?]
 
+```

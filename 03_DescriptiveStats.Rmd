@@ -29,7 +29,7 @@ Below we will first explain the different descriptive measures, and then describ
 ### Mean / median
 
 Here you get an introduction to statistics, descriptive statistics and the terms average/mean and median: 
-```{r}
+```{r, echo=FALSE}
 vembedr::embed_youtube("https://www.youtube.com/watch?v=uhxtUt_-GyM&list=PL1328115D3D8A2566&index=1")
 ```
 
@@ -37,7 +37,7 @@ vembedr::embed_youtube("https://www.youtube.com/watch?v=uhxtUt_-GyM&list=PL13281
 
 Here you get an introduction to variance:
 
-```{r}
+```{r,echo=FALSE}
 vembedr::embed_youtube("https://www.youtube.com/watch?v=Qf3RMGXR-h8&list=PL1328115D3D8A2566&index=4")
 ```
 
@@ -45,7 +45,7 @@ vembedr::embed_youtube("https://www.youtube.com/watch?v=Qf3RMGXR-h8&list=PL13281
 
 Here you get an introduction to the standard deviation:
 
-```{r}
+```{r, echo=FALSE}
 vembedr::embed_youtube("https://www.youtube.com/watch?v=HvDqbzu0i0E&list=PL1328115D3D8A2566&index=5")
 ```
 
@@ -75,8 +75,9 @@ table(pasta$I_like_taste_of_pasta_with_legumes)
 table(pasta$I_like_taste_of_pasta_with_legumes, pasta$Did_you_consider_the_proteincontent_of_the_dishes_you_choose)
 ```
 
-
-[MANGLER: skal vi overveje at lave dette med CATA data i stedet for? jeg er ikke helt vild med legumes datasættet nemlig.... men kan også bare blive stående]
+```{r, include=FALSE, eval=FALSE}
+#[MANGLER: skal vi overveje at lave dette med CATA data i stedet for? jeg er ikke helt vild med legumes datasættet nemlig.... men kan også bare blive stående]
+```
 
 You see that most of the answers are in agreement with question, and that there are no observations in the _Strongly disagree_ category. 
 
@@ -116,7 +117,7 @@ tb
 
 **summarise** will create a summary of the input data, with the columns specified in the code, calculation the statistics also written in the code (e.g. mn = mean(Totalg) will create a column with the mean of Totalg, for each group in Treatment, as specified by group_by()).
 
-For more information about data manipulation with tidyverse, see [Edit using Tidyverse] or check out [tidyverse-homepage](https://www.tidyverse.org/).
+For more information about data manipulation with tidyverse, see [Edit using Tidyverse] or check out the [tidyverse-homepage](https://www.tidyverse.org/).
 
 Further, lets print the results in a nice looking table using kable() from the knitr package. 
 
@@ -125,9 +126,12 @@ library(knitr)
 kable(tb, caption = 'some caption', digits = 0, format = 'simple')
 ```
 
-[MORTEN: kan vi lave en anden form for tabel her? Meld gerne ind hvad type data det kunne være?? for den man får ud giver ikke så meget mening set fra vores side. og så skal vi overveje om "tidyverse" er nice to know viden?]
+```{r, include=FALSE,eval=FALSE}
+#[MORTEN: kan vi lave en anden form for tabel her? Meld gerne ind hvad type data det kunne være?? for den man får ud giver ikke så meget mening set fra vores side. og så skal vi overveje om "tidyverse" er nice to know viden?]
 
-... and a plot of it
+```
+
+... and a plot of it:
 
 ```{r}
 tb %>% 

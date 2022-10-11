@@ -16,11 +16,8 @@ devtools::install_github('DeveloperName/SomePackageName')
 
 To make packages available within your analysis use library(), or use the package name followed by :: and the function. The library function will activate the installed package. 
 
-```{r}
-library(ggplot2) # lets plot data
-library(tidyverse)
-library(ggpubr) # lets add stats to the plots
-library(knitr) # lets make nice tables
+```{r, message=FALSE}
+library(ggplot2) 
 
 ggplot2::qplot(rnorm(100)) # example of a function call without library'ing the package.
 ```
@@ -28,5 +25,3 @@ ggplot2::qplot(rnorm(100)) # example of a function call without library'ing the 
 Tidyverse is a large framework build to handle and manipulate data in a variety of different ways. An example of said manipulation is shown in chapter 1 under [Edit using Tidyverse].
 
 You can find even more information here [tidyverse-homepage](https://www.tidyverse.org/).
-
-

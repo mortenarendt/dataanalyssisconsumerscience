@@ -12,18 +12,45 @@
 
 ## PCA
 
-PCA is nice....
+PCA is a nice tool to get overview of structure in data. Here we explicitly are interested in hedonic liking of the 6 beer types, and whether there are certain beer-drinker profiles, such as some prefer dark beer, while others like wheat or pilsner. 
 
-[on beerliking]
+The liking data is in long format, and as we want to see correlation between different beers we need to wrap the liking into wide format, this can be done using **spread** from tidyverse. Further, there is incomplete liking data, and here we only sustain hedonic answers from consumers with all _6_ liking answers. This filter can be computed in different ways, here **drop_na()** is used. 
 
 ```{r}
 library(data4consumerscience)
+library(tidyverse)
 data("beerliking")
-mdlPCA <- prcomp(beerliking[complete.cases(beerliking),-1])
+
+xbeerliking <- beerliking %>% 
+  spread(Beer,Liking) %>% # make into wide format
+  drop_na()
+  
+```
+
+PCA is computed on the liking columns of this matrix
+
+```{r}
+mdlPCA <- prcomp(xbeerliking[,13:18])
 ggbiplot::ggbiplot(mdlPCA)
 ```
 
-Those who like Ravnsborg red also likes NY Lager and to some extend Brown ale.... [some more narrative]
+Those who like _Ravnsborg red_ also likes _NY Lager_ and to some extend _Brown ale_, while _Porse Bock_ and _Wheat IPA_ also attracts the same consumers. 
+
+In general there is a trend towards all liking score being positively correlated, meaning, that costumers overall like (or dis like) beer. This can both be a real phenomena, but also an artifact of the consumers not using the scale in a similar fashion. It is a very common phenomena for sensory and hedonic data. 
+
+We can glue on demographic characteristics, such as age, gender, etc., as well as questions on interest in food and beer on this figure to understand the consumer population. 
+
+```{r}
+ggbiplot::ggbiplot(mdlPCA, groups = xbeerliking$Gender, ellipse = T)
+```
+
+```{r}
+ggbiplot::ggbiplot(mdlPCA, groups = factor(xbeerliking$`Beer knowledge`), ellipse = T)
+```
+
+In general, the classical demographics do not relate to liking patterns, as shown by gender above. Try the others to confirm. 
+
+For interest in food and beer there are patterns. One example is the _Beer knowledge_ with higher liking scores for more beer knowledge. Similar intuitive patterns can be seen for some of the other characteristics. 
 
 ## Analysis by PLS
 

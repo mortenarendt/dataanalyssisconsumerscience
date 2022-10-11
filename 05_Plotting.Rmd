@@ -6,8 +6,8 @@ Especially, looking at the raw data will enable you to point towards outliers an
 
 **ggplot2** is a wide spread library for plotting data and used by a lot of users. Check it out on videos:
 
-```{r}
-vembedr::embed_youtube("https://www.youtube.com/watch?v=HPJn1CMvtmI")
+```{r, echo=F}
+vembedr::embed_youtube("HPJn1CMvtmI")
 ```
 
 
@@ -29,7 +29,7 @@ To show the total consumption a histogram is useful
 
 ```{r}
 library(ggplot2)
-ggplot(data = chili, aes(AdLibg)) + geom_histogram()
+ggplot(data = chili, aes(x = AdLibg)) + geom_histogram()
 ```
 
 The plot reveals a bi-modal distribution with an upper tail. 
@@ -39,47 +39,47 @@ These observations comes from 5 different treatments, 27 different judges and at
 Per treatment: 
 
 ```{r}
-ggplot(data = chili, aes(Treatment,AdLibg)) + 
+ggplot(data = chili, aes(x = Treatment, y = AdLibg)) + 
   geom_boxplot() + geom_jitter()
 ```
 
 Per Judge: 
 ```{r}
-ggplot(data = chili, aes(factor(Judge),AdLibg)) + 
+ggplot(data = chili, aes(x = factor(Judge), y = AdLibg)) + 
   geom_boxplot() + geom_jitter()
 ```
 
 None of these explains the bi-modality seen in the histogram. However, we can combine test-day information, which essentially is reflecting whether it is first or second trial splitting at day 5: (TestDay>5)
 
 ```{r}
-ggplot(data = chili, aes(factor(Judge),AdLibg, color = factor(TestDay>5))) + 
+ggplot(data = chili, aes(x = factor(Judge), y = AdLibg, color = factor(TestDay>5))) + 
   geom_boxplot(aes(group = factor(Judge))) + geom_jitter()
 ```
 
 This coloring shows a clear difference between trials, which explains the bi-modal distribution. It also explains why the two modes of the distribution are overlapping, and why the distribution is skewed. Because while most judges have consumed more during the first trial, some judges did the opposite - higher consumption during the second trial.
 
-[Julius spørger: Er ovenstående nok?]
-
 ## Scatter plots
 
 Lets plot the consumption (AdLibg) as a function of LikingAppearance, and add a tendency line: 
 
-```{r}
-ggplot(data = chili, aes(LikingAppearance,AdLibg)) + 
-  geom_point() + stat_smooth()
+```{r, message=FALSE}
+ggplot(data = chili, aes(x = LikingAppearance, y = AdLibg)) + 
+  geom_point() + stat_smooth(formula = 'y ~ x')
 ```
 
-[MORTEN eller JULIUS: Here we see....Kan I skrive tekst til forklaring af outputtet]
+This plot shows AdLibg on the y-axis plotted against LikingApperance on the x-axis, with "stat_smooth()" adding a tendency line. Try adding "method = lm" inside the brackets of stat_smooth(), and see how the line changes.
 
 
 Now, lets funk this up by splitting into test-days and get colors according to product: 
 
-```{r}
-ggplot(data = chili, aes(Hunger,AdLibg, color = Treatment)) + 
-  geom_point() + stat_smooth(se = F, method = lm) + facet_wrap(~ TestDay>5)
+```{r, message=FALSE}
+ggplot(data = chili, aes(x = Hunger, y = AdLibg, color = Treatment)) + 
+  geom_point() + stat_smooth(formula = 'y ~ x', se = F, method = lm) + 
+  facet_wrap(~ TestDay>5)
 ```
 
-[MORTEN eller JULIUS: Here we see....Kan I skrive tekst til forklaring af outputtet]
+The plot shows, that the tendency of food intake increasing with increased hunger, is  true for all treatments, as well as duriung both trial days.
+
 
 ## How to export plots 
 

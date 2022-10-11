@@ -13,14 +13,14 @@ Always be sure to have the latest version of both R and R Studio on your compute
 
 A quick intro-tour of R Studio is given here:
 
-```{r, eval=F, include=FALSE}
-vembedr::embed_youtube("https://www.youtube.com/watch?v=FIrsOBy5k58")
+```{r, echo=FALSE}
+vembedr::embed_youtube("FIrsOBy5k58")
 ```
 
 And a short intro from our courses: 
 
-```{r}
-vembedr::embed_youtube("https://www.youtube.com/watch?v=MA0B4VzNeDM")
+```{r, echo=FALSE}
+vembedr::embed_youtube("MA0B4VzNeDM")
 ```
 
 ### Organise and save scripts
@@ -216,8 +216,8 @@ The _Consumption_ data is optimal as is. We have the data as long format with al
 
 There are several ways to do this, including editing in Excel. Here we show how it can be done in R using _tidyverse_. Tidyverse is a larger framework. For introduction see:
 
-```{r}
-vembedr::embed_youtube("https://www.youtube.com/watch?v=HPJn1CMvtmI")
+```{r, echo=FALSE}
+vembedr::embed_youtube("HPJn1CMvtmI")
 ```
 
 and maybe visit [tidyverse-homepage](https://www.tidyverse.org/) for resources.
@@ -275,15 +275,11 @@ Surveylong_buffet <- Surveylong %>%
   left_join(BuffetConsumption, by = c('Person','Day'))
 ```
 
-Due to not having a total overlap of information, some responses (here for consumption) will be missing. That you can see using the table function.
-
-```{r}
+```{r, include=FALSE,eval=FALSE}
+#Due to not having a total overlap of information, some responses (here for consumption) will be missing. That you can see using the table function.
 table(is.na(Surveylong_buffet$Consumption))
+#[Julius spørger: Forstår ikke hvad der skal vises her, der er ikke nogen NA når jeg kører koden?]
 ```
-
-[TILFØJ: Forklaring på koderne nedenunder dem OG så skal koderne rettes til så det passer med mine nye Excelnavne]
-
-[Julius spørger: Forstår ikke hvad der skal vises her, der er ikke nogen NA når jeg kører koden?]
 
 
 ## How to save the data

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 CATA and Hedonics | Data Analysis in R for Sensory and Consumer Science</title>
+  <meta name="description" content="Chapter 10 CATA and Hedonics | Data Analysis in R for Sensory and Consumer Science" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 CATA and Hedonics | Data Analysis in R for Sensory and Consumer Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 CATA and Hedonics | Data Analysis in R for Sensory and Consumer Science" />
+  
+  
+  
+
+<meta name="author" content="Morten Arendt Rasmussen, Julius Terp, Helene Reinbach and Bodil Allesen-Holm" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hedonic-rating-e.g.html"/>
+<link rel="next" href="projective-mapping.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis in R for Consumer Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to the book</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#organise-and-save-scripts"><i class="fa fa-check"></i><b>2.1.1</b> Organise and save scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-import-data"><i class="fa fa-check"></i><b>2.2</b> How to import data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-data-from-r-package"><i class="fa fa-check"></i><b>2.2.1</b> Import data from R-package</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-a-csv-file"><i class="fa fa-check"></i><b>2.2.2</b> Importing a csv file</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-an-excel-filesheet"><i class="fa fa-check"></i><b>2.2.3</b> Importing an Excel file/sheet</a></li>
+<li class="chapter" data-level="2.2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#clipboard-import"><i class="fa fa-check"></i><b>2.2.4</b> Clipboard import</a></li>
+<li class="chapter" data-level="2.2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-at-the-imported-elements"><i class="fa fa-check"></i><b>2.2.5</b> Looking at the imported elements</a></li>
+<li class="chapter" data-level="2.2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#numbers-and-factors---changing-categorisation"><i class="fa fa-check"></i><b>2.2.6</b> Numbers and factors - changing categorisation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-edit-and-merge-datasets"><i class="fa fa-check"></i><b>2.3</b> How to edit and merge datasets</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-save-the-data"><i class="fa fa-check"></i><b>2.4</b> How to save the data</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-export-data-results"><i class="fa fa-check"></i><b>2.5</b> How to export data / results</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#ready-for-analysis"><i class="fa fa-check"></i><b>2.6</b> Ready for analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>3</b> Libraries</a></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continuous-variable"><i class="fa fa-check"></i><b>4.1</b> Descriptives for a continuous variable</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-median"><i class="fa fa-check"></i><b>4.1.1</b> Mean / median</a></li>
+<li class="chapter" data-level="4.1.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>4.1.2</b> Variance</a></li>
+<li class="chapter" data-level="4.1.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>4.1.3</b> Standard deviation</a></li>
+<li class="chapter" data-level="4.1.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#calculations"><i class="fa fa-check"></i><b>4.1.4</b> Calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>4.2</b> Distributions of count data</a></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#aggregate"><i class="fa fa-check"></i><b>4.3</b> Aggregate</a></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tidyverse"><i class="fa fa-check"></i><b>4.4</b> Tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>5</b> Plotting data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="plotting-data.html"><a href="plotting-data.html#histograms-and-boxplots"><i class="fa fa-check"></i><b>5.1</b> Histograms and boxplots</a></li>
+<li class="chapter" data-level="5.2" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>5.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="5.3" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>5.3</b> How to export plots</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html"><i class="fa fa-check"></i><b>6</b> Introduction to PCA and multivariate data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#interpreting-model-output"><i class="fa fa-check"></i><b>6.1</b> Interpreting model output</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#biplot"><i class="fa fa-check"></i><b>6.1.1</b> Biplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="introduction-to-linear-and-mixed-models.html"><a href="introduction-to-linear-and-mixed-models.html"><i class="fa fa-check"></i><b>7</b> Introduction to linear and mixed models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="introduction-to-linear-and-mixed-models.html"><a href="introduction-to-linear-and-mixed-models.html#what-is-a-linear-model"><i class="fa fa-check"></i><b>7.1</b> What is a linear model?</a></li>
+<li class="chapter" data-level="7.2" data-path="introduction-to-linear-and-mixed-models.html"><a href="introduction-to-linear-and-mixed-models.html#normal-and-mixed-models"><i class="fa fa-check"></i><b>7.2</b> Normal and Mixed models</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="introduction-to-linear-and-mixed-models.html"><a href="introduction-to-linear-and-mixed-models.html#normal-model"><i class="fa fa-check"></i><b>7.2.1</b> Normal model</a></li>
+<li class="chapter" data-level="7.2.2" data-path="introduction-to-linear-and-mixed-models.html"><a href="introduction-to-linear-and-mixed-models.html#mixed-model"><i class="fa fa-check"></i><b>7.2.2</b> Mixed model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html"><i class="fa fa-check"></i><b>8</b> CATA data (Check-All-That-Apply)</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#importing-and-looking-at-the-beer-data"><i class="fa fa-check"></i><b>8.1</b> Importing and looking at the beer data</a></li>
+<li class="chapter" data-level="8.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>8.2</b> Two versions of the data</a></li>
+<li class="chapter" data-level="8.3" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#cochrans-q-test"><i class="fa fa-check"></i><b>8.3</b> Cochran’s Q test</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#post-hoc-test"><i class="fa fa-check"></i><b>8.3.1</b> Post hoc test</a></li>
+<li class="chapter" data-level="8.3.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#for-all-attributes-in-one-run-nice-to-know"><i class="fa fa-check"></i><b>8.3.2</b> For all attributes in one run (nice to know)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#pca-on-cata-data"><i class="fa fa-check"></i><b>8.4</b> PCA on CATA data</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html"><i class="fa fa-check"></i><b>9</b> Hedonic rating (e.g. liking scores)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html#plotting-liking-scores"><i class="fa fa-check"></i><b>9.1</b> Plotting liking scores</a></li>
+<li class="chapter" data-level="9.2" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html#simple-mixed-models"><i class="fa fa-check"></i><b>9.2</b> Simple mixed models</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html#post-hoc-test-1"><i class="fa fa-check"></i><b>9.2.1</b> Post hoc test</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html#multifactor-models"><i class="fa fa-check"></i><b>9.3</b> Multifactor models</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html#additive-models"><i class="fa fa-check"></i><b>9.3.1</b> Additive models</a></li>
+<li class="chapter" data-level="9.3.2" data-path="hedonic-rating-e.g.html"><a href="hedonic-rating-e.g.html#effect-modification-and-interactions"><i class="fa fa-check"></i><b>9.3.2</b> Effect modification and Interactions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html"><i class="fa fa-check"></i><b>10</b> CATA and Hedonics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#individual-attributes-and-liking"><i class="fa fa-check"></i><b>10.1</b> Individual attributes and liking</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#an-example-with-refreshing"><i class="fa fa-check"></i><b>10.1.1</b> An example with Refreshing</a></li>
+<li class="chapter" data-level="10.1.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#all-attributes"><i class="fa fa-check"></i><b>10.1.2</b> All attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pca-on-cata-and-liking"><i class="fa fa-check"></i><b>10.2</b> PCA on CATA and Liking</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#a-beer-centric-model"><i class="fa fa-check"></i><b>10.2.1</b> A beer centric model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>11</b> Projective mapping</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>11.1</b> Example from mapping of XX</a></li>
+<li class="chapter" data-level="11.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>11.2</b> A Collated version of the data</a></li>
+<li class="chapter" data-level="11.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>11.3</b> PCA on Collated data</a></li>
+<li class="chapter" data-level="11.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>11.4</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="tfih-exercises.html"><a href="tfih-exercises.html"><i class="fa fa-check"></i><b>12</b> TFIH Exercises</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-1-descriptive-statistics-and-plots"><i class="fa fa-check"></i><b>12.1</b> Exercise 1: Descriptive statistics and plots</a></li>
+<li class="chapter" data-level="12.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-2-pca-on-consumer-background"><i class="fa fa-check"></i><b>12.2</b> Exercise 2: PCA on consumer background</a></li>
+<li class="chapter" data-level="12.3" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-3-pca-on-cata-counts"><i class="fa fa-check"></i><b>12.3</b> Exercise 3: PCA on CATA counts</a></li>
+<li class="chapter" data-level="12.4" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-4-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>12.4</b> Exercise 4: Cochran’s Q test on CATA binary data</a></li>
+<li class="chapter" data-level="12.5" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-5-pca-on-hedonic-ratings"><i class="fa fa-check"></i><b>12.5</b> Exercise 5: PCA on hedonic ratings</a></li>
+<li class="chapter" data-level="12.6" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-6-pca-on-cata-counts-and-hedonic-ratings"><i class="fa fa-check"></i><b>12.6</b> Exercise 6: PCA on CATA counts and hedonic ratings</a></li>
+<li class="chapter" data-level="12.7" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-7-mixed-modelling-on-hedonic-ratings"><i class="fa fa-check"></i><b>12.7</b> Exercise 7: Mixed modelling on hedonic ratings</a>
+<ul>
+<li class="chapter" data-level="12.7.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#simple"><i class="fa fa-check"></i><b>12.7.1</b> simple</a></li>
+<li class="chapter" data-level="12.7.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#multifactorial"><i class="fa fa-check"></i><b>12.7.2</b> multifactorial</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>13</b> Preference Mapping</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>13.1</b> Example of Preference Mapping</a></li>
+<li class="chapter" data-level="13.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca"><i class="fa fa-check"></i><b>13.2</b> PCA</a></li>
+<li class="chapter" data-level="13.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>13.3</b> Analysis by PLS</a></li>
+<li class="chapter" data-level="13.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>13.4</b> L-PLS [For the future…]</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>14</b> Latent Factor Models</a></li>
+<li class="chapter" data-level="15" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>15</b> LPLS</a></li>
+<li class="chapter" data-level="16" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>16</b> Consumer Segmentation</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>16.1</b> Kmeans</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>17</b> More PCA</a></li>
+<li class="chapter" data-level="18" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>18</b> Logistic Regression</a></li>
+<li class="chapter" data-level="19" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>19</b> Confirmatory Factor Analysis using lavaan</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>19.1</b> Example - Food Neophobia</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>20</b> Structured Equation Modelling</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>20.1</b> Example - Theory of Planned Behaviour</a>
+<ul>
+<li class="chapter" data-level="20.1.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#plsda-cataon-cata-and-liking"><i class="fa fa-check"></i><b>20.1.1</b> PLSDA (CATA??)on CATA and liking??</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>21</b> PCA on survey answers</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>21.1</b> Bi-plot</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>21.1.1</b> Extract the components and run all associations.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>22</b> Linear models</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>22.1</b> Example</a></li>
+<li class="chapter" data-level="22.2" data-path="linear-models.html"><a href="linear-models.html#run-a-bunch-of-models-at-once"><i class="fa fa-check"></i><b>22.2</b> Run a bunch of models at once</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="linear-models.html"><a href="linear-models.html#a-plot"><i class="fa fa-check"></i><b>22.2.1</b> A plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>23</b> Mixed models</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>23.1</b> With several variables</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis in R for Sensory and Consumer Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cata-and-hedonics" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> CATA and Hedonics<a href="cata-and-hedonics.html#cata-and-hedonics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Certain attributes like floral is wanted in beer, while others may be unwanted, and hence detection of these attributes can have hedonic impact. This analysis can be evaluated for each attribute separately or all collectively using PCA.</p>
+<p>These data appears as two separate dataset, and hence need to be joint:</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="cata-and-hedonics.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb120-2"><a href="cata-and-hedonics.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb120-3"><a href="cata-and-hedonics.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span>
+<span id="cb120-4"><a href="cata-and-hedonics.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span>
+<span id="cb120-5"><a href="cata-and-hedonics.html#cb120-5" aria-hidden="true" tabindex="-1"></a>xbeer <span class="ot">&lt;-</span> beerliking <span class="sc">%&gt;%</span> </span>
+<span id="cb120-6"><a href="cata-and-hedonics.html#cb120-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(beercata, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;Beer&#39;</span>,<span class="st">&#39;Consumer.ID&#39;</span>))</span></code></pre></div>
+<div id="individual-attributes-and-liking" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Individual attributes and liking<a href="cata-and-hedonics.html#individual-attributes-and-liking" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="an-example-with-refreshing" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> An example with Refreshing<a href="cata-and-hedonics.html#an-example-with-refreshing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="cata-and-hedonics.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> xbeer, <span class="fu">aes</span>(Beer,  Liking, <span class="at">fill =</span> <span class="fu">factor</span>(S_Refreshing))) <span class="sc">+</span> </span>
+<span id="cb121-2"><a href="cata-and-hedonics.html#cb121-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p>From this plot it seems as if checking of the attribute <em>Refreshing</em> leads to higher liking score.
+Further, this is even more so for light-colored beers like <em>Wheat IPA</em> and <em>Porse Bock</em>.</p>
+<p>A model capturing this phenomena could be a linear model with interactions:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="cata-and-hedonics.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb122-2"><a href="cata-and-hedonics.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb122-3"><a href="cata-and-hedonics.html#cb122-3" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> xbeer, Liking<span class="sc">~</span><span class="fu">factor</span>(S_Refreshing)<span class="sc">*</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID))</span>
+<span id="cb122-4"><a href="cata-and-hedonics.html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdl)</span></code></pre></div>
+<pre><code>## Type III Analysis of Variance Table with Satterthwaite&#39;s method
+##                           Sum Sq Mean Sq NumDF  DenDF  F value    Pr(&gt;F)    
+## factor(S_Refreshing)      316.30  316.30     1 901.60 141.9478 &lt; 2.2e-16 ***
+## Beer                       75.61   15.12     5 783.91   6.7864 3.309e-06 ***
+## factor(S_Refreshing):Beer  48.91    9.78     5 877.05   4.3894 0.0005933 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>All terms are significant and we are interested in the individual beer effects. We re-parametrice the model by removing the intercept (adding -1 at the end of the formula) and not including the main effect of S_Refreshing (change * to : in interaction, and add Beer as main effect).</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="cata-and-hedonics.html#cb124-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> xbeer, Liking<span class="sc">~</span>Beer <span class="sc">+</span> <span class="fu">factor</span>(S_Refreshing)<span class="sc">:</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb124-2"><a href="cata-and-hedonics.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
+## lmerModLmerTest]
+## Formula: Liking ~ Beer + factor(S_Refreshing):Beer + (1 | Consumer.ID) -      1
+##    Data: xbeer
+## 
+## REML criterion at convergence: 3438.2
+## 
+## Scaled residuals: 
+##      Min       1Q   Median       3Q      Max 
+## -2.87114 -0.67445  0.08872  0.70059  2.46378 
+## 
+## Random effects:
+##  Groups      Name        Variance Std.Dev.
+##  Consumer.ID (Intercept) 0.2706   0.5202  
+##  Residual                2.2283   1.4928  
+## Number of obs: 920, groups:  Consumer.ID, 155
+## 
+## Fixed effects:
+##                                         Estimate Std. Error       df t value
+## BeerBrown Ale                             4.7895     0.1398 882.4248  34.267
+## BeerNY Lager                              4.0037     0.1466 890.7615  27.301
+## BeerPorse Bock                            3.5033     0.1585 899.7911  22.102
+## BeerRavnsborg Red                         4.1983     0.1547 897.3753  27.135
+## BeerRiver Beer                            3.6411     0.1570 898.9159  23.199
+## BeerWheat IPA                             3.0956     0.1585 899.8984  19.531
+## BeerBrown Ale:factor(S_Refreshing)1       0.6680     0.3388 883.0668   1.972
+## BeerNY Lager:factor(S_Refreshing)1        1.0351     0.2897 882.6727   3.573
+## BeerPorse Bock:factor(S_Refreshing)1      1.5428     0.2594 883.4564   5.947
+## BeerRavnsborg Red:factor(S_Refreshing)1   1.4191     0.2652 883.8535   5.352
+## BeerRiver Beer:factor(S_Refreshing)1      1.2079     0.2616 884.3471   4.618
+## BeerWheat IPA:factor(S_Refreshing)1       2.4050     0.2609 882.8483   9.219
+##                                         Pr(&gt;|t|)    
+## BeerBrown Ale                            &lt; 2e-16 ***
+## BeerNY Lager                             &lt; 2e-16 ***
+## BeerPorse Bock                           &lt; 2e-16 ***
+## BeerRavnsborg Red                        &lt; 2e-16 ***
+## BeerRiver Beer                           &lt; 2e-16 ***
+## BeerWheat IPA                            &lt; 2e-16 ***
+## BeerBrown Ale:factor(S_Refreshing)1     0.048964 *  
+## BeerNY Lager:factor(S_Refreshing)1      0.000372 ***
+## BeerPorse Bock:factor(S_Refreshing)1    3.92e-09 ***
+## BeerRavnsborg Red:factor(S_Refreshing)1 1.11e-07 ***
+## BeerRiver Beer:factor(S_Refreshing)1    4.44e-06 ***
+## BeerWheat IPA:factor(S_Refreshing)1      &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##             BrBrwA BrNYLg BrPrsB BrRvnR BrRvrB BrWIPA BBA:(S BNYL:( BPB:(S
+## BeerNYLager  0.086                                                        
+## BeerPorsBck  0.083  0.074                                                 
+## BrRvnsbrgRd  0.084  0.079  0.075                                          
+## BeerRiverBr  0.080  0.077  0.074  0.070                                   
+## BeerWhetIPA  0.080  0.078  0.069  0.076  0.072                            
+## BrBA:(S_R)1 -0.399  0.000 -0.008 -0.008  0.001 -0.002                     
+## BNYL:(S_R)1  0.000 -0.491  0.003 -0.003 -0.002 -0.003  0.000              
+## BrPB:(S_R)1 -0.006  0.003 -0.595 -0.006 -0.005  0.002  0.014 -0.005       
+## BrRR:(S_R)1 -0.006 -0.002 -0.006 -0.568  0.005 -0.007  0.014  0.006  0.010
+## BrRB:(S_R)1 -0.002 -0.003 -0.006  0.004 -0.584 -0.003 -0.001  0.004  0.008
+## BWIPA:(S_R) -0.002 -0.003  0.001 -0.007 -0.002 -0.592  0.003  0.006 -0.002
+##             BRR:(S BRB:(S
+## BeerNYLager              
+## BeerPorsBck              
+## BrRvnsbrgRd              
+## BeerRiverBr              
+## BeerWhetIPA              
+## BrBA:(S_R)1              
+## BNYL:(S_R)1              
+## BrPB:(S_R)1              
+## BrRR:(S_R)1              
+## BrRB:(S_R)1 -0.009       
+## BWIPA:(S_R)  0.012  0.004</code></pre>
+<p>Here we see that the attribute will increase the liking by <span class="math inline">\(0.7\)</span> points for <em>Brown Ale</em> and up to <span class="math inline">\(2.4\)</span> points for <em>Wheat IPA</em>.</p>
+</div>
+<div id="all-attributes" class="section level3 hasAnchor" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> All attributes<a href="cata-and-hedonics.html#all-attributes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can visualize for all attributes:</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="cata-and-hedonics.html#cb126-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
+<span id="cb126-2"><a href="cata-and-hedonics.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cata, val,S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
+<span id="cb126-3"><a href="cata-and-hedonics.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(Beer,  Liking, <span class="at">fill =</span> <span class="fu">factor</span>(val))) <span class="sc">+</span> </span>
+<span id="cb126-4"><a href="cata-and-hedonics.html#cb126-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb126-5"><a href="cata-and-hedonics.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">79</span>, <span class="at">hjust =</span> <span class="dv">1</span>), <span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb126-6"><a href="cata-and-hedonics.html#cb126-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cata, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb126-7"><a href="cata-and-hedonics.html#cb126-7" aria-hidden="true" tabindex="-1"></a>g1 </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<p>For each attribute a interaction model will be used to qualify further analysis.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="cata-and-hedonics.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb127-2"><a href="cata-and-hedonics.html#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
+<span id="cb127-3"><a href="cata-and-hedonics.html#cb127-3" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
+<span id="cb127-4"><a href="cata-and-hedonics.html#cb127-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cata, val,S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
+<span id="cb127-5"><a href="cata-and-hedonics.html#cb127-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cata) <span class="sc">%&gt;%</span> </span>
+<span id="cb127-6"><a href="cata-and-hedonics.html#cb127-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Liking<span class="sc">~</span><span class="fu">factor</span>(val)<span class="sc">*</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) <span class="sc">%&gt;%</span> anova <span class="sc">%&gt;%</span> tidy)</span></code></pre></div>
+<p>This table has both main effect of the beer and cata-attribute as well their interaction.</p>
+<p>This print out shows the attributes related to liking - overall.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="cata-and-hedonics.html#cb128-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb128-2"><a href="cata-and-hedonics.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;factor(val)&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb128-3"><a href="cata-and-hedonics.html#cb128-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value)</span></code></pre></div>
+<pre><code>## # A tibble: 27 × 8
+## # Groups:   cata [27]
+##    cata              term        sumsq meansq NumDF DenDF statistic  p.value
+##    &lt;chr&gt;             &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+##  1 S_Refreshing      factor(val) 316.   316.      1  902.    142.   1.70e-30
+##  2 S_Sour            factor(val) 129.   129.      1  905.     51.2  1.73e-12
+##  3 S_Caramel         factor(val)  23.6   23.6     1  899.      8.92 2.90e- 3
+##  4 S_Herbs           factor(val)  23.3   23.3     1  905.      8.84 3.02e- 3
+##  5 S_Sweet           factor(val)  21.8   21.8     1  897.      8.22 4.25e- 3
+##  6 S_Regional spices factor(val)  19.4   19.4     1  903.      7.43 6.54e- 3
+##  7 S_Sparkling       factor(val)  19.3   19.3     1  865.      7.33 6.90e- 3
+##  8 S_Bitter          factor(val)  17.9   17.9     1  907.      6.76 9.45e- 3
+##  9 S_Dessert spices  factor(val)  16.5   16.5     1  908.      6.28 1.24e- 2
+## 10 S_Liquor          factor(val)  16.0   16.0     1  908.      6.00 1.45e- 2
+## # … with 17 more rows</code></pre>
+<p>The strongest ones are S_Refreshing, S_Sour, etc. while the presence of S_Warming, S_Pungent etc. has no effect on liking.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="cata-and-hedonics.html#cb130-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb130-2"><a href="cata-and-hedonics.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;factor(val):Beer&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb130-3"><a href="cata-and-hedonics.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value) <span class="sc">%&gt;%</span> </span>
+<span id="cb130-4"><a href="cata-and-hedonics.html#cb130-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+## # Groups:   cata [6]
+##   cata              term             sumsq meansq NumDF DenDF statistic  p.value
+##   &lt;chr&gt;             &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 S_Refreshing      factor(val):Beer  48.9   9.78     5  877.      4.39 0.000593
+## 2 S_Fruity          factor(val):Beer  55.8  11.2      5  873.      4.30 0.000711
+## 3 S_Nuts            factor(val):Beer  32.2   6.44     5  872.      2.44 0.0329  
+## 4 S_Smoked          factor(val):Beer  30.2   6.05     5  876.      2.29 0.0441  
+## 5 S_Citrus fruit    factor(val):Beer  29.2   5.84     5  879.      2.21 0.0510  
+## 6 S_Regional spices factor(val):Beer  27.8   5.57     5  873.      2.13 0.0595</code></pre>
+<p>This table shows that S_Refreshing, S_Fruity, etc. has differential impact on the liking dependent on the beer it is detected in.</p>
+<p>A deep dive into the effect can be done using the setup with a single variable above using the <em>tidyverse</em> and <em>broom</em> framework.</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="cata-and-hedonics.html#cb132-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
+<span id="cb132-2"><a href="cata-and-hedonics.html#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cata, val,S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
+<span id="cb132-3"><a href="cata-and-hedonics.html#cb132-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cata) <span class="sc">%&gt;%</span> </span>
+<span id="cb132-4"><a href="cata-and-hedonics.html#cb132-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Liking<span class="sc">~</span>Beer <span class="sc">+</span> <span class="fu">factor</span>(val)<span class="sc">:</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="cata-and-hedonics.html#cb133-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="sc">%&gt;%</span> </span>
+<span id="cb133-2"><a href="cata-and-hedonics.html#cb133-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(term,<span class="st">&#39;factor&#39;</span>)) <span class="sc">%&gt;%</span>  <span class="co"># filter to get individual beer differences. </span></span>
+<span id="cb133-3"><a href="cata-and-hedonics.html#cb133-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cata <span class="sc">%in%</span> tb<span class="sc">$</span>cata[tb<span class="sc">$</span>term<span class="sc">==</span><span class="st">&#39;factor(val):Beer&#39;</span> <span class="sc">&amp;</span> tb<span class="sc">$</span>p.value<span class="sc">&lt;</span><span class="fl">0.05</span>]) <span class="sc">%&gt;%</span> <span class="co"># include only interesting ones. </span></span>
+<span id="cb133-4"><a href="cata-and-hedonics.html#cb133-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(<span class="fu">substr</span>(term,<span class="dv">5</span>,<span class="dv">14</span>), estimate, <span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high)) <span class="sc">+</span> </span>
+<span id="cb133-5"><a href="cata-and-hedonics.html#cb133-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb133-6"><a href="cata-and-hedonics.html#cb133-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>cata) <span class="sc">+</span> </span>
+<span id="cb133-7"><a href="cata-and-hedonics.html#cb133-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">79</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb133-8"><a href="cata-and-hedonics.html#cb133-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Beer&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<p>The interpretation is that detecting <em>Smoked</em> in e.g. <em>Ravnsborg Red</em> tends to be positive, while it is pretty bad in <em>Wheat IPA</em>.
+Similarly, <em>Fruity</em> is related to higher liking in <em>Wheat IPA</em> and <em>Porse Bock</em> but a bad thing in <em>River Beer</em>.
+<em>Nutty</em> only matters on liking in <em>Ravnsborg Red</em> and <em>River beer</em>.</p>
+</div>
+</div>
+<div id="pca-on-cata-and-liking" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> PCA on CATA and Liking<a href="cata-and-hedonics.html#pca-on-cata-and-liking" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A PCA on the agglomerated CATA counts including the liking will reveal the attributes associated with the individual products, and which attributes are correlated with the liking.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="cata-and-hedonics.html#cb134-1" aria-hidden="true" tabindex="-1"></a>xbeeragglom <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
+<span id="cb134-2"><a href="cata-and-hedonics.html#cb134-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cata, val,S_Flowers<span class="sc">:</span>S_Vinous, Liking) <span class="sc">%&gt;%</span> <span class="co">#looong format for all variables</span></span>
+<span id="cb134-3"><a href="cata-and-hedonics.html#cb134-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Beer,cata) <span class="sc">%&gt;%</span> <span class="co"># summarize for each beer type</span></span>
+<span id="cb134-4"><a href="cata-and-hedonics.html#cb134-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">yy =</span> <span class="fu">mean</span>(val, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb134-5"><a href="cata-and-hedonics.html#cb134-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cata,yy) <span class="co"># wide format</span></span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="cata-and-hedonics.html#cb135-1" aria-hidden="true" tabindex="-1"></a>mdlPCAcataliking <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(xbeeragglom[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">scale. =</span> T)</span>
+<span id="cb135-2"><a href="cata-and-hedonics.html#cb135-2" aria-hidden="true" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(mdlPCAcataliking, <span class="at">labels =</span> xbeeragglom<span class="sc">$</span>Beer)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<p>The attributes Bean, Caramel, Warming, Aromatic etc is associated to the beer <em>Brown ale</em>, while Berrie, Dessert, Pungent, etc. is characteristic of <em>Wheat IPA</em>. Further, <em>Liking</em> is associated with all attributes on the first component, such as Aromatic, Warming, etc.</p>
+<div id="a-beer-centric-model" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> A beer centric model<a href="cata-and-hedonics.html#a-beer-centric-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The above PCA shows general good- and bad attributes in terms of liking. However, the univariate analysis indicated that for some beers e.g. Smoked was a good thing while for others not so much.</p>
+<p>For that reason we can build a PCA for each beer to see which attributes that drives liking</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="cata-and-hedonics.html#cb136-1" aria-hidden="true" tabindex="-1"></a>xbeer <span class="ot">&lt;-</span> xbeer[<span class="fu">complete.cases</span>(xbeer),]</span>
+<span id="cb136-2"><a href="cata-and-hedonics.html#cb136-2" aria-hidden="true" tabindex="-1"></a>PCAmdl_RR <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(xbeer[xbeer<span class="sc">$</span>Beer<span class="sc">==</span><span class="st">&#39;Ravnsborg Red&#39;</span>,<span class="dv">14</span><span class="sc">:</span><span class="dv">41</span>], <span class="at">scale. =</span> T)</span>
+<span id="cb136-3"><a href="cata-and-hedonics.html#cb136-3" aria-hidden="true" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(PCAmdl_RR)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p>Caramel, Savoury spices and Reefreshing is promoting liking, while Sour is not.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hedonic-rating-e.g.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="projective-mapping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/12_CATA_and_liking.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/12_CATA_and_liking.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,21 +1,18 @@
-
 # CATA data (Check-All-That-Apply)
 
-Check-All-That-Apply (CATA) data is in its raw form binary indicating whether a participant finds a product to have the attribute (1) or not (0). 
+Check-All-That-Apply (CATA) data is in its raw form binary indicating whether a participant finds a product to have the attribute (1) or not (0).
 
-Usually, such data is organized in a matrix where each row corresponds to the evaluation of one product by one judge. And the columns are then the attributes. 
+Usually, such data is organized in a matrix where each row corresponds to the evaluation of one product by one respondent (sensory panelist, consumer or other). The columns describe the product ID/properties, respondent number and the attributes.
 
-Say you for instance have 26 participants and 4 products, and further that all products are evaluated by all judges once on 13 attributes. Your data matrix would then have 104 rows and 13 coloumns (with responses) and additionally columns indicating judge, product, record id, date, etc. 
+Say you for instance have 26 participants and 4 products, and further that all products are evaluated by all respondents once on 13 attributes. Your data matrix would then have 104 rows and 13 columns (with responses) and additionally columns indicating respondent, product, record id, date, etc.
 
-In the CATA section of this book, we will use a data set with Beer. Six different commercial beers from Danish craft brewers were evaluated by $160$ consumers on a range of different questions:  
+In the CATA section of this book, we will use a data set with Beer. The data originates from Giacalone, Bredie, and Frøst (2013). They consist of evaluation of six different commercial beers from Danish craft brewers evaluated by $160$ consumers on a range of different questions:
 
- * Background information: a range of questions, including appropriateness ratings for 27 sensory descriptors on a 7-points scale (e.g. _how appropriate do you think it is for a beer to be bitter?_). The two semantic anchors were _1 = not at all appropriate_ and _7 = extremely appropriate_. This dataset is called _beercata_.
- * Hedonics: Their liking/hedonic responses of the beer on a 7-point Likert scale (1-7). This dataset is called _Beerliking_.
+-   Sensory properties: the consumers' response to 27 sensory descriptors (s_descriptor), some of which are super-ordinate and others more detailed. Includes information about beer and respondent. One line for each beer (6) x consumer (160) . This dataset is called *beercata*.
+-   Background information: a range of questions about consumers' demography, food neophobia, beer knowledge and use, also including appropriateness ratings (a descriptor) for 27 sensory descriptors on a 7-points scale (e.g. *how appropriate do you think it is for a beer to be bitter?*). The two semantic anchors were *1 = not at all appropriate* and *7 = extremely appropriate*. This dataset is called *beerbackground*.
+-   Hedonics: Their hedonic responses to the beer on a 7-point hedonic scale (1-7). This dataset is called *beerliking*.
 
-[NB NB NB nye navne ift det nye Exceldatasæt, så det skal rettes i scripts nedenfor og tjekkes om de rette Excel ark er kopieret med over? Bør vi måske se ud som det vil for de studerende?]
-
-
-## Importing and looking at the beer data 
+## Importing and looking at the beer data
 
 The data appear as a part of the data4consumerscience package (see [Import data from R-package])
 
@@ -24,12 +21,12 @@ We first have to import or load the data. Here is the import, remember to change
 ```{r}
 library(readxl)
 beercata <- read_excel('DatasetRbook.xlsx',sheet = 'BeerCATA')
-BeerBackground <- read_excel('DatasetRbook.xlsx',sheet = 'BeerBackground')
+Beerbackground <- read_excel('DatasetRbook.xlsx',sheet = 'BeerBackground')
 beerliking <- read_excel('DatasetRbook.xlsx',sheet = 'BeerLiking')
 
 ```
 
-The packages you need to run the analyses are activated with the library function and the package name. If the package is not installed, please do this first: 
+The packages you need to run the analyses are activated with the library function and the package name. If the package is not installed, please do this first:
 
 ```{r}
 library(data4consumerscience)
@@ -43,28 +40,27 @@ length(unique(beercata$Consumer.ID))
 
 ```
 
-From the above functions, you can see the data structure. Using the str() function will give you all the variable names. The lentgh() function is counting the number of participants as we have asked for the Consumer.ID variable in the dataset beercata. 
-
+From the above functions, you can see the data structure. Using the str() function will give you all the variable names. The lentgh() function is counting the number of participants as we have asked for the Consumer.ID variable in the dataset beercata.
 
 ## Two versions of the data
-For analyses of CATA data, we need to versions of the data: 
 
-- Raw data (binary, 0/1) with each row being responses from one evaluation (beercata dataset)
-- Agglomerated to counts, with each row being one product
+For analyses of CATA data, we need to versions of the data:
 
-[MANGLER: er ovenstående sat op som punkter når man ser det i bogen? Det skal det være]
-
-[Put in the pictures from Rinnan et al 2015]
+-   Raw data (binary, 0/1) with each row being responses from one evaluation (beercata dataset)
+-   Agglomerated to counts, with each row being one product
 
 
-The agglomerated version of the counts is computed by: 
-
-```{r}
+```{r, include=FALSE, eval=FALSE}
+#[Put in the pictures from Rinnan et al 2015]
 # Questions we want answer using these data
 # - Are the products different / similar? 
   # - Which attributes drives discrimination? 
   # - Are there any judges who are really of? 
-  
+```
+
+The agglomerated version of the counts is computed by:
+
+```{r, message=FALSE}
 beercatasum <- beercata %>% 
   gather(attrib, val, S_Flowers:S_Vinous) %>% 
   group_by(Beer,attrib) %>%
@@ -74,37 +70,30 @@ beercatasum <- beercata %>%
 beercatasum
 ```
 
-We call our new dataset _beercatasum_. Gather all the variables from _S_Flower_ to _S_Vinous_ and call them _attrib_. Group all data by the _Beer_ variable (sample name column) and _attrib_ (all of our CATA variables), then sum up the values (val) and call them _n_. Make a table of _attrib_ and _n_. Save it all as the new name _beercatasum_. Then finally shown us the new data set. 
+We call our new dataset *beercatasum*. Gather all the variables from *S_Flower* to *S_Vinous* and call them *attrib*. Group all data by the *Beer* variable (sample name column) and *attrib* (all of our CATA variables), then sum up the values (val) and call them *n*. Make a table of *attrib* and *n*. Save it all as the new name *beercatasum*. Then finally shown us the new data set.
 
-[MORTEN/JULIUS: er det korrekt fortolket af mig? ellers skal der skrives mere til]
-
-[MANGLER: output forklares, julius?]
-
-
-... and visualized by for instance a barplot. 
+... and visualized by for instance a barplot.
 
 ```{r}
 # summary counts over attribute
 beercatasum %>% 
-  gather(attrib, n, S_Flowers:S_Vinous) %>% 
-  ggplot(data = ., aes(attrib,n, fill = Beer)) + 
+  gather(attrib, n, S_Aromatic:S_Warming) %>% 
+  ggplot(data = ., aes(x = attrib, y = n, fill = Beer)) + 
   geom_bar(stat = 'identity', position = position_dodge()) + 
   coord_flip()
 ```
 
-For more plot types go to the Chapter on "Plotting data". 
+To plot all attributes, we need a long data format (discussed in more detail in chapter 1 in the section [Edit using Tidyverse]). *gather* creates the long format, which is then added as the first input in the plot (represented by "."). The different attributes are depicted on the x-axis, with the summed up values grouped by beer-type on the y-axis. The last line (coord_flip()) flips the plot, to make the attributes more readable.
 
-[INDSÆT: link til det rette kapitel ovenfor]
-[MANGLER: skal koden ovenfor forklares?]
-[MANGLER: output forklares, julius?]
+For more plot types go to the Chapter on [Plotting data].
 
 ## Cochran's Q test
 
-Cochran's Q test is a statistical test for the comparison of several products, where the response is binary, and there is repeated responses across several judges. We need the package **RVAideeeeMemoire**.The data needs to be structured as the _beercata_ is. 
+Cochran's Q test is a statistical test for the comparison of several products, where the response is binary, and there is repeated responses across several judges. We need the package **RVAideMemoire**.The data needs to be structured as the *beercata* is.
 
-We can only run the model independently for one variable at a time. 
+We can only run the model independently for one variable at a time.
 
-For one response variable: _S_Flowers_
+For one response variable: *S_Flowers*
 
 ```{r}
 library(RVAideMemoire)
@@ -114,15 +103,15 @@ m <- cochran.qtest(S_Flowers ~ Beer | Consumer.ID,
 m
 ```
 
-The p.value is strongly significant, indicating that we cannot assume the same level of S_Flower in all beers. I.e. the beers seems different based on this characteristics. This is in agreement with the barplot above, where S_Flower is high in NY Lager and really low for Brown ale. 
+The p.value is strongly significant, indicating that we cannot assume the same level of S_Flower in all beers. I.e. the beers seems different based on this characteristics. This is in agreement with the barplot above, where S_Flower is high in NY Lager and really low for Brown ale.
 
-But in reality we only know that the beers are different overall, not which specific beers that are different. For this we need at post hoc test. 
+But in reality we only know that the beers are different overall, not which specific beers that are different. For this we need at post hoc test.
 
-### Post hoc contrasts
+### Post hoc test
 
-As we observe differences based on this attribute, we pursue the question on which products stick out? And are there products which are similar? This is done by pairwise comparisons, for this we need the package _rcompanion_: 
+As we observe differences based on this attribute, we pursue the question on which products stick out? And are there products which are similar? This is done by pairwise comparisons, for this we need the package *rcompanion*:
 
-```{r}
+```{r, message=FALSE}
 library(rcompanion)
 PT = pairwiseMcnemar(S_Flowers ~ Beer | Consumer.ID,
                      data   = beercata,
@@ -134,17 +123,15 @@ PT$Pairwise %>%
   data.frame()
 ```
 
-[MORTEN: Forklaring af koden, taaaaak :-)]
+The first part of the code is conducting the Post hoc test, whereas the last part of the code sorts the table from highest to lowest numerical value of Z. This is done to ease the interpretation of the table.
 
-The table is sorted with the most different pairs at the top, and the least different at the bottom. Hence most products are significantly different, while _Porse Bock_ and _Ravnsborg Red_ are fairly alike.
-
-[MORTEN: skal man bruge p.value eller p.adjust?]
+Most products are significantly different, while *Porse Bock* and *Ravnsborg Red* are fairly alike. This is determined by looking at the adjusted p-value, and checking whether it is exceed the desired $$\alpha$$-level. The adjusted p-values are used, as they have been adjusted to compensate for the fact that multiple pairwise comparisons are conducted.
 
 ### For all attributes in one run (nice to know)
 
-We use the packages _tidyverse_ and _broom_ for this, but need a function capable of handling Cochran's Q-test outputs.  
+We use the packages *tidyverse* and *broom* for this, but need a function capable of handling Cochran's Q-test outputs.
 
-```{r}
+```{r, message=FALSE}
 library(broom)
 tidy.RVtest <- function(m){
   r <- data.frame(statistic = m$statistic,df = m$parameter,
@@ -163,31 +150,27 @@ tb_cochran %>%
   arrange(p.value) 
 ```
 
-[MORTEN: MORTEN: Forklaring af koden, taaaaak :-)]
+Again the table is sorted with the most sigficant at the top, and the least significant at the bottom. This output indicates that *S_Beans* is the most discriminatory attribute, while *S_Pungent* is the least.
 
-Again the table is sorted with the most sigficant at the top, and the least significant at the bottom. This output indicates that _S_Beans_ is the most discriminatory attribute, while _S_Pungent_ is the least. 
-
-For the pairwise comparisons, please apply the code for the Tukey test above per attribute. 
-
-
+For the pairwise comparisons, please apply the code for the Tukey test above per attribute.
 
 ## PCA on CATA data
 
-For an introduction PCA, please go to the Chapter "Introduction to PCA" in the first part of the book.
+For an introduction PCA, please go to the Chapter [Introduction to PCA and multivariate data] in the first part of the book.
 
-A PCA on the agglomerated CATA counts will reveal the attributes associated with the individual products:  
-[MANGLER: link til kapitlet om PCA]
-
+A PCA on the summed CATA counts will reveal the attributes associated with the individual products:
 
 ```{r}
 mdlPCA <- prcomp(beercatasum[,-1], scale. = T)
 ggbiplot::ggbiplot(mdlPCA, labels = beercatasum$Beer)
 ```
 
-[MORTEN: Forklaing på koden]
+The figure shows the scores (beers, in black) and loadings (sensory descriptors, dark red) from the PCA's first two components. These two components describe 45.5% + 27.2% = 72.7% of the total variance in the summed data.
 
+From the positions of the beers it is clear that the beers are similar in three pairs -- *Brown Ale* and *Ravnsborg Red*, left side of panel: *Porse Bock* and *River Beer*, upper right side; *NY Lager* and *Wheat IPA*, lower right part of panel. The sensory descriptors *S_Beans*, *Dried fruit*, *Caramel*, *Warming*, *Aromatic* etc. are all is associated to the beer *Brown ale*, while *Berries*, *Herb_Savory*, *Dessert*, *Pungent* etc. is characteristic for *Wheat IPA*, and to some degree also *NY Lager*. *Sour* and *Sparkling* are the two descriptors that are most frequently mentioned for *River Beer* and also *Porse Bock*.
 
-The attributes Bean, Caramel, Warming, Aromatic etc is associated to the beer _Brown ale_, while Berrie, Dessert, Pungent, etc. is characteristic of _Wheat IPA_ 
+You can check the analysis by cross checking with the summed CATA table.
 
-[BOM: Add some more narrative]
+Descriptors that are located very close to each other show very similar patterns of response, i.e. they are highly correlated. An example is *Caramel* and *Warming*, which do not have same summed scores but the same pattern of high and low across samples.
 
+From the figure we can extract the overall conclusion of similarity and differences among samples, but we need Cochran's Q to describe which descriptors that can be used to statistically separate the samples, and which samples are different for said descriptor.

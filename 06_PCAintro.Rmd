@@ -9,9 +9,10 @@ Check out youtube on the subject for an introduction.
 
 A conceptual introduction is given here: 
 
-```{r}
-knitr::include_url("https://youtube.com/embed/NFIkD9-MuTY")
+```{r, echo=FALSE}
+vembedr::embed_youtube("NFIkD9-MuTY")
 ```
+
 
 A bit of math
 
@@ -26,18 +27,58 @@ The upside of using PCA is that we characterize the sample distribution (what is
 In addition to PCA there exists a range of methods for factorizing multivariate datasets including Partial Least Squares (PLS), confirmatory factor analysis (CFA), Correspondence Analysis (CA), Redundancy Analysis (RA), and a lot more. 
 Conceptually, all these methods aims to make a latent-factor model just like PCA, and hence understanding the idea and especially how PCA is used, opens up for using a wide range of variants. 
 
-
-[Question to Aasmund: What should we extend with? - another video?]
+```{r, include=FALSE, eval=FALSE}
+#[Question to Aasmund: What should we extend with? - another video?]
+```
 
 ## Interpreting model output
 
-[MORTEN: ved ikke om dette skal være her, men HVIS det skal, så foreslår jeg en PCA på sensorik datasæt lagt ind I Excel filen DatasetRbook: BeefSensory]
+For calculating a PCA model, we will use the dataset _beef_. It is a sensory descriptive profile on vacuum packed beef steaks heat treated in water baths at different temperatures for different times (sous vide) In total 12 combinations. The samples are coded as e.g. 56-03, meaning the sample has been treated for 56 degrees for 3 hours. There are 10 assessors in the panel, four sensory repetitions and 22 attrributes (A-Brownsurface to T-Salt). 
 
-[Forslag kunne være simpelt score plot og loading plot?]
+The first 3 colooumns of the dataset is used for the design. 
+The PCA is computed on the response variables _only_
 
-[MORTEN: skal vi ikke have chili datasættet ind Excel også? eller fungerer det ikke sådan?]
 
-For calculating a PCA model, we will use the dataset _beef_. It is a sensory descriptive profile on vacuum packed beef steaks heat treated in water baths at different temperatures for different times (sous vide). The samples are coded as e.g. 56-03, meaning the sample has been treated for 56 degrees for 3 hours. There are 9 assessors in the panel and four sensory repetitions. 
+```{r}
+library(data4consumerscience)
+data(beef)
 
-[PLOT PLOT PLOT + beskrivelse af plots :-)]
+mdlPCA <- prcomp(beef[,4:25], scale. = T)
+```
+
+### Biplot 
+
+The ggbiplot package (and function) is a need tool to plot the PCA model. 
+
+Installation of this is done by: 
+
+```{r, eval = F, include=T}
+devtools::install_github('vqv/ggbiplot')
+```
+
+
+```{r, message=FALSE}
+ggbiplot::ggbiplot(mdlPCA)
+```
+
+The PCA tries to capture the maximum structure of the data in a few dimensions called principal components (PC1, PC2,...).  
+
+The arrows and labels reflects the correlation structure between the responses. I.e we see that the _Bouillon_ characteristics is correlated and explains PC2, while textural properties like _Rubberband_, _Chewtime_ is correlated, and oppositely correlated of _Tender_, and collectively explains PC1. 
+
+We can deecorate the scores with design information, such as beef type as well as judge
+
+```{r, message=FALSE, warning=FALSE}
+ggbiplot::ggbiplot(mdlPCA, groups = beef$ProductName, ellipse = T)
+```
+
+All though this plot is a bit messy, we see that higher temperature promotes higher position on PC2: I.e. moving from bloody to bouillon. While PC1 to some extend captures trends in cooking time. 
+
+```{r}
+ggbiplot::ggbiplot(mdlPCA, groups =  beef$Assessor, ellipse = T)
+```
+
+Coloring according to judge reveal that judge A04 is low in range (variance), and hence do not utilize the entire response scale, A03 tends  to rate higher on _rubberband_, _chewtime_, _bloodmetal_, etc. especilly compared to A10, which is higher in _bouillon_ / PC2.
+This plot indicates how well trained the panel is, as we optimally have only smaller impact of the individual judges. 
+
+
 
