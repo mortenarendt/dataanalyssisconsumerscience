@@ -98,7 +98,7 @@ To explain the model: take the dataset called _beerliking_ and calculate a model
 ```
 
 
-## Multifactor models
+## Multivariable models
 
 
 In the example above, only the impact of the different beers is evaluated, however, the liking scores may also depend on background information such as gender, age, ... as well as attitude towards beer and food. Further, is there any of the background variables that attenuate or make the differences between the beers stronger? These questions can be investigated by models including several explanatory variables as well as interaction terms. 
@@ -132,7 +132,7 @@ mdl_be <- lmer(data = beerliking, Liking ~ Beer + Gender + Age + Income +
 anova(mdl_be)
 ```
 
-From this, _Interest in food_ sis the least significant one, and is hence removed. 
+From this, _Interest in food_ is the least significant one, and is hence removed. 
 
 A sequential removal of the non-significant variables at a $p > 0.1$ level leads to the following model: 
 
@@ -154,7 +154,7 @@ Some notes: Liking is higher in the lowest _Income_ group, Liking is lower in th
 
 ### Effect modification and Interactions
 
-It could be  ice to calculate if the liking of specific sample are affected by the degree of future interest in beer. This can be visualized as scatterplots and modelled using interactions.
+It could be nice to calculate if the liking of specific sample are affected by the degree of future interest in beer. This can be visualized as scatterplots and modelled using interactions.
 
 ```{r, message=FALSE}
 ggplot(data = beerliking, aes(`Future interest in beer`, Liking, color = Beer)) + 

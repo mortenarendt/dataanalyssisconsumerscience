@@ -1,33 +1,59 @@
 
 # TFIH Exercises
 
-Below you will find Exercises relevant for the data analysis for the project work in the Thematic course in Food Innovation and Health. Exercises are meant as a guide on what to do woth your own data in the end. 
+Below you will find exercises relevant for the data analysis for the project work in the Thematic course in Food Innovation and Health. Exercises are meant as a guide on what you can do with your own data obtained through the practical work on the projects. 
 
-Before you start to work on the Exercises, you need to familiarize yourself with the knowledge in the introduction chapters of this book as well as the chapters written specifically of for this course. 
+Before you start to work on the exercises, you need to familiarize yourself with the knowledge in the introduction chapters of this book as well as the chapters written specifically of for this course. 
 
-[RET IND: We use the XXXXX data]
 
 ## Exercise 1: Descriptive statistics and plots
 
-[create data set with CATA counts + make table thereof]
-[plot hedonic ratings per product in histograms to see the dustribution in each category]
-[calculate mean and standard deviation on hedonic ratings + histogram]
+From this exercise you should be able to describe the products in terms of common, rare and differential attributes, as well as the hedonic ratings. 
 
+### CATA counts
 
-## Exercise 2: PCA on consumer background
+Create data set with CATA counts per product and make a table thereof
+
+Plot the CATA counts such that product differences are emphasized
+
+```{r, eval = F}
+library(data4consumerscience)
+data("beercata")
+```
+
+### Hedonics 
+
+Plot hedonic ratings (beerliking$Liking) per product in histograms to see the distribution
+
+Calculate descriptive statistics for hedonic rating for each product
+
+```{r, eval=FALSE}
+data("beerliking")
+```
+
+## Exercise 2: Consumer background and PCA
 
 From this exercise you should be able to describe who your consumers are.
 
-Make the data available: 
+### Demographics 
 
-```{r}
+Age, Gender, Income and Household size is classical demographic characteristics. As the evaluation of the products is done using a specific group of people, the generalizability of the results naturally condition of the characteristics of this population. 
+
+Construct the distributions of the demographic characteristics. You can use the table() function, or maybe do it all at once using the **tableone** package. For inspiration, modify the code below to serve your needs. 
+
+```{r, eval=FALSE}
 library(data4consumerscience)
+library(tableone)
 data("beerdemo")
+
+CreateTableOne(vars = c('Age','Gender'),data = beerdemo)
 ```
+
+### PCA on _Interests_
 
 Calculate a PCA model including the Variables 7 ( _Interest in food_ ) to 12 ( _`Future interest in beer`_ ). Remember to standardize/scale the variables
 
-```{r}
+```{r, eval=FALSE}
 mdlPCA <- prcomp(beerdemo[,7:12],scale. = T)
 ```
 
@@ -35,7 +61,7 @@ Plot the scores and loadings in a biplot and look for groupings of the consumers
 
 Group and color according to the background information not used in the model (Gender, Age,..)
 
-```{r}
+```{r, eval=FALSE}
 library(ggbiplot)
 ggbiplot(mdlPCA, groups = beerdemo$Gender, ellipse = T)
 ```
@@ -44,51 +70,51 @@ Describe what you find.
 
 ## Exercise 3: PCA on CATA counts
 
-From this exercise you should be able to describe your samples (beers) from the CATA counts. Collated (summed) for each beer of CATA score from all consumers.
-
-[SPØRGSMÅL: blev vi ikke enige om på mødet 7/10 at det skulle være på rådata?]
-
-Setup the collated version as described above. 
-
-```{r, eval=FALSE}
-beercatasum <- beercata %>% 
-  gather(attrib, ...
-```
+From this exercise you should be able to describe your samples (beers) from the CATA counts, and which attributes that occur together, as well as which attribute patterns that discriminate products.  
 
 Calculate a PCA model including all Variables and all Objects.
 
 ```{r, eval=FALSE}
-PCAmdl <- prcomp(beercatasum, scale. = T)
+PCAmdl <- prcomp(beercata[,3:29], scale. = T)
 ```
 
 Plot the scores and describe the groupings of the samples.
+
 Plot the loadings and describe the correlations between the variables.
 
+Both of these plots are present in a biplot, but you may want to play around with the settings (such as varname.size, varname.adjust, ...) to get all information out. 
+
 ```{r, eval=FALSE}
-ggbiplot(PCAmdl)
+ggbiplot(PCAmdl, groups = beercata$Beer, ellipse = T)
 ```
 
-Use this biplot to find out which samples are described by which words. 
-
+Use this biplot to find out which samples are described by which CATA attributes. as well as similarity of products.  
 
 
 ## Exercise 4: Cochran’s Q test on CATA binary data
 
-Dataset: Beer_XYZmatrix.xlsx, sheet “X unfolded”
+In Exercise 1 the attributes characteristic for certain products, were summarized using descriptive stats and plots. Now we want to add statistical inference onto these observations. 
 
-Import the datasheet in to R Studio using the CSV format (save the file as CSV in Excel). 
-Choose 4 relevant CATA attributes (based on your previous results today) to make a Cochran’s Q test and the Post hoc test, comment on the results (i.e. the sample differences). 
+To get started, choose a few attributes. For each attribute 1) Perform Cochran’s Q test for overall difference, and if _interesting enough_ 2) perform a Post hoc test for product segmentation. 
 
+To get all attributes analyzed collectively, use the _tidyverse_ code in the chapter [For all attributes in one run (nice to know)]. 
 
-```{r}
+Try this procedure out on a different dataset, e.g. the tempeto data. 
 
+```{r, eval=FALSE}
+data("tempetofermentation")
+library(RVAideMemoire)
+tempetofermentation$Product2 <- factor(tempetofermentation$Product) # needs to be a factor for getting labels on results.
+m <- cochran.qtest(Sour ~ Product2 | Assessor,
+                   data = tempetofermentation)
 ```
 
 
+## Exercise 5: Hedonic ratings and consumer characteristics
 
-## Exercise 5: PCA on hedonic ratings
+From this exercise you should be able to describe the liking of the beer samples and glimpse into consumer characteristics related to liking
 
-From this exercise you should be able to describe the liking of the beer samples and see how the consumers do this. 
+### PCA on joint data
 
 Calculate a PCA model including all Variables and all Objects.
 
@@ -104,14 +130,15 @@ ggbiplot(PCAliking)
 ```
 
 
-Plot the scores and describe the groupings of the samples by colouring the score plot according to the consumer background variables. Note that the 160 rows in both datasets match each-other, so we can glue the demo information directly onto the liking model. If that was not the case, matching using left_join() or inner_join() would be nessesary before analysis.
+Plot the scores and describe the groupings of the samples by colouring the score plot according to the consumer background variables. Note that the 160 rows in both datasets match each-other, so we can glue the demo information directly onto the liking model. If that was not the case, matching using left_join() or inner_join() would be necessary before analysis.
 
 ```{r, eval=FALSE}
 ggbiplot(PCAliking,groups = beerdemo$Age[include_these], ellipse = T)
 ```
 
+Any trends? For instance, how is liking related to the individual consumer diversity of beer ( _Beer types/month_)? 
 
-Any trends? For instance, how is liking related to the individual consumer diversity of beer (_Beer types/month_)? 
+### All demographics 
 
 ... Some code to get all 7-scale demo information plots. You may want to export and view in a pdf viewer for zooming etc.  
 
@@ -128,65 +155,71 @@ ggsave(filename = 'anicebigfigure.pdf',gall, height = 20, width = 20)
 
 ## Exercise 6: PCA on CATA counts and hedonic ratings
 
+From this exercise you should be able to conclude what attributes that overall drives the liking of products (beers).
 
-[LAVES OM til PCA, nyt plot laves, da liking ikke er med nedenfor lige nu]
-
-
-From this exercise you should be able to conclude what drives the liking of your samples (beers).
-
-For each beer, the collated CATA counts is the predictors, and the averaged liking is the response.
+For each beer, the collated CATA counts and the averaged liking constitutes the multivariate response matrix.
 
 ```{r, eval = F}
-likingsum <- beerliking %>% 
-  gather(Beer, liking, -`Consumer ID`) %>% 
+likingsum <- beerliking %>%
   group_by(Beer) %>% 
-  dplyr::summarise(lik = mean(liking, na.rm = T))
-```
+  dplyr::summarise(lik = mean(Liking, na.rm = T))
 
-Check that the rows are ordered in the same way: 
-
-```{r, eval = F}
-likingsum$beer
-beercatasum$Beer
-CATAlik <- list()
-CATAlik$CATA <- scale(as.matrix(beercatasum[,-1]))
-CATAlik$lik <- scale(likingsum$lik)
-rownames(CATAlik$lik) <- rownames(CATAlik$CATA) <- beercatasum$Beer
-
+catasum <- beercata %>% 
+  gather(attrib,val,S_Flowers:S_Vinous ) %>% 
+  group_by(Beer,attrib) %>% 
+  dplyr::summarise(mn = mean(val, na.rm = T)) %>% 
+  spread(attrib,mn)
 ```
 
 
-Calculate a PLS model where CATA features are predictors and liking is response for all Objects. 
+Join the two. 
 
-```{r, eval = F}
-library(pls)
-catalik.pls <- plsr(lik ~ CATA, ncomp = 2, data = CATAlik, validation = "LOO")
-corrplot(catalik.pls, labels = colnames(beercatasum)[-1])
-
-
-biplot(catalik.pls)
+```{r, eval=FALSE}
+cata_lik <- catasum %>% left_join(likingsum, by = 'Beer')
 ```
 
+Do a PCA 
 
-Plot the loadings and study which X variables are important for the liking score.
-Advanced: Plot the Regression coefficients (scaled) and try to interpret the meaning of this plot (Hint: use your findings from the loadings plot).
- 
+```{r, eval=FALSE}
+PCAcata_lik <- prcomp(cata_lik[,-1],scale. = T)
+ggbiplot(PCAcata_lik, labels = cata_lik$Beer)
+```
 
 
 ## Exercise 7: Mixed modelling on hedonic ratings
 
-[MANGLER HELT]
+In this exercise we want to model _Liking_ as a response. We want to use the beer type as the main predictor, but take into account that the responses is repeated within consumers. The same judges have evaluated all beers. This is a mixed model
 
-### simple
+Start with a plot
+
+```{r}
+ggplot(data = beerliking, aes(Beer, Liking)) + 
+  geom_boxplot()
+```
 
 
+```{r, eval=FALSE}
+library(lme4)
+library(lmerTest)
+lik_mdl <- lmer(data = beerliking, Liking ~ Beer + (1|Consumer.ID))
+```
 
-### multifactorial 
+Evaluate this model by anova() and summary(), and interpret the result. How much within individual consumer variation is there compared to between consumer? 
 
-Dataset: Beer_XYZmatrix.xlsx, sheet “Z and Y liking”
-Import the datasheet in to R Studio. 
-Check to see if all variables have the correct description/denomination (factor, numerical etc.)
-Are there any significant product differences for the liking? If so, what does the Tukey tell us? How does this fit with what you have done in the PCA/PLS exercises. 
-Is the liking in general affected by the age, gender, household size or beer knowledge? What is the effect? Try to think of a plot that can show the significant differences.
-Do men and women score the samples significantly different in liking? Calculate the sample/gender differences in averages, try to use Pivot Tables in Excel.
+You should get that the beers are not equally likable. But are there maybe some which are more similar? 
+Perform a all-pairs post hoc test and try to group beers based on liking. 
 
+```{r, eval=F}
+library(multcomp)
+summary(glht(lik_mdl, linfct = mcp(Beer = "Tukey")), 
+        test = adjusted("fdr"))
+```
+
+Try to add consumer demographics and interest to the model to evaluate general consumer patterns as well as interactions with beer type. 
+
+Try to answer questions such as: 
+
+ * Are there any significant product differences for the liking? If so, what does the post hoc test tell us? How does this fit with what you have done in the PCA exercises. 
+ * Is the liking in general affected by the age, gender, household size or beer knowledge? What is the effect? Try to think of a plot that can show the significant differences.
+ * Do men and women score the samples significantly different in liking? Calculate the sample/gender differences in averages.
+ 
