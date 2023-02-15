@@ -1,0 +1,335 @@
+# Inferential statistics
+
+## Intro
+
+Inferential statistics is a branch of statistics that deals with making predictions or estimates about a population based on a sample of data from that population. The goal of inferential statistics is to use the sample data to draw conclusions about the population as a whole.
+
+This approach is quite neat, as it would be rather time-consuming to e.g. measure the height of every person in the whole world (the population), to be able to show the average height of a person. To avoid this, a (more or less) representative sample is used to estimate the average height of a person, while taking into account the uncertainty that arises from not measuring the whole population.
+
+And while the process of obtaining a representative sample is a crucial aspect of inferential statistics, it is outside the scope of this book, and will therefore not be addressed further.
+
+Inferential statistics use a variety of techniques such as hypothesis testing, confidence intervals or Analysis of Variance (ANOVA), all of which will be introduced in the following sections.
+
+## Hypothesis testing
+
+Statistical hypothesis testing starts with a hypothesis about a population parameter (such as the mean or proportion). Then data are collected, after which statistical techniques are used to decide whether the data provide sufficient evidence to support the hypothesis or not.
+
+There are two types of hypotheses in hypothesis testing: the null hypothesis and the alternative hypothesis. The null hypothesis is a statement of no effect or no difference between groups. It is typically denoted as $H_{0}$. The alternative hypothesis is a statement of the opposite of the null hypothesis. It is typically denoted as $H_{A}$ or $H_{1}$.
+
+The process of hypothesis testing typically involves the following steps:
+
+1.  Formulate the null and alternative hypotheses. For example: The average height of men and women is the same. $H_{0}: \mu_{men}=\mu_{women} \\ H_{A}: \mu_{men}\neq\mu_{women}$
+
+2.  Select a significance level ($\alpha$). This is the probability of making a Type I error, which means rejecting the null hypothesis when in fact, it is true (usually, $\alpha = 0.05$ is used, but this can vary depending on the application).
+
+3.  Collect data and compute a test statistic (which test statistic will depend on the desired test - examples will be presented in the following sections).
+
+4.  Determine the p-value. The p-value is the probability of obtaining a test statistic at least as extreme as the one observed, assuming the null hypothesis is true.
+
+5.  Compare the p-value to the significance level. If the p-value is less than the significance level, we reject the null hypothesis. If the p-value is greater than the significance level, we fail to reject the null hypothesis.
+
+It's important to note that hypothesis testing is not about proving the hypothesis to be true or false. Instead, it's about deciding whether the data provide sufficient evidence to reject the null hypothesis in favor of the alternative hypothesis.
+
+A measure to evaluate whether the conclusion of the hypothesis test is valid, is called power, and will be introduced in the following section.
+
+### Power
+
+Statistical power is a measure of the probability that a statistical test will detect a difference between two groups or treatments if one actually exists. It can also be described as the probability to NOT commit a Type II/$\beta$-error.
+
+<!-- Indsæt billede af to fordelinger, med alpha og beta-fejl markeret -->
+
+<!-- Indsæt tabel med alpha og beta-fejl der viser falsk positiv og falsk negativ -->
+
+The statistical power of a hypothesis test is influenced by several factors, including the size of the sample, the magnitude of the difference between the groups or treatments being compared, and the level of significance (alpha) that is chosen for the test. A test with high statistical power is more likely to detect a difference between the groups or treatments being compared, while a test with low statistical power is less likely to detect a difference.
+
+In practice, power can be hard to calculate, as one needs to know the characteristics of the distribution describing the alternative hypothesis (e.g. mean, standard deviation, etc.). These characteristics are unknown, but are sometimes estimated using previous trials dealing with similar samples to estimate the power of a trial.
+
+## Confidence intervals
+
+A confidence interval is a range of values that is calculated from a sample of data, and it is used to estimate the true population parameter. It is called a confidence interval because it provides a level of confidence that the true population parameter falls within the range of values calculated from the sample.
+
+The size of the confidence interval depends on the size of the sample, the level of confidence chosen, and the variability of the data. The larger the sample size and the lower the variability, the smaller the confidence interval will be. Confidence intervals are commonly used in statistical analysis to estimate the mean, standard deviation, and other parameters of a population.
+
+Below is shown how to calculate the confidence interval of an estimated mean, assuming the the population follows a T-distribution. $$CI_{\mu}: \hat{\mu} \pm t_{1-\alpha/2,df} \cdot \hat{\sigma}/\sqrt{n}$$ The t-fratcile can be found in a T-table, or using qt(1-$\alpha$/2,df) (which usually means qt(0.975, n-1)). $\hat{\sigma}$ is the estimated standard deviation, and n is the number of samples used to calculate the mean.
+
+The confidence interval can also be used in hypothesis testing. For example, let's say that the average height of men is 180cm, with a 95% confidence interval of $\pm10cm$. The null hypothesis is, that men and women have the same average height ($\mu_{men} = \mu_{women}$), whereas the alternative hypothesis is, that their average height is not the same ($\mu_{men} \neq \mu_{women}$).
+
+If the height of women falls outside this confidence interval (meaning that the mean is larger than 190cm or lower than 170cm), one would be able to reject the null hypothesis, and conclude, that men and women do not have the same average height.
+
+## T-test
+
+A T-test is a statistical test that is used to determine whether there is a significant difference between the means of two groups. It is commonly used to compare the means of two groups that have been sampled from a larger population, to see if the groups are significantly different from one another.
+
+The hypotheses of a T-test: $$ H_{0}: \mu_{1}=\mu_{2} \\ H_{A}: \mu_{1}\neq\mu_{2}, \ \mu_{1}>\mu_{2}  \ or \ \mu_{1}<\mu_{2}$$
+Which alternative hypothesis to choose depends on the question that one wants answered.
+
+There are several types of T-tests, including the independent samples T-test and the paired samples T-test. The independent samples T-test is used to compare the means of two separate groups, while the paired samples T-test is used to compare the means of two related groups, such as before and after measurements.
+
+To conduct a T-test in R, you can use the **t.test()** function. This function takes the following arguments:
+
+-   x and y: These are the two groups that you want to compare. They can be vectors or data frames.
+
+-   alternative: This specifies the alternative hypothesis. You can choose between "two.sided" (the default), "greater", or "less".
+
+-   mu: This specifies the hypothesized mean difference between the two groups. By default, it is set to 0.
+
+-   paired: This should be set to TRUE if you are conducting a paired samples t-test. Default is FALSE.
+
+-   var.equal: Can be TRUE or FALSE, depending on whether or not the variances of the two groups can be treated as equal. Default is FALSE.
+
+-   conf.level: The confidence level of choice. Default is 0.95.
+
+Here is an example using the BuffetSurvey data set:
+
+```{r}
+#library(data4consumerscience)
+#data(pasta)
+
+#t.test(x = pasta$Pasta_with_legumes_is_visually_appealing, 
+#       y = pasta$Pasta_with_mushrooms_is_visually_appealing)
+
+library(readxl)
+BuffetSurvey <- read_excel('~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx', sheet = 'BuffetSurvey')
+
+t.test(BuffetSurvey$`Pasta with legumes is visually appealing to me. `,
+       BuffetSurvey$`Pasta with mushrooms is visually appealing to me. `)
+```
+
+This results in a p-value of 0.036, which is below the chosen $\alpha$-level of 0.05. This means, that there is a significant difference between how visually appealing pasta with legumes and pasta with mushrooms perceived.
+
+## F-test
+
+An F-test is a statistical test that is used to compare the variance of two populations or samples. It is often used to test whether two groups have the same variance, or whether the variance of one group is significantly larger or smaller than the variance of another group.
+
+The hypotheses of an F-test: $$ H_{0}: var_{1}=var_{2} \\ H_{A}: var_{1}\neq var_{2}, \ var_{1}>var_{2}  \ or \ var_{1}<var_{2}$$
+
+To conduct an F-test in R, you can use the **var.test()** function. This function takes two numeric vectors as input, and returns the F-value and p-value of the test.
+
+Here is an example using the BuffetSurvey data set:
+
+```{r}
+#library(data4consumerscience)
+#data(pasta)
+
+#var.test(x = pasta$Pasta_with_legumes_is_visually_appealing, 
+#         y = pasta$pasta$Pasta_with_mushrooms_is_visually_appealing)
+
+library(readxl)
+BuffetSurvey <- read_excel('~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx', sheet = 'BuffetSurvey')
+
+var.test(BuffetSurvey$`Pasta with legumes is visually appealing to me. `,
+       BuffetSurvey$`Pasta with mushrooms is visually appealing to me. `)
+```
+
+The p-value of the F-test is 0.037, which is below the chosen $\alpha$-level of 0.05. This means, that the variance of the scores for how visually appealing pasta with legumes is significantly different from variance of the scores for how visually appealing pasta with mushrooms. - This actually confirms, that the correct T-test was used in the section above, since the T-test with unequal variance was used.
+
+While it is nice to use the F-test on two groups of samples, another very important statistical method uses the F-test to calculate its p-values - the ANOVA or Analysis of Variance, which will be introduced in the following section.
+
+## Analysis of Variance (ANOVA)
+
+ANOVA (Analysis of Variance) is a statistical method used to test the equality of means among more than two groups. But instead of directly comparing the observed means of the groups (which would lead to multiple tests), one can use get away with one test analyzing variance (hence the name).
+
+This is done by comparing the variance BETWEEN groups to the variance WITHIN groups. If the variance between the groups is significantly larger than the variance within the groups, we can conclude, that the mean of at least one of the groups is significantly different from the rest. To test whether the variances differ significantly, an F-test is used to compare the variances. If the p-value is below the selected $\alpha$-level (often $\alpha$=0.05)
+
+As hypotheses, it looks like this (k is the number of groups): 
+$$ H_{0}: \mu_{1}=\mu_{2} = ... =\mu_{k}  \\ H_{A}: At \ least \ one \ mean \ is \ different$$
+ANOVA can be performed using one-way ANOVA, multiple-way ANOVA, depending on the application, which can be seen below.
+
+### One-way ANOVA
+In a one-way ANOVA, we analyze the effect of one categorical factor on a response. This could e.g. be if country of origin has an impact on the alcohol content of the wine produced in that country, or if your dietary preference has an impact on your body weight. 
+When conducting a one-way ANOVA, the model looks like this:
+$$ Y_{ij} = \mu + \alpha(A_{i}) + e_{ij}  \\ where \ e_{ij}  \sim \mathcal{N}(0,\sigma^{2}) \ and \ independent \\ for \ j=1,...,n_{i} \ and \ i=1,...,k $$ 
+Here, $Y_{ij}$ represents the jth observation of the ith treatment level (i = 1 to k and j = 1 to $n_i$).This means, that e.g., $Y_{23}$ represents the 3rd observation of the 2nd factor. $\mu$ is the grand mean of the dataset, and $\alpha$ is effect of the i-th level of our factor A (e.g. Argentina or France as wine-producing countries, or pescetarian as your dietary preference).
+
+The ANOVA works, when the above-mentioned assumptions are true: The residuals ($e_{ij}$) are normally distributed around 0, and independent. A way to check the assumptions, is to use the built-in **plot**-function in R, and look at whether the data are normally distributed using the QQ-plot, and looking at the residuals, to check if the assumptions are viable.
+
+To show how to perform a one-way ANOVA in R, here is an example using the beerliking-dataset:
+
+```{r}
+library(data4consumerscience)
+data("beerliking")
+
+model <- lm(data = beerliking, Liking ~ Beer)
+
+plot(model,which = c(1,2))
+
+anova(model)
+```
+
+First, the model is created using **lm**, specifying the dataset used, and the dependent and independent variables (Liking and Beer, respectively)
+
+The resulting table of the **anova**-function is called an ANOVA-table, and contains a lot of information about the data. But the column that we are most often looking at is Pr(>F), which is another name for the p-value. If this value is below the chosen $\alpha$-level (often $\alpha$=0.05, which in this case it is), then we can conclude, that the judges like at least one of the Beers significantly better/worse than the rest. 
+
+### Two-way ANOVA
+
+As the name suggests, the two-way ANOVA includes two categorical factors in the model instead of one in one-way ANOVA, and compares both factors' (and their interaction) effects on the response. This could be the effect of e.g. both the country of origin as well as the grape variety on the liking of wine.
+
+For a two-way ANOVA with factor A with a levels, and factor B with b levels:
+$$ Y_{ijk} = \mu + \alpha(A_{i}) + \beta(B_{j}) + \gamma(A_{i}\times B_{j}) + e_{ijk}  \\ where \ e_{ijk}  \sim \mathcal{N}(0,\sigma^{2}) \ and \ independent \\ for \ i=1,...,a \ and \ j=1,...,b \ and \ k=1,...,n_{ij} $$
+
+Here, $Y_{ijk}$ represents the kth observation of the ith level of factor A, and jth level of factor B.This means, that e.g., $Y_{234}$ represents the 4th observation of the 2nd level of A and the 3rd level of B. $\mu$ is the grand mean of the dataset, $\alpha$ is the effect of the ith level of factor A (e.g. Argentina or France as wine-producing countries), $\beta$ is the effect of the jth level of factor B (e.g. Pinot Gris, Chardonnay, Riesling, etc.) and $\gamma$ is the interaction effect between factor A and B (e.g. French Chardonnay or German Riesling).
+
+As with the one-way ANOVA, the same assumptions about normality and independence of the residuals has to hold, and these can again be checked using **plot** as shown below.
+
+However, the **anova**-function should be used with caution, when model have more than one independent variable. This is the case, because, **anova** is performing what is commonly referred to as a Type I ANOVA, also called a sequential ANOVA, where the factors are tested in the specified order. Theoretically, this could be what you want, but in most cases we are interested in the effect of a factor, regardless of order. 
+
+This is called a Type II ANOVA, and in R it can be performed using **drop1**, as shown below in model2. 
+
+However, if an interaction effect is present (e.g. if the effect of Riesling is enhanced by the wine originating from Germany), then a Type II ANOVA only returns the effect of this interaction, due to the [principle of marginality](https://randomeffect.net/post/2020/08/11/principle-of-marginality/). This implies, that if an interaction is in fact present, the "simple" main effects (of e.g. country and grape alone) are poor estimators of the response. If the interaction is non-significant, however, it should be removed from the model, and we end up with a Type II model with the main effects.
+
+If for some reason we are interested in both the main effects and the interaction (if the interaction effect is significant), we can perform what is called a Type III ANOVA. This will test all effects against a model without said effect. As this will over-parameterise the model, in R, one has to choose a contrasts setting that sums to zero, otherwise the ANOVA analysis will give incorrect results. This is what is done with **options**. Then model3 is created to also test the interaction, and in **drop1** it is specified, that we want all model components to be tested (Type III ANOVA), using **.~.**.
+
+If there is no significant interaction effect, a Type II ANOVA is a stronger test, which is why one should choose it if possible.
+
+More on the different types of ANOVA [here](https://towardsdatascience.com/anovas-three-types-of-estimating-sums-of-squares-don-t-make-the-wrong-choice-91107c77a27a) and [here](https://mcfromnz.wordpress.com/2011/03/02/anova-type-iiiiii-ss-explained/).
+
+```{r}
+library(data4consumerscience)
+data(beerliking)
+
+model2 <- lm(data = beerliking, Liking ~ Beer + Age)
+
+plot(model2,which = c(1,2))
+
+drop1(model2, test = 'F')
+
+options(contrasts = c('contr.sum','contr.poly'))
+model3 <- lm(data = beerliking, Liking ~ Beer + Age + Beer:Age)
+
+plot(model3,which = c(1,2))
+
+drop1(model3, .~., test = 'F')
+```
+
+It looks like we have no significant interaction effect, since the p-value = 0.48 > $\alpha$ (0.05). This means, that we can look at the Type II-analysis. Here, it shows that Beer-type is very important for the Liking score, since the p-value = 6.784e-07, which is way lower than $\alpha$. Age is very close to $\alpha$, which suggests, that even though the effect is technically non-significant, it might be worth looking into whether all ages like beer the same.
+
+
+### Post hoc test - Tukey's Honest Significant Difference
+
+After the ANOVA, we might have concluded, that at least one of the groups of at least one of the factors is significantly different from the rest. Now you would like to know which one(s) of the groups this significant difference originates from.
+
+This is where the Tukey's Honest Significant Difference (in short, Tukey test) is very useful.
+
+To compare more than two groups, one would have to conduct multiple pairwise T-tests. This does, however, not hold up, as probabilities are cumulative, which means that while the first test would yield a p-value lower than $\alpha$ (often 0.05), when conducting multiple tests, the cumulative p-value could exceed $\alpha$. 
+
+A Tukey test corrects for this, and is therefore a better fit when dealing with more than two groups.
+
+There are several ways to conduct a Tukey test in R, but the one that works in most usecases is the one shown below, using the **multcomp**-package and the **glht**-function. The dataset used here is the beerliking-dataset.
+
+```{r, message=FALSE}
+library(multcomp)
+library(data4consumerscience)
+data("beerliking")
+
+beerliking$Beer <- as.factor(beerliking$Beer)
+
+model <- lm(data = beerliking, Liking ~ Beer)
+
+summary(glht(model, linfct = mcp(Beer = "Tukey")))
+cld(glht(model, linfct = mcp(Beer = "Tukey")))
+```
+
+When inserting the **glht**-object into **summary**, the individual, pairwise comparisons are shown, with the adjusted p-values.
+
+Another (sometimes easier to interpret) way of displaying the pairwise comparison is by the use of letters, as is shown using **cld**. When groups have different letter, they are significantly different from one another, while groups sharing a letter means no significant difference between the two. Here, we can see, that Brown Ale has scored significantly higher than Wheat IPA, since they have been assigned with c and a respectively. But the Brown Ale is not significantly different from the Ravnsborg Red, as they both have been assigned with c's.
+
+## Introduction to linear and mixed models 
+
+Linear models are one of the most used statistical methods. The definition is that the response is linear in the parameters. This means, that it one can see it as an extention of the ANOVA-models already described, but with the independent variable now being continuos rather than categorical. If $y$ is the response, and $x$ is the predictor, then both of the models below are linear models
+
+$$y = a + b\cdot x + e$$
+
+$$y = a + b\cdot x + c\cdot x^2 + e$$
+Here you see that the response is linear in the parameters $a,b,c$. I.e. it has nothing to do with being linear in the predictor. 
+
+
+## Normal and Mixed models
+
+### Normal model
+
+In a _normal_ linear model such as: 
+
+$$y = a + b\cdot x + e$$
+
+The assumption is that the uncertainty is captured by one entry, namely the residuals ($e$). 
+For instance, the relation between _Hunger_ and the intake  _AdLibg_ of dishes with Capsaicin can be visualized and modeled by: 
+
+```{r, message=FALSE}
+library(tidyverse)
+library(data4consumerscience)
+data('chili')
+x <- chili %>% 
+  # only include a single treatment
+  filter(Treatment=='Capsaicin') %>% 
+  # only include the first trial for each judge
+  filter(!duplicated(Judge)) 
+
+ggplot(data = x, aes(x = Hunger, y = AdLibg)) + 
+  geom_point() + 
+  stat_smooth(method = lm, se = F)
+```
+
+Naturally, the more hungry, the higher the intake. 
+
+A model describing this relation: 
+
+```{r}
+mdl <- lm(data = x, AdLibg~Hunger)
+summary(mdl)
+```
+
+Here we see that consumption increases by $3.45g$ per increase in $1$ hunger scale, and that this slope has a standard error of $1.08g$. Further, at Hunger=0 the intake is $379.8g$. Furhter, we see that this relation is significant $p = 0.0036$. 
+
+More details on the use of linear models in R and how-to can be viewed in these videos: 
+
+```{r, echo=FALSE}
+vembedr::embed_youtube("66z_MRwtFJM")
+```
+
+```{r,echo=FALSE}
+vembedr::embed_youtube("2mAqgL0Xc-s")
+```
+
+
+### Mixed model
+
+A _mixed_ model refers to the situation, where more than one part of the model is handling the uncertainty. 
+For instance, in the chili data set there are two instances for each judge, and hence the uncertainty can be split into _between_ judges and _within_ judges. 
+
+In this plot the intake is shown across products (_Treatment_) and labelled with the _Judge_ number. For instance, Judge 1 is in general high and 24 generally low. Further, the plot is splitted according to the two test-repetition (First:  TestDays = 1,..,5, Second: TestDays = 6,..,10). 
+
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+ggplot(data = chili, aes(x = Hunger, y = AdLibg, color = Treatment)) + 
+  geom_text(aes(label = Judge)) + 
+  stat_smooth(method = lm, se = F) + 
+  facet_wrap(~TestDay>5)
+```
+
+The above-mentioned structure is encoded in the modelling. **lmer** is used, when creating a mixed effect model. The judges and the test day are considered random effects, and are assigned to be so by adding a 1 and a horizontal line when creating the model.
+
+```{r, message=FALSE}
+library(lme4)
+library(lmerTest)
+chili$TestDay2 <- factor(chili$TestDay>5) # adding a new testday variable
+mdlmix <- lmer(data = chili, AdLibg ~ Hunger*Treatment + (1|Judge)  + (1|(TestDay2)))
+summary(mdlmix)
+```
+
+The summary spits out the model estimates, and especially the random effects shows that the within individual residual variation is $130g$ while the between individual variation is larger: $164g$. I.e. the consumption is more depend on the individual than the repetitions. Further, the testday also has a little effect ($54g$).
+
+
+We can evaluate the systematic effect overall by **anova**. When **anova** is used on a model created by **lmer**, it conducts a Type III ANOVA.
+
+```{r}
+anova(mdlmix)
+```
+
+This shows that Hunger indeed will make you eat more, but the slopes and offsets in relation to the different products is non-significant. 
+
+
+To learn more and see how to conduct the analysis in R, see here: [More on ANOVA and mixed models](https://stat.ethz.ch/~meier/teaching/anova/index.html)
+
+
+
