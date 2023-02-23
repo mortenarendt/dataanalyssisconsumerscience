@@ -222,4 +222,4 @@ Try to answer questions such as:
  * Are there any significant product differences for the liking? If so, what does the post hoc test tell us? How does this fit with what you have done in the PCA exercises. 
  * Is the liking in general affected by the age, gender, household size or beer knowledge? What is the effect? Try to think of a plot that can show the significant differences.
  * Do men and women score the samples significantly different in liking? Calculate the sample/gender differences in averages.
- 
+

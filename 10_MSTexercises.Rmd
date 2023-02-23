@@ -1,0 +1,14 @@
+# MST exercises
+
+INTRO TEXT 
+
+```{r, eval=FALSE}
+
+```
+
+## Exercise 1
+SE I EDITOR FRA 2022 + KURSUSMATERIALE
+
+## Exercise 2
+
+## Exercise 3

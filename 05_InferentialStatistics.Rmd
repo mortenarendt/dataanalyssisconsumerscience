@@ -82,17 +82,17 @@ To conduct a T-test in R, you can use the **t.test()** function. This function t
 Here is an example using the BuffetSurvey data set:
 
 ```{r}
-#library(data4consumerscience)
-#data(pasta)
+library(data4consumerscience)
+data(pasta)
 
-#t.test(x = pasta$Pasta_with_legumes_is_visually_appealing, 
-#       y = pasta$Pasta_with_mushrooms_is_visually_appealing)
+t.test(x = pasta$Pasta_with_legumes_is_visually_appealing, 
+       y = pasta$Pasta_with_mushrooms_is_visually_appealing)
 
-library(readxl)
-BuffetSurvey <- read_excel('~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx', sheet = 'BuffetSurvey')
+# library(readxl)
+# BuffetSurvey <- read_excel('~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx', sheet = 'BuffetSurvey')
 
-t.test(BuffetSurvey$`Pasta with legumes is visually appealing to me. `,
-       BuffetSurvey$`Pasta with mushrooms is visually appealing to me. `)
+# t.test(BuffetSurvey$`Pasta with legumes is visually appealing to me. `,
+       # BuffetSurvey$`Pasta with mushrooms is visually appealing to me. `)
 ```
 
 This results in a p-value of 0.036, which is below the chosen $\alpha$-level of 0.05. This means, that there is a significant difference between how visually appealing pasta with legumes and pasta with mushrooms perceived.
@@ -108,17 +108,17 @@ To conduct an F-test in R, you can use the **var.test()** function. This functio
 Here is an example using the BuffetSurvey data set:
 
 ```{r}
-#library(data4consumerscience)
-#data(pasta)
+library(data4consumerscience)
+data(pasta)
 
-#var.test(x = pasta$Pasta_with_legumes_is_visually_appealing, 
-#         y = pasta$pasta$Pasta_with_mushrooms_is_visually_appealing)
+var.test(x = pasta$Pasta_with_legumes_is_visually_appealing, 
+         y = pasta$Pasta_with_mushrooms_is_visually_appealing)
 
-library(readxl)
-BuffetSurvey <- read_excel('~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx', sheet = 'BuffetSurvey')
+# library(readxl)
+# BuffetSurvey <- read_excel('~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx', sheet = 'BuffetSurvey')
 
-var.test(BuffetSurvey$`Pasta with legumes is visually appealing to me. `,
-       BuffetSurvey$`Pasta with mushrooms is visually appealing to me. `)
+# var.test(BuffetSurvey$`Pasta with legumes is visually appealing to me. `,
+       # BuffetSurvey$`Pasta with mushrooms is visually appealing to me. `)
 ```
 
 The p-value of the F-test is 0.037, which is below the chosen $\alpha$-level of 0.05. This means, that the variance of the scores for how visually appealing pasta with legumes is significantly different from variance of the scores for how visually appealing pasta with mushrooms. - This actually confirms, that the correct T-test was used in the section above, since the T-test with unequal variance was used.

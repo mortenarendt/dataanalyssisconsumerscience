@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Buffet and survey data | Data Analysis in R for Sensory and Consumer Science</title>
+  <meta name="description" content="Chapter 8 Buffet and survey data | Data Analysis in R for Sensory and Consumer Science" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Buffet and survey data | Data Analysis in R for Sensory and Consumer Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Buffet and survey data | Data Analysis in R for Sensory and Consumer Science" />
+  
+  
+  
+
+<meta name="author" content="Morten Arendt Rasmussen, Julius Jessen Terp, Helene C. Reinbach and Bodil H. Allesen-Holm" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-pca-and-multivariate-data.html"/>
+<link rel="next" href="mst-exercises.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis in R for Consumer Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to the book</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#organise-and-save-scripts"><i class="fa fa-check"></i><b>2.1.1</b> Organise and save scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-import-data"><i class="fa fa-check"></i><b>2.2</b> How to import data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-data-from-r-package"><i class="fa fa-check"></i><b>2.2.1</b> Import data from R-package</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-a-csv-file"><i class="fa fa-check"></i><b>2.2.2</b> Importing a csv file</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-an-excel-filesheet"><i class="fa fa-check"></i><b>2.2.3</b> Importing an Excel file/sheet</a></li>
+<li class="chapter" data-level="2.2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#clipboard-import"><i class="fa fa-check"></i><b>2.2.4</b> Clipboard import</a></li>
+<li class="chapter" data-level="2.2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-at-the-imported-elements"><i class="fa fa-check"></i><b>2.2.5</b> Looking at the imported elements</a></li>
+<li class="chapter" data-level="2.2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#numbers-and-factors---changing-categorisation"><i class="fa fa-check"></i><b>2.2.6</b> Numbers and factors - changing categorisation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-edit-and-merge-datasets"><i class="fa fa-check"></i><b>2.3</b> How to edit and merge datasets</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-save-the-data"><i class="fa fa-check"></i><b>2.4</b> How to save the data</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-export-data-results"><i class="fa fa-check"></i><b>2.5</b> How to export data / results</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-load-your-rdata"><i class="fa fa-check"></i><b>2.6</b> How to load your RData</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-clear-your-environment"><i class="fa fa-check"></i><b>2.7</b> How to clear your environment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>3</b> Libraries</a></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continuous-variable"><i class="fa fa-check"></i><b>4.1</b> Descriptives for a continuous variable</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-median"><i class="fa fa-check"></i><b>4.1.1</b> Mean / median</a></li>
+<li class="chapter" data-level="4.1.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>4.1.2</b> Variance</a></li>
+<li class="chapter" data-level="4.1.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>4.1.3</b> Standard deviation</a></li>
+<li class="chapter" data-level="4.1.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#calculations"><i class="fa fa-check"></i><b>4.1.4</b> Calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>4.2</b> Distributions of count data</a></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#aggregate"><i class="fa fa-check"></i><b>4.3</b> Aggregate</a></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tidyverse"><i class="fa fa-check"></i><b>4.4</b> Tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="inferential-statistics.html"><a href="inferential-statistics.html"><i class="fa fa-check"></i><b>5</b> Inferential statistics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="inferential-statistics.html"><a href="inferential-statistics.html#intro"><i class="fa fa-check"></i><b>5.1</b> Intro</a></li>
+<li class="chapter" data-level="5.2" data-path="inferential-statistics.html"><a href="inferential-statistics.html#hypothesis-testing"><i class="fa fa-check"></i><b>5.2</b> Hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="inferential-statistics.html"><a href="inferential-statistics.html#power"><i class="fa fa-check"></i><b>5.2.1</b> Power</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="inferential-statistics.html"><a href="inferential-statistics.html#confidence-intervals"><i class="fa fa-check"></i><b>5.3</b> Confidence intervals</a></li>
+<li class="chapter" data-level="5.4" data-path="inferential-statistics.html"><a href="inferential-statistics.html#t-test"><i class="fa fa-check"></i><b>5.4</b> T-test</a></li>
+<li class="chapter" data-level="5.5" data-path="inferential-statistics.html"><a href="inferential-statistics.html#f-test"><i class="fa fa-check"></i><b>5.5</b> F-test</a></li>
+<li class="chapter" data-level="5.6" data-path="inferential-statistics.html"><a href="inferential-statistics.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>5.6</b> Analysis of Variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="inferential-statistics.html"><a href="inferential-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>5.6.1</b> One-way ANOVA</a></li>
+<li class="chapter" data-level="5.6.2" data-path="inferential-statistics.html"><a href="inferential-statistics.html#two-way-anova"><i class="fa fa-check"></i><b>5.6.2</b> Two-way ANOVA</a></li>
+<li class="chapter" data-level="5.6.3" data-path="inferential-statistics.html"><a href="inferential-statistics.html#post-hoc-test---tukeys-honest-significant-difference"><i class="fa fa-check"></i><b>5.6.3</b> Post hoc test - Tukey’s Honest Significant Difference</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="inferential-statistics.html"><a href="inferential-statistics.html#introduction-to-linear-and-mixed-models"><i class="fa fa-check"></i><b>5.7</b> Introduction to linear and mixed models</a></li>
+<li class="chapter" data-level="5.8" data-path="inferential-statistics.html"><a href="inferential-statistics.html#normal-and-mixed-models"><i class="fa fa-check"></i><b>5.8</b> Normal and Mixed models</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="inferential-statistics.html"><a href="inferential-statistics.html#normal-model"><i class="fa fa-check"></i><b>5.8.1</b> Normal model</a></li>
+<li class="chapter" data-level="5.8.2" data-path="inferential-statistics.html"><a href="inferential-statistics.html#mixed-model"><i class="fa fa-check"></i><b>5.8.2</b> Mixed model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>6</b> Plotting data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="plotting-data.html"><a href="plotting-data.html#histograms-and-boxplots"><i class="fa fa-check"></i><b>6.1</b> Histograms and boxplots</a></li>
+<li class="chapter" data-level="6.2" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>6.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="6.3" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>6.3</b> How to export plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html"><i class="fa fa-check"></i><b>7</b> Introduction to PCA and multivariate data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#a-bit-of-math"><i class="fa fa-check"></i><b>7.1</b> A bit of math</a></li>
+<li class="chapter" data-level="7.2" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#interpreting-model-output"><i class="fa fa-check"></i><b>7.2</b> Interpreting model output</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#biplot"><i class="fa fa-check"></i><b>7.2.1</b> Biplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html"><i class="fa fa-check"></i><b>8</b> Buffet and survey data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#buffet-data"><i class="fa fa-check"></i><b>8.1</b> Buffet data</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#introduction-to-buffet-data"><i class="fa fa-check"></i><b>8.1.1</b> Introduction to buffet data</a></li>
+<li class="chapter" data-level="8.1.2" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#plotting-buffet-data"><i class="fa fa-check"></i><b>8.1.2</b> Plotting buffet data</a></li>
+<li class="chapter" data-level="8.1.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#mixed-model-for-buffet-data"><i class="fa fa-check"></i><b>8.1.3</b> Mixed model for buffet data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#survey-data"><i class="fa fa-check"></i><b>8.2</b> Survey data</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#plotting-survey-data"><i class="fa fa-check"></i><b>8.2.1</b> Plotting survey data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#linear-model-for-buffet-data"><i class="fa fa-check"></i><b>8.2.2</b> Linear model for buffet data</a></li>
+<li class="chapter" data-level="8.2.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#post-hoc-test-for-survey-data"><i class="fa fa-check"></i><b>8.2.3</b> Post-hoc test for survey data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#combining-consumption-and-survey-data"><i class="fa fa-check"></i><b>8.3</b> Combining consumption and survey data</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="mst-exercises.html"><a href="mst-exercises.html"><i class="fa fa-check"></i><b>9</b> MST exercises</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1"><i class="fa fa-check"></i><b>9.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.2" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2"><i class="fa fa-check"></i><b>9.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="9.3" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3"><i class="fa fa-check"></i><b>9.3</b> Exercise 3</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html"><i class="fa fa-check"></i><b>10</b> CATA data (Check-All-That-Apply)</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#importing-and-looking-at-the-beer-data"><i class="fa fa-check"></i><b>10.1</b> Importing and looking at the beer data</a></li>
+<li class="chapter" data-level="10.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>10.2</b> Two versions of the data</a></li>
+<li class="chapter" data-level="10.3" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#cochrans-q-test"><i class="fa fa-check"></i><b>10.3</b> Cochran’s Q test</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#post-hoc-test"><i class="fa fa-check"></i><b>10.3.1</b> Post hoc test</a></li>
+<li class="chapter" data-level="10.3.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#for-all-attributes-in-one-run-nice-to-know"><i class="fa fa-check"></i><b>10.3.2</b> For all attributes in one run (nice to know)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#pca-on-cata-data"><i class="fa fa-check"></i><b>10.4</b> PCA on CATA data</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html"><i class="fa fa-check"></i><b>11</b> Hedonic rating (e.g. liking scores)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#plotting-liking-scores"><i class="fa fa-check"></i><b>11.1</b> Plotting liking scores</a></li>
+<li class="chapter" data-level="11.2" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#simple-mixed-models"><i class="fa fa-check"></i><b>11.2</b> Simple mixed models</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#post-hoc-test-1"><i class="fa fa-check"></i><b>11.2.1</b> Post hoc test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#multivariable-models"><i class="fa fa-check"></i><b>11.3</b> Multivariable models</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#additive-models"><i class="fa fa-check"></i><b>11.3.1</b> Additive models</a></li>
+<li class="chapter" data-level="11.3.2" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#effect-modification-and-interactions"><i class="fa fa-check"></i><b>11.3.2</b> Effect modification and Interactions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html"><i class="fa fa-check"></i><b>12</b> CATA and Hedonics</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#individual-attributes-and-liking"><i class="fa fa-check"></i><b>12.1</b> Individual attributes and liking</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#an-example-with-refreshing"><i class="fa fa-check"></i><b>12.1.1</b> An example with Refreshing</a></li>
+<li class="chapter" data-level="12.1.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#all-attributes"><i class="fa fa-check"></i><b>12.1.2</b> All attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pca-on-cata-and-liking"><i class="fa fa-check"></i><b>12.2</b> PCA on CATA and Liking</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#a-beer-centric-model"><i class="fa fa-check"></i><b>12.2.1</b> A beer centric model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>13</b> Preference Mapping</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>13.1</b> Example of Preference Mapping</a></li>
+<li class="chapter" data-level="13.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca"><i class="fa fa-check"></i><b>13.2</b> PCA</a></li>
+<li class="chapter" data-level="13.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>13.3</b> Analysis by PLS</a></li>
+<li class="chapter" data-level="13.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>13.4</b> L-PLS [For the future…]</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>14</b> Projective mapping</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>14.1</b> Example from mapping of XX</a></li>
+<li class="chapter" data-level="14.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>14.2</b> A Collated version of the data</a></li>
+<li class="chapter" data-level="14.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>14.3</b> PCA on Collated data</a></li>
+<li class="chapter" data-level="14.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>14.4</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="tfih-exercises.html"><a href="tfih-exercises.html"><i class="fa fa-check"></i><b>15</b> TFIH Exercises</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-1-descriptive-statistics-and-plots"><i class="fa fa-check"></i><b>15.1</b> Exercise 1: Descriptive statistics and plots</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#cata-counts"><i class="fa fa-check"></i><b>15.1.1</b> CATA counts</a></li>
+<li class="chapter" data-level="15.1.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#hedonics"><i class="fa fa-check"></i><b>15.1.2</b> Hedonics</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-2-consumer-background-and-pca"><i class="fa fa-check"></i><b>15.2</b> Exercise 2: Consumer background and PCA</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#demographics"><i class="fa fa-check"></i><b>15.2.1</b> Demographics</a></li>
+<li class="chapter" data-level="15.2.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#pca-on-interests"><i class="fa fa-check"></i><b>15.2.2</b> PCA on <em>Interests</em></a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-3-pca-on-cata-counts"><i class="fa fa-check"></i><b>15.3</b> Exercise 3: PCA on CATA counts</a></li>
+<li class="chapter" data-level="15.4" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-4-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>15.4</b> Exercise 4: Cochran’s Q test on CATA binary data</a></li>
+<li class="chapter" data-level="15.5" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-5-hedonic-ratings-and-consumer-characteristics"><i class="fa fa-check"></i><b>15.5</b> Exercise 5: Hedonic ratings and consumer characteristics</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#pca-on-joint-data"><i class="fa fa-check"></i><b>15.5.1</b> PCA on joint data</a></li>
+<li class="chapter" data-level="15.5.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#all-demographics"><i class="fa fa-check"></i><b>15.5.2</b> All demographics</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-6-pca-on-cata-counts-and-hedonic-ratings"><i class="fa fa-check"></i><b>15.6</b> Exercise 6: PCA on CATA counts and hedonic ratings</a></li>
+<li class="chapter" data-level="15.7" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-7-mixed-modelling-on-hedonic-ratings"><i class="fa fa-check"></i><b>15.7</b> Exercise 7: Mixed modelling on hedonic ratings</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>16</b> Latent Factor Models</a></li>
+<li class="chapter" data-level="17" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>17</b> LPLS</a></li>
+<li class="chapter" data-level="18" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>18</b> Consumer Segmentation</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>18.1</b> Kmeans</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>19</b> More PCA</a></li>
+<li class="chapter" data-level="20" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>20</b> Logistic Regression</a></li>
+<li class="chapter" data-level="21" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>21</b> Confirmatory Factor Analysis using lavaan</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>21.1</b> Example - Food Neophobia</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>22</b> Structured Equation Modelling</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>22.1</b> Example - Theory of Planned Behaviour</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#plsda-cataon-cata-and-liking"><i class="fa fa-check"></i><b>22.1.1</b> PLSDA (CATA??)on CATA and liking??</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>23</b> PCA on survey answers</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>23.1</b> Bi-plot</a>
+<ul>
+<li class="chapter" data-level="23.1.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>23.1.1</b> Extract the components and run all associations.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>24</b> Linear models</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>24.1</b> Example</a></li>
+<li class="chapter" data-level="24.2" data-path="linear-models.html"><a href="linear-models.html#run-a-bunch-of-models-at-once"><i class="fa fa-check"></i><b>24.2</b> Run a bunch of models at once</a>
+<ul>
+<li class="chapter" data-level="24.2.1" data-path="linear-models.html"><a href="linear-models.html#a-plot"><i class="fa fa-check"></i><b>24.2.1</b> A plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>25</b> Mixed models</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>25.1</b> With several variables</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis in R for Sensory and Consumer Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="buffet-and-survey-data" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Buffet and survey data<a href="buffet-and-survey-data.html#buffet-and-survey-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="buffet-data" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Buffet data<a href="buffet-and-survey-data.html#buffet-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-buffet-data" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Introduction to buffet data<a href="buffet-and-survey-data.html#introduction-to-buffet-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the Meal Systems and Technologies course, we work with data from the iBuffet and data from a survey. You have to merge the two datasets. You can do this in Excel or in R. For the Excel guide, please see the teaching materials of the course in Absalon. For the R guide, please see <a href="introduction-to-r.html#how-to-edit-and-merge-datasets">How to edit and merge datasets</a></p>
+<p>This chapter is missing a “Table 1”, as the data is insufficient in this part.</p>
+<p>Our data analysis process for buffet and survey data is described below for a very simple dataset. Please elaborate plots and models to fit your own data.</p>
+<p>First, it is a good idea to have a look at the dataset, see what the columns and rows consist of - it could also be a good idea to do some descriptive statistics. All of this is covered in the following chapters: <a href="introduction-to-r.html#looking-at-the-imported-elements">Looking at the imported elements</a> and <a href="descriptive-statistics.html#descriptive-statistics">Descriptive statistics</a>.</p>
+<p>Often however, it is much easier to understand the data when they are plotted.</p>
+</div>
+<div id="plotting-buffet-data" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Plotting buffet data<a href="buffet-and-survey-data.html#plotting-buffet-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Below is one way to plot the data of the consumption from the buffet:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="buffet-and-survey-data.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb101-2"><a href="buffet-and-survey-data.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb101-3"><a href="buffet-and-survey-data.html#cb101-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-4"><a href="buffet-and-survey-data.html#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
+<span id="cb101-5"><a href="buffet-and-survey-data.html#cb101-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-6"><a href="buffet-and-survey-data.html#cb101-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pasta, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Day), <span class="at">y =</span> Consumption)) <span class="sc">+</span> </span>
+<span id="cb101-7"><a href="buffet-and-survey-data.html#cb101-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb101-8"><a href="buffet-and-survey-data.html#cb101-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Person)) <span class="sc">+</span> </span>
+<span id="cb101-9"><a href="buffet-and-survey-data.html#cb101-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> Person, <span class="at">color =</span> Person)) <span class="sc">+</span> </span>
+<span id="cb101-10"><a href="buffet-and-survey-data.html#cb101-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
+<span id="cb101-11"><a href="buffet-and-survey-data.html#cb101-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Day&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p>The plot shows a boxplot of the consumption for each day and for each serving station, and each point is the consumption of one person from one station. The colors are added to make it easier to see, how the consumption of the same person changes from day to day, as well as for each of the stations. For more information on plotting, see <a href="plotting-data.html#plotting-data">Plotting data</a>.</p>
+<p>Both the days and the stations look quite similar, but it also looks as if the variation in consumption is dependent on person. To test whether this is the case, we create a mixed model.</p>
+</div>
+<div id="mixed-model-for-buffet-data" class="section level3 hasAnchor" number="8.1.3">
+<h3><span class="header-section-number">8.1.3</span> Mixed model for buffet data<a href="buffet-and-survey-data.html#mixed-model-for-buffet-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The reason we create a mixed model is that we want to isolate the effect of day and station from the variation caused by which person actually consumed the food. This is done in the example below. For more information on mixed models, see <a href="inferential-statistics.html#mixed-model">Mixed model</a>.</p>
+<!-- buffet comsumption: et enkelt descr. plot samt henvise til relevante kapitler i starten, så da data er for simple? +mixed model med alt, consumerID=random effekt -->
+<p>We use the packages <strong>lme4</strong> and <strong>lmerTest</strong>, and use the data called <strong>pasta</strong> from the <strong>data4consumerscience</strong>-pacakge. The function <strong>lmer</strong> will create a mixed model when set up as below. This will yield how Day and StationName affect Consumption. When using ’*’ between Day and StationName, we tell R that we want both the effect of Day and StationName alone, as well as their interaction effect - which could be e.g. if 10 people tasted the pasta with mushrooms on day 1 and decided that they like this station better, and as a result increase consumption on day 2.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="buffet-and-survey-data.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb102-2"><a href="buffet-and-survey-data.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb102-3"><a href="buffet-and-survey-data.html#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb102-4"><a href="buffet-and-survey-data.html#cb102-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-5"><a href="buffet-and-survey-data.html#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
+<span id="cb102-6"><a href="buffet-and-survey-data.html#cb102-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-7"><a href="buffet-and-survey-data.html#cb102-7" aria-hidden="true" tabindex="-1"></a>mdlmix <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> pasta, Consumption <span class="sc">~</span> <span class="fu">factor</span>(Day)<span class="sc">*</span>StationName <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Person))</span>
+<span id="cb102-8"><a href="buffet-and-survey-data.html#cb102-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdlmix)</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
+## lmerModLmerTest]
+## Formula: Consumption ~ factor(Day) * StationName + (1 | Person)
+##    Data: pasta
+## 
+## REML criterion at convergence: 663.5
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -2.4856 -0.6552 -0.1166  0.5527  2.3379 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  Person   (Intercept) 3263     57.12   
+##  Residual             4314     65.68   
+## Number of obs: 60, groups:  Person, 15
+## 
+## Fixed effects:
+##                           Estimate Std. Error      df t value Pr(&gt;|t|)    
+## (Intercept)                138.000     17.012  14.000   8.112 1.16e-06 ***
+## factor(Day)1                -4.333      8.479  42.000  -0.511    0.612    
+## StationName1                 6.000      8.479  42.000   0.708    0.483    
+## factor(Day)1:StationName1   -7.400      8.479  42.000  -0.873    0.388    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##             (Intr) fc(D)1 SttnN1
+## factor(Dy)1 0.000               
+## StationNam1 0.000  0.000        
+## fct(D)1:SN1 0.000  0.000  0.000</code></pre>
+<p>What we often look at in an output like this is the p-values (Pr(&gt;|t|)), which indicate whether or not the variable affects the model. The intercept is irrelevant in this case, as it tests whether or not the intercept is 0, and this is not relevant. What we observe is, that none of the p-values are below 0.05, which is the usual significance level used. This means, that neither day nor station has a significant impact on consumption, even when correcting for the variation caused by different people eating at the buffet.</p>
+</div>
+</div>
+<div id="survey-data" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Survey data<a href="buffet-and-survey-data.html#survey-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Survey data are (as the name implies) the result of a survey, where the questions can vary dramatically. The dataset used here does not have a lot of questions, so please feel free to elaborate on plots and models when analyzing your own data.</p>
+<p>The same general advice applies here as in the case of the buffet data - inspect your data, calculate some descriptive statistics, and plot the data, to get a better understanding of the data.</p>
+<div id="plotting-survey-data" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Plotting survey data<a href="buffet-and-survey-data.html#plotting-survey-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Below are some examples of plots. First, a barplot showing the whether or not the participants of the survey considered the protein content of the dishes, split between day 1 and 2.
+Secondly, a histogram of the liking scores for each station, shown as the number of people giving a certain score on the Likert-scale.</p>
+<p>The histogram can be created by creating each plot separately, assigning each plot to a variable, and then arranging them next to each other using <strong>grid.arrange</strong> from the <strong>gridExtra</strong>-package.</p>
+<p>It can also be created using what is called a ‘pipe operator’ (<strong>%&gt;%</strong>), which is a function from within the <strong>tidyverse</strong>-package, and with a little help from the <strong>data.table</strong>-package. The pipe operator is a nice tool to reduce the amount of code and variable names needed, and can be used for a lot of different stuff. For example, <strong>filter</strong> can be used to select specific rows, as is done here, where we select rows in column ‘Question’, that include the text ‘like’, and as the questions about liking are the only questions containing this text, these are the rows selected.</p>
+<p>To learn more about the pipe operator, see <a href="introduction-to-r.html#edit-using-tidyverse">Edit using Tidyverse</a>. Here, there is also an explanation of the other functions such as <strong>gather</strong>.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="buffet-and-survey-data.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb104-2"><a href="buffet-and-survey-data.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb104-3"><a href="buffet-and-survey-data.html#cb104-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-4"><a href="buffet-and-survey-data.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
+<span id="cb104-5"><a href="buffet-and-survey-data.html#cb104-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-6"><a href="buffet-and-survey-data.html#cb104-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pasta, <span class="fu">aes</span>(<span class="at">x =</span> Did_you_consider_the_proteincontent_of_the_dishes_you_choose)) <span class="sc">+</span> </span>
+<span id="cb104-7"><a href="buffet-and-survey-data.html#cb104-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb104-8"><a href="buffet-and-survey-data.html#cb104-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span><span class="fu">factor</span>(Day))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="buffet-and-survey-data.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Arranging to plots together</span></span>
+<span id="cb105-2"><a href="buffet-and-survey-data.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb105-3"><a href="buffet-and-survey-data.html#cb105-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-4"><a href="buffet-and-survey-data.html#cb105-4" aria-hidden="true" tabindex="-1"></a>legumes <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> pasta, <span class="fu">aes</span>(<span class="at">x =</span> I_like_taste_of_pasta_with_legumes)) <span class="sc">+</span> </span>
+<span id="cb105-5"><a href="buffet-and-survey-data.html#cb105-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb105-6"><a href="buffet-and-survey-data.html#cb105-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Legumes - liking&#39;</span>)</span>
+<span id="cb105-7"><a href="buffet-and-survey-data.html#cb105-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-8"><a href="buffet-and-survey-data.html#cb105-8" aria-hidden="true" tabindex="-1"></a>mushrooms <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> pasta, <span class="fu">aes</span>(<span class="at">x =</span> I_like_taste_of_pasta_with_mushrooms)) <span class="sc">+</span> </span>
+<span id="cb105-9"><a href="buffet-and-survey-data.html#cb105-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb105-10"><a href="buffet-and-survey-data.html#cb105-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Mushrooms - liking&#39;</span>)</span>
+<span id="cb105-11"><a href="buffet-and-survey-data.html#cb105-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-12"><a href="buffet-and-survey-data.html#cb105-12" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(legumes,mushrooms, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-71-2.png" width="672" /></p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="buffet-and-survey-data.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The fancy way:</span></span>
+<span id="cb106-2"><a href="buffet-and-survey-data.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb106-3"><a href="buffet-and-survey-data.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb106-4"><a href="buffet-and-survey-data.html#cb106-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-5"><a href="buffet-and-survey-data.html#cb106-5" aria-hidden="true" tabindex="-1"></a>pasta <span class="sc">%&gt;%</span> </span>
+<span id="cb106-6"><a href="buffet-and-survey-data.html#cb106-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(Question,</span>
+<span id="cb106-7"><a href="buffet-and-survey-data.html#cb106-7" aria-hidden="true" tabindex="-1"></a>         Answer,</span>
+<span id="cb106-8"><a href="buffet-and-survey-data.html#cb106-8" aria-hidden="true" tabindex="-1"></a>         I_like_taste_of_pasta_with_legumes<span class="sc">:</span>Pasta_with_mushrooms_is_visually_appealing) <span class="sc">%&gt;%</span></span>
+<span id="cb106-9"><a href="buffet-and-survey-data.html#cb106-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(., Question <span class="sc">%like%</span> <span class="st">&#39;like&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb106-10"><a href="buffet-and-survey-data.html#cb106-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(<span class="at">x =</span> Answer)) <span class="sc">+</span> </span>
+<span id="cb106-11"><a href="buffet-and-survey-data.html#cb106-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb106-12"><a href="buffet-and-survey-data.html#cb106-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Question)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-71-3.png" width="672" /></p>
+<p>Another nice plot is a bivariate plot, plotting two variables against each other and adding a regression line (using <strong>geom_smooth</strong>, and specifying ‘lm’ for a linear regression for ‘y ~ x’). This has been done below, to see if there is a correlation between the liking and the rating of the visual apprerance for pasta with legumes:</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="buffet-and-survey-data.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb107-2"><a href="buffet-and-survey-data.html#cb107-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-3"><a href="buffet-and-survey-data.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pasta, <span class="fu">aes</span>(<span class="at">x =</span> Pasta_with_legumes_is_visually_appealing, <span class="at">y =</span> I_like_taste_of_pasta_with_legumes)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">formula =</span> <span class="st">&#39;y ~ x&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+</div>
+<div id="linear-model-for-buffet-data" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Linear model for buffet data<a href="buffet-and-survey-data.html#linear-model-for-buffet-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can also create a linear regression model explaining the relationship between liking and visual apperance, as is done below using the <strong>lm</strong>-function.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="buffet-and-survey-data.html#cb108-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> pasta, I_like_taste_of_pasta_with_legumes <span class="sc">~</span> Pasta_with_legumes_is_visually_appealing)</span>
+<span id="cb108-2"><a href="buffet-and-survey-data.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = I_like_taste_of_pasta_with_legumes ~ Pasta_with_legumes_is_visually_appealing, 
+##     data = pasta)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.2199 -0.5664  0.1265  0.6068  1.6068 
+## 
+## Coefficients:
+##                                          Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)                               1.08609    0.41462    2.62   0.0112
+## Pasta_with_legumes_is_visually_appealing  0.82677    0.07288   11.35 2.36e-16
+##                                             
+## (Intercept)                              *  
+## Pasta_with_legumes_is_visually_appealing ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.8213 on 58 degrees of freedom
+## Multiple R-squared:  0.6893, Adjusted R-squared:  0.684 
+## F-statistic: 128.7 on 1 and 58 DF,  p-value: 2.356e-16</code></pre>
+<p>The <strong>summary</strong>-function will give a lot of information about the model, e.g. the p-value, which is much lower than 0.05 (it is 2.36e-16), showing that the visual rating and the liking are indeed highly correlated. Also, the estimates of the summary are in fact the estimates of the parameters of the regression line, that follows
+<span class="math inline">\(y = a + b\cdot x\)</span>. The estimate is: <span class="math inline">\(\hat{y}=0.82677 \cdot x \ + 1.08609\)</span>. Have a look at the plot and see if it fits with the regression line we created before. To learn more about linear models, see <a href="inferential-statistics.html#normal-and-mixed-models">Normal and Mixed models</a></p>
+</div>
+<div id="post-hoc-test-for-survey-data" class="section level3 hasAnchor" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span> Post-hoc test for survey data<a href="buffet-and-survey-data.html#post-hoc-test-for-survey-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One can also investigate whether two or more discrete groups are different from one another. The model is created the same way as above for the linear model, with the exception that our x is now discrete (‘Why_did_you_consider_the_proteincontent’).</p>
+<p>A very useful outcome of a model like this is the pairwise comparison between groups - in this case the different considerations about the protein content of the dish. The pairwise comparison compares all the groups (here the considerations), and the result is a letter assigned to each group. If two groups have different letters, the two groups are significantly different from each other, whereas if two groups have the same letter, they are not.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="buffet-and-survey-data.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb110-2"><a href="buffet-and-survey-data.html#cb110-2" aria-hidden="true" tabindex="-1"></a>pasta<span class="sc">$</span>Why_did_you_consider_the_proteincontent <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(pasta<span class="sc">$</span>Why_did_you_consider_the_proteincontent)</span>
+<span id="cb110-3"><a href="buffet-and-survey-data.html#cb110-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-4"><a href="buffet-and-survey-data.html#cb110-4" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> pasta, I_like_taste_of_pasta_with_legumes <span class="sc">~</span> Why_did_you_consider_the_proteincontent)</span>
+<span id="cb110-5"><a href="buffet-and-survey-data.html#cb110-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-6"><a href="buffet-and-survey-data.html#cb110-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(<span class="fu">glht</span>(model, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Why_did_you_consider_the_proteincontent =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
+<pre><code>## Because I know that I need protein for my overall health 
+##                                                      &quot;a&quot; 
+##   Because I try to follow the Danish Dietary Guidelines  
+##                                                      &quot;a&quot; 
+##                                 I did not consider this  
+##                                                      &quot;a&quot;</code></pre>
+<p>In our case, the consideration about protein content did not affect the liking of pasta with legumes, as all groups have been assigned with the same letter. For more information on the post-hoc test, see <a href="inferential-statistics.html#post-hoc-test---tukeys-honest-significant-difference">Post hoc test - Tukey’s Honest Significant Difference</a>.</p>
+</div>
+</div>
+<div id="combining-consumption-and-survey-data" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Combining consumption and survey data<a href="buffet-and-survey-data.html#combining-consumption-and-survey-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is of course interesting to investigate how the consumption and the survey correlate. One example of how to look at this can be seen below. First, the data from the ‘Pasta with legumes’-station are plotted in a bivariate plot, where consumption is plotted against liking of pasta with legumes.</p>
+<p>Next, a linear model is created to test whether the correlation is significant, and to see the estimates.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="buffet-and-survey-data.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb112-2"><a href="buffet-and-survey-data.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Bivariate plot</span></span>
+<span id="cb112-3"><a href="buffet-and-survey-data.html#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pasta[pasta<span class="sc">$</span>StationName<span class="sc">==</span><span class="st">&#39;Pasta with legumes&#39;</span>,], <span class="fu">aes</span>(<span class="at">x =</span> I_like_taste_of_pasta_with_legumes, <span class="at">y =</span> Consumption)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">formula =</span> <span class="st">&#39;y ~ x&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="buffet-and-survey-data.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Model</span></span>
+<span id="cb113-2"><a href="buffet-and-survey-data.html#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb113-3"><a href="buffet-and-survey-data.html#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb113-4"><a href="buffet-and-survey-data.html#cb113-4" aria-hidden="true" tabindex="-1"></a>fullmodel <span class="ot">&lt;-</span> pasta <span class="sc">%&gt;%</span></span>
+<span id="cb113-5"><a href="buffet-and-survey-data.html#cb113-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.,StationName <span class="sc">%like%</span> <span class="st">&#39;legumes&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb113-6"><a href="buffet-and-survey-data.html#cb113-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(<span class="at">data =</span> ., Consumption <span class="sc">~</span> I_like_taste_of_pasta_with_legumes)</span>
+<span id="cb113-7"><a href="buffet-and-survey-data.html#cb113-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fullmodel)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Consumption ~ I_like_taste_of_pasta_with_legumes, 
+##     data = .)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -108.274  -63.415   -9.345   36.944  187.726 
+## 
+## Coefficients:
+##                                    Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)                         -46.740     57.942  -0.807  0.42665   
+## I_like_taste_of_pasta_with_legumes   33.859      9.961   3.399  0.00205 **
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 79.05 on 28 degrees of freedom
+## Multiple R-squared:  0.2921, Adjusted R-squared:  0.2668 
+## F-statistic: 11.55 on 1 and 28 DF,  p-value: 0.002048</code></pre>
+<p>The model shows, that indeed, the liking of pasta with legumes affects the consumption of pasta with legumes (as the p-value is 0.00205, which is below 0.05).</p>
+<p>Also shown are the estimates of the regression: <span class="math inline">\(\hat{y}= 33.859\cdot x \ -46.740\)</span></p>
+<!-- julius:  -->
+<!-- survey: barplot med en gang ja/nej svar, distribution af 1-7 for de to liking i hvert sit plot, således man kan sammeligne to stationer. Måske kort beregning af gns og spredning. linaer model på hvad der har effekt på liking? linar model på om de er forksel i liking mellem de to stationer. bogstaver på (tukey) ift. effekt.  -->
+<!-- kombi de to datasæts? hvordan hænger liking sammen med consumption per station? er der nogen spørgsmål i survey som påvikrer comsumption.  -->
+<!-- sørg for der henvises fx funktionerne. filter, plot-funktioner, conf int for linære modeller med merged datasæt -->
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-pca-and-multivariate-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mst-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/09_BuffetAndSurveyData.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/09_BuffetAndSurveyData.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

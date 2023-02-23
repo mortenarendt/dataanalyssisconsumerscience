@@ -1,11 +1,11 @@
 # Introduction to PCA and multivariate data
 
-Multivariate data is defined as a set of (multiple) response variables measured on the same set of samples. In principle these response variables can be of any nature (continuous, ordinal, binary), but mostly PCA is used for analysis of continuous. 
+Multivariate data is defined as a set of (multiple) response variables measured on the same set of samples. In principle these response variables can be of any nature (continuous, ordinal, binary), but mostly PCA is used for analysis of continuous variables. 
 
 In this book Principal Component Analysis (PCA) is used several times. This chapter will shortly explain the theory behind PCA and the interpretation of relevant plots.  
 
 PCA is a tool for looking a correlation structure between variables, and groupings of samples. _All through visualizations_.  
-Check out youtube on the subject for an introduction.
+Check out YouTube on the subject for an introduction.
 
 A conceptual introduction is given here: 
 
@@ -14,7 +14,7 @@ vembedr::embed_youtube("NFIkD9-MuTY")
 ```
 
 
-A bit of math
+## A bit of math
 
 The multivariate dataset is organized in a matrix $\mathbf{X}$ with $n$ samples and $p$ variables. 
 This matrix is factorized into so called scores ($\mathbf{T}$) and loadings ($\mathbf{P}$).
@@ -35,20 +35,23 @@ Conceptually, all these methods aims to make a latent-factor model just like PCA
 
 For calculating a PCA model, we will use the dataset _beef_. It is a sensory descriptive profile on vacuum packed beef steaks heat treated in water baths at different temperatures for different times (sous vide) In total 12 combinations. The samples are coded as e.g. 56-03, meaning the sample has been treated for 56 degrees for 3 hours. There are 10 assessors in the panel, four sensory repetitions and 22 attrributes (A-Brownsurface to T-Salt). 
 
-The first 3 colooumns of the dataset is used for the design. 
-The PCA is computed on the response variables _only_
+The first 3 columns of the dataset is used for the design. 
+The PCA is computed on the response variables _only_. 
+
+These can be chosen using the hard brackets []. The way to chose only a part of a dataset (to subset) is done by specifying the following inside the []:
+A dataset often has two dimensions, rows and columns. In this case, the [] takes two inputs: which row you want, and which columns you want. These are seperated by a comma. This means, that if you write: dataset[1:4,2:6], the result will be rows 1-4, of columns 2-6. If nothing is written on one side of the comma, all of the rows/columns are chosen.
 
 
 ```{r}
 library(data4consumerscience)
 data(beef)
 
-mdlPCA <- prcomp(beef[,4:25], scale. = T)
+mdlPCA <- prcomp(beef[,4:25], scale. = T, center = T)
 ```
 
 ### Biplot 
 
-The ggbiplot package (and function) is a need tool to plot the PCA model. 
+The ggbiplot package (and function) is a needed tool to plot the PCA model. 
 
 Installation of this is done by: 
 
@@ -80,5 +83,5 @@ ggbiplot::ggbiplot(mdlPCA, groups =  beef$Assessor, ellipse = T)
 Coloring according to judge reveal that judge A04 is low in range (variance), and hence do not utilize the entire response scale, A03 tends  to rate higher on _rubberband_, _chewtime_, _bloodmetal_, etc. especilly compared to A10, which is higher in _bouillon_ / PC2.
 This plot indicates how well trained the panel is, as we optimally have only smaller impact of the individual judges. 
 
-
+NOTE: If the ggbiplot() needs modification, for instance, if the loading labels are exceeding the boundaries, or are too small, then look into the ggbiplot arguments such as varname.size. Also normal ggplot2 functionallity like xlim(), ylim() or theme() can help to modify the plot. 
 

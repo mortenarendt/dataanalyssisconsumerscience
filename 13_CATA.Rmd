@@ -113,7 +113,7 @@ As we observe differences based on this attribute, we pursue the question on whi
 
 ```{r, message=FALSE}
 library(rcompanion)
-PT = pairwiseMcnemar(S_Flowers ~ Beer | Consumer.ID,
+PT <- pairwiseMcnemar(S_Flowers ~ Beer | Consumer.ID,
                      data   = beercata,
                      test   = "permutation",
                      method = "fdr",
