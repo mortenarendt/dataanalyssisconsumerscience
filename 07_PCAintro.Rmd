@@ -56,6 +56,7 @@ The ggbiplot package (and function) is a needed tool to plot the PCA model.
 Installation of this is done by: 
 
 ```{r, eval = F, include=T}
+install.packages("devtools")
 devtools::install_github('vqv/ggbiplot')
 ```
 
@@ -68,7 +69,7 @@ The PCA tries to capture the maximum structure of the data in a few dimensions c
 
 The arrows and labels reflects the correlation structure between the responses. I.e we see that the _Bouillon_ characteristics is correlated and explains PC2, while textural properties like _Rubberband_, _Chewtime_ is correlated, and oppositely correlated of _Tender_, and collectively explains PC1. 
 
-We can deecorate the scores with design information, such as beef type as well as judge
+We can decorate the scores with design information, such as beef type as well as judge
 
 ```{r, message=FALSE, warning=FALSE}
 ggbiplot::ggbiplot(mdlPCA, groups = beef$ProductName, ellipse = T)

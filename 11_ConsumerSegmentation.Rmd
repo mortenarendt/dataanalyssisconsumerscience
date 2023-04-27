@@ -1,0 +1,207 @@
+# Consumer segmentation
+
+The data used in the first part of this chapter is from the paper: *Verbeke, Wim, Federico JA Pérez-Cueto, and Klaus G. Grunert. "To eat or not to eat pork, how frequently and how varied? Insights from the quantitative Q-PorkChains consumer survey in four European countries." Meat science 88.4 (2011): 619-626.* and can be found in the *data4consumerscience*-package as **pork**. 
+
+
+```{r}
+library(data4consumerscience)
+data(pork)
+```
+
+## Segmentation
+
+To create the consumer segments, a cluster analysis, based on behavioral data (frequency and variety of consumption), will be carried out. 
+
+This example shows k-means clustering as the clustering analysis, but there are many more options out there - some more data-driven and some using common sense or domain knowledge. Both types of segmentation can be valid, as long as the scientific reasoning behind makes sense.
+
+### K-means
+
+K-means is a popular algorithm used for clustering, which is a fancy word for grouping. This means, that we can group un-grouped data, if the different attributes create such groups.
+
+The algorithm works by you selecting a value for "k," which is the number of clusters/groups that the algorithm will attempt to group the data points into. Then, it randomly selects "k" points from the dataset as the initial centroids. These centroids represent the centers of each cluster.
+
+Next, the algorithm iteratively assigns each data point to the nearest centroid based on the squared Euclidean distance between the point and the centroid (also known as the "Within Cluster Sum of Squares"(WCSS)). After all data points have been assigned, the centroid for each cluster is recalculated by taking the mean of all the points assigned to that cluster. This step updates the center of each cluster.
+
+The algorithm repeats the previous two steps until the centroids no longer move or the maximum number of iterations is reached. The final result is a set of "k" clusters, where each data point belongs to the cluster with the closest centroid.
+
+K-means in R is pretty simple - only one line of code is needed to perform the analysis, if the data are ready for analysis.
+
+First, we **set.seed**. As k-means is an iterative algorithm, that starts in a random point, it matters where this point is. Usually, the only thing happening if the seed is changed, is that the order of the clusters change - but this can be annoying enough that you would want to avoid it! To ensure, that we get the same results every time we run the algorithm, we set the seed, and keep it that way throughout the analysis.
+
+As a start, we only use two variables (specified in the code as "VarietyTotal" & "TotalPorkWeek", from the dataset *pork*), as this is easy to interpret. 
+Below is shown an example with both 2 and 3 clusters ("centers = _"). 
+
+The "nstart"-input specifies, that the clustering will start at 25 different random points, and selects the best. Doing this will help getting the same result every time, especially if data are less clustered by nature. For details on the algorithm type *?kmeans* to get help. 
+
+Note, the *set.seed(123)* is only for reproducibility and hence only nice-to-know.
+
+```{r}
+set.seed(123)
+km.cluster3 <- kmeans(pork[, c("VarietyTotal", "TotalPorkWeek")], centers = 3,nstart = 25)
+km.cluster2 <- kmeans(pork[, c("VarietyTotal", "TotalPorkWeek")], centers = 2,nstart = 25)
+```
+
+First, we run a clustering with the function *kmeans* for the dataset *pork*. We will use the two variables "VarietyTotal" & "TotalPorkWeek" to calculate the three best clusters, and we will choose the random centers 25 times. You can off course change this number yourself. We save it as *km.cluster3* (remember you choose this name). Secondly, we run almost the same clustering, changing only the name and the number of centers. 
+
+
+### Internal characterization of clusters
+
+Below are some of the outputs, that you can get from the clustering. Here you can see the size of the clusters as well as the positions of their centroids.
+
+```{r}
+km.cluster3[["centers"]]
+km.cluster3[["size"]]
+km.cluster3$size
+
+km.cluster2[['centers']]
+km.cluster2[['size']]
+km.cluster2$size
+
+```
+
+Centers will give you the average values for the variables "VarietyTotal" & "TotalPorkWeek" in the center of each of the three (in km.cluster3) clusters. Size will give you the the number of members per cluster. It is a good idea to check that the clusters are not too uneven in number of members. The third line above is just another way of asking for the size of the clusters in km.cluster3. All command are repeated for the km.cluster2; that is the cluster analysis with two clusters, you made and saved above. 
+
+
+### Vizualization
+
+It is, however, a lot easier to understand clustering, when it is visualized. Below is shown two different ways of plotting the clusters - one using the build-in plotting function, and one using the package **ggplot2**. **ggplot2** maybe looks a bit more complicated, but has a lot of functions built into it, which means that it can be nice to learn!
+
+Try to make the plot yourself, and try to see what happens if you change different inputs.
+
+```{r}
+library(ggplot2)
+#Basic R-plotting
+plot(TotalPorkWeek ~ VarietyTotal, data = pork, col = km.cluster3[["cluster"]] + 1)
+points(km.cluster3[["centers"]], pch = 20, cex = 1.3)
+
+df <- data.frame(km.cluster3[["centers"]])
+df2 <- data.frame(km.cluster2[["centers"]])
+
+#ggplot 2
+ggplot(data = pork, aes(x = VarietyTotal, y = TotalPorkWeek)) + 
+  geom_point(aes(color = factor(km.cluster3$cluster))) + 
+  guides(color = guide_legend('Cluster')) + 
+  geom_point(data = df, 
+             aes(x = VarietyTotal, y = TotalPorkWeek), 
+             color = 'black', 
+             size = 2) + 
+  theme_linedraw()
+
+ggplot(data = pork, aes(x = VarietyTotal, y = TotalPorkWeek)) + 
+  geom_point(aes(color = factor(km.cluster2$cluster))) + 
+  guides(color = guide_legend('Cluster')) + 
+  geom_point(data = df2, 
+             aes(x = VarietyTotal, y = TotalPorkWeek), 
+             color = 'black', 
+             size = 2) + 
+  theme_linedraw()
+```
+
+### K-means splits variation
+
+As mentioned before, k-means set the clusters such that the between clusters (sort of differences between centers) are *large* while the distance within a cluster (from each sample to is cluster-center) is *small*.
+
+R can also display these numbers, as shown below:
+
+```{r}
+km.cluster3[["withinss"]]
+km.cluster3$withinss
+km.cluster3[["tot.withinss"]]
+km.cluster3$tot.withinss
+km.cluster3[["betweenss"]]
+km.cluster3$betweenss
+```
+
+## Selecting the number of clusters
+
+Usually there is no given set of clusters, so we want to also learn that from data. 
+
+Here we use the gap-statistics (from the **cluster**-package) for $2$ up to $10$ clusters to select the optimal number of clusters.
+
+Another package able to aid when trying to determine the number of clusters is **NbClust**. This package runs a variety of different tests, each resulting in an optimal number of clusters. This means, that while you get a lot of opinion on the number of clusters, the *NbClust*-function might take a while to run.
+
+```{r}
+library(cluster)
+gapStatistic <- clusGap(pork[, c("VarietyTotal", "TotalPorkWeek")], kmeans, 10)
+
+plot(gapStatistic, main = "")
+
+library(NbClust)
+NbClust(pork[, c("VarietyTotal", "TotalPorkWeek")], method = 'kmeans' )
+
+```
+
+The gap-statistics seems to suggest k=3, whereas NbClust suggests k=2-4, which shows how important it is, that you know your data enough to be able to make the right decision, such as number of clusters.
+
+The rule of thumb is to use these data driven approaches together with interpretability of the resulting clusters, such that the solution is meaningful. 
+
+## Segmentation - example 2
+
+The data **plantbaseddiet** constitute data from the following study, and can be found in the **data4consumerscience**-package: 
+
+*Reipurth, Malou FS, Lasse Hørby, Charlotte G. Gregersen, Astrid Bonke, and Federico JA Perez Cueto. "Barriers and facilitators towards adopting a more plant-based diet in a sample of Danish consumers." Food quality and preference 73 (2019): 288-292.*
+
+These we will use as a second example for cluster analysis. 
+
+```{r}
+library(data4consumerscience)
+data(plantbaseddiet)
+```
+
+### Cluster analysis 
+
+In this example, 3 variables are included in the clustering: 'a_meat', 'a_dairy' and 'a_eggs'. Otherwise, the same procedure applies: Finding the appropriate amount of clusters, and running the analysis.
+
+```{r}
+library(cluster)
+library(NbClust)
+
+set.seed(123)
+
+gapStatistic <- clusGap(plantbaseddiet[,c('a_meat', 'a_dairy','a_eggs')], kmeans, 10)
+plot(gapStatistic, main = "")
+
+NbClust(plantbaseddiet[,c('a_meat', 'a_dairy','a_eggs')],method = 'kmeans' )
+
+res <- kmeans(plantbaseddiet[,c('a_meat', 'a_dairy','a_eggs')], centers = 4, nstart = 25)
+
+```
+
+### Plot the model using PCA
+
+The thing is, that now that we are dealing with more than 2 dimensions, it can be harder to visualize, how well the clustering has worked. One way though, is to use Principal Component Analysis (PCA), as PCA aims to describe the most variance from the data as possible, in the fewest dimensions as possible. This means, that if indeed the clusters are a result of variation in the data, a PCA should show it.
+
+For more information on PCA, see [Introduction to PCA and multivariate data].
+
+A PCA with the same data as the clustering is created (using the **prcomp**) and plotted (using **ggbiplot**)
+
+```{r}
+library(ggbiplot)
+set.seed(123)
+
+PCAmdl <- prcomp(plantbaseddiet[,c('a_meat', 'a_dairy','a_eggs')], center = T, scale. = F)
+ggbiplot(PCAmdl, groups = factor(res$cluster), ellipse = T)
+```
+
+### Add to dataset
+
+As the clustering is a characteristic for each sample, similar to age, gender, name,... we can simply add it to the dataset. 
+Here the interpretation from above gives rise to some intuitive names. These can be used directly. Here is how to add it to the dataset:
+
+```{r}
+#First, check the centriods, to see if they make sense.
+res$centers
+
+#Then matched the label names, according to the plot above.
+plantbaseddiet$clusters <- factor(res$cluster,labels = c('High Meat','Low All','High Dairy','High ALl'))
+
+#And here the plot, now with the right labels.
+ggbiplot(PCAmdl, groups = plantbaseddiet$clusters, ellipse = T)
+```
+
+
+### Comments
+
+* Try to investigate if the number of clusters using gab-statistics and extract between and within variances.
+
+* Plot the different versions using PCA. 

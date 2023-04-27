@@ -1,60 +1,23 @@
 
-# PCA on survey answers
+## PCA on survey answers
 
-
-[TILFØJ: In this chapter we will look at how to conduct Principal Component Analysis (PCA).]
-
-[INDSÆT/FLYT denne tekst, som er sat ind nedenfor: PCA is a tool for looking a correlation structure between variables, and groupings of samples. All through visualizations.  
-Check out youtube on the subject for an introduction. ]
-
-
-
-```{r}
-knitr::include_url("https://youtube.com/embed/NFIkD9-MuTY")
-```
-
-![](https://youtu.be/NFIkD9-MuTY){width="90%"}
-
-[SPØRGSMÅL FRA BODIL: hvad med pakke til at regne modellen ud? bør den ikke også stå på listen]
-
-
-We use a package called ggbiplot for plotting the PCA model. 
-It is located on github and installed by the follow two code lines:
-
-```{r, eval=F, include=T}
-install.packages('devtools')
-devtools::install_github('vqv/ggbiplot')
-```
-
-[SPØRGSMÅL FRA BODIL: når du kun skriver ggbiplot behøves, hvorfor står der så en lang liste over pakken nedenunder her også - det forvirrer. Så enten er de unødvendige eller også skal der stå noget mere tekst på dem, så det hele matcher i måden det gøres på?]
-
-
-```{r}
-library(ggplot2) # lets plot dadta
-library(tidyverse)
-library(broom)
-library(broom.mixed)
-library(lme4)
-library(ggbiplot)
-library(ggpubr) # lets add stats to the plots
-library(knitr) # lets make nice tables
-```
-
-[MANGLER: også en forklaring på denne pakke under her, hvad bruges den til? og min R siger den ikke findes? Er det fordi du selv er ved at lave den?]
+We use the ggbiplot package for plotting the PCA model (See [Biplot] for details). 
 
 ```{r}
 library(data4consumerscience)
+library(tidyverse)
+library(ggbiplot)
 ```
 
 
-PCA is a tool for looking a correlation structure between variables, and groupings of samples. All through visualizations.  
-Check out youtube on the subject for an introduction. 
+### Wrangle data
 
 PCA takes numerical data as input, so we use the likert-scales in the form of 1 to 7. 
 Further the yes/no answers are included, and also needs to be changed.
 
-```{r}
 
+
+```{r}
 x <- pasta %>% 
   mutate(Did_you_take_food_from_both_Dish1_and_Dish2 = 
            Did_you_take_food_from_both_Dish1_and_Dish2 %>% factor %>% as.numeric(),
@@ -64,12 +27,15 @@ x <- pasta %>%
   mutate_if(is.factor, as.numeric) %>% 
   filter(Day==1) %>%  # the survey part is the same for both days and both stations. That is what we keep. 
   filter(str_detect(StationName,'leg'))
-
-PCAmdl <- prcomp(x[,c(5:6,8:11)],scale. = T)
-
 ```
 
-## Bi-plot 
+### Build the model
+
+```{r}
+PCAmdl <- prcomp(x[,c(5:6,8:11)],scale. = T)
+```
+
+### Bi-plot 
 
 And a plot of the model
 
@@ -92,6 +58,10 @@ We are interested in if any of the likert/survey traits reflected by PCA is corr
 It is a little complicated, but here goes
 
 ```{r}
+library(broom)
+library(broom.mixed)
+library(lme4)
+
 scores <- data.frame(Person = x$Person, PCAmdl$x[,1:2]) # take out the first two components. 
 tbmixed <- pasta %>% 
   left_join(scores, by = 'Person') %>% 
@@ -103,10 +73,11 @@ tbmixed <- pasta %>%
 ... Make a table and a plot of the results. 
 
 ```{r}
+library(knitr)
 tbmixed %>% 
   filter(term=='score') %>%
   dplyr::select(-effect,-group) %>% 
-kable(x = .,caption = 'Slopes according to components', digits = 2, format = 'simple')
+  kable(x = .,caption = 'Slopes according to components', digits = 2, format = 'simple')
 
 tbmixed %>% 
   filter(term=='score') %>% 

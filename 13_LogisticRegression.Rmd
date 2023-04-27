@@ -1,0 +1,370 @@
+# Logistic Regression
+
+Logistic regression is regression towards a binary response. 
+In short regression were developed towards continuous responses, and is what is supported in R using the *lm()* function. However, there exits other type of responses, including binary, counts, etc. where the aim of the statistical analysis is still to use a regression type of model. This has given rise to the use of generalized linear models, where several response types can be analysis in a regression framework. In R this is done using the *glm()* function, extended with a specification of the response type using the _family_ argument. 
+
+Logistic regression aims to model the probability of observing case (versus control) given the input. The outputs from such a model is odds ratios. 
+
+This video takes you through some basics. If you want to dive directly at logistic regression, then dive in from *6.53*.
+
+```{r, echo=FALSE}
+vembedr::embed_youtube("https://www.youtube.com/watch?v=C4N3_XJJ-jU")
+# vembedr::embed_youtube("https://www.youtube.com/watch?v=DBqdQekpR5M")
+# vembedr::embed_youtube("https://www.youtube.com/watch?v=SOYt84ZPTx0&list=PL4L59zaizb3FmBdxuDLRdzGsknTrZN6Ys")
+# vembedr::embed_youtube("https://www.youtube.com/watch?v=C4N3_XJJ-jU&list=PL1328115D3D8A2566&index=3")
+```
+
+
+In this chapter, we are going to use logistic regression for characterizing clusters. This is simply done by constructing binary classes based on the clusters as **belong to cluster k** versus **not belong to cluster k**. Even with more than two clusters binary endpoints can be constructed in this way. Alternatively, if there is one of the clusters which naturally is a reference cluster, then comparing the individual clusters to this one is also a way forward.  
+
+The data used in this chapter is from the paper: *Verbeke, Wim, Federico JA Pérez-Cueto, and Klaus G. Grunert. "To eat or not to eat pork, how frequently and how varied? Insights from the quantitative Q-PorkChains consumer survey in four European countries." Meat science 88.4 (2011): 619-626.* and can be found in the *data4consumerscience*-package as *pork*. 
+
+```{r}
+library(data4consumerscience)
+data(pork)
+```
+
+## Segmentation/Clustering
+
+In the dataset there are three clusters encoded as binary membership variables: cluster1, cluster2 and cluster3. They are mutually exclusive. 
+
+These clusters are based on another clustering procedure than k-means, but in principle any clustering can be used to generate clusters... as long as they are meaningful. 
+
+Here we just plot them to see how they appear on the two variables used for their construction.
+
+```{r, fig.height=3.5, fig.width=4.5}
+library(ggplot2)
+library(tableone)
+
+pork$clusters <- pork$cluster1*1 + 
+  pork$cluster2*2 + 
+  pork$cluster3*3  
+  
+plot(TotalPorkWeek ~ VarietyTotal, data = pork, 
+     col = pork[["clusters"]] + 1)
+
+#Or using ggplot2:
+ggplot(data = pork, aes(x = VarietyTotal, y = TotalPorkWeek,color = factor(clusters))) + 
+  geom_point() + 
+  guides(color = guide_legend('Cluster')) + 
+  theme_linedraw()
+```
+
+
+```{r, fig.height=3.5, fig.width=4.5, include=FALSE, echo=FALSE}
+#5 points are missing a classification 
+which(is.na(pork$clusters), arr.ind=TRUE)
+
+tb1 <- CreateTableOne(data = pork, 
+                      strat = 'clusters', 
+                      vars = c('COUNTRY','Locality','Gender','Age','education'))
+print(tb1)
+
+```
+
+
+## Fitting the logistic regression-model
+
+The question we are going to adress here is _is gender related to the being in cluster 1?_. Other tools for this is covered in [Profiling segments], but here we will see how logistic regression can be used for this. 
+
+```{r}
+pork[["Gender"]] <- as.factor(pork[["Gender"]])
+# 1: Male, 2: Female
+
+## Fitting logistic model
+logreg.1.gender <- glm(cluster1 ~ Gender, data = pork, family = binomial)
+summary(logreg.1.gender)
+```
+
+This model indicates Gender is related to cluster1 as the p-value is highly significant.
+
+## Probabilities of segment membership:
+
+One way to get the direction is to interpret the coefficients from the summary() output, but alternatively, simply using the model to predict membership probabilities will give similar insight. 
+
+Here the probability of beloging to cluster 1 is predicted for the situation where Gender is $1$ as well as $2$. Be aware that such predictions should match with the data source used for building the model. Here that means, that if Gender is encoded with numbers (1 or 2), then the predictions are likewise done usign those. If the Gender is encoded with _male_ and _female_, then that it the inputs when doing predictions. 
+
+```{r}
+predict(logreg.1.gender, data.frame(Gender = "1"), 
+        type = "response")
+
+predict(logreg.1.gender, data.frame(Gender = "2"), 
+        type = "response")
+```
+
+What we see it that the probablity of belonging to cluster1 is higher if the Gender is $1$ (in reference to $2$). This is obviously in line with the results in [Contingency table] and [Pearson Chi-square test] in the former chapter. 
+
+## Odds ratios
+
+Odds ratio is the terminology used for interpreting coefficients from a logistic regression model. 
+In the direct read out of coefficients from summary() returns the natural logarithm of the oddsratio, and hence to get odds ratios the exponential function is used. 
+
+```{r}
+exp(coef(summary(logreg.1.gender))[2, 1])
+
+exp(confint(logreg.1.gender)[2, ])
+```
+
+Here is it seen that odds of belonging to cluster1 is in favor of gender $1$ as both the estimate and its confidence bounds are above 1. 
+
+## ORs and Probs
+
+
+The odds ratio for a binary predictor is given by: 
+
+$$ OR = \frac{p_1(1-p_2)}{(1-p_1)p2}$$
+
+where $p_1$ and $p_2$ are probabilities of females and males respectively. 
+
+Here we use the observed probability predictions for females and males (see *Probabilities of segment membership* above) to calculate the OR given the formula: 
+
+```{r, eval = F, echo=T}
+p1 <- 0.38
+p2 <- 0.27
+OR <-(p1*(1-p2))/((1-p1)*p2) # put in the ratio-calculation here
+OR
+```
+
+Which is exactly the same as the output from the exponential of the coeficient in the model. 
+
+## Effect of Age 
+
+Logistic regression can, as normal regression, also be used with continous predictors, such as Age. 
+
+```{r}
+head(pork[, c("Age", "cluster1")])
+
+logreg.1.age <- glm(cluster1 ~ Age, data = pork, family = binomial)
+
+# as log(OR)
+coef(summary(logreg.1.age))
+
+# and as OR (only for the Age)
+exp(coef(summary(logreg.1.age))[2,1])
+```
+
+The coefficient indicates a very weak tendency towards, that cluster1 has older individuals (the estimate is positive), but the inference for this results is very non-significant. 
+
+## Multivariate analysis
+			
+Evaluating the effect of country while adjusting for age and gender. 
+
+### Descriptives
+
+First we look at the crude percentages of cluster1 membership for the different countries. 
+
+```{r}
+tb <- table(pork$COUNTRY, pork$cluster1)
+prop.table(tb,1)
+```
+
+It seems as if especially country $4$ is higher in cluster 1 compared to the other.
+
+### Two nested models
+
+In order to investigate the effect of country, we make a model **with country**, and a model **without country** (But appart from that similar!). Then we compare the drop in ability to fit data using anova. This indicates whether country were an important factor. 
+
+```{r}
+pork[["COUNTRY"]] <- as.factor(pork[["COUNTRY"]])
+
+# Model with country
+logreg.1.cntr_1 <- glm(cluster1 ~  COUNTRY + Age + Gender, 
+                data = pork, family = binomial)
+# Model without country
+logreg.1.cntr_0 <- glm(cluster1 ~ Age + Gender, 
+                data = pork, family = binomial)
+
+#Bedre/nemnmere end at lave to modeller? Bare at droppe den ene af dem? Det giver i hvert fald samme resultat...
+drop1(logreg.1.cntr_1, test = "Chisq")
+
+#Eller er det bedre for forståelsen, at man laver begge?
+
+# Comparison
+anova(logreg.1.cntr_1,logreg.1.cntr_0, test = 'Chisq')
+```
+
+So the effect of country is strongly significant.
+
+### Coefficients
+
+Lets look at how similar/different the levels of education is. 
+
+```{r}
+coef(summary(logreg.1.cntr_1))
+```
+
+The estimates for *first level* of country (1) is within *(Intercept)*. 
+The estimates for the remaining three levels are all **IN CONTRAST** to the intercept, and hence country 1. 
+
+So it seems as if country 3,4 and 6 are different from country 1, but we have no idea on whether say country 3 is different from country 6 and so forth. 
+
+
+### Re-level
+
+In order to get other pairs of contrast we can re-level the factor country, and repeat the model
+
+Here we re-level to the third level of country which is country==4. 
+
+```{r}
+pork[['COUNTRY']] <- relevel(pork[['COUNTRY']],3)
+logreg.1.cntr_1a <- glm(cluster1 ~  COUNTRY + Age + Gender, 
+                data = pork, family = binomial)
+coef(summary(logreg.1.cntr_1a))
+```
+
+This can be repeated setting all levels as reference. But there is a more fair and easy solution.
+
+### All pairwise comparisons
+
+We want to compare all pairs of the $4$ country levels. This is a multiple comparison task, and can be undertaken by the **glht()** function from the **multcomp** package. 
+
+```{r, message=FALSE}
+library(multcomp)
+
+summary(glht(logreg.1.cntr_1, linfct = mcp(COUNTRY = "Tukey")))
+
+cld(glht(logreg.1.cntr_1, linfct = mcp(COUNTRY = "Tukey")))
+```
+
+Here we get all $6$ pairs of pairwise comparisons. And it appears as country 1 and 3 are not statistically different, as well as country 3 and 6 ($p>0.1$). However, country 1 and 6.
+
+Does this compare with the percentages from the descriptive analysis? 
+
+## Segment 2 and 3
+
+Use the code above to conduct the same analysis for segment/cluster 2 and 3, and reveal 
+
+* Gender differences
+* Age effect
+* Country differences
+
+
+## A new set of data
+  
+The data **plantbaseddiet**, found in the **data4consumerscience**-package constitute data from the following study: 
+
+*Reipurth, Malou FS, Lasse Hørby, Charlotte G. Gregersen, Astrid Bonke, and Federico JA Perez Cueto. "Barriers and facilitators towards adopting a more plant-based diet in a sample of Danish consumers." Food quality and preference 73 (2019): 288-292.*
+
+Here we use the clusters from the consumer segmentation analysis as provided in [Segmentation - example 2]
+
+```{r}
+rm(list =ls())
+library(data4consumerscience)
+data("plantbaseddiet")
+
+set.seed(123)
+res <- kmeans(plantbaseddiet[,c('a_meat', 'a_dairy','a_eggs')], 4)
+res$centers
+
+plantbaseddiet$clusters <- factor(res$cluster,labels = c('High Meat','Low all','High Dairy','High All'))
+
+# add as binary columns
+plantbaseddiet$cluster_highmeat <- as.numeric(plantbaseddiet$clusters=='High Meat')
+plantbaseddiet$cluster_lowall <- as.numeric(plantbaseddiet$clusters=='Low all')
+plantbaseddiet$cluster_highdairy <- as.numeric(plantbaseddiet$clusters=='High Dairy')
+plantbaseddiet$cluster_highall <- as.numeric(plantbaseddiet$clusters=='High All')
+```
+
+## Logistic regression for demographic characterization
+
+### Age 
+
+```{r}
+library(ggplot2)
+ggplot(data = plantbaseddiet, aes(clusters,age)) + geom_boxplot()
+
+mdl_age <- glm(data = plantbaseddiet, clusters=='High Meat' ~ age)
+
+# This is essentially the same as: 
+# res <- glm(data = plantbaseddiet, cluster_highmeat ~ age)
+
+summary(mdl_age)
+```
+
+### Gender
+
+```{r}
+ggplot(data = plantbaseddiet, aes(clusters,fill = gender)) + geom_bar(position = 'dodge')
+
+tb2 <- table(plantbaseddiet$clusters,plantbaseddiet$gender)
+tb2
+
+prop.table(tb2,margin = 1)
+
+mdl_gender <- glm(data = plantbaseddiet, clusters=='High Meat' ~ gender)
+
+summary(mdl_gender)
+
+exp(coef(summary(mdl_gender))[2, 1])
+
+```
+
+## TASK
+
+* Try to exchange which cluster you are looking at to see relation to age and gender
+* Try to look at some other characteristics in the dataset. 
+* Can you compare clusters against the variables *a_meat*, *a_dairy* or *a_eggs* using logistic regression? Why should you be cautios with interpreting these results? 
+
+
+## The tidyverse way
+
+We want to produce the results from the Table 4 in the paper. 
+
+In principle, this table is $11$ survey likert scale answers against $4$ clusters... I.e. $44$ logistic regression models. If you do this in the traditional way it takes up tons of code, and even small changes will be time-consuming to implement. 
+
+For instance, the first element of Table 4 is calculated as: 
+
+```{r}
+mdl <- glm(data = plantbaseddiet, clusters=='High Dairy' ~ o_prepar + age + gender + factor(education), 
+           family = binomial) 
+
+exp(coef(summary(mdl)))
+exp(confint(mdl))
+```
+
+But we want all! 
+
+So: Tidyverse and broom for the rescue!
+
+```{r}
+library(tidyverse)
+library(broom)
+
+tb <- plantbaseddiet %>% 
+  mutate(id = 1) %>% # make a vector of 1's
+  spread(clusters,id, fill = 0) %>% # distribute the clustering into 4 new coloumns and make sure that the binary cluster vectors are 1 and 0. 
+  gather(plant_plantbaseddiet,answ,o_prepar:o_family) %>% # long format for survey questions
+  gather(cluster_type,cluster,`High Meat`:`High All`) %>% # long format for clusters 
+  group_by(plant_plantbaseddiet,cluster_type) %>% # loop over all questions and all clusters
+  do(glm(data = ., cluster==1 ~ answ + factor(education) + age + gender, family = binomial) %>%
+       tidy(exponentiate = T,conf.int = T)) # perform logistic regression
+
+
+tb %>% head()  
+
+
+```
+
+This table (tb) has all the results, with estimates being OR and with confidence intervals. However, there are *too much* information. For instance are the intercept as well as the covariates reported. We can tidy it even more:
+
+```{r}
+tb4 <- tb %>% 
+  ungroup %>% 
+  filter(term=='answ') %>% 
+  mutate(OR = paste(round(estimate,2), 
+                    ' (', round(conf.low,2),'-',
+                    round(conf.high,2),')', 
+                    sep = '')) %>% 
+  dplyr::select(plant_plantbaseddiet,cluster_type,OR) %>% 
+  spread(cluster_type,OR)
+tb4  
+```
+
+Now this just needs to be exported to excel (use e.g. export() from the rio package), and a bit of **love** to be ready for a publication. 
+
+## Comment
+
+Try to understand each of the commands in the pipeline, what they do and why they make sense.
+
+You can put in a hash-tag (#) before the the pipe sign (%>%) to block the pipeline and see the structure of the output at this point. 
+

@@ -29,6 +29,7 @@ Below we will first explain the different descriptive measures, and then describ
 ### Mean / median
 
 Here you get an introduction to statistics, descriptive statistics and the terms average/mean and median: 
+
 ```{r, echo=FALSE}
 vembedr::embed_youtube("https://www.youtube.com/watch?v=uhxtUt_-GyM&list=PL1328115D3D8A2566&index=1")
 ```

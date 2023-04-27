@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 20 Logistic Regression | Data Analysis in R for Sensory and Consumer Science</title>
-  <meta name="description" content="Chapter 20 Logistic Regression | Data Analysis in R for Sensory and Consumer Science" />
+  <title>Chapter 13 Logistic Regression | Data Analysis in R for Sensory and Consumer Science</title>
+  <meta name="description" content="Chapter 13 Logistic Regression | Data Analysis in R for Sensory and Consumer Science" />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 20 Logistic Regression | Data Analysis in R for Sensory and Consumer Science" />
+  <meta property="og:title" content="Chapter 13 Logistic Regression | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 20 Logistic Regression | Data Analysis in R for Sensory and Consumer Science" />
+  <meta name="twitter:title" content="Chapter 13 Logistic Regression | Data Analysis in R for Sensory and Consumer Science" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="more-pca.html"/>
-<link rel="next" href="confirmatory-factor-analysis-using-lavaan.html"/>
+<link rel="prev" href="profiling-segments.html"/>
+<link rel="next" href="cata-data-check-all-that-apply.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -224,6 +224,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#post-hoc-test-for-survey-data"><i class="fa fa-check"></i><b>8.2.3</b> Post-hoc test for survey data</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#combining-consumption-and-survey-data"><i class="fa fa-check"></i><b>8.3</b> Combining consumption and survey data</a></li>
+<li class="chapter" data-level="8.4" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#pca-on-survey-answers"><i class="fa fa-check"></i><b>8.4</b> PCA on survey answers</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#wrangle-data"><i class="fa fa-check"></i><b>8.4.1</b> Wrangle data</a></li>
+<li class="chapter" data-level="8.4.2" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#build-the-model"><i class="fa fa-check"></i><b>8.4.2</b> Build the model</a></li>
+<li class="chapter" data-level="8.4.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#bi-plot"><i class="fa fa-check"></i><b>8.4.3</b> Bi-plot</a></li>
+<li class="chapter" data-level="8.4.4" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>8.4.4</b> Extract the components and run all associations.</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="mst-exercises.html"><a href="mst-exercises.html"><i class="fa fa-check"></i><b>9</b> MST exercises</a>
 <ul>
@@ -231,116 +238,167 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2"><i class="fa fa-check"></i><b>9.2</b> Exercise 2</a></li>
 <li class="chapter" data-level="9.3" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3"><i class="fa fa-check"></i><b>9.3</b> Exercise 3</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html"><i class="fa fa-check"></i><b>10</b> CATA data (Check-All-That-Apply)</a>
+<li class="chapter" data-level="10" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html"><i class="fa fa-check"></i><b>10</b> Intro to large survey data</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#importing-and-looking-at-the-beer-data"><i class="fa fa-check"></i><b>10.1</b> Importing and looking at the beer data</a></li>
-<li class="chapter" data-level="10.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>10.2</b> Two versions of the data</a></li>
-<li class="chapter" data-level="10.3" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#cochrans-q-test"><i class="fa fa-check"></i><b>10.3</b> Cochran’s Q test</a>
+<li class="chapter" data-level="10.0.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#looking-at-the-data-and-checking-formating"><i class="fa fa-check"></i><b>10.0.1</b> Looking at the data and checking formating</a></li>
+<li class="chapter" data-level="10.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>10.1</b> Descriptive statistics</a>
 <ul>
-<li class="chapter" data-level="10.3.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#post-hoc-test"><i class="fa fa-check"></i><b>10.3.1</b> Post hoc test</a></li>
-<li class="chapter" data-level="10.3.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#for-all-attributes-in-one-run-nice-to-know"><i class="fa fa-check"></i><b>10.3.2</b> For all attributes in one run (nice to know)</a></li>
+<li class="chapter" data-level="10.1.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#numeric-values"><i class="fa fa-check"></i><b>10.1.1</b> Numeric values</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#pca-on-cata-data"><i class="fa fa-check"></i><b>10.4</b> PCA on CATA data</a></li>
+<li class="chapter" data-level="10.2" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#plots"><i class="fa fa-check"></i><b>10.2</b> Plots</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#within-groups-of-data"><i class="fa fa-check"></i><b>10.2.1</b> Within groups of data</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html"><i class="fa fa-check"></i><b>11</b> Hedonic rating (e.g. liking scores)</a>
+<li class="chapter" data-level="10.3" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#categorical-ordinal-variables"><i class="fa fa-check"></i><b>10.3</b> Categorical / Ordinal variables</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#plotting-liking-scores"><i class="fa fa-check"></i><b>11.1</b> Plotting liking scores</a></li>
-<li class="chapter" data-level="11.2" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#simple-mixed-models"><i class="fa fa-check"></i><b>11.2</b> Simple mixed models</a>
-<ul>
-<li class="chapter" data-level="11.2.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#post-hoc-test-1"><i class="fa fa-check"></i><b>11.2.1</b> Post hoc test</a></li>
+<li class="chapter" data-level="10.3.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#tables"><i class="fa fa-check"></i><b>10.3.1</b> Tables</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#multivariable-models"><i class="fa fa-check"></i><b>11.3</b> Multivariable models</a>
-<ul>
-<li class="chapter" data-level="11.3.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#additive-models"><i class="fa fa-check"></i><b>11.3.1</b> Additive models</a></li>
-<li class="chapter" data-level="11.3.2" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#effect-modification-and-interactions"><i class="fa fa-check"></i><b>11.3.2</b> Effect modification and Interactions</a></li>
+<li class="chapter" data-level="10.4" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#table-1"><i class="fa fa-check"></i><b>10.4</b> Table 1</a></li>
+<li class="chapter" data-level="10.5" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#the-tidyverse-way"><i class="fa fa-check"></i><b>10.5</b> The tidyverse way</a></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>11</b> Consumer segmentation</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation"><i class="fa fa-check"></i><b>11.1</b> Segmentation</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#k-means"><i class="fa fa-check"></i><b>11.1.1</b> K-means</a></li>
+<li class="chapter" data-level="11.1.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#internal-characterization-of-clusters"><i class="fa fa-check"></i><b>11.1.2</b> Internal characterization of clusters</a></li>
+<li class="chapter" data-level="11.1.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#vizualization"><i class="fa fa-check"></i><b>11.1.3</b> Vizualization</a></li>
+<li class="chapter" data-level="11.1.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#k-means-splits-variation"><i class="fa fa-check"></i><b>11.1.4</b> K-means splits variation</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html"><i class="fa fa-check"></i><b>12</b> CATA and Hedonics</a>
+<li class="chapter" data-level="11.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#selecting-the-number-of-clusters"><i class="fa fa-check"></i><b>11.2</b> Selecting the number of clusters</a></li>
+<li class="chapter" data-level="11.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation---example-2"><i class="fa fa-check"></i><b>11.3</b> Segmentation - example 2</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#individual-attributes-and-liking"><i class="fa fa-check"></i><b>12.1</b> Individual attributes and liking</a>
-<ul>
-<li class="chapter" data-level="12.1.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#an-example-with-refreshing"><i class="fa fa-check"></i><b>12.1.1</b> An example with Refreshing</a></li>
-<li class="chapter" data-level="12.1.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#all-attributes"><i class="fa fa-check"></i><b>12.1.2</b> All attributes</a></li>
-</ul></li>
-<li class="chapter" data-level="12.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pca-on-cata-and-liking"><i class="fa fa-check"></i><b>12.2</b> PCA on CATA and Liking</a>
-<ul>
-<li class="chapter" data-level="12.2.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#a-beer-centric-model"><i class="fa fa-check"></i><b>12.2.1</b> A beer centric model</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>13</b> Preference Mapping</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>13.1</b> Example of Preference Mapping</a></li>
-<li class="chapter" data-level="13.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca"><i class="fa fa-check"></i><b>13.2</b> PCA</a></li>
-<li class="chapter" data-level="13.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>13.3</b> Analysis by PLS</a></li>
-<li class="chapter" data-level="13.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>13.4</b> L-PLS [For the future…]</a></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>14</b> Projective mapping</a>
-<ul>
-<li class="chapter" data-level="14.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>14.1</b> Example from mapping of XX</a></li>
-<li class="chapter" data-level="14.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>14.2</b> A Collated version of the data</a></li>
-<li class="chapter" data-level="14.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>14.3</b> PCA on Collated data</a></li>
-<li class="chapter" data-level="14.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>14.4</b> </a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="tfih-exercises.html"><a href="tfih-exercises.html"><i class="fa fa-check"></i><b>15</b> TFIH Exercises</a>
-<ul>
-<li class="chapter" data-level="15.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-1-descriptive-statistics-and-plots"><i class="fa fa-check"></i><b>15.1</b> Exercise 1: Descriptive statistics and plots</a>
-<ul>
-<li class="chapter" data-level="15.1.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#cata-counts"><i class="fa fa-check"></i><b>15.1.1</b> CATA counts</a></li>
-<li class="chapter" data-level="15.1.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#hedonics"><i class="fa fa-check"></i><b>15.1.2</b> Hedonics</a></li>
-</ul></li>
-<li class="chapter" data-level="15.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-2-consumer-background-and-pca"><i class="fa fa-check"></i><b>15.2</b> Exercise 2: Consumer background and PCA</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#demographics"><i class="fa fa-check"></i><b>15.2.1</b> Demographics</a></li>
-<li class="chapter" data-level="15.2.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#pca-on-interests"><i class="fa fa-check"></i><b>15.2.2</b> PCA on <em>Interests</em></a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-3-pca-on-cata-counts"><i class="fa fa-check"></i><b>15.3</b> Exercise 3: PCA on CATA counts</a></li>
-<li class="chapter" data-level="15.4" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-4-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>15.4</b> Exercise 4: Cochran’s Q test on CATA binary data</a></li>
-<li class="chapter" data-level="15.5" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-5-hedonic-ratings-and-consumer-characteristics"><i class="fa fa-check"></i><b>15.5</b> Exercise 5: Hedonic ratings and consumer characteristics</a>
-<ul>
-<li class="chapter" data-level="15.5.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#pca-on-joint-data"><i class="fa fa-check"></i><b>15.5.1</b> PCA on joint data</a></li>
-<li class="chapter" data-level="15.5.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#all-demographics"><i class="fa fa-check"></i><b>15.5.2</b> All demographics</a></li>
-</ul></li>
-<li class="chapter" data-level="15.6" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-6-pca-on-cata-counts-and-hedonic-ratings"><i class="fa fa-check"></i><b>15.6</b> Exercise 6: PCA on CATA counts and hedonic ratings</a></li>
-<li class="chapter" data-level="15.7" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-7-mixed-modelling-on-hedonic-ratings"><i class="fa fa-check"></i><b>15.7</b> Exercise 7: Mixed modelling on hedonic ratings</a></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>16</b> Latent Factor Models</a></li>
-<li class="chapter" data-level="17" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>17</b> LPLS</a></li>
-<li class="chapter" data-level="18" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>18</b> Consumer Segmentation</a>
-<ul>
-<li class="chapter" data-level="18.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#kmeans"><i class="fa fa-check"></i><b>18.1</b> Kmeans</a></li>
-</ul></li>
-<li class="chapter" data-level="19" data-path="more-pca.html"><a href="more-pca.html"><i class="fa fa-check"></i><b>19</b> More PCA</a></li>
-<li class="chapter" data-level="20" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>20</b> Logistic Regression</a></li>
-<li class="chapter" data-level="21" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>21</b> Confirmatory Factor Analysis using lavaan</a>
-<ul>
-<li class="chapter" data-level="21.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>21.1</b> Example - Food Neophobia</a></li>
-</ul></li>
-<li class="chapter" data-level="22" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>22</b> Structured Equation Modelling</a>
-<ul>
-<li class="chapter" data-level="22.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>22.1</b> Example - Theory of Planned Behaviour</a>
-<ul>
-<li class="chapter" data-level="22.1.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#plsda-cataon-cata-and-liking"><i class="fa fa-check"></i><b>22.1.1</b> PLSDA (CATA??)on CATA and liking??</a></li>
+<li class="chapter" data-level="11.3.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#cluster-analysis"><i class="fa fa-check"></i><b>11.3.1</b> Cluster analysis</a></li>
+<li class="chapter" data-level="11.3.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#plot-the-model-using-pca"><i class="fa fa-check"></i><b>11.3.2</b> Plot the model using PCA</a></li>
+<li class="chapter" data-level="11.3.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#add-to-dataset"><i class="fa fa-check"></i><b>11.3.3</b> Add to dataset</a></li>
+<li class="chapter" data-level="11.3.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#comments"><i class="fa fa-check"></i><b>11.3.4</b> Comments</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html"><i class="fa fa-check"></i><b>23</b> PCA on survey answers</a>
+<li class="chapter" data-level="12" data-path="profiling-segments.html"><a href="profiling-segments.html"><i class="fa fa-check"></i><b>12</b> Profiling segments</a>
 <ul>
-<li class="chapter" data-level="23.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#bi-plot"><i class="fa fa-check"></i><b>23.1</b> Bi-plot</a>
+<li class="chapter" data-level="12.1" data-path="profiling-segments.html"><a href="profiling-segments.html#table-1-as-a-profiling-tool"><i class="fa fa-check"></i><b>12.1</b> Table 1 as a profiling tool</a></li>
+<li class="chapter" data-level="12.2" data-path="profiling-segments.html"><a href="profiling-segments.html#visualization-of-consumer-segments"><i class="fa fa-check"></i><b>12.2</b> Visualization of Consumer Segments</a></li>
+<li class="chapter" data-level="12.3" data-path="profiling-segments.html"><a href="profiling-segments.html#creating-the-contingency-table"><i class="fa fa-check"></i><b>12.3</b> Creating the contingency table</a></li>
+<li class="chapter" data-level="12.4" data-path="profiling-segments.html"><a href="profiling-segments.html#plot-the-numbers"><i class="fa fa-check"></i><b>12.4</b> Plot the numbers</a></li>
+<li class="chapter" data-level="12.5" data-path="profiling-segments.html"><a href="profiling-segments.html#contingency-table"><i class="fa fa-check"></i><b>12.5</b> Contingency table</a>
 <ul>
-<li class="chapter" data-level="23.1.1" data-path="pca-on-survey-answers.html"><a href="pca-on-survey-answers.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>23.1.1</b> Extract the components and run all associations.</a></li>
+<li class="chapter" data-level="12.5.1" data-path="profiling-segments.html"><a href="profiling-segments.html#pearson-chi-square-test"><i class="fa fa-check"></i><b>12.5.1</b> Pearson Chi-square test</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="profiling-segments.html"><a href="profiling-segments.html#correspondence-analysis"><i class="fa fa-check"></i><b>12.6</b> Correspondence Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>13</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="logistic-regression.html"><a href="logistic-regression.html#segmentationclustering"><i class="fa fa-check"></i><b>13.1</b> Segmentation/Clustering</a></li>
+<li class="chapter" data-level="13.2" data-path="logistic-regression.html"><a href="logistic-regression.html#fitting-the-logistic-regression-model"><i class="fa fa-check"></i><b>13.2</b> Fitting the logistic regression-model</a></li>
+<li class="chapter" data-level="13.3" data-path="logistic-regression.html"><a href="logistic-regression.html#probabilities-of-segment-membership"><i class="fa fa-check"></i><b>13.3</b> Probabilities of segment membership:</a></li>
+<li class="chapter" data-level="13.4" data-path="logistic-regression.html"><a href="logistic-regression.html#odds-ratios"><i class="fa fa-check"></i><b>13.4</b> Odds ratios</a></li>
+<li class="chapter" data-level="13.5" data-path="logistic-regression.html"><a href="logistic-regression.html#ors-and-probs"><i class="fa fa-check"></i><b>13.5</b> ORs and Probs</a></li>
+<li class="chapter" data-level="13.6" data-path="logistic-regression.html"><a href="logistic-regression.html#effect-of-age"><i class="fa fa-check"></i><b>13.6</b> Effect of Age</a></li>
+<li class="chapter" data-level="13.7" data-path="logistic-regression.html"><a href="logistic-regression.html#multivariate-analysis"><i class="fa fa-check"></i><b>13.7</b> Multivariate analysis</a>
+<ul>
+<li class="chapter" data-level="13.7.1" data-path="logistic-regression.html"><a href="logistic-regression.html#descriptives"><i class="fa fa-check"></i><b>13.7.1</b> Descriptives</a></li>
+<li class="chapter" data-level="13.7.2" data-path="logistic-regression.html"><a href="logistic-regression.html#two-nested-models"><i class="fa fa-check"></i><b>13.7.2</b> Two nested models</a></li>
+<li class="chapter" data-level="13.7.3" data-path="logistic-regression.html"><a href="logistic-regression.html#coefficients"><i class="fa fa-check"></i><b>13.7.3</b> Coefficients</a></li>
+<li class="chapter" data-level="13.7.4" data-path="logistic-regression.html"><a href="logistic-regression.html#re-level"><i class="fa fa-check"></i><b>13.7.4</b> Re-level</a></li>
+<li class="chapter" data-level="13.7.5" data-path="logistic-regression.html"><a href="logistic-regression.html#all-pairwise-comparisons"><i class="fa fa-check"></i><b>13.7.5</b> All pairwise comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="logistic-regression.html"><a href="logistic-regression.html#segment-2-and-3"><i class="fa fa-check"></i><b>13.8</b> Segment 2 and 3</a></li>
+<li class="chapter" data-level="13.9" data-path="logistic-regression.html"><a href="logistic-regression.html#a-new-set-of-data"><i class="fa fa-check"></i><b>13.9</b> A new set of data</a></li>
+<li class="chapter" data-level="13.10" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-for-demographic-characterization"><i class="fa fa-check"></i><b>13.10</b> Logistic regression for demographic characterization</a>
+<ul>
+<li class="chapter" data-level="13.10.1" data-path="logistic-regression.html"><a href="logistic-regression.html#age"><i class="fa fa-check"></i><b>13.10.1</b> Age</a></li>
+<li class="chapter" data-level="13.10.2" data-path="logistic-regression.html"><a href="logistic-regression.html#gender"><i class="fa fa-check"></i><b>13.10.2</b> Gender</a></li>
+</ul></li>
+<li class="chapter" data-level="13.11" data-path="logistic-regression.html"><a href="logistic-regression.html#task"><i class="fa fa-check"></i><b>13.11</b> TASK</a></li>
+<li class="chapter" data-level="13.12" data-path="logistic-regression.html"><a href="logistic-regression.html#the-tidyverse-way-1"><i class="fa fa-check"></i><b>13.12</b> The tidyverse way</a></li>
+<li class="chapter" data-level="13.13" data-path="logistic-regression.html"><a href="logistic-regression.html#comment"><i class="fa fa-check"></i><b>13.13</b> Comment</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html"><i class="fa fa-check"></i><b>14</b> CATA data (Check-All-That-Apply)</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#importing-and-looking-at-the-beer-data"><i class="fa fa-check"></i><b>14.1</b> Importing and looking at the beer data</a></li>
+<li class="chapter" data-level="14.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>14.2</b> Two versions of the data</a></li>
+<li class="chapter" data-level="14.3" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#cochrans-q-test"><i class="fa fa-check"></i><b>14.3</b> Cochran’s Q test</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#post-hoc-test"><i class="fa fa-check"></i><b>14.3.1</b> Post hoc test</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#for-all-attributes-in-one-run-nice-to-know"><i class="fa fa-check"></i><b>14.3.2</b> For all attributes in one run (nice to know)</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#pca-on-cata-data"><i class="fa fa-check"></i><b>14.4</b> PCA on CATA data</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html"><i class="fa fa-check"></i><b>15</b> CATA and Hedonics</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#individual-attributes-and-liking"><i class="fa fa-check"></i><b>15.1</b> Individual attributes and liking</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#an-example-with-refreshing"><i class="fa fa-check"></i><b>15.1.1</b> An example with Refreshing</a></li>
+<li class="chapter" data-level="15.1.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#all-attributes"><i class="fa fa-check"></i><b>15.1.2</b> All attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pca-on-cata-and-liking"><i class="fa fa-check"></i><b>15.2</b> PCA on CATA and Liking</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#a-beer-centric-model"><i class="fa fa-check"></i><b>15.2.1</b> A beer centric model</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>24</b> Linear models</a>
+<li class="chapter" data-level="16" data-path="preference-mapping.html"><a href="preference-mapping.html"><i class="fa fa-check"></i><b>16</b> Preference Mapping</a>
 <ul>
-<li class="chapter" data-level="24.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>24.1</b> Example</a></li>
-<li class="chapter" data-level="24.2" data-path="linear-models.html"><a href="linear-models.html#run-a-bunch-of-models-at-once"><i class="fa fa-check"></i><b>24.2</b> Run a bunch of models at once</a>
+<li class="chapter" data-level="16.1" data-path="preference-mapping.html"><a href="preference-mapping.html#example-of-preference-mapping"><i class="fa fa-check"></i><b>16.1</b> Example of Preference Mapping</a></li>
+<li class="chapter" data-level="16.2" data-path="preference-mapping.html"><a href="preference-mapping.html#pca"><i class="fa fa-check"></i><b>16.2</b> PCA</a></li>
+<li class="chapter" data-level="16.3" data-path="preference-mapping.html"><a href="preference-mapping.html#analysis-by-pls"><i class="fa fa-check"></i><b>16.3</b> Analysis by PLS</a></li>
+<li class="chapter" data-level="16.4" data-path="preference-mapping.html"><a href="preference-mapping.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>16.4</b> L-PLS [For the future…]</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html"><i class="fa fa-check"></i><b>17</b> Hedonic rating (e.g. liking scores)</a>
 <ul>
-<li class="chapter" data-level="24.2.1" data-path="linear-models.html"><a href="linear-models.html#a-plot"><i class="fa fa-check"></i><b>24.2.1</b> A plot</a></li>
+<li class="chapter" data-level="17.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#plotting-liking-scores"><i class="fa fa-check"></i><b>17.1</b> Plotting liking scores</a></li>
+<li class="chapter" data-level="17.2" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#simple-mixed-models"><i class="fa fa-check"></i><b>17.2</b> Simple mixed models</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#post-hoc-test-1"><i class="fa fa-check"></i><b>17.2.1</b> Post hoc test</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#multivariable-models"><i class="fa fa-check"></i><b>17.3</b> Multivariable models</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#additive-models"><i class="fa fa-check"></i><b>17.3.1</b> Additive models</a></li>
+<li class="chapter" data-level="17.3.2" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#effect-modification-and-interactions"><i class="fa fa-check"></i><b>17.3.2</b> Effect modification and Interactions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>25</b> Mixed models</a>
+<li class="chapter" data-level="18" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>18</b> Projective mapping</a>
 <ul>
-<li class="chapter" data-level="25.1" data-path="mixed-models.html"><a href="mixed-models.html#with-several-variables"><i class="fa fa-check"></i><b>25.1</b> With several variables</a></li>
+<li class="chapter" data-level="18.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>18.1</b> Example from mapping of XX</a></li>
+<li class="chapter" data-level="18.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>18.2</b> A Collated version of the data</a></li>
+<li class="chapter" data-level="18.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>18.3</b> PCA on Collated data</a></li>
+<li class="chapter" data-level="18.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>18.4</b> </a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="tfih-exercises.html"><a href="tfih-exercises.html"><i class="fa fa-check"></i><b>19</b> TFIH Exercises</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-1-descriptive-statistics-and-plots"><i class="fa fa-check"></i><b>19.1</b> Exercise 1: Descriptive statistics and plots</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#cata-counts"><i class="fa fa-check"></i><b>19.1.1</b> CATA counts</a></li>
+<li class="chapter" data-level="19.1.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#hedonics"><i class="fa fa-check"></i><b>19.1.2</b> Hedonics</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-2-consumer-background-and-pca"><i class="fa fa-check"></i><b>19.2</b> Exercise 2: Consumer background and PCA</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#demographics"><i class="fa fa-check"></i><b>19.2.1</b> Demographics</a></li>
+<li class="chapter" data-level="19.2.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#pca-on-interests"><i class="fa fa-check"></i><b>19.2.2</b> PCA on <em>Interests</em></a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-3-pca-on-cata-counts"><i class="fa fa-check"></i><b>19.3</b> Exercise 3: PCA on CATA counts</a></li>
+<li class="chapter" data-level="19.4" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-4-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>19.4</b> Exercise 4: Cochran’s Q test on CATA binary data</a></li>
+<li class="chapter" data-level="19.5" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-5-hedonic-ratings-and-consumer-characteristics"><i class="fa fa-check"></i><b>19.5</b> Exercise 5: Hedonic ratings and consumer characteristics</a>
+<ul>
+<li class="chapter" data-level="19.5.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#pca-on-joint-data"><i class="fa fa-check"></i><b>19.5.1</b> PCA on joint data</a></li>
+<li class="chapter" data-level="19.5.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#all-demographics"><i class="fa fa-check"></i><b>19.5.2</b> All demographics</a></li>
+</ul></li>
+<li class="chapter" data-level="19.6" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-6-pca-on-cata-counts-and-hedonic-ratings"><i class="fa fa-check"></i><b>19.6</b> Exercise 6: PCA on CATA counts and hedonic ratings</a></li>
+<li class="chapter" data-level="19.7" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-7-mixed-modelling-on-hedonic-ratings"><i class="fa fa-check"></i><b>19.7</b> Exercise 7: Mixed modelling on hedonic ratings</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="chapters-to-appear.html"><a href="chapters-to-appear.html"><i class="fa fa-check"></i><b>20</b> CHAPTERS to APPEAR</a></li>
+<li class="chapter" data-level="21" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>21</b> Latent Factor Models</a></li>
+<li class="chapter" data-level="22" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>22</b> LPLS</a></li>
+<li class="chapter" data-level="23" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>23</b> Confirmatory Factor Analysis using lavaan</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>23.1</b> Example - Food Neophobia</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>24</b> Structured Equation Modelling</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>24.1</b> Example - Theory of Planned Behaviour</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="plsda-on-cata-and-liking.html"><a href="plsda-on-cata-and-liking.html"><i class="fa fa-check"></i><b>25</b> PLSDA on CATA and liking</a></li>
+<li class="chapter" data-level="26" data-path="text-mining-of-comsumer-reviews.html"><a href="text-mining-of-comsumer-reviews.html"><i class="fa fa-check"></i><b>26</b> Text mining of comsumer reviews</a></li>
+<li class="chapter" data-level="27" data-path="text-mining-of-open-ended-survey-responses.html"><a href="text-mining-of-open-ended-survey-responses.html"><i class="fa fa-check"></i><b>27</b> Text mining of open-ended survey responses</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -360,16 +418,478 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="logistic-regression" class="section level1 hasAnchor" number="20">
-<h1><span class="header-section-number">Chapter 20</span> Logistic Regression<a href="logistic-regression.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="logistic-regression" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Logistic Regression<a href="logistic-regression.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Logistic regression is regression towards a binary response.
+In short regression were developed towards continuous responses, and is what is supported in R using the <em>lm()</em> function. However, there exits other type of responses, including binary, counts, etc. where the aim of the statistical analysis is still to use a regression type of model. This has given rise to the use of generalized linear models, where several response types can be analysis in a regression framework. In R this is done using the <em>glm()</em> function, extended with a specification of the response type using the <em>family</em> argument.</p>
+<p>Logistic regression aims to model the probability of observing case (versus control) given the input. The outputs from such a model is odds ratios.</p>
+<p>This video takes you through some basics. If you want to dive directly at logistic regression, then dive in from <em>6.53</em>.</p>
+<div class="vembedr">
+<div>
+<iframe src="https://www.youtube.com/embed/https://www.youtube.com/watch?v=C4N3_XJJ-jU" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
+</div>
+</div>
+<p>In this chapter, we are going to use logistic regression for characterizing clusters. This is simply done by constructing binary classes based on the clusters as <strong>belong to cluster k</strong> versus <strong>not belong to cluster k</strong>. Even with more than two clusters binary endpoints can be constructed in this way. Alternatively, if there is one of the clusters which naturally is a reference cluster, then comparing the individual clusters to this one is also a way forward.</p>
+<p>The data used in this chapter is from the paper: <em>Verbeke, Wim, Federico JA Pérez-Cueto, and Klaus G. Grunert. “To eat or not to eat pork, how frequently and how varied? Insights from the quantitative Q-PorkChains consumer survey in four European countries.” Meat science 88.4 (2011): 619-626.</em> and can be found in the <em>data4consumerscience</em>-package as <em>pork</em>.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="logistic-regression.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb224-2"><a href="logistic-regression.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pork)</span></code></pre></div>
+<div id="segmentationclustering" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Segmentation/Clustering<a href="logistic-regression.html#segmentationclustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the dataset there are three clusters encoded as binary membership variables: cluster1, cluster2 and cluster3. They are mutually exclusive.</p>
+<p>These clusters are based on another clustering procedure than k-means, but in principle any clustering can be used to generate clusters… as long as they are meaningful.</p>
+<p>Here we just plot them to see how they appear on the two variables used for their construction.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="logistic-regression.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb225-2"><a href="logistic-regression.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tableone)</span>
+<span id="cb225-3"><a href="logistic-regression.html#cb225-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb225-4"><a href="logistic-regression.html#cb225-4" aria-hidden="true" tabindex="-1"></a>pork<span class="sc">$</span>clusters <span class="ot">&lt;-</span> pork<span class="sc">$</span>cluster1<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> </span>
+<span id="cb225-5"><a href="logistic-regression.html#cb225-5" aria-hidden="true" tabindex="-1"></a>  pork<span class="sc">$</span>cluster2<span class="sc">*</span><span class="dv">2</span> <span class="sc">+</span> </span>
+<span id="cb225-6"><a href="logistic-regression.html#cb225-6" aria-hidden="true" tabindex="-1"></a>  pork<span class="sc">$</span>cluster3<span class="sc">*</span><span class="dv">3</span>  </span>
+<span id="cb225-7"><a href="logistic-regression.html#cb225-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb225-8"><a href="logistic-regression.html#cb225-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(TotalPorkWeek <span class="sc">~</span> VarietyTotal, <span class="at">data =</span> pork, </span>
+<span id="cb225-9"><a href="logistic-regression.html#cb225-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> pork[[<span class="st">&quot;clusters&quot;</span>]] <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-120-1.png" width="432" /></p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="logistic-regression.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Or using ggplot2:</span></span>
+<span id="cb226-2"><a href="logistic-regression.html#cb226-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pork, <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek,<span class="at">color =</span> <span class="fu">factor</span>(clusters))) <span class="sc">+</span> </span>
+<span id="cb226-3"><a href="logistic-regression.html#cb226-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb226-4"><a href="logistic-regression.html#cb226-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="st">&#39;Cluster&#39;</span>)) <span class="sc">+</span> </span>
+<span id="cb226-5"><a href="logistic-regression.html#cb226-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-120-2.png" width="432" /></p>
+</div>
+<div id="fitting-the-logistic-regression-model" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Fitting the logistic regression-model<a href="logistic-regression.html#fitting-the-logistic-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The question we are going to adress here is <em>is gender related to the being in cluster 1?</em>. Other tools for this is covered in <a href="profiling-segments.html#profiling-segments">Profiling segments</a>, but here we will see how logistic regression can be used for this.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="logistic-regression.html#cb227-1" aria-hidden="true" tabindex="-1"></a>pork[[<span class="st">&quot;Gender&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(pork[[<span class="st">&quot;Gender&quot;</span>]])</span>
+<span id="cb227-2"><a href="logistic-regression.html#cb227-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1: Male, 2: Female</span></span>
+<span id="cb227-3"><a href="logistic-regression.html#cb227-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb227-4"><a href="logistic-regression.html#cb227-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Fitting logistic model</span></span>
+<span id="cb227-5"><a href="logistic-regression.html#cb227-5" aria-hidden="true" tabindex="-1"></a>logreg.<span class="fl">1.</span>gender <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span> Gender, <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
+<span id="cb227-6"><a href="logistic-regression.html#cb227-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logreg.<span class="fl">1.</span>gender)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = cluster1 ~ Gender, family = binomial, data = pork)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -0.9777  -0.9777  -0.7936   1.3912   1.6179  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  -0.7419     0.0537 -13.815  &lt; 2e-16 ***
+## Gender1       0.2521     0.0537   4.695 2.67e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2060.3  on 1627  degrees of freedom
+## Residual deviance: 2037.9  on 1626  degrees of freedom
+##   (5 observations deleted due to missingness)
+## AIC: 2041.9
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<p>This model indicates Gender is related to cluster1 as the p-value is highly significant.</p>
+</div>
+<div id="probabilities-of-segment-membership" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Probabilities of segment membership:<a href="logistic-regression.html#probabilities-of-segment-membership" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One way to get the direction is to interpret the coefficients from the summary() output, but alternatively, simply using the model to predict membership probabilities will give similar insight.</p>
+<p>Here the probability of beloging to cluster 1 is predicted for the situation where Gender is <span class="math inline">\(1\)</span> as well as <span class="math inline">\(2\)</span>. Be aware that such predictions should match with the data source used for building the model. Here that means, that if Gender is encoded with numbers (1 or 2), then the predictions are likewise done usign those. If the Gender is encoded with <em>male</em> and <em>female</em>, then that it the inputs when doing predictions.</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="logistic-regression.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(logreg.<span class="fl">1.</span>gender, <span class="fu">data.frame</span>(<span class="at">Gender =</span> <span class="st">&quot;1&quot;</span>), </span>
+<span id="cb229-2"><a href="logistic-regression.html#cb229-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<pre><code>##         1 
+## 0.3799534</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="logistic-regression.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(logreg.<span class="fl">1.</span>gender, <span class="fu">data.frame</span>(<span class="at">Gender =</span> <span class="st">&quot;2&quot;</span>), </span>
+<span id="cb231-2"><a href="logistic-regression.html#cb231-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<pre><code>##         1 
+## 0.2701299</code></pre>
+<p>What we see it that the probablity of belonging to cluster1 is higher if the Gender is <span class="math inline">\(1\)</span> (in reference to <span class="math inline">\(2\)</span>). This is obviously in line with the results in <a href="profiling-segments.html#contingency-table">Contingency table</a> and <a href="profiling-segments.html#pearson-chi-square-test">Pearson Chi-square test</a> in the former chapter.</p>
+</div>
+<div id="odds-ratios" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> Odds ratios<a href="logistic-regression.html#odds-ratios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Odds ratio is the terminology used for interpreting coefficients from a logistic regression model.
+In the direct read out of coefficients from summary() returns the natural logarithm of the oddsratio, and hence to get odds ratios the exponential function is used.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="logistic-regression.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>gender))[<span class="dv">2</span>, <span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## [1] 1.286736</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="logistic-regression.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(logreg.<span class="fl">1.</span>gender)[<span class="dv">2</span>, ])</span></code></pre></div>
+<pre><code>##    2.5 %   97.5 % 
+## 1.158605 1.430157</code></pre>
+<p>Here is it seen that odds of belonging to cluster1 is in favor of gender <span class="math inline">\(1\)</span> as both the estimate and its confidence bounds are above 1.</p>
+</div>
+<div id="ors-and-probs" class="section level2 hasAnchor" number="13.5">
+<h2><span class="header-section-number">13.5</span> ORs and Probs<a href="logistic-regression.html#ors-and-probs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The odds ratio for a binary predictor is given by:</p>
+<p><span class="math display">\[ OR = \frac{p_1(1-p_2)}{(1-p_1)p2}\]</span></p>
+<p>where <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> are probabilities of females and males respectively.</p>
+<p>Here we use the observed probability predictions for females and males (see <em>Probabilities of segment membership</em> above) to calculate the OR given the formula:</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="logistic-regression.html#cb237-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fl">0.38</span></span>
+<span id="cb237-2"><a href="logistic-regression.html#cb237-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fl">0.27</span></span>
+<span id="cb237-3"><a href="logistic-regression.html#cb237-3" aria-hidden="true" tabindex="-1"></a>OR <span class="ot">&lt;-</span>(p1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p2))<span class="sc">/</span>((<span class="dv">1</span><span class="sc">-</span>p1)<span class="sc">*</span>p2) <span class="co"># put in the ratio-calculation here</span></span>
+<span id="cb237-4"><a href="logistic-regression.html#cb237-4" aria-hidden="true" tabindex="-1"></a>OR</span></code></pre></div>
+<p>Which is exactly the same as the output from the exponential of the coeficient in the model.</p>
+</div>
+<div id="effect-of-age" class="section level2 hasAnchor" number="13.6">
+<h2><span class="header-section-number">13.6</span> Effect of Age<a href="logistic-regression.html#effect-of-age" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Logistic regression can, as normal regression, also be used with continous predictors, such as Age.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="logistic-regression.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;cluster1&quot;</span>)])</span></code></pre></div>
+<pre><code>##   Age cluster1
+## 1  56        0
+## 2  28        0
+## 3  63        0
+## 4  52        1
+## 5  64        1
+## 6  53        0</code></pre>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="logistic-regression.html#cb240-1" aria-hidden="true" tabindex="-1"></a>logreg.<span class="fl">1.</span>age <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span> Age, <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
+<span id="cb240-2"><a href="logistic-regression.html#cb240-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-3"><a href="logistic-regression.html#cb240-3" aria-hidden="true" tabindex="-1"></a><span class="co"># as log(OR)</span></span>
+<span id="cb240-4"><a href="logistic-regression.html#cb240-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>age))</span></code></pre></div>
+<pre><code>##                 Estimate  Std. Error    z value     Pr(&gt;|z|)
+## (Intercept) -0.843015043 0.191718815 -4.3971430 1.096851e-05
+## Age          0.002828027 0.004135367  0.6838636 4.940613e-01</code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="logistic-regression.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and as OR (only for the Age)</span></span>
+<span id="cb242-2"><a href="logistic-regression.html#cb242-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>age))[<span class="dv">2</span>,<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## [1] 1.002832</code></pre>
+<p>The coefficient indicates a very weak tendency towards, that cluster1 has older individuals (the estimate is positive), but the inference for this results is very non-significant.</p>
+</div>
+<div id="multivariate-analysis" class="section level2 hasAnchor" number="13.7">
+<h2><span class="header-section-number">13.7</span> Multivariate analysis<a href="logistic-regression.html#multivariate-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Evaluating the effect of country while adjusting for age and gender.</p>
+<div id="descriptives" class="section level3 hasAnchor" number="13.7.1">
+<h3><span class="header-section-number">13.7.1</span> Descriptives<a href="logistic-regression.html#descriptives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First we look at the crude percentages of cluster1 membership for the different countries.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="logistic-regression.html#cb244-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">table</span>(pork<span class="sc">$</span>COUNTRY, pork<span class="sc">$</span>cluster1)</span>
+<span id="cb244-2"><a href="logistic-regression.html#cb244-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tb,<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##    
+##             0         1
+##   1 0.7820823 0.2179177
+##   3 0.7222222 0.2777778
+##   4 0.5289673 0.4710327
+##   6 0.6485149 0.3514851</code></pre>
+<p>It seems as if especially country <span class="math inline">\(4\)</span> is higher in cluster 1 compared to the other.</p>
+</div>
+<div id="two-nested-models" class="section level3 hasAnchor" number="13.7.2">
+<h3><span class="header-section-number">13.7.2</span> Two nested models<a href="logistic-regression.html#two-nested-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to investigate the effect of country, we make a model <strong>with country</strong>, and a model <strong>without country</strong> (But appart from that similar!). Then we compare the drop in ability to fit data using anova. This indicates whether country were an important factor.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="logistic-regression.html#cb246-1" aria-hidden="true" tabindex="-1"></a>pork[[<span class="st">&quot;COUNTRY&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(pork[[<span class="st">&quot;COUNTRY&quot;</span>]])</span>
+<span id="cb246-2"><a href="logistic-regression.html#cb246-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb246-3"><a href="logistic-regression.html#cb246-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Model with country</span></span>
+<span id="cb246-4"><a href="logistic-regression.html#cb246-4" aria-hidden="true" tabindex="-1"></a>logreg.<span class="fl">1.</span>cntr_1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span>  COUNTRY <span class="sc">+</span> Age <span class="sc">+</span> Gender, </span>
+<span id="cb246-5"><a href="logistic-regression.html#cb246-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
+<span id="cb246-6"><a href="logistic-regression.html#cb246-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Model without country</span></span>
+<span id="cb246-7"><a href="logistic-regression.html#cb246-7" aria-hidden="true" tabindex="-1"></a>logreg.<span class="fl">1.</span>cntr_0 <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span> Age <span class="sc">+</span> Gender, </span>
+<span id="cb246-8"><a href="logistic-regression.html#cb246-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
+<span id="cb246-9"><a href="logistic-regression.html#cb246-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb246-10"><a href="logistic-regression.html#cb246-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Bedre/nemnmere end at lave to modeller? Bare at droppe den ene af dem? Det giver i hvert fald samme resultat...</span></span>
+<span id="cb246-11"><a href="logistic-regression.html#cb246-11" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(logreg.<span class="fl">1.</span>cntr_1, <span class="at">test =</span> <span class="st">&quot;Chisq&quot;</span>)</span></code></pre></div>
+<pre><code>## Single term deletions
+## 
+## Model:
+## cluster1 ~ COUNTRY + Age + Gender
+##         Df Deviance    AIC    LRT  Pr(&gt;Chi)    
+## &lt;none&gt;       1970.0 1982.0                     
+## COUNTRY  3   2037.6 2043.6 67.577 1.409e-14 ***
+## Age      1   1970.1 1980.1  0.089    0.7657    
+## Gender   1   1992.7 2002.7 22.660 1.934e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="logistic-regression.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Eller er det bedre for forståelsen, at man laver begge?</span></span>
+<span id="cb248-2"><a href="logistic-regression.html#cb248-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb248-3"><a href="logistic-regression.html#cb248-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparison</span></span>
+<span id="cb248-4"><a href="logistic-regression.html#cb248-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(logreg.<span class="fl">1.</span>cntr_1,logreg.<span class="fl">1.</span>cntr_0, <span class="at">test =</span> <span class="st">&#39;Chisq&#39;</span>)</span></code></pre></div>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model 1: cluster1 ~ COUNTRY + Age + Gender
+## Model 2: cluster1 ~ Age + Gender
+##   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
+## 1      1622     1970.0                          
+## 2      1625     2037.6 -3  -67.577 1.409e-14 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>So the effect of country is strongly significant.</p>
+</div>
+<div id="coefficients" class="section level3 hasAnchor" number="13.7.3">
+<h3><span class="header-section-number">13.7.3</span> Coefficients<a href="logistic-regression.html#coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lets look at how similar/different the levels of education is.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="logistic-regression.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>cntr_1))</span></code></pre></div>
+<pre><code>##                 Estimate  Std. Error    z value     Pr(&gt;|z|)
+## (Intercept) -0.826120904 0.203377024 -4.0620169 4.865056e-05
+## COUNTRY1    -0.573279550 0.101338371 -5.6570827 1.539675e-08
+## COUNTRY2    -0.202964661 0.095555639 -2.1240469 3.366622e-02
+## COUNTRY3     0.635372034 0.090915771  6.9885789 2.776846e-12
+## Age          0.001316609 0.004418472  0.2979782 7.657198e-01
+## Gender1      0.268673119 0.056871908  4.7241798 2.310460e-06</code></pre>
+<p>The estimates for <em>first level</em> of country (1) is within <em>(Intercept)</em>.
+The estimates for the remaining three levels are all <strong>IN CONTRAST</strong> to the intercept, and hence country 1.</p>
+<p>So it seems as if country 3,4 and 6 are different from country 1, but we have no idea on whether say country 3 is different from country 6 and so forth.</p>
+</div>
+<div id="re-level" class="section level3 hasAnchor" number="13.7.4">
+<h3><span class="header-section-number">13.7.4</span> Re-level<a href="logistic-regression.html#re-level" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to get other pairs of contrast we can re-level the factor country, and repeat the model</p>
+<p>Here we re-level to the third level of country which is country==4.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="logistic-regression.html#cb252-1" aria-hidden="true" tabindex="-1"></a>pork[[<span class="st">&#39;COUNTRY&#39;</span>]] <span class="ot">&lt;-</span> <span class="fu">relevel</span>(pork[[<span class="st">&#39;COUNTRY&#39;</span>]],<span class="dv">3</span>)</span>
+<span id="cb252-2"><a href="logistic-regression.html#cb252-2" aria-hidden="true" tabindex="-1"></a>logreg.<span class="fl">1.</span>cntr_1a <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span>  COUNTRY <span class="sc">+</span> Age <span class="sc">+</span> Gender, </span>
+<span id="cb252-3"><a href="logistic-regression.html#cb252-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
+<span id="cb252-4"><a href="logistic-regression.html#cb252-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>cntr_1a))</span></code></pre></div>
+<pre><code>##                 Estimate  Std. Error    z value     Pr(&gt;|z|)
+## (Intercept) -0.826120904 0.203377024 -4.0620169 4.865056e-05
+## COUNTRY1     0.635372034 0.090915771  6.9885789 2.776846e-12
+## COUNTRY2    -0.573279550 0.101338371 -5.6570827 1.539675e-08
+## COUNTRY3    -0.202964661 0.095555639 -2.1240469 3.366622e-02
+## Age          0.001316609 0.004418472  0.2979782 7.657198e-01
+## Gender1      0.268673119 0.056871908  4.7241798 2.310460e-06</code></pre>
+<p>This can be repeated setting all levels as reference. But there is a more fair and easy solution.</p>
+</div>
+<div id="all-pairwise-comparisons" class="section level3 hasAnchor" number="13.7.5">
+<h3><span class="header-section-number">13.7.5</span> All pairwise comparisons<a href="logistic-regression.html#all-pairwise-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We want to compare all pairs of the <span class="math inline">\(4\)</span> country levels. This is a multiple comparison task, and can be undertaken by the <strong>glht()</strong> function from the <strong>multcomp</strong> package.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="logistic-regression.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb254-2"><a href="logistic-regression.html#cb254-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb254-3"><a href="logistic-regression.html#cb254-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glht</span>(logreg.<span class="fl">1.</span>cntr_1, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">COUNTRY =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: glm(formula = cluster1 ~ COUNTRY + Age + Gender, family = binomial, 
+##     data = pork)
+## 
+## Linear Hypotheses:
+##            Estimate Std. Error z value Pr(&gt;|z|)    
+## 3 - 1 == 0   0.3703     0.1634   2.266  0.10568    
+## 4 - 1 == 0   1.2087     0.1582   7.641  &lt; 0.001 ***
+## 6 - 1 == 0   0.7142     0.1599   4.467  &lt; 0.001 ***
+## 4 - 3 == 0   0.8383     0.1508   5.559  &lt; 0.001 ***
+## 6 - 3 == 0   0.3438     0.1526   2.254  0.10860    
+## 6 - 4 == 0  -0.4945     0.1466  -3.372  0.00416 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## (Adjusted p values reported -- single-step method)</code></pre>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="logistic-regression.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(<span class="fu">glht</span>(logreg.<span class="fl">1.</span>cntr_1, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">COUNTRY =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
+<pre><code>##    1    3    4    6 
+##  &quot;a&quot; &quot;ab&quot;  &quot;c&quot;  &quot;b&quot;</code></pre>
+<p>Here we get all <span class="math inline">\(6\)</span> pairs of pairwise comparisons. And it appears as country 1 and 3 are not statistically different, as well as country 3 and 6 (<span class="math inline">\(p&gt;0.1\)</span>). However, country 1 and 6.</p>
+<p>Does this compare with the percentages from the descriptive analysis?</p>
+</div>
+</div>
+<div id="segment-2-and-3" class="section level2 hasAnchor" number="13.8">
+<h2><span class="header-section-number">13.8</span> Segment 2 and 3<a href="logistic-regression.html#segment-2-and-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Use the code above to conduct the same analysis for segment/cluster 2 and 3, and reveal</p>
+<ul>
+<li>Gender differences</li>
+<li>Age effect</li>
+<li>Country differences</li>
+</ul>
+</div>
+<div id="a-new-set-of-data" class="section level2 hasAnchor" number="13.9">
+<h2><span class="header-section-number">13.9</span> A new set of data<a href="logistic-regression.html#a-new-set-of-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The data <strong>plantbaseddiet</strong>, found in the <strong>data4consumerscience</strong>-package constitute data from the following study:</p>
+<p><em>Reipurth, Malou FS, Lasse Hørby, Charlotte G. Gregersen, Astrid Bonke, and Federico JA Perez Cueto. “Barriers and facilitators towards adopting a more plant-based diet in a sample of Danish consumers.” Food quality and preference 73 (2019): 288-292.</em></p>
+<p>Here we use the clusters from the consumer segmentation analysis as provided in <a href="consumer-segmentation.html#segmentation---example-2">Segmentation - example 2</a></p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="logistic-regression.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span><span class="fu">ls</span>())</span>
+<span id="cb258-2"><a href="logistic-regression.html#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb258-3"><a href="logistic-regression.html#cb258-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;plantbaseddiet&quot;</span>)</span>
+<span id="cb258-4"><a href="logistic-regression.html#cb258-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb258-5"><a href="logistic-regression.html#cb258-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb258-6"><a href="logistic-regression.html#cb258-6" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], <span class="dv">4</span>)</span>
+<span id="cb258-7"><a href="logistic-regression.html#cb258-7" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>centers</span></code></pre></div>
+<pre><code>##      a_meat   a_dairy   a_eggs
+## 1 18.812500  5.729167 4.492188
+## 2  3.719886  5.167045 2.915909
+## 3  4.688508 18.854839 3.601815
+## 4 19.150000 21.850000 7.678571</code></pre>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="logistic-regression.html#cb260-1" aria-hidden="true" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>clusters <span class="ot">&lt;-</span> <span class="fu">factor</span>(res<span class="sc">$</span>cluster,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;High Meat&#39;</span>,<span class="st">&#39;Low all&#39;</span>,<span class="st">&#39;High Dairy&#39;</span>,<span class="st">&#39;High All&#39;</span>))</span>
+<span id="cb260-2"><a href="logistic-regression.html#cb260-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-3"><a href="logistic-regression.html#cb260-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add as binary columns</span></span>
+<span id="cb260-4"><a href="logistic-regression.html#cb260-4" aria-hidden="true" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>cluster_highmeat <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(plantbaseddiet<span class="sc">$</span>clusters<span class="sc">==</span><span class="st">&#39;High Meat&#39;</span>)</span>
+<span id="cb260-5"><a href="logistic-regression.html#cb260-5" aria-hidden="true" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>cluster_lowall <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(plantbaseddiet<span class="sc">$</span>clusters<span class="sc">==</span><span class="st">&#39;Low all&#39;</span>)</span>
+<span id="cb260-6"><a href="logistic-regression.html#cb260-6" aria-hidden="true" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>cluster_highdairy <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(plantbaseddiet<span class="sc">$</span>clusters<span class="sc">==</span><span class="st">&#39;High Dairy&#39;</span>)</span>
+<span id="cb260-7"><a href="logistic-regression.html#cb260-7" aria-hidden="true" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>cluster_highall <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(plantbaseddiet<span class="sc">$</span>clusters<span class="sc">==</span><span class="st">&#39;High All&#39;</span>)</span></code></pre></div>
+</div>
+<div id="logistic-regression-for-demographic-characterization" class="section level2 hasAnchor" number="13.10">
+<h2><span class="header-section-number">13.10</span> Logistic regression for demographic characterization<a href="logistic-regression.html#logistic-regression-for-demographic-characterization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="age" class="section level3 hasAnchor" number="13.10.1">
+<h3><span class="header-section-number">13.10.1</span> Age<a href="logistic-regression.html#age" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="logistic-regression.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb261-2"><a href="logistic-regression.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> plantbaseddiet, <span class="fu">aes</span>(clusters,age)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="logistic-regression.html#cb262-1" aria-hidden="true" tabindex="-1"></a>mdl_age <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> plantbaseddiet, clusters<span class="sc">==</span><span class="st">&#39;High Meat&#39;</span> <span class="sc">~</span> age)</span>
+<span id="cb262-2"><a href="logistic-regression.html#cb262-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-3"><a href="logistic-regression.html#cb262-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This is essentially the same as: </span></span>
+<span id="cb262-4"><a href="logistic-regression.html#cb262-4" aria-hidden="true" tabindex="-1"></a><span class="co"># res &lt;- glm(data = plantbaseddiet, cluster_highmeat ~ age)</span></span>
+<span id="cb262-5"><a href="logistic-regression.html#cb262-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-6"><a href="logistic-regression.html#cb262-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl_age)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = clusters == &quot;High Meat&quot; ~ age, data = plantbaseddiet)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -0.12297  -0.11221  -0.10634  -0.08971   0.93669  
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)  0.137638   0.042711   3.223  0.00136 **
+## age         -0.000978   0.001167  -0.838  0.40260   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for gaussian family taken to be 0.09336404)
+## 
+##     Null deviance: 43.013  on 461  degrees of freedom
+## Residual deviance: 42.947  on 460  degrees of freedom
+## AIC: 219.58
+## 
+## Number of Fisher Scoring iterations: 2</code></pre>
+</div>
+<div id="gender" class="section level3 hasAnchor" number="13.10.2">
+<h3><span class="header-section-number">13.10.2</span> Gender<a href="logistic-regression.html#gender" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="logistic-regression.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> plantbaseddiet, <span class="fu">aes</span>(clusters,<span class="at">fill =</span> gender)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="logistic-regression.html#cb265-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> <span class="fu">table</span>(plantbaseddiet<span class="sc">$</span>clusters,plantbaseddiet<span class="sc">$</span>gender)</span>
+<span id="cb265-2"><a href="logistic-regression.html#cb265-2" aria-hidden="true" tabindex="-1"></a>tb2</span></code></pre></div>
+<pre><code>##             
+##              Female Male
+##   High Meat      29   19
+##   Low all       168   52
+##   High Dairy     99   25
+##   High All       44   26</code></pre>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="logistic-regression.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tb2,<span class="at">margin =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##             
+##                 Female      Male
+##   High Meat  0.6041667 0.3958333
+##   Low all    0.7636364 0.2363636
+##   High Dairy 0.7983871 0.2016129
+##   High All   0.6285714 0.3714286</code></pre>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="logistic-regression.html#cb269-1" aria-hidden="true" tabindex="-1"></a>mdl_gender <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> plantbaseddiet, clusters<span class="sc">==</span><span class="st">&#39;High Meat&#39;</span> <span class="sc">~</span> gender)</span>
+<span id="cb269-2"><a href="logistic-regression.html#cb269-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb269-3"><a href="logistic-regression.html#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl_gender)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = clusters == &quot;High Meat&quot; ~ gender, data = plantbaseddiet)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -0.15574  -0.08529  -0.08529  -0.08529   0.91471  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.12052    0.01605   7.508 3.15e-13 ***
+## gender1     -0.03522    0.01605  -2.194   0.0287 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for gaussian family taken to be 0.09253794)
+## 
+##     Null deviance: 43.013  on 461  degrees of freedom
+## Residual deviance: 42.567  on 460  degrees of freedom
+## AIC: 215.47
+## 
+## Number of Fisher Scoring iterations: 2</code></pre>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="logistic-regression.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(mdl_gender))[<span class="dv">2</span>, <span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## [1] 0.9653913</code></pre>
+</div>
+</div>
+<div id="task" class="section level2 hasAnchor" number="13.11">
+<h2><span class="header-section-number">13.11</span> TASK<a href="logistic-regression.html#task" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Try to exchange which cluster you are looking at to see relation to age and gender</li>
+<li>Try to look at some other characteristics in the dataset.</li>
+<li>Can you compare clusters against the variables <em>a_meat</em>, <em>a_dairy</em> or <em>a_eggs</em> using logistic regression? Why should you be cautios with interpreting these results?</li>
+</ul>
+</div>
+<div id="the-tidyverse-way-1" class="section level2 hasAnchor" number="13.12">
+<h2><span class="header-section-number">13.12</span> The tidyverse way<a href="logistic-regression.html#the-tidyverse-way-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We want to produce the results from the Table 4 in the paper.</p>
+<p>In principle, this table is <span class="math inline">\(11\)</span> survey likert scale answers against <span class="math inline">\(4\)</span> clusters… I.e. <span class="math inline">\(44\)</span> logistic regression models. If you do this in the traditional way it takes up tons of code, and even small changes will be time-consuming to implement.</p>
+<p>For instance, the first element of Table 4 is calculated as:</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="logistic-regression.html#cb273-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> plantbaseddiet, clusters<span class="sc">==</span><span class="st">&#39;High Dairy&#39;</span> <span class="sc">~</span> o_prepar <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">+</span> <span class="fu">factor</span>(education), </span>
+<span id="cb273-2"><a href="logistic-regression.html#cb273-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">family =</span> binomial) </span>
+<span id="cb273-3"><a href="logistic-regression.html#cb273-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb273-4"><a href="logistic-regression.html#cb273-4" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(mdl)))</span></code></pre></div>
+<pre><code>##                     Estimate Std. Error    z value Pr(&gt;|z|)
+## (Intercept)        0.1233580   1.606315 0.01208922 1.000010
+## o_prepar           1.0350811   1.112082 1.38342790 2.107518
+## age                1.0194420   1.008492 9.74805146 1.023044
+## gender1            1.2520173   1.137510 5.72266605 1.084461
+## factor(education)1 0.5138224   1.803580 0.32334359 1.295480
+## factor(education)2 1.0871876   1.300013 1.37521044 2.117052
+## factor(education)3 1.3334406   1.274791 3.27156968 1.266061</code></pre>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="logistic-regression.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(mdl))</span></code></pre></div>
+<pre><code>##                         2.5 %   97.5 %
+## (Intercept)        0.04731725 0.305777
+## o_prepar           0.83959291 1.274398
+## age                1.00255942 1.036456
+## gender1            0.97841139 1.624150
+## factor(education)1 0.12451725 1.417995
+## factor(education)2 0.66391303 1.912630
+## factor(education)3 0.85310374 2.280131</code></pre>
+<p>But we want all!</p>
+<p>So: Tidyverse and broom for the rescue!</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="logistic-regression.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb277-2"><a href="logistic-regression.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb277-3"><a href="logistic-regression.html#cb277-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-4"><a href="logistic-regression.html#cb277-4" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> plantbaseddiet <span class="sc">%&gt;%</span> </span>
+<span id="cb277-5"><a href="logistic-regression.html#cb277-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># make a vector of 1&#39;s</span></span>
+<span id="cb277-6"><a href="logistic-regression.html#cb277-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(clusters,id, <span class="at">fill =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co"># distribute the clustering into 4 new coloumns and make sure that the binary cluster vectors are 1 and 0. </span></span>
+<span id="cb277-7"><a href="logistic-regression.html#cb277-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(plant_plantbaseddiet,answ,o_prepar<span class="sc">:</span>o_family) <span class="sc">%&gt;%</span> <span class="co"># long format for survey questions</span></span>
+<span id="cb277-8"><a href="logistic-regression.html#cb277-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cluster_type,cluster,<span class="st">`</span><span class="at">High Meat</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">High All</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="co"># long format for clusters </span></span>
+<span id="cb277-9"><a href="logistic-regression.html#cb277-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(plant_plantbaseddiet,cluster_type) <span class="sc">%&gt;%</span> <span class="co"># loop over all questions and all clusters</span></span>
+<span id="cb277-10"><a href="logistic-regression.html#cb277-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">glm</span>(<span class="at">data =</span> ., cluster<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> answ <span class="sc">+</span> <span class="fu">factor</span>(education) <span class="sc">+</span> age <span class="sc">+</span> gender, <span class="at">family =</span> binomial) <span class="sc">%&gt;%</span></span>
+<span id="cb277-11"><a href="logistic-regression.html#cb277-11" aria-hidden="true" tabindex="-1"></a>       <span class="fu">tidy</span>(<span class="at">exponentiate =</span> T,<span class="at">conf.int =</span> T)) <span class="co"># perform logistic regression</span></span>
+<span id="cb277-12"><a href="logistic-regression.html#cb277-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-13"><a href="logistic-regression.html#cb277-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-14"><a href="logistic-regression.html#cb277-14" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> <span class="fu">head</span>()  </span></code></pre></div>
+<pre><code>## # A tibble: 6 × 9
+## # Groups:   plant_plantbaseddiet, cluster_type [1]
+##   plant_plantbaseddiet cluster_type term    estimate std.error statistic p.value
+##   &lt;chr&gt;                &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 o_easy_a             High All     (Inter…   0.0981    0.627    -3.70   2.14e-4
+## 2 o_easy_a             High All     answ      1.20      0.133     1.39   1.64e-1
+## 3 o_easy_a             High All     factor…   0.911     0.586    -0.158  8.74e-1
+## 4 o_easy_a             High All     factor…   1.49      0.271     1.46   1.44e-1
+## 5 o_easy_a             High All     factor…   1.01      0.265     0.0398 9.68e-1
+## 6 o_easy_a             High All     age       1.00      0.0109    0.307  7.59e-1
+## # ℹ 2 more variables: conf.low &lt;dbl&gt;, conf.high &lt;dbl&gt;</code></pre>
+<p>This table (tb) has all the results, with estimates being OR and with confidence intervals. However, there are <em>too much</em> information. For instance are the intercept as well as the covariates reported. We can tidy it even more:</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="logistic-regression.html#cb279-1" aria-hidden="true" tabindex="-1"></a>tb4 <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> </span>
+<span id="cb279-2"><a href="logistic-regression.html#cb279-2" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span> </span>
+<span id="cb279-3"><a href="logistic-regression.html#cb279-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answ&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb279-4"><a href="logistic-regression.html#cb279-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OR =</span> <span class="fu">paste</span>(<span class="fu">round</span>(estimate,<span class="dv">2</span>), </span>
+<span id="cb279-5"><a href="logistic-regression.html#cb279-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&#39; (&#39;</span>, <span class="fu">round</span>(conf.low,<span class="dv">2</span>),<span class="st">&#39;-&#39;</span>,</span>
+<span id="cb279-6"><a href="logistic-regression.html#cb279-6" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">round</span>(conf.high,<span class="dv">2</span>),<span class="st">&#39;)&#39;</span>, </span>
+<span id="cb279-7"><a href="logistic-regression.html#cb279-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sep =</span> <span class="st">&#39;&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb279-8"><a href="logistic-regression.html#cb279-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(plant_plantbaseddiet,cluster_type,OR) <span class="sc">%&gt;%</span> </span>
+<span id="cb279-9"><a href="logistic-regression.html#cb279-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cluster_type,OR)</span>
+<span id="cb279-10"><a href="logistic-regression.html#cb279-10" aria-hidden="true" tabindex="-1"></a>tb4  </span></code></pre></div>
+<pre><code>## # A tibble: 11 × 5
+##    plant_plantbaseddiet `High All`       `High Dairy`     `High Meat`  `Low all`
+##    &lt;chr&gt;                &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;        &lt;chr&gt;    
+##  1 o_easy_a             1.2 (0.93-1.57)  1.07 (0.87-1.32) 1.07 (0.79-… 0.83 (0.…
+##  2 o_family             1.14 (0.91-1.42) 0.96 (0.8-1.15)  1.18 (0.9-1… 0.91 (0.…
+##  3 o_fulnes             1.48 (1.16-1.9)  0.91 (0.73-1.12) 1.66 (1.24-… 0.71 (0.…
+##  4 o_health             0.69 (0.52-0.92) 1.21 (0.95-1.56) 0.82 (0.59-… 1.14 (0.…
+##  5 o_prepar             1.28 (0.99-1.65) 1.04 (0.84-1.27) 1.32 (0.98-… 0.77 (0.…
+##  6 o_price              1.11 (0.87-1.42) 1.01 (0.83-1.24) 1.19 (0.89-… 0.88 (0.…
+##  7 o_protei             1.93 (1.48-2.55) 0.84 (0.68-1.04) 1.74 (1.29-… 0.65 (0.…
+##  8 o_restau             0.88 (0.65-1.18) 1.06 (0.84-1.34) 0.99 (0.7-1… 1.02 (0.…
+##  9 o_social             0.98 (0.75-1.28) 0.94 (0.75-1.16) 1.39 (1.01-… 0.94 (0.…
+## 10 o_sustai             0.69 (0.52-0.91) 1.15 (0.91-1.47) 0.8 (0.58-1… 1.21 (0.…
+## 11 o_taste              0.82 (0.63-1.08) 1.09 (0.87-1.39) 0.59 (0.43-… 1.29 (1.…</code></pre>
+<p>Now this just needs to be exported to excel (use e.g. export() from the rio package), and a bit of <strong>love</strong> to be ready for a publication.</p>
+</div>
+<div id="comment" class="section level2 hasAnchor" number="13.13">
+<h2><span class="header-section-number">13.13</span> Comment<a href="logistic-regression.html#comment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Try to understand each of the commands in the pipeline, what they do and why they make sense.</p>
+<p>You can put in a hash-tag (#) before the the pipe sign (%&gt;%) to block the pipeline and see the structure of the output at this point.</p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="more-pca.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="confirmatory-factor-analysis-using-lavaan.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="profiling-segments.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cata-data-check-all-that-apply.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -400,7 +920,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/20_MISSINGchapters.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/13_LogisticRegression.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -408,7 +928,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/20_MISSINGchapters.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/13_LogisticRegression.Rmd",
 "text": null
 },
 "download": null,
