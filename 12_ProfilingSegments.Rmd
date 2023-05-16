@@ -107,8 +107,6 @@ prop.table(table2x2, margin = 1)
 # 1 stands for row-wise percentages
 ```
 
-
-
 ### Pearson Chi-square test
 
 Pearson's Chi-square test applied to the contingency table. 

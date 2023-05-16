@@ -174,13 +174,11 @@ logreg.1.cntr_1 <- glm(cluster1 ~  COUNTRY + Age + Gender,
 logreg.1.cntr_0 <- glm(cluster1 ~ Age + Gender, 
                 data = pork, family = binomial)
 
-#Bedre/nemnmere end at lave to modeller? Bare at droppe den ene af dem? Det giver i hvert fald samme resultat...
-drop1(logreg.1.cntr_1, test = "Chisq")
-
-#Eller er det bedre for forståelsen, at man laver begge?
-
 # Comparison
 anova(logreg.1.cntr_1,logreg.1.cntr_0, test = 'Chisq')
+
+#Or in one line of code, after defining the model WITH country:
+drop1(logreg.1.cntr_1, test = "Chisq")
 ```
 
 So the effect of country is strongly significant.
@@ -245,7 +243,7 @@ The data **plantbaseddiet**, found in the **data4consumerscience**-package const
 
 *Reipurth, Malou FS, Lasse Hørby, Charlotte G. Gregersen, Astrid Bonke, and Federico JA Perez Cueto. "Barriers and facilitators towards adopting a more plant-based diet in a sample of Danish consumers." Food quality and preference 73 (2019): 288-292.*
 
-Here we use the clusters from the consumer segmentation analysis as provided in [Segmentation - example 2]
+Here we use the clusters from the consumer segmentation analysis as provided in [Segmentation - another example]
 
 ```{r}
 rm(list =ls())

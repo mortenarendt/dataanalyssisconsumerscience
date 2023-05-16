@@ -44,18 +44,22 @@ km.cluster2 <- kmeans(pork[, c("VarietyTotal", "TotalPorkWeek")], centers = 2,ns
 First, we run a clustering with the function *kmeans* for the dataset *pork*. We will use the two variables "VarietyTotal" & "TotalPorkWeek" to calculate the three best clusters, and we will choose the random centers 25 times. You can off course change this number yourself. We save it as *km.cluster3* (remember you choose this name). Secondly, we run almost the same clustering, changing only the name and the number of centers. 
 
 
-### Internal characterization of clusters
+### Initial characterization of clusters
 
-Below are some of the outputs, that you can get from the clustering. Here you can see the size of the clusters as well as the positions of their centroids.
+Below are some of the outputs, that you can get from the clustering. Here you can see the size of the clusters as well as the positions of their centroids. Positions here means the value of the centroid for each variable. For example, below we see, that the cluster 1's centriod has a value for VarietyTotal of 25.04562. Size means the number of members in each cluster.
+
+Here for 2 clusters:
 
 ```{r}
-km.cluster3[["centers"]]
-km.cluster3[["size"]]
-km.cluster3$size
-
-km.cluster2[['centers']]
-km.cluster2[['size']]
+km.cluster2$centers
 km.cluster2$size
+```
+
+... and for 3 clusters:
+
+```{r}
+km.cluster3$centers
+km.cluster3$size
 
 ```
 
@@ -97,18 +101,18 @@ ggplot(data = pork, aes(x = VarietyTotal, y = TotalPorkWeek)) +
   theme_linedraw()
 ```
 
-### K-means splits variation
+### Sums of Squares from the clustering
 
-As mentioned before, k-means set the clusters such that the between clusters (sort of differences between centers) are *large* while the distance within a cluster (from each sample to is cluster-center) is *small*.
+As mentioned in [K-means], k-means set the clusters such that the between clusters (sort of differences between centers) are *large* while the distance within a cluster (from each sample to is cluster-center) is *small*.
 
 R can also display these numbers, as shown below:
 
 ```{r}
-km.cluster3[["withinss"]]
+#Within Sum of Squares
 km.cluster3$withinss
-km.cluster3[["tot.withinss"]]
+#Total Within Sum of Squares
 km.cluster3$tot.withinss
-km.cluster3[["betweenss"]]
+#Between Sum of Squares
 km.cluster3$betweenss
 ```
 
@@ -116,26 +120,40 @@ km.cluster3$betweenss
 
 Usually there is no given set of clusters, so we want to also learn that from data. 
 
-Here we use the gap-statistics (from the **cluster**-package) for $2$ up to $10$ clusters to select the optimal number of clusters.
 
-Another package able to aid when trying to determine the number of clusters is **NbClust**. This package runs a variety of different tests, each resulting in an optimal number of clusters. This means, that while you get a lot of opinion on the number of clusters, the *NbClust*-function might take a while to run.
+Below we show how to use the Gap-statistics (from the **cluster**-package) for $2$ up to $10$ clusters to select the optimal number of clusters.
+
+The concept of Gap statistics is based on the idea that if a dataset truly contains distinct clusters, then the dispersion within each cluster should be smaller than the dispersion between clusters. The gap statistic measures the difference between the observed dispersion and the expected dispersion under a null reference distribution. By comparing this gap statistic for different numbers of clusters, one can identify the optimal number of clusters that best captures the underlying structure of the data.
+
+You don't need to fully understand how it works, but you have to know how to interpret the plot, to be able to decide the number of clusters.
+
+When interpreting the plot, the highest Gap-value (the y-axis) shows the number of clusters, that best represent the data. However, since we are trying to use the data to as a generalization of a larger population, one should be conservative when choosing the number of clusters. If a less complicated/more general model (less clusters) can explain almost the same, one should always choose the less complicated model. 
+
+As a rule of thumb, when interpreting the Gap-statistics plot, a model with a number of clusters within the standard deviation of the model with the best Gap-statistic will be sufficient. In our case, this means, that a model with 3 clusters should do the job, as seen below.
+
+Another check is of course to make both models, and plot it, to check if the clustering makes sense. This is equally as important as looking at the Gap-statistics.
 
 ```{r}
 library(cluster)
 gapStatistic <- clusGap(pork[, c("VarietyTotal", "TotalPorkWeek")], kmeans, 10)
 
 plot(gapStatistic, main = "")
+```
 
+Another package able to aid when trying to determine the number of clusters is **NbClust**. This package runs a variety of different tests, each resulting in an optimal number of clusters. This means, that while you get a lot of opinion on the number of clusters, the *NbClust*-function might take a while to run.
+
+*NbClust* will show a lot of plots and show results for the different methods. You can look at them if you want, but the most important part is the last output of the function, where the voting for the different number of clusters as well as the conclusion is displayed.
+
+```{r}
 library(NbClust)
-NbClust(pork[, c("VarietyTotal", "TotalPorkWeek")], method = 'kmeans' )
-
+Nbclusters <- NbClust(pork[, c("VarietyTotal", "TotalPorkWeek")], method = 'kmeans' )
 ```
 
 The gap-statistics seems to suggest k=3, whereas NbClust suggests k=2-4, which shows how important it is, that you know your data enough to be able to make the right decision, such as number of clusters.
 
 The rule of thumb is to use these data driven approaches together with interpretability of the resulting clusters, such that the solution is meaningful. 
 
-## Segmentation - example 2
+## Segmentation - another example
 
 The data **plantbaseddiet** constitute data from the following study, and can be found in the **data4consumerscience**-package: 
 
@@ -193,7 +211,7 @@ Here the interpretation from above gives rise to some intuitive names. These can
 res$centers
 
 #Then matched the label names, according to the plot above.
-plantbaseddiet$clusters <- factor(res$cluster,labels = c('High Meat','Low All','High Dairy','High ALl'))
+plantbaseddiet$clusters <- factor(res$cluster,labels = c('High Meat','Low All','High Dairy','High All'))
 
 #And here the plot, now with the right labels.
 ggbiplot(PCAmdl, groups = plantbaseddiet$clusters, ellipse = T)
