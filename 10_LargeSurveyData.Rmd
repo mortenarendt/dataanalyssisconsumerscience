@@ -1,7 +1,5 @@
 # Intro to large survey data
 
-__Generelt: Der skal skrives forklaringer, andet mangler der ikke her__
-
 The data used in this chapter are based on surveys conducted during earlier iterations of the courses *Food Consumer Research and Meal Consumer Research*.
 
 Large survey data can be collected using SurveyXact. 
@@ -75,7 +73,6 @@ mean(fmcrsurvey$Age)
 sd(fmcrsurvey$Age)
 median(fmcrsurvey$Age)
 IQR(fmcrsurvey$Age)
-
 ```
 
 ... or simply use the summary() function, to get all the above answers in one go: 
@@ -92,7 +89,6 @@ It is a good idea to plot data. This is a natural first step to look for distrib
 
 Below are some relevant examples. To see more, go to [Plotting data].
 
-
 ```{r, message=FALSE}
 ggplot(data = fmcrsurvey, aes(Age, fill = Gender)) + geom_histogram(position = 'dodge')
 ggplot(data = fmcrsurvey, aes(x= 1, Age)) + geom_boxplot()+ facet_wrap(~Gender)
@@ -108,7 +104,6 @@ As an example we use *How much you would pay for a banana* in reference to the g
 
 ```{r}
 ggplot(data = fmcrsurvey, aes(Gender, Pay_organic_banana)) + geom_boxplot()
-
 ```
 
 ... If you want to cross with several variables (Try to evaluate the code your self): 

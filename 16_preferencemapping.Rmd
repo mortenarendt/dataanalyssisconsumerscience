@@ -54,7 +54,7 @@ For interest in food and beer there are patterns. One example is the _Beer knowl
 
 ## Analysis by PLS
 
-Predictors can be objective characteristics of the products or CATA type data, while response is hedonik liking data. 
+Predictors can be objective characteristics of the products or CATA type data, while response is hedonic liking data. 
 [minimum 5 samples
 
 X = CATA (Beer_XYZmatrix.xlsx, sheet = X CATA (coll.)+Y liking (aver.)), 
@@ -64,3 +64,148 @@ Y2 = Liking for each consumer = t(Y (long thin))
 Objective = Visualize to get patterns related to liking, and which deescriptors are merely irrelevant. 
 
 ## L-PLS [For the future...]
+
+The data used in this section is from the paper: *Giacalone, Davide, Wender L.P. Bredie, and Michael Bom Frøst. “‘All-In-One Test’ (AI1): A Rapid and Easily Applicable Approach to Consumer Product Testing.” Food quality and preference 27.2 (2013): 108–119. Web.*. Data can be found in the *data4consumerscience-package* as **beercata**, **beerdemo**, **beerliking**
+
+*L-PLS* is a valuable tool in identifying the sensory attributes and consumer background characteristics that contribute to a consumer's liking of a product, such as beer. 
+
+A L-PLS model is created using three data blocks: **X1**, **X2**, and **X3**. **X1** is an IxN matrix that contains consumer liking scores for each sample, X2 is an IxJ matrix that includes sensory attributes for each sample, and X3 is a KxN matrix that comprises consumer background data. I represents the number of samples (beer), N represents the number of consumers, J represents the number of sensory variables, and K represents the number of consumer background variables.
+
+There are two ways to perform L-PLS: exo and endo. In the exo-LPLSR model, X1 serves as the regressor, while in the endo-LPLSR model, X2 and X3 are the regressors. The exo-LPLSR model typically explains more of X than the endo-LPLSR model because the exo-LPLSR derives its bilinear components from X, whereas the endo-LPLSR derives its components from Y and Z. The difference in the plot's appearance can be predicted from the explained variance of each model type.
+
+If both plots are similar in nature and in terms of the interpretation of the correlation loading plots, it may indicate consistent co-variation between the three matrices. 
+
+The exo version will only be showcased here, but the principle is the same, and endo can be useful for data exploration. 
+
+```{r,warning=FALSE,message=FALSE}
+library(data4consumerscience)
+data("beercata")
+data("beerdemo")
+data("beerliking")
+```
+
+##Creating X1, X2, X3.
+
+The preparation of the data, requires quite a lot of data manipulation. 
+```{r,warning=FALSE,message=FALSE}
+# Load necessary libraries
+library(tidyverse)
+library(tibble)
+
+# Prepare data for LPLS analysis
+
+## Y - Beer Liking data
+X1 <- beerliking %>%
+  select(Beer, Liking, Consumer.ID) %>%
+  pivot_wider(names_from = Consumer.ID, values_from = Liking) %>%
+  column_to_rownames("Beer") %>%
+  select_if(~!any(is.na(.)))
+
+## X - Beer Attributes data
+colnames(beercata) <- gsub("S_", "", colnames(beercata))
+X2 <- beercata %>%
+  select(Beer, Flowers:Vinous) %>%
+  pivot_longer(cols = !Beer, names_to = "Attribute", values_to = "Value") %>%
+  group_by(Beer, Attribute) %>%
+  dplyr::summarise(Sum_value = sum(Value)) %>%
+  pivot_wider(names_from = "Attribute", values_from = "Sum_value", values_fill = 0) %>%
+  column_to_rownames("Beer")
+
+## Z - Consumer Demographics data
+# select subset of columns and create binary columns for categorical variables
+binary_cols <- c("Gender", "Age", "Income", "Householdsize", "Beer types/month")
+for (col in binary_cols) {
+  if (is.factor(beerdemo[[col]]) | is.character(beerdemo[[col]])) {
+    levels <- unique(beerdemo[[col]])
+    for (level in levels) {
+      new_col <- paste(col, level, sep = "_")
+      beerdemo[[new_col]] <- ifelse(beerdemo[[col]] == level, "1", "0")
+    }
+  }
+}
+
+# pivot longer and summarize to calculate sum values for each Consumer ID-Attribute combination
+X3 <- beerdemo %>%
+  select(-(Gender:`Beer types/month`),`Interest in food`:`Beer types/month_9 - 16`,`Consumer ID`) %>%
+  mutate_at(vars(-`Consumer ID`), 
+            .funs = list(~as.factor(.) %>% as.numeric())) %>%
+  pivot_longer(cols =`Interest in food`:`Beer types/month_9 - 16` , names_to = "Attribute", values_to = "Value") %>%
+  group_by(`Consumer ID`, Attribute) %>%
+  dplyr::summarise(sum_Value = sum(Value)) %>%
+  pivot_wider(names_from = "Consumer ID", values_from = "sum_Value", values_fill = 0) %>%
+  column_to_rownames("Attribute")
+
+# keep only columns in Y
+col_names <- names(X1)
+X3 <- X3[,col_names]
+
+# LPLS function only accepts matrix. Convert data frames to matrices.
+X1_mat <- as.matrix(X1)
+X2_mat <- as.matrix(X2)
+X3_mat <- as.matrix(X3)
+
+```
+
+##Building the model:
+The L-PLS model can be built, using the *lpls* function from the *multiblock* package.
+
+```{r,warning=FALSE,message=FALSE}
+library(multiblock)
+set.seed(123)
+#Scale the Z-matrix as we have semi-contious and binary data. 
+lp_exo <- lpls(X1_mat,X2_mat,X3_mat,type = "exo",scale = c(F,F,T),doublecenter = T,ncomp = 5)
+```
+
+###Finding the explained variance for exo L-PLS
+
+The explained variance for the exo L-PLS can easily be sacked from the model object, and displayed nicely in a table using the *kableExtra* package.
+```{r,warning=FALSE,message=FALSE}
+library(knitr)
+library(kableExtra)
+expVarExo <- t(as.data.frame(lp_exo$vars)*100)
+colnames(expVarExo) <- paste0("Comp ", 1:5)
+rownames(expVarExo) <- paste0("X", 1:3)
+
+#Create a table
+kbl(expVarExo, caption = "Explained Variance by Component (%)",digits = 0) %>%
+  kable_paper("hover",full_width = F)
+```
+The explained variance is first sacked from the L-PLS object, and stored in a data-frame, from where it is transposed, and converted to percentage (%).
+*kbl* function is then used to get a nice table. 
+
+From looking at the table, one would expect the consumer descriptors to be close to origin in terms of scores. One could have a look at the endo version of the L-PLS to get a better understanding of the consumer descriptors. 
+
+###Cross-validation
+Next let us have a look how many components we should look at, by doing a jack-knifing cross-validation on the consumers:
+
+```{r}
+lp.cv2 <- lplsCV(lp_exo, segments2 = as.list(1:dim(X1)[2]))
+lp.cv2$rmsep
+```
+
+It looks like 2 components is sufficient. 
+
+###Vizulization
+Now we would like to visuzlalize our L-PLS model. When using L-PLS for vizulization one should use the orthognoal exo, as this will give the orthogonal scores.
+We build the orthogonal exo in the same way as before, but chainging the type.
+```{r}
+lp_exo_ort <- lpls(X1_mat,X2_mat,X3_mat,type = "exo_ort",scale = c(F,F,T),doublecenter = T,ncomp = 5)
+```
+
+Now we plot the L-PLS model. One can chose to plot, the X1, X2 or X3 correlations, or perhaps a combination of 2, or all. 
+
+```{r}
+par(mfrow=c(2,2))
+plot(lp_exo,doplot = c(F,F,T)) #X3 correlations
+plot(lp_exo,doplot = c(F,T,F)) #X1 correlations
+plot(lp_exo,doplot = c(T,T,F)) #X2 and X1 correlations
+plot(lp_exo,doplot = c(F,T,T)) #X1 and X3 correlations
+```
+
+```{r}
+plot(lp_exo,doplot = c(T,T,T)) #combined
+```
+
+From the plots, the sensory attribute *Berries* is correlated with the sensory attribute *Herbs*. These two sensory attributes is in turn correlated with the beer *River Beer*. In turn *River Beer* is opposite of the beer *Brown Ale*, which seems to be very *Foamy*. In this case our consumer background descriptors do not seem to explain a whole lot. But it does seem like a young age *Age 18-25* is associated with a low income (*Income 0-10.000*). Where a consumer of such description tends to like *Porse Bock*. 
+
+It is always a good idea to confirm the observed correlations by plotting the raw data. Lets have a look at some of them.

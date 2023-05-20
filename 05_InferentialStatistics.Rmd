@@ -231,7 +231,7 @@ cld(glht(model, linfct = mcp(Beer = "Tukey")))
 
 When inserting the **glht**-object into **summary**, the individual, pairwise comparisons are shown, with the adjusted p-values.
 
-Another (sometimes easier to interpret) way of displaying the pairwise comparison is by the use of letters, as is shown using **cld**. When groups have different letter, they are significantly different from one another, while groups sharing a letter means no significant difference between the two. Here, we can see, that Brown Ale has scored significantly higher than Wheat IPA, since they have been assigned with c and a respectively. But the Brown Ale is not significantly different from the Ravnsborg Red, as they both have been assigned with c's.
+Another (sometimes easier to interpret) way of displaying the pairwise comparison is by the use of letters, as is shown using **cld**. When groups have different letter, they are significantly different from one another, while groups sharing a letter means no significant difference between the two. Here, we can see, that Brown Ale has scored significantly higher than Wheat IPA, since they have been assigned with c and a respectively. But the Brown Ale is not significantly different from the Ravnsborg Red, as they both have been assigned with a's.
 
 ## Introduction to linear and mixed models 
 
@@ -258,10 +258,8 @@ For instance, the relation between _Hunger_ and the intake  _AdLibg_ of dishes w
 library(tidyverse)
 library(data4consumerscience)
 data('chili')
-x <- chili %>% 
-  # only include a single treatment
-  filter(Treatment=='Capsaicin') %>% 
-  # only include the first trial for each judge
+x <- chili %>%   # only include a single treatment
+  filter(Treatment=='Capsaicin') %>% # only include the first trial for each judge
   filter(!duplicated(Judge)) 
 
 ggplot(data = x, aes(x = Hunger, y = AdLibg)) + 

@@ -98,6 +98,7 @@ library(ggforce)
 ggplot(data = loadsSH, aes(x0 = `Comp 1`,y0 = `Comp 2`,a = `sdComp 1`,b = `sdComp 2`,angle = 0)) + geom_ellipse()
 ```
 
+
 ```{r}
 
 ```
