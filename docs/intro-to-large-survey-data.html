@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Intro to large survey data | Data Analysis in R for Sensory and Consumer Science</title>
   <meta name="description" content="Chapter 10 Intro to large survey data | Data Analysis in R for Sensory and Consumer Science" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Intro to large survey data | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -119,6 +121,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -261,12 +267,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation"><i class="fa fa-check"></i><b>11.1</b> Segmentation</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#k-means"><i class="fa fa-check"></i><b>11.1.1</b> K-means</a></li>
-<li class="chapter" data-level="11.1.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#internal-characterization-of-clusters"><i class="fa fa-check"></i><b>11.1.2</b> Internal characterization of clusters</a></li>
+<li class="chapter" data-level="11.1.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#initial-characterization-of-clusters"><i class="fa fa-check"></i><b>11.1.2</b> Initial characterization of clusters</a></li>
 <li class="chapter" data-level="11.1.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#vizualization"><i class="fa fa-check"></i><b>11.1.3</b> Vizualization</a></li>
-<li class="chapter" data-level="11.1.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#k-means-splits-variation"><i class="fa fa-check"></i><b>11.1.4</b> K-means splits variation</a></li>
+<li class="chapter" data-level="11.1.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#sums-of-squares-from-the-clustering"><i class="fa fa-check"></i><b>11.1.4</b> Sums of Squares from the clustering</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#selecting-the-number-of-clusters"><i class="fa fa-check"></i><b>11.2</b> Selecting the number of clusters</a></li>
-<li class="chapter" data-level="11.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation---example-2"><i class="fa fa-check"></i><b>11.3</b> Segmentation - example 2</a>
+<li class="chapter" data-level="11.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation---another-example"><i class="fa fa-check"></i><b>11.3</b> Segmentation - another example</a>
 <ul>
 <li class="chapter" data-level="11.3.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#cluster-analysis"><i class="fa fa-check"></i><b>11.3.1</b> Cluster analysis</a></li>
 <li class="chapter" data-level="11.3.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#plot-the-model-using-pca"><i class="fa fa-check"></i><b>11.3.2</b> Plot the model using PCA</a></li>
@@ -420,7 +426,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="intro-to-large-survey-data" class="section level1 hasAnchor" number="10">
 <h1><span class="header-section-number">Chapter 10</span> Intro to large survey data<a href="intro-to-large-survey-data.html#intro-to-large-survey-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><strong>Generelt: Der skal skrives forklaringer, andet mangler der ikke her</strong></p>
 <p>The data used in this chapter are based on surveys conducted during earlier iterations of the courses <em>Food Consumer Research and Meal Consumer Research</em>.</p>
 <p>Large survey data can be collected using SurveyXact.
 There are tools (packages for R) which can import SurveyXact outputs directly, while we do not go through these here, googl’ing a bit may be helpful.
@@ -574,80 +579,65 @@ Alternatively, the SurveyXact files can be exported to .xlsx files and imported 
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="intro-to-large-survey-data.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CreateTableOne</span>(<span class="at">data =</span> fmcrsurvey, <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&#39;Age&#39;</span>, <span class="st">&#39;Freq_Groceries&#39;</span>,<span class="st">&#39;I_am_able_to_prepare_a_soup&#39;</span>), </span>
 <span id="cb155-2"><a href="intro-to-large-survey-data.html#cb155-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">strata =</span> <span class="fu">c</span>(<span class="st">&#39;Gender&#39;</span>,<span class="st">&#39;Freq_Groceries&#39;</span>))</span></code></pre></div>
 <pre><code>##                                  Stratified by Gender:Freq_Groceries
-##                                   Female:1-3 times per month
-##   n                                   7                     
-##   Age (mean (SD))                 27.57 (2.07)              
-##   Freq_Groceries (%)                                        
-##      1-3 times per month              7 (100.0)             
-##      Once a week                      0 (  0.0)             
-##      6-2 times per week               0 (  0.0)             
-##      Every day                        0 (  0.0)             
-##   I_am_able_to_prepare_a_soup (%)                           
-##      Completely disagree              0 (  0.0)             
-##      Disagree                         0 (  0.0)             
-##      Neither disagree nor agree       0 (  0.0)             
-##      Agree                            0 (  0.0)             
-##      Completely agree                 7 (100.0)             
+##                                   Female:1-3 times per month Male:1-3 times per month
+##   n                                   7                          1                   
+##   Age (mean (SD))                 27.57 (2.07)               23.00 (NA)              
+##   Freq_Groceries (%)                                                                 
+##      1-3 times per month              7 (100.0)                  1 (100.0)           
+##      Once a week                      0 (  0.0)                  0 (  0.0)           
+##      6-2 times per week               0 (  0.0)                  0 (  0.0)           
+##      Every day                        0 (  0.0)                  0 (  0.0)           
+##   I_am_able_to_prepare_a_soup (%)                                                    
+##      Completely disagree              0 (  0.0)                  0 (  0.0)           
+##      Disagree                         0 (  0.0)                  0 (  0.0)           
+##      Neither disagree nor agree       0 (  0.0)                  0 (  0.0)           
+##      Agree                            0 (  0.0)                  0 (  0.0)           
+##      Completely agree                 7 (100.0)                  1 (100.0)           
 ##                                  Stratified by Gender:Freq_Groceries
-##                                   Male:1-3 times per month Female:Once a week
-##   n                                   1                       47             
-##   Age (mean (SD))                 23.00 (NA)               26.09 (4.39)      
-##   Freq_Groceries (%)                                                         
-##      1-3 times per month              1 (100.0)                0 (  0.0)     
-##      Once a week                      0 (  0.0)               47 (100.0)     
-##      6-2 times per week               0 (  0.0)                0 (  0.0)     
-##      Every day                        0 (  0.0)                0 (  0.0)     
-##   I_am_able_to_prepare_a_soup (%)                                            
-##      Completely disagree              0 (  0.0)                0 (  0.0)     
-##      Disagree                         0 (  0.0)                2 (  4.3)     
-##      Neither disagree nor agree       0 (  0.0)                0 (  0.0)     
-##      Agree                            0 (  0.0)               15 ( 31.9)     
-##      Completely agree                 1 (100.0)               30 ( 63.8)     
+##                                   Female:Once a week Male:Once a week
+##   n                                  47                  5           
+##   Age (mean (SD))                 26.09 (4.39)       27.40 (2.19)    
+##   Freq_Groceries (%)                                                 
+##      1-3 times per month              0 (  0.0)          0 (  0.0)   
+##      Once a week                     47 (100.0)          5 (100.0)   
+##      6-2 times per week               0 (  0.0)          0 (  0.0)   
+##      Every day                        0 (  0.0)          0 (  0.0)   
+##   I_am_able_to_prepare_a_soup (%)                                    
+##      Completely disagree              0 (  0.0)          0 (  0.0)   
+##      Disagree                         2 (  4.3)          0 (  0.0)   
+##      Neither disagree nor agree       0 (  0.0)          0 (  0.0)   
+##      Agree                           15 ( 31.9)          0 (  0.0)   
+##      Completely agree                30 ( 63.8)          5 (100.0)   
 ##                                  Stratified by Gender:Freq_Groceries
-##                                   Male:Once a week Female:6-2 times per week
-##   n                                   5              160                    
-##   Age (mean (SD))                 27.40 (2.19)     26.80 (5.48)             
-##   Freq_Groceries (%)                                                        
-##      1-3 times per month              0 (  0.0)        0 (  0.0)            
-##      Once a week                      5 (100.0)        0 (  0.0)            
-##      6-2 times per week               0 (  0.0)      160 (100.0)            
-##      Every day                        0 (  0.0)        0 (  0.0)            
-##   I_am_able_to_prepare_a_soup (%)                                           
-##      Completely disagree              0 (  0.0)        3 (  1.9)            
-##      Disagree                         0 (  0.0)        2 (  1.2)            
-##      Neither disagree nor agree       0 (  0.0)        4 (  2.5)            
-##      Agree                            0 (  0.0)       29 ( 18.1)            
-##      Completely agree                 5 (100.0)      122 ( 76.2)            
+##                                   Female:6-2 times per week Male:6-2 times per week
+##   n                                 160                        34                  
+##   Age (mean (SD))                 26.80 (5.48)              26.65 (2.87)           
+##   Freq_Groceries (%)                                                               
+##      1-3 times per month              0 (  0.0)                 0 (  0.0)          
+##      Once a week                      0 (  0.0)                 0 (  0.0)          
+##      6-2 times per week             160 (100.0)                34 (100.0)          
+##      Every day                        0 (  0.0)                 0 (  0.0)          
+##   I_am_able_to_prepare_a_soup (%)                                                  
+##      Completely disagree              3 (  1.9)                 1 (  2.9)          
+##      Disagree                         2 (  1.2)                 1 (  2.9)          
+##      Neither disagree nor agree       4 (  2.5)                 1 (  2.9)          
+##      Agree                           29 ( 18.1)                11 ( 32.4)          
+##      Completely agree               122 ( 76.2)                20 ( 58.8)          
 ##                                  Stratified by Gender:Freq_Groceries
-##                                   Male:6-2 times per week Female:Every day
-##   n                                  34                      10           
-##   Age (mean (SD))                 26.65 (2.87)            28.80 (6.78)    
-##   Freq_Groceries (%)                                                      
-##      1-3 times per month              0 (  0.0)               0 (  0.0)   
-##      Once a week                      0 (  0.0)               0 (  0.0)   
-##      6-2 times per week              34 (100.0)               0 (  0.0)   
-##      Every day                        0 (  0.0)              10 (100.0)   
-##   I_am_able_to_prepare_a_soup (%)                                         
-##      Completely disagree              1 (  2.9)               0 (  0.0)   
-##      Disagree                         1 (  2.9)               0 (  0.0)   
-##      Neither disagree nor agree       1 (  2.9)               0 (  0.0)   
-##      Agree                           11 ( 32.4)               0 (  0.0)   
-##      Completely agree                20 ( 58.8)              10 (100.0)   
-##                                  Stratified by Gender:Freq_Groceries
-##                                   Male:Every day p      test
-##   n                                   1                     
-##   Age (mean (SD))                 55.00 (NA)      NA        
-##   Freq_Groceries (%)                             &lt;0.001     
-##      1-3 times per month              0 (  0.0)             
-##      Once a week                      0 (  0.0)             
-##      6-2 times per week               0 (  0.0)             
-##      Every day                        1 (100.0)             
-##   I_am_able_to_prepare_a_soup (%)                 0.697     
-##      Completely disagree              0 (  0.0)             
-##      Disagree                         0 (  0.0)             
-##      Neither disagree nor agree       0 (  0.0)             
-##      Agree                            1 (100.0)             
-##      Completely agree                 0 (  0.0)</code></pre>
+##                                   Female:Every day Male:Every day p      test
+##   n                                  10                1                     
+##   Age (mean (SD))                 28.80 (6.78)     55.00 (NA)      NA        
+##   Freq_Groceries (%)                                              &lt;0.001     
+##      1-3 times per month              0 (  0.0)        0 (  0.0)             
+##      Once a week                      0 (  0.0)        0 (  0.0)             
+##      6-2 times per week               0 (  0.0)        0 (  0.0)             
+##      Every day                       10 (100.0)        1 (100.0)             
+##   I_am_able_to_prepare_a_soup (%)                                  0.697     
+##      Completely disagree              0 (  0.0)        0 (  0.0)             
+##      Disagree                         0 (  0.0)        0 (  0.0)             
+##      Neither disagree nor agree       0 (  0.0)        0 (  0.0)             
+##      Agree                            0 (  0.0)        1 (100.0)             
+##      Completely agree                10 (100.0)        0 (  0.0)</code></pre>
 <p>If you want to do it on a large set of variables then it might be convenient to extract the names without having to type all in:</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="intro-to-large-survey-data.html#cb157-1" aria-hidden="true" tabindex="-1"></a>varnames <span class="ot">&lt;-</span> <span class="fu">colnames</span>(fmcrsurvey)[<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>]</span>
 <span id="cb157-2"><a href="intro-to-large-survey-data.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CreateTableOne</span>(<span class="at">data =</span> fmcrsurvey, <span class="at">vars =</span> varnames, </span>

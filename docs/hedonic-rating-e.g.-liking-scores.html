@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 17 Hedonic rating (e.g. liking scores) | Data Analysis in R for Sensory and Consumer Science</title>
   <meta name="description" content="Chapter 17 Hedonic rating (e.g. liking scores) | Data Analysis in R for Sensory and Consumer Science" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 17 Hedonic rating (e.g. liking scores) | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -119,6 +121,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -261,12 +267,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation"><i class="fa fa-check"></i><b>11.1</b> Segmentation</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#k-means"><i class="fa fa-check"></i><b>11.1.1</b> K-means</a></li>
-<li class="chapter" data-level="11.1.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#internal-characterization-of-clusters"><i class="fa fa-check"></i><b>11.1.2</b> Internal characterization of clusters</a></li>
+<li class="chapter" data-level="11.1.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#initial-characterization-of-clusters"><i class="fa fa-check"></i><b>11.1.2</b> Initial characterization of clusters</a></li>
 <li class="chapter" data-level="11.1.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#vizualization"><i class="fa fa-check"></i><b>11.1.3</b> Vizualization</a></li>
-<li class="chapter" data-level="11.1.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#k-means-splits-variation"><i class="fa fa-check"></i><b>11.1.4</b> K-means splits variation</a></li>
+<li class="chapter" data-level="11.1.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#sums-of-squares-from-the-clustering"><i class="fa fa-check"></i><b>11.1.4</b> Sums of Squares from the clustering</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#selecting-the-number-of-clusters"><i class="fa fa-check"></i><b>11.2</b> Selecting the number of clusters</a></li>
-<li class="chapter" data-level="11.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation---example-2"><i class="fa fa-check"></i><b>11.3</b> Segmentation - example 2</a>
+<li class="chapter" data-level="11.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation---another-example"><i class="fa fa-check"></i><b>11.3</b> Segmentation - another example</a>
 <ul>
 <li class="chapter" data-level="11.3.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#cluster-analysis"><i class="fa fa-check"></i><b>11.3.1</b> Cluster analysis</a></li>
 <li class="chapter" data-level="11.3.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#plot-the-model-using-pca"><i class="fa fa-check"></i><b>11.3.2</b> Plot the model using PCA</a></li>
@@ -425,32 +431,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="plotting-liking-scores" class="section level2 hasAnchor" number="17.1">
 <h2><span class="header-section-number">17.1</span> Plotting liking scores<a href="hedonic-rating-e.g.-liking-scores.html#plotting-liking-scores" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For the beer data we have the liking in a long matrix.</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb321-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb321-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb321-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb321-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(beerliking)</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb325-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb325-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb325-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb325-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(beerliking)</span></code></pre></div>
 <p>A histogram of the likings shows that some are symmetric ( <em>NY Lager</em>, <em>River Beer</em> and to some extend <em>Porse Bock</em>), while <em>Brown Ale</em> and <em>Ravnsborg Red</em> is skeew, and <em>Wheat IPA</em> is uniform.</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> beerliking, <span class="fu">aes</span>(Liking)) <span class="sc">+</span> </span>
-<span id="cb322-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb322-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
-<span id="cb322-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb322-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Beer)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> beerliking, <span class="fu">aes</span>(Liking)) <span class="sc">+</span> </span>
+<span id="cb326-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb326-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb326-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb326-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Beer)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 </div>
 <div id="simple-mixed-models" class="section level2 hasAnchor" number="17.2">
 <h2><span class="header-section-number">17.2</span> Simple mixed models<a href="hedonic-rating-e.g.-liking-scores.html#simple-mixed-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the following plot each liking score is connected within consumer across the beer types. The facet (according to Age) is just to avoid overplotting.</p>
 <p>Here, there is a trend towards, if you rate one beer high, the other likings within that consumer will also be high.</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> beerliking, <span class="fu">aes</span>(Beer,Liking, <span class="at">group =</span> Consumer.ID, <span class="at">color =</span> Consumer.ID)) <span class="sc">+</span> </span>
-<span id="cb323-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb323-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb323-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb323-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb323-4"><a href="hedonic-rating-e.g.-liking-scores.html#cb323-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb323-5"><a href="hedonic-rating-e.g.-liking-scores.html#cb323-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Age)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> beerliking, <span class="fu">aes</span>(Beer,Liking, <span class="at">group =</span> Consumer.ID, <span class="at">color =</span> Consumer.ID)) <span class="sc">+</span> </span>
+<span id="cb327-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb327-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb327-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb327-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb327-4"><a href="hedonic-rating-e.g.-liking-scores.html#cb327-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb327-5"><a href="hedonic-rating-e.g.-liking-scores.html#cb327-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Age)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 <p>Mixed models are used when there is repetitions in the response due to (here) the person tasting more than one product.</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
-<span id="cb324-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb324-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb324-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb324-3" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) </span>
-<span id="cb324-4"><a href="hedonic-rating-e.g.-liking-scores.html#cb324-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
-<pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
-## lmerModLmerTest]
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb328-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb328-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb328-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb328-3" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) </span>
+<span id="cb328-4"><a href="hedonic-rating-e.g.-liking-scores.html#cb328-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [&#39;lmerModLmerTest&#39;]
 ## Formula: Liking ~ Beer + (1 | Consumer.ID)
 ##    Data: beerliking
 ## 
@@ -486,7 +491,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Beer5 -0.003 -0.201 -0.200 -0.199 -0.199</code></pre>
 <p>Here we see that the residual uncertainty is <span class="math inline">\(1.63\)</span> on the 1-7 likert scale, while the uncertainty between consumers is <span class="math inline">\(0.57\)</span>. This implies that the uncertainty between two ratings is higher when from two different consumers, compared to two ratings from the same consumer.</p>
 <p>We can use this model to evaluate the effect of the different beers.</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdl)</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdl)</span></code></pre></div>
 <pre><code>## Type III Analysis of Variance Table with Satterthwaite&#39;s method
 ##      Sum Sq Mean Sq NumDF  DenDF F value    Pr(&gt;F)    
 ## Beer 110.52  22.105     5 763.12  8.3054 1.175e-07 ***
@@ -498,9 +503,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The overall anova result implies that the 6 beers are <em>NOT</em> equal in terms of liking, but some may be similar.</p>
 <p>This can be investigated by computing pairwise contrasts using for instance the <em>emmeans</em> package or the <em>multcomp</em> package.</p>
 <p>Both are shown below</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb328-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb328-2" aria-hidden="true" tabindex="-1"></a>mdlemm <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(mdl,<span class="st">&#39;Beer&#39;</span>)</span>
-<span id="cb328-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb328-3" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(mdlemm,<span class="st">&#39;tukey&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb332-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb332-2" aria-hidden="true" tabindex="-1"></a>mdlemm <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(mdl,<span class="st">&#39;Beer&#39;</span>)</span>
+<span id="cb332-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb332-3" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(mdlemm,<span class="st">&#39;tukey&#39;</span>)</span></code></pre></div>
 <pre><code>##  contrast                    estimate    SE  df t.ratio p.value
 ##  Brown Ale - NY Lager        0.641267 0.187 762   3.431  0.0083
 ##  Brown Ale - Porse Bock      0.836859 0.187 762   4.485  0.0001
@@ -521,12 +526,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Degrees-of-freedom method: kenward-roger 
 ## P value adjustment: tukey method for comparing a family of 6 estimates</code></pre>
 <p>To calculate pairwise comparisons between e.g. samples and find letter-based representation you need a the package <em>multcomp</em>.</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
-<span id="cb330-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb330-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(<span class="fu">glht</span>(mdl, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Beer =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
-<pre><code>##     Brown Ale      NY Lager    Porse Bock Ravnsborg Red    River Beer 
-##           &quot;a&quot;          &quot;bc&quot;           &quot;c&quot;          &quot;ab&quot;           &quot;c&quot; 
-##     Wheat IPA 
-##           &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb334-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb334-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(<span class="fu">glht</span>(mdl, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Beer =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
+<pre><code>##     Brown Ale      NY Lager    Porse Bock Ravnsborg Red    River Beer     Wheat IPA 
+##           &quot;a&quot;          &quot;bc&quot;           &quot;c&quot;          &quot;ab&quot;           &quot;c&quot;           &quot;c&quot;</code></pre>
 <p>The letters are based on the Post Hoc test Tukey, and they are calculated on the basis of the model <em>mdl</em>. Samples with the same letters are not significantly different. You can only use this function on factors.</p>
 <p>The resulst indicate <em>Brown Ale</em> and <em>Ravnsborg Red</em> is the most likable beers, with <em>River Beer</em>, <em>Wheat IPA</em> and <em>Porse Bock</em> as the least likable ones. These three at the bottom is also not significantly different.</p>
 </div>
@@ -545,12 +548,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Both procedures stop when the model is not going to improve by adding or eliminating explanatory variables, and the final model will only contain the significant variables.</p>
 <p>In the beer dataset we would like to know which of the explanatory variables that is most related to the liking.</p>
 <p>A large model with all explanatory variables is constructed</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb332-1" aria-hidden="true" tabindex="-1"></a>mdl_be <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> Gender <span class="sc">+</span> Age <span class="sc">+</span> Income <span class="sc">+</span> </span>
-<span id="cb332-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb332-2" aria-hidden="true" tabindex="-1"></a>                 Householdsize <span class="sc">+</span> <span class="st">`</span><span class="at">Beer types/month</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Interest in food</span><span class="st">`</span> <span class="sc">+</span> </span>
-<span id="cb332-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb332-3" aria-hidden="true" tabindex="-1"></a>                 neophilia <span class="sc">+</span> <span class="st">`</span><span class="at">Interest in beer</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Beer knowledge</span><span class="st">`</span> <span class="sc">+</span> </span>
-<span id="cb332-4"><a href="hedonic-rating-e.g.-liking-scores.html#cb332-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">`</span><span class="at">Ingredients/labels</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Future interest in beer</span><span class="st">`</span> <span class="sc">+</span> </span>
-<span id="cb332-5"><a href="hedonic-rating-e.g.-liking-scores.html#cb332-5" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) </span>
-<span id="cb332-6"><a href="hedonic-rating-e.g.-liking-scores.html#cb332-6" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdl_be)</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb336-1" aria-hidden="true" tabindex="-1"></a>mdl_be <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> Gender <span class="sc">+</span> Age <span class="sc">+</span> Income <span class="sc">+</span> </span>
+<span id="cb336-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb336-2" aria-hidden="true" tabindex="-1"></a>                 Householdsize <span class="sc">+</span> <span class="st">`</span><span class="at">Beer types/month</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Interest in food</span><span class="st">`</span> <span class="sc">+</span> </span>
+<span id="cb336-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb336-3" aria-hidden="true" tabindex="-1"></a>                 neophilia <span class="sc">+</span> <span class="st">`</span><span class="at">Interest in beer</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Beer knowledge</span><span class="st">`</span> <span class="sc">+</span> </span>
+<span id="cb336-4"><a href="hedonic-rating-e.g.-liking-scores.html#cb336-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">`</span><span class="at">Ingredients/labels</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Future interest in beer</span><span class="st">`</span> <span class="sc">+</span> </span>
+<span id="cb336-5"><a href="hedonic-rating-e.g.-liking-scores.html#cb336-5" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) </span>
+<span id="cb336-6"><a href="hedonic-rating-e.g.-liking-scores.html#cb336-6" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdl_be)</span></code></pre></div>
 <pre><code>## Type III Analysis of Variance Table with Satterthwaite&#39;s method
 ##                            Sum Sq Mean Sq NumDF  DenDF F value    Pr(&gt;F)    
 ## Beer                      110.799 22.1597     5 762.75  8.3223 1.133e-07 ***
@@ -569,11 +572,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>From this, <em>Interest in food</em> is the least significant one, and is hence removed.</p>
 <p>A sequential removal of the non-significant variables at a <span class="math inline">\(p &gt; 0.1\)</span> level leads to the following model:</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb334-1" aria-hidden="true" tabindex="-1"></a>mdl_be_red <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span>  Age <span class="sc">+</span> Income <span class="sc">+</span> </span>
-<span id="cb334-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb334-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">`</span><span class="at">Beer types/month</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Beer knowledge</span><span class="st">`</span> <span class="sc">+</span> </span>
-<span id="cb334-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb334-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">`</span><span class="at">Future interest in beer</span><span class="st">`</span> <span class="sc">+</span> </span>
-<span id="cb334-4"><a href="hedonic-rating-e.g.-liking-scores.html#cb334-4" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) </span>
-<span id="cb334-5"><a href="hedonic-rating-e.g.-liking-scores.html#cb334-5" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdl_be_red)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb338-1" aria-hidden="true" tabindex="-1"></a>mdl_be_red <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span>  Age <span class="sc">+</span> Income <span class="sc">+</span> </span>
+<span id="cb338-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb338-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">`</span><span class="at">Beer types/month</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Beer knowledge</span><span class="st">`</span> <span class="sc">+</span> </span>
+<span id="cb338-3"><a href="hedonic-rating-e.g.-liking-scores.html#cb338-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">`</span><span class="at">Future interest in beer</span><span class="st">`</span> <span class="sc">+</span> </span>
+<span id="cb338-4"><a href="hedonic-rating-e.g.-liking-scores.html#cb338-4" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) </span>
+<span id="cb338-5"><a href="hedonic-rating-e.g.-liking-scores.html#cb338-5" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdl_be_red)</span></code></pre></div>
 <pre><code>## Type III Analysis of Variance Table with Satterthwaite&#39;s method
 ##                            Sum Sq Mean Sq NumDF  DenDF F value    Pr(&gt;F)    
 ## Beer                      110.397  22.079     5 763.19  8.2936 1.206e-07 ***
@@ -585,11 +588,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The results can be interpreted from the estimates:</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl_be_red)</span></code></pre></div>
-<pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
-## lmerModLmerTest]
-## Formula: 
-## Liking ~ Beer + Age + Income + `Beer types/month` + `Beer knowledge` +  
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl_be_red)</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [&#39;lmerModLmerTest&#39;]
+## Formula: Liking ~ Beer + Age + Income + `Beer types/month` + `Beer knowledge` +  
 ##     `Future interest in beer` + (1 | Consumer.ID)
 ##    Data: beerliking
 ## 
@@ -638,20 +639,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="effect-modification-and-interactions" class="section level3 hasAnchor" number="17.3.2">
 <h3><span class="header-section-number">17.3.2</span> Effect modification and Interactions<a href="hedonic-rating-e.g.-liking-scores.html#effect-modification-and-interactions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>It could be nice to calculate if the liking of specific sample are affected by the degree of future interest in beer. This can be visualized as scatterplots and modelled using interactions.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> beerliking, <span class="fu">aes</span>(<span class="st">`</span><span class="at">Future interest in beer</span><span class="st">`</span>, Liking, <span class="at">color =</span> Beer)) <span class="sc">+</span> </span>
-<span id="cb338-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb338-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb339-1" aria-hidden="true" tabindex="-1"></a>mdl_interaction <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer<span class="sc">*</span><span class="st">`</span><span class="at">Future interest in beer</span><span class="st">`</span> <span class="sc">+</span>  (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) </span>
-<span id="cb339-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb339-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdl_interaction)</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> beerliking, <span class="fu">aes</span>(<span class="st">`</span><span class="at">Future interest in beer</span><span class="st">`</span>, Liking, <span class="at">color =</span> Beer)) <span class="sc">+</span> </span>
+<span id="cb342-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb342-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="hedonic-rating-e.g.-liking-scores.html#cb343-1" aria-hidden="true" tabindex="-1"></a>mdl_interaction <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer<span class="sc">*</span><span class="st">`</span><span class="at">Future interest in beer</span><span class="st">`</span> <span class="sc">+</span>  (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) </span>
+<span id="cb343-2"><a href="hedonic-rating-e.g.-liking-scores.html#cb343-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdl_interaction)</span></code></pre></div>
 <pre><code>## Type III Analysis of Variance Table with Satterthwaite&#39;s method
-##                                Sum Sq Mean Sq NumDF  DenDF F value    Pr(&gt;F)
-## Beer                           14.431   2.886     5 758.29  1.0898    0.3645
-## `Future interest in beer`      65.599  65.599     1 153.35 24.7694 1.718e-06
-## Beer:`Future interest in beer` 23.230   4.646     5 758.06  1.7543    0.1200
-##                                   
-## Beer                              
-## `Future interest in beer`      ***
-## Beer:`Future interest in beer`    
+##                                Sum Sq Mean Sq NumDF  DenDF F value    Pr(&gt;F)    
+## Beer                           14.431   2.886     5 758.29  1.0898    0.3645    
+## `Future interest in beer`      65.599  65.599     1 153.35 24.7694 1.718e-06 ***
+## Beer:`Future interest in beer` 23.230   4.646     5 758.06  1.7543    0.1200    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Although the slopes appear a bit different between the beers this is not significant (<span class="math inline">\(p = 0.12\)</span>).

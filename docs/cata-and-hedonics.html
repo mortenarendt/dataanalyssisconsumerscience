@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 15 CATA and Hedonics | Data Analysis in R for Sensory and Consumer Science</title>
   <meta name="description" content="Chapter 15 CATA and Hedonics | Data Analysis in R for Sensory and Consumer Science" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 15 CATA and Hedonics | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -119,6 +121,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -261,12 +267,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation"><i class="fa fa-check"></i><b>11.1</b> Segmentation</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#k-means"><i class="fa fa-check"></i><b>11.1.1</b> K-means</a></li>
-<li class="chapter" data-level="11.1.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#internal-characterization-of-clusters"><i class="fa fa-check"></i><b>11.1.2</b> Internal characterization of clusters</a></li>
+<li class="chapter" data-level="11.1.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#initial-characterization-of-clusters"><i class="fa fa-check"></i><b>11.1.2</b> Initial characterization of clusters</a></li>
 <li class="chapter" data-level="11.1.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#vizualization"><i class="fa fa-check"></i><b>11.1.3</b> Vizualization</a></li>
-<li class="chapter" data-level="11.1.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#k-means-splits-variation"><i class="fa fa-check"></i><b>11.1.4</b> K-means splits variation</a></li>
+<li class="chapter" data-level="11.1.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#sums-of-squares-from-the-clustering"><i class="fa fa-check"></i><b>11.1.4</b> Sums of Squares from the clustering</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#selecting-the-number-of-clusters"><i class="fa fa-check"></i><b>11.2</b> Selecting the number of clusters</a></li>
-<li class="chapter" data-level="11.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation---example-2"><i class="fa fa-check"></i><b>11.3</b> Segmentation - example 2</a>
+<li class="chapter" data-level="11.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation---another-example"><i class="fa fa-check"></i><b>11.3</b> Segmentation - another example</a>
 <ul>
 <li class="chapter" data-level="11.3.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#cluster-analysis"><i class="fa fa-check"></i><b>11.3.1</b> Cluster analysis</a></li>
 <li class="chapter" data-level="11.3.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#plot-the-model-using-pca"><i class="fa fa-check"></i><b>11.3.2</b> Plot the model using PCA</a></li>
@@ -422,26 +428,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 15</span> CATA and Hedonics<a href="cata-and-hedonics.html#cata-and-hedonics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Certain attributes like floral is wanted in beer, while others may be unwanted, and hence detection of these attributes can have hedonic impact. This analysis can be evaluated for each attribute separately or all collectively using PCA.</p>
 <p>These data appears as two separate dataset, and hence need to be joint:</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="cata-and-hedonics.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb300-2"><a href="cata-and-hedonics.html#cb300-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb300-3"><a href="cata-and-hedonics.html#cb300-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span>
-<span id="cb300-4"><a href="cata-and-hedonics.html#cb300-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span>
-<span id="cb300-5"><a href="cata-and-hedonics.html#cb300-5" aria-hidden="true" tabindex="-1"></a>xbeer <span class="ot">&lt;-</span> beerliking <span class="sc">%&gt;%</span> </span>
-<span id="cb300-6"><a href="cata-and-hedonics.html#cb300-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(beercata, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;Beer&#39;</span>,<span class="st">&#39;Consumer.ID&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="cata-and-hedonics.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb293-2"><a href="cata-and-hedonics.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb293-3"><a href="cata-and-hedonics.html#cb293-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span>
+<span id="cb293-4"><a href="cata-and-hedonics.html#cb293-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span>
+<span id="cb293-5"><a href="cata-and-hedonics.html#cb293-5" aria-hidden="true" tabindex="-1"></a>xbeer <span class="ot">&lt;-</span> beerliking <span class="sc">%&gt;%</span> </span>
+<span id="cb293-6"><a href="cata-and-hedonics.html#cb293-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(beercata, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;Beer&#39;</span>,<span class="st">&#39;Consumer.ID&#39;</span>))</span></code></pre></div>
 <div id="individual-attributes-and-liking" class="section level2 hasAnchor" number="15.1">
 <h2><span class="header-section-number">15.1</span> Individual attributes and liking<a href="cata-and-hedonics.html#individual-attributes-and-liking" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="an-example-with-refreshing" class="section level3 hasAnchor" number="15.1.1">
 <h3><span class="header-section-number">15.1.1</span> An example with Refreshing<a href="cata-and-hedonics.html#an-example-with-refreshing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="cata-and-hedonics.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> xbeer, <span class="fu">aes</span>(Beer,  Liking, <span class="at">fill =</span> <span class="fu">factor</span>(S_Refreshing))) <span class="sc">+</span> </span>
-<span id="cb301-2"><a href="cata-and-hedonics.html#cb301-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="cata-and-hedonics.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> xbeer, <span class="fu">aes</span>(Beer,  Liking, <span class="at">fill =</span> <span class="fu">factor</span>(S_Refreshing))) <span class="sc">+</span> </span>
+<span id="cb294-2"><a href="cata-and-hedonics.html#cb294-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
 <p>From this plot it seems as if checking of the attribute <em>Refreshing</em> leads to higher liking score.
 Further, this is even more so for light-colored beers like <em>Wheat IPA</em> and <em>Porse Bock</em>.</p>
 <p>A model capturing this phenomena could be a linear model with interactions:</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="cata-and-hedonics.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb302-2"><a href="cata-and-hedonics.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
-<span id="cb302-3"><a href="cata-and-hedonics.html#cb302-3" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> xbeer, Liking<span class="sc">~</span><span class="fu">factor</span>(S_Refreshing)<span class="sc">*</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID))</span>
-<span id="cb302-4"><a href="cata-and-hedonics.html#cb302-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdl)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="cata-and-hedonics.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb295-2"><a href="cata-and-hedonics.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb295-3"><a href="cata-and-hedonics.html#cb295-3" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> xbeer, Liking<span class="sc">~</span><span class="fu">factor</span>(S_Refreshing)<span class="sc">*</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID))</span>
+<span id="cb295-4"><a href="cata-and-hedonics.html#cb295-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdl)</span></code></pre></div>
 <pre><code>## Type III Analysis of Variance Table with Satterthwaite&#39;s method
 ##                           Sum Sq Mean Sq NumDF  DenDF  F value    Pr(&gt;F)    
 ## factor(S_Refreshing)      316.30  316.30     1 901.60 141.9478 &lt; 2.2e-16 ***
@@ -450,10 +456,9 @@ Further, this is even more so for light-colored beers like <em>Wheat IPA</em> an
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>All terms are significant and we are interested in the individual beer effects. We re-parametrice the model by removing the intercept (adding -1 at the end of the formula) and not including the main effect of S_Refreshing (change * to : in interaction, and add Beer as main effect).</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="cata-and-hedonics.html#cb304-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> xbeer, Liking<span class="sc">~</span>Beer <span class="sc">+</span> <span class="fu">factor</span>(S_Refreshing)<span class="sc">:</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID) <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb304-2"><a href="cata-and-hedonics.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
-<pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
-## lmerModLmerTest]
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="cata-and-hedonics.html#cb297-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> xbeer, Liking<span class="sc">~</span>Beer <span class="sc">+</span> <span class="fu">factor</span>(S_Refreshing)<span class="sc">:</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb297-2"><a href="cata-and-hedonics.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [&#39;lmerModLmerTest&#39;]
 ## Formula: Liking ~ Beer + factor(S_Refreshing):Beer + (1 | Consumer.ID) -      1
 ##    Data: xbeer
 ## 
@@ -470,85 +475,73 @@ Further, this is even more so for light-colored beers like <em>Wheat IPA</em> an
 ## Number of obs: 920, groups:  Consumer.ID, 155
 ## 
 ## Fixed effects:
-##                                         Estimate Std. Error       df t value
-## BeerBrown Ale                             5.1235     0.1713 905.0570  29.905
-## BeerNY Lager                              4.5212     0.1471 891.2430  30.733
-## BeerPorse Bock                            4.2747     0.1322 869.6115  32.335
-## BeerRavnsborg Red                         4.9078     0.1350 874.8096  36.349
-## BeerRiver Beer                            4.2451     0.1332 872.0429  31.864
-## BeerWheat IPA                             4.2981     0.1329 871.0139  32.332
-## BeerBrown Ale:factor(S_Refreshing)1      -0.3340     0.1694 883.0668  -1.972
-## BeerNY Lager:factor(S_Refreshing)1       -0.5176     0.1449 882.6727  -3.573
-## BeerPorse Bock:factor(S_Refreshing)1     -0.7714     0.1297 883.4564  -5.947
-## BeerRavnsborg Red:factor(S_Refreshing)1  -0.7095     0.1326 883.8535  -5.352
-## BeerRiver Beer:factor(S_Refreshing)1     -0.6040     0.1308 884.3471  -4.618
-## BeerWheat IPA:factor(S_Refreshing)1      -1.2025     0.1304 882.8483  -9.219
-##                                         Pr(&gt;|t|)    
-## BeerBrown Ale                            &lt; 2e-16 ***
-## BeerNY Lager                             &lt; 2e-16 ***
-## BeerPorse Bock                           &lt; 2e-16 ***
-## BeerRavnsborg Red                        &lt; 2e-16 ***
-## BeerRiver Beer                           &lt; 2e-16 ***
-## BeerWheat IPA                            &lt; 2e-16 ***
-## BeerBrown Ale:factor(S_Refreshing)1     0.048964 *  
-## BeerNY Lager:factor(S_Refreshing)1      0.000372 ***
-## BeerPorse Bock:factor(S_Refreshing)1    3.92e-09 ***
-## BeerRavnsborg Red:factor(S_Refreshing)1 1.11e-07 ***
-## BeerRiver Beer:factor(S_Refreshing)1    4.44e-06 ***
-## BeerWheat IPA:factor(S_Refreshing)1      &lt; 2e-16 ***
+##                                         Estimate Std. Error       df t value Pr(&gt;|t|)
+## BeerBrown Ale                             5.1235     0.1713 905.0570  29.905  &lt; 2e-16
+## BeerNY Lager                              4.5212     0.1471 891.2430  30.733  &lt; 2e-16
+## BeerPorse Bock                            4.2747     0.1322 869.6115  32.335  &lt; 2e-16
+## BeerRavnsborg Red                         4.9078     0.1350 874.8096  36.349  &lt; 2e-16
+## BeerRiver Beer                            4.2451     0.1332 872.0429  31.864  &lt; 2e-16
+## BeerWheat IPA                             4.2981     0.1329 871.0139  32.332  &lt; 2e-16
+## BeerBrown Ale:factor(S_Refreshing)1      -0.3340     0.1694 883.0668  -1.972 0.048964
+## BeerNY Lager:factor(S_Refreshing)1       -0.5176     0.1449 882.6727  -3.573 0.000372
+## BeerPorse Bock:factor(S_Refreshing)1     -0.7714     0.1297 883.4564  -5.947 3.92e-09
+## BeerRavnsborg Red:factor(S_Refreshing)1  -0.7095     0.1326 883.8535  -5.352 1.11e-07
+## BeerRiver Beer:factor(S_Refreshing)1     -0.6040     0.1308 884.3471  -4.618 4.44e-06
+## BeerWheat IPA:factor(S_Refreshing)1      -1.2025     0.1304 882.8483  -9.219  &lt; 2e-16
+##                                            
+## BeerBrown Ale                           ***
+## BeerNY Lager                            ***
+## BeerPorse Bock                          ***
+## BeerRavnsborg Red                       ***
+## BeerRiver Beer                          ***
+## BeerWheat IPA                           ***
+## BeerBrown Ale:factor(S_Refreshing)1     *  
+## BeerNY Lager:factor(S_Refreshing)1      ***
+## BeerPorse Bock:factor(S_Refreshing)1    ***
+## BeerRavnsborg Red:factor(S_Refreshing)1 ***
+## BeerRiver Beer:factor(S_Refreshing)1    ***
+## BeerWheat IPA:factor(S_Refreshing)1     ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Correlation of Fixed Effects:
-##             BrBrwA BrNYLg BrPrsB BrRvnR BrRvrB BrWIPA BBA:(S BNYL:( BPB:(S
-## BeerNYLager  0.069                                                        
-## BeerPorsBck  0.080  0.090                                                 
-## BrRvnsbrgRd  0.079  0.089  0.099                                          
-## BeerRiverBr  0.076  0.090  0.099  0.096                                   
-## BeerWhetIPA  0.078  0.091  0.100  0.099  0.099                            
-## BrBA:(S_R)1 -0.664  0.000 -0.004 -0.005  0.000 -0.001                     
-## BNYL:(S_R)1  0.001 -0.496  0.001 -0.002 -0.001 -0.002  0.000              
-## BrPB:(S_R)1 -0.009  0.002 -0.268 -0.003 -0.002  0.000  0.014 -0.005       
-## BrRR:(S_R)1 -0.009 -0.003 -0.003 -0.332  0.003 -0.004  0.014  0.006  0.010
-## BrRB:(S_R)1  0.003 -0.002 -0.001  0.004 -0.293 -0.001 -0.001  0.004  0.008
-## BWIPA:(S_R) -0.002 -0.003  0.001 -0.004 -0.001 -0.276  0.003  0.006 -0.002
-##             BRR:(S BRB:(S
-## BeerNYLager              
-## BeerPorsBck              
-## BrRvnsbrgRd              
-## BeerRiverBr              
-## BeerWhetIPA              
-## BrBA:(S_R)1              
-## BNYL:(S_R)1              
-## BrPB:(S_R)1              
-## BrRR:(S_R)1              
-## BrRB:(S_R)1 -0.009       
-## BWIPA:(S_R)  0.012  0.004</code></pre>
+##             BrBrwA BrNYLg BrPrsB BrRvnR BrRvrB BrWIPA BBA:(S BNYL:( BPB:(S BRR:(S BRB:(S
+## BeerNYLager  0.069                                                                      
+## BeerPorsBck  0.080  0.090                                                               
+## BrRvnsbrgRd  0.079  0.089  0.099                                                        
+## BeerRiverBr  0.076  0.090  0.099  0.096                                                 
+## BeerWhetIPA  0.078  0.091  0.100  0.099  0.099                                          
+## BrBA:(S_R)1 -0.664  0.000 -0.004 -0.005  0.000 -0.001                                   
+## BNYL:(S_R)1  0.001 -0.496  0.001 -0.002 -0.001 -0.002  0.000                            
+## BrPB:(S_R)1 -0.009  0.002 -0.268 -0.003 -0.002  0.000  0.014 -0.005                     
+## BrRR:(S_R)1 -0.009 -0.003 -0.003 -0.332  0.003 -0.004  0.014  0.006  0.010              
+## BrRB:(S_R)1  0.003 -0.002 -0.001  0.004 -0.293 -0.001 -0.001  0.004  0.008 -0.009       
+## BWIPA:(S_R) -0.002 -0.003  0.001 -0.004 -0.001 -0.276  0.003  0.006 -0.002  0.012  0.004</code></pre>
 <p>Here we see that the attribute will increase the liking by <span class="math inline">\(0.7\)</span> points for <em>Brown Ale</em> and up to <span class="math inline">\(2.4\)</span> points for <em>Wheat IPA</em>.</p>
 </div>
 <div id="all-attributes" class="section level3 hasAnchor" number="15.1.2">
 <h3><span class="header-section-number">15.1.2</span> All attributes<a href="cata-and-hedonics.html#all-attributes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can visualize for all attributes:</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="cata-and-hedonics.html#cb306-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
-<span id="cb306-2"><a href="cata-and-hedonics.html#cb306-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cata, val,S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
-<span id="cb306-3"><a href="cata-and-hedonics.html#cb306-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(Beer,  Liking, <span class="at">fill =</span> <span class="fu">factor</span>(val))) <span class="sc">+</span> </span>
-<span id="cb306-4"><a href="cata-and-hedonics.html#cb306-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb306-5"><a href="cata-and-hedonics.html#cb306-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">79</span>, <span class="at">hjust =</span> <span class="dv">1</span>), <span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb306-6"><a href="cata-and-hedonics.html#cb306-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cata, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
-<span id="cb306-7"><a href="cata-and-hedonics.html#cb306-7" aria-hidden="true" tabindex="-1"></a>g1 </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="cata-and-hedonics.html#cb299-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
+<span id="cb299-2"><a href="cata-and-hedonics.html#cb299-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cata, val,S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-3"><a href="cata-and-hedonics.html#cb299-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(Beer,  Liking, <span class="at">fill =</span> <span class="fu">factor</span>(val))) <span class="sc">+</span> </span>
+<span id="cb299-4"><a href="cata-and-hedonics.html#cb299-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb299-5"><a href="cata-and-hedonics.html#cb299-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">79</span>, <span class="at">hjust =</span> <span class="dv">1</span>), <span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb299-6"><a href="cata-and-hedonics.html#cb299-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cata, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb299-7"><a href="cata-and-hedonics.html#cb299-7" aria-hidden="true" tabindex="-1"></a>g1 </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
 <p>For each attribute a interaction model will be used to qualify further analysis.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="cata-and-hedonics.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb307-2"><a href="cata-and-hedonics.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
-<span id="cb307-3"><a href="cata-and-hedonics.html#cb307-3" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
-<span id="cb307-4"><a href="cata-and-hedonics.html#cb307-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cata, val,S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
-<span id="cb307-5"><a href="cata-and-hedonics.html#cb307-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cata) <span class="sc">%&gt;%</span> </span>
-<span id="cb307-6"><a href="cata-and-hedonics.html#cb307-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Liking<span class="sc">~</span><span class="fu">factor</span>(val)<span class="sc">*</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) <span class="sc">%&gt;%</span> anova <span class="sc">%&gt;%</span> tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="cata-and-hedonics.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb300-2"><a href="cata-and-hedonics.html#cb300-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
+<span id="cb300-3"><a href="cata-and-hedonics.html#cb300-3" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
+<span id="cb300-4"><a href="cata-and-hedonics.html#cb300-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cata, val,S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
+<span id="cb300-5"><a href="cata-and-hedonics.html#cb300-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cata) <span class="sc">%&gt;%</span> </span>
+<span id="cb300-6"><a href="cata-and-hedonics.html#cb300-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Liking<span class="sc">~</span><span class="fu">factor</span>(val)<span class="sc">*</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) <span class="sc">%&gt;%</span> anova <span class="sc">%&gt;%</span> tidy)</span></code></pre></div>
 <p>This table has both main effect of the beer and cata-attribute as well their interaction.</p>
 <p>This print out shows the attributes related to liking - overall.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="cata-and-hedonics.html#cb308-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb308-2"><a href="cata-and-hedonics.html#cb308-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;factor(val)&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb308-3"><a href="cata-and-hedonics.html#cb308-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="cata-and-hedonics.html#cb301-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb301-2"><a href="cata-and-hedonics.html#cb301-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;factor(val)&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb301-3"><a href="cata-and-hedonics.html#cb301-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value)</span></code></pre></div>
 <pre><code>## # A tibble: 27 × 8
 ## # Groups:   cata [27]
 ##    cata              term        sumsq meansq NumDF DenDF statistic  p.value
@@ -565,10 +558,10 @@ Further, this is even more so for light-colored beers like <em>Wheat IPA</em> an
 ## 10 S_Liquor          factor(val)  16.0   16.0     1  908.      6.00 1.45e- 2
 ## # ℹ 17 more rows</code></pre>
 <p>The strongest ones are S_Refreshing, S_Sour, etc. while the presence of S_Warming, S_Pungent etc. has no effect on liking.</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="cata-and-hedonics.html#cb310-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb310-2"><a href="cata-and-hedonics.html#cb310-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;factor(val):Beer&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb310-3"><a href="cata-and-hedonics.html#cb310-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value) <span class="sc">%&gt;%</span> </span>
-<span id="cb310-4"><a href="cata-and-hedonics.html#cb310-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="cata-and-hedonics.html#cb303-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb303-2"><a href="cata-and-hedonics.html#cb303-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;factor(val):Beer&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb303-3"><a href="cata-and-hedonics.html#cb303-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value) <span class="sc">%&gt;%</span> </span>
+<span id="cb303-4"><a href="cata-and-hedonics.html#cb303-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ## # Groups:   cata [6]
 ##   cata              term             sumsq meansq NumDF DenDF statistic  p.value
@@ -581,19 +574,19 @@ Further, this is even more so for light-colored beers like <em>Wheat IPA</em> an
 ## 6 S_Regional spices factor(val):Beer  27.8   5.57     5  873.      2.13 0.0595</code></pre>
 <p>This table shows that S_Refreshing, S_Fruity, etc. has differential impact on the liking dependent on the beer it is detected in.</p>
 <p>A deep dive into the effect can be done using the setup with a single variable above using the <em>tidyverse</em> and <em>broom</em> framework.</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="cata-and-hedonics.html#cb312-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
-<span id="cb312-2"><a href="cata-and-hedonics.html#cb312-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cata, val,S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
-<span id="cb312-3"><a href="cata-and-hedonics.html#cb312-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cata) <span class="sc">%&gt;%</span> </span>
-<span id="cb312-4"><a href="cata-and-hedonics.html#cb312-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Liking<span class="sc">~</span>Beer <span class="sc">+</span> <span class="fu">factor</span>(val)<span class="sc">:</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span></code></pre></div>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="cata-and-hedonics.html#cb313-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="sc">%&gt;%</span> </span>
-<span id="cb313-2"><a href="cata-and-hedonics.html#cb313-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(term,<span class="st">&#39;factor&#39;</span>)) <span class="sc">%&gt;%</span>  <span class="co"># filter to get individual beer differences. </span></span>
-<span id="cb313-3"><a href="cata-and-hedonics.html#cb313-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cata <span class="sc">%in%</span> tb<span class="sc">$</span>cata[tb<span class="sc">$</span>term<span class="sc">==</span><span class="st">&#39;factor(val):Beer&#39;</span> <span class="sc">&amp;</span> tb<span class="sc">$</span>p.value<span class="sc">&lt;</span><span class="fl">0.05</span>]) <span class="sc">%&gt;%</span> <span class="co"># include only interesting ones. </span></span>
-<span id="cb313-4"><a href="cata-and-hedonics.html#cb313-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(<span class="fu">substr</span>(term,<span class="dv">5</span>,<span class="dv">14</span>), estimate, <span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high)) <span class="sc">+</span> </span>
-<span id="cb313-5"><a href="cata-and-hedonics.html#cb313-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb313-6"><a href="cata-and-hedonics.html#cb313-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>cata) <span class="sc">+</span> </span>
-<span id="cb313-7"><a href="cata-and-hedonics.html#cb313-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">79</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb313-8"><a href="cata-and-hedonics.html#cb313-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Beer&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="cata-and-hedonics.html#cb305-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
+<span id="cb305-2"><a href="cata-and-hedonics.html#cb305-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cata, val,S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
+<span id="cb305-3"><a href="cata-and-hedonics.html#cb305-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cata) <span class="sc">%&gt;%</span> </span>
+<span id="cb305-4"><a href="cata-and-hedonics.html#cb305-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Liking<span class="sc">~</span>Beer <span class="sc">+</span> <span class="fu">factor</span>(val)<span class="sc">:</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="cata-and-hedonics.html#cb306-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="sc">%&gt;%</span> </span>
+<span id="cb306-2"><a href="cata-and-hedonics.html#cb306-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(term,<span class="st">&#39;factor&#39;</span>)) <span class="sc">%&gt;%</span>  <span class="co"># filter to get individual beer differences. </span></span>
+<span id="cb306-3"><a href="cata-and-hedonics.html#cb306-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cata <span class="sc">%in%</span> tb<span class="sc">$</span>cata[tb<span class="sc">$</span>term<span class="sc">==</span><span class="st">&#39;factor(val):Beer&#39;</span> <span class="sc">&amp;</span> tb<span class="sc">$</span>p.value<span class="sc">&lt;</span><span class="fl">0.05</span>]) <span class="sc">%&gt;%</span> <span class="co"># include only interesting ones. </span></span>
+<span id="cb306-4"><a href="cata-and-hedonics.html#cb306-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(<span class="fu">substr</span>(term,<span class="dv">5</span>,<span class="dv">14</span>), estimate, <span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high)) <span class="sc">+</span> </span>
+<span id="cb306-5"><a href="cata-and-hedonics.html#cb306-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb306-6"><a href="cata-and-hedonics.html#cb306-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>cata) <span class="sc">+</span> </span>
+<span id="cb306-7"><a href="cata-and-hedonics.html#cb306-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">79</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb306-8"><a href="cata-and-hedonics.html#cb306-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Beer&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
 <p>The interpretation is that detecting <em>Smoked</em> in e.g. <em>Ravnsborg Red</em> tends to be positive, while it is pretty bad in <em>Wheat IPA</em>.
 Similarly, <em>Fruity</em> is related to higher liking in <em>Wheat IPA</em> and <em>Porse Bock</em> but a bad thing in <em>River Beer</em>.
 <em>Nutty</em> only matters on liking in <em>Ravnsborg Red</em> and <em>River beer</em>.</p>
@@ -602,23 +595,23 @@ Similarly, <em>Fruity</em> is related to higher liking in <em>Wheat IPA</em> and
 <div id="pca-on-cata-and-liking" class="section level2 hasAnchor" number="15.2">
 <h2><span class="header-section-number">15.2</span> PCA on CATA and Liking<a href="cata-and-hedonics.html#pca-on-cata-and-liking" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A PCA on the agglomerated CATA counts including the liking will reveal the attributes associated with the individual products, and which attributes are correlated with the liking.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="cata-and-hedonics.html#cb314-1" aria-hidden="true" tabindex="-1"></a>xbeeragglom <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
-<span id="cb314-2"><a href="cata-and-hedonics.html#cb314-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cata, val,S_Flowers<span class="sc">:</span>S_Vinous, Liking) <span class="sc">%&gt;%</span> <span class="co">#looong format for all variables</span></span>
-<span id="cb314-3"><a href="cata-and-hedonics.html#cb314-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Beer,cata) <span class="sc">%&gt;%</span> <span class="co"># summarize for each beer type</span></span>
-<span id="cb314-4"><a href="cata-and-hedonics.html#cb314-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">yy =</span> <span class="fu">mean</span>(val, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
-<span id="cb314-5"><a href="cata-and-hedonics.html#cb314-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cata,yy) <span class="co"># wide format</span></span></code></pre></div>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="cata-and-hedonics.html#cb315-1" aria-hidden="true" tabindex="-1"></a>mdlPCAcataliking <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(xbeeragglom[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">scale. =</span> T)</span>
-<span id="cb315-2"><a href="cata-and-hedonics.html#cb315-2" aria-hidden="true" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(mdlPCAcataliking, <span class="at">labels =</span> xbeeragglom<span class="sc">$</span>Beer)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="cata-and-hedonics.html#cb307-1" aria-hidden="true" tabindex="-1"></a>xbeeragglom <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
+<span id="cb307-2"><a href="cata-and-hedonics.html#cb307-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cata, val,S_Flowers<span class="sc">:</span>S_Vinous, Liking) <span class="sc">%&gt;%</span> <span class="co">#looong format for all variables</span></span>
+<span id="cb307-3"><a href="cata-and-hedonics.html#cb307-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Beer,cata) <span class="sc">%&gt;%</span> <span class="co"># summarize for each beer type</span></span>
+<span id="cb307-4"><a href="cata-and-hedonics.html#cb307-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">yy =</span> <span class="fu">mean</span>(val, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb307-5"><a href="cata-and-hedonics.html#cb307-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cata,yy) <span class="co"># wide format</span></span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="cata-and-hedonics.html#cb308-1" aria-hidden="true" tabindex="-1"></a>mdlPCAcataliking <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(xbeeragglom[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">scale. =</span> T)</span>
+<span id="cb308-2"><a href="cata-and-hedonics.html#cb308-2" aria-hidden="true" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(mdlPCAcataliking, <span class="at">labels =</span> xbeeragglom<span class="sc">$</span>Beer)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
 <p>The attributes Bean, Caramel, Warming, Aromatic etc is associated to the beer <em>Brown ale</em>, while Berrie, Dessert, Pungent, etc. is characteristic of <em>Wheat IPA</em>. Further, <em>Liking</em> is associated with all attributes on the first component, such as Aromatic, Warming, etc.</p>
 <div id="a-beer-centric-model" class="section level3 hasAnchor" number="15.2.1">
 <h3><span class="header-section-number">15.2.1</span> A beer centric model<a href="cata-and-hedonics.html#a-beer-centric-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The above PCA shows general good- and bad attributes in terms of liking. However, the univariate analysis indicated that for some beers e.g. Smoked was a good thing while for others not so much.</p>
 <p>For that reason we can build a PCA for each beer to see which attributes that drives liking</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="cata-and-hedonics.html#cb316-1" aria-hidden="true" tabindex="-1"></a>xbeer <span class="ot">&lt;-</span> xbeer[<span class="fu">complete.cases</span>(xbeer),]</span>
-<span id="cb316-2"><a href="cata-and-hedonics.html#cb316-2" aria-hidden="true" tabindex="-1"></a>PCAmdl_RR <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(xbeer[xbeer<span class="sc">$</span>Beer<span class="sc">==</span><span class="st">&#39;Ravnsborg Red&#39;</span>,<span class="dv">14</span><span class="sc">:</span><span class="dv">41</span>], <span class="at">scale. =</span> T)</span>
-<span id="cb316-3"><a href="cata-and-hedonics.html#cb316-3" aria-hidden="true" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(PCAmdl_RR)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="cata-and-hedonics.html#cb309-1" aria-hidden="true" tabindex="-1"></a>xbeer <span class="ot">&lt;-</span> xbeer[<span class="fu">complete.cases</span>(xbeer),]</span>
+<span id="cb309-2"><a href="cata-and-hedonics.html#cb309-2" aria-hidden="true" tabindex="-1"></a>PCAmdl_RR <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(xbeer[xbeer<span class="sc">$</span>Beer<span class="sc">==</span><span class="st">&#39;Ravnsborg Red&#39;</span>,<span class="dv">14</span><span class="sc">:</span><span class="dv">41</span>], <span class="at">scale. =</span> T)</span>
+<span id="cb309-3"><a href="cata-and-hedonics.html#cb309-3" aria-hidden="true" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(PCAmdl_RR)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
 <p>Caramel, Savoury spices and Reefreshing is promoting liking, while Sour is not.</p>
 
 </div>

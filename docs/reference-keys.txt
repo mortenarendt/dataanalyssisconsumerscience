@@ -1,5 +1,6 @@
 tab:unnamed-chunk-38
 tab:unnamed-chunk-82
+tab:unnamed-chunk-171
 introduction-to-the-book
 introduction-to-r
 how-to-get-started---understanding-r-and-rstudio
@@ -85,11 +86,11 @@ the-tidyverse-way
 consumer-segmentation
 segmentation
 k-means
-internal-characterization-of-clusters
+initial-characterization-of-clusters
 vizualization
-k-means-splits-variation
+sums-of-squares-from-the-clustering
 selecting-the-number-of-clusters
-segmentation---example-2
+segmentation---another-example
 cluster-analysis
 plot-the-model-using-pca
 add-to-dataset

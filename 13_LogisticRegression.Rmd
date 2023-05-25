@@ -72,7 +72,7 @@ pork[["Gender"]] <- as.factor(pork[["Gender"]])
 # 1: Male, 2: Female
 
 ## Fitting logistic model
-logreg.1.gender <- glm(cluster1 ~ Gender, data = pork, family = binomial)
+logreg.1.gender <- glm(cluster1 ~ factor(Gender), data = pork, family = binomial)
 summary(logreg.1.gender)
 ```
 
@@ -119,13 +119,13 @@ where $p_1$ and $p_2$ are probabilities of females and males respectively.
 Here we use the observed probability predictions for females and males (see *Probabilities of segment membership* above) to calculate the OR given the formula: 
 
 ```{r, eval = F, echo=T}
-p1 <- 0.38
-p2 <- 0.27
+p1 <- 0.27
+p2 <- 0.38
 OR <-(p1*(1-p2))/((1-p1)*p2) # put in the ratio-calculation here
 OR
 ```
 
-Which is exactly the same as the output from the exponential of the coeficient in the model. 
+Which is exactly the same as the output from the exponential of the coefficient in the model. 
 
 ## Effect of Age 
 

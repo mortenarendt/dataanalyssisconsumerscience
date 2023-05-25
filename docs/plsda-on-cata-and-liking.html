@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 25 PLSDA on CATA and liking | Data Analysis in R for Sensory and Consumer Science</title>
   <meta name="description" content="Chapter 25 PLSDA on CATA and liking | Data Analysis in R for Sensory and Consumer Science" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 25 PLSDA on CATA and liking | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -119,6 +121,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -261,12 +267,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation"><i class="fa fa-check"></i><b>11.1</b> Segmentation</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#k-means"><i class="fa fa-check"></i><b>11.1.1</b> K-means</a></li>
-<li class="chapter" data-level="11.1.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#internal-characterization-of-clusters"><i class="fa fa-check"></i><b>11.1.2</b> Internal characterization of clusters</a></li>
+<li class="chapter" data-level="11.1.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#initial-characterization-of-clusters"><i class="fa fa-check"></i><b>11.1.2</b> Initial characterization of clusters</a></li>
 <li class="chapter" data-level="11.1.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#vizualization"><i class="fa fa-check"></i><b>11.1.3</b> Vizualization</a></li>
-<li class="chapter" data-level="11.1.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#k-means-splits-variation"><i class="fa fa-check"></i><b>11.1.4</b> K-means splits variation</a></li>
+<li class="chapter" data-level="11.1.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#sums-of-squares-from-the-clustering"><i class="fa fa-check"></i><b>11.1.4</b> Sums of Squares from the clustering</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#selecting-the-number-of-clusters"><i class="fa fa-check"></i><b>11.2</b> Selecting the number of clusters</a></li>
-<li class="chapter" data-level="11.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation---example-2"><i class="fa fa-check"></i><b>11.3</b> Segmentation - example 2</a>
+<li class="chapter" data-level="11.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation---another-example"><i class="fa fa-check"></i><b>11.3</b> Segmentation - another example</a>
 <ul>
 <li class="chapter" data-level="11.3.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#cluster-analysis"><i class="fa fa-check"></i><b>11.3.1</b> Cluster analysis</a></li>
 <li class="chapter" data-level="11.3.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#plot-the-model-using-pca"><i class="fa fa-check"></i><b>11.3.2</b> Plot the model using PCA</a></li>
@@ -421,81 +427,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="plsda-on-cata-and-liking" class="section level1 hasAnchor" number="25">
 <h1><span class="header-section-number">Chapter 25</span> PLSDA on CATA and liking<a href="plsda-on-cata-and-liking.html#plsda-on-cata-and-liking" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>[This needs more love. Skal vente til 2023! hvordan får vi det ud af bogen så?]</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="plsda-on-cata-and-liking.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb365-2"><a href="plsda-on-cata-and-liking.html#cb365-2" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">plsda</span>(<span class="fu">data.frame</span>(beercata[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>]),<span class="fu">factor</span>(beercata<span class="sc">$</span>Beer),<span class="at">ncomp =</span> <span class="dv">3</span>)</span>
-<span id="cb365-3"><a href="plsda-on-cata-and-liking.html#cb365-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb365-4"><a href="plsda-on-cata-and-liking.html#cb365-4" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> mdl<span class="sc">$</span>scores <span class="sc">%&gt;%</span> </span>
-<span id="cb365-5"><a href="plsda-on-cata-and-liking.html#cb365-5" aria-hidden="true" tabindex="-1"></a>  unclass <span class="sc">%&gt;%</span> </span>
-<span id="cb365-6"><a href="plsda-on-cata-and-liking.html#cb365-6" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span> </span>
-<span id="cb365-7"><a href="plsda-on-cata-and-liking.html#cb365-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(beercata)</span>
-<span id="cb365-8"><a href="plsda-on-cata-and-liking.html#cb365-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb365-9"><a href="plsda-on-cata-and-liking.html#cb365-9" aria-hidden="true" tabindex="-1"></a>loadings <span class="ot">&lt;-</span> mdl<span class="sc">$</span>loadings <span class="sc">%&gt;%</span> </span>
-<span id="cb365-10"><a href="plsda-on-cata-and-liking.html#cb365-10" aria-hidden="true" tabindex="-1"></a>  unclass <span class="sc">%&gt;%</span> </span>
-<span id="cb365-11"><a href="plsda-on-cata-and-liking.html#cb365-11" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span> </span>
-<span id="cb365-12"><a href="plsda-on-cata-and-liking.html#cb365-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">&#39;attrib&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb365-13"><a href="plsda-on-cata-and-liking.html#cb365-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">attrib2 =</span> <span class="fu">substr</span>(attrib,<span class="dv">3</span>,<span class="dv">50</span>)) <span class="co"># lets remove the S_</span></span>
-<span id="cb365-14"><a href="plsda-on-cata-and-liking.html#cb365-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb365-15"><a href="plsda-on-cata-and-liking.html#cb365-15" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> loadings, <span class="fu">aes</span>(<span class="st">`</span><span class="at">Comp 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp 2</span><span class="st">`</span>, <span class="at">label =</span> attrib2)) <span class="sc">+</span> </span>
-<span id="cb365-16"><a href="plsda-on-cata-and-liking.html#cb365-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point() + </span></span>
-<span id="cb365-17"><a href="plsda-on-cata-and-liking.html#cb365-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>()</span>
-<span id="cb365-18"><a href="plsda-on-cata-and-liking.html#cb365-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb365-19"><a href="plsda-on-cata-and-liking.html#cb365-19" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> scores, <span class="fu">aes</span>(<span class="st">`</span><span class="at">Comp 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp 2</span><span class="st">`</span>, <span class="at">color =</span> Beer)) <span class="sc">+</span> </span>
-<span id="cb365-20"><a href="plsda-on-cata-and-liking.html#cb365-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point() + </span></span>
-<span id="cb365-21"><a href="plsda-on-cata-and-liking.html#cb365-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>(<span class="at">level =</span> <span class="fl">0.5</span>)</span>
-<span id="cb365-22"><a href="plsda-on-cata-and-liking.html#cb365-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb365-23"><a href="plsda-on-cata-and-liking.html#cb365-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb365-24"><a href="plsda-on-cata-and-liking.html#cb365-24" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> g2</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="plsda-on-cata-and-liking.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="co"># do multiple splithalfs</span></span>
-<span id="cb366-2"><a href="plsda-on-cata-and-liking.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="co"># INPUT: judge id. CATA, class, ncomp</span></span>
-<span id="cb366-3"><a href="plsda-on-cata-and-liking.html#cb366-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> beercata[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>]</span>
-<span id="cb366-4"><a href="plsda-on-cata-and-liking.html#cb366-4" aria-hidden="true" tabindex="-1"></a>clss <span class="ot">&lt;-</span> <span class="fu">factor</span>(beercata<span class="sc">$</span>Beer)</span>
-<span id="cb366-5"><a href="plsda-on-cata-and-liking.html#cb366-5" aria-hidden="true" tabindex="-1"></a>judge <span class="ot">&lt;-</span> beercata<span class="sc">$</span>Consumer.ID</span>
-<span id="cb366-6"><a href="plsda-on-cata-and-liking.html#cb366-6" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb366-7"><a href="plsda-on-cata-and-liking.html#cb366-7" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb366-8"><a href="plsda-on-cata-and-liking.html#cb366-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-9"><a href="plsda-on-cata-and-liking.html#cb366-9" aria-hidden="true" tabindex="-1"></a>mdl0 <span class="ot">&lt;-</span> <span class="fu">plsda</span>(X,clss,<span class="at">ncomp =</span> k)</span>
-<span id="cb366-10"><a href="plsda-on-cata-and-liking.html#cb366-10" aria-hidden="true" tabindex="-1"></a>lds0 <span class="ot">&lt;-</span> mdl0<span class="sc">$</span>loadings <span class="sc">%&gt;%</span> </span>
-<span id="cb366-11"><a href="plsda-on-cata-and-liking.html#cb366-11" aria-hidden="true" tabindex="-1"></a>  unclass <span class="sc">%&gt;%</span> </span>
-<span id="cb366-12"><a href="plsda-on-cata-and-liking.html#cb366-12" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span> </span>
-<span id="cb366-13"><a href="plsda-on-cata-and-liking.html#cb366-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">&#39;attrib&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-14"><a href="plsda-on-cata-and-liking.html#cb366-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cmp,val0,<span class="sc">-</span>attrib) </span>
-<span id="cb366-15"><a href="plsda-on-cata-and-liking.html#cb366-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-16"><a href="plsda-on-cata-and-liking.html#cb366-16" aria-hidden="true" tabindex="-1"></a>unjudge <span class="ot">&lt;-</span> <span class="fu">unique</span>(judge)</span>
-<span id="cb366-17"><a href="plsda-on-cata-and-liking.html#cb366-17" aria-hidden="true" tabindex="-1"></a>nindiv <span class="ot">&lt;-</span> <span class="fu">length</span>(unjudge)</span>
-<span id="cb366-18"><a href="plsda-on-cata-and-liking.html#cb366-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-19"><a href="plsda-on-cata-and-liking.html#cb366-19" aria-hidden="true" tabindex="-1"></a>LOADS <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb366-20"><a href="plsda-on-cata-and-liking.html#cb366-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>A){</span>
-<span id="cb366-21"><a href="plsda-on-cata-and-liking.html#cb366-21" aria-hidden="true" tabindex="-1"></a>  ic <span class="ot">&lt;-</span> judge <span class="sc">%in%</span> <span class="fu">sample</span>(unjudge)[<span class="dv">1</span><span class="sc">:</span><span class="fu">round</span>(nindiv<span class="sc">/</span><span class="dv">2</span>)]</span>
-<span id="cb366-22"><a href="plsda-on-cata-and-liking.html#cb366-22" aria-hidden="true" tabindex="-1"></a>  mdlSH <span class="ot">&lt;-</span> <span class="fu">plsda</span>(X[ic,],clss[ic],<span class="at">ncomp =</span> k)</span>
-<span id="cb366-23"><a href="plsda-on-cata-and-liking.html#cb366-23" aria-hidden="true" tabindex="-1"></a>  df_flip <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sng =</span> <span class="fu">sign</span>(<span class="fu">diag</span>(<span class="fu">t</span>(mdl0<span class="sc">$</span>loadings) <span class="sc">%*%</span> mdlSH<span class="sc">$</span>loadings))) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-24"><a href="plsda-on-cata-and-liking.html#cb366-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">&#39;cmp&#39;</span>)</span>
-<span id="cb366-25"><a href="plsda-on-cata-and-liking.html#cb366-25" aria-hidden="true" tabindex="-1"></a>  lds <span class="ot">&lt;-</span> mdlSH<span class="sc">$</span>loadings <span class="sc">%&gt;%</span> </span>
-<span id="cb366-26"><a href="plsda-on-cata-and-liking.html#cb366-26" aria-hidden="true" tabindex="-1"></a>    unclass <span class="sc">%&gt;%</span> </span>
-<span id="cb366-27"><a href="plsda-on-cata-and-liking.html#cb366-27" aria-hidden="true" tabindex="-1"></a>    as.data.frame <span class="sc">%&gt;%</span> </span>
-<span id="cb366-28"><a href="plsda-on-cata-and-liking.html#cb366-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">&#39;attrib&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-29"><a href="plsda-on-cata-and-liking.html#cb366-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gather</span>(cmp,val,<span class="sc">-</span>attrib) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-30"><a href="plsda-on-cata-and-liking.html#cb366-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(df_flip, <span class="at">by =</span> <span class="st">&#39;cmp&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-31"><a href="plsda-on-cata-and-liking.html#cb366-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">SHiter =</span> i, </span>
-<span id="cb366-32"><a href="plsda-on-cata-and-liking.html#cb366-32" aria-hidden="true" tabindex="-1"></a>           <span class="at">val =</span> val<span class="sc">*</span>sng)  </span>
-<span id="cb366-33"><a href="plsda-on-cata-and-liking.html#cb366-33" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb366-34"><a href="plsda-on-cata-and-liking.html#cb366-34" aria-hidden="true" tabindex="-1"></a>  LOADS <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(LOADS,lds)</span>
-<span id="cb366-35"><a href="plsda-on-cata-and-liking.html#cb366-35" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb366-36"><a href="plsda-on-cata-and-liking.html#cb366-36" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">/</span> A)<span class="sc">*</span>((A <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span>A)</span>
-<span id="cb366-37"><a href="plsda-on-cata-and-liking.html#cb366-37" aria-hidden="true" tabindex="-1"></a>sdloads <span class="ot">&lt;-</span> LOADS <span class="sc">%&gt;%</span> </span>
-<span id="cb366-38"><a href="plsda-on-cata-and-liking.html#cb366-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(lds0, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;attrib&#39;</span>,<span class="st">&#39;cmp&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-39"><a href="plsda-on-cata-and-liking.html#cb366-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(attrib,cmp) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-40"><a href="plsda-on-cata-and-liking.html#cb366-40" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">sd =</span> <span class="fu">sum</span>((val<span class="sc">-</span>val0)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span>fc) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-41"><a href="plsda-on-cata-and-liking.html#cb366-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cmp =</span> <span class="fu">paste</span>(<span class="st">&#39;sd&#39;</span>,cmp,<span class="at">sep =</span> <span class="st">&#39;&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-42"><a href="plsda-on-cata-and-liking.html#cb366-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cmp,sd)</span>
-<span id="cb366-43"><a href="plsda-on-cata-and-liking.html#cb366-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-44"><a href="plsda-on-cata-and-liking.html#cb366-44" aria-hidden="true" tabindex="-1"></a>loadsSH <span class="ot">&lt;-</span> lds0 <span class="sc">%&gt;%</span> </span>
-<span id="cb366-45"><a href="plsda-on-cata-and-liking.html#cb366-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cmp,val0) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-46"><a href="plsda-on-cata-and-liking.html#cb366-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(sdloads, <span class="at">by =</span> <span class="st">&#39;attrib&#39;</span>)</span>
-<span id="cb366-47"><a href="plsda-on-cata-and-liking.html#cb366-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-48"><a href="plsda-on-cata-and-liking.html#cb366-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
-<span id="cb366-49"><a href="plsda-on-cata-and-liking.html#cb366-49" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> loadsSH, <span class="fu">aes</span>(<span class="at">x0 =</span> <span class="st">`</span><span class="at">Comp 1</span><span class="st">`</span>,<span class="at">y0 =</span> <span class="st">`</span><span class="at">Comp 2</span><span class="st">`</span>,<span class="at">a =</span> <span class="st">`</span><span class="at">sdComp 1</span><span class="st">`</span>,<span class="at">b =</span> <span class="st">`</span><span class="at">sdComp 2</span><span class="st">`</span>,<span class="at">angle =</span> <span class="dv">0</span>)) <span class="sc">+</span> <span class="fu">geom_ellipse</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-198-2.png" width="672" /></p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="plsda-on-cata-and-liking.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb369-2"><a href="plsda-on-cata-and-liking.html#cb369-2" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">plsda</span>(<span class="fu">data.frame</span>(beercata[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>]),<span class="fu">factor</span>(beercata<span class="sc">$</span>Beer),<span class="at">ncomp =</span> <span class="dv">3</span>)</span>
+<span id="cb369-3"><a href="plsda-on-cata-and-liking.html#cb369-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-4"><a href="plsda-on-cata-and-liking.html#cb369-4" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> mdl<span class="sc">$</span>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb369-5"><a href="plsda-on-cata-and-liking.html#cb369-5" aria-hidden="true" tabindex="-1"></a>  unclass <span class="sc">%&gt;%</span> </span>
+<span id="cb369-6"><a href="plsda-on-cata-and-liking.html#cb369-6" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span> </span>
+<span id="cb369-7"><a href="plsda-on-cata-and-liking.html#cb369-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(beercata)</span>
+<span id="cb369-8"><a href="plsda-on-cata-and-liking.html#cb369-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-9"><a href="plsda-on-cata-and-liking.html#cb369-9" aria-hidden="true" tabindex="-1"></a>loadings <span class="ot">&lt;-</span> mdl<span class="sc">$</span>loadings <span class="sc">%&gt;%</span> </span>
+<span id="cb369-10"><a href="plsda-on-cata-and-liking.html#cb369-10" aria-hidden="true" tabindex="-1"></a>  unclass <span class="sc">%&gt;%</span> </span>
+<span id="cb369-11"><a href="plsda-on-cata-and-liking.html#cb369-11" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span> </span>
+<span id="cb369-12"><a href="plsda-on-cata-and-liking.html#cb369-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">&#39;attrib&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb369-13"><a href="plsda-on-cata-and-liking.html#cb369-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">attrib2 =</span> <span class="fu">substr</span>(attrib,<span class="dv">3</span>,<span class="dv">50</span>)) <span class="co"># lets remove the S_</span></span>
+<span id="cb369-14"><a href="plsda-on-cata-and-liking.html#cb369-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-15"><a href="plsda-on-cata-and-liking.html#cb369-15" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> loadings, <span class="fu">aes</span>(<span class="st">`</span><span class="at">Comp 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp 2</span><span class="st">`</span>, <span class="at">label =</span> attrib2)) <span class="sc">+</span> </span>
+<span id="cb369-16"><a href="plsda-on-cata-and-liking.html#cb369-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point() + </span></span>
+<span id="cb369-17"><a href="plsda-on-cata-and-liking.html#cb369-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>()</span>
+<span id="cb369-18"><a href="plsda-on-cata-and-liking.html#cb369-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-19"><a href="plsda-on-cata-and-liking.html#cb369-19" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> scores, <span class="fu">aes</span>(<span class="st">`</span><span class="at">Comp 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp 2</span><span class="st">`</span>, <span class="at">color =</span> Beer)) <span class="sc">+</span> </span>
+<span id="cb369-20"><a href="plsda-on-cata-and-liking.html#cb369-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point() + </span></span>
+<span id="cb369-21"><a href="plsda-on-cata-and-liking.html#cb369-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>(<span class="at">level =</span> <span class="fl">0.5</span>)</span>
+<span id="cb369-22"><a href="plsda-on-cata-and-liking.html#cb369-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-23"><a href="plsda-on-cata-and-liking.html#cb369-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb369-24"><a href="plsda-on-cata-and-liking.html#cb369-24" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> g2</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="plsda-on-cata-and-liking.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="co"># do multiple splithalfs</span></span>
+<span id="cb370-2"><a href="plsda-on-cata-and-liking.html#cb370-2" aria-hidden="true" tabindex="-1"></a><span class="co"># INPUT: judge id. CATA, class, ncomp</span></span>
+<span id="cb370-3"><a href="plsda-on-cata-and-liking.html#cb370-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> beercata[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>]</span>
+<span id="cb370-4"><a href="plsda-on-cata-and-liking.html#cb370-4" aria-hidden="true" tabindex="-1"></a>clss <span class="ot">&lt;-</span> <span class="fu">factor</span>(beercata<span class="sc">$</span>Beer)</span>
+<span id="cb370-5"><a href="plsda-on-cata-and-liking.html#cb370-5" aria-hidden="true" tabindex="-1"></a>judge <span class="ot">&lt;-</span> beercata<span class="sc">$</span>Consumer.ID</span>
+<span id="cb370-6"><a href="plsda-on-cata-and-liking.html#cb370-6" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb370-7"><a href="plsda-on-cata-and-liking.html#cb370-7" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb370-8"><a href="plsda-on-cata-and-liking.html#cb370-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-9"><a href="plsda-on-cata-and-liking.html#cb370-9" aria-hidden="true" tabindex="-1"></a>mdl0 <span class="ot">&lt;-</span> <span class="fu">plsda</span>(X,clss,<span class="at">ncomp =</span> k)</span>
+<span id="cb370-10"><a href="plsda-on-cata-and-liking.html#cb370-10" aria-hidden="true" tabindex="-1"></a>lds0 <span class="ot">&lt;-</span> mdl0<span class="sc">$</span>loadings <span class="sc">%&gt;%</span> </span>
+<span id="cb370-11"><a href="plsda-on-cata-and-liking.html#cb370-11" aria-hidden="true" tabindex="-1"></a>  unclass <span class="sc">%&gt;%</span> </span>
+<span id="cb370-12"><a href="plsda-on-cata-and-liking.html#cb370-12" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span> </span>
+<span id="cb370-13"><a href="plsda-on-cata-and-liking.html#cb370-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">&#39;attrib&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb370-14"><a href="plsda-on-cata-and-liking.html#cb370-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cmp,val0,<span class="sc">-</span>attrib) </span>
+<span id="cb370-15"><a href="plsda-on-cata-and-liking.html#cb370-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-16"><a href="plsda-on-cata-and-liking.html#cb370-16" aria-hidden="true" tabindex="-1"></a>unjudge <span class="ot">&lt;-</span> <span class="fu">unique</span>(judge)</span>
+<span id="cb370-17"><a href="plsda-on-cata-and-liking.html#cb370-17" aria-hidden="true" tabindex="-1"></a>nindiv <span class="ot">&lt;-</span> <span class="fu">length</span>(unjudge)</span>
+<span id="cb370-18"><a href="plsda-on-cata-and-liking.html#cb370-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-19"><a href="plsda-on-cata-and-liking.html#cb370-19" aria-hidden="true" tabindex="-1"></a>LOADS <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb370-20"><a href="plsda-on-cata-and-liking.html#cb370-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>A){</span>
+<span id="cb370-21"><a href="plsda-on-cata-and-liking.html#cb370-21" aria-hidden="true" tabindex="-1"></a>  ic <span class="ot">&lt;-</span> judge <span class="sc">%in%</span> <span class="fu">sample</span>(unjudge)[<span class="dv">1</span><span class="sc">:</span><span class="fu">round</span>(nindiv<span class="sc">/</span><span class="dv">2</span>)]</span>
+<span id="cb370-22"><a href="plsda-on-cata-and-liking.html#cb370-22" aria-hidden="true" tabindex="-1"></a>  mdlSH <span class="ot">&lt;-</span> <span class="fu">plsda</span>(X[ic,],clss[ic],<span class="at">ncomp =</span> k)</span>
+<span id="cb370-23"><a href="plsda-on-cata-and-liking.html#cb370-23" aria-hidden="true" tabindex="-1"></a>  df_flip <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sng =</span> <span class="fu">sign</span>(<span class="fu">diag</span>(<span class="fu">t</span>(mdl0<span class="sc">$</span>loadings) <span class="sc">%*%</span> mdlSH<span class="sc">$</span>loadings))) <span class="sc">%&gt;%</span> </span>
+<span id="cb370-24"><a href="plsda-on-cata-and-liking.html#cb370-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">&#39;cmp&#39;</span>)</span>
+<span id="cb370-25"><a href="plsda-on-cata-and-liking.html#cb370-25" aria-hidden="true" tabindex="-1"></a>  lds <span class="ot">&lt;-</span> mdlSH<span class="sc">$</span>loadings <span class="sc">%&gt;%</span> </span>
+<span id="cb370-26"><a href="plsda-on-cata-and-liking.html#cb370-26" aria-hidden="true" tabindex="-1"></a>    unclass <span class="sc">%&gt;%</span> </span>
+<span id="cb370-27"><a href="plsda-on-cata-and-liking.html#cb370-27" aria-hidden="true" tabindex="-1"></a>    as.data.frame <span class="sc">%&gt;%</span> </span>
+<span id="cb370-28"><a href="plsda-on-cata-and-liking.html#cb370-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">&#39;attrib&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb370-29"><a href="plsda-on-cata-and-liking.html#cb370-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gather</span>(cmp,val,<span class="sc">-</span>attrib) <span class="sc">%&gt;%</span> </span>
+<span id="cb370-30"><a href="plsda-on-cata-and-liking.html#cb370-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(df_flip, <span class="at">by =</span> <span class="st">&#39;cmp&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb370-31"><a href="plsda-on-cata-and-liking.html#cb370-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">SHiter =</span> i, </span>
+<span id="cb370-32"><a href="plsda-on-cata-and-liking.html#cb370-32" aria-hidden="true" tabindex="-1"></a>           <span class="at">val =</span> val<span class="sc">*</span>sng)  </span>
+<span id="cb370-33"><a href="plsda-on-cata-and-liking.html#cb370-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb370-34"><a href="plsda-on-cata-and-liking.html#cb370-34" aria-hidden="true" tabindex="-1"></a>  LOADS <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(LOADS,lds)</span>
+<span id="cb370-35"><a href="plsda-on-cata-and-liking.html#cb370-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb370-36"><a href="plsda-on-cata-and-liking.html#cb370-36" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">/</span> A)<span class="sc">*</span>((A <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span>A)</span>
+<span id="cb370-37"><a href="plsda-on-cata-and-liking.html#cb370-37" aria-hidden="true" tabindex="-1"></a>sdloads <span class="ot">&lt;-</span> LOADS <span class="sc">%&gt;%</span> </span>
+<span id="cb370-38"><a href="plsda-on-cata-and-liking.html#cb370-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(lds0, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;attrib&#39;</span>,<span class="st">&#39;cmp&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb370-39"><a href="plsda-on-cata-and-liking.html#cb370-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(attrib,cmp) <span class="sc">%&gt;%</span> </span>
+<span id="cb370-40"><a href="plsda-on-cata-and-liking.html#cb370-40" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">sd =</span> <span class="fu">sum</span>((val<span class="sc">-</span>val0)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span>fc) <span class="sc">%&gt;%</span> </span>
+<span id="cb370-41"><a href="plsda-on-cata-and-liking.html#cb370-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cmp =</span> <span class="fu">paste</span>(<span class="st">&#39;sd&#39;</span>,cmp,<span class="at">sep =</span> <span class="st">&#39;&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb370-42"><a href="plsda-on-cata-and-liking.html#cb370-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cmp,sd)</span>
+<span id="cb370-43"><a href="plsda-on-cata-and-liking.html#cb370-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-44"><a href="plsda-on-cata-and-liking.html#cb370-44" aria-hidden="true" tabindex="-1"></a>loadsSH <span class="ot">&lt;-</span> lds0 <span class="sc">%&gt;%</span> </span>
+<span id="cb370-45"><a href="plsda-on-cata-and-liking.html#cb370-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cmp,val0) <span class="sc">%&gt;%</span> </span>
+<span id="cb370-46"><a href="plsda-on-cata-and-liking.html#cb370-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(sdloads, <span class="at">by =</span> <span class="st">&#39;attrib&#39;</span>)</span>
+<span id="cb370-47"><a href="plsda-on-cata-and-liking.html#cb370-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-48"><a href="plsda-on-cata-and-liking.html#cb370-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb370-49"><a href="plsda-on-cata-and-liking.html#cb370-49" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> loadsSH, <span class="fu">aes</span>(<span class="at">x0 =</span> <span class="st">`</span><span class="at">Comp 1</span><span class="st">`</span>,<span class="at">y0 =</span> <span class="st">`</span><span class="at">Comp 2</span><span class="st">`</span>,<span class="at">a =</span> <span class="st">`</span><span class="at">sdComp 1</span><span class="st">`</span>,<span class="at">b =</span> <span class="st">`</span><span class="at">sdComp 2</span><span class="st">`</span>,<span class="at">angle =</span> <span class="dv">0</span>)) <span class="sc">+</span> <span class="fu">geom_ellipse</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-208-2.png" width="672" /></p>
 </div>
             </section>
 
