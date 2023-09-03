@@ -18,6 +18,7 @@ Further the yes/no answers are included, and also needs to be changed.
 
 
 ```{r}
+data('pasta')
 x <- pasta %>% 
   mutate(Did_you_take_food_from_both_Dish1_and_Dish2 = 
            Did_you_take_food_from_both_Dish1_and_Dish2 %>% factor %>% as.numeric(),

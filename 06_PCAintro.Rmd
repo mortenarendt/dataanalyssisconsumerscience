@@ -51,7 +51,7 @@ mdlPCA <- prcomp(beef[,4:25], scale. = T, center = T)
 
 ### Biplot 
 
-The ggbiplot package (and function) is a needed tool to plot the PCA model. 
+The *ggbiplot* package (and function) is a needed tool to plot the PCA model. 
 
 Installation of this is done by: 
 
@@ -84,5 +84,5 @@ ggbiplot::ggbiplot(mdlPCA, groups =  beef$Assessor, ellipse = T)
 Coloring according to judge reveal that judge A04 is low in range (variance), and hence do not utilize the entire response scale, A03 tends  to rate higher on _rubberband_, _chewtime_, _bloodmetal_, etc. especilly compared to A10, which is higher in _bouillon_ / PC2.
 This plot indicates how well trained the panel is, as we optimally have only smaller impact of the individual judges. 
 
-NOTE: If the ggbiplot() needs modification, for instance, if the loading labels are exceeding the boundaries, or are too small, then look into the ggbiplot arguments such as varname.size. Also normal ggplot2 functionallity like xlim(), ylim() or theme() can help to modify the plot. 
+NOTE: If the **ggbiplot()** needs modification, for instance, if the loading labels are exceeding the boundaries, or are too small, then look into the ggbiplot arguments such as `varname.size`. Also normal *ggplot2*-functionallity like `xlim()`, `ylim()` or `theme()` can help to modify the plot. 
 

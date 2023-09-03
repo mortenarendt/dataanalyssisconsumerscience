@@ -57,7 +57,7 @@ g1 <- xbeer %>%
 g1 
 ```
 
-For each attribute a interaction model will be used to qualify further analysis. 
+For each attribute an interaction model will be used to qualify further analysis. 
 
 ```{r, message=FALSE, warning=FALSE}
 library(broom)

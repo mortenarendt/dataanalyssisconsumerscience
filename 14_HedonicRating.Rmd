@@ -1,0 +1,272 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Hedonic rating (e.g. liking scores)
+
+An evaluation of how much we like a food or drink is a hedonic response. Often this is given as a number on a scale, or by checking a category box with a description, such as the 9-point hedonic scale. For data analysis, the boxes are made numerical, with the assumption the there is equidistance between the meaning of the category labels, i.e dislike extremely and dislike very much is as different as dislike a little and neutral. The original English language anchors for the 9-point hedonic scale was develop and validated on tests using approximately 5500 American soldiers in the beginning of the 1950's (Lawless & Heymann, Chapter 7 Scaling, 2010). There are a number of validated scales, including visual smiley scales for children. Dependent on the respondent 5, 7 or 9 point scales are used.
+
+Most often we want to know if the hedonic response is significantly different (not just different by chance) depending on the samples. We might also want to know if other factors have an influence on the hedonic rating. e.g. household income or sex. We also want to know what are the actual differences are in numerical size. All this requires different statistical estimates.
+
+## Plotting liking scores
+
+For the beer data we have the liking in a long matrix.
+
+```{r, message=FALSE}
+library(data4consumerscience)
+library(ggplot2)
+data(beerliking)
+```
+
+A histogram of the likings shows that some are symmetric ( *NY Lager*, *River Beer* and to some extend *Porse Bock*), while *Brown Ale* and *Ravnsborg Red* is skeew, and *Wheat IPA* is uniform.
+
+```{r, message=FALSE}
+ggplot(data = beerliking, aes(Liking)) + 
+  geom_histogram() + 
+  facet_wrap(~Beer)
+```
+
+### PCA of hedonic ratings
+
+PCA is a nice tool to get overview of structure in data. Here we
+explicitly are interested in hedonic liking of the 6 beer types, and
+whether there are certain beer-drinker profiles, such as some prefer
+dark beer, while others like wheat or pilsner.
+
+The liking data is in long format, and as we want to see correlation
+between different beers we need to wrap the liking into wide format,
+this can be done using **spread** from tidyverse. Further, there is
+incomplete liking data, and here we only sustain hedonic answers from
+consumers with all *6* liking answers. This filter can be computed in
+different ways, here **drop_na()** is used.
+
+```{r}
+library(data4consumerscience)
+library(tidyverse)
+data("beerliking")
+
+xbeerliking <- beerliking %>% 
+  spread(Beer,Liking) %>% # make into wide format
+  drop_na()
+```
+
+PCA is computed on the liking columns of this matrix
+
+```{r}
+mdlPCA <- prcomp(xbeerliking[,13:18])
+ggbiplot::ggbiplot(mdlPCA)
+```
+
+Those who like *Ravnsborg red* also likes *NY Lager* and to some extend *Brown ale*, while *Porse Bock* and *Wheat IPA* also attracts the same consumers.
+
+In general there is a trend towards all liking score being positively correlated, meaning, that costumers overall like (or dis like) beer. This can both be a real phenomena, but also an artifact of the consumers not using the scale in a similar fashion. It is a very common phenomena for sensory and hedonic data.
+
+We can glue on demographic characteristics, such as age, gender, etc.,
+as well as questions on interest in food and beer on this figure to
+understand the consumer population.
+
+```{r}
+ggbiplot::ggbiplot(mdlPCA, groups = xbeerliking$Gender, ellipse = T)
+```
+
+```{r}
+ggbiplot::ggbiplot(mdlPCA, groups = factor(xbeerliking$`Beer knowledge`), ellipse = T)
+```
+
+In general, the classical demographics do not relate to liking patterns,
+as shown by gender above. Try the others to confirm.
+
+For interest in food and beer there are patterns. One example is the
+*Beer knowledge* with higher liking scores for more beer knowledge.
+Similar intuitive patterns can be seen for some of the other
+characteristics.
+
+## Simple mixed models
+
+In the following plot each liking score is connected within consumer across the beer types. The facet (according to Age) is just to avoid overplotting.
+
+Here, there is a trend towards, if you rate one beer high, the other likings within that consumer will also be high.
+
+```{r, message=FALSE}
+ggplot(data = beerliking, aes(Beer,Liking, group = Consumer.ID, color = Consumer.ID)) + 
+  geom_point() + 
+  geom_line() + 
+  theme(legend.position = 'none') + 
+  facet_wrap(~Age)
+```
+
+Mixed models are used when there is repetitions in the response due to
+(here) the person tasting more than one product.
+
+To fit a mixed model, we do the following:
+First, we load the packages *lmerTest* and *lme4*, using *library()*. These packeges are used for fitting linear and generalized linear mixed-effects models in R.
+
+Then, we fit the model: `mdl <- lmer(data = beerliking, Liking ~ Beer + (1|Consumer.ID))` 
+This line fits a linear mixed-effects model to the data in the object `beerliking`. The formula `Liking ~ Beer + (1|Consumer.ID)` specifies the model structure: 
+- `Liking` is the response variable (dependent variable). 
+- `Beer` is a predictor variable (independent variable) representing different types of beer. 
+- `(1|Consumer.ID)` specifies a random intercept for each unique value of `Consumer.ID`. 
+This accounts for potential variability between different consumers that may affect the liking score. 
+- The resulting model is stored in the object `mdl`.
+
+`summary(mdl)` generates a summary of the linear mixed-effects model stored in the object `mdl`. This summary contains a lot of information, but we are mainly interested in the information regarding the random effects, as we will look at the fixed effects at a later stage of the analysis. (This is because the information about the fixed effects in this summary is conducting t-test based on the order of the data, which we do not want to do).
+
+When looking at the `Random effects`, we see that the residual uncertainty (`Std.Dev.`) is $1.63$ on the 1-7 Likert scale, while the uncertainty between consumers is $0.57$. This implies that the uncertainty between two ratings is higher when from two different consumers, compared to two ratings from the same consumer.
+
+```{r}
+library(lmerTest)
+library(lme4)
+mdl <- lmer(data = beerliking, Liking ~ Beer + (1|Consumer.ID)) 
+summary(mdl)
+```
+
+We can use this model to evaluate the effect of the different beers, using the *anova*-function. 
+
+This yields a p-value far below the significance level (`Pr(>F) = 1.175e-07`), and suggests that the average liking is different for at least 2 of the different beers. To investigate how they are all different compared to each other, we continue with some post hoc tests.
+
+```{r}
+anova(mdl)
+```
+
+### Post hoc test
+
+The overall anova result implies that the 6 beers are *NOT* equal in
+terms of liking, but some may be similar.
+
+This can be investigated by computing pairwise contrasts using the *multcomp* package, using what is called Tukey's Honest Significant Difference (Tukey HSD).
+
+To calculate pairwise comparisons between e.g. samples and find
+letter-based representation you need a the package *multcomp*, and the pairwise comparison is conduted as follow:
+
+- `mdl` is the model that we defined in the above part of the chapter, explaining the relationship between Liking and Beer(-type).
+- `glht()` is a function from the `multcomp` package that stands for "general linear hypothesis test." It is used to perform hypothesis tests and obtain confidence intervals for linear combinations of model parameters. In this case, we're specifying the linear function using the `linfct` parameter.
+- `mcp(Beer = "Tukey")` is defining the multiple comparison contrast. Here we specify, that we are interested in comparing means related to the variable `Beer` using Tukey's method. 
+
+We then visualize the pairwise comparison in two different ways:
+- `summary()` is used to obtain a summary of the results of the hypothesis tests. Here, all the pairwise comparisons are shown, with confidence intervals as well as adjusted p-values for each pairwise comparison.
+
+- `cld()` is used to create what is called a compact letter display (CLD), which is a neat way of showing which groups are significantly different from each other. Samples with the same letters are not significantly different. 
+
+Here, we can see, that Brown Ale has scored significantly higher than Wheat IPA, since they have been assigned with c and a respectively. But the Brown Ale is not significantly different from the Ravnsborg Red, as they both have been assigned with a’s.
+
+```{r, message=FALSE}
+library(multcomp)
+
+summary(glht(mdl, linfct = mcp(Beer = "Tukey")))
+
+cld(glht(mdl, linfct = mcp(Beer = "Tukey")))
+```
+
+
+```{r, eval = F, include=FALSE}
+[MERE TEKST PÅ HER]
+[Forklar fixed og random effects? Måske bruge dette:Fixed effects are effects that we anticipate have the same direction, e.g., mutual differences between products. Would typically be the same from one experiment to another as the products are unchanging entities. Random effects are effects that we cannot predict, e.g., mutual differences between consumers may differ from one experiment to another as consumers are affected by various emotional, environmental, physiological or other influences in their lives]
+
+[MORTEN: Sensorikere er virkelig glade for p-værdier for en variabel - det kan jeg ikke se, jeg kan få ud med lme4, derfor foreslår jeg  pakken lmerTest i stedet for. Lavet af Per Brockhoff til sensorikdata. og så også anova() i stedet for summary(). Så kommer der een overordnet p-værdi ud ]
+
+To explain the model: take the dataset called _beerliking_ and calculate a model where _Beer_ is the fixed effect and the consumer is the random effect for the response variable _Liking_. Use the function _lmer_ and save the output as _mdl_. The anova() function will provide you with the p value(s). Remember you choose your own title of your model. 
+
+[MANGLER: forklaring på output; At least two of the products by name are scored significantly different for the liking.]
+
+[MORTEN: Hvis man nu har kontinuerte variable, hvordan fortolkes det så?]
+
+[explain + output + interpret]
+```
+
+## Multivariable models
+
+In the example above, only the impact of the different beers is
+evaluated, however, the liking scores may also depend on background
+information such as gender, age, ... as well as attitude towards beer
+and food. Further, is there any of the background variables that
+attenuate or make the differences between the beers stronger? These
+questions can be investigated by models including several explanatory
+variables as well as interaction terms.
+
+### Additive models
+
+This can be included in the models as a sequence of explanatory
+variables.
+
+Given a set of possible explanatory variables, there is two ways to
+include them in the model.
+
+**Forward step-wise Selection** and **Backward Step-wise Elimination**.
+
+For both, the principle is simple and intuitive.
+
+In the forward procedure each variable is added to the model, and the
+strongest one (in terms of the lowest p-value) is kept.
+
+In the backward procedure all variables are added to the model and the
+least important one (in terms of the largest p-value) is removed.
+
+Both procedures stop when the model is not going to improve by adding or
+eliminating explanatory variables, and the final model will only contain
+the significant variables.
+
+In the beer dataset we would like to know which of the explanatory
+variables are related to liking the most.
+
+A large model with all explanatory variables is constructed
+
+```{r}
+mdl_be <- lmer(data = beerliking, Liking ~ Beer + Gender + Age + Income + 
+                 Householdsize + `Beer types/month` + `Interest in food` + 
+                 neophilia + `Interest in beer` + `Beer knowledge` + 
+                 `Ingredients/labels` + `Future interest in beer` + 
+                 (1|Consumer.ID)) 
+anova(mdl_be)
+```
+
+From this, *Interest in food* is the least significant one (`Pr(>F) = 0.940561`), and is hence removed.
+
+A sequential removal of the non-significant variables at a $p > 0.1$
+level leads to the following model:
+
+```{r}
+mdl_be_red <- lmer(data = beerliking, Liking ~ Beer +  Age + Income + 
+                 `Beer types/month` + `Beer knowledge` + 
+                  `Future interest in beer` + 
+                 (1|Consumer.ID)) 
+anova(mdl_be_red)
+```
+
+The results can be interpreted from the estimates:
+
+```{r}
+summary(mdl_be_red)
+```
+
+Some notes: Liking is higher in the lowest *Income* group, Liking is
+lower in the lowest age group, and liking is higher with higher *Future
+interest in beer*.
+
+### Effect modification and Interactions
+
+It could be nice to calculate if the liking of specific sample are
+affected by the degree of future interest in beer. This can be
+visualized as scatterplots and modelled using interactions.
+
+```{r, message=FALSE}
+library(lmerTest)
+ggplot(data = beerliking, aes(`Future interest in beer`, Liking, color = Beer)) + 
+  geom_point() + stat_smooth(se = F, method = lm)
+
+mdl_interaction <- lmer(data = beerliking, Liking ~ Beer*`Future interest in beer` +  (1|Consumer.ID)) 
+
+anova(mdl_interaction)
+
+```
+
+Although the slopes appear a bit different between the beers this is not
+significant ($p = 0.12$). **Be aware** that it appears as the main
+effect of beer is not significant. However, this value should not be
+interpreted, as there are interaction terms in the model including beer.
+
+Remember you choose your own "name" for the model "+" between variables defines (additive) main effects ":" between variables defines an
+interaction "\*" between variables defines a parameterization with both interaction and main effect terms
+
+For model selection here, you start by removing the interaction with the hight p-value and then recalculate the model. You cannot remove a main effect term if an interaction term which includes it is significant.

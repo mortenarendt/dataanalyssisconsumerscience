@@ -14,7 +14,7 @@ To install packages from github (the online place where all the development and 
 devtools::install_github('DeveloperName/SomePackageName')
 ```
 
-To make packages available within your analysis use library(), or use the package name followed by :: and the function. The library function will activate the installed package. 
+To make packages available within your analysis use **library()**, or use the package name followed by **::** and the function. The library function will activate the installed package. 
 
 ```{r, message=FALSE}
 library(ggplot2) 

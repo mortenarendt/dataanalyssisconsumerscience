@@ -188,8 +188,10 @@ If the datasets get to large, or the work feels too tedious, there's a way aroun
 Now, let's look at all *Likert-scale* variables in plots and numbers:
 
 ```{r}
+library(data4consumerscience)
+data("fmcrsurvey")
 fmcrsurvey %>% 
-  gather(var,y,I_will_only_buy_products_at_a_reduced_price:I_am_able_to_prepare_a_soup) %>% 
+  pivot_longer(cols = I_will_only_buy_products_at_a_reduced_price:I_am_able_to_prepare_a_soup, names_to = 'var', values_to = 'y') %>% 
   ggplot(data = ., aes(y)) + geom_bar() + facet_wrap(~var) + coord_flip()
 
 ```
@@ -203,7 +205,7 @@ The **reorder_levels**-function from the **rstatix**-package ensures, that the l
 ```{r}
 library(rstatix)
 fmcrsurvey %>% 
-  gather(var,y,I_will_only_buy_products_at_a_reduced_price:I_am_always_updated_on_the_latest_food_trends) %>% 
+  pivot_longer(cols = I_will_only_buy_products_at_a_reduced_price:I_am_always_updated_on_the_latest_food_trends, names_to = 'var',values_to = 'y') %>%
   reorder_levels(data = ., name = 'y', order = c('Disagree extremely',
                                          'Disagree',
                                          'Disagree slightly',
@@ -214,7 +216,7 @@ fmcrsurvey %>%
   ggplot(data = ., aes(y,fill = Gender)) + geom_bar() + facet_wrap(~var) + coord_flip()
 
 fmcrsurvey %>% 
-  gather(var,y,I_am_able_to_bake_bread:I_am_able_to_prepare_a_soup) %>% 
+  pivot_longer(cols = I_will_only_buy_products_at_a_reduced_price:I_am_able_to_prepare_a_soup, names_to = 'var',values_to = 'y') %>% 
   reorder_levels(data = ., name = 'y', 
                  order = c('Completely disagree',
                            'Disagree',

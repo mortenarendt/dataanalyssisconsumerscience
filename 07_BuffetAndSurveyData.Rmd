@@ -69,7 +69,7 @@ The histogram can be created by creating each plot separately, assigning each pl
 
 It can also be created using what is called a 'pipe operator' (**%>%**), which is a function from within the **tidyverse**-package, and with a little help from the **data.table**-package. The pipe operator is a nice tool to reduce the amount of code and variable names needed, and can be used for a lot of different stuff. For example, **filter** can be used to select specific rows, as is done here, where we select rows in column 'Question', that include the text 'like', and as the questions about liking are the only questions containing this text, these are the rows selected.
 
-To learn more about the pipe operator, see [Edit using Tidyverse]. Here, there is also an explanation of the other functions such as **gather**.
+To learn more about the pipe operator, see [Edit using Tidyverse]. Here, there is also an explanation of the other functions such as **pivot_longer**.
 
 ```{r, message=FALSE}
 library(ggplot2)
@@ -99,9 +99,9 @@ library(tidyverse)
 library(data.table)
 
 pasta %>% 
-  gather(Question,
-         Answer,
-         I_like_taste_of_pasta_with_legumes:Pasta_with_mushrooms_is_visually_appealing) %>%
+  pivot_longer(cols = I_like_taste_of_pasta_with_legumes:Pasta_with_mushrooms_is_visually_appealing, names_to = 'Question',
+         values_to = 'Answer',
+         ) %>%
   filter(., Question %like% 'like') %>%
   ggplot(data = ., aes(x = Answer)) + 
   geom_histogram() + 
@@ -109,7 +109,7 @@ pasta %>%
 
 ```
 
-Another nice plot is a bivariate plot, plotting two variables against each other and adding a regression line (using **geom_smooth**, and specifying 'lm' for a linear regression for 'y ~ x'). This has been done below, to see if there is a correlation between the liking and the rating of the visual apprerance for pasta with legumes:
+Another nice plot is a bivariate plot, plotting two variables against each other and adding a regression line (using **geom_smooth()**, and specifying `method = 'lm'` for a linear regression for `formula = 'y ~ x')`. This has been done below, to see if there is a correlation between the liking and the rating of the visual appearance for pasta with legumes:
 
 ```{r}
 library(ggplot2)
@@ -119,18 +119,18 @@ ggplot(data = pasta, aes(x = Pasta_with_legumes_is_visually_appealing, y = I_lik
 
 ### Linear model for buffet data
 
-You can also create a linear regression model explaining the relationship between liking and visual apperance, as is done below using the **lm**-function. 
+You can also create a linear regression model explaining the relationship between liking and visual apperance, as is done below using the **lm()**-function. 
 
 ```{r}
 mdl <- lm(data = pasta, I_like_taste_of_pasta_with_legumes ~ Pasta_with_legumes_is_visually_appealing)
 summary(mdl)
 ```
 
-The **summary**-function will give a lot of information about the model, e.g. the p-value, which is much lower than 0.05 (it is 2.36e-16), showing that  the visual rating and the liking are indeed highly correlated. Also, the estimates of the summary are in fact the estimates of the parameters of the regression line, that follows
+The **summary()**-function will give a lot of information about the model, e.g. the p-value, which is much lower than 0.05 (it is 2.36e-16), showing that  the visual rating and the liking are indeed highly correlated. Also, the estimates of the summary are in fact the estimates of the parameters of the regression line, that follows
 $y = a + b\cdot x$. The estimate is: $\hat{y}=0.82677 \cdot x \ + 1.08609$. Have a look at the plot and see if it fits with the regression line we created before. To learn more about linear models, see [Normal and Mixed models]
 
 ### Post-hoc test for survey data
-One can also investigate whether two or more discrete groups are different from one another. The model is created the same way as above for the linear model, with the exception that our x is now discrete ('Why_did_you_consider_the_proteincontent').
+One can also investigate whether two or more discrete groups are different from one another. The model is created the same way as above for the linear model, with the exception that our x is now discrete (`Why_did_you_consider_the_proteincontent`).
 
 A very useful outcome of a model like this is the pairwise comparison between groups - in this case the different considerations about the protein content of the dish. The pairwise comparison compares all the groups (here the considerations), and the result is a letter assigned to each group. If two groups have different letters, the two groups are significantly different from each other, whereas if two groups have the same letter, they are not.
 

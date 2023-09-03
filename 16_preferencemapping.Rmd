@@ -1,3 +1,10 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, eval=FALSE,include=FALSE}
 # Preference Mapping
 
 [some narrative]
@@ -6,76 +13,186 @@
 
 [Which???]
 
-```{r}
-
 ```
 
-## PCA
-
-PCA is a nice tool to get overview of structure in data. Here we explicitly are interested in hedonic liking of the 6 beer types, and whether there are certain beer-drinker profiles, such as some prefer dark beer, while others like wheat or pilsner. 
-
-The liking data is in long format, and as we want to see correlation between different beers we need to wrap the liking into wide format, this can be done using **spread** from tidyverse. Further, there is incomplete liking data, and here we only sustain hedonic answers from consumers with all _6_ liking answers. This filter can be computed in different ways, here **drop_na()** is used. 
-
-```{r}
-library(data4consumerscience)
-library(tidyverse)
-data("beerliking")
-
-xbeerliking <- beerliking %>% 
-  spread(Beer,Liking) %>% # make into wide format
-  drop_na()
-  
-```
-
-PCA is computed on the liking columns of this matrix
-
-```{r}
-mdlPCA <- prcomp(xbeerliking[,13:18])
-ggbiplot::ggbiplot(mdlPCA)
-```
-
-Those who like _Ravnsborg red_ also likes _NY Lager_ and to some extend _Brown ale_, while _Porse Bock_ and _Wheat IPA_ also attracts the same consumers. 
-
-In general there is a trend towards all liking score being positively correlated, meaning, that costumers overall like (or dis like) beer. This can both be a real phenomena, but also an artifact of the consumers not using the scale in a similar fashion. It is a very common phenomena for sensory and hedonic data. 
-
-We can glue on demographic characteristics, such as age, gender, etc., as well as questions on interest in food and beer on this figure to understand the consumer population. 
-
-```{r}
-ggbiplot::ggbiplot(mdlPCA, groups = xbeerliking$Gender, ellipse = T)
-```
-
-```{r}
-ggbiplot::ggbiplot(mdlPCA, groups = factor(xbeerliking$`Beer knowledge`), ellipse = T)
-```
-
-In general, the classical demographics do not relate to liking patterns, as shown by gender above. Try the others to confirm. 
-
-For interest in food and beer there are patterns. One example is the _Beer knowledge_ with higher liking scores for more beer knowledge. Similar intuitive patterns can be seen for some of the other characteristics. 
 
 ## Analysis by PLS
 
-Predictors can be objective characteristics of the products or CATA type data, while response is hedonic liking data. 
-[minimum 5 samples
+The data used in this section is from the paper: *Giacalone, Davide,
+Wender L.P. Bredie, and Michael Bom Frøst. "'All-In-One Test' (AI1): A
+Rapid and Easily Applicable Approach to Consumer Product Testing." Food
+quality and preference 27.2 (2013): 108--119. Web.*. Data can be found
+in the *data4consumerscience-package* as **beercata**, **beerliking**
 
-X = CATA (Beer_XYZmatrix.xlsx, sheet = X CATA (coll.)+Y liking (aver.)), 
-Y = Living average
-Y2 = Liking for each consumer = t(Y (long thin))
+### PLS basics
 
-Objective = Visualize to get patterns related to liking, and which deescriptors are merely irrelevant. 
+Partial Least Squares regression (PLS) is a linear regression approach
+that shares similarities with Principal Component Analysis (PCA), as
+data is decomposed using latent variables. In the case of PLS there are
+two matrices: predictors($\boldsymbol{X}$) and
+response($\boldsymbol{Y}$). The X-matrix is used to predict the
+Y-matrix. For both matrices the scores and loadings and resiudals are
+computed:
+
+$$X = TP^T + E_x$$ $$Y = UQ^T + E_y$$
+
+PLS orient latent variables to optimize covariance between X-scores
+($\boldsymbol{T}$) and Y-scores ($\boldsymbol{U}$), overcoming
+limitations of traditional Multiple Linear Regression, such as handling
+cases where variables outnumber observations or when X-variables are
+mutually correlated.
+
+### PLS to predict liking based on CATA data
+
+The object of this section is to find which descriptors e.g. sour, is
+relevant for the liking, and which are irrelevant.
+
+When dealing with CATA data, it's reasonable to anticipate a low
+explained variance in the model due to the high degree of uncertainty
+within the CATA data itself. This means that as PLS attempts to
+distinguish information from noise, the noise will account for a large
+amount of variation in the data.
+
+As preparation for the PLS, the two datasets *beerliking* and *beercata*
+is combined:
+
+```{r,warning=FALSE,message=FALSE}
+library(dplyr)
+library(data4consumerscience)
+data("beerliking")
+data("beercata")
+
+#Merge the two datasets:
+beer <- na.omit(left_join(beercata, beerliking, by = c("Consumer.ID", "Beer")))
+```
+
+A dataframe is created by merging the two previously mentioned datasets, by the function *left_join*, based on the common columns *Consumer.ID* and *Beer*. *na.omit* is used to remove rows containing missing values, as the PLS function to be used later on, can not handle missing values in the variables used.
+
+The PLS model can be built with relative ease using the *mdatools*
+package:
+
+```{r,warning=FALSE}
+library(mdatools)
+#Create the PLS object:
+beerPLS <- pls(x = beer[,3:29],y = beer$Liking ,center = T,scale = F,ncomp = 10)
+
+summary(beerPLS)
+```
+
+The *pls* function is used, and the predictors is put as the x-value,
+i.e. the CATA variables in column 3 to 29. and the response i.e. liking. 
+Both the y and x matrices are mean-centered, by specifying *center = T*, the *scale* argument specifies if the data should be Auto-scaled.
+*ncomp* argument specifies how many components should be calculated - in this case 4.
+
+The model gives a warning of no validation results found. This is
+referring to the cross-validation that can be done, to find the optimal number of components needed to describe the optimal complexity of the model. Let us add cross-validation to the model:
+
+```{r}
+#Create the PLS object:
+beerPLSCV <- pls(x = beer[,3:29],y = beer$Liking ,center = T,scale = F,ncomp = 10,cv = rep(rep(1:length(unique(beer$Consumer.ID)), each = 6), length.out = nrow(beer)))
+```
+
+The cross-validation used is specified in the *cv* argument. The
+argument takes a vast majority of inputs. Perhaps the easiest to use is
+Leave-One-Out cross-validation that is specified by *cv = 1*, but might
+also leave to overoptimistic results. In this case we cross-validate
+based on the consumer, i.e. we obtain a vector containing
+1,1,1,1,1,1...155,155,155,155,155,155 corresponding to the 6-times each
+consumer answered.
+
+The summary function can be used to see various information about the
+PLS model:
+
+```{r}
+summary(beerPLSCV)
+```
+
+The summary seems to think 2 components is the optimal amount.
+
+Let us plot the RMSE and see if this correct:
+
+```{r}
+plotRMSE(beerPLSCV)
+```
+
+The increase in the RMSECV from components 2 to 3, seems to indicate
+that the optimal number of components is indeed 2.
+
+### Regression coefficients
+
+In Partial Least Squares (PLS) regression, a regression vector refers to
+the set of coefficients that are used to model the relationship between
+the predictor variables ($\boldsymbol{X}$) and the response variable
+($\boldsymbol{Y}$). These coefficients define how much each predictor
+variable contributes to predicting the response variable (in this case
+liking).
+
+The regression coefficients can easily be visualized using the
+*mdatools* package:
+
+```{r}
+plotRegcoeffs(beerPLSCV,show.labels = T, show.ci = T, ncomp = 2)
+```
+
+The function *plotRegcoeffs* is used, and the PLS object is specified.
+*show.labels = T* specifies the labels from $\boldsymbol{X}$ is printed
+on the bars. *show.ci = T* specifies that the confidence interval is
+displayed on the bars. *ncomp* specifies the component the regression
+coefficents should be displayed for.
+
+From the regression vector plot, it seems the attributes S_Sour, S_Herbs
+and S_Regional_Spices significantly lowers the liking of the beers. The
+attributes S-Refreshing, S_aromatic, S_caramel among others seems to
+significantly increase the liking of the beers. In addition there are
+irrelevant non-significant attributes (i.e. confidence interval crossing
+0) such as S_foamy and S_Berries among many other attributes.
+
+The significance of the attributes can also be displayed in a table with coefficients, t-values, p-values and confidence interval:
+
+```{r}
+summary(beerPLSCV$coeffs, ncomp = 2)
+```
+
+These results are in line, with the visual interpretation above.
+
+There are many other interesting plot methods, which can be found here:
+[mdatools.com](https://mdatools.com/docs/pls--plotting-methods.html)
 
 ## L-PLS [For the future...]
 
-The data used in this section is from the paper: *Giacalone, Davide, Wender L.P. Bredie, and Michael Bom Frøst. “‘All-In-One Test’ (AI1): A Rapid and Easily Applicable Approach to Consumer Product Testing.” Food quality and preference 27.2 (2013): 108–119. Web.*. Data can be found in the *data4consumerscience-package* as **beercata**, **beerdemo**, **beerliking**
+The data used in this section is from the paper: *Giacalone, Davide,
+Wender L.P. Bredie, and Michael Bom Frøst. "'All-In-One Test' (AI1): A
+Rapid and Easily Applicable Approach to Consumer Product Testing." Food
+quality and preference 27.2 (2013): 108--119. Web.*. Data can be found
+in the *data4consumerscience-package* as **beercata**, **beerdemo**,
+**beerliking**
 
-*L-PLS* is a valuable tool in identifying the sensory attributes and consumer background characteristics that contribute to a consumer's liking of a product, such as beer. 
+*L-PLS* is a valuable tool in identifying the sensory attributes and
+consumer background characteristics that contribute to a consumer's
+liking of a product, such as beer.
 
-A L-PLS model is created using three data blocks: **X1**, **X2**, and **X3**. **X1** is an IxN matrix that contains consumer liking scores for each sample, X2 is an IxJ matrix that includes sensory attributes for each sample, and X3 is a KxN matrix that comprises consumer background data. I represents the number of samples (beer), N represents the number of consumers, J represents the number of sensory variables, and K represents the number of consumer background variables.
+A L-PLS model is created using three data blocks: **X1**, **X2**, and
+**X3**. **X1** is an IxN matrix that contains consumer liking scores for
+each sample, X2 is an IxJ matrix that includes sensory attributes for
+each sample, and X3 is a KxN matrix that comprises consumer background
+data. I represents the number of samples (beer), N represents the number
+of consumers, J represents the number of sensory variables, and K
+represents the number of consumer background variables.
 
-There are two ways to perform L-PLS: exo and endo. In the exo-LPLSR model, X1 serves as the regressor, while in the endo-LPLSR model, X2 and X3 are the regressors. The exo-LPLSR model typically explains more of X than the endo-LPLSR model because the exo-LPLSR derives its bilinear components from X, whereas the endo-LPLSR derives its components from Y and Z. The difference in the plot's appearance can be predicted from the explained variance of each model type.
+There are two ways to perform L-PLS: exo and endo. In the exo-LPLSR
+model, X1 serves as the regressor, while in the endo-LPLSR model, X2 and
+X3 are the regressors. The exo-LPLSR model typically explains more of X
+than the endo-LPLSR model because the exo-LPLSR derives its bilinear
+components from X, whereas the endo-LPLSR derives its components from Y
+and Z. The difference in the plot's appearance can be predicted from the
+explained variance of each model type.
 
-If both plots are similar in nature and in terms of the interpretation of the correlation loading plots, it may indicate consistent co-variation between the three matrices. 
+If both plots are similar in nature and in terms of the interpretation
+of the correlation loading plots, it may indicate consistent
+co-variation between the three matrices.
 
-The exo version will only be showcased here, but the principle is the same, and endo can be useful for data exploration. 
+The exo version will only be showcased here, but the principle is the
+same, and endo can be useful for data exploration.
 
 ```{r,warning=FALSE,message=FALSE}
 library(data4consumerscience)
@@ -86,7 +203,8 @@ data("beerliking")
 
 ##Creating X1, X2, X3.
 
-The preparation of the data, requires quite a lot of data manipulation. 
+The preparation of the data, requires quite a lot of data manipulation.
+
 ```{r,warning=FALSE,message=FALSE}
 # Load necessary libraries
 library(tidyverse)
@@ -146,8 +264,8 @@ X3_mat <- as.matrix(X3)
 
 ```
 
-##Building the model:
-The L-PLS model can be built, using the *lpls* function from the *multiblock* package.
+##Building the model: The L-PLS model can be built, using the *lpls*
+function from the *multiblock* package.
 
 ```{r,warning=FALSE,message=FALSE}
 library(multiblock)
@@ -158,7 +276,10 @@ lp_exo <- lpls(X1_mat,X2_mat,X3_mat,type = "exo",scale = c(F,F,T),doublecenter =
 
 ###Finding the explained variance for exo L-PLS
 
-The explained variance for the exo L-PLS can easily be sacked from the model object, and displayed nicely in a table using the *kableExtra* package.
+The explained variance for the exo L-PLS can easily be sacked from the
+model object, and displayed nicely in a table using the *kableExtra*
+package.
+
 ```{r,warning=FALSE,message=FALSE}
 library(knitr)
 library(kableExtra)
@@ -170,29 +291,38 @@ rownames(expVarExo) <- paste0("X", 1:3)
 kbl(expVarExo, caption = "Explained Variance by Component (%)",digits = 0) %>%
   kable_paper("hover",full_width = F)
 ```
-The explained variance is first sacked from the L-PLS object, and stored in a data-frame, from where it is transposed, and converted to percentage (%).
-*kbl* function is then used to get a nice table. 
 
-From looking at the table, one would expect the consumer descriptors to be close to origin in terms of scores. One could have a look at the endo version of the L-PLS to get a better understanding of the consumer descriptors. 
+The explained variance is first sacked from the L-PLS object, and stored
+in a data-frame, from where it is transposed, and converted to
+percentage (%). *kbl* function is then used to get a nice table.
 
-###Cross-validation
-Next let us have a look how many components we should look at, by doing a jack-knifing cross-validation on the consumers:
+From looking at the table, one would expect the consumer descriptors to
+be close to origin in terms of scores. One could have a look at the endo
+version of the L-PLS to get a better understanding of the consumer
+descriptors.
+
+###Cross-validation Next let us have a look how many components we
+should look at, by doing a jack-knifing cross-validation on the
+consumers:
 
 ```{r}
 lp.cv2 <- lplsCV(lp_exo, segments2 = as.list(1:dim(X1)[2]))
 lp.cv2$rmsep
 ```
 
-It looks like 2 components is sufficient. 
+It looks like 2 components is sufficient.
 
-###Vizulization
-Now we would like to visuzlalize our L-PLS model. When using L-PLS for vizulization one should use the orthognoal exo, as this will give the orthogonal scores.
-We build the orthogonal exo in the same way as before, but chainging the type.
+###Vizulization Now we would like to visuzlalize our L-PLS model. When
+using L-PLS for vizulization one should use the orthognoal exo, as this
+will give the orthogonal scores. We build the orthogonal exo in the same
+way as before, but chainging the type.
+
 ```{r}
 lp_exo_ort <- lpls(X1_mat,X2_mat,X3_mat,type = "exo_ort",scale = c(F,F,T),doublecenter = T,ncomp = 5)
 ```
 
-Now we plot the L-PLS model. One can chose to plot, the X1, X2 or X3 correlations, or perhaps a combination of 2, or all. 
+Now we plot the L-PLS model. One can chose to plot, the X1, X2 or X3
+correlations, or perhaps a combination of 2, or all.
 
 ```{r}
 par(mfrow=c(2,2))
@@ -206,6 +336,14 @@ plot(lp_exo,doplot = c(F,T,T)) #X1 and X3 correlations
 plot(lp_exo,doplot = c(T,T,T)) #combined
 ```
 
-From the plots, the sensory attribute *Berries* is correlated with the sensory attribute *Herbs*. These two sensory attributes is in turn correlated with the beer *River Beer*. In turn *River Beer* is opposite of the beer *Brown Ale*, which seems to be very *Foamy*. In this case our consumer background descriptors do not seem to explain a whole lot. But it does seem like a young age *Age 18-25* is associated with a low income (*Income 0-10.000*). Where a consumer of such description tends to like *Porse Bock*. 
+From the plots, the sensory attribute *Berries* is correlated with the
+sensory attribute *Herbs*. These two sensory attributes is in turn
+correlated with the beer *River Beer*. In turn *River Beer* is opposite
+of the beer *Brown Ale*, which seems to be very *Foamy*. In this case
+our consumer background descriptors do not seem to explain a whole lot.
+But it does seem like a young age *Age 18-25* is associated with a low
+income (*Income 0-10.000*). Where a consumer of such description tends
+to like *Porse Bock*.
 
-It is always a good idea to confirm the observed correlations by plotting the raw data. Lets have a look at some of them.
+It is always a good idea to confirm the observed correlations by
+plotting the raw data. Lets have a look at some of them.

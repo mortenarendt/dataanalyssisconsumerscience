@@ -87,12 +87,6 @@ data(pasta)
 
 t.test(x = pasta$Pasta_with_legumes_is_visually_appealing, 
        y = pasta$Pasta_with_mushrooms_is_visually_appealing)
-
-# library(readxl)
-# BuffetSurvey <- read_excel('~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx', sheet = 'BuffetSurvey')
-
-# t.test(BuffetSurvey$`Pasta with legumes is visually appealing to me. `,
-       # BuffetSurvey$`Pasta with mushrooms is visually appealing to me. `)
 ```
 
 This results in a p-value of 0.036, which is below the chosen $\alpha$-level of 0.05. This means, that there is a significant difference between how visually appealing pasta with legumes and pasta with mushrooms perceived.
@@ -113,12 +107,6 @@ data(pasta)
 
 var.test(x = pasta$Pasta_with_legumes_is_visually_appealing, 
          y = pasta$Pasta_with_mushrooms_is_visually_appealing)
-
-# library(readxl)
-# BuffetSurvey <- read_excel('~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx', sheet = 'BuffetSurvey')
-
-# var.test(BuffetSurvey$`Pasta with legumes is visually appealing to me. `,
-       # BuffetSurvey$`Pasta with mushrooms is visually appealing to me. `)
 ```
 
 The p-value of the F-test is 0.037, which is below the chosen $\alpha$-level of 0.05. This means, that the variance of the scores for how visually appealing pasta with legumes is significantly different from variance of the scores for how visually appealing pasta with mushrooms. - This actually confirms, that the correct T-test was used in the section above, since the T-test with unequal variance was used.
@@ -132,7 +120,7 @@ ANOVA (Analysis of Variance) is a statistical method used to test the equality o
 This is done by comparing the variance BETWEEN groups to the variance WITHIN groups. If the variance between the groups is significantly larger than the variance within the groups, we can conclude, that the mean of at least one of the groups is significantly different from the rest. To test whether the variances differ significantly, an F-test is used to compare the variances. If the p-value is below the selected $\alpha$-level (often $\alpha$=0.05)
 
 As hypotheses, it looks like this (k is the number of groups): 
-$$ H_{0}: \mu_{1}=\mu_{2} = ... =\mu_{k}  \\ H_{A}: At \ least \ one \ mean \ is \ different$$
+$$ H_{0}: \mu_{1}=\mu_{2} = ... =\mu_{k}  \\ H_{A}: At \ least \ one \ mean \ is \ different $$
 ANOVA can be performed using one-way ANOVA, multiple-way ANOVA, depending on the application, which can be seen below.
 
 ### One-way ANOVA
@@ -141,9 +129,9 @@ When conducting a one-way ANOVA, the model looks like this:
 $$ Y_{ij} = \mu + \alpha(A_{i}) + e_{ij}  \\ where \ e_{ij}  \sim \mathcal{N}(0,\sigma^{2}) \ and \ independent \\ for \ j=1,...,n_{i} \ and \ i=1,...,k $$ 
 Here, $Y_{ij}$ represents the jth observation of the ith treatment level (i = 1 to k and j = 1 to $n_i$).This means, that e.g., $Y_{23}$ represents the 3rd observation of the 2nd factor. $\mu$ is the grand mean of the dataset, and $\alpha$ is effect of the i-th level of our factor A (e.g. Argentina or France as wine-producing countries, or pescetarian as your dietary preference).
 
-The ANOVA works, when the above-mentioned assumptions are true: The residuals ($e_{ij}$) are normally distributed around 0, and independent. A way to check the assumptions, is to use the built-in **plot**-function in R, and look at whether the data are normally distributed using the QQ-plot, and looking at the residuals, to check if the assumptions are viable.
+The ANOVA works, when the above-mentioned assumptions are true: The residuals ($e_{ij}$) are normally distributed around 0, and independent. A way to check the assumptions, is to use the built-in **plot()**-function in R, and look at whether the data are normally distributed using the QQ-plot, and looking at the residuals, to check if the assumptions are viable.
 
-To show how to perform a one-way ANOVA in R, here is an example using the beerliking-dataset:
+To show how to perform a one-way ANOVA in R, here is an example using the *beerliking*-dataset:
 
 ```{r}
 library(data4consumerscience)
@@ -156,9 +144,9 @@ plot(model,which = c(1,2))
 anova(model)
 ```
 
-First, the model is created using **lm**, specifying the dataset used, and the dependent and independent variables (Liking and Beer, respectively)
+First, the model is created using **lm()**, specifying the dataset used, and the dependent and independent variables (Liking and Beer, respectively)
 
-The resulting table of the **anova**-function is called an ANOVA-table, and contains a lot of information about the data. But the column that we are most often looking at is Pr(>F), which is another name for the p-value. If this value is below the chosen $\alpha$-level (often $\alpha$=0.05, which in this case it is), then we can conclude, that the judges like at least one of the Beers significantly better/worse than the rest. 
+The resulting table of the **anova()**-function is called an ANOVA-table, and contains a lot of information about the data. But the column that we are most often looking at is `Pr(>F)`, which is another name for the p-value. If this value is below the chosen $\alpha$-level (often $\alpha$=0.05, which in this case it is), then we can conclude, that the judges like at least one of the Beers significantly better/worse than the rest. 
 
 ### Two-way ANOVA
 
@@ -169,15 +157,15 @@ $$ Y_{ijk} = \mu + \alpha(A_{i}) + \beta(B_{j}) + \gamma(A_{i}\times B_{j}) + e_
 
 Here, $Y_{ijk}$ represents the kth observation of the ith level of factor A, and jth level of factor B.This means, that e.g., $Y_{234}$ represents the 4th observation of the 2nd level of A and the 3rd level of B. $\mu$ is the grand mean of the dataset, $\alpha$ is the effect of the ith level of factor A (e.g. Argentina or France as wine-producing countries), $\beta$ is the effect of the jth level of factor B (e.g. Pinot Gris, Chardonnay, Riesling, etc.) and $\gamma$ is the interaction effect between factor A and B (e.g. French Chardonnay or German Riesling).
 
-As with the one-way ANOVA, the same assumptions about normality and independence of the residuals has to hold, and these can again be checked using **plot** as shown below.
+As with the one-way ANOVA, the same assumptions about normality and independence of the residuals has to hold, and these can again be checked using **plot()** as shown below.
 
-However, the **anova**-function should be used with caution, when model have more than one independent variable. This is the case, because, **anova** is performing what is commonly referred to as a Type I ANOVA, also called a sequential ANOVA, where the factors are tested in the specified order. Theoretically, this could be what you want, but in most cases we are interested in the effect of a factor, regardless of order. 
+However, the **anova()**-function should be used with caution, when model have more than one independent variable. This is the case, because, **anova()** is performing what is commonly referred to as a Type I ANOVA, also called a sequential ANOVA, where the factors are tested in the specified order. Theoretically, this could be what you want, but in most cases we are interested in the effect of a factor, regardless of order. 
 
 This is called a Type II ANOVA, and in R it can be performed using **drop1**, as shown below in model2. 
 
 However, if an interaction effect is present (e.g. if the effect of Riesling is enhanced by the wine originating from Germany), then a Type II ANOVA only returns the effect of this interaction, due to the [principle of marginality](https://randomeffect.net/post/2020/08/11/principle-of-marginality/). This implies, that if an interaction is in fact present, the "simple" main effects (of e.g. country and grape alone) are poor estimators of the response. If the interaction is non-significant, however, it should be removed from the model, and we end up with a Type II model with the main effects.
 
-If for some reason we are interested in both the main effects and the interaction (if the interaction effect is significant), we can perform what is called a Type III ANOVA. This will test all effects against a model without said effect. As this will over-parameterise the model, in R, one has to choose a contrasts setting that sums to zero, otherwise the ANOVA analysis will give incorrect results. This is what is done with **options**. Then model3 is created to also test the interaction, and in **drop1** it is specified, that we want all model components to be tested (Type III ANOVA), using **.~.**.
+If for some reason we are interested in both the main effects and the interaction (if the interaction effect is significant), we can perform what is called a Type III ANOVA. This will test all effects against a model without said effect. As this will over-parameterise the model, in R, one has to choose a contrasts setting that sums to zero, otherwise the ANOVA analysis will give incorrect results. This is what is done with `options`. Then model3 is created to also test the interaction, and in **drop1()** it is specified, that we want all model components to be tested (Type III ANOVA), using `.~.`.
 
 If there is no significant interaction effect, a Type II ANOVA is a stronger test, which is why one should choose it if possible.
 
@@ -214,7 +202,7 @@ To compare more than two groups, one would have to conduct multiple pairwise T-t
 
 A Tukey test corrects for this, and is therefore a better fit when dealing with more than two groups.
 
-There are several ways to conduct a Tukey test in R, but the one that works in most usecases is the one shown below, using the **multcomp**-package and the **glht**-function. The dataset used here is the beerliking-dataset.
+There are several ways to conduct a Tukey test in R, but the one that works in most usecases is the one shown below, using the *multcomp*-package and the **glht()**-function. The dataset used here is the *beerliking*-dataset.
 
 ```{r, message=FALSE}
 library(multcomp)
@@ -229,9 +217,9 @@ summary(glht(model, linfct = mcp(Beer = "Tukey")))
 cld(glht(model, linfct = mcp(Beer = "Tukey")))
 ```
 
-When inserting the **glht**-object into **summary**, the individual, pairwise comparisons are shown, with the adjusted p-values.
+When inserting the **glht()**-object into **summary()**, the individual, pairwise comparisons are shown, with the adjusted p-values.
 
-Another (sometimes easier to interpret) way of displaying the pairwise comparison is by the use of letters, as is shown using **cld**. When groups have different letter, they are significantly different from one another, while groups sharing a letter means no significant difference between the two. Here, we can see, that Brown Ale has scored significantly higher than Wheat IPA, since they have been assigned with c and a respectively. But the Brown Ale is not significantly different from the Ravnsborg Red, as they both have been assigned with a's.
+Another (sometimes easier to interpret) way of displaying the pairwise comparison is by the use of letters, as is shown using **cld()**. When groups have different letter, they are significantly different from one another, while groups sharing a letter means no significant difference between the two. Here, we can see, that Brown Ale has scored significantly higher than Wheat IPA, since they have been assigned with c and a respectively. But the Brown Ale is not significantly different from the Ravnsborg Red, as they both have been assigned with a's.
 
 ## Introduction to linear and mixed models 
 
@@ -252,7 +240,27 @@ In a _normal_ linear model such as:
 $$y = a + b\cdot x + e$$
 
 The assumption is that the uncertainty is captured by one entry, namely the residuals ($e$). 
-For instance, the relation between _Hunger_ and the intake  _AdLibg_ of dishes with Capsaicin can be visualized and modeled by: 
+For instance, the relation between `Hunger` and the intake  `AdLibg` of dishes with Capsaicin can be visualized and modeled by the code below.
+
+First, we load the data from the *data4consumerscience*-package as well as the line `data('chili')` , and load the *tidyverse*-package, to be able to manipulate the data as well as plot them.
+
+The code uses the pipe operator `%>%` to chain together a series of data manipulation steps using the *dplyr*-package from the *tidyverse*.
+
+`filter(Treatment=='Capsaicin')` filters the dataset to include only rows where the `Treatment` column has the value `Capsaicin`. 
+
+`filter(!duplicated(Judge))` filters out duplicated rows based on the `Judge` column.
+
+This creates a new **data.frame**, which is assigned to the name `x`.
+
+The next chuck of code creates the plot, using the **ggplot()** function. 
+
+The `data` argument is set to the filtered dataset `x`, and aesthetics (`aes()`) mappings are defined:
+   - `x = Hunger`: The x-axis is mapped to the `Hunger` column in the dataset.
+   - `y = AdLibg`: The y-axis is mapped to the `AdLibg` column in the dataset.
+
+`geom_point()` adds individual points to the plot, where each point represents a combination of `Hunger` and `AdLibg` values from the dataset.
+
+`stat_smooth(method = lm, se = F)` adds a smoothed regression line to the plot using linear regression (`method = lm`). The `se = F` argument indicates that the standard error around the regression line should not be displayed.
 
 ```{r, message=FALSE}
 library(tidyverse)
@@ -269,14 +277,24 @@ ggplot(data = x, aes(x = Hunger, y = AdLibg)) +
 
 Naturally, the more hungry, the higher the intake. 
 
-A model describing this relation: 
+A model describing this relation is shown below.
+
+The first line of code uses the `lm()` function to fit a linear regression model. 
+
+`mdl` is the name given to the linear regression model that will be created.
+
+`data = x` specifies, that `x` is the dataset used for the linear regression.
+
+`AdLibg ~ Hunger` specifies the formula of the model. Here, `AdLibg` is the dependent variable and `Hunger` is the independent variable. The tilde (`~`) separates the dependent and independent variables.
+
+The **summary()**-function is used to display information about the model `mdl`.
 
 ```{r}
 mdl <- lm(data = x, AdLibg~Hunger)
 summary(mdl)
 ```
 
-Here we see that consumption increases by $3.45g$ per increase in $1$ hunger scale, and that this slope has a standard error of $1.08g$. Further, at Hunger=0 the intake is $379.8g$. Furhter, we see that this relation is significant $p = 0.0036$. 
+Here we see that consumption increases by $3.45g$ per increase in $1$ hunger scale, and that this slope has a standard error of $1.08g$ (`Estimate` and `Std. Error` under `Coefficients`). Further, at Hunger=0 the intake is $379.8g$. Further, we see that this relation is significant $p = 0.0036$ (`Pr(>|t|)` under `Coefficients`). 
 
 More details on the use of linear models in R and how-to can be viewed in these videos: 
 
@@ -294,7 +312,7 @@ vembedr::embed_youtube("2mAqgL0Xc-s")
 A _mixed_ model refers to the situation, where more than one part of the model is handling the uncertainty. 
 For instance, in the chili data set there are two instances for each judge, and hence the uncertainty can be split into _between_ judges and _within_ judges. 
 
-In this plot the intake is shown across products (_Treatment_) and labelled with the _Judge_ number. For instance, Judge 1 is in general high and 24 generally low. Further, the plot is splitted according to the two test-repetition (First:  TestDays = 1,..,5, Second: TestDays = 6,..,10). 
+In this plot the intake is shown across products (_Treatment_) and labelled with the _Judge_ number. For instance, Judge 1 is in general high and 24 generally low. Further, the plot is splitted according to the two test-repetition (First: TestDays = 1,..,5, Second: TestDays = 6,..,10). 
 
 
 ```{r, message=FALSE, warning=FALSE}
