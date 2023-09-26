@@ -3433,7 +3433,9 @@ From this exercise you should be able to describe the products in terms of commo
 
 Create data set with CATA counts per product and make a table thereof
 
-Plot the CATA counts such that product differences are emphasized
+Plot the CATA counts such that product differences are emphasized. 
+
+Which characteristics is most pronounced overall? And where are the largest product differences observed? 
 
 ```{r, eval = F}
 library(data4consumerscience)
@@ -3444,7 +3446,9 @@ data("beercata")
 
 Plot hedonic ratings (beerliking$Liking) per product in histograms to see the distribution
 
-Calculate descriptive statistics for hedonic rating for each product
+Calculate descriptive statistics for hedonic rating for each product. 
+
+Which beer is in general more likable? Is the disagreement in liking similar across beers? 
 
 ```{r, eval=FALSE}
 data("beerliking")
@@ -3459,6 +3463,8 @@ From this exercise you should be able to describe who your consumers are.
 Age, Gender, Income and Household size is classical demographic characteristics. As the evaluation of the products is done using a specific group of people, the generalizability of the results naturally condition of the characteristics of this population. 
 
 Construct the distributions of the demographic characteristics. You can use the table() function, or maybe do it all at once using the **tableone** package. For inspiration, modify the code below to serve your needs. 
+
+Is there any demographic bias in this dataset? 
 
 ```{r, eval=FALSE}
 library(data4consumerscience)
@@ -3485,7 +3491,9 @@ library(ggbiplot)
 ggbiplot(mdlPCA, groups = beerdemo$Gender, ellipse = T)
 ```
 
-Describe what you find.
+Describe what you find: 
+For instance, is the loading making sense? 
+
 
 ## Exercise 3: PCA on CATA counts
 
@@ -3509,7 +3517,6 @@ ggbiplot(PCAmdl, groups = beercata$Beer, ellipse = T)
 
 Use this biplot to find out which samples are described by which CATA attributes. as well as similarity of products.  
 
-
 ## Exercise 4: Cochran’s Q test on CATA binary data
 
 In Exercise 1 the attributes characteristic for certain products, were summarized using descriptive stats and plots. Now we want to add statistical inference onto these observations. 
@@ -3517,6 +3524,9 @@ In Exercise 1 the attributes characteristic for certain products, were summarize
 To get started, choose a few attributes. For each attribute 1) Perform Cochran’s Q test for overall difference, and if _interesting enough_ 2) perform a Post hoc test for product segmentation. 
 
 To get all attributes analyzed collectively, use the _tidyverse_ code in the chapter [For all attributes in one run (nice to know)]. 
+
+Which descriptors are most different between products? 
+Are the overall most pronounced descriptors also the ones most different? 
 
 Try this procedure out on a different dataset, e.g. the tempeto data. 
 
@@ -3539,7 +3549,7 @@ Calculate a PCA model including all Variables and all Objects.
 
 ```{r, eval=FALSE}
 include_these <- complete.cases(beerliking)
-PCAliking <- prcomp(beerliking[include_these,-1], scale. = T)
+PCAliking <- prcomp(beerliking[include_these,-c(1:7)], scale. = T)
 ```
 
 Plot a biplot or loading plot, and use the loadings and describe the correlations between the variables (liking of beers in this case).
@@ -3563,7 +3573,7 @@ Any trends? For instance, how is liking related to the individual consumer diver
 
 ```{r, eval=FALSE}
 gall <- cbind(PCAliking$x[,1:2], beerdemo[include_these,]) %>% 
-  gather(var,val,`Interest in food`:App_Vinous) %>% 
+  gather(var,val,`Interest in food`:`Future interest in beer`) %>% 
   ggplot(data = ., aes(PC1,PC2, color = factor(val))) + 
   geom_point() + 
   stat_ellipse() + 
@@ -3574,7 +3584,7 @@ ggsave(filename = 'anicebigfigure.pdf',gall, height = 20, width = 20)
 
 ## Exercise 6: PCA on CATA counts and hedonic ratings
 
-From this exercise you should be able to conclude what attributes that overall drives the liking of products (beers).
+From this exercise you should be able to conclude _what_ attributes that overall drives the liking of products (beers).
 
 For each beer, the collated CATA counts and the averaged liking constitutes the multivariate response matrix.
 
@@ -3603,6 +3613,8 @@ Do a PCA
 PCAcata_lik <- prcomp(cata_lik[,-1],scale. = T)
 ggbiplot(PCAcata_lik, labels = cata_lik$Beer)
 ```
+What charaterizes _River Beer_ ? 
+Which descriptors are in general associated with liking? (and dis-liking?)
 
 
 ## Exercise 7: Mixed modelling on hedonic ratings
