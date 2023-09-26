@@ -1,7 +1,7 @@
 --- 
 title: "Data Analysis in R for Sensory and Consumer Science"
 author: "Morten Arendt Rasmussen, Julius Jessen Terp, Mads Rønnow Staffe, Helene C. Reinbach and Bodil H. Allesen-Holm"
-date: "October 2022"
+date: "August 2023"
 site: bookdown::bookdown_site
 ---
 
@@ -19,8 +19,7 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
 This material is to cover data analysis using R for consumer science targeting the following courses: 
 
 * Meal Systems and Technologies
-* Food Consumer Research 
-* Meal Consumer Research 
+* Food and Meal Consumer Research 
 * Thematic Course in Food Innovation and Health
 
 But others may benefit from the material as well....

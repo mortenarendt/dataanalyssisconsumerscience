@@ -158,7 +158,7 @@ These results are in line, with the visual interpretation above.
 There are many other interesting plot methods, which can be found here:
 [mdatools.com](https://mdatools.com/docs/pls--plotting-methods.html)
 
-## L-PLS [For the future...]
+## L-PLS
 
 The data used in this section is from the paper: *Giacalone, Davide,
 Wender L.P. Bredie, and Michael Bom Frøst. "'All-In-One Test' (AI1): A
