@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 13 Logistic Regression | Data Analysis in R for Sensory and Consumer Science</title>
   <meta name="description" content="Chapter 13 Logistic Regression | Data Analysis in R for Sensory and Consumer Science" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 13 Logistic Regression | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
@@ -52,8 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -370,7 +368,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.3.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pls-to-predict-liking-based-on-cata-data"><i class="fa fa-check"></i><b>16.3.2</b> PLS to predict liking based on CATA data</a></li>
 <li class="chapter" data-level="16.3.3" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#regression-coefficients"><i class="fa fa-check"></i><b>16.3.3</b> Regression coefficients</a></li>
 </ul></li>
-<li class="chapter" data-level="16.4" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>16.4</b> L-PLS [For the future…]</a></li>
+<li class="chapter" data-level="16.4" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#l-pls"><i class="fa fa-check"></i><b>16.4</b> L-PLS</a></li>
+<li class="chapter" data-level="16.5" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#creating-x1-x2-x3."><i class="fa fa-check"></i><b>16.5</b> Creating X1, X2, X3.</a></li>
+<li class="chapter" data-level="16.6" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#building-the-model-the-l-pls-model-can-be-built-using-the-lpls"><i class="fa fa-check"></i><b>16.6</b> Building the model: The L-PLS model can be built, using the <em>lpls</em></a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#finding-the-explained-variance-for-exo-l-pls"><i class="fa fa-check"></i><b>16.6.1</b> Finding the explained variance for exo L-PLS</a></li>
+<li class="chapter" data-level="16.6.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#cross-validation-next-let-us-have-a-look-how-many-components-we"><i class="fa fa-check"></i><b>16.6.2</b> Cross-validation Next let us have a look how many components we</a></li>
+<li class="chapter" data-level="16.6.3" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#vizulization-now-we-would-like-to-visuzlalize-our-l-pls-model.-when"><i class="fa fa-check"></i><b>16.6.3</b> Vizulization Now we would like to visuzlalize our L-PLS model. When</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>17</b> Projective mapping</a>
 <ul>
@@ -447,42 +452,46 @@ In short regression were developed towards continuous responses, and is what is 
 </div>
 <p>In this chapter, we are going to use logistic regression for characterizing clusters. This is simply done by constructing binary classes based on the clusters as <strong>belong to cluster k</strong> versus <strong>not belong to cluster k</strong>. Even with more than two clusters binary endpoints can be constructed in this way. Alternatively, if there is one of the clusters which naturally is a reference cluster, then comparing the individual clusters to this one is also a way forward.</p>
 <p>The data used in this chapter is from the paper: <em>Verbeke, Wim, Federico JA Pérez-Cueto, and Klaus G. Grunert. “To eat or not to eat pork, how frequently and how varied? Insights from the quantitative Q-PorkChains consumer survey in four European countries.” Meat science 88.4 (2011): 619-626.</em> and can be found in the <em>data4consumerscience</em>-package as <em>pork</em>.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="logistic-regression.html#cb213-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb213-2"><a href="logistic-regression.html#cb213-2" tabindex="-1"></a><span class="fu">data</span>(pork)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="logistic-regression.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb213-2"><a href="logistic-regression.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pork)</span></code></pre></div>
 <div id="segmentationclustering" class="section level2 hasAnchor" number="13.1">
 <h2><span class="header-section-number">13.1</span> Segmentation/Clustering<a href="logistic-regression.html#segmentationclustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the dataset there are three clusters encoded as binary membership variables: cluster1, cluster2 and cluster3. They are mutually exclusive.</p>
 <p>These clusters are based on another clustering procedure than k-means, but in principle any clustering can be used to generate clusters… as long as they are meaningful.</p>
 <p>Here we just plot them to see how they appear on the two variables used for their construction.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="logistic-regression.html#cb214-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb214-2"><a href="logistic-regression.html#cb214-2" tabindex="-1"></a><span class="fu">library</span>(tableone)</span>
-<span id="cb214-3"><a href="logistic-regression.html#cb214-3" tabindex="-1"></a></span>
-<span id="cb214-4"><a href="logistic-regression.html#cb214-4" tabindex="-1"></a>pork<span class="sc">$</span>clusters <span class="ot">&lt;-</span> pork<span class="sc">$</span>cluster1<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> </span>
-<span id="cb214-5"><a href="logistic-regression.html#cb214-5" tabindex="-1"></a>  pork<span class="sc">$</span>cluster2<span class="sc">*</span><span class="dv">2</span> <span class="sc">+</span> </span>
-<span id="cb214-6"><a href="logistic-regression.html#cb214-6" tabindex="-1"></a>  pork<span class="sc">$</span>cluster3<span class="sc">*</span><span class="dv">3</span>  </span>
-<span id="cb214-7"><a href="logistic-regression.html#cb214-7" tabindex="-1"></a>  </span>
-<span id="cb214-8"><a href="logistic-regression.html#cb214-8" tabindex="-1"></a><span class="fu">plot</span>(TotalPorkWeek <span class="sc">~</span> VarietyTotal, <span class="at">data =</span> pork, </span>
-<span id="cb214-9"><a href="logistic-regression.html#cb214-9" tabindex="-1"></a>     <span class="at">col =</span> pork[[<span class="st">&quot;clusters&quot;</span>]] <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-129-1.png" width="432" /></p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="logistic-regression.html#cb215-1" tabindex="-1"></a><span class="co">#Or using ggplot2:</span></span>
-<span id="cb215-2"><a href="logistic-regression.html#cb215-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pork, <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek,<span class="at">color =</span> <span class="fu">factor</span>(clusters))) <span class="sc">+</span> </span>
-<span id="cb215-3"><a href="logistic-regression.html#cb215-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb215-4"><a href="logistic-regression.html#cb215-4" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="st">&#39;Cluster&#39;</span>)) <span class="sc">+</span> </span>
-<span id="cb215-5"><a href="logistic-regression.html#cb215-5" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-129-2.png" width="432" /></p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="logistic-regression.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb214-2"><a href="logistic-regression.html#cb214-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tableone)</span>
+<span id="cb214-3"><a href="logistic-regression.html#cb214-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb214-4"><a href="logistic-regression.html#cb214-4" aria-hidden="true" tabindex="-1"></a>pork<span class="sc">$</span>clusters <span class="ot">&lt;-</span> pork<span class="sc">$</span>cluster1<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> </span>
+<span id="cb214-5"><a href="logistic-regression.html#cb214-5" aria-hidden="true" tabindex="-1"></a>  pork<span class="sc">$</span>cluster2<span class="sc">*</span><span class="dv">2</span> <span class="sc">+</span> </span>
+<span id="cb214-6"><a href="logistic-regression.html#cb214-6" aria-hidden="true" tabindex="-1"></a>  pork<span class="sc">$</span>cluster3<span class="sc">*</span><span class="dv">3</span>  </span>
+<span id="cb214-7"><a href="logistic-regression.html#cb214-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb214-8"><a href="logistic-regression.html#cb214-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(TotalPorkWeek <span class="sc">~</span> VarietyTotal, <span class="at">data =</span> pork, </span>
+<span id="cb214-9"><a href="logistic-regression.html#cb214-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> pork[[<span class="st">&quot;clusters&quot;</span>]] <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-122-1.png" width="432" /></p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="logistic-regression.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Or using ggplot2:</span></span>
+<span id="cb215-2"><a href="logistic-regression.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pork, <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek,<span class="at">color =</span> <span class="fu">factor</span>(clusters))) <span class="sc">+</span> </span>
+<span id="cb215-3"><a href="logistic-regression.html#cb215-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb215-4"><a href="logistic-regression.html#cb215-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="st">&#39;Cluster&#39;</span>)) <span class="sc">+</span> </span>
+<span id="cb215-5"><a href="logistic-regression.html#cb215-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-122-2.png" width="432" /></p>
 </div>
 <div id="fitting-the-logistic-regression-model" class="section level2 hasAnchor" number="13.2">
 <h2><span class="header-section-number">13.2</span> Fitting the logistic regression-model<a href="logistic-regression.html#fitting-the-logistic-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The question we are going to adress here is <em>is gender related to the being in cluster 1?</em>. Other tools for this is covered in <a href="profiling-segments.html#profiling-segments">Profiling segments</a>, but here we will see how logistic regression can be used for this.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="logistic-regression.html#cb216-1" tabindex="-1"></a>pork[[<span class="st">&quot;Gender&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(pork[[<span class="st">&quot;Gender&quot;</span>]])</span>
-<span id="cb216-2"><a href="logistic-regression.html#cb216-2" tabindex="-1"></a><span class="co"># 1: Male, 2: Female</span></span>
-<span id="cb216-3"><a href="logistic-regression.html#cb216-3" tabindex="-1"></a></span>
-<span id="cb216-4"><a href="logistic-regression.html#cb216-4" tabindex="-1"></a><span class="do">## Fitting logistic model</span></span>
-<span id="cb216-5"><a href="logistic-regression.html#cb216-5" tabindex="-1"></a>logreg.<span class="fl">1.</span>gender <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span> <span class="fu">factor</span>(Gender), <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
-<span id="cb216-6"><a href="logistic-regression.html#cb216-6" tabindex="-1"></a><span class="fu">summary</span>(logreg.<span class="fl">1.</span>gender)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="logistic-regression.html#cb216-1" aria-hidden="true" tabindex="-1"></a>pork[[<span class="st">&quot;Gender&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(pork[[<span class="st">&quot;Gender&quot;</span>]])</span>
+<span id="cb216-2"><a href="logistic-regression.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1: Male, 2: Female</span></span>
+<span id="cb216-3"><a href="logistic-regression.html#cb216-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb216-4"><a href="logistic-regression.html#cb216-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Fitting logistic model</span></span>
+<span id="cb216-5"><a href="logistic-regression.html#cb216-5" aria-hidden="true" tabindex="-1"></a>logreg.<span class="fl">1.</span>gender <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span> <span class="fu">factor</span>(Gender), <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
+<span id="cb216-6"><a href="logistic-regression.html#cb216-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logreg.<span class="fl">1.</span>gender)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cluster1 ~ factor(Gender), family = binomial, data = pork)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -0.9777  -0.9777  -0.7936   1.3912   1.6179  
 ## 
 ## Coefficients:
 ##                 Estimate Std. Error z value Pr(&gt;|z|)    
@@ -505,12 +514,12 @@ In short regression were developed towards continuous responses, and is what is 
 <h2><span class="header-section-number">13.3</span> Probabilities of segment membership:<a href="logistic-regression.html#probabilities-of-segment-membership" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>One way to get the direction is to interpret the coefficients from the summary() output, but alternatively, simply using the model to predict membership probabilities will give similar insight.</p>
 <p>Here the probability of beloging to cluster 1 is predicted for the situation where Gender is <span class="math inline">\(1\)</span> as well as <span class="math inline">\(2\)</span>. Be aware that such predictions should match with the data source used for building the model. Here that means, that if Gender is encoded with numbers (1 or 2), then the predictions are likewise done usign those. If the Gender is encoded with <em>male</em> and <em>female</em>, then that it the inputs when doing predictions.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="logistic-regression.html#cb218-1" tabindex="-1"></a><span class="fu">predict</span>(logreg.<span class="fl">1.</span>gender, <span class="fu">data.frame</span>(<span class="at">Gender =</span> <span class="st">&quot;1&quot;</span>), </span>
-<span id="cb218-2"><a href="logistic-regression.html#cb218-2" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="logistic-regression.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(logreg.<span class="fl">1.</span>gender, <span class="fu">data.frame</span>(<span class="at">Gender =</span> <span class="st">&quot;1&quot;</span>), </span>
+<span id="cb218-2"><a href="logistic-regression.html#cb218-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <pre><code>##         1 
 ## 0.3799534</code></pre>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="logistic-regression.html#cb220-1" tabindex="-1"></a><span class="fu">predict</span>(logreg.<span class="fl">1.</span>gender, <span class="fu">data.frame</span>(<span class="at">Gender =</span> <span class="st">&quot;2&quot;</span>), </span>
-<span id="cb220-2"><a href="logistic-regression.html#cb220-2" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="logistic-regression.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(logreg.<span class="fl">1.</span>gender, <span class="fu">data.frame</span>(<span class="at">Gender =</span> <span class="st">&quot;2&quot;</span>), </span>
+<span id="cb220-2"><a href="logistic-regression.html#cb220-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <pre><code>##         1 
 ## 0.2701299</code></pre>
 <p>What we see it that the probablity of belonging to cluster1 is higher if the Gender is <span class="math inline">\(1\)</span> (in reference to <span class="math inline">\(2\)</span>). This is obviously in line with the results in <a href="profiling-segments.html#contingency-table">Contingency table</a> and <a href="profiling-segments.html#pearson-chi-square-test">Pearson Chi-square test</a> in the former chapter.</p>
@@ -519,9 +528,9 @@ In short regression were developed towards continuous responses, and is what is 
 <h2><span class="header-section-number">13.4</span> Odds ratios<a href="logistic-regression.html#odds-ratios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Odds ratio is the terminology used for interpreting coefficients from a logistic regression model.
 In the direct read out of coefficients from summary() returns the natural logarithm of the oddsratio, and hence to get odds ratios the exponential function is used.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="logistic-regression.html#cb222-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>gender))[<span class="dv">2</span>, <span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="logistic-regression.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>gender))[<span class="dv">2</span>, <span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## [1] 1.286736</code></pre>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="logistic-regression.html#cb224-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(logreg.<span class="fl">1.</span>gender)[<span class="dv">2</span>, ])</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="logistic-regression.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(logreg.<span class="fl">1.</span>gender)[<span class="dv">2</span>, ])</span></code></pre></div>
 <pre><code>##    2.5 %   97.5 % 
 ## 1.158605 1.430157</code></pre>
 <p>Here is it seen that odds of belonging to cluster1 is in favor of gender <span class="math inline">\(1\)</span> as both the estimate and its confidence bounds are above 1.</p>
@@ -532,16 +541,16 @@ In the direct read out of coefficients from summary() returns the natural logari
 <p><span class="math display">\[ OR = \frac{p_1(1-p_2)}{(1-p_1)p2}\]</span></p>
 <p>where <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> are probabilities of females and males respectively.</p>
 <p>Here we use the observed probability predictions for females and males (see <em>Probabilities of segment membership</em> above) to calculate the OR given the formula:</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="logistic-regression.html#cb226-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fl">0.27</span></span>
-<span id="cb226-2"><a href="logistic-regression.html#cb226-2" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fl">0.38</span></span>
-<span id="cb226-3"><a href="logistic-regression.html#cb226-3" tabindex="-1"></a>OR <span class="ot">&lt;-</span>(p1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p2))<span class="sc">/</span>((<span class="dv">1</span><span class="sc">-</span>p1)<span class="sc">*</span>p2) <span class="co"># put in the ratio-calculation here</span></span>
-<span id="cb226-4"><a href="logistic-regression.html#cb226-4" tabindex="-1"></a>OR</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="logistic-regression.html#cb226-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fl">0.27</span></span>
+<span id="cb226-2"><a href="logistic-regression.html#cb226-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fl">0.38</span></span>
+<span id="cb226-3"><a href="logistic-regression.html#cb226-3" aria-hidden="true" tabindex="-1"></a>OR <span class="ot">&lt;-</span>(p1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p2))<span class="sc">/</span>((<span class="dv">1</span><span class="sc">-</span>p1)<span class="sc">*</span>p2) <span class="co"># put in the ratio-calculation here</span></span>
+<span id="cb226-4"><a href="logistic-regression.html#cb226-4" aria-hidden="true" tabindex="-1"></a>OR</span></code></pre></div>
 <p>Which is exactly the same as the output from the exponential of the coefficient in the model.</p>
 </div>
 <div id="effect-of-age" class="section level2 hasAnchor" number="13.6">
 <h2><span class="header-section-number">13.6</span> Effect of Age<a href="logistic-regression.html#effect-of-age" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Logistic regression can, as normal regression, also be used with continous predictors, such as Age.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="logistic-regression.html#cb227-1" tabindex="-1"></a><span class="fu">head</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;cluster1&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="logistic-regression.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;cluster1&quot;</span>)])</span></code></pre></div>
 <pre><code>##   Age cluster1
 ## 1  56        0
 ## 2  28        0
@@ -549,15 +558,15 @@ In the direct read out of coefficients from summary() returns the natural logari
 ## 4  52        1
 ## 5  64        1
 ## 6  53        0</code></pre>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="logistic-regression.html#cb229-1" tabindex="-1"></a>logreg.<span class="fl">1.</span>age <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span> Age, <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
-<span id="cb229-2"><a href="logistic-regression.html#cb229-2" tabindex="-1"></a></span>
-<span id="cb229-3"><a href="logistic-regression.html#cb229-3" tabindex="-1"></a><span class="co"># as log(OR)</span></span>
-<span id="cb229-4"><a href="logistic-regression.html#cb229-4" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>age))</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="logistic-regression.html#cb229-1" aria-hidden="true" tabindex="-1"></a>logreg.<span class="fl">1.</span>age <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span> Age, <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
+<span id="cb229-2"><a href="logistic-regression.html#cb229-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb229-3"><a href="logistic-regression.html#cb229-3" aria-hidden="true" tabindex="-1"></a><span class="co"># as log(OR)</span></span>
+<span id="cb229-4"><a href="logistic-regression.html#cb229-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>age))</span></code></pre></div>
 <pre><code>##                 Estimate  Std. Error    z value     Pr(&gt;|z|)
 ## (Intercept) -0.843015043 0.191718815 -4.3971430 1.096851e-05
 ## Age          0.002828027 0.004135367  0.6838636 4.940613e-01</code></pre>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="logistic-regression.html#cb231-1" tabindex="-1"></a><span class="co"># and as OR (only for the Age)</span></span>
-<span id="cb231-2"><a href="logistic-regression.html#cb231-2" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>age))[<span class="dv">2</span>,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="logistic-regression.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and as OR (only for the Age)</span></span>
+<span id="cb231-2"><a href="logistic-regression.html#cb231-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>age))[<span class="dv">2</span>,<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## [1] 1.002832</code></pre>
 <p>The coefficient indicates a very weak tendency towards, that cluster1 has older individuals (the estimate is positive), but the inference for this results is very non-significant.</p>
 </div>
@@ -567,8 +576,8 @@ In the direct read out of coefficients from summary() returns the natural logari
 <div id="descriptives" class="section level3 hasAnchor" number="13.7.1">
 <h3><span class="header-section-number">13.7.1</span> Descriptives<a href="logistic-regression.html#descriptives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>First we look at the crude percentages of cluster1 membership for the different countries.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="logistic-regression.html#cb233-1" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">table</span>(pork<span class="sc">$</span>COUNTRY, pork<span class="sc">$</span>cluster1)</span>
-<span id="cb233-2"><a href="logistic-regression.html#cb233-2" tabindex="-1"></a><span class="fu">prop.table</span>(tb,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="logistic-regression.html#cb233-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">table</span>(pork<span class="sc">$</span>COUNTRY, pork<span class="sc">$</span>cluster1)</span>
+<span id="cb233-2"><a href="logistic-regression.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tb,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##    
 ##             0         1
 ##   1 0.7820823 0.2179177
@@ -580,17 +589,17 @@ In the direct read out of coefficients from summary() returns the natural logari
 <div id="two-nested-models" class="section level3 hasAnchor" number="13.7.2">
 <h3><span class="header-section-number">13.7.2</span> Two nested models<a href="logistic-regression.html#two-nested-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In order to investigate the effect of country, we make a model <strong>with country</strong>, and a model <strong>without country</strong> (But appart from that similar!). Then we compare the drop in ability to fit data using anova. This indicates whether country were an important factor.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="logistic-regression.html#cb235-1" tabindex="-1"></a>pork[[<span class="st">&quot;COUNTRY&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(pork[[<span class="st">&quot;COUNTRY&quot;</span>]])</span>
-<span id="cb235-2"><a href="logistic-regression.html#cb235-2" tabindex="-1"></a></span>
-<span id="cb235-3"><a href="logistic-regression.html#cb235-3" tabindex="-1"></a><span class="co"># Model with country</span></span>
-<span id="cb235-4"><a href="logistic-regression.html#cb235-4" tabindex="-1"></a>logreg.<span class="fl">1.</span>cntr_1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span>  COUNTRY <span class="sc">+</span> Age <span class="sc">+</span> Gender, </span>
-<span id="cb235-5"><a href="logistic-regression.html#cb235-5" tabindex="-1"></a>                <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
-<span id="cb235-6"><a href="logistic-regression.html#cb235-6" tabindex="-1"></a><span class="co"># Model without country</span></span>
-<span id="cb235-7"><a href="logistic-regression.html#cb235-7" tabindex="-1"></a>logreg.<span class="fl">1.</span>cntr_0 <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span> Age <span class="sc">+</span> Gender, </span>
-<span id="cb235-8"><a href="logistic-regression.html#cb235-8" tabindex="-1"></a>                <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
-<span id="cb235-9"><a href="logistic-regression.html#cb235-9" tabindex="-1"></a></span>
-<span id="cb235-10"><a href="logistic-regression.html#cb235-10" tabindex="-1"></a><span class="co"># Comparison</span></span>
-<span id="cb235-11"><a href="logistic-regression.html#cb235-11" tabindex="-1"></a><span class="fu">anova</span>(logreg.<span class="fl">1.</span>cntr_1,logreg.<span class="fl">1.</span>cntr_0, <span class="at">test =</span> <span class="st">&#39;Chisq&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="logistic-regression.html#cb235-1" aria-hidden="true" tabindex="-1"></a>pork[[<span class="st">&quot;COUNTRY&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(pork[[<span class="st">&quot;COUNTRY&quot;</span>]])</span>
+<span id="cb235-2"><a href="logistic-regression.html#cb235-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb235-3"><a href="logistic-regression.html#cb235-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Model with country</span></span>
+<span id="cb235-4"><a href="logistic-regression.html#cb235-4" aria-hidden="true" tabindex="-1"></a>logreg.<span class="fl">1.</span>cntr_1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span>  COUNTRY <span class="sc">+</span> Age <span class="sc">+</span> Gender, </span>
+<span id="cb235-5"><a href="logistic-regression.html#cb235-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
+<span id="cb235-6"><a href="logistic-regression.html#cb235-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Model without country</span></span>
+<span id="cb235-7"><a href="logistic-regression.html#cb235-7" aria-hidden="true" tabindex="-1"></a>logreg.<span class="fl">1.</span>cntr_0 <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span> Age <span class="sc">+</span> Gender, </span>
+<span id="cb235-8"><a href="logistic-regression.html#cb235-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
+<span id="cb235-9"><a href="logistic-regression.html#cb235-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb235-10"><a href="logistic-regression.html#cb235-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparison</span></span>
+<span id="cb235-11"><a href="logistic-regression.html#cb235-11" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(logreg.<span class="fl">1.</span>cntr_1,logreg.<span class="fl">1.</span>cntr_0, <span class="at">test =</span> <span class="st">&#39;Chisq&#39;</span>)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table
 ## 
 ## Model 1: cluster1 ~ COUNTRY + Age + Gender
@@ -600,8 +609,8 @@ In the direct read out of coefficients from summary() returns the natural logari
 ## 2      1625     2037.6 -3  -67.577 1.409e-14 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="logistic-regression.html#cb237-1" tabindex="-1"></a><span class="co">#Or in one line of code, after defining the model WITH country:</span></span>
-<span id="cb237-2"><a href="logistic-regression.html#cb237-2" tabindex="-1"></a><span class="fu">drop1</span>(logreg.<span class="fl">1.</span>cntr_1, <span class="at">test =</span> <span class="st">&quot;Chisq&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="logistic-regression.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Or in one line of code, after defining the model WITH country:</span></span>
+<span id="cb237-2"><a href="logistic-regression.html#cb237-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(logreg.<span class="fl">1.</span>cntr_1, <span class="at">test =</span> <span class="st">&quot;Chisq&quot;</span>)</span></code></pre></div>
 <pre><code>## Single term deletions
 ## 
 ## Model:
@@ -618,7 +627,7 @@ In the direct read out of coefficients from summary() returns the natural logari
 <div id="coefficients" class="section level3 hasAnchor" number="13.7.3">
 <h3><span class="header-section-number">13.7.3</span> Coefficients<a href="logistic-regression.html#coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Lets look at how similar/different the levels of education is.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="logistic-regression.html#cb239-1" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>cntr_1))</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="logistic-regression.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>cntr_1))</span></code></pre></div>
 <pre><code>##                 Estimate  Std. Error    z value     Pr(&gt;|z|)
 ## (Intercept) -0.826120904 0.203377024 -4.0620169 4.865056e-05
 ## COUNTRY1    -0.573279550 0.101338371 -5.6570827 1.539675e-08
@@ -634,10 +643,10 @@ The estimates for the remaining three levels are all <strong>IN CONTRAST</strong
 <h3><span class="header-section-number">13.7.4</span> Re-level<a href="logistic-regression.html#re-level" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In order to get other pairs of contrast we can re-level the factor country, and repeat the model</p>
 <p>Here we re-level to the third level of country which is country==4.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="logistic-regression.html#cb241-1" tabindex="-1"></a>pork[[<span class="st">&#39;COUNTRY&#39;</span>]] <span class="ot">&lt;-</span> <span class="fu">relevel</span>(pork[[<span class="st">&#39;COUNTRY&#39;</span>]],<span class="dv">3</span>)</span>
-<span id="cb241-2"><a href="logistic-regression.html#cb241-2" tabindex="-1"></a>logreg.<span class="fl">1.</span>cntr_1a <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span>  COUNTRY <span class="sc">+</span> Age <span class="sc">+</span> Gender, </span>
-<span id="cb241-3"><a href="logistic-regression.html#cb241-3" tabindex="-1"></a>                <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
-<span id="cb241-4"><a href="logistic-regression.html#cb241-4" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>cntr_1a))</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="logistic-regression.html#cb241-1" aria-hidden="true" tabindex="-1"></a>pork[[<span class="st">&#39;COUNTRY&#39;</span>]] <span class="ot">&lt;-</span> <span class="fu">relevel</span>(pork[[<span class="st">&#39;COUNTRY&#39;</span>]],<span class="dv">3</span>)</span>
+<span id="cb241-2"><a href="logistic-regression.html#cb241-2" aria-hidden="true" tabindex="-1"></a>logreg.<span class="fl">1.</span>cntr_1a <span class="ot">&lt;-</span> <span class="fu">glm</span>(cluster1 <span class="sc">~</span>  COUNTRY <span class="sc">+</span> Age <span class="sc">+</span> Gender, </span>
+<span id="cb241-3"><a href="logistic-regression.html#cb241-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> pork, <span class="at">family =</span> binomial)</span>
+<span id="cb241-4"><a href="logistic-regression.html#cb241-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(logreg.<span class="fl">1.</span>cntr_1a))</span></code></pre></div>
 <pre><code>##                 Estimate  Std. Error    z value     Pr(&gt;|z|)
 ## (Intercept) -0.826120904 0.203377024 -4.0620169 4.865056e-05
 ## COUNTRY1     0.635372034 0.090915771  6.9885789 2.776846e-12
@@ -650,9 +659,9 @@ The estimates for the remaining three levels are all <strong>IN CONTRAST</strong
 <div id="all-pairwise-comparisons" class="section level3 hasAnchor" number="13.7.5">
 <h3><span class="header-section-number">13.7.5</span> All pairwise comparisons<a href="logistic-regression.html#all-pairwise-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We want to compare all pairs of the <span class="math inline">\(4\)</span> country levels. This is a multiple comparison task, and can be undertaken by the <strong>glht()</strong> function from the <strong>multcomp</strong> package.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="logistic-regression.html#cb243-1" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
-<span id="cb243-2"><a href="logistic-regression.html#cb243-2" tabindex="-1"></a></span>
-<span id="cb243-3"><a href="logistic-regression.html#cb243-3" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glht</span>(logreg.<span class="fl">1.</span>cntr_1, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">COUNTRY =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="logistic-regression.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb243-2"><a href="logistic-regression.html#cb243-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb243-3"><a href="logistic-regression.html#cb243-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glht</span>(logreg.<span class="fl">1.</span>cntr_1, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">COUNTRY =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -673,7 +682,7 @@ The estimates for the remaining three levels are all <strong>IN CONTRAST</strong
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="logistic-regression.html#cb245-1" tabindex="-1"></a><span class="fu">cld</span>(<span class="fu">glht</span>(logreg.<span class="fl">1.</span>cntr_1, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">COUNTRY =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="logistic-regression.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(<span class="fu">glht</span>(logreg.<span class="fl">1.</span>cntr_1, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">COUNTRY =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
 <pre><code>##    1    3    4    6 
 ##  &quot;a&quot; &quot;ab&quot;  &quot;c&quot;  &quot;b&quot;</code></pre>
 <p>Here we get all <span class="math inline">\(6\)</span> pairs of pairwise comparisons. And it appears as country 1 and 3 are not statistically different, as well as country 3 and 6 (<span class="math inline">\(p&gt;0.1\)</span>). However, country 1 and 6.</p>
@@ -694,42 +703,46 @@ The estimates for the remaining three levels are all <strong>IN CONTRAST</strong
 <p>The data <strong>plantbaseddiet</strong>, found in the <strong>data4consumerscience</strong>-package constitute data from the following study:</p>
 <p><em>Reipurth, Malou FS, Lasse Hørby, Charlotte G. Gregersen, Astrid Bonke, and Federico JA Perez Cueto. “Barriers and facilitators towards adopting a more plant-based diet in a sample of Danish consumers.” Food quality and preference 73 (2019): 288-292.</em></p>
 <p>Here we use the clusters from the consumer segmentation analysis as provided in <a href="consumer-segmentation.html#segmentation---another-example">Segmentation - another example</a></p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="logistic-regression.html#cb247-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span><span class="fu">ls</span>())</span>
-<span id="cb247-2"><a href="logistic-regression.html#cb247-2" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb247-3"><a href="logistic-regression.html#cb247-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;plantbaseddiet&quot;</span>)</span>
-<span id="cb247-4"><a href="logistic-regression.html#cb247-4" tabindex="-1"></a></span>
-<span id="cb247-5"><a href="logistic-regression.html#cb247-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb247-6"><a href="logistic-regression.html#cb247-6" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], <span class="dv">4</span>)</span>
-<span id="cb247-7"><a href="logistic-regression.html#cb247-7" tabindex="-1"></a>res<span class="sc">$</span>centers</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="logistic-regression.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span><span class="fu">ls</span>())</span>
+<span id="cb247-2"><a href="logistic-regression.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb247-3"><a href="logistic-regression.html#cb247-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;plantbaseddiet&quot;</span>)</span>
+<span id="cb247-4"><a href="logistic-regression.html#cb247-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb247-5"><a href="logistic-regression.html#cb247-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb247-6"><a href="logistic-regression.html#cb247-6" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], <span class="dv">4</span>)</span>
+<span id="cb247-7"><a href="logistic-regression.html#cb247-7" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>centers</span></code></pre></div>
 <pre><code>##      a_meat   a_dairy   a_eggs
 ## 1 18.812500  5.729167 4.492188
 ## 2  3.719886  5.167045 2.915909
 ## 3  4.688508 18.854839 3.601815
 ## 4 19.150000 21.850000 7.678571</code></pre>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="logistic-regression.html#cb249-1" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>clusters <span class="ot">&lt;-</span> <span class="fu">factor</span>(res<span class="sc">$</span>cluster,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;High Meat&#39;</span>,<span class="st">&#39;Low all&#39;</span>,<span class="st">&#39;High Dairy&#39;</span>,<span class="st">&#39;High All&#39;</span>))</span>
-<span id="cb249-2"><a href="logistic-regression.html#cb249-2" tabindex="-1"></a></span>
-<span id="cb249-3"><a href="logistic-regression.html#cb249-3" tabindex="-1"></a><span class="co"># add as binary columns</span></span>
-<span id="cb249-4"><a href="logistic-regression.html#cb249-4" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>cluster_highmeat <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(plantbaseddiet<span class="sc">$</span>clusters<span class="sc">==</span><span class="st">&#39;High Meat&#39;</span>)</span>
-<span id="cb249-5"><a href="logistic-regression.html#cb249-5" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>cluster_lowall <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(plantbaseddiet<span class="sc">$</span>clusters<span class="sc">==</span><span class="st">&#39;Low all&#39;</span>)</span>
-<span id="cb249-6"><a href="logistic-regression.html#cb249-6" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>cluster_highdairy <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(plantbaseddiet<span class="sc">$</span>clusters<span class="sc">==</span><span class="st">&#39;High Dairy&#39;</span>)</span>
-<span id="cb249-7"><a href="logistic-regression.html#cb249-7" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>cluster_highall <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(plantbaseddiet<span class="sc">$</span>clusters<span class="sc">==</span><span class="st">&#39;High All&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="logistic-regression.html#cb249-1" aria-hidden="true" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>clusters <span class="ot">&lt;-</span> <span class="fu">factor</span>(res<span class="sc">$</span>cluster,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;High Meat&#39;</span>,<span class="st">&#39;Low all&#39;</span>,<span class="st">&#39;High Dairy&#39;</span>,<span class="st">&#39;High All&#39;</span>))</span>
+<span id="cb249-2"><a href="logistic-regression.html#cb249-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb249-3"><a href="logistic-regression.html#cb249-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add as binary columns</span></span>
+<span id="cb249-4"><a href="logistic-regression.html#cb249-4" aria-hidden="true" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>cluster_highmeat <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(plantbaseddiet<span class="sc">$</span>clusters<span class="sc">==</span><span class="st">&#39;High Meat&#39;</span>)</span>
+<span id="cb249-5"><a href="logistic-regression.html#cb249-5" aria-hidden="true" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>cluster_lowall <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(plantbaseddiet<span class="sc">$</span>clusters<span class="sc">==</span><span class="st">&#39;Low all&#39;</span>)</span>
+<span id="cb249-6"><a href="logistic-regression.html#cb249-6" aria-hidden="true" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>cluster_highdairy <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(plantbaseddiet<span class="sc">$</span>clusters<span class="sc">==</span><span class="st">&#39;High Dairy&#39;</span>)</span>
+<span id="cb249-7"><a href="logistic-regression.html#cb249-7" aria-hidden="true" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>cluster_highall <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(plantbaseddiet<span class="sc">$</span>clusters<span class="sc">==</span><span class="st">&#39;High All&#39;</span>)</span></code></pre></div>
 </div>
 <div id="logistic-regression-for-demographic-characterization" class="section level2 hasAnchor" number="13.10">
 <h2><span class="header-section-number">13.10</span> Logistic regression for demographic characterization<a href="logistic-regression.html#logistic-regression-for-demographic-characterization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="age" class="section level3 hasAnchor" number="13.10.1">
 <h3><span class="header-section-number">13.10.1</span> Age<a href="logistic-regression.html#age" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="logistic-regression.html#cb250-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb250-2"><a href="logistic-regression.html#cb250-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> plantbaseddiet, <span class="fu">aes</span>(clusters,age)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="logistic-regression.html#cb251-1" tabindex="-1"></a>mdl_age <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> plantbaseddiet, clusters<span class="sc">==</span><span class="st">&#39;High Meat&#39;</span> <span class="sc">~</span> age)</span>
-<span id="cb251-2"><a href="logistic-regression.html#cb251-2" tabindex="-1"></a></span>
-<span id="cb251-3"><a href="logistic-regression.html#cb251-3" tabindex="-1"></a><span class="co"># This is essentially the same as: </span></span>
-<span id="cb251-4"><a href="logistic-regression.html#cb251-4" tabindex="-1"></a><span class="co"># res &lt;- glm(data = plantbaseddiet, cluster_highmeat ~ age)</span></span>
-<span id="cb251-5"><a href="logistic-regression.html#cb251-5" tabindex="-1"></a></span>
-<span id="cb251-6"><a href="logistic-regression.html#cb251-6" tabindex="-1"></a><span class="fu">summary</span>(mdl_age)</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="logistic-regression.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb250-2"><a href="logistic-regression.html#cb250-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> plantbaseddiet, <span class="fu">aes</span>(clusters,age)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="logistic-regression.html#cb251-1" aria-hidden="true" tabindex="-1"></a>mdl_age <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> plantbaseddiet, clusters<span class="sc">==</span><span class="st">&#39;High Meat&#39;</span> <span class="sc">~</span> age)</span>
+<span id="cb251-2"><a href="logistic-regression.html#cb251-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb251-3"><a href="logistic-regression.html#cb251-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This is essentially the same as: </span></span>
+<span id="cb251-4"><a href="logistic-regression.html#cb251-4" aria-hidden="true" tabindex="-1"></a><span class="co"># res &lt;- glm(data = plantbaseddiet, cluster_highmeat ~ age)</span></span>
+<span id="cb251-5"><a href="logistic-regression.html#cb251-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb251-6"><a href="logistic-regression.html#cb251-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl_age)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = clusters == &quot;High Meat&quot; ~ age, data = plantbaseddiet)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -0.12297  -0.11221  -0.10634  -0.08971   0.93669  
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(&gt;|t|)   
@@ -748,29 +761,33 @@ The estimates for the remaining three levels are all <strong>IN CONTRAST</strong
 </div>
 <div id="gender" class="section level3 hasAnchor" number="13.10.2">
 <h3><span class="header-section-number">13.10.2</span> Gender<a href="logistic-regression.html#gender" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="logistic-regression.html#cb253-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> plantbaseddiet, <span class="fu">aes</span>(clusters,<span class="at">fill =</span> gender)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="logistic-regression.html#cb254-1" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> <span class="fu">table</span>(plantbaseddiet<span class="sc">$</span>clusters,plantbaseddiet<span class="sc">$</span>gender)</span>
-<span id="cb254-2"><a href="logistic-regression.html#cb254-2" tabindex="-1"></a>tb2</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="logistic-regression.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> plantbaseddiet, <span class="fu">aes</span>(clusters,<span class="at">fill =</span> gender)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="logistic-regression.html#cb254-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> <span class="fu">table</span>(plantbaseddiet<span class="sc">$</span>clusters,plantbaseddiet<span class="sc">$</span>gender)</span>
+<span id="cb254-2"><a href="logistic-regression.html#cb254-2" aria-hidden="true" tabindex="-1"></a>tb2</span></code></pre></div>
 <pre><code>##             
 ##              Female Male
 ##   High Meat      29   19
 ##   Low all       168   52
 ##   High Dairy     99   25
 ##   High All       44   26</code></pre>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="logistic-regression.html#cb256-1" tabindex="-1"></a><span class="fu">prop.table</span>(tb2,<span class="at">margin =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="logistic-regression.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tb2,<span class="at">margin =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##             
 ##                 Female      Male
 ##   High Meat  0.6041667 0.3958333
 ##   Low all    0.7636364 0.2363636
 ##   High Dairy 0.7983871 0.2016129
 ##   High All   0.6285714 0.3714286</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="logistic-regression.html#cb258-1" tabindex="-1"></a>mdl_gender <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> plantbaseddiet, clusters<span class="sc">==</span><span class="st">&#39;High Meat&#39;</span> <span class="sc">~</span> gender)</span>
-<span id="cb258-2"><a href="logistic-regression.html#cb258-2" tabindex="-1"></a></span>
-<span id="cb258-3"><a href="logistic-regression.html#cb258-3" tabindex="-1"></a><span class="fu">summary</span>(mdl_gender)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="logistic-regression.html#cb258-1" aria-hidden="true" tabindex="-1"></a>mdl_gender <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> plantbaseddiet, clusters<span class="sc">==</span><span class="st">&#39;High Meat&#39;</span> <span class="sc">~</span> gender)</span>
+<span id="cb258-2"><a href="logistic-regression.html#cb258-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb258-3"><a href="logistic-regression.html#cb258-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl_gender)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = clusters == &quot;High Meat&quot; ~ gender, data = plantbaseddiet)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -0.15574  -0.08529  -0.08529  -0.08529   0.91471  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
@@ -786,7 +803,7 @@ The estimates for the remaining three levels are all <strong>IN CONTRAST</strong
 ## AIC: 215.47
 ## 
 ## Number of Fisher Scoring iterations: 2</code></pre>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="logistic-regression.html#cb260-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(mdl_gender))[<span class="dv">2</span>, <span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="logistic-regression.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(mdl_gender))[<span class="dv">2</span>, <span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## [1] 0.9653913</code></pre>
 </div>
 </div>
@@ -803,10 +820,10 @@ The estimates for the remaining three levels are all <strong>IN CONTRAST</strong
 <p>We want to produce the results from the Table 4 in the paper.</p>
 <p>In principle, this table is <span class="math inline">\(11\)</span> survey likert scale answers against <span class="math inline">\(4\)</span> clusters… I.e. <span class="math inline">\(44\)</span> logistic regression models. If you do this in the traditional way it takes up tons of code, and even small changes will be time-consuming to implement.</p>
 <p>For instance, the first element of Table 4 is calculated as:</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="logistic-regression.html#cb262-1" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> plantbaseddiet, clusters<span class="sc">==</span><span class="st">&#39;High Dairy&#39;</span> <span class="sc">~</span> o_prepar <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">+</span> <span class="fu">factor</span>(education), </span>
-<span id="cb262-2"><a href="logistic-regression.html#cb262-2" tabindex="-1"></a>           <span class="at">family =</span> binomial) </span>
-<span id="cb262-3"><a href="logistic-regression.html#cb262-3" tabindex="-1"></a></span>
-<span id="cb262-4"><a href="logistic-regression.html#cb262-4" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(mdl)))</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="logistic-regression.html#cb262-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> plantbaseddiet, clusters<span class="sc">==</span><span class="st">&#39;High Dairy&#39;</span> <span class="sc">~</span> o_prepar <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">+</span> <span class="fu">factor</span>(education), </span>
+<span id="cb262-2"><a href="logistic-regression.html#cb262-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">family =</span> binomial) </span>
+<span id="cb262-3"><a href="logistic-regression.html#cb262-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-4"><a href="logistic-regression.html#cb262-4" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(mdl)))</span></code></pre></div>
 <pre><code>##                     Estimate Std. Error    z value Pr(&gt;|z|)
 ## (Intercept)        0.1233580   1.606315 0.01208922 1.000010
 ## o_prepar           1.0350811   1.112082 1.38342790 2.107518
@@ -815,7 +832,7 @@ The estimates for the remaining three levels are all <strong>IN CONTRAST</strong
 ## factor(education)1 0.5138224   1.803580 0.32334359 1.295480
 ## factor(education)2 1.0871876   1.300013 1.37521044 2.117052
 ## factor(education)3 1.3334406   1.274791 3.27156968 1.266061</code></pre>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="logistic-regression.html#cb264-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(mdl))</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="logistic-regression.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(mdl))</span></code></pre></div>
 <pre><code>##                         2.5 %   97.5 %
 ## (Intercept)        0.04731725 0.305777
 ## o_prepar           0.83959291 1.274398
@@ -826,56 +843,55 @@ The estimates for the remaining three levels are all <strong>IN CONTRAST</strong
 ## factor(education)3 0.85310374 2.280131</code></pre>
 <p>But we want all!</p>
 <p>So: Tidyverse and broom for the rescue!</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="logistic-regression.html#cb266-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb266-2"><a href="logistic-regression.html#cb266-2" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb266-3"><a href="logistic-regression.html#cb266-3" tabindex="-1"></a></span>
-<span id="cb266-4"><a href="logistic-regression.html#cb266-4" tabindex="-1"></a>tb <span class="ot">&lt;-</span> plantbaseddiet <span class="sc">%&gt;%</span> </span>
-<span id="cb266-5"><a href="logistic-regression.html#cb266-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># make a vector of 1&#39;s</span></span>
-<span id="cb266-6"><a href="logistic-regression.html#cb266-6" tabindex="-1"></a>  <span class="fu">spread</span>(clusters,id, <span class="at">fill =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co"># distribute the clustering into 4 new coloumns and make sure that the binary cluster vectors are 1 and 0. </span></span>
-<span id="cb266-7"><a href="logistic-regression.html#cb266-7" tabindex="-1"></a>  <span class="fu">gather</span>(plant_plantbaseddiet,answ,o_prepar<span class="sc">:</span>o_family) <span class="sc">%&gt;%</span> <span class="co"># long format for survey questions</span></span>
-<span id="cb266-8"><a href="logistic-regression.html#cb266-8" tabindex="-1"></a>  <span class="fu">gather</span>(cluster_type,cluster,<span class="st">`</span><span class="at">High Meat</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">High All</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="co"># long format for clusters </span></span>
-<span id="cb266-9"><a href="logistic-regression.html#cb266-9" tabindex="-1"></a>  <span class="fu">group_by</span>(plant_plantbaseddiet,cluster_type) <span class="sc">%&gt;%</span> <span class="co"># loop over all questions and all clusters</span></span>
-<span id="cb266-10"><a href="logistic-regression.html#cb266-10" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">glm</span>(<span class="at">data =</span> ., cluster<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> answ <span class="sc">+</span> <span class="fu">factor</span>(education) <span class="sc">+</span> age <span class="sc">+</span> gender, <span class="at">family =</span> binomial) <span class="sc">%&gt;%</span></span>
-<span id="cb266-11"><a href="logistic-regression.html#cb266-11" tabindex="-1"></a>       <span class="fu">tidy</span>(<span class="at">exponentiate =</span> T,<span class="at">conf.int =</span> T)) <span class="co"># perform logistic regression</span></span>
-<span id="cb266-12"><a href="logistic-regression.html#cb266-12" tabindex="-1"></a></span>
-<span id="cb266-13"><a href="logistic-regression.html#cb266-13" tabindex="-1"></a></span>
-<span id="cb266-14"><a href="logistic-regression.html#cb266-14" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> <span class="fu">head</span>()  </span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="logistic-regression.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb266-2"><a href="logistic-regression.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb266-3"><a href="logistic-regression.html#cb266-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-4"><a href="logistic-regression.html#cb266-4" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> plantbaseddiet <span class="sc">%&gt;%</span> </span>
+<span id="cb266-5"><a href="logistic-regression.html#cb266-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># make a vector of 1&#39;s</span></span>
+<span id="cb266-6"><a href="logistic-regression.html#cb266-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(clusters,id, <span class="at">fill =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co"># distribute the clustering into 4 new coloumns and make sure that the binary cluster vectors are 1 and 0. </span></span>
+<span id="cb266-7"><a href="logistic-regression.html#cb266-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(plant_plantbaseddiet,answ,o_prepar<span class="sc">:</span>o_family) <span class="sc">%&gt;%</span> <span class="co"># long format for survey questions</span></span>
+<span id="cb266-8"><a href="logistic-regression.html#cb266-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(cluster_type,cluster,<span class="st">`</span><span class="at">High Meat</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">High All</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="co"># long format for clusters </span></span>
+<span id="cb266-9"><a href="logistic-regression.html#cb266-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(plant_plantbaseddiet,cluster_type) <span class="sc">%&gt;%</span> <span class="co"># loop over all questions and all clusters</span></span>
+<span id="cb266-10"><a href="logistic-regression.html#cb266-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">glm</span>(<span class="at">data =</span> ., cluster<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> answ <span class="sc">+</span> <span class="fu">factor</span>(education) <span class="sc">+</span> age <span class="sc">+</span> gender, <span class="at">family =</span> binomial) <span class="sc">%&gt;%</span></span>
+<span id="cb266-11"><a href="logistic-regression.html#cb266-11" aria-hidden="true" tabindex="-1"></a>       <span class="fu">tidy</span>(<span class="at">exponentiate =</span> T,<span class="at">conf.int =</span> T)) <span class="co"># perform logistic regression</span></span>
+<span id="cb266-12"><a href="logistic-regression.html#cb266-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-13"><a href="logistic-regression.html#cb266-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-14"><a href="logistic-regression.html#cb266-14" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> <span class="fu">head</span>()  </span></code></pre></div>
 <pre><code>## # A tibble: 6 × 9
 ## # Groups:   plant_plantbaseddiet, cluster_type [1]
-##   plant_plantbaseddiet cluster_type term    estimate std.error statistic p.value conf.low
-##   &lt;chr&gt;                &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-## 1 o_easy_a             High All     (Inter…   0.0981    0.627    -3.70   2.14e-4   0.0278
-## 2 o_easy_a             High All     answ      1.20      0.133     1.39   1.64e-1   0.930 
-## 3 o_easy_a             High All     factor…   0.911     0.586    -0.158  8.74e-1   0.222 
-## 4 o_easy_a             High All     factor…   1.49      0.271     1.46   1.44e-1   0.889 
-## 5 o_easy_a             High All     factor…   1.01      0.265     0.0398 9.68e-1   0.614 
-## 6 o_easy_a             High All     age       1.00      0.0109    0.307  7.59e-1   0.981 
-## # ℹ 1 more variable: conf.high &lt;dbl&gt;</code></pre>
+##   plant_plantbaseddiet cluster_type term      estimate std.error statistic p.value conf.low conf.high
+##   &lt;chr&gt;                &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 o_easy_a             High All     (Interce…   0.0981    0.627    -3.70   2.14e-4   0.0278     0.327
+## 2 o_easy_a             High All     answ        1.20      0.133     1.39   1.64e-1   0.930      1.57 
+## 3 o_easy_a             High All     factor(e…   0.911     0.586    -0.158  8.74e-1   0.222      2.50 
+## 4 o_easy_a             High All     factor(e…   1.49      0.271     1.46   1.44e-1   0.889      2.65 
+## 5 o_easy_a             High All     factor(e…   1.01      0.265     0.0398 9.68e-1   0.614      1.78 
+## 6 o_easy_a             High All     age         1.00      0.0109    0.307  7.59e-1   0.981      1.02</code></pre>
 <p>This table (tb) has all the results, with estimates being OR and with confidence intervals. However, there are <em>too much</em> information. For instance are the intercept as well as the covariates reported. We can tidy it even more:</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="logistic-regression.html#cb268-1" tabindex="-1"></a>tb4 <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> </span>
-<span id="cb268-2"><a href="logistic-regression.html#cb268-2" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span> </span>
-<span id="cb268-3"><a href="logistic-regression.html#cb268-3" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answ&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb268-4"><a href="logistic-regression.html#cb268-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OR =</span> <span class="fu">paste</span>(<span class="fu">round</span>(estimate,<span class="dv">2</span>), </span>
-<span id="cb268-5"><a href="logistic-regression.html#cb268-5" tabindex="-1"></a>                    <span class="st">&#39; (&#39;</span>, <span class="fu">round</span>(conf.low,<span class="dv">2</span>),<span class="st">&#39;-&#39;</span>,</span>
-<span id="cb268-6"><a href="logistic-regression.html#cb268-6" tabindex="-1"></a>                    <span class="fu">round</span>(conf.high,<span class="dv">2</span>),<span class="st">&#39;)&#39;</span>, </span>
-<span id="cb268-7"><a href="logistic-regression.html#cb268-7" tabindex="-1"></a>                    <span class="at">sep =</span> <span class="st">&#39;&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb268-8"><a href="logistic-regression.html#cb268-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(plant_plantbaseddiet,cluster_type,OR) <span class="sc">%&gt;%</span> </span>
-<span id="cb268-9"><a href="logistic-regression.html#cb268-9" tabindex="-1"></a>  <span class="fu">spread</span>(cluster_type,OR)</span>
-<span id="cb268-10"><a href="logistic-regression.html#cb268-10" tabindex="-1"></a>tb4  </span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="logistic-regression.html#cb268-1" aria-hidden="true" tabindex="-1"></a>tb4 <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> </span>
+<span id="cb268-2"><a href="logistic-regression.html#cb268-2" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span> </span>
+<span id="cb268-3"><a href="logistic-regression.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;answ&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb268-4"><a href="logistic-regression.html#cb268-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OR =</span> <span class="fu">paste</span>(<span class="fu">round</span>(estimate,<span class="dv">2</span>), </span>
+<span id="cb268-5"><a href="logistic-regression.html#cb268-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&#39; (&#39;</span>, <span class="fu">round</span>(conf.low,<span class="dv">2</span>),<span class="st">&#39;-&#39;</span>,</span>
+<span id="cb268-6"><a href="logistic-regression.html#cb268-6" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">round</span>(conf.high,<span class="dv">2</span>),<span class="st">&#39;)&#39;</span>, </span>
+<span id="cb268-7"><a href="logistic-regression.html#cb268-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sep =</span> <span class="st">&#39;&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb268-8"><a href="logistic-regression.html#cb268-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(plant_plantbaseddiet,cluster_type,OR) <span class="sc">%&gt;%</span> </span>
+<span id="cb268-9"><a href="logistic-regression.html#cb268-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(cluster_type,OR)</span>
+<span id="cb268-10"><a href="logistic-regression.html#cb268-10" aria-hidden="true" tabindex="-1"></a>tb4  </span></code></pre></div>
 <pre><code>## # A tibble: 11 × 5
-##    plant_plantbaseddiet `High All`       `High Dairy`     `High Meat`      `Low all`     
-##    &lt;chr&gt;                &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;         
-##  1 o_easy_a             1.2 (0.93-1.57)  1.07 (0.87-1.32) 1.07 (0.79-1.45) 0.83 (0.69-1) 
-##  2 o_family             1.14 (0.91-1.42) 0.96 (0.8-1.15)  1.18 (0.9-1.53)  0.91 (0.77-1.…
-##  3 o_fulnes             1.48 (1.16-1.9)  0.91 (0.73-1.12) 1.66 (1.24-2.22) 0.71 (0.58-0.…
-##  4 o_health             0.69 (0.52-0.92) 1.21 (0.95-1.56) 0.82 (0.59-1.16) 1.14 (0.92-1.…
-##  5 o_prepar             1.28 (0.99-1.65) 1.04 (0.84-1.27) 1.32 (0.98-1.78) 0.77 (0.63-0.…
-##  6 o_price              1.11 (0.87-1.42) 1.01 (0.83-1.24) 1.19 (0.89-1.59) 0.88 (0.74-1.…
-##  7 o_protei             1.93 (1.48-2.55) 0.84 (0.68-1.04) 1.74 (1.29-2.37) 0.65 (0.54-0.…
-##  8 o_restau             0.88 (0.65-1.18) 1.06 (0.84-1.34) 0.99 (0.7-1.4)   1.02 (0.83-1.…
-##  9 o_social             0.98 (0.75-1.28) 0.94 (0.75-1.16) 1.39 (1.01-1.94) 0.94 (0.78-1.…
-## 10 o_sustai             0.69 (0.52-0.91) 1.15 (0.91-1.47) 0.8 (0.58-1.11)  1.21 (0.98-1.…
-## 11 o_taste              0.82 (0.63-1.08) 1.09 (0.87-1.39) 0.59 (0.43-0.81) 1.29 (1.05-1.…</code></pre>
+##    plant_plantbaseddiet `High All`       `High Dairy`     `High Meat`      `Low all`       
+##    &lt;chr&gt;                &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;           
+##  1 o_easy_a             1.2 (0.93-1.57)  1.07 (0.87-1.32) 1.07 (0.79-1.45) 0.83 (0.69-1)   
+##  2 o_family             1.14 (0.91-1.42) 0.96 (0.8-1.15)  1.18 (0.9-1.53)  0.91 (0.77-1.07)
+##  3 o_fulnes             1.48 (1.16-1.9)  0.91 (0.73-1.12) 1.66 (1.24-2.22) 0.71 (0.58-0.85)
+##  4 o_health             0.69 (0.52-0.92) 1.21 (0.95-1.56) 0.82 (0.59-1.16) 1.14 (0.92-1.41)
+##  5 o_prepar             1.28 (0.99-1.65) 1.04 (0.84-1.27) 1.32 (0.98-1.78) 0.77 (0.63-0.92)
+##  6 o_price              1.11 (0.87-1.42) 1.01 (0.83-1.24) 1.19 (0.89-1.59) 0.88 (0.74-1.05)
+##  7 o_protei             1.93 (1.48-2.55) 0.84 (0.68-1.04) 1.74 (1.29-2.37) 0.65 (0.54-0.79)
+##  8 o_restau             0.88 (0.65-1.18) 1.06 (0.84-1.34) 0.99 (0.7-1.4)   1.02 (0.83-1.25)
+##  9 o_social             0.98 (0.75-1.28) 0.94 (0.75-1.16) 1.39 (1.01-1.94) 0.94 (0.78-1.14)
+## 10 o_sustai             0.69 (0.52-0.91) 1.15 (0.91-1.47) 0.8 (0.58-1.11)  1.21 (0.98-1.49)
+## 11 o_taste              0.82 (0.63-1.08) 1.09 (0.87-1.39) 0.59 (0.43-0.81) 1.29 (1.05-1.59)</code></pre>
 <p>Now this just needs to be exported to excel (use e.g. export() from the rio package), and a bit of <strong>love</strong> to be ready for a publication.</p>
 </div>
 <div id="comment" class="section level2 hasAnchor" number="13.13">
@@ -922,7 +938,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/13_LogisticRegression.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/12_LogisticRegression.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -930,7 +946,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/13_LogisticRegression.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/12_LogisticRegression.Rmd",
 "text": null
 },
 "download": null,

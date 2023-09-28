@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 17 Projective mapping | Data Analysis in R for Sensory and Consumer Science</title>
   <meta name="description" content="Chapter 17 Projective mapping | Data Analysis in R for Sensory and Consumer Science" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 17 Projective mapping | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
@@ -52,8 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -370,7 +368,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.3.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pls-to-predict-liking-based-on-cata-data"><i class="fa fa-check"></i><b>16.3.2</b> PLS to predict liking based on CATA data</a></li>
 <li class="chapter" data-level="16.3.3" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#regression-coefficients"><i class="fa fa-check"></i><b>16.3.3</b> Regression coefficients</a></li>
 </ul></li>
-<li class="chapter" data-level="16.4" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>16.4</b> L-PLS [For the future…]</a></li>
+<li class="chapter" data-level="16.4" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#l-pls"><i class="fa fa-check"></i><b>16.4</b> L-PLS</a></li>
+<li class="chapter" data-level="16.5" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#creating-x1-x2-x3."><i class="fa fa-check"></i><b>16.5</b> Creating X1, X2, X3.</a></li>
+<li class="chapter" data-level="16.6" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#building-the-model-the-l-pls-model-can-be-built-using-the-lpls"><i class="fa fa-check"></i><b>16.6</b> Building the model: The L-PLS model can be built, using the <em>lpls</em></a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#finding-the-explained-variance-for-exo-l-pls"><i class="fa fa-check"></i><b>16.6.1</b> Finding the explained variance for exo L-PLS</a></li>
+<li class="chapter" data-level="16.6.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#cross-validation-next-let-us-have-a-look-how-many-components-we"><i class="fa fa-check"></i><b>16.6.2</b> Cross-validation Next let us have a look how many components we</a></li>
+<li class="chapter" data-level="16.6.3" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#vizulization-now-we-would-like-to-visuzlalize-our-l-pls-model.-when"><i class="fa fa-check"></i><b>16.6.3</b> Vizulization Now we would like to visuzlalize our L-PLS model. When</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>17</b> Projective mapping</a>
 <ul>
@@ -439,105 +444,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>[An image of a PM]</p>
 <div id="example-from-mapping-of-xx" class="section level2 hasAnchor" number="17.1">
 <h2><span class="header-section-number">17.1</span> Example from mapping of XX<a href="projective-mapping.html#example-from-mapping-of-xx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="projective-mapping.html#cb351-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb351-2"><a href="projective-mapping.html#cb351-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;tempetotemperature&quot;</span>)</span>
-<span id="cb351-3"><a href="projective-mapping.html#cb351-3" tabindex="-1"></a>tempetotemperature</span></code></pre></div>
-<pre><code>##    Productname  Product Sousvidetemperature_C Sousvidetime_days  id Assessor   X1   Y1
-## 1       45C-2D Sample 1                    45                 2 903        1 32.2 34.9
-## 2       45C-3D Sample 2                    45                 3 714        1 15.1 23.2
-## 3       45C-4D Sample 3                    45                 4  31        1  6.6 34.6
-## 4       50C-2D Sample 4                    50                 2 487        1 30.1 16.5
-## 5       50C-3D Sample 5                    50                 3 133        1 42.8 20.1
-## 6       50C-4D Sample 6                    50                 4 827        1 38.6  8.0
-## 7       55C-2D Sample 7                    55                 2 538        1  3.8 17.1
-## 8       55C-3D Sample 8                    55                 3 215        1 44.8 12.4
-## 9       55C-4D Sample 9                    55                 4 341        1 45.4  4.2
-## 10      45C-2D Sample 1                    45                 2 903        2  0.0  0.0
-## 11      45C-3D Sample 2                    45                 3 714        2  0.0  0.0
-## 12      45C-4D Sample 3                    45                 4  31        2  0.0  0.0
-## 13      50C-2D Sample 4                    50                 2 487        2  0.0  0.0
-## 14      50C-3D Sample 5                    50                 3 133        2  0.0  0.0
-##      X2   Y2 X3 Y3 X4 Y4 X5 Y5 X6 Y6 X7 Y7 X8 Y8 X9 Y9 X10 Y10 X11 Y11 Miso Soft Bitter
-## 1   0.0  0.0  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      0
-## 2   0.0  0.0  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    1      0
-## 3   0.0  0.0  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    1    1      1
-## 4   0.0  0.0  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    1    0      0
-## 5   0.0  0.0  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    1      1
-## 6   0.0  0.0  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    1      0
-## 7   0.0  0.0  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      0
-## 8   0.0  0.0  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      1
-## 9   0.0  0.0  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      1
-## 10 41.8 20.0  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      1
-## 11 42.5 36.6  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      0
-## 12 23.3 25.1  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    1    0      0
-## 13 32.6 23.7  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      1
-## 14 26.5 30.3  0  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    1    0      0
-##    Sweet Sour Mild Caramel Umami Deep Balanced Nutty Hard Dry Roasted Strong Fish sauce
-## 1      1    1    0       1     1    1        0     0    0   0       0      0          0
-## 2      1    1    1       0     0    0        1     1    0   0       0      0          0
-## 3      1    1    1       0     0    0        0     0    0   0       0      0          0
-## 4      1    1    0       0     0    0        0     0    0   1       0      0          0
-## 5      0    0    1       1     0    0        0     0    0   0       1      0          0
-## 6      0    0    1       0     0    0        0     0    0   0       0      1          0
-## 7      0    1    1       0     0    0        0     0    1   1       0      0          0
-## 8      1    0    0       0     0    0        0     0    0   1       0      0          1
-## 9      1    0    0       0     0    0        0     0    0   1       1      1          0
-## 10     0    1    0       0     0    0        0     0    0   0       0      0          0
-## 11     1    1    0       1     0    0        0     0    0   0       0      0          0
-## 12     0    1    0       0     0    0        0     0    0   0       0      0          0
-## 13     0    1    0       0     0    0        0     0    0   0       0      0          0
-## 14     0    1    0       0     0    0        0     0    0   0       0      0          0
-##    Dark Chocolate Moisty Brown Dried fruits Beany Smooth Dense Alcoholic Firm Grainy
-## 1     0         0      0     0            0     0      0     0         0    0      0
-## 2     0         0      0     0            0     0      0     0         0    0      0
-## 3     0         0      0     0            0     0      0     0         0    0      0
-## 4     0         0      0     0            0     0      0     0         0    0      0
-## 5     0         0      0     0            0     0      0     0         0    0      0
-## 6     0         0      0     0            0     0      0     0         0    0      0
-## 7     0         0      0     0            0     0      0     0         0    0      0
-## 8     1         1      0     0            0     0      0     0         0    0      0
-## 9     0         0      0     0            0     0      0     0         0    0      0
-## 10    0         0      1     0            0     0      0     0         0    0      0
-## 11    0         0      1     0            0     0      0     0         0    0      0
-## 12    1         0      1     0            0     0      0     0         0    0      0
-## 13    0         0      1     0            0     0      0     0         0    0      0
-## 14    0         0      1     0            0     0      0     0         0    0      0
-##    Soy sauce Chewy Yeasty Fruity Wine Gummy Malty Liquorise Bread Salty Meaty Creamy
-## 1          0     0      0      0    0     0     0         0     0     0     0      0
-## 2          0     0      0      0    0     0     0         0     0     0     0      0
-## 3          0     0      0      0    0     0     0         0     0     0     0      0
-## 4          0     0      0      0    0     0     0         0     0     0     0      0
-## 5          0     0      0      0    0     0     0         0     0     0     0      0
-## 6          0     0      0      0    0     0     0         0     0     0     0      0
-## 7          0     0      0      0    0     0     0         0     0     0     0      0
-## 8          0     0      0      0    0     0     0         0     0     0     0      0
-## 9          0     0      0      0    0     0     0         0     0     0     0      0
-## 10         0     0      0      0    0     0     0         0     0     0     0      0
-## 11         0     0      0      0    0     0     0         0     0     0     0      0
-## 12         0     0      0      0    0     0     0         0     0     0     0      0
-## 13         0     0      0      0    0     0     0         0     0     0     0      0
-## 14         0     0      0      0    0     0     0         0     0     0     0      0
-##    Stout
-## 1      0
-## 2      0
-## 3      0
-## 4      0
-## 5      0
-## 6      0
-## 7      0
-## 8      0
-## 9      0
-## 10     0
-## 11     0
-## 12     0
-## 13     0
-## 14     0
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="projective-mapping.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb348-2"><a href="projective-mapping.html#cb348-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;tempetotemperature&quot;</span>)</span>
+<span id="cb348-3"><a href="projective-mapping.html#cb348-3" aria-hidden="true" tabindex="-1"></a>tempetotemperature</span></code></pre></div>
+<pre><code>##    Productname  Product Sousvidetemperature_C Sousvidetime_days  id Assessor   X1   Y1   X2   Y2 X3
+## 1       45C-2D Sample 1                    45                 2 903        1 32.2 34.9  0.0  0.0  0
+## 2       45C-3D Sample 2                    45                 3 714        1 15.1 23.2  0.0  0.0  0
+## 3       45C-4D Sample 3                    45                 4  31        1  6.6 34.6  0.0  0.0  0
+## 4       50C-2D Sample 4                    50                 2 487        1 30.1 16.5  0.0  0.0  0
+## 5       50C-3D Sample 5                    50                 3 133        1 42.8 20.1  0.0  0.0  0
+## 6       50C-4D Sample 6                    50                 4 827        1 38.6  8.0  0.0  0.0  0
+## 7       55C-2D Sample 7                    55                 2 538        1  3.8 17.1  0.0  0.0  0
+## 8       55C-3D Sample 8                    55                 3 215        1 44.8 12.4  0.0  0.0  0
+## 9       55C-4D Sample 9                    55                 4 341        1 45.4  4.2  0.0  0.0  0
+## 10      45C-2D Sample 1                    45                 2 903        2  0.0  0.0 41.8 20.0  0
+## 11      45C-3D Sample 2                    45                 3 714        2  0.0  0.0 42.5 36.6  0
+## 12      45C-4D Sample 3                    45                 4  31        2  0.0  0.0 23.3 25.1  0
+## 13      50C-2D Sample 4                    50                 2 487        2  0.0  0.0 32.6 23.7  0
+## 14      50C-3D Sample 5                    50                 3 133        2  0.0  0.0 26.5 30.3  0
+##    Y3 X4 Y4 X5 Y5 X6 Y6 X7 Y7 X8 Y8 X9 Y9 X10 Y10 X11 Y11 Miso Soft Bitter Sweet Sour Mild Caramel
+## 1   0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      0     1    1    0       1
+## 2   0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    1      0     1    1    1       0
+## 3   0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    1    1      1     1    1    1       0
+## 4   0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    1    0      0     1    1    0       0
+## 5   0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    1      1     0    0    1       1
+## 6   0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    1      0     0    0    1       0
+## 7   0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      0     0    1    1       0
+## 8   0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      1     1    0    0       0
+## 9   0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      1     1    0    0       0
+## 10  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      1     0    1    0       0
+## 11  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      0     1    1    0       1
+## 12  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    1    0      0     0    1    0       0
+## 13  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    0    0      1     0    1    0       0
+## 14  0  0  0  0  0  0  0  0  0  0  0  0  0   0   0   0   0    1    0      0     0    1    0       0
+##    Umami Deep Balanced Nutty Hard Dry Roasted Strong Fish sauce Dark Chocolate Moisty Brown
+## 1      1    1        0     0    0   0       0      0          0    0         0      0     0
+## 2      0    0        1     1    0   0       0      0          0    0         0      0     0
+## 3      0    0        0     0    0   0       0      0          0    0         0      0     0
+## 4      0    0        0     0    0   1       0      0          0    0         0      0     0
+## 5      0    0        0     0    0   0       1      0          0    0         0      0     0
+## 6      0    0        0     0    0   0       0      1          0    0         0      0     0
+## 7      0    0        0     0    1   1       0      0          0    0         0      0     0
+## 8      0    0        0     0    0   1       0      0          1    1         1      0     0
+## 9      0    0        0     0    0   1       1      1          0    0         0      0     0
+## 10     0    0        0     0    0   0       0      0          0    0         0      1     0
+## 11     0    0        0     0    0   0       0      0          0    0         0      1     0
+## 12     0    0        0     0    0   0       0      0          0    1         0      1     0
+## 13     0    0        0     0    0   0       0      0          0    0         0      1     0
+## 14     0    0        0     0    0   0       0      0          0    0         0      1     0
+##    Dried fruits Beany Smooth Dense Alcoholic Firm Grainy Soy sauce Chewy Yeasty Fruity Wine Gummy
+## 1             0     0      0     0         0    0      0         0     0      0      0    0     0
+## 2             0     0      0     0         0    0      0         0     0      0      0    0     0
+## 3             0     0      0     0         0    0      0         0     0      0      0    0     0
+## 4             0     0      0     0         0    0      0         0     0      0      0    0     0
+## 5             0     0      0     0         0    0      0         0     0      0      0    0     0
+## 6             0     0      0     0         0    0      0         0     0      0      0    0     0
+## 7             0     0      0     0         0    0      0         0     0      0      0    0     0
+## 8             0     0      0     0         0    0      0         0     0      0      0    0     0
+## 9             0     0      0     0         0    0      0         0     0      0      0    0     0
+## 10            0     0      0     0         0    0      0         0     0      0      0    0     0
+## 11            0     0      0     0         0    0      0         0     0      0      0    0     0
+## 12            0     0      0     0         0    0      0         0     0      0      0    0     0
+## 13            0     0      0     0         0    0      0         0     0      0      0    0     0
+## 14            0     0      0     0         0    0      0         0     0      0      0    0     0
+##    Malty Liquorise Bread Salty Meaty Creamy Stout
+## 1      0         0     0     0     0      0     0
+## 2      0         0     0     0     0      0     0
+## 3      0         0     0     0     0      0     0
+## 4      0         0     0     0     0      0     0
+## 5      0         0     0     0     0      0     0
+## 6      0         0     0     0     0      0     0
+## 7      0         0     0     0     0      0     0
+## 8      0         0     0     0     0      0     0
+## 9      0         0     0     0     0      0     0
+## 10     0         0     0     0     0      0     0
+## 11     0         0     0     0     0      0     0
+## 12     0         0     0     0     0      0     0
+## 13     0         0     0     0     0      0     0
+## 14     0         0     0     0     0      0     0
 ##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 85 rows ]</code></pre>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="projective-mapping.html#cb353-1" tabindex="-1"></a><span class="fu">table</span>(tempetotemperature<span class="sc">$</span>Productname)</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="projective-mapping.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tempetotemperature<span class="sc">$</span>Productname)</span></code></pre></div>
 <pre><code>## 
 ## 45C-2D 45C-3D 45C-4D 50C-2D 50C-3D 50C-4D 55C-2D 55C-3D 55C-4D 
 ##     11     11     11     11     11     11     11     11     11</code></pre>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="projective-mapping.html#cb355-1" tabindex="-1"></a><span class="fu">table</span>(tempetotemperature<span class="sc">$</span>Assessor)</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="projective-mapping.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tempetotemperature<span class="sc">$</span>Assessor)</span></code></pre></div>
 <pre><code>## 
 ##  1  2  3  4  5  6  7  8  9 10 11 
 ##  9  9  9  9  9  9  9  9  9  9  9</code></pre>
@@ -597,7 +587,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/18_Projectivemapping.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/17_Projectivemapping.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -605,7 +595,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/18_Projectivemapping.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/17_Projectivemapping.Rmd",
 "text": null
 },
 "download": null,

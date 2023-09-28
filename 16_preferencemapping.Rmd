@@ -201,7 +201,7 @@ data("beerdemo")
 data("beerliking")
 ```
 
-##Creating X1, X2, X3.
+## Creating X1, X2, X3.
 
 The preparation of the data, requires quite a lot of data manipulation.
 
@@ -264,23 +264,23 @@ X3_mat <- as.matrix(X3)
 
 ```
 
-##Building the model: The L-PLS model can be built, using the *lpls*
+## Building the model: The L-PLS model can be built, using the *lpls*
 function from the *multiblock* package.
 
-```{r,warning=FALSE,message=FALSE}
+```{r,warning=FALSE,message=FALSE, eval=FALSE}
 library(multiblock)
 set.seed(123)
 #Scale the Z-matrix as we have semi-contious and binary data. 
 lp_exo <- lpls(X1_mat,X2_mat,X3_mat,type = "exo",scale = c(F,F,T),doublecenter = T,ncomp = 5)
 ```
 
-###Finding the explained variance for exo L-PLS
+### Finding the explained variance for exo L-PLS
 
 The explained variance for the exo L-PLS can easily be sacked from the
 model object, and displayed nicely in a table using the *kableExtra*
 package.
 
-```{r,warning=FALSE,message=FALSE}
+```{r,warning=FALSE,message=FALSE, eval=FALSE}
 library(knitr)
 library(kableExtra)
 expVarExo <- t(as.data.frame(lp_exo$vars)*100)
@@ -301,30 +301,30 @@ be close to origin in terms of scores. One could have a look at the endo
 version of the L-PLS to get a better understanding of the consumer
 descriptors.
 
-###Cross-validation Next let us have a look how many components we
+### Cross-validation Next let us have a look how many components we
 should look at, by doing a jack-knifing cross-validation on the
 consumers:
 
-```{r}
+```{r, eval=FALSE}
 lp.cv2 <- lplsCV(lp_exo, segments2 = as.list(1:dim(X1)[2]))
 lp.cv2$rmsep
 ```
 
 It looks like 2 components is sufficient.
 
-###Vizulization Now we would like to visuzlalize our L-PLS model. When
+### Vizulization Now we would like to visuzlalize our L-PLS model. When
 using L-PLS for vizulization one should use the orthognoal exo, as this
 will give the orthogonal scores. We build the orthogonal exo in the same
 way as before, but chainging the type.
 
-```{r}
+```{r, eval=FALSE}
 lp_exo_ort <- lpls(X1_mat,X2_mat,X3_mat,type = "exo_ort",scale = c(F,F,T),doublecenter = T,ncomp = 5)
 ```
 
 Now we plot the L-PLS model. One can chose to plot, the X1, X2 or X3
 correlations, or perhaps a combination of 2, or all.
 
-```{r}
+```{r, eval=FALSE}
 par(mfrow=c(2,2))
 plot(lp_exo,doplot = c(F,F,T)) #X3 correlations
 plot(lp_exo,doplot = c(F,T,F)) #X1 correlations
@@ -332,7 +332,7 @@ plot(lp_exo,doplot = c(T,T,F)) #X2 and X1 correlations
 plot(lp_exo,doplot = c(F,T,T)) #X1 and X3 correlations
 ```
 
-```{r}
+```{r, eval=FALSE}
 plot(lp_exo,doplot = c(T,T,T)) #combined
 ```
 

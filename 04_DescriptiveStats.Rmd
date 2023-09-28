@@ -102,7 +102,7 @@ This results in a data frame, where one column shows each unique group in `chili
 library(tidyverse)
 tb <- chili %>% 
   group_by(Treatment) %>% # specify which grouping vector to use
-  summarise(n = n(), # compute n
+  dplyr::summarise(n = n(), # compute n
             mn = mean(Totalg), # compute mean
             s = sd(Totalg), # compute s
             q1 = quantile(Totalg,0.25), # compute lower 25% quartile

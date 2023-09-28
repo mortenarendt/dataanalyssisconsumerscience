@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Intro to large survey data | Data Analysis in R for Sensory and Consumer Science</title>
   <meta name="description" content="Chapter 10 Intro to large survey data | Data Analysis in R for Sensory and Consumer Science" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Intro to large survey data | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
@@ -52,8 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -370,7 +368,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.3.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pls-to-predict-liking-based-on-cata-data"><i class="fa fa-check"></i><b>16.3.2</b> PLS to predict liking based on CATA data</a></li>
 <li class="chapter" data-level="16.3.3" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#regression-coefficients"><i class="fa fa-check"></i><b>16.3.3</b> Regression coefficients</a></li>
 </ul></li>
-<li class="chapter" data-level="16.4" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#l-pls-for-the-future"><i class="fa fa-check"></i><b>16.4</b> L-PLS [For the future…]</a></li>
+<li class="chapter" data-level="16.4" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#l-pls"><i class="fa fa-check"></i><b>16.4</b> L-PLS</a></li>
+<li class="chapter" data-level="16.5" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#creating-x1-x2-x3."><i class="fa fa-check"></i><b>16.5</b> Creating X1, X2, X3.</a></li>
+<li class="chapter" data-level="16.6" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#building-the-model-the-l-pls-model-can-be-built-using-the-lpls"><i class="fa fa-check"></i><b>16.6</b> Building the model: The L-PLS model can be built, using the <em>lpls</em></a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#finding-the-explained-variance-for-exo-l-pls"><i class="fa fa-check"></i><b>16.6.1</b> Finding the explained variance for exo L-PLS</a></li>
+<li class="chapter" data-level="16.6.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#cross-validation-next-let-us-have-a-look-how-many-components-we"><i class="fa fa-check"></i><b>16.6.2</b> Cross-validation Next let us have a look how many components we</a></li>
+<li class="chapter" data-level="16.6.3" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#vizulization-now-we-would-like-to-visuzlalize-our-l-pls-model.-when"><i class="fa fa-check"></i><b>16.6.3</b> Vizulization Now we would like to visuzlalize our L-PLS model. When</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>17</b> Projective mapping</a>
 <ul>
@@ -441,62 +446,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 There are tools (packages for R) which can import SurveyXact outputs directly, while we do not go through these here, googl’ing a bit may be helpful.
 Alternatively, the SurveyXact files can be exported to .xlsx files and imported as indicated in <a href="introduction-to-r.html#how-to-import-data">How to import data</a>.</p>
 <p>Here we have included the data in the data4consumerscience package ready for use.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="intro-to-large-survey-data.html#cb120-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb120-2"><a href="intro-to-large-survey-data.html#cb120-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;fmcrsurvey&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="intro-to-large-survey-data.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb120-2"><a href="intro-to-large-survey-data.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;fmcrsurvey&quot;</span>)</span></code></pre></div>
 <div id="looking-at-the-data-and-checking-formating" class="section level3 hasAnchor" number="10.0.1">
 <h3><span class="header-section-number">10.0.1</span> Looking at the data and checking formating<a href="intro-to-large-survey-data.html#looking-at-the-data-and-checking-formating" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The functions <strong>head()</strong>, <strong>View()</strong>, and <strong>str()</strong> can be used to get an overview of formating. See <a href="introduction-to-r.html#looking-at-the-imported-elements">Looking at the imported elements</a> for details.</p>
 <p>A fair bunch of the variables are characters (chr) because they are recorded as levels on a likert-scale. However, you may want to also have those as numeric values from <span class="math inline">\(1\)</span> to <span class="math inline">\(5\)</span> or <span class="math inline">\(7\)</span>. The code below does the job.</p>
 <p>The key thing to note here is that if the factor levels are <em>not</em> specified, then they will be ordered according to the alphabet.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="intro-to-large-survey-data.html#cb121-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb121-2"><a href="intro-to-large-survey-data.html#cb121-2" tabindex="-1"></a><span class="co"># The coloumns in the dataset which are 7 point likert-scales</span></span>
-<span id="cb121-3"><a href="intro-to-large-survey-data.html#cb121-3" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">colnames</span>(fmcrsurvey)[<span class="dv">7</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb121-4"><a href="intro-to-large-survey-data.html#cb121-4" tabindex="-1"></a><span class="co"># Use the mutate_at() function to make the variables into factors, and setting the levels in the right order.</span></span>
-<span id="cb121-5"><a href="intro-to-large-survey-data.html#cb121-5" tabindex="-1"></a>fmcrsurvey <span class="ot">&lt;-</span> fmcrsurvey <span class="sc">%&gt;%</span> </span>
-<span id="cb121-6"><a href="intro-to-large-survey-data.html#cb121-6" tabindex="-1"></a>  <span class="fu">mutate_at</span>(cols, <span class="fu">funs</span>(<span class="fu">factor</span>(.,<span class="at">ordered =</span> T, </span>
-<span id="cb121-7"><a href="intro-to-large-survey-data.html#cb121-7" tabindex="-1"></a>                              <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;Disagree extremely&#39;</span>,</span>
-<span id="cb121-8"><a href="intro-to-large-survey-data.html#cb121-8" tabindex="-1"></a>                                         <span class="st">&#39;Disagree&#39;</span>,</span>
-<span id="cb121-9"><a href="intro-to-large-survey-data.html#cb121-9" tabindex="-1"></a>                                         <span class="st">&#39;Disagree slightly&#39;</span>,</span>
-<span id="cb121-10"><a href="intro-to-large-survey-data.html#cb121-10" tabindex="-1"></a>                                         <span class="st">&#39;Neutral&#39;</span>,</span>
-<span id="cb121-11"><a href="intro-to-large-survey-data.html#cb121-11" tabindex="-1"></a>                                         <span class="st">&#39;Agree slightly&#39;</span>,</span>
-<span id="cb121-12"><a href="intro-to-large-survey-data.html#cb121-12" tabindex="-1"></a>                                         <span class="st">&#39;Agree&#39;</span>,</span>
-<span id="cb121-13"><a href="intro-to-large-survey-data.html#cb121-13" tabindex="-1"></a>                                         <span class="st">&#39;Agree extremely&#39;</span>))))</span>
-<span id="cb121-14"><a href="intro-to-large-survey-data.html#cb121-14" tabindex="-1"></a></span>
-<span id="cb121-15"><a href="intro-to-large-survey-data.html#cb121-15" tabindex="-1"></a><span class="co"># The coloumns in the dataset which are 5 point likert-scales</span></span>
-<span id="cb121-16"><a href="intro-to-large-survey-data.html#cb121-16" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">colnames</span>(fmcrsurvey)[<span class="dv">11</span><span class="sc">:</span><span class="dv">17</span>]</span>
-<span id="cb121-17"><a href="intro-to-large-survey-data.html#cb121-17" tabindex="-1"></a>fmcrsurvey <span class="ot">&lt;-</span> fmcrsurvey <span class="sc">%&gt;%</span> </span>
-<span id="cb121-18"><a href="intro-to-large-survey-data.html#cb121-18" tabindex="-1"></a>  <span class="fu">mutate_at</span>(cols, <span class="fu">funs</span>(<span class="fu">factor</span>(.,<span class="at">ordered =</span> T, </span>
-<span id="cb121-19"><a href="intro-to-large-survey-data.html#cb121-19" tabindex="-1"></a>                              <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;Completely disagree&#39;</span>,</span>
-<span id="cb121-20"><a href="intro-to-large-survey-data.html#cb121-20" tabindex="-1"></a>                                         <span class="st">&#39;Disagree&#39;</span>,</span>
-<span id="cb121-21"><a href="intro-to-large-survey-data.html#cb121-21" tabindex="-1"></a>                                         <span class="st">&#39;Neither disagree nor agree&#39;</span>,</span>
-<span id="cb121-22"><a href="intro-to-large-survey-data.html#cb121-22" tabindex="-1"></a>                                         <span class="st">&#39;Agree&#39;</span>,</span>
-<span id="cb121-23"><a href="intro-to-large-survey-data.html#cb121-23" tabindex="-1"></a>                                         <span class="st">&#39;Completely agree&#39;</span>))))</span>
-<span id="cb121-24"><a href="intro-to-large-survey-data.html#cb121-24" tabindex="-1"></a></span>
-<span id="cb121-25"><a href="intro-to-large-survey-data.html#cb121-25" tabindex="-1"></a><span class="co"># Other coloumns which are naturally ordered</span></span>
-<span id="cb121-26"><a href="intro-to-large-survey-data.html#cb121-26" tabindex="-1"></a>fmcrsurvey<span class="sc">$</span>Freq_Groceries <span class="ot">&lt;-</span> <span class="fu">factor</span>(fmcrsurvey<span class="sc">$</span>Freq_Groceries, <span class="at">ordered =</span> T, </span>
-<span id="cb121-27"><a href="intro-to-large-survey-data.html#cb121-27" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;1-3 times per month&#39;</span>,<span class="st">&quot;Once a week&quot;</span>,<span class="st">&quot;6-2 times per week&quot;</span>,<span class="st">&quot;Every day&quot;</span>))</span>
-<span id="cb121-28"><a href="intro-to-large-survey-data.html#cb121-28" tabindex="-1"></a></span>
-<span id="cb121-29"><a href="intro-to-large-survey-data.html#cb121-29" tabindex="-1"></a></span>
-<span id="cb121-30"><a href="intro-to-large-survey-data.html#cb121-30" tabindex="-1"></a>fmcrsurvey<span class="sc">$</span>Pay_large_water_melon <span class="ot">&lt;-</span> <span class="fu">factor</span>(fmcrsurvey<span class="sc">$</span>Pay_large_water_melon,<span class="at">ordered =</span> T, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;0-10 DKK&#39;</span>,<span class="st">&#39;10-20 DKK&#39;</span>,<span class="st">&#39;20-30 DKK&#39;</span>,<span class="st">&#39;30-40 DKK&#39;</span>,<span class="st">&#39;40 DKK and above&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="intro-to-large-survey-data.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb121-2"><a href="intro-to-large-survey-data.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The coloumns in the dataset which are 7 point likert-scales</span></span>
+<span id="cb121-3"><a href="intro-to-large-survey-data.html#cb121-3" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">colnames</span>(fmcrsurvey)[<span class="dv">7</span><span class="sc">:</span><span class="dv">10</span>]</span>
+<span id="cb121-4"><a href="intro-to-large-survey-data.html#cb121-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the mutate_at() function to make the variables into factors, and setting the levels in the right order.</span></span>
+<span id="cb121-5"><a href="intro-to-large-survey-data.html#cb121-5" aria-hidden="true" tabindex="-1"></a>fmcrsurvey <span class="ot">&lt;-</span> fmcrsurvey <span class="sc">%&gt;%</span> </span>
+<span id="cb121-6"><a href="intro-to-large-survey-data.html#cb121-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(cols, <span class="fu">funs</span>(<span class="fu">factor</span>(.,<span class="at">ordered =</span> T, </span>
+<span id="cb121-7"><a href="intro-to-large-survey-data.html#cb121-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;Disagree extremely&#39;</span>,</span>
+<span id="cb121-8"><a href="intro-to-large-survey-data.html#cb121-8" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Disagree&#39;</span>,</span>
+<span id="cb121-9"><a href="intro-to-large-survey-data.html#cb121-9" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Disagree slightly&#39;</span>,</span>
+<span id="cb121-10"><a href="intro-to-large-survey-data.html#cb121-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Neutral&#39;</span>,</span>
+<span id="cb121-11"><a href="intro-to-large-survey-data.html#cb121-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Agree slightly&#39;</span>,</span>
+<span id="cb121-12"><a href="intro-to-large-survey-data.html#cb121-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Agree&#39;</span>,</span>
+<span id="cb121-13"><a href="intro-to-large-survey-data.html#cb121-13" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Agree extremely&#39;</span>))))</span>
+<span id="cb121-14"><a href="intro-to-large-survey-data.html#cb121-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-15"><a href="intro-to-large-survey-data.html#cb121-15" aria-hidden="true" tabindex="-1"></a><span class="co"># The coloumns in the dataset which are 5 point likert-scales</span></span>
+<span id="cb121-16"><a href="intro-to-large-survey-data.html#cb121-16" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">colnames</span>(fmcrsurvey)[<span class="dv">11</span><span class="sc">:</span><span class="dv">17</span>]</span>
+<span id="cb121-17"><a href="intro-to-large-survey-data.html#cb121-17" aria-hidden="true" tabindex="-1"></a>fmcrsurvey <span class="ot">&lt;-</span> fmcrsurvey <span class="sc">%&gt;%</span> </span>
+<span id="cb121-18"><a href="intro-to-large-survey-data.html#cb121-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(cols, <span class="fu">funs</span>(<span class="fu">factor</span>(.,<span class="at">ordered =</span> T, </span>
+<span id="cb121-19"><a href="intro-to-large-survey-data.html#cb121-19" aria-hidden="true" tabindex="-1"></a>                              <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;Completely disagree&#39;</span>,</span>
+<span id="cb121-20"><a href="intro-to-large-survey-data.html#cb121-20" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Disagree&#39;</span>,</span>
+<span id="cb121-21"><a href="intro-to-large-survey-data.html#cb121-21" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Neither disagree nor agree&#39;</span>,</span>
+<span id="cb121-22"><a href="intro-to-large-survey-data.html#cb121-22" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Agree&#39;</span>,</span>
+<span id="cb121-23"><a href="intro-to-large-survey-data.html#cb121-23" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Completely agree&#39;</span>))))</span>
+<span id="cb121-24"><a href="intro-to-large-survey-data.html#cb121-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-25"><a href="intro-to-large-survey-data.html#cb121-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Other coloumns which are naturally ordered</span></span>
+<span id="cb121-26"><a href="intro-to-large-survey-data.html#cb121-26" aria-hidden="true" tabindex="-1"></a>fmcrsurvey<span class="sc">$</span>Freq_Groceries <span class="ot">&lt;-</span> <span class="fu">factor</span>(fmcrsurvey<span class="sc">$</span>Freq_Groceries, <span class="at">ordered =</span> T, </span>
+<span id="cb121-27"><a href="intro-to-large-survey-data.html#cb121-27" aria-hidden="true" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;1-3 times per month&#39;</span>,<span class="st">&quot;Once a week&quot;</span>,<span class="st">&quot;6-2 times per week&quot;</span>,<span class="st">&quot;Every day&quot;</span>))</span>
+<span id="cb121-28"><a href="intro-to-large-survey-data.html#cb121-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-29"><a href="intro-to-large-survey-data.html#cb121-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-30"><a href="intro-to-large-survey-data.html#cb121-30" aria-hidden="true" tabindex="-1"></a>fmcrsurvey<span class="sc">$</span>Pay_large_water_melon <span class="ot">&lt;-</span> <span class="fu">factor</span>(fmcrsurvey<span class="sc">$</span>Pay_large_water_melon,<span class="at">ordered =</span> T, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;0-10 DKK&#39;</span>,<span class="st">&#39;10-20 DKK&#39;</span>,<span class="st">&#39;20-30 DKK&#39;</span>,<span class="st">&#39;30-40 DKK&#39;</span>,<span class="st">&#39;40 DKK and above&#39;</span>))</span></code></pre></div>
 </div>
 <div id="descriptive-statistics-1" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Descriptive statistics<a href="intro-to-large-survey-data.html#descriptive-statistics-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For reporting the results of a survey it is important to characterize the cohort/population who were used. This, inorder for others to be able to generalize the results. I.e. will certain insights obtained for a group of mostly young females also apply for the general population etc. For this descriptive statistics is used. For more general details see <a href="descriptive-statistics.html#descriptive-statistics">Descriptive statistics</a></p>
+<p>For reporting the results of a survey it is important to characterize the cohort/population who were used. This, inorder for others to be able to generalize the results. I.e. will certain insights obtained for a group of mostly young females also apply for the general population etc. For this descriptive statistics is used. For more general details see <a href="intro-to-large-survey-data.html#descriptive-statistics-1">Descriptive statistics</a></p>
 <p>In the dataset we have asked for the Age, height, Weight, Gender, WhereGroceries and DietaryPreferences of the consumers. There are different ways to analyse thease background variables depending on the nature of the data.</p>
 <div id="numeric-values" class="section level3 hasAnchor" number="10.1.1">
 <h3><span class="header-section-number">10.1.1</span> Numeric values<a href="intro-to-large-survey-data.html#numeric-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As an example we have <em>Age</em>. It is a numeric variable, and also continuous.</p>
 <p>We want to calculate mean, median, standard deviation and IQR</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="intro-to-large-survey-data.html#cb122-1" tabindex="-1"></a><span class="fu">mean</span>(fmcrsurvey<span class="sc">$</span>Age)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="intro-to-large-survey-data.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(fmcrsurvey<span class="sc">$</span>Age)</span></code></pre></div>
 <pre><code>## [1] 26.85283</code></pre>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="intro-to-large-survey-data.html#cb124-1" tabindex="-1"></a><span class="fu">sd</span>(fmcrsurvey<span class="sc">$</span>Age)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="intro-to-large-survey-data.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(fmcrsurvey<span class="sc">$</span>Age)</span></code></pre></div>
 <pre><code>## [1] 5.247388</code></pre>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="intro-to-large-survey-data.html#cb126-1" tabindex="-1"></a><span class="fu">median</span>(fmcrsurvey<span class="sc">$</span>Age)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="intro-to-large-survey-data.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(fmcrsurvey<span class="sc">$</span>Age)</span></code></pre></div>
 <pre><code>## [1] 26</code></pre>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="intro-to-large-survey-data.html#cb128-1" tabindex="-1"></a><span class="fu">IQR</span>(fmcrsurvey<span class="sc">$</span>Age)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="intro-to-large-survey-data.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(fmcrsurvey<span class="sc">$</span>Age)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>… or simply use the summary() function, to get all the above answers in one go:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="intro-to-large-survey-data.html#cb130-1" tabindex="-1"></a><span class="fu">summary</span>(fmcrsurvey<span class="sc">$</span>Age)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="intro-to-large-survey-data.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fmcrsurvey<span class="sc">$</span>Age)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   20.00   24.00   26.00   26.85   28.00   57.00</code></pre>
 <p>Use the above mention codes for all continuous variables.</p>
@@ -506,27 +511,27 @@ Alternatively, the SurveyXact files can be exported to .xlsx files and imported 
 <h2><span class="header-section-number">10.2</span> Plots<a href="intro-to-large-survey-data.html#plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It is a good idea to plot data. This is a natural first step to look for distributions and find odd behaving samples / miss-registrations.</p>
 <p>Below are some relevant examples. To see more, go to <a href="plotting-data.html#plotting-data">Plotting data</a>.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="intro-to-large-survey-data.html#cb132-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(Age, <span class="at">fill =</span> Gender)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="intro-to-large-survey-data.html#cb133-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(<span class="at">x=</span> <span class="dv">1</span>, Age)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()<span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Gender)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-93-2.png" width="672" /></p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="intro-to-large-survey-data.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(Age, <span class="at">fill =</span> Gender)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="intro-to-large-survey-data.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(<span class="at">x=</span> <span class="dv">1</span>, Age)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()<span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Gender)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-86-2.png" width="672" /></p>
 <div id="within-groups-of-data" class="section level3 hasAnchor" number="10.2.1">
 <h3><span class="header-section-number">10.2.1</span> Within groups of data<a href="intro-to-large-survey-data.html#within-groups-of-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The flat calculations - across the entire dataset as a single group, is seldom very informative. We usually want to compare numbers between different groups.</p>
 <p>As an example we use <em>How much you would pay for a banana</em> in reference to the gender:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="intro-to-large-survey-data.html#cb134-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(Gender, Pay_organic_banana)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="intro-to-large-survey-data.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(Gender, Pay_organic_banana)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <p>… If you want to cross with several variables (Try to evaluate the code your self):</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="intro-to-large-survey-data.html#cb135-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(Gender, Pay_organic_banana, <span class="at">fill =</span> DietaryPreferences)) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">&quot;Diet&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb135-2"><a href="intro-to-large-survey-data.html#cb135-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="intro-to-large-survey-data.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(Gender, Pay_organic_banana, <span class="at">fill =</span> DietaryPreferences)) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">&quot;Diet&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb135-2"><a href="intro-to-large-survey-data.html#cb135-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code></pre></div>
 <p>Another useful function is the <strong>aggregate</strong>-function, which can be used to apply a function (e.g., taking the mean) according to a specified condition. In the below example, the sex of the participants is used. The function then groups rows with the same sex, and calculates the mean for each group.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="intro-to-large-survey-data.html#cb136-1" tabindex="-1"></a><span class="fu">aggregate</span>(fmcrsurvey<span class="sc">$</span>Pay_organic_banana, </span>
-<span id="cb136-2"><a href="intro-to-large-survey-data.html#cb136-2" tabindex="-1"></a>          <span class="at">by =</span> <span class="fu">list</span>(fmcrsurvey<span class="sc">$</span>Gender), mean)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="intro-to-large-survey-data.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(fmcrsurvey<span class="sc">$</span>Pay_organic_banana, </span>
+<span id="cb136-2"><a href="intro-to-large-survey-data.html#cb136-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">by =</span> <span class="fu">list</span>(fmcrsurvey<span class="sc">$</span>Gender), mean)</span></code></pre></div>
 <pre><code>##   Group.1        x
 ## 1  Female 5.102679
 ## 2    Male 5.603659</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="intro-to-large-survey-data.html#cb138-1" tabindex="-1"></a><span class="fu">aggregate</span>(fmcrsurvey<span class="sc">$</span>Pay_organic_banana, </span>
-<span id="cb138-2"><a href="intro-to-large-survey-data.html#cb138-2" tabindex="-1"></a>          <span class="at">by =</span> <span class="fu">list</span>(fmcrsurvey<span class="sc">$</span>Gender), sd)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="intro-to-large-survey-data.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(fmcrsurvey<span class="sc">$</span>Pay_organic_banana, </span>
+<span id="cb138-2"><a href="intro-to-large-survey-data.html#cb138-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">by =</span> <span class="fu">list</span>(fmcrsurvey<span class="sc">$</span>Gender), sd)</span></code></pre></div>
 <pre><code>##   Group.1        x
 ## 1  Female 4.633490
 ## 2    Male 5.977294</code></pre>
@@ -536,25 +541,25 @@ Alternatively, the SurveyXact files can be exported to .xlsx files and imported 
 <div id="categorical-ordinal-variables" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Categorical / Ordinal variables<a href="intro-to-large-survey-data.html#categorical-ordinal-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Below are some examples of plots that work well when you work with categorical data. For more info on plotting, see <a href="plotting-data.html#plotting-data">Plotting data</a>.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="intro-to-large-survey-data.html#cb140-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(Gender)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="intro-to-large-survey-data.html#cb141-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(Gender, <span class="at">fill =</span> Freq_Groceries)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-97-2.png" width="672" /></p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="intro-to-large-survey-data.html#cb142-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(Gender, <span class="at">fill =</span> Freq_Groceries)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-97-3.png" width="672" /></p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="intro-to-large-survey-data.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(Gender)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="intro-to-large-survey-data.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(Gender, <span class="at">fill =</span> Freq_Groceries)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-90-2.png" width="672" /></p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="intro-to-large-survey-data.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fmcrsurvey, <span class="fu">aes</span>(Gender, <span class="at">fill =</span> Freq_Groceries)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-90-3.png" width="672" /></p>
 <div id="tables" class="section level3 hasAnchor" number="10.3.1">
 <h3><span class="header-section-number">10.3.1</span> Tables<a href="intro-to-large-survey-data.html#tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <strong>table()</strong> and <strong>prop.table()</strong> functions are your friends, as they help you get to know you data better. Try and see what the different inputs give as resulting output, and see what happens if you change variables.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="intro-to-large-survey-data.html#cb143-1" tabindex="-1"></a><span class="fu">table</span>(fmcrsurvey<span class="sc">$</span>Gender)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="intro-to-large-survey-data.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(fmcrsurvey<span class="sc">$</span>Gender)</span></code></pre></div>
 <pre><code>## 
 ## Female   Male 
 ##    224     41</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="intro-to-large-survey-data.html#cb145-1" tabindex="-1"></a><span class="fu">table</span>(fmcrsurvey<span class="sc">$</span>Gender, fmcrsurvey<span class="sc">$</span>Freq_Groceries)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="intro-to-large-survey-data.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(fmcrsurvey<span class="sc">$</span>Gender, fmcrsurvey<span class="sc">$</span>Freq_Groceries)</span></code></pre></div>
 <pre><code>##         
 ##          1-3 times per month Once a week 6-2 times per week Every day
 ##   Female                   7          47                160        10
 ##   Male                     1           5                 34         1</code></pre>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="intro-to-large-survey-data.html#cb147-1" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(fmcrsurvey<span class="sc">$</span>Gender, fmcrsurvey<span class="sc">$</span>Freq_Groceries), <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="intro-to-large-survey-data.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(fmcrsurvey<span class="sc">$</span>Gender, fmcrsurvey<span class="sc">$</span>Freq_Groceries), <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##         
 ##          1-3 times per month Once a week 6-2 times per week  Every day
 ##   Female          0.03125000  0.20982143         0.71428571 0.04464286
@@ -565,10 +570,10 @@ Alternatively, the SurveyXact files can be exported to .xlsx files and imported 
 <h2><span class="header-section-number">10.4</span> Table 1<a href="intro-to-large-survey-data.html#table-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are some nice packages in R which can do the job for you in terms of organizing tables. An especially nice one is the one called <strong>tableone</strong>, which will help create tables almost ready for publication, if given the right inputs. Below are some examples of how the package could be used, using the same dataset as the rest of the chapter.</p>
 <p>Here is how to install the package:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="intro-to-large-survey-data.html#cb149-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tableone&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="intro-to-large-survey-data.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tableone&#39;</span>)</span></code></pre></div>
 <p>Below is one way of using tableone, which will give information about the amount of participants in each group.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="intro-to-large-survey-data.html#cb150-1" tabindex="-1"></a><span class="fu">library</span>(tableone)</span>
-<span id="cb150-2"><a href="intro-to-large-survey-data.html#cb150-2" tabindex="-1"></a><span class="fu">CreateTableOne</span>(<span class="at">data =</span> fmcrsurvey, <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&#39;Gender&#39;</span>,<span class="st">&#39;Age&#39;</span>, <span class="st">&#39;Freq_Groceries&#39;</span>,<span class="st">&#39;I_am_able_to_prepare_a_soup&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="intro-to-large-survey-data.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tableone)</span>
+<span id="cb150-2"><a href="intro-to-large-survey-data.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CreateTableOne</span>(<span class="at">data =</span> fmcrsurvey, <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&#39;Gender&#39;</span>,<span class="st">&#39;Age&#39;</span>, <span class="st">&#39;Freq_Groceries&#39;</span>,<span class="st">&#39;I_am_able_to_prepare_a_soup&#39;</span>))</span></code></pre></div>
 <pre><code>##                                  
 ##                                   Overall      
 ##   n                                 265        
@@ -586,8 +591,8 @@ Alternatively, the SurveyXact files can be exported to .xlsx files and imported 
 ##      Agree                           56 (21.1) 
 ##      Completely agree               195 (73.6)</code></pre>
 <p>… below if split into groups:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="intro-to-large-survey-data.html#cb152-1" tabindex="-1"></a><span class="fu">CreateTableOne</span>(<span class="at">data =</span> fmcrsurvey, <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&#39;Age&#39;</span>, <span class="st">&#39;Freq_Groceries&#39;</span>,<span class="st">&#39;I_am_able_to_prepare_a_soup&#39;</span>), </span>
-<span id="cb152-2"><a href="intro-to-large-survey-data.html#cb152-2" tabindex="-1"></a>               <span class="at">strata =</span> <span class="fu">c</span>(<span class="st">&#39;Gender&#39;</span>,<span class="st">&#39;Freq_Groceries&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="intro-to-large-survey-data.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CreateTableOne</span>(<span class="at">data =</span> fmcrsurvey, <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&#39;Age&#39;</span>, <span class="st">&#39;Freq_Groceries&#39;</span>,<span class="st">&#39;I_am_able_to_prepare_a_soup&#39;</span>), </span>
+<span id="cb152-2"><a href="intro-to-large-survey-data.html#cb152-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">strata =</span> <span class="fu">c</span>(<span class="st">&#39;Gender&#39;</span>,<span class="st">&#39;Freq_Groceries&#39;</span>))</span></code></pre></div>
 <pre><code>##                                  Stratified by Gender:Freq_Groceries
 ##                                   Female:1-3 times per month Male:1-3 times per month
 ##   n                                   7                          1                   
@@ -604,91 +609,91 @@ Alternatively, the SurveyXact files can be exported to .xlsx files and imported 
 ##      Agree                            0 (  0.0)                  0 (  0.0)           
 ##      Completely agree                 7 (100.0)                  1 (100.0)           
 ##                                  Stratified by Gender:Freq_Groceries
-##                                   Female:Once a week Male:Once a week
-##   n                                  47                  5           
-##   Age (mean (SD))                 26.09 (4.39)       27.40 (2.19)    
-##   Freq_Groceries (%)                                                 
-##      1-3 times per month              0 (  0.0)          0 (  0.0)   
-##      Once a week                     47 (100.0)          5 (100.0)   
-##      6-2 times per week               0 (  0.0)          0 (  0.0)   
-##      Every day                        0 (  0.0)          0 (  0.0)   
-##   I_am_able_to_prepare_a_soup (%)                                    
-##      Completely disagree              0 (  0.0)          0 (  0.0)   
-##      Disagree                         2 (  4.3)          0 (  0.0)   
-##      Neither disagree nor agree       0 (  0.0)          0 (  0.0)   
-##      Agree                           15 ( 31.9)          0 (  0.0)   
-##      Completely agree                30 ( 63.8)          5 (100.0)   
+##                                   Female:Once a week Male:Once a week Female:6-2 times per week
+##   n                                  47                  5              160                    
+##   Age (mean (SD))                 26.09 (4.39)       27.40 (2.19)     26.80 (5.48)             
+##   Freq_Groceries (%)                                                                           
+##      1-3 times per month              0 (  0.0)          0 (  0.0)        0 (  0.0)            
+##      Once a week                     47 (100.0)          5 (100.0)        0 (  0.0)            
+##      6-2 times per week               0 (  0.0)          0 (  0.0)      160 (100.0)            
+##      Every day                        0 (  0.0)          0 (  0.0)        0 (  0.0)            
+##   I_am_able_to_prepare_a_soup (%)                                                              
+##      Completely disagree              0 (  0.0)          0 (  0.0)        3 (  1.9)            
+##      Disagree                         2 (  4.3)          0 (  0.0)        2 (  1.2)            
+##      Neither disagree nor agree       0 (  0.0)          0 (  0.0)        4 (  2.5)            
+##      Agree                           15 ( 31.9)          0 (  0.0)       29 ( 18.1)            
+##      Completely agree                30 ( 63.8)          5 (100.0)      122 ( 76.2)            
 ##                                  Stratified by Gender:Freq_Groceries
-##                                   Female:6-2 times per week Male:6-2 times per week
-##   n                                 160                        34                  
-##   Age (mean (SD))                 26.80 (5.48)              26.65 (2.87)           
-##   Freq_Groceries (%)                                                               
-##      1-3 times per month              0 (  0.0)                 0 (  0.0)          
-##      Once a week                      0 (  0.0)                 0 (  0.0)          
-##      6-2 times per week             160 (100.0)                34 (100.0)          
-##      Every day                        0 (  0.0)                 0 (  0.0)          
-##   I_am_able_to_prepare_a_soup (%)                                                  
-##      Completely disagree              3 (  1.9)                 1 (  2.9)          
-##      Disagree                         2 (  1.2)                 1 (  2.9)          
-##      Neither disagree nor agree       4 (  2.5)                 1 (  2.9)          
-##      Agree                           29 ( 18.1)                11 ( 32.4)          
-##      Completely agree               122 ( 76.2)                20 ( 58.8)          
+##                                   Male:6-2 times per week Female:Every day Male:Every day p     
+##   n                                  34                      10                1                
+##   Age (mean (SD))                 26.65 (2.87)            28.80 (6.78)     55.00 (NA)      NA   
+##   Freq_Groceries (%)                                                                      &lt;0.001
+##      1-3 times per month              0 (  0.0)               0 (  0.0)        0 (  0.0)        
+##      Once a week                      0 (  0.0)               0 (  0.0)        0 (  0.0)        
+##      6-2 times per week              34 (100.0)               0 (  0.0)        0 (  0.0)        
+##      Every day                        0 (  0.0)              10 (100.0)        1 (100.0)        
+##   I_am_able_to_prepare_a_soup (%)                                                          0.697
+##      Completely disagree              1 (  2.9)               0 (  0.0)        0 (  0.0)        
+##      Disagree                         1 (  2.9)               0 (  0.0)        0 (  0.0)        
+##      Neither disagree nor agree       1 (  2.9)               0 (  0.0)        0 (  0.0)        
+##      Agree                           11 ( 32.4)               0 (  0.0)        1 (100.0)        
+##      Completely agree                20 ( 58.8)              10 (100.0)        0 (  0.0)        
 ##                                  Stratified by Gender:Freq_Groceries
-##                                   Female:Every day Male:Every day p      test
-##   n                                  10                1                     
-##   Age (mean (SD))                 28.80 (6.78)     55.00 (NA)      NA        
-##   Freq_Groceries (%)                                              &lt;0.001     
-##      1-3 times per month              0 (  0.0)        0 (  0.0)             
-##      Once a week                      0 (  0.0)        0 (  0.0)             
-##      6-2 times per week               0 (  0.0)        0 (  0.0)             
-##      Every day                       10 (100.0)        1 (100.0)             
-##   I_am_able_to_prepare_a_soup (%)                                  0.697     
-##      Completely disagree              0 (  0.0)        0 (  0.0)             
-##      Disagree                         0 (  0.0)        0 (  0.0)             
-##      Neither disagree nor agree       0 (  0.0)        0 (  0.0)             
-##      Agree                            0 (  0.0)        1 (100.0)             
-##      Completely agree                10 (100.0)        0 (  0.0)</code></pre>
+##                                   test
+##   n                                   
+##   Age (mean (SD))                     
+##   Freq_Groceries (%)                  
+##      1-3 times per month              
+##      Once a week                      
+##      6-2 times per week               
+##      Every day                        
+##   I_am_able_to_prepare_a_soup (%)     
+##      Completely disagree              
+##      Disagree                         
+##      Neither disagree nor agree       
+##      Agree                            
+##      Completely agree</code></pre>
 <p>If you want to do it on a large set of variables then it might be convenient to extract the names without having to type all in:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="intro-to-large-survey-data.html#cb154-1" tabindex="-1"></a>varnames <span class="ot">&lt;-</span> <span class="fu">colnames</span>(fmcrsurvey)[<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb154-2"><a href="intro-to-large-survey-data.html#cb154-2" tabindex="-1"></a><span class="fu">CreateTableOne</span>(<span class="at">data =</span> fmcrsurvey, <span class="at">vars =</span> varnames, </span>
-<span id="cb154-3"><a href="intro-to-large-survey-data.html#cb154-3" tabindex="-1"></a>               <span class="at">strata =</span> <span class="st">&#39;Gender&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="intro-to-large-survey-data.html#cb154-1" aria-hidden="true" tabindex="-1"></a>varnames <span class="ot">&lt;-</span> <span class="fu">colnames</span>(fmcrsurvey)[<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>]</span>
+<span id="cb154-2"><a href="intro-to-large-survey-data.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CreateTableOne</span>(<span class="at">data =</span> fmcrsurvey, <span class="at">vars =</span> varnames, </span>
+<span id="cb154-3"><a href="intro-to-large-survey-data.html#cb154-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">strata =</span> <span class="st">&#39;Gender&#39;</span>)</span></code></pre></div>
 <p>Try to play around with these codes to see if it makes sense what is presented.</p>
 </div>
 <div id="the-tidyverse-way" class="section level2 hasAnchor" number="10.5">
 <h2><span class="header-section-number">10.5</span> The tidyverse way<a href="intro-to-large-survey-data.html#the-tidyverse-way" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If the datasets get to large, or the work feels too tedious, there’s a way around that - the <strong>tidyverse</strong>-way. <strong>tidyverse</strong> is a large framework build in R, that lets you do almost everything with data. For example it uses what is called the pipe operator: <strong>%&gt;%</strong>. For more information, see <a href="introduction-to-r.html#edit-using-tidyverse">Edit using Tidyverse</a>.</p>
 <p>Now, let’s look at all <em>Likert-scale</em> variables in plots and numbers:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="intro-to-large-survey-data.html#cb155-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb155-2"><a href="intro-to-large-survey-data.html#cb155-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;fmcrsurvey&quot;</span>)</span>
-<span id="cb155-3"><a href="intro-to-large-survey-data.html#cb155-3" tabindex="-1"></a>fmcrsurvey <span class="sc">%&gt;%</span> </span>
-<span id="cb155-4"><a href="intro-to-large-survey-data.html#cb155-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> I_will_only_buy_products_at_a_reduced_price<span class="sc">:</span>I_am_able_to_prepare_a_soup, <span class="at">names_to =</span> <span class="st">&#39;var&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;y&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb155-5"><a href="intro-to-large-survey-data.html#cb155-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(y)) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>var) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="intro-to-large-survey-data.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb155-2"><a href="intro-to-large-survey-data.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;fmcrsurvey&quot;</span>)</span>
+<span id="cb155-3"><a href="intro-to-large-survey-data.html#cb155-3" aria-hidden="true" tabindex="-1"></a>fmcrsurvey <span class="sc">%&gt;%</span> </span>
+<span id="cb155-4"><a href="intro-to-large-survey-data.html#cb155-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> I_will_only_buy_products_at_a_reduced_price<span class="sc">:</span>I_am_able_to_prepare_a_soup, <span class="at">names_to =</span> <span class="st">&#39;var&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;y&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb155-5"><a href="intro-to-large-survey-data.html#cb155-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(y)) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>var) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
 <p>Some of the levels added doesn’t fit with the columns, which yields the mediocre result above. One will have to either align the levels, or make separate plots for each group of levels.</p>
 <p>Aligning can be done in different ways, e.g., in R and in Excel, but in our case, since the questions do not have the same number of levels, it seems more appropriate to create two different plots, to ensure that no information is lost.</p>
 <p>The <strong>reorder_levels</strong>-function from the <strong>rstatix</strong>-package ensures, that the levels appear in the desired order on the plot.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="intro-to-large-survey-data.html#cb156-1" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
-<span id="cb156-2"><a href="intro-to-large-survey-data.html#cb156-2" tabindex="-1"></a>fmcrsurvey <span class="sc">%&gt;%</span> </span>
-<span id="cb156-3"><a href="intro-to-large-survey-data.html#cb156-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> I_will_only_buy_products_at_a_reduced_price<span class="sc">:</span>I_am_always_updated_on_the_latest_food_trends, <span class="at">names_to =</span> <span class="st">&#39;var&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;y&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb156-4"><a href="intro-to-large-survey-data.html#cb156-4" tabindex="-1"></a>  <span class="fu">reorder_levels</span>(<span class="at">data =</span> ., <span class="at">name =</span> <span class="st">&#39;y&#39;</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">&#39;Disagree extremely&#39;</span>,</span>
-<span id="cb156-5"><a href="intro-to-large-survey-data.html#cb156-5" tabindex="-1"></a>                                         <span class="st">&#39;Disagree&#39;</span>,</span>
-<span id="cb156-6"><a href="intro-to-large-survey-data.html#cb156-6" tabindex="-1"></a>                                         <span class="st">&#39;Disagree slightly&#39;</span>,</span>
-<span id="cb156-7"><a href="intro-to-large-survey-data.html#cb156-7" tabindex="-1"></a>                                         <span class="st">&#39;Neutral&#39;</span>,</span>
-<span id="cb156-8"><a href="intro-to-large-survey-data.html#cb156-8" tabindex="-1"></a>                                         <span class="st">&#39;Agree slightly&#39;</span>,</span>
-<span id="cb156-9"><a href="intro-to-large-survey-data.html#cb156-9" tabindex="-1"></a>                                         <span class="st">&#39;Agree&#39;</span>,</span>
-<span id="cb156-10"><a href="intro-to-large-survey-data.html#cb156-10" tabindex="-1"></a>                                         <span class="st">&#39;Agree extremely&#39;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb156-11"><a href="intro-to-large-survey-data.html#cb156-11" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(y,<span class="at">fill =</span> Gender)) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>var) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="intro-to-large-survey-data.html#cb157-1" tabindex="-1"></a>fmcrsurvey <span class="sc">%&gt;%</span> </span>
-<span id="cb157-2"><a href="intro-to-large-survey-data.html#cb157-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> I_will_only_buy_products_at_a_reduced_price<span class="sc">:</span>I_am_able_to_prepare_a_soup, <span class="at">names_to =</span> <span class="st">&#39;var&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;y&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb157-3"><a href="intro-to-large-survey-data.html#cb157-3" tabindex="-1"></a>  <span class="fu">reorder_levels</span>(<span class="at">data =</span> ., <span class="at">name =</span> <span class="st">&#39;y&#39;</span>, </span>
-<span id="cb157-4"><a href="intro-to-large-survey-data.html#cb157-4" tabindex="-1"></a>                 <span class="at">order =</span> <span class="fu">c</span>(<span class="st">&#39;Completely disagree&#39;</span>,</span>
-<span id="cb157-5"><a href="intro-to-large-survey-data.html#cb157-5" tabindex="-1"></a>                           <span class="st">&#39;Disagree&#39;</span>,</span>
-<span id="cb157-6"><a href="intro-to-large-survey-data.html#cb157-6" tabindex="-1"></a>                           <span class="st">&#39;Neither disagree nor agree&#39;</span>,</span>
-<span id="cb157-7"><a href="intro-to-large-survey-data.html#cb157-7" tabindex="-1"></a>                           <span class="st">&#39;Agree&#39;</span>,</span>
-<span id="cb157-8"><a href="intro-to-large-survey-data.html#cb157-8" tabindex="-1"></a>                           <span class="st">&#39;Completely agree&#39;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb157-9"><a href="intro-to-large-survey-data.html#cb157-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(y,<span class="at">fill =</span> Gender)) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>var) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-104-2.png" width="672" /></p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="intro-to-large-survey-data.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<span id="cb156-2"><a href="intro-to-large-survey-data.html#cb156-2" aria-hidden="true" tabindex="-1"></a>fmcrsurvey <span class="sc">%&gt;%</span> </span>
+<span id="cb156-3"><a href="intro-to-large-survey-data.html#cb156-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> I_will_only_buy_products_at_a_reduced_price<span class="sc">:</span>I_am_always_updated_on_the_latest_food_trends, <span class="at">names_to =</span> <span class="st">&#39;var&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;y&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb156-4"><a href="intro-to-large-survey-data.html#cb156-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reorder_levels</span>(<span class="at">data =</span> ., <span class="at">name =</span> <span class="st">&#39;y&#39;</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">&#39;Disagree extremely&#39;</span>,</span>
+<span id="cb156-5"><a href="intro-to-large-survey-data.html#cb156-5" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Disagree&#39;</span>,</span>
+<span id="cb156-6"><a href="intro-to-large-survey-data.html#cb156-6" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Disagree slightly&#39;</span>,</span>
+<span id="cb156-7"><a href="intro-to-large-survey-data.html#cb156-7" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Neutral&#39;</span>,</span>
+<span id="cb156-8"><a href="intro-to-large-survey-data.html#cb156-8" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Agree slightly&#39;</span>,</span>
+<span id="cb156-9"><a href="intro-to-large-survey-data.html#cb156-9" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Agree&#39;</span>,</span>
+<span id="cb156-10"><a href="intro-to-large-survey-data.html#cb156-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&#39;Agree extremely&#39;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb156-11"><a href="intro-to-large-survey-data.html#cb156-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(y,<span class="at">fill =</span> Gender)) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>var) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="intro-to-large-survey-data.html#cb157-1" aria-hidden="true" tabindex="-1"></a>fmcrsurvey <span class="sc">%&gt;%</span> </span>
+<span id="cb157-2"><a href="intro-to-large-survey-data.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> I_will_only_buy_products_at_a_reduced_price<span class="sc">:</span>I_am_able_to_prepare_a_soup, <span class="at">names_to =</span> <span class="st">&#39;var&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;y&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb157-3"><a href="intro-to-large-survey-data.html#cb157-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reorder_levels</span>(<span class="at">data =</span> ., <span class="at">name =</span> <span class="st">&#39;y&#39;</span>, </span>
+<span id="cb157-4"><a href="intro-to-large-survey-data.html#cb157-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">order =</span> <span class="fu">c</span>(<span class="st">&#39;Completely disagree&#39;</span>,</span>
+<span id="cb157-5"><a href="intro-to-large-survey-data.html#cb157-5" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&#39;Disagree&#39;</span>,</span>
+<span id="cb157-6"><a href="intro-to-large-survey-data.html#cb157-6" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&#39;Neither disagree nor agree&#39;</span>,</span>
+<span id="cb157-7"><a href="intro-to-large-survey-data.html#cb157-7" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&#39;Agree&#39;</span>,</span>
+<span id="cb157-8"><a href="intro-to-large-survey-data.html#cb157-8" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&#39;Completely agree&#39;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb157-9"><a href="intro-to-large-survey-data.html#cb157-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(y,<span class="at">fill =</span> Gender)) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>var) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-97-2.png" width="672" /></p>
 
 </div>
 </div>
@@ -729,7 +734,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/10_LargeSurveyData.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/edit/master/09_LargeSurveyData.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -737,7 +742,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/10_LargeSurveyData.Rmd",
+"link": "https://github.com/mortenarendt/dataanalyssisconsumerscience/blob/master/09_LargeSurveyData.Rmd",
 "text": null
 },
 "download": null,
