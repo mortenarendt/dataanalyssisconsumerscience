@@ -62,7 +62,7 @@ The agglomerated version of the counts is computed by:
 
 ```{r, message=FALSE}
 beercatasum <- beercata %>% 
-  gather(attrib, val, S_Flowers:S_Vinous) %>% 
+  pivot_longer(names_to = 'attrib',values_to = 'val', cols = S_Flowers:S_Vinous) %>% 
   group_by(Beer,attrib) %>%
   dplyr::summarize(n = sum(val)) %>% 
   spread(attrib,n)
@@ -77,13 +77,13 @@ We call our new dataset *beercatasum*. Gather all the variables from *S_Flower* 
 ```{r}
 # summary counts over attribute
 beercatasum %>% 
-  gather(attrib, n, S_Aromatic:S_Warming) %>% 
+  pivot_longer(names_to = 'attrib',values_to = 'n', cols = S_Flowers:S_Vinous) %>% 
   ggplot(data = ., aes(x = attrib, y = n, fill = Beer)) + 
   geom_bar(stat = 'identity', position = position_dodge()) + 
   coord_flip()
 ```
 
-To plot all attributes, we need a long data format (discussed in more detail in chapter 1 in the section [Edit using Tidyverse]). *gather* creates the long format, which is then added as the first input in the plot (represented by "."). The different attributes are depicted on the x-axis, with the summed up values grouped by beer-type on the y-axis. The last line (coord_flip()) flips the plot, to make the attributes more readable.
+To plot all attributes, we need a long data format (discussed in more detail in chapter 1 in the section [Edit using Tidyverse]). *pivot_longer* creates the long format, which is then added as the first input in the plot (represented by "."). The different attributes are depicted on the x-axis, with the summed up values grouped by beer-type on the y-axis. The last line (coord_flip()) flips the plot, to make the attributes more readable.
 
 For more plot types go to the Chapter on [Plotting data].
 
@@ -141,7 +141,7 @@ tidy.RVtest <- function(m){
 }
 
 tb_cochran <- beercata %>% 
-  gather(attrib, val, S_Flowers:S_Vinous) %>% 
+  pivot_longer(names_to = 'attrib',values_to = 'val', cols = S_Flowers:S_Vinous) %>% 
   group_by(attrib) %>%
   do(cochran.qtest(val ~ Beer | Consumer.ID,
                    data = .) %>% tidy)

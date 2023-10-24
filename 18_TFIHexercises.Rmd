@@ -154,7 +154,7 @@ Any trends? For instance, how is liking related to the individual consumer diver
 
 ```{r, eval=FALSE}
 gall <- cbind(PCAliking$x[,1:2], beerdemo[include_these,]) %>% 
-  gather(var,val,`Interest in food`:`Future interest in beer`) %>% 
+  pivot_longer(names_to = 'var',values_to = 'val',cols = `Interest in food`:`Future interest in beer`) %>% 
   ggplot(data = ., aes(PC1,PC2, color = factor(val))) + 
   geom_point() + 
   stat_ellipse() + 
@@ -175,7 +175,7 @@ likingsum <- beerliking %>%
   dplyr::summarise(lik = mean(Liking, na.rm = T))
 
 catasum <- beercata %>% 
-  gather(attrib,val,S_Flowers:S_Vinous ) %>% 
+  pivot_longer(names_to = 'attrib',values_to = 'val',cols = S_Flowers:S_Vinous ) %>% 
   group_by(Beer,attrib) %>% 
   dplyr::summarise(mn = mean(val, na.rm = T)) %>% 
   spread(attrib,mn)

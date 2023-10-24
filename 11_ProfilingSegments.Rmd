@@ -1,9 +1,5 @@
 # Profiling segments
 
-```{r, include=F, echo=FALSE}
-# __Den her og logistisk regression kom jeg lidt mere til kort, jeg kunne ikke lige helt knække koden til hvordan det bedst bliver struktureret. Så det der er herinde nu, er kopieret + rettet lidt til og flyttet rundt, men er reelt det som står i de to .rmd-filer som hedder noget med Profiling_Segments og Logistic_regression, som blev brugt i kurset sidste år. Koden virker, men rækkefølgen og den røde tråd er der hvor det halter.__
-```
-
 There are many ways of profiling consumer segments. Some of the most widely used are shown in this chapter, as well as in the chapter [Logistic Regression].
 
 The data in this chapter constitute data from the following study. 
@@ -59,7 +55,7 @@ library(tidyverse)
 
 X <- plantbaseddiet %>% 
   mutate(agegrp = cut(age, breaks = quantile(age), include.lowest = T)) %>%
-  gather(demo,demoval, gender,agegrp,city:income) %>%
+  pivot_longer(names_to = 'demo',values_to = 'demoval',cols = c(city:income, gender, agegrp), values_transform = as.character) %>%
   mutate(demoval = paste(demo,demoval,sep = '='))
 
 conttb <- table(X$demoval,X$clusters)
@@ -68,7 +64,7 @@ conttb
 ```
 
 The package "tidyverse" is used to create a contingency table from the "plantbaseddiet" dataset. The first use of the "mutate" function is used to create a new variable "agegrp". The "cut" function is used to create age groups by dividing the age into quantiles breaks. The "include.lowest" is set to "TRUE" to include the lowest value in the first age group. 
-The "gather" function is then used to gather the variables "gender", "agegrp" and variables from "city" to "income" into two new variables "demo" and "demoval". This reshapes the data from a wide format to a long format, resulting in the variable "demo" containing the variable names and the variable "demoval" containing the corresponding values. 
+The "pivot_longer" function is then used to gather the variables "gender", "agegrp" and variables from "city" to "income" into two new variables "demo" and "demoval". This reshapes the data from a wide format to a long format, resulting in the variable "demo" containing the variable names and the variable "demoval" containing the corresponding values. 
 The second use of the "mutate" function combines the values in "demo" and "demoval" seperated by a "=" into the variable "demoval". Meaning if "demo" is gender and "demoval" is Male. The resulting "demoval" would be "gender=Male"
 
 The contingency table is then created using the "Table" function. In this case "demoval" is used as rows, and "clusters" as columns. 

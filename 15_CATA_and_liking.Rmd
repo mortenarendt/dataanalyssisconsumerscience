@@ -47,9 +47,9 @@ Here we see that the attribute will increase the liking by $0.7$ points for _Bro
 
 We can visualize for all attributes: 
 
-```{r, fig.height=9}
+```{r, fig.height=9, warning=FALSE}
 g1 <- xbeer %>% 
-  gather(cata, val,S_Flowers:S_Vinous) %>% 
+  pivot_longer(names_to = 'cata',values_to = 'val',cols = S_Flowers:S_Vinous) %>% 
   ggplot(data = ., aes(Beer,  Liking, fill = factor(val))) + 
   geom_boxplot() + 
   theme(axis.text.x = element_text(angle = 79, hjust = 1), legend.position = 'bottom') + 
@@ -63,8 +63,8 @@ For each attribute an interaction model will be used to qualify further analysis
 library(broom)
 library(broom.mixed)
 tb <- xbeer %>% 
-  gather(cata, val,S_Flowers:S_Vinous) %>% 
-  group_by(cata) %>% 
+  pivot_longer(names_to = 'cata',values_to = 'val',cols = S_Flowers:S_Vinous) %>% 
+  dplyr::group_by(cata) %>% 
   do(lmer(data = ., Liking~factor(val)*Beer + (1|Consumer.ID)) %>% anova %>% tidy)
 ```
 
@@ -93,8 +93,8 @@ A deep dive into the effect can be done using the setup with a single variable a
 
 ```{r}
 tb2 <- xbeer %>% 
-  gather(cata, val,S_Flowers:S_Vinous) %>% 
-  group_by(cata) %>% 
+  pivot_longer(names_to = 'cata',values_to = 'val',cols = S_Flowers:S_Vinous) %>% 
+  dplyr::group_by(cata) %>% 
   do(lmer(data = ., Liking~Beer + factor(val):Beer + (1|Consumer.ID) - 1) %>% tidy(conf.int = T))
 
 ```
@@ -118,10 +118,10 @@ _Nutty_ only matters on liking in _Ravnsborg Red_ and _River beer_.
 
 A PCA on the agglomerated CATA counts including the liking will reveal the attributes associated with the individual products, and which attributes are correlated with the liking.  
 
-```{r}
+```{r, warning=FALSE}
 xbeeragglom <- xbeer %>% 
-  gather(cata, val,S_Flowers:S_Vinous, Liking) %>% #looong format for all variables
-  group_by(Beer,cata) %>% # summarize for each beer type
+  pivot_longer(names_to = 'cata',values_to = 'val',cols = c(S_Flowers:S_Vinous, Liking)) %>% #looong format for all variables
+  dplyr::group_by(Beer,cata) %>% # summarize for each beer type
   dplyr::summarise(yy = mean(val, na.rm = T)) %>% 
   spread(cata,yy) # wide format
 ```

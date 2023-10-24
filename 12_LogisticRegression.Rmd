@@ -331,16 +331,14 @@ library(broom)
 tb <- plantbaseddiet %>% 
   mutate(id = 1) %>% # make a vector of 1's
   spread(clusters,id, fill = 0) %>% # distribute the clustering into 4 new coloumns and make sure that the binary cluster vectors are 1 and 0. 
-  gather(plant_plantbaseddiet,answ,o_prepar:o_family) %>% # long format for survey questions
-  gather(cluster_type,cluster,`High Meat`:`High All`) %>% # long format for clusters 
+  pivot_longer(names_to = 'plant_plantbaseddiet', values_to = 'answ',o_prepar:o_family) %>% # long format for survey questions
+  pivot_longer(names_to = 'cluster_type',values_to = 'cluster',`High Meat`:`High All`) %>% # long format for clusters 
   group_by(plant_plantbaseddiet,cluster_type) %>% # loop over all questions and all clusters
   do(glm(data = ., cluster==1 ~ answ + factor(education) + age + gender, family = binomial) %>%
        tidy(exponentiate = T,conf.int = T)) # perform logistic regression
 
 
-tb %>% head()  
-
-
+tb %>% head() 
 ```
 
 This table (tb) has all the results, with estimates being OR and with confidence intervals. However, there are *too much* information. For instance are the intercept as well as the covariates reported. We can tidy it even more:
