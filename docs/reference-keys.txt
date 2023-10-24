@@ -1,5 +1,5 @@
-tab:unnamed-chunk-45
-tab:unnamed-chunk-80
+tab:unnamed-chunk-58
+tab:unnamed-chunk-93
 introduction-to-the-book
 introduction-to-r
 how-to-get-started---understanding-r-and-rstudio

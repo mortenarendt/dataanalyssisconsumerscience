@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Descriptive statistics | Data Analysis in R for Sensory and Consumer Science</title>
   <meta name="description" content="Chapter 5 Descriptive statistics | Data Analysis in R for Sensory and Consumer Science" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Descriptive statistics | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
@@ -445,11 +445,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In principle, descriptive statistics is the act of taking a bunch of data and represent them in few numbers, such as mean, median, standard deviation etc.</p>
 <p>For a more thorough introduction you can check every introductory stats book: The first couple of chapters will cover this.</p>
 <p>For examples in this chapter we will use two datasets: <em>chili</em>: where and green tea in combination is added to meals and the resulting ad-libitum consumption is recorded, and <em>pasta</em> which is iBuffet data with a survey of preferences for each Person.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb43-2"><a href="descriptive-statistics.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(chili)</span>
-<span id="cb43-3"><a href="descriptive-statistics.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
-<span id="cb43-4"><a href="descriptive-statistics.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we subset to only have the &quot;Pasta with legumes&quot; data. </span></span>
-<span id="cb43-5"><a href="descriptive-statistics.html#cb43-5" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> pasta[pasta<span class="sc">$</span>StationName<span class="sc">==</span><span class="st">&#39;Pasta with legumes&#39;</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb43-2"><a href="descriptive-statistics.html#cb43-2" tabindex="-1"></a><span class="fu">data</span>(chili)</span>
+<span id="cb43-3"><a href="descriptive-statistics.html#cb43-3" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
+<span id="cb43-4"><a href="descriptive-statistics.html#cb43-4" tabindex="-1"></a><span class="co"># we subset to only have the &quot;Pasta with legumes&quot; data. </span></span>
+<span id="cb43-5"><a href="descriptive-statistics.html#cb43-5" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> pasta[pasta<span class="sc">$</span>StationName<span class="sc">==</span><span class="st">&#39;Pasta with legumes&#39;</span>,]</span></code></pre></div>
 <p>If you do not have imported the <em>data4consumerscience</em> package see: <a href="introduction-to-r.html#import-data-from-r-package">Import data from R-package</a> If you need to import data see: <a href="introduction-to-r.html#how-to-import-data">How to import data</a></p>
 <div id="descriptives-for-a-continuous-variable" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Descriptives for a continuous variable<a href="descriptive-statistics.html#descriptives-for-a-continuous-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -484,17 +484,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="calculations" class="section level3 hasAnchor" number="5.1.4">
 <h3><span class="header-section-number">5.1.4</span> Calculations<a href="descriptive-statistics.html#calculations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For the calculations, we use the <em>chili</em> dataset. To compute mean, median, variance, standard deviation, etc. there are functions working directly on vectors/columns in you data frame. An easy way to specify this in R is using the <strong>$</strong>-sign after the name of your data frame, followed by the column name (e.g. <code>chili$Totalg</code>). <code>na.rm = TRUE</code> removes NA values in the vector. This can be done for all the below functions.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="descriptive-statistics.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(chili<span class="sc">$</span>Totalg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="descriptive-statistics.html#cb44-1" tabindex="-1"></a><span class="fu">mean</span>(chili<span class="sc">$</span>Totalg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 1699.977</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="descriptive-statistics.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="descriptive-statistics.html#cb46-1" tabindex="-1"></a><span class="fu">median</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
 <pre><code>## [1] 1740.4</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="descriptive-statistics.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="descriptive-statistics.html#cb48-1" tabindex="-1"></a><span class="fu">var</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
 <pre><code>## [1] 211259</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="descriptive-statistics.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="descriptive-statistics.html#cb50-1" tabindex="-1"></a><span class="fu">sd</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
 <pre><code>## [1] 459.6292</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="descriptive-statistics.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="descriptive-statistics.html#cb52-1" tabindex="-1"></a><span class="fu">IQR</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
 <pre><code>## [1] 660.6</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="descriptive-statistics.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="descriptive-statistics.html#cb54-1" tabindex="-1"></a><span class="fu">summary</span>(chili<span class="sc">$</span>Totalg)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   849.6  1289.1  1740.4  1700.0  1949.7  2905.2</code></pre>
 </div>
@@ -502,11 +502,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="distributions-of-count-data" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Distributions of count data<a href="descriptive-statistics.html#distributions-of-count-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If the response can take certain values or categories, then the table function is good in getting how many observations there are within a given vector, or combinations of several vectors.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="descriptive-statistics.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pasta<span class="sc">$</span>I_like_taste_of_pasta_with_legumes)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="descriptive-statistics.html#cb56-1" tabindex="-1"></a><span class="fu">table</span>(pasta<span class="sc">$</span>I_like_taste_of_pasta_with_legumes)</span></code></pre></div>
 <pre><code>## 
 ##  2  3  4  5  6  7 
 ##  1  3  2  5  8 11</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="descriptive-statistics.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pasta<span class="sc">$</span>I_like_taste_of_pasta_with_legumes, pasta<span class="sc">$</span>Did_you_consider_the_proteincontent_of_the_dishes_you_choose)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="descriptive-statistics.html#cb58-1" tabindex="-1"></a><span class="fu">table</span>(pasta<span class="sc">$</span>I_like_taste_of_pasta_with_legumes, pasta<span class="sc">$</span>Did_you_consider_the_proteincontent_of_the_dishes_you_choose)</span></code></pre></div>
 <pre><code>##    
 ##     No Yes
 ##   2  0   1
@@ -521,14 +521,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="aggregate" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Aggregate<a href="descriptive-statistics.html#aggregate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="descriptive-statistics.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(chili<span class="sc">$</span>Totalg,<span class="at">by =</span> <span class="fu">list</span>(chili<span class="sc">$</span>Treatment),<span class="at">FUN =</span> mean)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="descriptive-statistics.html#cb60-1" tabindex="-1"></a><span class="fu">aggregate</span>(chili<span class="sc">$</span>Totalg,<span class="at">by =</span> <span class="fu">list</span>(chili<span class="sc">$</span>Treatment),<span class="at">FUN =</span> mean)</span></code></pre></div>
 <pre><code>##                Group.1        x
 ## 1            Capsaicin 1716.195
 ## 2            Green tea 1664.504
 ## 3                 CH19 1708.977
 ## 4 Capsaicin+ Green tea 1649.495
 ## 5              placebo 1759.754</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="descriptive-statistics.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(chili<span class="sc">$</span>Totalg,<span class="at">by =</span> <span class="fu">list</span>(chili<span class="sc">$</span>Treatment),<span class="at">FUN =</span> sd)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="descriptive-statistics.html#cb62-1" tabindex="-1"></a><span class="fu">aggregate</span>(chili<span class="sc">$</span>Totalg,<span class="at">by =</span> <span class="fu">list</span>(chili<span class="sc">$</span>Treatment),<span class="at">FUN =</span> sd)</span></code></pre></div>
 <pre><code>##                Group.1        x
 ## 1            Capsaicin 473.1042
 ## 2            Green tea 462.2564
@@ -542,15 +542,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tidyverse" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Tidyverse<a href="descriptive-statistics.html#tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>… or you can do it using <em>tidyverse</em>:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="descriptive-statistics.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb64-2"><a href="descriptive-statistics.html#cb64-2" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> chili <span class="sc">%&gt;%</span> </span>
-<span id="cb64-3"><a href="descriptive-statistics.html#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Treatment) <span class="sc">%&gt;%</span> <span class="co"># specify which grouping vector to use</span></span>
-<span id="cb64-4"><a href="descriptive-statistics.html#cb64-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="co"># compute n</span></span>
-<span id="cb64-5"><a href="descriptive-statistics.html#cb64-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">mn =</span> <span class="fu">mean</span>(Totalg), <span class="co"># compute mean</span></span>
-<span id="cb64-6"><a href="descriptive-statistics.html#cb64-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">s =</span> <span class="fu">sd</span>(Totalg), <span class="co"># compute s</span></span>
-<span id="cb64-7"><a href="descriptive-statistics.html#cb64-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">q1 =</span> <span class="fu">quantile</span>(Totalg,<span class="fl">0.25</span>), <span class="co"># compute lower 25% quartile</span></span>
-<span id="cb64-8"><a href="descriptive-statistics.html#cb64-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">q3 =</span> <span class="fu">quantile</span>(Totalg,<span class="fl">0.75</span>)) <span class="co"># compute upper 75% quartile</span></span>
-<span id="cb64-9"><a href="descriptive-statistics.html#cb64-9" aria-hidden="true" tabindex="-1"></a>tb  </span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="descriptive-statistics.html#cb64-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb64-2"><a href="descriptive-statistics.html#cb64-2" tabindex="-1"></a>tb <span class="ot">&lt;-</span> chili <span class="sc">%&gt;%</span> </span>
+<span id="cb64-3"><a href="descriptive-statistics.html#cb64-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Treatment) <span class="sc">%&gt;%</span> <span class="co"># specify which grouping vector to use</span></span>
+<span id="cb64-4"><a href="descriptive-statistics.html#cb64-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="co"># compute n</span></span>
+<span id="cb64-5"><a href="descriptive-statistics.html#cb64-5" tabindex="-1"></a>            <span class="at">mn =</span> <span class="fu">mean</span>(Totalg), <span class="co"># compute mean</span></span>
+<span id="cb64-6"><a href="descriptive-statistics.html#cb64-6" tabindex="-1"></a>            <span class="at">s =</span> <span class="fu">sd</span>(Totalg), <span class="co"># compute s</span></span>
+<span id="cb64-7"><a href="descriptive-statistics.html#cb64-7" tabindex="-1"></a>            <span class="at">q1 =</span> <span class="fu">quantile</span>(Totalg,<span class="fl">0.25</span>), <span class="co"># compute lower 25% quartile</span></span>
+<span id="cb64-8"><a href="descriptive-statistics.html#cb64-8" tabindex="-1"></a>            <span class="at">q3 =</span> <span class="fu">quantile</span>(Totalg,<span class="fl">0.75</span>)) <span class="co"># compute upper 75% quartile</span></span>
+<span id="cb64-9"><a href="descriptive-statistics.html#cb64-9" tabindex="-1"></a>tb  </span></code></pre></div>
 <pre><code>## # A tibble: 5 × 6
 ##   Treatment                n    mn     s    q1    q3
 ##   &lt;fct&gt;                &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -563,10 +563,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>summarise</strong> will create a summary of the input data, with the columns specified in the code, calculation the statistics also written in the code (e.g. <code>mn = mean(Totalg)</code> will create a column with the mean of <code>Totalg</code>, for each group in <code>Treatment</code>, as specified by <code>group_by()</code>).</p>
 <p>For more information about data manipulation with tidyverse, see <a href="introduction-to-r.html#edit-using-tidyverse">Edit using Tidyverse</a> or check out the <a href="https://www.tidyverse.org/">tidyverse-homepage</a>.</p>
 <p>Further, lets print the results in a nice looking table using kable() from the knitr package.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="descriptive-statistics.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb66-2"><a href="descriptive-statistics.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tb, <span class="at">caption =</span> <span class="st">&#39;some caption&#39;</span>, <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">format =</span> <span class="st">&#39;simple&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="descriptive-statistics.html#cb66-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb66-2"><a href="descriptive-statistics.html#cb66-2" tabindex="-1"></a><span class="fu">kable</span>(tb, <span class="at">caption =</span> <span class="st">&#39;some caption&#39;</span>, <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">format =</span> <span class="st">&#39;simple&#39;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-45">Table 5.1: </span>some caption</caption>
+<caption><span id="tab:unnamed-chunk-58">Table 5.1: </span>some caption</caption>
 <thead>
 <tr class="header">
 <th align="left">Treatment</th>
@@ -621,11 +621,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>… and a plot of it:</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="descriptive-statistics.html#cb67-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb67-2"><a href="descriptive-statistics.html#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(Treatment,mn, <span class="at">ymin =</span> q1, <span class="at">ymax =</span> q3)) <span class="sc">+</span> </span>
-<span id="cb67-3"><a href="descriptive-statistics.html#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb67-4"><a href="descriptive-statistics.html#cb67-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="descriptive-statistics.html#cb67-1" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb67-2"><a href="descriptive-statistics.html#cb67-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(Treatment,mn, <span class="at">ymin =</span> q1, <span class="at">ymax =</span> q3)) <span class="sc">+</span> </span>
+<span id="cb67-3"><a href="descriptive-statistics.html#cb67-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb67-4"><a href="descriptive-statistics.html#cb67-4" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
 <p><code>tb %&gt;%</code>: This line is using the pipe operator (<code>%&gt;%</code>), which is native to the <em>dplyr</em>-package and is used in R to chain together multiple operations. It takes the result of the expression on the left and pipes it as the first argument to the function on the right. In this case, <code>tb</code> is being piped into the subsequent operations.</p>
 <p><code>ggplot(data = ., aes(Treatment, mn, ymin = q1, ymax = q3))</code>: This line initiates the creation of a ggplot object using the data from the <code>tb</code> dataset. It specifies the aesthetics (visual mappings) for the plot. <code>Treatment</code> is mapped to the x-axis, <code>mn</code> is mapped to the y-axis, and <code>q1</code> and <code>q3</code> are representing the first and third quartile respectively, here graphically represented using errorbars.</p>
 <p><code>geom_point()</code>: This line adds a layer to the plot with points (or dots) representing the data points. Since no aesthetic mappings are provided in this specific line, it’s assumed that the <code>Treatment</code> values are plotted against the <code>mn</code> values on the x- and y-axes.</p>

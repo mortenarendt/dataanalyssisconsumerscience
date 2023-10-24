@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Libraries | Data Analysis in R for Sensory and Consumer Science</title>
   <meta name="description" content="Chapter 3 Libraries | Data Analysis in R for Sensory and Consumer Science" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Libraries | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
@@ -443,14 +443,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 3</span> Libraries<a href="libraries.html#libraries" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>R comes with a bit of functionality. However, most of the useful tools in R is distributed as packages. There are +10.000 package for R, so it is a jungle to figure out what the most easy solution to your problem at hand is. However, the teams who have made tidyverse and ggplot2 etc. have made a lot of things much more easy, and we strongly rely on their tools and routines in data analysis.</p>
 <p>To install packages from CRAN (the main repo where R-packages are distributed)</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="libraries.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;SomePackageName&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="libraries.html#cb32-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;SomePackageName&#39;</span>)</span></code></pre></div>
 <p>To install packages from github (the online place where all the development and general code sharing is distributed)</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="libraries.html#cb33-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;DeveloperName/SomePackageName&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="libraries.html#cb33-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;DeveloperName/SomePackageName&#39;</span>)</span></code></pre></div>
 <p>To make packages available within your analysis use <strong>library()</strong>, or use the package name followed by <strong>::</strong> and the function. The library function will activate the installed package.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="libraries.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) </span>
-<span id="cb34-2"><a href="libraries.html#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="libraries.html#cb34-3" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">qplot</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="co"># example of a function call without library&#39;ing the package.</span></span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="libraries.html#cb34-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2) </span>
+<span id="cb34-2"><a href="libraries.html#cb34-2" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="libraries.html#cb34-3" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">qplot</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="co"># example of a function call without library&#39;ing the package.</span></span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 <p>Tidyverse is a large framework build to handle and manipulate data in a variety of different ways. An example of said manipulation is shown in chapter 1 under <a href="introduction-to-r.html#edit-using-tidyverse">Edit using Tidyverse</a>.</p>
 <p>You can find even more information here <a href="https://www.tidyverse.org/">tidyverse-homepage</a>.</p>
 
