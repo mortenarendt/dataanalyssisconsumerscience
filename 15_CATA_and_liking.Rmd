@@ -30,15 +30,15 @@ A model capturing this phenomena could be a linear model with interactions:
 ```{r}
 library(lme4)
 library(lmerTest)
-mdl <- lmer(data = xbeer, Liking~factor(S_Refreshing)*Beer + (1|Consumer.ID))
+mdl <- lmerTest::lmer(data = xbeer, Liking~factor(S_Refreshing)*Beer + (1|Consumer.ID))
 anova(mdl)
 
 ```
 All terms are significant and we are interested in the individual beer effects. We re-parametrice the model by removing the intercept (adding -1 at the end of the formula) and not including the main effect of S_Refreshing (change * to : in interaction, and add Beer as main effect). 
 
 ```{r}
-mdl <- lmer(data = xbeer, Liking~Beer + factor(S_Refreshing):Beer + (1|Consumer.ID) - 1)
-summary(mdl)
+mdl2 <- lmerTest::lmer(data = xbeer, Liking~Beer + factor(S_Refreshing):Beer + (1|Consumer.ID) - 1)
+summary(mdl2)
 ```
 
 Here we see that the attribute will increase the liking by $0.7$ points for _Brown Ale_ and up to $2.4$ points for _Wheat IPA_. 
@@ -142,8 +142,8 @@ The above PCA shows general good- and bad attributes in terms of liking. However
 For that reason we can build a PCA for each beer to see which attributes that drives liking 
 
 ```{r}
-xbeer <- xbeer[complete.cases(xbeer),]
-PCAmdl_RR <- prcomp(xbeer[xbeer$Beer=='Ravnsborg Red',14:41], scale. = T)
+xbeer_pca <- xbeer[complete.cases(xbeer),]
+PCAmdl_RR <- prcomp(xbeer_pca[xbeer_pca$Beer=='Ravnsborg Red',14:41], scale. = T)
 ggbiplot::ggbiplot(PCAmdl_RR)
 ```
 

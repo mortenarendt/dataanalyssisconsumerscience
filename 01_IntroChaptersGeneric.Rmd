@@ -238,7 +238,11 @@ The code above does exactly that, with *Surveylong* and *Surveywide* as the resu
 
 What is also introduced here is the _pipe_ operator **%\>%**. It originates from the *dplyr*-package inside the *tidyverse*-package, and is a handy tool for data manipulation. The way it works is, that whatever is written on the **right** side of the operator, will be used as the first argument in the function written on the **left** side of the operator. This means, that `x %\>% f(y)` will result in f(x,y) - or in our case:
 
-`BuffetSurvey %\>% pivot_longer(cols = Pasta_with_legumes_is_visually_appealing_to_me:I_like_the_taste_of_pasta_with_mushrooms!, names_to = 'question',values_to = 'answ')` will be equal to: `pivot_longer(BuffetSurvey, cols = Pasta_with_legumes_is_visually_appealing_to_me:I_like_the_taste_of_pasta_with_mushrooms!, names_to = 'question',values_to = 'answ')`
+`BuffetSurvey %\>% pivot_longer(cols = Pasta_with_legumes_is_visually_appealing_to_me:I_like_the_taste_of_pasta_with_mushrooms!, names_to = 'question',values_to = 'answ')`
+
+will be equal to: 
+
+`pivot_longer(BuffetSurvey, cols = Pasta_with_legumes_is_visually_appealing_to_me:I_like_the_taste_of_pasta_with_mushrooms!, names_to = 'question',values_to = 'answ')`
 
 The idea is then to "chain" (or "pipe" as it is also known) `%\>%` together line after line, using different functions in a sequence, which makes the code more readable and often shorter as well.
 

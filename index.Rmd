@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
 
 ![Alt text](init_frontpage.jpg)
     
-# Introduction to the book
+# Introduction to the book {-}
 
 This material is to cover data analysis using R for consumer science targeting the following courses: 
 

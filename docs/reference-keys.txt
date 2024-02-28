@@ -1,6 +1,5 @@
-tab:unnamed-chunk-58
-tab:unnamed-chunk-93
-introduction-to-the-book
+tab:unnamed-chunk-51
+tab:unnamed-chunk-86
 introduction-to-r
 how-to-get-started---understanding-r-and-rstudio
 organise-and-save-scripts
@@ -70,9 +69,12 @@ build-the-model
 bi-plot
 extract-the-components-and-run-all-associations.
 mst-exercises
-exercise-1
-exercise-2
-exercise-3
+exercise-1---cleaning-compusense-data-with-r
+exercise-1---solution
+exercise-2---creating-a-tableone-and-visualization
+exercise-2---solution
+exercise-3---creating-an-outcome-table
+exercise-3---solution
 intro-to-large-survey-data
 looking-at-the-data-and-checking-formating
 descriptive-statistics-1

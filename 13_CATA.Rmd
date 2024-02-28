@@ -152,7 +152,7 @@ tb_cochran %>%
 
 Again the table is sorted with the most sigficant at the top, and the least significant at the bottom. This output indicates that *S_Beans* is the most discriminatory attribute, while *S_Pungent* is the least.
 
-For the pairwise comparisons, please apply the code for the Tukey test above per attribute.
+For the pairwise comparisons, please apply the code for the post hoc test above per attribute.
 
 ## PCA on CATA data
 

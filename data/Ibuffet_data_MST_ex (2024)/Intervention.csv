@@ -1,0 +1,69 @@
+Person;Sequence;Buffet ID;Buffet name;Serving station ID;Station name;Consumption in grams;Time from;Time to;Duration in seconds;Time between servings in seconds
+B4813FE7;1;1;OAT TEST Interventions;1;OAT;0;09:33:40;09:44:01;76;---
+--;--;--;--;--;--;--;--;--;--;--
+A: 25 B: / 1455B34D;1;1;OAT TEST Interventions;1;OAT;54;09:44:01;09:44:18;12;---
+A: 25 B: / 1455B34D;2;1;OAT TEST Interventions;2;RYE BREAD;78;09:44:17;09:44:32;6;15
+--;--;--;--;--;--;--;--;--;--;--
+A: 36 B: / EE1EA116;1;1;OAT TEST Interventions;1;OAT;58;09:44:18;09:44:42;10;---
+A: 36 B: / EE1EA116;2;1;OAT TEST Interventions;2;RYE BREAD;76;09:44:32;09:45:03;10;14
+--;--;--;--;--;--;--;--;--;--;--
+A: 37 B: / 5ED4A016;1;1;OAT TEST Interventions;1;OAT;70;09:44:42;09:45:08;17;---
+A: 37 B: / 5ED4A016;2;1;OAT TEST Interventions;2;RYE BREAD;76;09:45:03;09:45:26;15;20
+--;--;--;--;--;--;--;--;--;--;--
+A: 39 B: / 5E65A216;1;1;OAT TEST Interventions;1;OAT;48;09:45:08;09:45:32;12;---
+A: 39 B: / 5E65A216;2;1;OAT TEST Interventions;2;RYE BREAD;112;09:45:26;09:45:51;18;18
+--;--;--;--;--;--;--;--;--;--;--
+A: 29 B: / F409B54D;1;1;OAT TEST Interventions;1;OAT;50;09:45:32;09:45:50;10;---
+A: 29 B: / F409B54D;2;1;OAT TEST Interventions;2;RYE BREAD;38;09:45:51;09:46:04;8;19
+--;--;--;--;--;--;--;--;--;--;--
+A: 26 B: / 34F3B44D;1;1;OAT TEST Interventions;1;OAT;52;09:45:50;09:46:11;9;---
+A: 26 B: / 34F3B44D;2;1;OAT TEST Interventions;2;RYE BREAD;70;09:46:04;09:46:27;4;14
+--;--;--;--;--;--;--;--;--;--;--
+A: 45 B: / E04B9386;1;1;OAT TEST Interventions;1;OAT;68;09:46:11;09:46:25;10;---
+A: 45 B: / E04B9386;2;1;OAT TEST Interventions;2;RYE BREAD;76;09:46:27;09:46:40;5;15
+--;--;--;--;--;--;--;--;--;--;--
+A: 32 B: / C286015F;1;1;OAT TEST Interventions;1;OAT;100;09:46:25;09:46:48;11;---
+A: 32 B: / C286015F;2;1;OAT TEST Interventions;2;RYE BREAD;188;09:46:40;09:47:05;14;15
+--;--;--;--;--;--;--;--;--;--;--
+A: 28 B: / 2436B34D;1;1;OAT TEST Interventions;1;OAT;60;09:46:48;09:47:15;14;---
+A: 28 B: / 2436B34D;2;1;OAT TEST Interventions;2;RYE BREAD;82;09:47:05;09:47:28;6;16
+--;--;--;--;--;--;--;--;--;--;--
+A: 30 B: / 343EB64D;1;1;OAT TEST Interventions;1;OAT;108;09:47:15;09:47:31;11;---
+A: 30 B: / 343EB64D;2;1;OAT TEST Interventions;2;RYE BREAD;172;09:47:28;09:47:48;9;12
+--;--;--;--;--;--;--;--;--;--;--
+A: 42 B: / AEDE4D99;1;1;OAT TEST Interventions;1;OAT;92;09:47:31;09:47:50;13;---
+A: 42 B: / AEDE4D99;2;1;OAT TEST Interventions;2;RYE BREAD;114;09:47:48;09:48:05;12;16
+--;--;--;--;--;--;--;--;--;--;--
+A: 40 B: / 422A583F;1;1;OAT TEST Interventions;1;OAT;40;09:47:50;09:48:05;10;---
+A: 40 B: / 422A583F;2;1;OAT TEST Interventions;2;RYE BREAD;78;09:48:05;09:48:19;5;15
+--;--;--;--;--;--;--;--;--;--;--
+A: 31 B: / B2E8045F;1;1;OAT TEST Interventions;1;OAT;56;09:48:05;09:48:39;11;---
+A: 31 B: / B2E8045F;2;1;OAT TEST Interventions;2;RYE BREAD;116;09:48:19;09:48:30;7;13
+--;--;--;--;--;--;--;--;--;--;--
+A: 34 B: / 0205055F;1;1;OAT TEST Interventions;1;OAT;48;09:48:39;09:48:39;9;---
+A: 34 B: / 0205055F;2;1;OAT TEST Interventions;2;RYE BREAD;114;09:48:53;09:49:06;8;14
+--;--;--;--;--;--;--;--;--;--;--
+A: 46 B: / FAD45C11;1;1;OAT TEST Interventions;2;RYE BREAD;96;09:48:30;09:48:53;10;---
+A: 46 B: / FAD45C11;2;1;OAT TEST Interventions;3;OAT;130;09:48:47;09:49:20;14;16
+--;--;--;--;--;--;--;--;--;--;--
+A: 35 B: / 1206045F;1;1;OAT TEST Interventions;2;RYE BREAD;112;09:49:06;09:49:06;12;---
+A: 35 B: / 1206045F;2;1;OAT TEST Interventions;3;OAT;74;09:49:20;09:49:20;8;14
+--;--;--;--;--;--;--;--;--;--;--
+A: 41 B: / 7E2FA216;1;1;OAT TEST Interventions;3;OAT;50;09:45:00;09:45:17;8;---
+A: 41 B: / 7E2FA216;2;1;OAT TEST Interventions;4;RYE BREAD;80;09:45:13;09:45:34;12;12
+--;--;--;--;--;--;--;--;--;--;--
+A: 38 B: / EED0A416;1;1;OAT TEST Interventions;3;OAT;88;09:45:17;09:45:55;11;---
+A: 38 B: / EED0A416;2;1;OAT TEST Interventions;4;RYE BREAD;176;09:45:34;09:46:07;13;17
+--;--;--;--;--;--;--;--;--;--;--
+A: 33 B: / C48AB54D;1;1;OAT TEST Interventions;3;OAT;38;09:45:55;09:46:38;9;---
+A: 33 B: / C48AB54D;2;1;OAT TEST Interventions;4;RYE BREAD;76;09:46:07;09:46:59;8;12
+--;--;--;--;--;--;--;--;--;--;--
+A: 27 B: / A4D1B44D;1;1;OAT TEST Interventions;3;OAT;82;09:46:38;09:47:44;15;---
+A: 27 B: / A4D1B44D;2;1;OAT TEST Interventions;4;RYE BREAD;78;09:46:59;09:48:01;6;21
+--;--;--;--;--;--;--;--;--;--;--
+A: 44 B: / 4EE4E658;1;1;OAT TEST Interventions;3;OAT;90;09:47:44;09:48:15;10;---
+A: 44 B: / 4EE4E658;2;1;OAT TEST Interventions;4;RYE BREAD;114;09:48:01;09:48:32;5;17
+--;--;--;--;--;--;--;--;--;--;--
+A: 43 B: / FE72E29E;1;1;OAT TEST Interventions;3;OAT;50;09:48:15;09:48:47;30;---
+A: 43 B: / FE72E29E;2;1;OAT TEST Interventions;4;RYE BREAD;96;09:48:32;09:48:32;9;17
+--;--;--;--;--;--;--;--;--;--;--

@@ -1,14 +1,244 @@
 # MST exercises
 
-INTRO TEXT 
+Below you will find exercises relevant for the data analysis for the project work in the Meal Systems and Technologies. Exercises are meant as a guide on what you can do with data obtained with the iBuffet.
 
-```{r, eval=FALSE}
+## Exercise 1 - cleaning Compusense data with R
+
+The task of this exercise is to get your data ready for data-analysis i.e. cleaning and merging your data! This can be done in R or excel.
+
+That includes:\
+- Give meaningful labels to variables.\
+- Merging of "control" and "intervention" spreadsheet.\
+- Removal of meaningless rows such as rows without data etc.\
+- Removal of unimportant characters.\
+- Merging of consumption data with questionnaire. (Remember to have matching columns if using R - see chapter 2.3.1.1).
+
+### Exercise 1 - Solution
+
+Start by importing the data and combine them row wise with the *rbind()* function.
+
+```{r,warning=FALSE,message=FALSE}
+control <- rio::import("~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/data/Ibuffet_data_MST_ex (2024)/kontrol.csv")
+intervension <- rio::import("~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/data/Ibuffet_data_MST_ex (2024)/Intervention.csv")
+questionare <- rio::import("~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/data/Ibuffet_data_MST_ex (2024)/questionare.csv")
+consumption <- rbind(control,intervension)
 
 ```
 
-## Exercise 1
-SE I EDITOR FRA 2022 + KURSUSMATERIALE
+Next we clean our data. We want to remove rows containing "--" , "0" and "REFILL". We use the *filter* function from the *tidyverse* package. The "!" is used as a NOT logical operator, meaning it will only select rows that do NOT contain "\--". *if_any* checks all rows in specific columns, to see if conditions are met. *everything* specifies that it should be all columns.
 
-## Exercise 2
+```{r,message=FALSE,warning=FALSE}
+library(tidyverse)
+consumption <- consumption %>%
+  filter(!if_any(everything(), ~ .x == "--")) %>%
+  filter(!if_any(everything(), ~ .x == "0")) %>%
+  filter(!if_any(everything(), ~ grepl("REFILL", .x)))
+```
 
-## Exercise 3
+If we take a look at the *Person* column, then it is rather confusing. We want to have the Person ID only. Which can be found after "A:". This can be done by using gsub with string specifications.
+
+```{r}
+consumption$Person <- gsub("^A:\\s*(\\d+).*", "\\1", consumption$Person) # Only extract the "Number" after "A:". 
+```
+
+Then we merge the questionnaire and consumption data using *left_join* by a common variable "Person"
+
+```{r,warning=FALSE}
+questionare$Person <- as.factor(questionare$Person) 
+consumption$Person <- as.factor(consumption$Person)
+
+Buffet_quest <- consumption %>%
+  left_join(questionare, by = c("Person"))
+Buffet_quest <- na.omit(Buffet_quest) #remove rows with NA values
+```
+
+We are however not interested in all variables. Therefore, we select only the relevant variables! In this case only variables in columns 1-7 and 18-29.
+
+```{r,warning=FALSE}
+Buffet_quest <- Buffet_quest[,c(1:7,18:29)]
+```
+
+The scale of the questionnaire are given on likert scale e.g. 1-5, 1-7 or 1-9. Or male and female are encoded as 1 or 2, if we however want the corresponding text answer. e.g. 1 = "Female" or 2 = "Male". This can be done with the *mutate* and *fct_recode*. Below will only show examples of how this could be done, for some selected variables. The opposite of what is shown, can also be used going from text to numbers! While we are at it, we are also going to rename inside the "Buffet name" variable.
+
+```{r,warning=FALSE}
+library(forcats)
+
+Buffet_quest <- Buffet_quest %>%
+  mutate(
+    Gender = fct_recode(as.factor(Gender),
+                        "Female" = "1",
+                        "Male" = "2"),
+    Dietary_lifestyle = fct_recode(as.factor(Dietary_lifestyle),
+                                   "Omnivore" = "1",
+                                   "Flexitarian" = "2",
+                                   "Pescetarian" = "3",
+                                   "Vegetarian" = "4",
+                                   "Vegan" = "5"),
+    `Oat/Oatmeal_familiarity` = fct_recode(as.factor(`Oat/Oatmeal_familiarity`),
+                                           "I do not recognize it" = "1",
+                                           "I recognize it, but i have not tasted it" = "2",
+                                           "I have tasted it, but i do not consume it on a regular basis" = "3",
+                                           "I consume it on a regular basis" = "4"),
+    Freq_oat_consumption = fct_recode(as.factor(Freq_oat_consumption),
+                                      "Never" = "1",
+                                      "Less than once a month" = "2",
+                                      "1-3 times a month" = "3",
+                                      "1-3 times a week" = "4",
+                                      "4-6 times a week" = "5",
+                                      "Once a day" = "6",
+                                      "2 or more times a day" = "7"),
+    Freq_ryebread_consumption = fct_recode(as.factor(Freq_ryebread_consumption),
+                                      "Never" = "1",
+                                      "Less than once a month" = "2",
+                                      "1-3 times a month" = "3",
+                                      "1-3 times a week" = "4",
+                                      "4-6 times a week" = "5",
+                                      "Once a day" = "6",
+                                      "2 or more times a day" = "7"),
+    `Buffet name` = recode(`Buffet name`,
+                           "OAT TEST Kontrol" = "control",
+                           	"OAT TEST Interventions" = "intervention")
+    
+    )
+```
+
+See how it looks below!
+
+```{r,warning=FALSE}
+library(DT)
+datatable(Buffet_quest,rownames = FALSE,options = list(pageLength = 5, autoWidth = TRUE))
+```
+
+## Exercise 2 - creating a tableone and visualization
+
+Descriptive Statistics are used to present quantitative descriptions in a manageable form e.g. simpler summary (e.g. a number, average etc.). Although you run the risk of distorting the original data or losing important details descriptive statistics provide a powerful summary that may enable comparisons across people or other units.
+
+You should use tableone as a way to present your descriptive statistics! See chapter 10.4 for how to do it!
+
+### Exercise 2 - solution
+
+Lets have a quick overview of the data by the use of *CreateTableOne*. Note: If you want to showcase e.g. "Age" with median and IQR, you need to add the variable to the *nonnormal* argument in the *kableone* function. One can alternatively to *kableone* use *print*.
+
+```{r,warning=FALSE}
+library(tableone)
+#it seems the variable "Consumption in grams" was a character. We want it to be numeric in our tableone!
+Buffet_quest$`Consumption in grams` = as.numeric(Buffet_quest$`Consumption in grams`) 
+
+
+tb1 <- CreateTableOne(data = Buffet_quest, vars = c("Gender", "Age", "Nationality", 
+"Dietary_lifestyle", "Oat/Oatmeal_familiarity", "Freq_oat_consumption", 
+"Freq_ryebread_consumption","I_like_oat_/_oatmeal", "I_like_ryebread","Consumption in grams"),strata = "Buffet name")
+
+kableone(tb1,showAllLevels = TRUE,nonnormal = "Age")
+```
+
+From these results, we can quickly gather information such as:
+
+Be careful with the interpretation as each participant occurs two times each.
+
+-   The number of samples is 76 (n = 76). Where the intervention group has 44 samples (n = 44), and the control group has 32 samples (n = 32)
+
+-   The vast majority Like oat/oatmeal moderately or even more! No significant difference in oat liking across control and intervention (p = 0.285)
+
+-   The average consumption of oat and rye was 100 grams in the control, where the average consumption of oat and ryebread was 85 grams. And significantly different (see t-test chapter 6.4)
+
+It could be interesting to see if there is a difference in the control and intervention. This can be done with the use of the strata argument. - Beware that the function uses ANOVA (chapter 6.6) when comparing more than two groups.
+
+```{r}
+tb2 <- CreateTableOne(data = Buffet_quest, vars = c("Gender", "Age", "Nationality", 
+"Dietary_lifestyle", "Oat/Oatmeal_familiarity", "Freq_oat_consumption", 
+"Freq_ryebread_consumption","I_like_oat_/_oatmeal", "I_like_ryebread","Consumption in grams"),strata = c("Station name", "Buffet name"))
+
+kableone(tb2,showAllLevels = TRUE, autoWidth = TRUE)
+```
+
+Lets visualize the difference in consumption based on Station Name and Buffet Name, with a boxplot, violin plot.
+
+```{r}
+library(ggplot2)
+ggplot(data = Buffet_quest,aes(x = interaction(`Buffet name`,`Station name`),y = `Consumption in grams`, fill = interaction(`Buffet name`,`Station name`)))+
+  geom_boxplot()+
+  geom_jitter()+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 90)) 
+```
+
+```{r}
+ggplot(data = Buffet_quest,aes(x = interaction(`Buffet name`,`Station name`),y = `Consumption in grams`, fill = interaction(`Buffet name`,`Station name`)))+
+  geom_violin()+
+   theme_bw()+
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+Or use a histogram to show the distribution of consumption in control and intervention.
+
+```{r}
+ggplot(data = Buffet_quest, aes(x = `Consumption in grams`, fill = `Station name`))+
+  geom_histogram()+facet_wrap(~`Buffet name`)
+```
+
+## Exercise 3 - Creating an outcome table
+
+In this exercise you should create and outcome table. An outcome table includes:
+
+-   Mean and standard deviation for each treatment (intervention and control in this case. Hint: Variable name "Buffet name" )
+
+-   The p-value from a generalized linear model adjusted for relevant parameters (e.g. age, gender, "I_like_oat")
+
+### Exercise 3 - Solution
+
+We can calculate the mean and sd using R basic functions. Or simply use the ones from tableone.
+
+If you want to use variables on the likert scale for your linear model, one should use the numerical form. For this we will simply use "Buffet_quest"
+
+Lets find mean and sd for oat and rye bread.
+
+First we split the data into oat and rye bread based on the station name and calculate mean and sd based on intervention/control and oat/rye
+
+```{r,warning=FALSE}
+library(tidyverse)
+Oat_stats <- Buffet_quest %>%
+  filter(`Station name` == "OAT") %>%
+  group_by(`Station name`,`Buffet name`) %>%
+  dplyr::summarise(
+    mean = mean(`Consumption in grams`),
+    sd = sd(`Consumption in grams`)
+  )
+Rye_stats <- Buffet_quest %>%
+  filter(`Station name` == "RYE BREAD") %>%
+  group_by(`Station name`,`Buffet name`) %>%
+  dplyr::summarise(
+    mean = mean(`Consumption in grams`),
+    sd = sd(`Consumption in grams`)
+  )
+
+outcometable <- rbind(Oat_stats,Rye_stats)
+```
+
+Next we use *lm* and *summary* to find the p-values for the linear model. Do a linear m for each type of consumption and control/intervention adjusted for liking, age, gender or other factors you think could be important, or are shown significant in tableone.
+
+```{r,warning=FALSE}
+Oat_lm <- Buffet_quest %>%
+  filter(`Station name` == "OAT")
+
+mdl <- lm(data = Oat_lm, `Consumption in grams` ~ `Buffet name` + Age + factor(Gender) + `I_like_oat_/_oatmeal`)
+summary(mdl)
+
+Rye_lm <- Buffet_quest %>%
+  filter(`Station name` == "RYE BREAD")
+
+mdl2 <- lm(data = Rye_lm, `Consumption in grams` ~ `Buffet name` + Age + factor(Gender) + I_like_ryebread)
+summary(mdl2)
+```
+
+We combine the models p-values with our outcome table
+
+```{r,warning=FALSE}
+outcometable$p.value <- c(0.6122, NA, 0.257, NA)
+
+kableExtra::kable(outcometable)
+```
+
+The outcome table should be presented nicer. But that is for you to do!
+
+Further one should explore possible interactions in the linear model.

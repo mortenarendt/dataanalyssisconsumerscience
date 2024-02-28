@@ -52,11 +52,19 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.28/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -140,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Data Analysis in R for Consumer Science</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to the book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction to the book</a></li>
 <li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a>
@@ -245,9 +253,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="mst-exercises.html"><a href="mst-exercises.html"><i class="fa fa-check"></i><b>9</b> MST exercises</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1"><i class="fa fa-check"></i><b>9.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="9.2" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2"><i class="fa fa-check"></i><b>9.2</b> Exercise 2</a></li>
-<li class="chapter" data-level="9.3" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3"><i class="fa fa-check"></i><b>9.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="9.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1---cleaning-compusense-data-with-r"><i class="fa fa-check"></i><b>9.1</b> Exercise 1 - cleaning Compusense data with R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1---solution"><i class="fa fa-check"></i><b>9.1.1</b> Exercise 1 - Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2---creating-a-tableone-and-visualization"><i class="fa fa-check"></i><b>9.2</b> Exercise 2 - creating a tableone and visualization</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2---solution"><i class="fa fa-check"></i><b>9.2.1</b> Exercise 2 - solution</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3---creating-an-outcome-table"><i class="fa fa-check"></i><b>9.3</b> Exercise 3 - Creating an outcome table</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3---solution"><i class="fa fa-check"></i><b>9.3.1</b> Exercise 3 - Solution</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html"><i class="fa fa-check"></i><b>10</b> Intro to large survey data</a>
 <ul>
@@ -442,8 +459,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="consumer-segmentation" class="section level1 hasAnchor" number="11">
 <h1><span class="header-section-number">Chapter 11</span> Consumer segmentation<a href="consumer-segmentation.html#consumer-segmentation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The data used in the first part of this chapter is from the paper: <em>Verbeke, Wim, Federico JA Pérez-Cueto, and Klaus G. Grunert. “To eat or not to eat pork, how frequently and how varied? Insights from the quantitative Q-PorkChains consumer survey in four European countries.” Meat science 88.4 (2011): 619-626.</em> and can be found in the <em>data4consumerscience</em>-package as <strong>pork</strong>.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="consumer-segmentation.html#cb158-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb158-2"><a href="consumer-segmentation.html#cb158-2" tabindex="-1"></a><span class="fu">data</span>(pork)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="consumer-segmentation.html#cb176-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb176-2"><a href="consumer-segmentation.html#cb176-2" tabindex="-1"></a><span class="fu">data</span>(pork)</span></code></pre></div>
 <div id="segmentation" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Segmentation<a href="consumer-segmentation.html#segmentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To create the consumer segments, a cluster analysis, based on behavioral data (frequency and variety of consumption), will be carried out.</p>
@@ -460,28 +477,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Below is shown an example with both 2 and 3 clusters (“centers = _“).</p>
 <p>The “nstart”-input specifies, that the clustering will start at 25 different random points, and selects the best. Doing this will help getting the same result every time, especially if data are less clustered by nature. For details on the algorithm type <em>?kmeans</em> to get help.</p>
 <p>Note, the <em>set.seed(123)</em> is only for reproducibility and hence only nice-to-know.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="consumer-segmentation.html#cb159-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb159-2"><a href="consumer-segmentation.html#cb159-2" tabindex="-1"></a>km.cluster3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], <span class="at">centers =</span> <span class="dv">3</span>,<span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb159-3"><a href="consumer-segmentation.html#cb159-3" tabindex="-1"></a>km.cluster2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], <span class="at">centers =</span> <span class="dv">2</span>,<span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="consumer-segmentation.html#cb177-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb177-2"><a href="consumer-segmentation.html#cb177-2" tabindex="-1"></a>km.cluster3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], <span class="at">centers =</span> <span class="dv">3</span>,<span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb177-3"><a href="consumer-segmentation.html#cb177-3" tabindex="-1"></a>km.cluster2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], <span class="at">centers =</span> <span class="dv">2</span>,<span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
 <p>First, we run a clustering with the function <em>kmeans</em> for the dataset <em>pork</em>. We will use the two variables “VarietyTotal” &amp; “TotalPorkWeek” to calculate the three best clusters, and we will choose the random centers 25 times, by specifying the argument <em>nstart</em>. You can off course change this number yourself. We save it as <em>km.cluster3</em> (remember you choose this name). Secondly, we run almost the same clustering, changing only the name and the number of centers to 2.</p>
 </div>
 <div id="initial-characterization-of-clusters" class="section level3 hasAnchor" number="11.1.2">
 <h3><span class="header-section-number">11.1.2</span> Initial characterization of clusters<a href="consumer-segmentation.html#initial-characterization-of-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Below are some of the outputs, that you can get from the clustering. Here you can see the size of the clusters as well as the positions of their centroids. Positions here means the value of the centroid for each variable. For example, below we see, that the cluster 1’s centriod has a value for VarietyTotal of 25.04562. Size means the number of members in each cluster.</p>
 <p>Here for 3 clusters:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="consumer-segmentation.html#cb160-1" tabindex="-1"></a>km.cluster3<span class="sc">$</span>centers</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="consumer-segmentation.html#cb178-1" tabindex="-1"></a>km.cluster3<span class="sc">$</span>centers</span></code></pre></div>
 <pre><code>##   VarietyTotal TotalPorkWeek
 ## 1     22.85949      4.957372
 ## 2     27.26288     11.343699
 ## 3     27.10061     22.969634</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="consumer-segmentation.html#cb162-1" tabindex="-1"></a>km.cluster3<span class="sc">$</span>size</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="consumer-segmentation.html#cb180-1" tabindex="-1"></a>km.cluster3<span class="sc">$</span>size</span></code></pre></div>
 <pre><code>## [1] 548 757 328</code></pre>
 <p>… and for 2 clusters:</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="consumer-segmentation.html#cb164-1" tabindex="-1"></a>km.cluster2<span class="sc">$</span>centers</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="consumer-segmentation.html#cb182-1" tabindex="-1"></a>km.cluster2<span class="sc">$</span>centers</span></code></pre></div>
 <pre><code>##   VarietyTotal TotalPorkWeek
 ## 1     25.04562      7.571986
 ## 2     27.28738     20.140544</code></pre>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="consumer-segmentation.html#cb166-1" tabindex="-1"></a>km.cluster2<span class="sc">$</span>size</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="consumer-segmentation.html#cb184-1" tabindex="-1"></a>km.cluster2<span class="sc">$</span>size</span></code></pre></div>
 <pre><code>## [1] 1118  515</code></pre>
 <p>Centers will give you the average values for the variables “VarietyTotal” &amp; “TotalPorkWeek” in the center of each of the three (in km.cluster3) clusters. Size will give you the the number of members per cluster. It is a good idea to check that the clusters are not too uneven in number of members. The third line above is just another way of asking for the size of the clusters in km.cluster3. All command are repeated for the km.cluster2; that is the cluster analysis with two clusters, you made and saved above.</p>
 </div>
@@ -490,55 +507,55 @@ Below is shown an example with both 2 and 3 clusters (“centers = _“).</p>
 <p>It is, however, a lot easier to understand clustering, when it is visualized. Below is shown two different ways of plotting the clusters - one using the build-in plotting function, and one using the package <strong>ggplot2</strong>. <strong>ggplot2</strong> maybe looks a bit more complicated, but has a lot of functions built into it, which means that it can be nice to learn!</p>
 <p>Try to make the plots yourself, and try to see what happens if you change different inputs.</p>
 <p><strong>Using Basic R-plotting</strong></p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="consumer-segmentation.html#cb168-1" tabindex="-1"></a><span class="fu">plot</span>(TotalPorkWeek <span class="sc">~</span> VarietyTotal, <span class="at">data =</span> pork, <span class="at">col =</span> km.cluster3[[<span class="st">&quot;cluster&quot;</span>]] <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb168-2"><a href="consumer-segmentation.html#cb168-2" tabindex="-1"></a><span class="fu">points</span>(km.cluster3[[<span class="st">&quot;centers&quot;</span>]], <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">cex =</span> <span class="fl">1.3</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="consumer-segmentation.html#cb186-1" tabindex="-1"></a><span class="fu">plot</span>(TotalPorkWeek <span class="sc">~</span> VarietyTotal, <span class="at">data =</span> pork, <span class="at">col =</span> km.cluster3[[<span class="st">&quot;cluster&quot;</span>]] <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb186-2"><a href="consumer-segmentation.html#cb186-2" tabindex="-1"></a><span class="fu">points</span>(km.cluster3[[<span class="st">&quot;centers&quot;</span>]], <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">cex =</span> <span class="fl">1.3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
 <p>The first line creates a scatter plot, by plotting the variables <em>TotalPorkWeek</em> on the y-axis and <em>VarietyTotal</em> on the x-axis.
 <em>points()</em> function adds the cluster centers as points from the <em>km.clusters3</em> object to the existing scatter plot. The <em>pch</em> argument specifies the point type, and the <em>cex</em> argument controls the size of the point.</p>
 <p><strong>Using ggplot2 with 3 centers</strong></p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="consumer-segmentation.html#cb169-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb169-2"><a href="consumer-segmentation.html#cb169-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(km.cluster3[[<span class="st">&quot;centers&quot;</span>]])</span>
-<span id="cb169-3"><a href="consumer-segmentation.html#cb169-3" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(km.cluster2[[<span class="st">&quot;centers&quot;</span>]])</span>
-<span id="cb169-4"><a href="consumer-segmentation.html#cb169-4" tabindex="-1"></a></span>
-<span id="cb169-5"><a href="consumer-segmentation.html#cb169-5" tabindex="-1"></a><span class="co">#ggplot 2</span></span>
-<span id="cb169-6"><a href="consumer-segmentation.html#cb169-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pork, <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek)) <span class="sc">+</span> </span>
-<span id="cb169-7"><a href="consumer-segmentation.html#cb169-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(km.cluster3<span class="sc">$</span>cluster))) <span class="sc">+</span> </span>
-<span id="cb169-8"><a href="consumer-segmentation.html#cb169-8" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="st">&#39;Cluster&#39;</span>)) <span class="sc">+</span> </span>
-<span id="cb169-9"><a href="consumer-segmentation.html#cb169-9" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df, </span>
-<span id="cb169-10"><a href="consumer-segmentation.html#cb169-10" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek), </span>
-<span id="cb169-11"><a href="consumer-segmentation.html#cb169-11" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, </span>
-<span id="cb169-12"><a href="consumer-segmentation.html#cb169-12" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb169-13"><a href="consumer-segmentation.html#cb169-13" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-116-1.png" width="672" />
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="consumer-segmentation.html#cb187-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb187-2"><a href="consumer-segmentation.html#cb187-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(km.cluster3[[<span class="st">&quot;centers&quot;</span>]])</span>
+<span id="cb187-3"><a href="consumer-segmentation.html#cb187-3" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(km.cluster2[[<span class="st">&quot;centers&quot;</span>]])</span>
+<span id="cb187-4"><a href="consumer-segmentation.html#cb187-4" tabindex="-1"></a></span>
+<span id="cb187-5"><a href="consumer-segmentation.html#cb187-5" tabindex="-1"></a><span class="co">#ggplot 2</span></span>
+<span id="cb187-6"><a href="consumer-segmentation.html#cb187-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pork, <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek)) <span class="sc">+</span> </span>
+<span id="cb187-7"><a href="consumer-segmentation.html#cb187-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(km.cluster3<span class="sc">$</span>cluster))) <span class="sc">+</span> </span>
+<span id="cb187-8"><a href="consumer-segmentation.html#cb187-8" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="st">&#39;Cluster&#39;</span>)) <span class="sc">+</span> </span>
+<span id="cb187-9"><a href="consumer-segmentation.html#cb187-9" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df, </span>
+<span id="cb187-10"><a href="consumer-segmentation.html#cb187-10" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek), </span>
+<span id="cb187-11"><a href="consumer-segmentation.html#cb187-11" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, </span>
+<span id="cb187-12"><a href="consumer-segmentation.html#cb187-12" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb187-13"><a href="consumer-segmentation.html#cb187-13" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-123-1.png" width="672" />
 When using ggplot2, as data frame is needed. Therefore two data frames a made, one for each of the centers from the clustering objects previously made.
 <em>ggplot</em> creates a scatter plot using the <em>pork</em> data, with the variables <em>TotalPorkWeek</em> on the y-axis and <em>VarietyTotal</em> on the x-axis.
 <em>geom_point()</em> adds the first layer of points. These points are colored according to the clusters in <em>km.cluster3</em>. <em>factor()</em> is used to ensure that the cluster variable is treated as a categorical variable.
 <em>guides()</em> modifies the legend title for the color guide in the plot. It changes the legend title to “Cluster.”
 <em>geom_point()</em> adds the second layer of points to the plot using the df data frame. These points represent the cluster centers.</p>
 <p><strong>Using ggplot2 with 2 centers</strong></p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="consumer-segmentation.html#cb170-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pork, <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek)) <span class="sc">+</span> </span>
-<span id="cb170-2"><a href="consumer-segmentation.html#cb170-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(km.cluster2<span class="sc">$</span>cluster))) <span class="sc">+</span> </span>
-<span id="cb170-3"><a href="consumer-segmentation.html#cb170-3" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="st">&#39;Cluster&#39;</span>)) <span class="sc">+</span> </span>
-<span id="cb170-4"><a href="consumer-segmentation.html#cb170-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df2, </span>
-<span id="cb170-5"><a href="consumer-segmentation.html#cb170-5" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek), </span>
-<span id="cb170-6"><a href="consumer-segmentation.html#cb170-6" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, </span>
-<span id="cb170-7"><a href="consumer-segmentation.html#cb170-7" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb170-8"><a href="consumer-segmentation.html#cb170-8" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-117-1.png" width="672" />
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="consumer-segmentation.html#cb188-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pork, <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek)) <span class="sc">+</span> </span>
+<span id="cb188-2"><a href="consumer-segmentation.html#cb188-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(km.cluster2<span class="sc">$</span>cluster))) <span class="sc">+</span> </span>
+<span id="cb188-3"><a href="consumer-segmentation.html#cb188-3" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="st">&#39;Cluster&#39;</span>)) <span class="sc">+</span> </span>
+<span id="cb188-4"><a href="consumer-segmentation.html#cb188-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df2, </span>
+<span id="cb188-5"><a href="consumer-segmentation.html#cb188-5" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek), </span>
+<span id="cb188-6"><a href="consumer-segmentation.html#cb188-6" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, </span>
+<span id="cb188-7"><a href="consumer-segmentation.html#cb188-7" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb188-8"><a href="consumer-segmentation.html#cb188-8" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-124-1.png" width="672" />
 The method for creating the ggplot with 2 centers, is the same, only changing the data frame being used, when adding the second layer of points.</p>
 </div>
 <div id="sums-of-squares-from-the-clustering" class="section level3 hasAnchor" number="11.1.4">
 <h3><span class="header-section-number">11.1.4</span> Sums of Squares from the clustering<a href="consumer-segmentation.html#sums-of-squares-from-the-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As mentioned in [K-means], k-means set the clusters such that the between clusters (sort of differences between centers) are <em>large</em> while the distance within a cluster (from each sample to is cluster-center) is <em>small</em>.</p>
 <p>R can also display these numbers, as shown below:</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="consumer-segmentation.html#cb171-1" tabindex="-1"></a><span class="co">#Within Sum of Squares</span></span>
-<span id="cb171-2"><a href="consumer-segmentation.html#cb171-2" tabindex="-1"></a>km.cluster3<span class="sc">$</span>withinss</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="consumer-segmentation.html#cb189-1" tabindex="-1"></a><span class="co">#Within Sum of Squares</span></span>
+<span id="cb189-2"><a href="consumer-segmentation.html#cb189-2" tabindex="-1"></a>km.cluster3<span class="sc">$</span>withinss</span></code></pre></div>
 <pre><code>## [1] 12534.737  9854.921  9293.210</code></pre>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="consumer-segmentation.html#cb173-1" tabindex="-1"></a><span class="co">#Total Within Sum of Squares</span></span>
-<span id="cb173-2"><a href="consumer-segmentation.html#cb173-2" tabindex="-1"></a>km.cluster3<span class="sc">$</span>tot.withinss</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="consumer-segmentation.html#cb191-1" tabindex="-1"></a><span class="co">#Total Within Sum of Squares</span></span>
+<span id="cb191-2"><a href="consumer-segmentation.html#cb191-2" tabindex="-1"></a>km.cluster3<span class="sc">$</span>tot.withinss</span></code></pre></div>
 <pre><code>## [1] 31682.87</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="consumer-segmentation.html#cb175-1" tabindex="-1"></a><span class="co">#Between Sum of Squares</span></span>
-<span id="cb175-2"><a href="consumer-segmentation.html#cb175-2" tabindex="-1"></a>km.cluster3<span class="sc">$</span>betweenss</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="consumer-segmentation.html#cb193-1" tabindex="-1"></a><span class="co">#Between Sum of Squares</span></span>
+<span id="cb193-2"><a href="consumer-segmentation.html#cb193-2" tabindex="-1"></a>km.cluster3<span class="sc">$</span>betweenss</span></code></pre></div>
 <pre><code>## [1] 73532.81</code></pre>
 </div>
 </div>
@@ -551,28 +568,28 @@ The method for creating the ggplot with 2 centers, is the same, only changing th
 <p>When interpreting the plot, the highest Gap-value (the y-axis) shows the number of clusters, that best represent the data. However, since we are trying to use the data to as a generalization of a larger population, one should be conservative when choosing the number of clusters. If a less complicated/more general model (less clusters) can explain almost the same, one should always choose the less complicated model.</p>
 <p>As a rule of thumb, when interpreting the Gap-statistics plot, a model with a number of clusters within the standard deviation of the model with the best Gap-statistic will be sufficient. In our case, this means, that a model with 3 clusters should do the job, as seen below.</p>
 <p>Another check is of course to make both models, and plot it, to check if the clustering makes sense. This is equally as important as looking at the Gap-statistics.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="consumer-segmentation.html#cb177-1" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
-<span id="cb177-2"><a href="consumer-segmentation.html#cb177-2" tabindex="-1"></a>gapStatistic <span class="ot">&lt;-</span> <span class="fu">clusGap</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], kmeans, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="consumer-segmentation.html#cb195-1" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
+<span id="cb195-2"><a href="consumer-segmentation.html#cb195-2" tabindex="-1"></a>gapStatistic <span class="ot">&lt;-</span> <span class="fu">clusGap</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], kmeans, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## Clustering k = 1,2,..., K.max (= 10): .. done
 ## Bootstrapping, b = 1,2,..., B (= 100)  [one &quot;.&quot; per sample]:
 ## .................................................. 50 
 ## .................................................. 100</code></pre>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="consumer-segmentation.html#cb179-1" tabindex="-1"></a><span class="fu">plot</span>(gapStatistic, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-119-1.png" width="672" />
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="consumer-segmentation.html#cb197-1" tabindex="-1"></a><span class="fu">plot</span>(gapStatistic, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-126-1.png" width="672" />
 The package <em>cluster</em> is initially loaded. The gap statistics is then calculated using the function <em>clusGap()</em>, with the data <em>pork</em> and only containing the columns <em>TotalPorkWeek</em> and <em>VarietyTotal</em>, <em>kmeans</em> is used as the clustering algorithm. The <em>10</em> specifies that the analysis is performed for up to 10 clusters. The <em>plot()</em> function is then used to plot the results.</p>
 <p>The point at which the gap statistic starts to level off or decrease can provide insight into the appropriate number of clusters to use for the data. Therefore the appropiate number of clusters seems to be <span class="math inline">\(10\)</span></p>
 <p><strong>Using Nbclust</strong></p>
 <p>Another package able to aid when trying to determine the number of clusters is <strong>NbClust</strong>. This package runs a variety of different tests, each resulting in an optimal number of clusters. This means, that while you get a lot of opinion on the number of clusters, the <em>NbClust</em>-function might take a while to run.</p>
 <p><em>NbClust</em> will show a lot of plots and show results for the different methods. You can look at them if you want, but the most important part is the last output of the function, where the voting for the different number of clusters as well as the conclusion is displayed.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="consumer-segmentation.html#cb180-1" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
-<span id="cb180-2"><a href="consumer-segmentation.html#cb180-2" tabindex="-1"></a>Nbclusters <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], <span class="at">method =</span> <span class="st">&#39;kmeans&#39;</span> )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="consumer-segmentation.html#cb198-1" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
+<span id="cb198-2"><a href="consumer-segmentation.html#cb198-2" tabindex="-1"></a>Nbclusters <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], <span class="at">method =</span> <span class="st">&#39;kmeans&#39;</span> )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
 <pre><code>## *** : The Hubert index is a graphical method of determining the number of clusters.
 ##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
 ##                 significant increase of the value of the measure i.e the significant peak in Hubert
 ##                 index second differences plot. 
 ## </code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-120-2.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-127-2.png" width="672" /></p>
 <pre><code>## *** : The D index is a graphical method of determining the number of clusters. 
 ##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
 ##                 second differences plot) that corresponds to a significant increase of the value of
@@ -601,29 +618,29 @@ The package <em>cluster</em> is initially loaded. The gap statistics is then cal
 <p>The data <strong>plantbaseddiet</strong> constitute data from the following study, and can be found in the <strong>data4consumerscience</strong>-package:</p>
 <p><em>Reipurth, Malou FS, Lasse Hørby, Charlotte G. Gregersen, Astrid Bonke, and Federico JA Perez Cueto. “Barriers and facilitators towards adopting a more plant-based diet in a sample of Danish consumers.” Food quality and preference 73 (2019): 288-292.</em></p>
 <p>These we will use as a second example for cluster analysis.</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="consumer-segmentation.html#cb183-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb183-2"><a href="consumer-segmentation.html#cb183-2" tabindex="-1"></a><span class="fu">data</span>(plantbaseddiet)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="consumer-segmentation.html#cb201-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb201-2"><a href="consumer-segmentation.html#cb201-2" tabindex="-1"></a><span class="fu">data</span>(plantbaseddiet)</span></code></pre></div>
 <div id="cluster-analysis" class="section level3 hasAnchor" number="11.3.1">
 <h3><span class="header-section-number">11.3.1</span> Cluster analysis<a href="consumer-segmentation.html#cluster-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this example, 3 variables are included in the clustering: ‘a_meat’, ‘a_dairy’ and ‘a_eggs’. Otherwise, the same procedure applies: Finding the appropriate amount of clusters, and running the analysis.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="consumer-segmentation.html#cb184-1" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
-<span id="cb184-2"><a href="consumer-segmentation.html#cb184-2" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
-<span id="cb184-3"><a href="consumer-segmentation.html#cb184-3" tabindex="-1"></a></span>
-<span id="cb184-4"><a href="consumer-segmentation.html#cb184-4" tabindex="-1"></a>gapStatistic <span class="ot">&lt;-</span> <span class="fu">clusGap</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], kmeans, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="consumer-segmentation.html#cb202-1" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
+<span id="cb202-2"><a href="consumer-segmentation.html#cb202-2" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
+<span id="cb202-3"><a href="consumer-segmentation.html#cb202-3" tabindex="-1"></a></span>
+<span id="cb202-4"><a href="consumer-segmentation.html#cb202-4" tabindex="-1"></a>gapStatistic <span class="ot">&lt;-</span> <span class="fu">clusGap</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], kmeans, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## Clustering k = 1,2,..., K.max (= 10): .. done
 ## Bootstrapping, b = 1,2,..., B (= 100)  [one &quot;.&quot; per sample]:
 ## .................................................. 50 
 ## .................................................. 100</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="consumer-segmentation.html#cb186-1" tabindex="-1"></a><span class="fu">plot</span>(gapStatistic, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="consumer-segmentation.html#cb187-1" tabindex="-1"></a>Nbclusters_plant <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)],<span class="at">method =</span> <span class="st">&#39;kmeans&#39;</span> )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-122-2.png" width="672" /></p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="consumer-segmentation.html#cb204-1" tabindex="-1"></a><span class="fu">plot</span>(gapStatistic, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="consumer-segmentation.html#cb205-1" tabindex="-1"></a>Nbclusters_plant <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)],<span class="at">method =</span> <span class="st">&#39;kmeans&#39;</span> )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-129-2.png" width="672" /></p>
 <pre><code>## *** : The Hubert index is a graphical method of determining the number of clusters.
 ##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
 ##                 significant increase of the value of the measure i.e the significant peak in Hubert
 ##                 index second differences plot. 
 ## </code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-122-3.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-129-3.png" width="672" /></p>
 <pre><code>## *** : The D index is a graphical method of determining the number of clusters. 
 ##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
 ##                 second differences plot) that corresponds to a significant increase of the value of
@@ -647,37 +664,37 @@ The package <em>cluster</em> is initially loaded. The gap statistics is then cal
 ##  
 ##  
 ## *******************************************************************</code></pre>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="consumer-segmentation.html#cb190-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb190-2"><a href="consumer-segmentation.html#cb190-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="consumer-segmentation.html#cb208-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb208-2"><a href="consumer-segmentation.html#cb208-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
 </div>
 <div id="plot-the-model-using-pca" class="section level3 hasAnchor" number="11.3.2">
 <h3><span class="header-section-number">11.3.2</span> Plot the model using PCA<a href="consumer-segmentation.html#plot-the-model-using-pca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The thing is, that now that we are dealing with more than 2 dimensions, it can be harder to visualize, how well the clustering has worked. One way though, is to use Principal Component Analysis (PCA), as PCA aims to describe the most variance from the data as possible, in the fewest dimensions as possible. This means, that if indeed the clusters are a result of variation in the data, a PCA should show it.</p>
 <p>For more information on PCA, see <a href="introduction-to-pca-and-multivariate-data.html#introduction-to-pca-and-multivariate-data">Introduction to PCA and multivariate data</a>.</p>
 <p>A PCA with the same data as the clustering is created (using the <strong>prcomp</strong>) and plotted (using <strong>ggbiplot</strong>)</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="consumer-segmentation.html#cb191-1" tabindex="-1"></a><span class="fu">library</span>(ggbiplot)</span>
-<span id="cb191-2"><a href="consumer-segmentation.html#cb191-2" tabindex="-1"></a></span>
-<span id="cb191-3"><a href="consumer-segmentation.html#cb191-3" tabindex="-1"></a>PCAmdl <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], <span class="at">center =</span> T, <span class="at">scale. =</span> F)</span>
-<span id="cb191-4"><a href="consumer-segmentation.html#cb191-4" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">groups =</span> <span class="fu">factor</span>(res<span class="sc">$</span>cluster), <span class="at">ellipse =</span> T)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="consumer-segmentation.html#cb209-1" tabindex="-1"></a><span class="fu">library</span>(ggbiplot)</span>
+<span id="cb209-2"><a href="consumer-segmentation.html#cb209-2" tabindex="-1"></a></span>
+<span id="cb209-3"><a href="consumer-segmentation.html#cb209-3" tabindex="-1"></a>PCAmdl <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], <span class="at">center =</span> T, <span class="at">scale. =</span> F)</span>
+<span id="cb209-4"><a href="consumer-segmentation.html#cb209-4" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">groups =</span> <span class="fu">factor</span>(res<span class="sc">$</span>cluster), <span class="at">ellipse =</span> T)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
 </div>
 <div id="add-to-dataset" class="section level3 hasAnchor" number="11.3.3">
 <h3><span class="header-section-number">11.3.3</span> Add to dataset<a href="consumer-segmentation.html#add-to-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As the clustering is a characteristic for each sample, similar to age, gender, name,… we can simply add it to the dataset.
 Here the interpretation from above gives rise to some intuitive names. These can be used directly. Here is how to add it to the dataset:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="consumer-segmentation.html#cb192-1" tabindex="-1"></a><span class="co">#First, check the centriods, to see if they make sense.</span></span>
-<span id="cb192-2"><a href="consumer-segmentation.html#cb192-2" tabindex="-1"></a>res<span class="sc">$</span>centers</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="consumer-segmentation.html#cb210-1" tabindex="-1"></a><span class="co">#First, check the centriods, to see if they make sense.</span></span>
+<span id="cb210-2"><a href="consumer-segmentation.html#cb210-2" tabindex="-1"></a>res<span class="sc">$</span>centers</span></code></pre></div>
 <pre><code>##      a_meat   a_dairy   a_eggs
 ## 1 19.150000 21.850000 7.678571
 ## 2  4.688508 18.854839 3.601815
 ## 3  3.719886  5.167045 2.915909
 ## 4 18.812500  5.729167 4.492188</code></pre>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="consumer-segmentation.html#cb194-1" tabindex="-1"></a><span class="co">#Then matched the label names, according to the plot above.</span></span>
-<span id="cb194-2"><a href="consumer-segmentation.html#cb194-2" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>clusters <span class="ot">&lt;-</span> <span class="fu">factor</span>(res<span class="sc">$</span>cluster,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;High Meat&#39;</span>,<span class="st">&#39;Low All&#39;</span>,<span class="st">&#39;High Dairy&#39;</span>,<span class="st">&#39;High All&#39;</span>))</span>
-<span id="cb194-3"><a href="consumer-segmentation.html#cb194-3" tabindex="-1"></a></span>
-<span id="cb194-4"><a href="consumer-segmentation.html#cb194-4" tabindex="-1"></a><span class="co">#And here the plot, now with the right labels.</span></span>
-<span id="cb194-5"><a href="consumer-segmentation.html#cb194-5" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">groups =</span> plantbaseddiet<span class="sc">$</span>clusters, <span class="at">ellipse =</span> T)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="consumer-segmentation.html#cb212-1" tabindex="-1"></a><span class="co">#Then matched the label names, according to the plot above.</span></span>
+<span id="cb212-2"><a href="consumer-segmentation.html#cb212-2" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>clusters <span class="ot">&lt;-</span> <span class="fu">factor</span>(res<span class="sc">$</span>cluster,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;High Meat&#39;</span>,<span class="st">&#39;Low All&#39;</span>,<span class="st">&#39;High Dairy&#39;</span>,<span class="st">&#39;High All&#39;</span>))</span>
+<span id="cb212-3"><a href="consumer-segmentation.html#cb212-3" tabindex="-1"></a></span>
+<span id="cb212-4"><a href="consumer-segmentation.html#cb212-4" tabindex="-1"></a><span class="co">#And here the plot, now with the right labels.</span></span>
+<span id="cb212-5"><a href="consumer-segmentation.html#cb212-5" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">groups =</span> plantbaseddiet<span class="sc">$</span>clusters, <span class="at">ellipse =</span> T)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 </div>
 <div id="comments" class="section level3 hasAnchor" number="11.3.4">
 <h3><span class="header-section-number">11.3.4</span> Comments<a href="consumer-segmentation.html#comments" class="anchor-section" aria-label="Anchor link to header"></a></h3>

@@ -52,11 +52,19 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.28/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -140,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Data Analysis in R for Consumer Science</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to the book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction to the book</a></li>
 <li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a>
@@ -245,9 +253,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="mst-exercises.html"><a href="mst-exercises.html"><i class="fa fa-check"></i><b>9</b> MST exercises</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1"><i class="fa fa-check"></i><b>9.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="9.2" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2"><i class="fa fa-check"></i><b>9.2</b> Exercise 2</a></li>
-<li class="chapter" data-level="9.3" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3"><i class="fa fa-check"></i><b>9.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="9.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1---cleaning-compusense-data-with-r"><i class="fa fa-check"></i><b>9.1</b> Exercise 1 - cleaning Compusense data with R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1---solution"><i class="fa fa-check"></i><b>9.1.1</b> Exercise 1 - Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2---creating-a-tableone-and-visualization"><i class="fa fa-check"></i><b>9.2</b> Exercise 2 - creating a tableone and visualization</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2---solution"><i class="fa fa-check"></i><b>9.2.1</b> Exercise 2 - solution</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3---creating-an-outcome-table"><i class="fa fa-check"></i><b>9.3</b> Exercise 3 - Creating an outcome table</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3---solution"><i class="fa fa-check"></i><b>9.3.1</b> Exercise 3 - Solution</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html"><i class="fa fa-check"></i><b>10</b> Intro to large survey data</a>
 <ul>
@@ -566,7 +583,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="descriptive-statistics.html#cb66-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb66-2"><a href="descriptive-statistics.html#cb66-2" tabindex="-1"></a><span class="fu">kable</span>(tb, <span class="at">caption =</span> <span class="st">&#39;some caption&#39;</span>, <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">format =</span> <span class="st">&#39;simple&#39;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-58">Table 5.1: </span>some caption</caption>
+<caption><span id="tab:unnamed-chunk-51">Table 5.1: </span>some caption</caption>
 <thead>
 <tr class="header">
 <th align="left">Treatment</th>
@@ -625,7 +642,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb67-2"><a href="descriptive-statistics.html#cb67-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(Treatment,mn, <span class="at">ymin =</span> q1, <span class="at">ymax =</span> q3)) <span class="sc">+</span> </span>
 <span id="cb67-3"><a href="descriptive-statistics.html#cb67-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb67-4"><a href="descriptive-statistics.html#cb67-4" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <p><code>tb %&gt;%</code>: This line is using the pipe operator (<code>%&gt;%</code>), which is native to the <em>dplyr</em>-package and is used in R to chain together multiple operations. It takes the result of the expression on the left and pipes it as the first argument to the function on the right. In this case, <code>tb</code> is being piped into the subsequent operations.</p>
 <p><code>ggplot(data = ., aes(Treatment, mn, ymin = q1, ymax = q3))</code>: This line initiates the creation of a ggplot object using the data from the <code>tb</code> dataset. It specifies the aesthetics (visual mappings) for the plot. <code>Treatment</code> is mapped to the x-axis, <code>mn</code> is mapped to the y-axis, and <code>q1</code> and <code>q3</code> are representing the first and third quartile respectively, here graphically represented using errorbars.</p>
 <p><code>geom_point()</code>: This line adds a layer to the plot with points (or dots) representing the data points. Since no aesthetic mappings are provided in this specific line, it’s assumed that the <code>Treatment</code> values are plotted against the <code>mn</code> values on the x- and y-axes.</p>

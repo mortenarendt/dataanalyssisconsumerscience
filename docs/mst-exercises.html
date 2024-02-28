@@ -52,11 +52,19 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.28/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -140,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Data Analysis in R for Consumer Science</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to the book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction to the book</a></li>
 <li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a>
@@ -245,9 +253,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="mst-exercises.html"><a href="mst-exercises.html"><i class="fa fa-check"></i><b>9</b> MST exercises</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1"><i class="fa fa-check"></i><b>9.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="9.2" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2"><i class="fa fa-check"></i><b>9.2</b> Exercise 2</a></li>
-<li class="chapter" data-level="9.3" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3"><i class="fa fa-check"></i><b>9.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="9.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1---cleaning-compusense-data-with-r"><i class="fa fa-check"></i><b>9.1</b> Exercise 1 - cleaning Compusense data with R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1---solution"><i class="fa fa-check"></i><b>9.1.1</b> Exercise 1 - Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2---creating-a-tableone-and-visualization"><i class="fa fa-check"></i><b>9.2</b> Exercise 2 - creating a tableone and visualization</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2---solution"><i class="fa fa-check"></i><b>9.2.1</b> Exercise 2 - solution</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3---creating-an-outcome-table"><i class="fa fa-check"></i><b>9.3</b> Exercise 3 - Creating an outcome table</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3---solution"><i class="fa fa-check"></i><b>9.3.1</b> Exercise 3 - Solution</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html"><i class="fa fa-check"></i><b>10</b> Intro to large survey data</a>
 <ul>
@@ -441,17 +458,2045 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="mst-exercises" class="section level1 hasAnchor" number="9">
 <h1><span class="header-section-number">Chapter 9</span> MST exercises<a href="mst-exercises.html#mst-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>INTRO TEXT</p>
-<div id="exercise-1" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Exercise 1<a href="mst-exercises.html#exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>SE I EDITOR FRA 2022 + KURSUSMATERIALE</p>
+<p>Below you will find exercises relevant for the data analysis for the project work in the Meal Systems and Technologies. Exercises are meant as a guide on what you can do with data obtained with the iBuffet.</p>
+<div id="exercise-1---cleaning-compusense-data-with-r" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Exercise 1 - cleaning Compusense data with R<a href="mst-exercises.html#exercise-1---cleaning-compusense-data-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The task of this exercise is to get your data ready for data-analysis i.e. cleaning and merging your data! This can be done in R or excel.</p>
+<p>That includes:<br />
+- Give meaningful labels to variables.<br />
+- Merging of “control” and “intervention” spreadsheet.<br />
+- Removal of meaningless rows such as rows without data etc.<br />
+- Removal of unimportant characters.<br />
+- Merging of consumption data with questionnaire. (Remember to have matching columns if using R - see chapter 2.3.1.1).</p>
+<div id="exercise-1---solution" class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Exercise 1 - Solution<a href="mst-exercises.html#exercise-1---solution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Start by importing the data and combine them row wise with the <em>rbind()</em> function.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="mst-exercises.html#cb120-1" tabindex="-1"></a>control <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/data/Ibuffet_data_MST_ex (2024)/kontrol.csv&quot;</span>)</span>
+<span id="cb120-2"><a href="mst-exercises.html#cb120-2" tabindex="-1"></a>intervension <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/data/Ibuffet_data_MST_ex (2024)/Intervention.csv&quot;</span>)</span>
+<span id="cb120-3"><a href="mst-exercises.html#cb120-3" tabindex="-1"></a>questionare <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/data/Ibuffet_data_MST_ex (2024)/questionare.csv&quot;</span>)</span>
+<span id="cb120-4"><a href="mst-exercises.html#cb120-4" tabindex="-1"></a>consumption <span class="ot">&lt;-</span> <span class="fu">rbind</span>(control,intervension)</span></code></pre></div>
+<p>Next we clean our data. We want to remove rows containing “–” , “0” and “REFILL”. We use the <em>filter</em> function from the <em>tidyverse</em> package. The “!” is used as a NOT logical operator, meaning it will only select rows that do NOT contain “--”. <em>if_any</em> checks all rows in specific columns, to see if conditions are met. <em>everything</em> specifies that it should be all columns.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="mst-exercises.html#cb121-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb121-2"><a href="mst-exercises.html#cb121-2" tabindex="-1"></a>consumption <span class="ot">&lt;-</span> consumption <span class="sc">%&gt;%</span></span>
+<span id="cb121-3"><a href="mst-exercises.html#cb121-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">if_any</span>(<span class="fu">everything</span>(), <span class="sc">~</span> .x <span class="sc">==</span> <span class="st">&quot;--&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb121-4"><a href="mst-exercises.html#cb121-4" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">if_any</span>(<span class="fu">everything</span>(), <span class="sc">~</span> .x <span class="sc">==</span> <span class="st">&quot;0&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb121-5"><a href="mst-exercises.html#cb121-5" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">if_any</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">grepl</span>(<span class="st">&quot;REFILL&quot;</span>, .x)))</span></code></pre></div>
+<p>If we take a look at the <em>Person</em> column, then it is rather confusing. We want to have the Person ID only. Which can be found after “A:”. This can be done by using gsub with string specifications.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="mst-exercises.html#cb122-1" tabindex="-1"></a>consumption<span class="sc">$</span>Person <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;^A:</span><span class="sc">\\</span><span class="st">s*(</span><span class="sc">\\</span><span class="st">d+).*&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">1&quot;</span>, consumption<span class="sc">$</span>Person) <span class="co"># Only extract the &quot;Number&quot; after &quot;A:&quot;. </span></span></code></pre></div>
+<p>Then we merge the questionnaire and consumption data using <em>left_join</em> by a common variable “Person”</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="mst-exercises.html#cb123-1" tabindex="-1"></a>questionare<span class="sc">$</span>Person <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(questionare<span class="sc">$</span>Person) </span>
+<span id="cb123-2"><a href="mst-exercises.html#cb123-2" tabindex="-1"></a>consumption<span class="sc">$</span>Person <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(consumption<span class="sc">$</span>Person)</span>
+<span id="cb123-3"><a href="mst-exercises.html#cb123-3" tabindex="-1"></a></span>
+<span id="cb123-4"><a href="mst-exercises.html#cb123-4" tabindex="-1"></a>Buffet_quest <span class="ot">&lt;-</span> consumption <span class="sc">%&gt;%</span></span>
+<span id="cb123-5"><a href="mst-exercises.html#cb123-5" tabindex="-1"></a>  <span class="fu">left_join</span>(questionare, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;Person&quot;</span>))</span>
+<span id="cb123-6"><a href="mst-exercises.html#cb123-6" tabindex="-1"></a>Buffet_quest <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(Buffet_quest) <span class="co">#remove rows with NA values</span></span></code></pre></div>
+<p>We are however not interested in all variables. Therefore, we select only the relevant variables! In this case only variables in columns 1-7 and 18-29.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="mst-exercises.html#cb124-1" tabindex="-1"></a>Buffet_quest <span class="ot">&lt;-</span> Buffet_quest[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>,<span class="dv">18</span><span class="sc">:</span><span class="dv">29</span>)]</span></code></pre></div>
+<p>The scale of the questionnaire are given on likert scale e.g. 1-5, 1-7 or 1-9. Or male and female are encoded as 1 or 2, if we however want the corresponding text answer. e.g. 1 = “Female” or 2 = “Male”. This can be done with the <em>mutate</em> and <em>fct_recode</em>. Below will only show examples of how this could be done, for some selected variables. The opposite of what is shown, can also be used going from text to numbers! While we are at it, we are also going to rename inside the “Buffet name” variable.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="mst-exercises.html#cb125-1" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb125-2"><a href="mst-exercises.html#cb125-2" tabindex="-1"></a></span>
+<span id="cb125-3"><a href="mst-exercises.html#cb125-3" tabindex="-1"></a>Buffet_quest <span class="ot">&lt;-</span> Buffet_quest <span class="sc">%&gt;%</span></span>
+<span id="cb125-4"><a href="mst-exercises.html#cb125-4" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb125-5"><a href="mst-exercises.html#cb125-5" tabindex="-1"></a>    <span class="at">Gender =</span> <span class="fu">fct_recode</span>(<span class="fu">as.factor</span>(Gender),</span>
+<span id="cb125-6"><a href="mst-exercises.html#cb125-6" tabindex="-1"></a>                        <span class="st">&quot;Female&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb125-7"><a href="mst-exercises.html#cb125-7" tabindex="-1"></a>                        <span class="st">&quot;Male&quot;</span> <span class="ot">=</span> <span class="st">&quot;2&quot;</span>),</span>
+<span id="cb125-8"><a href="mst-exercises.html#cb125-8" tabindex="-1"></a>    <span class="at">Dietary_lifestyle =</span> <span class="fu">fct_recode</span>(<span class="fu">as.factor</span>(Dietary_lifestyle),</span>
+<span id="cb125-9"><a href="mst-exercises.html#cb125-9" tabindex="-1"></a>                                   <span class="st">&quot;Omnivore&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb125-10"><a href="mst-exercises.html#cb125-10" tabindex="-1"></a>                                   <span class="st">&quot;Flexitarian&quot;</span> <span class="ot">=</span> <span class="st">&quot;2&quot;</span>,</span>
+<span id="cb125-11"><a href="mst-exercises.html#cb125-11" tabindex="-1"></a>                                   <span class="st">&quot;Pescetarian&quot;</span> <span class="ot">=</span> <span class="st">&quot;3&quot;</span>,</span>
+<span id="cb125-12"><a href="mst-exercises.html#cb125-12" tabindex="-1"></a>                                   <span class="st">&quot;Vegetarian&quot;</span> <span class="ot">=</span> <span class="st">&quot;4&quot;</span>,</span>
+<span id="cb125-13"><a href="mst-exercises.html#cb125-13" tabindex="-1"></a>                                   <span class="st">&quot;Vegan&quot;</span> <span class="ot">=</span> <span class="st">&quot;5&quot;</span>),</span>
+<span id="cb125-14"><a href="mst-exercises.html#cb125-14" tabindex="-1"></a>    <span class="st">`</span><span class="at">Oat/Oatmeal_familiarity</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">fct_recode</span>(<span class="fu">as.factor</span>(<span class="st">`</span><span class="at">Oat/Oatmeal_familiarity</span><span class="st">`</span>),</span>
+<span id="cb125-15"><a href="mst-exercises.html#cb125-15" tabindex="-1"></a>                                           <span class="st">&quot;I do not recognize it&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb125-16"><a href="mst-exercises.html#cb125-16" tabindex="-1"></a>                                           <span class="st">&quot;I recognize it, but i have not tasted it&quot;</span> <span class="ot">=</span> <span class="st">&quot;2&quot;</span>,</span>
+<span id="cb125-17"><a href="mst-exercises.html#cb125-17" tabindex="-1"></a>                                           <span class="st">&quot;I have tasted it, but i do not consume it on a regular basis&quot;</span> <span class="ot">=</span> <span class="st">&quot;3&quot;</span>,</span>
+<span id="cb125-18"><a href="mst-exercises.html#cb125-18" tabindex="-1"></a>                                           <span class="st">&quot;I consume it on a regular basis&quot;</span> <span class="ot">=</span> <span class="st">&quot;4&quot;</span>),</span>
+<span id="cb125-19"><a href="mst-exercises.html#cb125-19" tabindex="-1"></a>    <span class="at">Freq_oat_consumption =</span> <span class="fu">fct_recode</span>(<span class="fu">as.factor</span>(Freq_oat_consumption),</span>
+<span id="cb125-20"><a href="mst-exercises.html#cb125-20" tabindex="-1"></a>                                      <span class="st">&quot;Never&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb125-21"><a href="mst-exercises.html#cb125-21" tabindex="-1"></a>                                      <span class="st">&quot;Less than once a month&quot;</span> <span class="ot">=</span> <span class="st">&quot;2&quot;</span>,</span>
+<span id="cb125-22"><a href="mst-exercises.html#cb125-22" tabindex="-1"></a>                                      <span class="st">&quot;1-3 times a month&quot;</span> <span class="ot">=</span> <span class="st">&quot;3&quot;</span>,</span>
+<span id="cb125-23"><a href="mst-exercises.html#cb125-23" tabindex="-1"></a>                                      <span class="st">&quot;1-3 times a week&quot;</span> <span class="ot">=</span> <span class="st">&quot;4&quot;</span>,</span>
+<span id="cb125-24"><a href="mst-exercises.html#cb125-24" tabindex="-1"></a>                                      <span class="st">&quot;4-6 times a week&quot;</span> <span class="ot">=</span> <span class="st">&quot;5&quot;</span>,</span>
+<span id="cb125-25"><a href="mst-exercises.html#cb125-25" tabindex="-1"></a>                                      <span class="st">&quot;Once a day&quot;</span> <span class="ot">=</span> <span class="st">&quot;6&quot;</span>,</span>
+<span id="cb125-26"><a href="mst-exercises.html#cb125-26" tabindex="-1"></a>                                      <span class="st">&quot;2 or more times a day&quot;</span> <span class="ot">=</span> <span class="st">&quot;7&quot;</span>),</span>
+<span id="cb125-27"><a href="mst-exercises.html#cb125-27" tabindex="-1"></a>    <span class="at">Freq_ryebread_consumption =</span> <span class="fu">fct_recode</span>(<span class="fu">as.factor</span>(Freq_ryebread_consumption),</span>
+<span id="cb125-28"><a href="mst-exercises.html#cb125-28" tabindex="-1"></a>                                      <span class="st">&quot;Never&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb125-29"><a href="mst-exercises.html#cb125-29" tabindex="-1"></a>                                      <span class="st">&quot;Less than once a month&quot;</span> <span class="ot">=</span> <span class="st">&quot;2&quot;</span>,</span>
+<span id="cb125-30"><a href="mst-exercises.html#cb125-30" tabindex="-1"></a>                                      <span class="st">&quot;1-3 times a month&quot;</span> <span class="ot">=</span> <span class="st">&quot;3&quot;</span>,</span>
+<span id="cb125-31"><a href="mst-exercises.html#cb125-31" tabindex="-1"></a>                                      <span class="st">&quot;1-3 times a week&quot;</span> <span class="ot">=</span> <span class="st">&quot;4&quot;</span>,</span>
+<span id="cb125-32"><a href="mst-exercises.html#cb125-32" tabindex="-1"></a>                                      <span class="st">&quot;4-6 times a week&quot;</span> <span class="ot">=</span> <span class="st">&quot;5&quot;</span>,</span>
+<span id="cb125-33"><a href="mst-exercises.html#cb125-33" tabindex="-1"></a>                                      <span class="st">&quot;Once a day&quot;</span> <span class="ot">=</span> <span class="st">&quot;6&quot;</span>,</span>
+<span id="cb125-34"><a href="mst-exercises.html#cb125-34" tabindex="-1"></a>                                      <span class="st">&quot;2 or more times a day&quot;</span> <span class="ot">=</span> <span class="st">&quot;7&quot;</span>),</span>
+<span id="cb125-35"><a href="mst-exercises.html#cb125-35" tabindex="-1"></a>    <span class="st">`</span><span class="at">Buffet name</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">recode</span>(<span class="st">`</span><span class="at">Buffet name</span><span class="st">`</span>,</span>
+<span id="cb125-36"><a href="mst-exercises.html#cb125-36" tabindex="-1"></a>                           <span class="st">&quot;OAT TEST Kontrol&quot;</span> <span class="ot">=</span> <span class="st">&quot;control&quot;</span>,</span>
+<span id="cb125-37"><a href="mst-exercises.html#cb125-37" tabindex="-1"></a>                            <span class="st">&quot;OAT TEST Interventions&quot;</span> <span class="ot">=</span> <span class="st">&quot;intervention&quot;</span>)</span>
+<span id="cb125-38"><a href="mst-exercises.html#cb125-38" tabindex="-1"></a>    </span>
+<span id="cb125-39"><a href="mst-exercises.html#cb125-39" tabindex="-1"></a>    )</span></code></pre></div>
+<p>See how it looks below!</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="mst-exercises.html#cb126-1" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb126-2"><a href="mst-exercises.html#cb126-2" tabindex="-1"></a><span class="fu">datatable</span>(Buffet_quest,<span class="at">rownames =</span> <span class="cn">FALSE</span>,<span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">autoWidth =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1872d12c6edcecb02e1f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1872d12c6edcecb02e1f">{"x":{"filter":"none","vertical":false,"data":[["8","8","9","9","24","24","10","10","3","3","11","11","13","13","6","6","1","1","17","17","5","5","7","7","22","22","12","12","4","4","25","25","36","36","37","37","39","39","29","29","26","26","45","45","32","32","28","28","30","30","42","42","40","40","31","31","34","34","46","46","35","35","41","41","38","38","33","33","27","27","44","44","43","43"],["1","2","1","2","1","2","1","2","1","3","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2"],["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],["control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention","intervention"],["1","4","1","2","1","4","1","2","1","2","1","2","1","4","1","2","1","2","2","3","2","3","3","2","3","4","3","4","4","3","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","2","3","2","3","3","4","3","4","3","4","3","4","3","4","3","4"],["OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","RYE BREAD","OAT","RYE BREAD","OAT","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","RYE BREAD","OAT","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","RYE BREAD","OAT","RYE BREAD","OAT","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD","OAT","RYE BREAD"],["50","152","48","70","38","146","88","156","48","74","156","226","100","120","70","194","62","186","118","102","96","40","56","96","70","116","54","58","138","90","54","78","58","76","70","76","48","112","50","38","52","70","68","76","100","188","60","82","108","172","92","114","40","78","56","116","48","114","96","130","112","74","50","80","88","176","38","76","82","78","90","114","50","96"],["Male","Male","Female","Female","Female","Female","Female","Female","Female","Female","Male","Male","Female","Female","Female","Female","Male","Male","Female","Female","Female","Female","Male","Male","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Male","Male","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Male","Male","Female","Female","Female","Female","Male","Male","Female","Female","Female","Female"],[26,26,24,24,34,34,28,28,28,28,38,38,26,26,22,22,25,25,25,25,26,26,26,26,27,27,25,25,26,26,30,30,32,32,30,30,29,29,35,35,25,25,28,28,29,29,28,28,27,27,27,27,29,29,27,27,24,24,24,24,25,25,35,35,27,27,32,32,30,30,26,26,23,23],["Dansk","Dansk","Canadian","Canadian","British","British","Danish","Danish","Danish","Danish","British","British","Danish","Danish","Taiwanese","Taiwanese","German","German","Danish","Danish","British","British","Danish","Danish","Danish","Danish","Croatian","Croatian","Danish","Danish","Danish","Danish","Nepali","Nepali","Nepalese","Nepalese","Danish","Danish","Nepali","Nepali","Danish","Danish","Danish","Danish","Chinese","Chinese","Danish","Danish","Danish","Danish","Danish","Danish","American","American","Irish","Irish","Danish","Danish","Polish","Polish","Dansk","Dansk","Congolese","Congolese","Danish","Danish","German","German","Hungarian","Hungarian","Danish","Danish","German","German"],["Flexitarian","Flexitarian","Flexitarian","Flexitarian","Vegetarian","Vegetarian","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Vegan","Vegan","Pescetarian","Pescetarian","Flexitarian","Flexitarian","Vegetarian","Vegetarian","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Pescetarian","Pescetarian","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Omnivore","Omnivore","Omnivore","Omnivore","Flexitarian","Flexitarian","Omnivore","Omnivore","Omnivore","Omnivore","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Omnivore","Omnivore","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Omnivore","Omnivore","Flexitarian","Flexitarian","Omnivore","Omnivore","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Flexitarian","Vegetarian","Vegetarian","Vegan","Vegan","Pescetarian","Pescetarian","Vegetarian","Vegetarian"],["I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I have tasted it, but i do not consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis","I consume it on a regular basis"],["Once a day","Once a day","1-3 times a week","1-3 times a week","1-3 times a month","1-3 times a month","1-3 times a month","1-3 times a month","4-6 times a week","4-6 times a week","Once a day","Once a day","4-6 times a week","4-6 times a week","4-6 times a week","4-6 times a week","1-3 times a week","1-3 times a week","Once a day","Once a day","Once a day","Once a day","4-6 times a week","4-6 times a week","2 or more times a day","2 or more times a day","4-6 times a week","4-6 times a week","Once a day","Once a day","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a month","1-3 times a month","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a week","2 or more times a day","2 or more times a day","4-6 times a week","4-6 times a week","4-6 times a week","4-6 times a week","1-3 times a month","1-3 times a month","4-6 times a week","4-6 times a week","4-6 times a week","4-6 times a week","1-3 times a month","1-3 times a month","4-6 times a week","4-6 times a week","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a week","Less than once a month","Less than once a month","Less than once a month","Less than once a month","Once a day","Once a day","Once a day","Once a day","1-3 times a month","1-3 times a month","4-6 times a week","4-6 times a week","1-3 times a month","1-3 times a month"],["4-6 times a week","4-6 times a week","1-3 times a month","1-3 times a month","Less than once a month","Less than once a month","1-3 times a month","1-3 times a month","1-3 times a month","1-3 times a month","Never","Never","4-6 times a week","4-6 times a week","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a month","1-3 times a month","1-3 times a month","1-3 times a month","Once a day","Once a day","Never","Never","4-6 times a week","4-6 times a week","1-3 times a month","1-3 times a month","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a week","Once a day","Once a day","1-3 times a month","1-3 times a month","1-3 times a month","1-3 times a month","1-3 times a week","1-3 times a week","Less than once a month","Less than once a month","1-3 times a month","1-3 times a month","4-6 times a week","4-6 times a week","Once a day","Once a day","1-3 times a week","1-3 times a week","1-3 times a month","1-3 times a month","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a week","1-3 times a week","Once a day","Once a day","4-6 times a week","4-6 times a week","Never","Never","Once a day","Once a day","Less than once a month","Less than once a month"],[3,3,2,2,3,3,3,3,3,3,4,4,3,3,1,1,2,2,3,3,2,2,3,3,3,3,2,2,2,2,4,4,4,4,1,1,3,3,2,2,4,4,2,2,2,2,3,3,3,3,1,1,2,2,2,2,3,3,3,3,3,3,2,2,3,3,3,3,4,4,3,3,4,4],[3,3,1,1,3,3,5,5,1,1,7,7,3,3,1,1,3,3,1,1,2,2,1,1,3,3,2,2,4,4,1,1,1,1,1,1,3,3,2,2,1,1,5,5,7,7,1,1,3,3,1,1,1,1,5,5,5,5,1,1,3,3,7,7,5,5,1,1,1,1,3,3,2,2],[8,8,8,8,3,3,7,7,8,8,9,9,7,7,9,9,6,6,7,7,8,8,7,7,8,8,7,7,8,8,7,7,7,7,6,6,7,7,7,7,8,8,7,7,8,8,8,8,7,7,7,7,5,5,7,7,8,8,8,8,4,4,7,7,8,8,9,9,8,8,8,8,7,7],[9,9,4,4,8,8,7,7,6,6,7,7,7,7,9,9,7,7,8,8,7,7,8,8,8,8,4,4,8,8,7,7,7,7,7,7,7,7,7,7,7,7,7,7,3,3,8,8,8,8,9,9,7,7,4,4,9,9,6,6,7,7,8,8,7,7,8,8,1,1,9,9,7,7],[9,9,6,6,5,5,5,5,6,6,7,7,6,6,9,9,4,4,6,6,6,6,6,6,7,7,5,5,7,7,3,3,6,6,7,7,9,9,7,7,6,6,4,4,4,4,9,9,9,9,7,7,7,7,3,3,6,6,4,4,9,9,5,5,7,7,5,5,9,9,7,7,7,7]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Person<\/th>\n      <th>Sequence<\/th>\n      <th>Buffet ID<\/th>\n      <th>Buffet name<\/th>\n      <th>Serving station ID<\/th>\n      <th>Station name<\/th>\n      <th>Consumption in grams<\/th>\n      <th>Gender<\/th>\n      <th>Age<\/th>\n      <th>Nationality<\/th>\n      <th>Dietary_lifestyle<\/th>\n      <th>Oat/Oatmeal_familiarity<\/th>\n      <th>Freq_oat_consumption<\/th>\n      <th>Freq_ryebread_consumption<\/th>\n      <th>grams_whole_grain_per_day_recommendation<\/th>\n      <th>slices_ryebread_to_meet_recommendation<\/th>\n      <th>I_like_oat_/_oatmeal<\/th>\n      <th>I_like_ryebread<\/th>\n      <th>It_is_easy_to_consume_the_recommended_amount_of_wholegrain_per_day<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"autoWidth":true,"columnDefs":[{"className":"dt-right","targets":[8,14,15,16,17,18]}],"order":[],"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
-<div id="exercise-2" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> Exercise 2<a href="mst-exercises.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
-<div id="exercise-3" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> Exercise 3<a href="mst-exercises.html#exercise-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-2---creating-a-tableone-and-visualization" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Exercise 2 - creating a tableone and visualization<a href="mst-exercises.html#exercise-2---creating-a-tableone-and-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Descriptive Statistics are used to present quantitative descriptions in a manageable form e.g. simpler summary (e.g. a number, average etc.). Although you run the risk of distorting the original data or losing important details descriptive statistics provide a powerful summary that may enable comparisons across people or other units.</p>
+<p>You should use tableone as a way to present your descriptive statistics! See chapter 10.4 for how to do it!</p>
+<div id="exercise-2---solution" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Exercise 2 - solution<a href="mst-exercises.html#exercise-2---solution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lets have a quick overview of the data by the use of <em>CreateTableOne</em>. Note: If you want to showcase e.g. “Age” with median and IQR, you need to add the variable to the <em>nonnormal</em> argument in the <em>kableone</em> function. One can alternatively to <em>kableone</em> use <em>print</em>.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="mst-exercises.html#cb127-1" tabindex="-1"></a><span class="fu">library</span>(tableone)</span>
+<span id="cb127-2"><a href="mst-exercises.html#cb127-2" tabindex="-1"></a><span class="co">#it seems the variable &quot;Consumption in grams&quot; was a character. We want it to be numeric in our tableone!</span></span>
+<span id="cb127-3"><a href="mst-exercises.html#cb127-3" tabindex="-1"></a>Buffet_quest<span class="sc">$</span><span class="st">`</span><span class="at">Consumption in grams</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(Buffet_quest<span class="sc">$</span><span class="st">`</span><span class="at">Consumption in grams</span><span class="st">`</span>) </span>
+<span id="cb127-4"><a href="mst-exercises.html#cb127-4" tabindex="-1"></a></span>
+<span id="cb127-5"><a href="mst-exercises.html#cb127-5" tabindex="-1"></a></span>
+<span id="cb127-6"><a href="mst-exercises.html#cb127-6" tabindex="-1"></a>tb1 <span class="ot">&lt;-</span> <span class="fu">CreateTableOne</span>(<span class="at">data =</span> Buffet_quest, <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Nationality&quot;</span>, </span>
+<span id="cb127-7"><a href="mst-exercises.html#cb127-7" tabindex="-1"></a><span class="st">&quot;Dietary_lifestyle&quot;</span>, <span class="st">&quot;Oat/Oatmeal_familiarity&quot;</span>, <span class="st">&quot;Freq_oat_consumption&quot;</span>, </span>
+<span id="cb127-8"><a href="mst-exercises.html#cb127-8" tabindex="-1"></a><span class="st">&quot;Freq_ryebread_consumption&quot;</span>,<span class="st">&quot;I_like_oat_/_oatmeal&quot;</span>, <span class="st">&quot;I_like_ryebread&quot;</span>,<span class="st">&quot;Consumption in grams&quot;</span>),<span class="at">strata =</span> <span class="st">&quot;Buffet name&quot;</span>)</span>
+<span id="cb127-9"><a href="mst-exercises.html#cb127-9" tabindex="-1"></a></span>
+<span id="cb127-10"><a href="mst-exercises.html#cb127-10" tabindex="-1"></a><span class="fu">kableone</span>(tb1,<span class="at">showAllLevels =</span> <span class="cn">TRUE</span>,<span class="at">nonnormal =</span> <span class="st">&quot;Age&quot;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+level
+</th>
+<th style="text-align:left;">
+control
+</th>
+<th style="text-align:left;">
+intervention
+</th>
+<th style="text-align:left;">
+p
+</th>
+<th style="text-align:left;">
+test
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+n
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+30
+</td>
+<td style="text-align:left;">
+44
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gender (%)
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+22 (73.3)
+</td>
+<td style="text-align:left;">
+38 (86.4)
+</td>
+<td style="text-align:left;">
+0.270
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+8 (26.7)
+</td>
+<td style="text-align:left;">
+6 (13.6)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Age (median [IQR])
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+26.00 [25.00, 27.75]
+</td>
+<td style="text-align:left;">
+28.00 [26.00, 30.00]
+</td>
+<td style="text-align:left;">
+0.022
+</td>
+<td style="text-align:left;">
+nonnorm
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Nationality (%)
+</td>
+<td style="text-align:left;">
+American
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+2 ( 4.5)
+</td>
+<td style="text-align:left;">
+0.007
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+British
+</td>
+<td style="text-align:left;">
+6 (20.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Canadian
+</td>
+<td style="text-align:left;">
+2 ( 6.7)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Chinese
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+2 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Congolese
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+2 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Croatian
+</td>
+<td style="text-align:left;">
+2 ( 6.7)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Danish
+</td>
+<td style="text-align:left;">
+14 (46.7)
+</td>
+<td style="text-align:left;">
+20 (45.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Dansk
+</td>
+<td style="text-align:left;">
+2 ( 6.7)
+</td>
+<td style="text-align:left;">
+2 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+German
+</td>
+<td style="text-align:left;">
+2 ( 6.7)
+</td>
+<td style="text-align:left;">
+4 ( 9.1)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Hungarian
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+2 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Irish
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+2 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Nepalese
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+2 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Nepali
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+4 ( 9.1)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Polish
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+2 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Taiwanese
+</td>
+<td style="text-align:left;">
+2 ( 6.7)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dietary_lifestyle (%)
+</td>
+<td style="text-align:left;">
+Omnivore
+</td>
+<td style="text-align:left;">
+2 ( 6.7)
+</td>
+<td style="text-align:left;">
+12 (27.3)
+</td>
+<td style="text-align:left;">
+0.182
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Flexitarian
+</td>
+<td style="text-align:left;">
+18 (60.0)
+</td>
+<td style="text-align:left;">
+24 (54.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Pescetarian
+</td>
+<td style="text-align:left;">
+4 (13.3)
+</td>
+<td style="text-align:left;">
+2 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Vegetarian
+</td>
+<td style="text-align:left;">
+4 (13.3)
+</td>
+<td style="text-align:left;">
+4 ( 9.1)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Vegan
+</td>
+<td style="text-align:left;">
+2 ( 6.7)
+</td>
+<td style="text-align:left;">
+2 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Oat/Oatmeal_familiarity (%)
+</td>
+<td style="text-align:left;">
+I have tasted it, but i do not consume it on a regular basis
+</td>
+<td style="text-align:left;">
+6 (20.0)
+</td>
+<td style="text-align:left;">
+14 (31.8)
+</td>
+<td style="text-align:left;">
+0.391
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+I consume it on a regular basis
+</td>
+<td style="text-align:left;">
+24 (80.0)
+</td>
+<td style="text-align:left;">
+30 (68.2)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Freq_oat_consumption (%)
+</td>
+<td style="text-align:left;">
+Less than once a month
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+4 ( 9.1)
+</td>
+<td style="text-align:left;">
+0.050
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+1-3 times a month
+</td>
+<td style="text-align:left;">
+4 (13.3)
+</td>
+<td style="text-align:left;">
+10 (22.7)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+1-3 times a week
+</td>
+<td style="text-align:left;">
+4 (13.3)
+</td>
+<td style="text-align:left;">
+12 (27.3)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+4-6 times a week
+</td>
+<td style="text-align:left;">
+10 (33.3)
+</td>
+<td style="text-align:left;">
+12 (27.3)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Once a day
+</td>
+<td style="text-align:left;">
+10 (33.3)
+</td>
+<td style="text-align:left;">
+4 ( 9.1)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+2 or more times a day
+</td>
+<td style="text-align:left;">
+2 ( 6.7)
+</td>
+<td style="text-align:left;">
+2 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Freq_ryebread_consumption (%)
+</td>
+<td style="text-align:left;">
+Never
+</td>
+<td style="text-align:left;">
+4 (13.3)
+</td>
+<td style="text-align:left;">
+2 ( 4.5)
+</td>
+<td style="text-align:left;">
+0.186
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Less than once a month
+</td>
+<td style="text-align:left;">
+2 ( 6.7)
+</td>
+<td style="text-align:left;">
+4 ( 9.1)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+1-3 times a month
+</td>
+<td style="text-align:left;">
+10 (33.3)
+</td>
+<td style="text-align:left;">
+10 (22.7)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+1-3 times a week
+</td>
+<td style="text-align:left;">
+6 (20.0)
+</td>
+<td style="text-align:left;">
+16 (36.4)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+4-6 times a week
+</td>
+<td style="text-align:left;">
+6 (20.0)
+</td>
+<td style="text-align:left;">
+4 ( 9.1)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Once a day
+</td>
+<td style="text-align:left;">
+2 ( 6.7)
+</td>
+<td style="text-align:left;">
+8 (18.2)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I_like_oat_/_oatmeal (mean (SD))
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+7.33 (1.42)
+</td>
+<td style="text-align:left;">
+7.18 (1.08)
+</td>
+<td style="text-align:left;">
+0.605
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I_like_ryebread (mean (SD))
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+7.13 (1.48)
+</td>
+<td style="text-align:left;">
+6.82 (1.90)
+</td>
+<td style="text-align:left;">
+0.447
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Consumption in grams (mean (SD))
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+100.60 (49.79)
+</td>
+<td style="text-align:left;">
+84.64 (35.10)
+</td>
+<td style="text-align:left;">
+0.110
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+<p>From these results, we can quickly gather information such as:</p>
+<p>Be careful with the interpretation as each participant occurs two times each.</p>
+<ul>
+<li><p>The number of samples is 76 (n = 76). Where the intervention group has 44 samples (n = 44), and the control group has 32 samples (n = 32)</p></li>
+<li><p>The vast majority Like oat/oatmeal moderately or even more! No significant difference in oat liking across control and intervention (p = 0.285)</p></li>
+<li><p>The average consumption of oat and rye was 100 grams in the control, where the average consumption of oat and ryebread was 85 grams. And significantly different (see t-test chapter 6.4)</p></li>
+</ul>
+<p>It could be interesting to see if there is a difference in the control and intervention. This can be done with the use of the strata argument. - Beware that the function uses ANOVA (chapter 6.6) when comparing more than two groups.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="mst-exercises.html#cb128-1" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> <span class="fu">CreateTableOne</span>(<span class="at">data =</span> Buffet_quest, <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Nationality&quot;</span>, </span>
+<span id="cb128-2"><a href="mst-exercises.html#cb128-2" tabindex="-1"></a><span class="st">&quot;Dietary_lifestyle&quot;</span>, <span class="st">&quot;Oat/Oatmeal_familiarity&quot;</span>, <span class="st">&quot;Freq_oat_consumption&quot;</span>, </span>
+<span id="cb128-3"><a href="mst-exercises.html#cb128-3" tabindex="-1"></a><span class="st">&quot;Freq_ryebread_consumption&quot;</span>,<span class="st">&quot;I_like_oat_/_oatmeal&quot;</span>, <span class="st">&quot;I_like_ryebread&quot;</span>,<span class="st">&quot;Consumption in grams&quot;</span>),<span class="at">strata =</span> <span class="fu">c</span>(<span class="st">&quot;Station name&quot;</span>, <span class="st">&quot;Buffet name&quot;</span>))</span>
+<span id="cb128-4"><a href="mst-exercises.html#cb128-4" tabindex="-1"></a></span>
+<span id="cb128-5"><a href="mst-exercises.html#cb128-5" tabindex="-1"></a><span class="fu">kableone</span>(tb2,<span class="at">showAllLevels =</span> <span class="cn">TRUE</span>, <span class="at">autoWidth =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+level
+</th>
+<th style="text-align:left;">
+OAT:control
+</th>
+<th style="text-align:left;">
+RYE BREAD:control
+</th>
+<th style="text-align:left;">
+OAT:intervention
+</th>
+<th style="text-align:left;">
+RYE BREAD:intervention
+</th>
+<th style="text-align:left;">
+p
+</th>
+<th style="text-align:left;">
+test
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+n
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gender (%)
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+11 (73.3)
+</td>
+<td style="text-align:left;">
+11 (73.3)
+</td>
+<td style="text-align:left;">
+19 (86.4)
+</td>
+<td style="text-align:left;">
+19 (86.4)
+</td>
+<td style="text-align:left;">
+0.578
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+4 (26.7)
+</td>
+<td style="text-align:left;">
+4 (26.7)
+</td>
+<td style="text-align:left;">
+3 (13.6)
+</td>
+<td style="text-align:left;">
+3 (13.6)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Age (mean (SD))
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+27.07 (3.99)
+</td>
+<td style="text-align:left;">
+27.07 (3.99)
+</td>
+<td style="text-align:left;">
+28.27 (3.28)
+</td>
+<td style="text-align:left;">
+28.27 (3.28)
+</td>
+<td style="text-align:left;">
+0.571
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Nationality (%)
+</td>
+<td style="text-align:left;">
+American
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+0.914
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+British
+</td>
+<td style="text-align:left;">
+3 (20.0)
+</td>
+<td style="text-align:left;">
+3 (20.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Canadian
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Chinese
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Congolese
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Croatian
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Danish
+</td>
+<td style="text-align:left;">
+7 (46.7)
+</td>
+<td style="text-align:left;">
+7 (46.7)
+</td>
+<td style="text-align:left;">
+10 (45.5)
+</td>
+<td style="text-align:left;">
+10 (45.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Dansk
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+German
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Hungarian
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Irish
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Nepalese
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Nepali
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Polish
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Taiwanese
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dietary_lifestyle (%)
+</td>
+<td style="text-align:left;">
+Omnivore
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+6 (27.3)
+</td>
+<td style="text-align:left;">
+6 (27.3)
+</td>
+<td style="text-align:left;">
+0.903
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Flexitarian
+</td>
+<td style="text-align:left;">
+9 (60.0)
+</td>
+<td style="text-align:left;">
+9 (60.0)
+</td>
+<td style="text-align:left;">
+12 (54.5)
+</td>
+<td style="text-align:left;">
+12 (54.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Pescetarian
+</td>
+<td style="text-align:left;">
+2 (13.3)
+</td>
+<td style="text-align:left;">
+2 (13.3)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Vegetarian
+</td>
+<td style="text-align:left;">
+2 (13.3)
+</td>
+<td style="text-align:left;">
+2 (13.3)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Vegan
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Oat/Oatmeal_familiarity (%)
+</td>
+<td style="text-align:left;">
+I have tasted it, but i do not consume it on a regular basis
+</td>
+<td style="text-align:left;">
+3 (20.0)
+</td>
+<td style="text-align:left;">
+3 (20.0)
+</td>
+<td style="text-align:left;">
+7 (31.8)
+</td>
+<td style="text-align:left;">
+7 (31.8)
+</td>
+<td style="text-align:left;">
+0.738
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+I consume it on a regular basis
+</td>
+<td style="text-align:left;">
+12 (80.0)
+</td>
+<td style="text-align:left;">
+12 (80.0)
+</td>
+<td style="text-align:left;">
+15 (68.2)
+</td>
+<td style="text-align:left;">
+15 (68.2)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Freq_oat_consumption (%)
+</td>
+<td style="text-align:left;">
+Less than once a month
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+0 ( 0.0)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+0.747
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+1-3 times a month
+</td>
+<td style="text-align:left;">
+2 (13.3)
+</td>
+<td style="text-align:left;">
+2 (13.3)
+</td>
+<td style="text-align:left;">
+5 (22.7)
+</td>
+<td style="text-align:left;">
+5 (22.7)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+1-3 times a week
+</td>
+<td style="text-align:left;">
+2 (13.3)
+</td>
+<td style="text-align:left;">
+2 (13.3)
+</td>
+<td style="text-align:left;">
+6 (27.3)
+</td>
+<td style="text-align:left;">
+6 (27.3)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+4-6 times a week
+</td>
+<td style="text-align:left;">
+5 (33.3)
+</td>
+<td style="text-align:left;">
+5 (33.3)
+</td>
+<td style="text-align:left;">
+6 (27.3)
+</td>
+<td style="text-align:left;">
+6 (27.3)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Once a day
+</td>
+<td style="text-align:left;">
+5 (33.3)
+</td>
+<td style="text-align:left;">
+5 (33.3)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+2 or more times a day
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Freq_ryebread_consumption (%)
+</td>
+<td style="text-align:left;">
+Never
+</td>
+<td style="text-align:left;">
+2 (13.3)
+</td>
+<td style="text-align:left;">
+2 (13.3)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+1 ( 4.5)
+</td>
+<td style="text-align:left;">
+0.942
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Less than once a month
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+1-3 times a month
+</td>
+<td style="text-align:left;">
+5 (33.3)
+</td>
+<td style="text-align:left;">
+5 (33.3)
+</td>
+<td style="text-align:left;">
+5 (22.7)
+</td>
+<td style="text-align:left;">
+5 (22.7)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+1-3 times a week
+</td>
+<td style="text-align:left;">
+3 (20.0)
+</td>
+<td style="text-align:left;">
+3 (20.0)
+</td>
+<td style="text-align:left;">
+8 (36.4)
+</td>
+<td style="text-align:left;">
+8 (36.4)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+4-6 times a week
+</td>
+<td style="text-align:left;">
+3 (20.0)
+</td>
+<td style="text-align:left;">
+3 (20.0)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+2 ( 9.1)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Once a day
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+1 ( 6.7)
+</td>
+<td style="text-align:left;">
+4 (18.2)
+</td>
+<td style="text-align:left;">
+4 (18.2)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I_like_oat_/_oatmeal (mean (SD))
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+7.33 (1.45)
+</td>
+<td style="text-align:left;">
+7.33 (1.45)
+</td>
+<td style="text-align:left;">
+7.18 (1.10)
+</td>
+<td style="text-align:left;">
+7.18 (1.10)
+</td>
+<td style="text-align:left;">
+0.967
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I_like_ryebread (mean (SD))
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+7.13 (1.51)
+</td>
+<td style="text-align:left;">
+7.13 (1.51)
+</td>
+<td style="text-align:left;">
+6.82 (1.92)
+</td>
+<td style="text-align:left;">
+6.82 (1.92)
+</td>
+<td style="text-align:left;">
+0.903
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Consumption in grams (mean (SD))
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+71.47 (31.42)
+</td>
+<td style="text-align:left;">
+129.73 (48.25)
+</td>
+<td style="text-align:left;">
+68.45 (24.28)
+</td>
+<td style="text-align:left;">
+100.82 (37.21)
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+<p>Lets visualize the difference in consumption based on Station Name and Buffet Name, with a boxplot, violin plot.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="mst-exercises.html#cb129-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb129-2"><a href="mst-exercises.html#cb129-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Buffet_quest,<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">interaction</span>(<span class="st">`</span><span class="at">Buffet name</span><span class="st">`</span>,<span class="st">`</span><span class="at">Station name</span><span class="st">`</span>),<span class="at">y =</span> <span class="st">`</span><span class="at">Consumption in grams</span><span class="st">`</span>, <span class="at">fill =</span> <span class="fu">interaction</span>(<span class="st">`</span><span class="at">Buffet name</span><span class="st">`</span>,<span class="st">`</span><span class="at">Station name</span><span class="st">`</span>)))<span class="sc">+</span></span>
+<span id="cb129-3"><a href="mst-exercises.html#cb129-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb129-4"><a href="mst-exercises.html#cb129-4" tabindex="-1"></a>  <span class="fu">geom_jitter</span>()<span class="sc">+</span></span>
+<span id="cb129-5"><a href="mst-exercises.html#cb129-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb129-6"><a href="mst-exercises.html#cb129-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>)) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="mst-exercises.html#cb130-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Buffet_quest,<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">interaction</span>(<span class="st">`</span><span class="at">Buffet name</span><span class="st">`</span>,<span class="st">`</span><span class="at">Station name</span><span class="st">`</span>),<span class="at">y =</span> <span class="st">`</span><span class="at">Consumption in grams</span><span class="st">`</span>, <span class="at">fill =</span> <span class="fu">interaction</span>(<span class="st">`</span><span class="at">Buffet name</span><span class="st">`</span>,<span class="st">`</span><span class="at">Station name</span><span class="st">`</span>)))<span class="sc">+</span></span>
+<span id="cb130-2"><a href="mst-exercises.html#cb130-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>()<span class="sc">+</span></span>
+<span id="cb130-3"><a href="mst-exercises.html#cb130-3" tabindex="-1"></a>   <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb130-4"><a href="mst-exercises.html#cb130-4" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<p>Or use a histogram to show the distribution of consumption in control and intervention.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="mst-exercises.html#cb131-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Buffet_quest, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Consumption in grams</span><span class="st">`</span>, <span class="at">fill =</span> <span class="st">`</span><span class="at">Station name</span><span class="st">`</span>))<span class="sc">+</span></span>
+<span id="cb131-2"><a href="mst-exercises.html#cb131-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span><span class="fu">facet_wrap</span>(<span class="sc">~</span><span class="st">`</span><span class="at">Buffet name</span><span class="st">`</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+</div>
+</div>
+<div id="exercise-3---creating-an-outcome-table" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Exercise 3 - Creating an outcome table<a href="mst-exercises.html#exercise-3---creating-an-outcome-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this exercise you should create and outcome table. An outcome table includes:</p>
+<ul>
+<li><p>Mean and standard deviation for each treatment (intervention and control in this case. Hint: Variable name “Buffet name” )</p></li>
+<li><p>The p-value from a generalized linear model adjusted for relevant parameters (e.g. age, gender, “I_like_oat”)</p></li>
+</ul>
+<div id="exercise-3---solution" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Exercise 3 - Solution<a href="mst-exercises.html#exercise-3---solution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can calculate the mean and sd using R basic functions. Or simply use the ones from tableone.</p>
+<p>If you want to use variables on the likert scale for your linear model, one should use the numerical form. For this we will simply use “Buffet_quest”</p>
+<p>Lets find mean and sd for oat and rye bread.</p>
+<p>First we split the data into oat and rye bread based on the station name and calculate mean and sd based on intervention/control and oat/rye</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="mst-exercises.html#cb132-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb132-2"><a href="mst-exercises.html#cb132-2" tabindex="-1"></a>Oat_stats <span class="ot">&lt;-</span> Buffet_quest <span class="sc">%&gt;%</span></span>
+<span id="cb132-3"><a href="mst-exercises.html#cb132-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Station name</span><span class="st">`</span> <span class="sc">==</span> <span class="st">&quot;OAT&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb132-4"><a href="mst-exercises.html#cb132-4" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Station name</span><span class="st">`</span>,<span class="st">`</span><span class="at">Buffet name</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb132-5"><a href="mst-exercises.html#cb132-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb132-6"><a href="mst-exercises.html#cb132-6" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Consumption in grams</span><span class="st">`</span>),</span>
+<span id="cb132-7"><a href="mst-exercises.html#cb132-7" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Consumption in grams</span><span class="st">`</span>)</span>
+<span id="cb132-8"><a href="mst-exercises.html#cb132-8" tabindex="-1"></a>  )</span>
+<span id="cb132-9"><a href="mst-exercises.html#cb132-9" tabindex="-1"></a>Rye_stats <span class="ot">&lt;-</span> Buffet_quest <span class="sc">%&gt;%</span></span>
+<span id="cb132-10"><a href="mst-exercises.html#cb132-10" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Station name</span><span class="st">`</span> <span class="sc">==</span> <span class="st">&quot;RYE BREAD&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb132-11"><a href="mst-exercises.html#cb132-11" tabindex="-1"></a>    <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Station name</span><span class="st">`</span>,<span class="st">`</span><span class="at">Buffet name</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb132-12"><a href="mst-exercises.html#cb132-12" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb132-13"><a href="mst-exercises.html#cb132-13" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Consumption in grams</span><span class="st">`</span>),</span>
+<span id="cb132-14"><a href="mst-exercises.html#cb132-14" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Consumption in grams</span><span class="st">`</span>)</span>
+<span id="cb132-15"><a href="mst-exercises.html#cb132-15" tabindex="-1"></a>  )</span>
+<span id="cb132-16"><a href="mst-exercises.html#cb132-16" tabindex="-1"></a></span>
+<span id="cb132-17"><a href="mst-exercises.html#cb132-17" tabindex="-1"></a>outcometable <span class="ot">&lt;-</span> <span class="fu">rbind</span>(Oat_stats,Rye_stats)</span></code></pre></div>
+<p>Next we use <em>lm</em> and <em>summary</em> to find the p-values for the linear model. Do a linear m for each type of consumption and control/intervention adjusted for liking, age, gender or other factors you think could be important, or are shown significant in tableone.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="mst-exercises.html#cb133-1" tabindex="-1"></a>Oat_lm <span class="ot">&lt;-</span> Buffet_quest <span class="sc">%&gt;%</span></span>
+<span id="cb133-2"><a href="mst-exercises.html#cb133-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Station name</span><span class="st">`</span> <span class="sc">==</span> <span class="st">&quot;OAT&quot;</span>)</span>
+<span id="cb133-3"><a href="mst-exercises.html#cb133-3" tabindex="-1"></a></span>
+<span id="cb133-4"><a href="mst-exercises.html#cb133-4" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> Oat_lm, <span class="st">`</span><span class="at">Consumption in grams</span><span class="st">`</span> <span class="sc">~</span> <span class="st">`</span><span class="at">Buffet name</span><span class="st">`</span> <span class="sc">+</span> Age <span class="sc">+</span> <span class="fu">factor</span>(Gender) <span class="sc">+</span> <span class="st">`</span><span class="at">I_like_oat_/_oatmeal</span><span class="st">`</span>)</span>
+<span id="cb133-5"><a href="mst-exercises.html#cb133-5" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = `Consumption in grams` ~ `Buffet name` + Age + factor(Gender) + 
+##     `I_like_oat_/_oatmeal`, data = Oat_lm)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -42.48 -18.91 -10.27  18.55  66.56 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)             14.1255    51.3586   0.275    0.785
+## `Buffet name`1           1.1882     4.7884   0.248    0.806
+## Age                      0.5486     1.3747   0.399    0.692
+## factor(Gender)1         -1.6432     6.1686  -0.266    0.792
+## `I_like_oat_/_oatmeal`   5.7369     3.7702   1.522    0.138
+## 
+## Residual standard error: 27.51 on 32 degrees of freedom
+## Multiple R-squared:  0.07814,    Adjusted R-squared:  -0.0371 
+## F-statistic: 0.6781 on 4 and 32 DF,  p-value: 0.6122</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="mst-exercises.html#cb135-1" tabindex="-1"></a>Rye_lm <span class="ot">&lt;-</span> Buffet_quest <span class="sc">%&gt;%</span></span>
+<span id="cb135-2"><a href="mst-exercises.html#cb135-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Station name</span><span class="st">`</span> <span class="sc">==</span> <span class="st">&quot;RYE BREAD&quot;</span>)</span>
+<span id="cb135-3"><a href="mst-exercises.html#cb135-3" tabindex="-1"></a></span>
+<span id="cb135-4"><a href="mst-exercises.html#cb135-4" tabindex="-1"></a>mdl2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> Rye_lm, <span class="st">`</span><span class="at">Consumption in grams</span><span class="st">`</span> <span class="sc">~</span> <span class="st">`</span><span class="at">Buffet name</span><span class="st">`</span> <span class="sc">+</span> Age <span class="sc">+</span> <span class="fu">factor</span>(Gender) <span class="sc">+</span> I_like_ryebread)</span>
+<span id="cb135-5"><a href="mst-exercises.html#cb135-5" tabindex="-1"></a><span class="fu">summary</span>(mdl2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = `Consumption in grams` ~ `Buffet name` + Age + factor(Gender) + 
+##     I_like_ryebread, data = Rye_lm)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -60.052 -26.829  -5.355  12.661 105.193 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)      96.9218    67.4954   1.436    0.161
+## `Buffet name`1   12.6859     7.4985   1.692    0.100
+## Age              -0.2146     2.1205  -0.101    0.920
+## factor(Gender)1  -7.6054     9.5884  -0.793    0.434
+## I_like_ryebread   4.1331     4.1211   1.003    0.323
+## 
+## Residual standard error: 42.88 on 32 degrees of freedom
+## Multiple R-squared:  0.1487, Adjusted R-squared:  0.04234 
+## F-statistic: 1.398 on 4 and 32 DF,  p-value: 0.257</code></pre>
+<p>We combine the models p-values with our outcome table</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="mst-exercises.html#cb137-1" tabindex="-1"></a>outcometable<span class="sc">$</span>p.value <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.6122</span>, <span class="cn">NA</span>, <span class="fl">0.257</span>, <span class="cn">NA</span>)</span>
+<span id="cb137-2"><a href="mst-exercises.html#cb137-2" tabindex="-1"></a></span>
+<span id="cb137-3"><a href="mst-exercises.html#cb137-3" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kable</span>(outcometable)</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Station name
+</th>
+<th style="text-align:left;">
+Buffet name
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+sd
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OAT
+</td>
+<td style="text-align:left;">
+control
+</td>
+<td style="text-align:right;">
+71.46667
+</td>
+<td style="text-align:right;">
+31.41853
+</td>
+<td style="text-align:right;">
+0.6122
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OAT
+</td>
+<td style="text-align:left;">
+intervention
+</td>
+<td style="text-align:right;">
+68.45455
+</td>
+<td style="text-align:right;">
+24.27565
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYE BREAD
+</td>
+<td style="text-align:left;">
+control
+</td>
+<td style="text-align:right;">
+129.73333
+</td>
+<td style="text-align:right;">
+48.25448
+</td>
+<td style="text-align:right;">
+0.2570
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYE BREAD
+</td>
+<td style="text-align:left;">
+intervention
+</td>
+<td style="text-align:right;">
+100.81818
+</td>
+<td style="text-align:right;">
+37.21064
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+<p>The outcome table should be presented nicer. But that is for you to do!</p>
+<p>Further one should explore possible interactions in the linear model.</p>
 
+</div>
 </div>
 </div>
             </section>
