@@ -583,7 +583,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="descriptive-statistics.html#cb66-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb66-2"><a href="descriptive-statistics.html#cb66-2" tabindex="-1"></a><span class="fu">kable</span>(tb, <span class="at">caption =</span> <span class="st">&#39;some caption&#39;</span>, <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">format =</span> <span class="st">&#39;simple&#39;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-51">Table 5.1: </span>some caption</caption>
+<caption><span id="tab:unnamed-chunk-92">Table 5.1: </span>some caption</caption>
 <thead>
 <tr class="header">
 <th align="left">Treatment</th>
@@ -642,7 +642,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb67-2"><a href="descriptive-statistics.html#cb67-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(Treatment,mn, <span class="at">ymin =</span> q1, <span class="at">ymax =</span> q3)) <span class="sc">+</span> </span>
 <span id="cb67-3"><a href="descriptive-statistics.html#cb67-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb67-4"><a href="descriptive-statistics.html#cb67-4" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
 <p><code>tb %&gt;%</code>: This line is using the pipe operator (<code>%&gt;%</code>), which is native to the <em>dplyr</em>-package and is used in R to chain together multiple operations. It takes the result of the expression on the left and pipes it as the first argument to the function on the right. In this case, <code>tb</code> is being piped into the subsequent operations.</p>
 <p><code>ggplot(data = ., aes(Treatment, mn, ymin = q1, ymax = q3))</code>: This line initiates the creation of a ggplot object using the data from the <code>tb</code> dataset. It specifies the aesthetics (visual mappings) for the plot. <code>Treatment</code> is mapped to the x-axis, <code>mn</code> is mapped to the y-axis, and <code>q1</code> and <code>q3</code> are representing the first and third quartile respectively, here graphically represented using errorbars.</p>
 <p><code>geom_point()</code>: This line adds a layer to the plot with points (or dots) representing the data points. Since no aesthetic mappings are provided in this specific line, it’s assumed that the <code>Treatment</code> values are plotted against the <code>mn</code> values on the x- and y-axes.</p>

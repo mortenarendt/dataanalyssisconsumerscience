@@ -460,26 +460,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 16</span> CATA and Hedonics<a href="cata-and-hedonics.html#cata-and-hedonics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Certain attributes like floral is wanted in beer, while others may be unwanted, and hence detection of these attributes can have hedonic impact. This analysis can be evaluated for each attribute separately or all collectively using PCA.</p>
 <p>These data appears as two separate dataset, and hence need to be joint:</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="cata-and-hedonics.html#cb331-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb331-2"><a href="cata-and-hedonics.html#cb331-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb331-3"><a href="cata-and-hedonics.html#cb331-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span>
-<span id="cb331-4"><a href="cata-and-hedonics.html#cb331-4" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span>
-<span id="cb331-5"><a href="cata-and-hedonics.html#cb331-5" tabindex="-1"></a>xbeer <span class="ot">&lt;-</span> beerliking <span class="sc">%&gt;%</span> </span>
-<span id="cb331-6"><a href="cata-and-hedonics.html#cb331-6" tabindex="-1"></a>  <span class="fu">left_join</span>(beercata, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;Beer&#39;</span>,<span class="st">&#39;Consumer.ID&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="cata-and-hedonics.html#cb333-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb333-2"><a href="cata-and-hedonics.html#cb333-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb333-3"><a href="cata-and-hedonics.html#cb333-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span>
+<span id="cb333-4"><a href="cata-and-hedonics.html#cb333-4" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span>
+<span id="cb333-5"><a href="cata-and-hedonics.html#cb333-5" tabindex="-1"></a>xbeer <span class="ot">&lt;-</span> beerliking <span class="sc">%&gt;%</span> </span>
+<span id="cb333-6"><a href="cata-and-hedonics.html#cb333-6" tabindex="-1"></a>  <span class="fu">left_join</span>(beercata, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;Beer&#39;</span>,<span class="st">&#39;Consumer.ID&#39;</span>))</span></code></pre></div>
 <div id="individual-attributes-and-liking" class="section level2 hasAnchor" number="16.1">
 <h2><span class="header-section-number">16.1</span> Individual attributes and liking<a href="cata-and-hedonics.html#individual-attributes-and-liking" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="an-example-with-refreshing" class="section level3 hasAnchor" number="16.1.1">
 <h3><span class="header-section-number">16.1.1</span> An example with Refreshing<a href="cata-and-hedonics.html#an-example-with-refreshing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="cata-and-hedonics.html#cb332-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> xbeer, <span class="fu">aes</span>(Beer,  Liking, <span class="at">fill =</span> <span class="fu">factor</span>(S_Refreshing))) <span class="sc">+</span> </span>
-<span id="cb332-2"><a href="cata-and-hedonics.html#cb332-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="cata-and-hedonics.html#cb334-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> xbeer, <span class="fu">aes</span>(Beer,  Liking, <span class="at">fill =</span> <span class="fu">factor</span>(S_Refreshing))) <span class="sc">+</span> </span>
+<span id="cb334-2"><a href="cata-and-hedonics.html#cb334-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 <p>From this plot it seems as if checking of the attribute <em>Refreshing</em> leads to higher liking score.
 Further, this is even more so for light-colored beers like <em>Wheat IPA</em> and <em>Porse Bock</em>.</p>
 <p>A model capturing this phenomena could be a linear model with interactions:</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="cata-and-hedonics.html#cb333-1" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb333-2"><a href="cata-and-hedonics.html#cb333-2" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
-<span id="cb333-3"><a href="cata-and-hedonics.html#cb333-3" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> lmerTest<span class="sc">::</span><span class="fu">lmer</span>(<span class="at">data =</span> xbeer, Liking<span class="sc">~</span><span class="fu">factor</span>(S_Refreshing)<span class="sc">*</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID))</span>
-<span id="cb333-4"><a href="cata-and-hedonics.html#cb333-4" tabindex="-1"></a><span class="fu">anova</span>(mdl)</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="cata-and-hedonics.html#cb335-1" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb335-2"><a href="cata-and-hedonics.html#cb335-2" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb335-3"><a href="cata-and-hedonics.html#cb335-3" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> lmerTest<span class="sc">::</span><span class="fu">lmer</span>(<span class="at">data =</span> xbeer, Liking<span class="sc">~</span><span class="fu">factor</span>(S_Refreshing)<span class="sc">*</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID))</span>
+<span id="cb335-4"><a href="cata-and-hedonics.html#cb335-4" tabindex="-1"></a><span class="fu">anova</span>(mdl)</span></code></pre></div>
 <pre><code>## Type III Analysis of Variance Table with Satterthwaite&#39;s method
 ##                           Sum Sq Mean Sq NumDF  DenDF  F value    Pr(&gt;F)    
 ## factor(S_Refreshing)      316.30  316.30     1 901.60 141.9478 &lt; 2.2e-16 ***
@@ -488,8 +488,8 @@ Further, this is even more so for light-colored beers like <em>Wheat IPA</em> an
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>All terms are significant and we are interested in the individual beer effects. We re-parametrice the model by removing the intercept (adding -1 at the end of the formula) and not including the main effect of S_Refreshing (change * to : in interaction, and add Beer as main effect).</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="cata-and-hedonics.html#cb335-1" tabindex="-1"></a>mdl2 <span class="ot">&lt;-</span> lmerTest<span class="sc">::</span><span class="fu">lmer</span>(<span class="at">data =</span> xbeer, Liking<span class="sc">~</span>Beer <span class="sc">+</span> <span class="fu">factor</span>(S_Refreshing)<span class="sc">:</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID) <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb335-2"><a href="cata-and-hedonics.html#cb335-2" tabindex="-1"></a><span class="fu">summary</span>(mdl2)</span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="cata-and-hedonics.html#cb337-1" tabindex="-1"></a>mdl2 <span class="ot">&lt;-</span> lmerTest<span class="sc">::</span><span class="fu">lmer</span>(<span class="at">data =</span> xbeer, Liking<span class="sc">~</span>Beer <span class="sc">+</span> <span class="fu">factor</span>(S_Refreshing)<span class="sc">:</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb337-2"><a href="cata-and-hedonics.html#cb337-2" tabindex="-1"></a><span class="fu">summary</span>(mdl2)</span></code></pre></div>
 <pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [&#39;lmerModLmerTest&#39;]
 ## Formula: Liking ~ Beer + factor(S_Refreshing):Beer + (1 | Consumer.ID) -      1
 ##    Data: xbeer
@@ -541,26 +541,26 @@ Further, this is even more so for light-colored beers like <em>Wheat IPA</em> an
 <div id="all-attributes" class="section level3 hasAnchor" number="16.1.2">
 <h3><span class="header-section-number">16.1.2</span> All attributes<a href="cata-and-hedonics.html#all-attributes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can visualize for all attributes:</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="cata-and-hedonics.html#cb337-1" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
-<span id="cb337-2"><a href="cata-and-hedonics.html#cb337-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;cata&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>,<span class="at">cols =</span> S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
-<span id="cb337-3"><a href="cata-and-hedonics.html#cb337-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(Beer,  Liking, <span class="at">fill =</span> <span class="fu">factor</span>(val))) <span class="sc">+</span> </span>
-<span id="cb337-4"><a href="cata-and-hedonics.html#cb337-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb337-5"><a href="cata-and-hedonics.html#cb337-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">79</span>, <span class="at">hjust =</span> <span class="dv">1</span>), <span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb337-6"><a href="cata-and-hedonics.html#cb337-6" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cata, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
-<span id="cb337-7"><a href="cata-and-hedonics.html#cb337-7" tabindex="-1"></a>g1 </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="cata-and-hedonics.html#cb339-1" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
+<span id="cb339-2"><a href="cata-and-hedonics.html#cb339-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;cata&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>,<span class="at">cols =</span> S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
+<span id="cb339-3"><a href="cata-and-hedonics.html#cb339-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(Beer,  Liking, <span class="at">fill =</span> <span class="fu">factor</span>(val))) <span class="sc">+</span> </span>
+<span id="cb339-4"><a href="cata-and-hedonics.html#cb339-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb339-5"><a href="cata-and-hedonics.html#cb339-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">79</span>, <span class="at">hjust =</span> <span class="dv">1</span>), <span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb339-6"><a href="cata-and-hedonics.html#cb339-6" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cata, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb339-7"><a href="cata-and-hedonics.html#cb339-7" tabindex="-1"></a>g1 </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
 <p>For each attribute an interaction model will be used to qualify further analysis.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="cata-and-hedonics.html#cb338-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb338-2"><a href="cata-and-hedonics.html#cb338-2" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
-<span id="cb338-3"><a href="cata-and-hedonics.html#cb338-3" tabindex="-1"></a>tb <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
-<span id="cb338-4"><a href="cata-and-hedonics.html#cb338-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;cata&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>,<span class="at">cols =</span> S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
-<span id="cb338-5"><a href="cata-and-hedonics.html#cb338-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cata) <span class="sc">%&gt;%</span> </span>
-<span id="cb338-6"><a href="cata-and-hedonics.html#cb338-6" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Liking<span class="sc">~</span><span class="fu">factor</span>(val)<span class="sc">*</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) <span class="sc">%&gt;%</span> anova <span class="sc">%&gt;%</span> tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="cata-and-hedonics.html#cb340-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb340-2"><a href="cata-and-hedonics.html#cb340-2" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
+<span id="cb340-3"><a href="cata-and-hedonics.html#cb340-3" tabindex="-1"></a>tb <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
+<span id="cb340-4"><a href="cata-and-hedonics.html#cb340-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;cata&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>,<span class="at">cols =</span> S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
+<span id="cb340-5"><a href="cata-and-hedonics.html#cb340-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cata) <span class="sc">%&gt;%</span> </span>
+<span id="cb340-6"><a href="cata-and-hedonics.html#cb340-6" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Liking<span class="sc">~</span><span class="fu">factor</span>(val)<span class="sc">*</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID)) <span class="sc">%&gt;%</span> anova <span class="sc">%&gt;%</span> tidy)</span></code></pre></div>
 <p>This table has both main effect of the beer and cata-attribute as well their interaction.</p>
 <p>This print out shows the attributes related to liking - overall.</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="cata-and-hedonics.html#cb339-1" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb339-2"><a href="cata-and-hedonics.html#cb339-2" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;factor(val)&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb339-3"><a href="cata-and-hedonics.html#cb339-3" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value)</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="cata-and-hedonics.html#cb341-1" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb341-2"><a href="cata-and-hedonics.html#cb341-2" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;factor(val)&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb341-3"><a href="cata-and-hedonics.html#cb341-3" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value)</span></code></pre></div>
 <pre><code>## # A tibble: 27 × 8
 ## # Groups:   cata [27]
 ##    cata              term        sumsq meansq NumDF DenDF statistic  p.value
@@ -577,10 +577,10 @@ Further, this is even more so for light-colored beers like <em>Wheat IPA</em> an
 ## 10 S_Liquor          factor(val)  16.0   16.0     1  908.      6.00 1.45e- 2
 ## # ℹ 17 more rows</code></pre>
 <p>The strongest ones are S_Refreshing, S_Sour, etc. while the presence of S_Warming, S_Pungent etc. has no effect on liking.</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="cata-and-hedonics.html#cb341-1" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb341-2"><a href="cata-and-hedonics.html#cb341-2" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;factor(val):Beer&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb341-3"><a href="cata-and-hedonics.html#cb341-3" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value) <span class="sc">%&gt;%</span> </span>
-<span id="cb341-4"><a href="cata-and-hedonics.html#cb341-4" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="cata-and-hedonics.html#cb343-1" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb343-2"><a href="cata-and-hedonics.html#cb343-2" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&#39;factor(val):Beer&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb343-3"><a href="cata-and-hedonics.html#cb343-3" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value) <span class="sc">%&gt;%</span> </span>
+<span id="cb343-4"><a href="cata-and-hedonics.html#cb343-4" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ## # Groups:   cata [6]
 ##   cata              term             sumsq meansq NumDF DenDF statistic  p.value
@@ -593,19 +593,19 @@ Further, this is even more so for light-colored beers like <em>Wheat IPA</em> an
 ## 6 S_Regional spices factor(val):Beer  27.8   5.57     5  873.      2.13 0.0595</code></pre>
 <p>This table shows that S_Refreshing, S_Fruity, etc. has differential impact on the liking dependent on the beer it is detected in.</p>
 <p>A deep dive into the effect can be done using the setup with a single variable above using the <em>tidyverse</em> and <em>broom</em> framework.</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="cata-and-hedonics.html#cb343-1" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
-<span id="cb343-2"><a href="cata-and-hedonics.html#cb343-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;cata&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>,<span class="at">cols =</span> S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
-<span id="cb343-3"><a href="cata-and-hedonics.html#cb343-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cata) <span class="sc">%&gt;%</span> </span>
-<span id="cb343-4"><a href="cata-and-hedonics.html#cb343-4" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Liking<span class="sc">~</span>Beer <span class="sc">+</span> <span class="fu">factor</span>(val)<span class="sc">:</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span></code></pre></div>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="cata-and-hedonics.html#cb344-1" tabindex="-1"></a>tb2 <span class="sc">%&gt;%</span> </span>
-<span id="cb344-2"><a href="cata-and-hedonics.html#cb344-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(term,<span class="st">&#39;factor&#39;</span>)) <span class="sc">%&gt;%</span>  <span class="co"># filter to get individual beer differences. </span></span>
-<span id="cb344-3"><a href="cata-and-hedonics.html#cb344-3" tabindex="-1"></a>  <span class="fu">filter</span>(cata <span class="sc">%in%</span> tb<span class="sc">$</span>cata[tb<span class="sc">$</span>term<span class="sc">==</span><span class="st">&#39;factor(val):Beer&#39;</span> <span class="sc">&amp;</span> tb<span class="sc">$</span>p.value<span class="sc">&lt;</span><span class="fl">0.05</span>]) <span class="sc">%&gt;%</span> <span class="co"># include only interesting ones. </span></span>
-<span id="cb344-4"><a href="cata-and-hedonics.html#cb344-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(<span class="fu">substr</span>(term,<span class="dv">5</span>,<span class="dv">14</span>), estimate, <span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high)) <span class="sc">+</span> </span>
-<span id="cb344-5"><a href="cata-and-hedonics.html#cb344-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb344-6"><a href="cata-and-hedonics.html#cb344-6" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>cata) <span class="sc">+</span> </span>
-<span id="cb344-7"><a href="cata-and-hedonics.html#cb344-7" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">79</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb344-8"><a href="cata-and-hedonics.html#cb344-8" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Beer&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="cata-and-hedonics.html#cb345-1" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
+<span id="cb345-2"><a href="cata-and-hedonics.html#cb345-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;cata&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>,<span class="at">cols =</span> S_Flowers<span class="sc">:</span>S_Vinous) <span class="sc">%&gt;%</span> </span>
+<span id="cb345-3"><a href="cata-and-hedonics.html#cb345-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cata) <span class="sc">%&gt;%</span> </span>
+<span id="cb345-4"><a href="cata-and-hedonics.html#cb345-4" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">lmer</span>(<span class="at">data =</span> ., Liking<span class="sc">~</span>Beer <span class="sc">+</span> <span class="fu">factor</span>(val)<span class="sc">:</span>Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">conf.int =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="cata-and-hedonics.html#cb346-1" tabindex="-1"></a>tb2 <span class="sc">%&gt;%</span> </span>
+<span id="cb346-2"><a href="cata-and-hedonics.html#cb346-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(term,<span class="st">&#39;factor&#39;</span>)) <span class="sc">%&gt;%</span>  <span class="co"># filter to get individual beer differences. </span></span>
+<span id="cb346-3"><a href="cata-and-hedonics.html#cb346-3" tabindex="-1"></a>  <span class="fu">filter</span>(cata <span class="sc">%in%</span> tb<span class="sc">$</span>cata[tb<span class="sc">$</span>term<span class="sc">==</span><span class="st">&#39;factor(val):Beer&#39;</span> <span class="sc">&amp;</span> tb<span class="sc">$</span>p.value<span class="sc">&lt;</span><span class="fl">0.05</span>]) <span class="sc">%&gt;%</span> <span class="co"># include only interesting ones. </span></span>
+<span id="cb346-4"><a href="cata-and-hedonics.html#cb346-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(<span class="fu">substr</span>(term,<span class="dv">5</span>,<span class="dv">14</span>), estimate, <span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high)) <span class="sc">+</span> </span>
+<span id="cb346-5"><a href="cata-and-hedonics.html#cb346-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb346-6"><a href="cata-and-hedonics.html#cb346-6" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>cata) <span class="sc">+</span> </span>
+<span id="cb346-7"><a href="cata-and-hedonics.html#cb346-7" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">79</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb346-8"><a href="cata-and-hedonics.html#cb346-8" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Beer&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-233-1.png" width="672" /></p>
 <p>The interpretation is that detecting <em>Smoked</em> in e.g. <em>Ravnsborg Red</em> tends to be positive, while it is pretty bad in <em>Wheat IPA</em>.
 Similarly, <em>Fruity</em> is related to higher liking in <em>Wheat IPA</em> and <em>Porse Bock</em> but a bad thing in <em>River Beer</em>.
 <em>Nutty</em> only matters on liking in <em>Ravnsborg Red</em> and <em>River beer</em>.</p>
@@ -614,23 +614,23 @@ Similarly, <em>Fruity</em> is related to higher liking in <em>Wheat IPA</em> and
 <div id="pca-on-cata-and-liking" class="section level2 hasAnchor" number="16.2">
 <h2><span class="header-section-number">16.2</span> PCA on CATA and Liking<a href="cata-and-hedonics.html#pca-on-cata-and-liking" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A PCA on the agglomerated CATA counts including the liking will reveal the attributes associated with the individual products, and which attributes are correlated with the liking.</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="cata-and-hedonics.html#cb345-1" tabindex="-1"></a>xbeeragglom <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
-<span id="cb345-2"><a href="cata-and-hedonics.html#cb345-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;cata&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>,<span class="at">cols =</span> <span class="fu">c</span>(S_Flowers<span class="sc">:</span>S_Vinous, Liking)) <span class="sc">%&gt;%</span> <span class="co">#looong format for all variables</span></span>
-<span id="cb345-3"><a href="cata-and-hedonics.html#cb345-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Beer,cata) <span class="sc">%&gt;%</span> <span class="co"># summarize for each beer type</span></span>
-<span id="cb345-4"><a href="cata-and-hedonics.html#cb345-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">yy =</span> <span class="fu">mean</span>(val, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
-<span id="cb345-5"><a href="cata-and-hedonics.html#cb345-5" tabindex="-1"></a>  <span class="fu">spread</span>(cata,yy) <span class="co"># wide format</span></span></code></pre></div>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="cata-and-hedonics.html#cb346-1" tabindex="-1"></a>mdlPCAcataliking <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(xbeeragglom[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">scale. =</span> T)</span>
-<span id="cb346-2"><a href="cata-and-hedonics.html#cb346-2" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(mdlPCAcataliking, <span class="at">labels =</span> xbeeragglom<span class="sc">$</span>Beer)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="cata-and-hedonics.html#cb347-1" tabindex="-1"></a>xbeeragglom <span class="ot">&lt;-</span> xbeer <span class="sc">%&gt;%</span> </span>
+<span id="cb347-2"><a href="cata-and-hedonics.html#cb347-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;cata&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>,<span class="at">cols =</span> <span class="fu">c</span>(S_Flowers<span class="sc">:</span>S_Vinous, Liking)) <span class="sc">%&gt;%</span> <span class="co">#looong format for all variables</span></span>
+<span id="cb347-3"><a href="cata-and-hedonics.html#cb347-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Beer,cata) <span class="sc">%&gt;%</span> <span class="co"># summarize for each beer type</span></span>
+<span id="cb347-4"><a href="cata-and-hedonics.html#cb347-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">yy =</span> <span class="fu">mean</span>(val, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb347-5"><a href="cata-and-hedonics.html#cb347-5" tabindex="-1"></a>  <span class="fu">spread</span>(cata,yy) <span class="co"># wide format</span></span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="cata-and-hedonics.html#cb348-1" tabindex="-1"></a>mdlPCAcataliking <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(xbeeragglom[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">scale. =</span> T)</span>
+<span id="cb348-2"><a href="cata-and-hedonics.html#cb348-2" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(mdlPCAcataliking, <span class="at">labels =</span> xbeeragglom<span class="sc">$</span>Beer)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
 <p>The attributes Bean, Caramel, Warming, Aromatic etc is associated to the beer <em>Brown ale</em>, while Berrie, Dessert, Pungent, etc. is characteristic of <em>Wheat IPA</em>. Further, <em>Liking</em> is associated with all attributes on the first component, such as Aromatic, Warming, etc.</p>
 <div id="a-beer-centric-model" class="section level3 hasAnchor" number="16.2.1">
 <h3><span class="header-section-number">16.2.1</span> A beer centric model<a href="cata-and-hedonics.html#a-beer-centric-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The above PCA shows general good- and bad attributes in terms of liking. However, the univariate analysis indicated that for some beers e.g. Smoked was a good thing while for others not so much.</p>
 <p>For that reason we can build a PCA for each beer to see which attributes that drives liking</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="cata-and-hedonics.html#cb347-1" tabindex="-1"></a>xbeer_pca <span class="ot">&lt;-</span> xbeer[<span class="fu">complete.cases</span>(xbeer),]</span>
-<span id="cb347-2"><a href="cata-and-hedonics.html#cb347-2" tabindex="-1"></a>PCAmdl_RR <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(xbeer_pca[xbeer_pca<span class="sc">$</span>Beer<span class="sc">==</span><span class="st">&#39;Ravnsborg Red&#39;</span>,<span class="dv">14</span><span class="sc">:</span><span class="dv">41</span>], <span class="at">scale. =</span> T)</span>
-<span id="cb347-3"><a href="cata-and-hedonics.html#cb347-3" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(PCAmdl_RR)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="cata-and-hedonics.html#cb349-1" tabindex="-1"></a>xbeer_pca <span class="ot">&lt;-</span> xbeer[<span class="fu">complete.cases</span>(xbeer),]</span>
+<span id="cb349-2"><a href="cata-and-hedonics.html#cb349-2" tabindex="-1"></a>PCAmdl_RR <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(xbeer_pca[xbeer_pca<span class="sc">$</span>Beer<span class="sc">==</span><span class="st">&#39;Ravnsborg Red&#39;</span>,<span class="dv">14</span><span class="sc">:</span><span class="dv">41</span>], <span class="at">scale. =</span> T)</span>
+<span id="cb349-3"><a href="cata-and-hedonics.html#cb349-3" tabindex="-1"></a>ggbiplot<span class="sc">::</span><span class="fu">ggbiplot</span>(PCAmdl_RR)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
 <p>Caramel, Savoury spices and Reefreshing is promoting liking, while Sour is not.</p>
 
 </div>
@@ -669,21 +669,21 @@ distinguish information from noise, the noise will account for a large
 amount of variation in the data.</p>
 <p>As preparation for the PLS, the two datasets <em>beerliking</em> and <em>beercata</em>
 is combined:</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="cata-and-hedonics.html#cb348-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb348-2"><a href="cata-and-hedonics.html#cb348-2" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb348-3"><a href="cata-and-hedonics.html#cb348-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span>
-<span id="cb348-4"><a href="cata-and-hedonics.html#cb348-4" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span>
-<span id="cb348-5"><a href="cata-and-hedonics.html#cb348-5" tabindex="-1"></a></span>
-<span id="cb348-6"><a href="cata-and-hedonics.html#cb348-6" tabindex="-1"></a><span class="co">#Merge the two datasets:</span></span>
-<span id="cb348-7"><a href="cata-and-hedonics.html#cb348-7" tabindex="-1"></a>beer <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(<span class="fu">left_join</span>(beercata, beerliking, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;Consumer.ID&quot;</span>, <span class="st">&quot;Beer&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="cata-and-hedonics.html#cb350-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb350-2"><a href="cata-and-hedonics.html#cb350-2" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb350-3"><a href="cata-and-hedonics.html#cb350-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span>
+<span id="cb350-4"><a href="cata-and-hedonics.html#cb350-4" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span>
+<span id="cb350-5"><a href="cata-and-hedonics.html#cb350-5" tabindex="-1"></a></span>
+<span id="cb350-6"><a href="cata-and-hedonics.html#cb350-6" tabindex="-1"></a><span class="co">#Merge the two datasets:</span></span>
+<span id="cb350-7"><a href="cata-and-hedonics.html#cb350-7" tabindex="-1"></a>beer <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(<span class="fu">left_join</span>(beercata, beerliking, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;Consumer.ID&quot;</span>, <span class="st">&quot;Beer&quot;</span>)))</span></code></pre></div>
 <p>A dataframe is created by merging the two previously mentioned datasets, by the function <em>left_join</em>, based on the common columns <em>Consumer.ID</em> and <em>Beer</em>. <em>na.omit</em> is used to remove rows containing missing values, as the PLS function to be used later on, can not handle missing values in the variables used.</p>
 <p>The PLS model can be built with relative ease using the <em>mdatools</em>
 package:</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="cata-and-hedonics.html#cb349-1" tabindex="-1"></a><span class="fu">library</span>(mdatools)</span>
-<span id="cb349-2"><a href="cata-and-hedonics.html#cb349-2" tabindex="-1"></a><span class="co">#Create the PLS object:</span></span>
-<span id="cb349-3"><a href="cata-and-hedonics.html#cb349-3" tabindex="-1"></a>beerPLS <span class="ot">&lt;-</span> <span class="fu">pls</span>(<span class="at">x =</span> beer[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>],<span class="at">y =</span> beer<span class="sc">$</span>Liking ,<span class="at">center =</span> T,<span class="at">scale =</span> F,<span class="at">ncomp =</span> <span class="dv">10</span>)</span>
-<span id="cb349-4"><a href="cata-and-hedonics.html#cb349-4" tabindex="-1"></a></span>
-<span id="cb349-5"><a href="cata-and-hedonics.html#cb349-5" tabindex="-1"></a><span class="fu">summary</span>(beerPLS)</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="cata-and-hedonics.html#cb351-1" tabindex="-1"></a><span class="fu">library</span>(mdatools)</span>
+<span id="cb351-2"><a href="cata-and-hedonics.html#cb351-2" tabindex="-1"></a><span class="co">#Create the PLS object:</span></span>
+<span id="cb351-3"><a href="cata-and-hedonics.html#cb351-3" tabindex="-1"></a>beerPLS <span class="ot">&lt;-</span> <span class="fu">pls</span>(<span class="at">x =</span> beer[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>],<span class="at">y =</span> beer<span class="sc">$</span>Liking ,<span class="at">center =</span> T,<span class="at">scale =</span> F,<span class="at">ncomp =</span> <span class="dv">10</span>)</span>
+<span id="cb351-4"><a href="cata-and-hedonics.html#cb351-4" tabindex="-1"></a></span>
+<span id="cb351-5"><a href="cata-and-hedonics.html#cb351-5" tabindex="-1"></a><span class="fu">summary</span>(beerPLS)</span></code></pre></div>
 <pre><code>## 
 ## PLS model (class pls) summary
 ## -------------------------------
@@ -699,8 +699,8 @@ Both the y and x matrices are mean-centered, by specifying <em>center = T</em>, 
 <em>ncomp</em> argument specifies how many components should be calculated - in this case 4.</p>
 <p>The model gives a warning of no validation results found. This is
 referring to the cross-validation that can be done, to find the optimal number of components needed to describe the optimal complexity of the model. Let us add cross-validation to the model:</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="cata-and-hedonics.html#cb351-1" tabindex="-1"></a><span class="co">#Create the PLS object:</span></span>
-<span id="cb351-2"><a href="cata-and-hedonics.html#cb351-2" tabindex="-1"></a>beerPLSCV <span class="ot">&lt;-</span> <span class="fu">pls</span>(<span class="at">x =</span> beer[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>],<span class="at">y =</span> beer<span class="sc">$</span>Liking ,<span class="at">center =</span> T,<span class="at">scale =</span> F,<span class="at">ncomp =</span> <span class="dv">10</span>,<span class="at">cv =</span> <span class="fu">rep</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">unique</span>(beer<span class="sc">$</span>Consumer.ID)), <span class="at">each =</span> <span class="dv">6</span>), <span class="at">length.out =</span> <span class="fu">nrow</span>(beer)))</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="cata-and-hedonics.html#cb353-1" tabindex="-1"></a><span class="co">#Create the PLS object:</span></span>
+<span id="cb353-2"><a href="cata-and-hedonics.html#cb353-2" tabindex="-1"></a>beerPLSCV <span class="ot">&lt;-</span> <span class="fu">pls</span>(<span class="at">x =</span> beer[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>],<span class="at">y =</span> beer<span class="sc">$</span>Liking ,<span class="at">center =</span> T,<span class="at">scale =</span> F,<span class="at">ncomp =</span> <span class="dv">10</span>,<span class="at">cv =</span> <span class="fu">rep</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">unique</span>(beer<span class="sc">$</span>Consumer.ID)), <span class="at">each =</span> <span class="dv">6</span>), <span class="at">length.out =</span> <span class="fu">nrow</span>(beer)))</span></code></pre></div>
 <p>The cross-validation used is specified in the <em>cv</em> argument. The
 argument takes a vast majority of inputs. Perhaps the easiest to use is
 Leave-One-Out cross-validation that is specified by <em>cv = 1</em>, but might
@@ -710,7 +710,7 @@ based on the consumer, i.e. we obtain a vector containing
 consumer answered.</p>
 <p>The summary function can be used to see various information about the
 PLS model:</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="cata-and-hedonics.html#cb352-1" tabindex="-1"></a><span class="fu">summary</span>(beerPLSCV)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="cata-and-hedonics.html#cb354-1" tabindex="-1"></a><span class="fu">summary</span>(beerPLSCV)</span></code></pre></div>
 <pre><code>## 
 ## PLS model (class pls) summary
 ## -------------------------------
@@ -723,8 +723,8 @@ PLS model:</p>
 ## Cv           NA          NA 0.192 1.579 0.209 -4e-04 1.11</code></pre>
 <p>The summary seems to think 2 components is the optimal amount.</p>
 <p>Let us plot the RMSE and see if this correct:</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="cata-and-hedonics.html#cb354-1" tabindex="-1"></a><span class="fu">plotRMSE</span>(beerPLSCV)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="cata-and-hedonics.html#cb356-1" tabindex="-1"></a><span class="fu">plotRMSE</span>(beerPLSCV)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
 <p>The increase in the RMSECV from components 2 to 3, seems to indicate
 that the optimal number of components is indeed 2.</p>
 </div>
@@ -738,8 +738,8 @@ variable contributes to predicting the response variable (in this case
 liking).</p>
 <p>The regression coefficients can easily be visualized using the
 <em>mdatools</em> package:</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="cata-and-hedonics.html#cb355-1" tabindex="-1"></a><span class="fu">plotRegcoeffs</span>(beerPLSCV,<span class="at">show.labels =</span> T, <span class="at">show.ci =</span> T, <span class="at">ncomp =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="cata-and-hedonics.html#cb357-1" tabindex="-1"></a><span class="fu">plotRegcoeffs</span>(beerPLSCV,<span class="at">show.labels =</span> T, <span class="at">show.ci =</span> T, <span class="at">ncomp =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
 <p>The function <em>plotRegcoeffs</em> is used, and the PLS object is specified.
 <em>show.labels = T</em> specifies the labels from <span class="math inline">\(\boldsymbol{X}\)</span> is printed
 on the bars. <em>show.ci = T</em> specifies that the confidence interval is
@@ -752,7 +752,7 @@ significantly increase the liking of the beers. In addition there are
 irrelevant non-significant attributes (i.e. confidence interval crossing
 0) such as S_foamy and S_Berries among many other attributes.</p>
 <p>The significance of the attributes can also be displayed in a table with coefficients, t-values, p-values and confidence interval:</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="cata-and-hedonics.html#cb356-1" tabindex="-1"></a><span class="fu">summary</span>(beerPLSCV<span class="sc">$</span>coeffs, <span class="at">ncomp =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="cata-and-hedonics.html#cb358-1" tabindex="-1"></a><span class="fu">summary</span>(beerPLSCV<span class="sc">$</span>coeffs, <span class="at">ncomp =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## 
 ## Regression coefficients for y1 (ncomp = 2)
 ## ------------------------------------------
@@ -821,91 +821,91 @@ of the correlation loading plots, it may indicate consistent
 co-variation between the three matrices.</p>
 <p>The exo version will only be showcased here, but the principle is the
 same, and endo can be useful for data exploration.</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="cata-and-hedonics.html#cb358-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb358-2"><a href="cata-and-hedonics.html#cb358-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span>
-<span id="cb358-3"><a href="cata-and-hedonics.html#cb358-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerdemo&quot;</span>)</span>
-<span id="cb358-4"><a href="cata-and-hedonics.html#cb358-4" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="cata-and-hedonics.html#cb360-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb360-2"><a href="cata-and-hedonics.html#cb360-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span>
+<span id="cb360-3"><a href="cata-and-hedonics.html#cb360-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerdemo&quot;</span>)</span>
+<span id="cb360-4"><a href="cata-and-hedonics.html#cb360-4" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span></code></pre></div>
 </div>
 <div id="creating-x1-x2-x3." class="section level2 hasAnchor" number="16.5">
 <h2><span class="header-section-number">16.5</span> Creating X1, X2, X3.<a href="cata-and-hedonics.html#creating-x1-x2-x3." class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The preparation of the data, requires quite a lot of data manipulation.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="cata-and-hedonics.html#cb359-1" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
-<span id="cb359-2"><a href="cata-and-hedonics.html#cb359-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb359-3"><a href="cata-and-hedonics.html#cb359-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb359-4"><a href="cata-and-hedonics.html#cb359-4" tabindex="-1"></a></span>
-<span id="cb359-5"><a href="cata-and-hedonics.html#cb359-5" tabindex="-1"></a><span class="co"># Prepare data for LPLS analysis</span></span>
-<span id="cb359-6"><a href="cata-and-hedonics.html#cb359-6" tabindex="-1"></a></span>
-<span id="cb359-7"><a href="cata-and-hedonics.html#cb359-7" tabindex="-1"></a><span class="do">## Y - Beer Liking data</span></span>
-<span id="cb359-8"><a href="cata-and-hedonics.html#cb359-8" tabindex="-1"></a>X1 <span class="ot">&lt;-</span> beerliking <span class="sc">%&gt;%</span></span>
-<span id="cb359-9"><a href="cata-and-hedonics.html#cb359-9" tabindex="-1"></a>  <span class="fu">select</span>(Beer, Liking, Consumer.ID) <span class="sc">%&gt;%</span></span>
-<span id="cb359-10"><a href="cata-and-hedonics.html#cb359-10" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Consumer.ID, <span class="at">values_from =</span> Liking) <span class="sc">%&gt;%</span></span>
-<span id="cb359-11"><a href="cata-and-hedonics.html#cb359-11" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">&quot;Beer&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb359-12"><a href="cata-and-hedonics.html#cb359-12" tabindex="-1"></a>  <span class="fu">select_if</span>(<span class="sc">~!</span><span class="fu">any</span>(<span class="fu">is.na</span>(.)))</span>
-<span id="cb359-13"><a href="cata-and-hedonics.html#cb359-13" tabindex="-1"></a></span>
-<span id="cb359-14"><a href="cata-and-hedonics.html#cb359-14" tabindex="-1"></a><span class="do">## X - Beer Attributes data</span></span>
-<span id="cb359-15"><a href="cata-and-hedonics.html#cb359-15" tabindex="-1"></a><span class="fu">colnames</span>(beercata) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;S_&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">colnames</span>(beercata))</span>
-<span id="cb359-16"><a href="cata-and-hedonics.html#cb359-16" tabindex="-1"></a>X2 <span class="ot">&lt;-</span> beercata <span class="sc">%&gt;%</span></span>
-<span id="cb359-17"><a href="cata-and-hedonics.html#cb359-17" tabindex="-1"></a>  <span class="fu">select</span>(Beer, Flowers<span class="sc">:</span>Vinous) <span class="sc">%&gt;%</span></span>
-<span id="cb359-18"><a href="cata-and-hedonics.html#cb359-18" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">!</span>Beer, <span class="at">names_to =</span> <span class="st">&quot;Attribute&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Value&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb359-19"><a href="cata-and-hedonics.html#cb359-19" tabindex="-1"></a>  <span class="fu">group_by</span>(Beer, Attribute) <span class="sc">%&gt;%</span></span>
-<span id="cb359-20"><a href="cata-and-hedonics.html#cb359-20" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">Sum_value =</span> <span class="fu">sum</span>(Value)) <span class="sc">%&gt;%</span></span>
-<span id="cb359-21"><a href="cata-and-hedonics.html#cb359-21" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">&quot;Attribute&quot;</span>, <span class="at">values_from =</span> <span class="st">&quot;Sum_value&quot;</span>, <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb359-22"><a href="cata-and-hedonics.html#cb359-22" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">&quot;Beer&quot;</span>)</span>
-<span id="cb359-23"><a href="cata-and-hedonics.html#cb359-23" tabindex="-1"></a></span>
-<span id="cb359-24"><a href="cata-and-hedonics.html#cb359-24" tabindex="-1"></a><span class="do">## Z - Consumer Demographics data</span></span>
-<span id="cb359-25"><a href="cata-and-hedonics.html#cb359-25" tabindex="-1"></a><span class="co"># select subset of columns and create binary columns for categorical variables</span></span>
-<span id="cb359-26"><a href="cata-and-hedonics.html#cb359-26" tabindex="-1"></a>binary_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Income&quot;</span>, <span class="st">&quot;Householdsize&quot;</span>, <span class="st">&quot;Beer types/month&quot;</span>)</span>
-<span id="cb359-27"><a href="cata-and-hedonics.html#cb359-27" tabindex="-1"></a><span class="cf">for</span> (col <span class="cf">in</span> binary_cols) {</span>
-<span id="cb359-28"><a href="cata-and-hedonics.html#cb359-28" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.factor</span>(beerdemo[[col]]) <span class="sc">|</span> <span class="fu">is.character</span>(beerdemo[[col]])) {</span>
-<span id="cb359-29"><a href="cata-and-hedonics.html#cb359-29" tabindex="-1"></a>    levels <span class="ot">&lt;-</span> <span class="fu">unique</span>(beerdemo[[col]])</span>
-<span id="cb359-30"><a href="cata-and-hedonics.html#cb359-30" tabindex="-1"></a>    <span class="cf">for</span> (level <span class="cf">in</span> levels) {</span>
-<span id="cb359-31"><a href="cata-and-hedonics.html#cb359-31" tabindex="-1"></a>      new_col <span class="ot">&lt;-</span> <span class="fu">paste</span>(col, level, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span>
-<span id="cb359-32"><a href="cata-and-hedonics.html#cb359-32" tabindex="-1"></a>      beerdemo[[new_col]] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(beerdemo[[col]] <span class="sc">==</span> level, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;0&quot;</span>)</span>
-<span id="cb359-33"><a href="cata-and-hedonics.html#cb359-33" tabindex="-1"></a>    }</span>
-<span id="cb359-34"><a href="cata-and-hedonics.html#cb359-34" tabindex="-1"></a>  }</span>
-<span id="cb359-35"><a href="cata-and-hedonics.html#cb359-35" tabindex="-1"></a>}</span>
-<span id="cb359-36"><a href="cata-and-hedonics.html#cb359-36" tabindex="-1"></a></span>
-<span id="cb359-37"><a href="cata-and-hedonics.html#cb359-37" tabindex="-1"></a><span class="co"># pivot longer and summarize to calculate sum values for each Consumer ID-Attribute combination</span></span>
-<span id="cb359-38"><a href="cata-and-hedonics.html#cb359-38" tabindex="-1"></a>X3 <span class="ot">&lt;-</span> beerdemo <span class="sc">%&gt;%</span></span>
-<span id="cb359-39"><a href="cata-and-hedonics.html#cb359-39" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>(Gender<span class="sc">:</span><span class="st">`</span><span class="at">Beer types/month</span><span class="st">`</span>),<span class="st">`</span><span class="at">Interest in food</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Beer types/month_9 - 16</span><span class="st">`</span>,<span class="st">`</span><span class="at">Consumer ID</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb359-40"><a href="cata-and-hedonics.html#cb359-40" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="sc">-</span><span class="st">`</span><span class="at">Consumer ID</span><span class="st">`</span>), </span>
-<span id="cb359-41"><a href="cata-and-hedonics.html#cb359-41" tabindex="-1"></a>            <span class="at">.funs =</span> <span class="fu">list</span>(<span class="sc">~</span><span class="fu">as.factor</span>(.) <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>())) <span class="sc">%&gt;%</span></span>
-<span id="cb359-42"><a href="cata-and-hedonics.html#cb359-42" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span><span class="st">`</span><span class="at">Interest in food</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Beer types/month_9 - 16</span><span class="st">`</span> , <span class="at">names_to =</span> <span class="st">&quot;Attribute&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Value&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb359-43"><a href="cata-and-hedonics.html#cb359-43" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Consumer ID</span><span class="st">`</span>, Attribute) <span class="sc">%&gt;%</span></span>
-<span id="cb359-44"><a href="cata-and-hedonics.html#cb359-44" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">sum_Value =</span> <span class="fu">sum</span>(Value)) <span class="sc">%&gt;%</span></span>
-<span id="cb359-45"><a href="cata-and-hedonics.html#cb359-45" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">&quot;Consumer ID&quot;</span>, <span class="at">values_from =</span> <span class="st">&quot;sum_Value&quot;</span>, <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb359-46"><a href="cata-and-hedonics.html#cb359-46" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">&quot;Attribute&quot;</span>)</span>
-<span id="cb359-47"><a href="cata-and-hedonics.html#cb359-47" tabindex="-1"></a></span>
-<span id="cb359-48"><a href="cata-and-hedonics.html#cb359-48" tabindex="-1"></a><span class="co"># keep only columns in Y</span></span>
-<span id="cb359-49"><a href="cata-and-hedonics.html#cb359-49" tabindex="-1"></a>col_names <span class="ot">&lt;-</span> <span class="fu">names</span>(X1)</span>
-<span id="cb359-50"><a href="cata-and-hedonics.html#cb359-50" tabindex="-1"></a>X3 <span class="ot">&lt;-</span> X3[,col_names]</span>
-<span id="cb359-51"><a href="cata-and-hedonics.html#cb359-51" tabindex="-1"></a></span>
-<span id="cb359-52"><a href="cata-and-hedonics.html#cb359-52" tabindex="-1"></a><span class="co"># LPLS function only accepts matrix. Convert data frames to matrices.</span></span>
-<span id="cb359-53"><a href="cata-and-hedonics.html#cb359-53" tabindex="-1"></a>X1_mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X1)</span>
-<span id="cb359-54"><a href="cata-and-hedonics.html#cb359-54" tabindex="-1"></a>X2_mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X2)</span>
-<span id="cb359-55"><a href="cata-and-hedonics.html#cb359-55" tabindex="-1"></a>X3_mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X3)</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="cata-and-hedonics.html#cb361-1" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb361-2"><a href="cata-and-hedonics.html#cb361-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb361-3"><a href="cata-and-hedonics.html#cb361-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb361-4"><a href="cata-and-hedonics.html#cb361-4" tabindex="-1"></a></span>
+<span id="cb361-5"><a href="cata-and-hedonics.html#cb361-5" tabindex="-1"></a><span class="co"># Prepare data for LPLS analysis</span></span>
+<span id="cb361-6"><a href="cata-and-hedonics.html#cb361-6" tabindex="-1"></a></span>
+<span id="cb361-7"><a href="cata-and-hedonics.html#cb361-7" tabindex="-1"></a><span class="do">## Y - Beer Liking data</span></span>
+<span id="cb361-8"><a href="cata-and-hedonics.html#cb361-8" tabindex="-1"></a>X1 <span class="ot">&lt;-</span> beerliking <span class="sc">%&gt;%</span></span>
+<span id="cb361-9"><a href="cata-and-hedonics.html#cb361-9" tabindex="-1"></a>  <span class="fu">select</span>(Beer, Liking, Consumer.ID) <span class="sc">%&gt;%</span></span>
+<span id="cb361-10"><a href="cata-and-hedonics.html#cb361-10" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Consumer.ID, <span class="at">values_from =</span> Liking) <span class="sc">%&gt;%</span></span>
+<span id="cb361-11"><a href="cata-and-hedonics.html#cb361-11" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">&quot;Beer&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb361-12"><a href="cata-and-hedonics.html#cb361-12" tabindex="-1"></a>  <span class="fu">select_if</span>(<span class="sc">~!</span><span class="fu">any</span>(<span class="fu">is.na</span>(.)))</span>
+<span id="cb361-13"><a href="cata-and-hedonics.html#cb361-13" tabindex="-1"></a></span>
+<span id="cb361-14"><a href="cata-and-hedonics.html#cb361-14" tabindex="-1"></a><span class="do">## X - Beer Attributes data</span></span>
+<span id="cb361-15"><a href="cata-and-hedonics.html#cb361-15" tabindex="-1"></a><span class="fu">colnames</span>(beercata) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;S_&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">colnames</span>(beercata))</span>
+<span id="cb361-16"><a href="cata-and-hedonics.html#cb361-16" tabindex="-1"></a>X2 <span class="ot">&lt;-</span> beercata <span class="sc">%&gt;%</span></span>
+<span id="cb361-17"><a href="cata-and-hedonics.html#cb361-17" tabindex="-1"></a>  <span class="fu">select</span>(Beer, Flowers<span class="sc">:</span>Vinous) <span class="sc">%&gt;%</span></span>
+<span id="cb361-18"><a href="cata-and-hedonics.html#cb361-18" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">!</span>Beer, <span class="at">names_to =</span> <span class="st">&quot;Attribute&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb361-19"><a href="cata-and-hedonics.html#cb361-19" tabindex="-1"></a>  <span class="fu">group_by</span>(Beer, Attribute) <span class="sc">%&gt;%</span></span>
+<span id="cb361-20"><a href="cata-and-hedonics.html#cb361-20" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">Sum_value =</span> <span class="fu">sum</span>(Value)) <span class="sc">%&gt;%</span></span>
+<span id="cb361-21"><a href="cata-and-hedonics.html#cb361-21" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">&quot;Attribute&quot;</span>, <span class="at">values_from =</span> <span class="st">&quot;Sum_value&quot;</span>, <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb361-22"><a href="cata-and-hedonics.html#cb361-22" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">&quot;Beer&quot;</span>)</span>
+<span id="cb361-23"><a href="cata-and-hedonics.html#cb361-23" tabindex="-1"></a></span>
+<span id="cb361-24"><a href="cata-and-hedonics.html#cb361-24" tabindex="-1"></a><span class="do">## Z - Consumer Demographics data</span></span>
+<span id="cb361-25"><a href="cata-and-hedonics.html#cb361-25" tabindex="-1"></a><span class="co"># select subset of columns and create binary columns for categorical variables</span></span>
+<span id="cb361-26"><a href="cata-and-hedonics.html#cb361-26" tabindex="-1"></a>binary_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Income&quot;</span>, <span class="st">&quot;Householdsize&quot;</span>, <span class="st">&quot;Beer types/month&quot;</span>)</span>
+<span id="cb361-27"><a href="cata-and-hedonics.html#cb361-27" tabindex="-1"></a><span class="cf">for</span> (col <span class="cf">in</span> binary_cols) {</span>
+<span id="cb361-28"><a href="cata-and-hedonics.html#cb361-28" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.factor</span>(beerdemo[[col]]) <span class="sc">|</span> <span class="fu">is.character</span>(beerdemo[[col]])) {</span>
+<span id="cb361-29"><a href="cata-and-hedonics.html#cb361-29" tabindex="-1"></a>    levels <span class="ot">&lt;-</span> <span class="fu">unique</span>(beerdemo[[col]])</span>
+<span id="cb361-30"><a href="cata-and-hedonics.html#cb361-30" tabindex="-1"></a>    <span class="cf">for</span> (level <span class="cf">in</span> levels) {</span>
+<span id="cb361-31"><a href="cata-and-hedonics.html#cb361-31" tabindex="-1"></a>      new_col <span class="ot">&lt;-</span> <span class="fu">paste</span>(col, level, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span>
+<span id="cb361-32"><a href="cata-and-hedonics.html#cb361-32" tabindex="-1"></a>      beerdemo[[new_col]] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(beerdemo[[col]] <span class="sc">==</span> level, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;0&quot;</span>)</span>
+<span id="cb361-33"><a href="cata-and-hedonics.html#cb361-33" tabindex="-1"></a>    }</span>
+<span id="cb361-34"><a href="cata-and-hedonics.html#cb361-34" tabindex="-1"></a>  }</span>
+<span id="cb361-35"><a href="cata-and-hedonics.html#cb361-35" tabindex="-1"></a>}</span>
+<span id="cb361-36"><a href="cata-and-hedonics.html#cb361-36" tabindex="-1"></a></span>
+<span id="cb361-37"><a href="cata-and-hedonics.html#cb361-37" tabindex="-1"></a><span class="co"># pivot longer and summarize to calculate sum values for each Consumer ID-Attribute combination</span></span>
+<span id="cb361-38"><a href="cata-and-hedonics.html#cb361-38" tabindex="-1"></a>X3 <span class="ot">&lt;-</span> beerdemo <span class="sc">%&gt;%</span></span>
+<span id="cb361-39"><a href="cata-and-hedonics.html#cb361-39" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>(Gender<span class="sc">:</span><span class="st">`</span><span class="at">Beer types/month</span><span class="st">`</span>),<span class="st">`</span><span class="at">Interest in food</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Beer types/month_9 - 16</span><span class="st">`</span>,<span class="st">`</span><span class="at">Consumer ID</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb361-40"><a href="cata-and-hedonics.html#cb361-40" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="sc">-</span><span class="st">`</span><span class="at">Consumer ID</span><span class="st">`</span>), </span>
+<span id="cb361-41"><a href="cata-and-hedonics.html#cb361-41" tabindex="-1"></a>            <span class="at">.funs =</span> <span class="fu">list</span>(<span class="sc">~</span><span class="fu">as.factor</span>(.) <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>())) <span class="sc">%&gt;%</span></span>
+<span id="cb361-42"><a href="cata-and-hedonics.html#cb361-42" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span><span class="st">`</span><span class="at">Interest in food</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Beer types/month_9 - 16</span><span class="st">`</span> , <span class="at">names_to =</span> <span class="st">&quot;Attribute&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb361-43"><a href="cata-and-hedonics.html#cb361-43" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Consumer ID</span><span class="st">`</span>, Attribute) <span class="sc">%&gt;%</span></span>
+<span id="cb361-44"><a href="cata-and-hedonics.html#cb361-44" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">sum_Value =</span> <span class="fu">sum</span>(Value)) <span class="sc">%&gt;%</span></span>
+<span id="cb361-45"><a href="cata-and-hedonics.html#cb361-45" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">&quot;Consumer ID&quot;</span>, <span class="at">values_from =</span> <span class="st">&quot;sum_Value&quot;</span>, <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb361-46"><a href="cata-and-hedonics.html#cb361-46" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">&quot;Attribute&quot;</span>)</span>
+<span id="cb361-47"><a href="cata-and-hedonics.html#cb361-47" tabindex="-1"></a></span>
+<span id="cb361-48"><a href="cata-and-hedonics.html#cb361-48" tabindex="-1"></a><span class="co"># keep only columns in Y</span></span>
+<span id="cb361-49"><a href="cata-and-hedonics.html#cb361-49" tabindex="-1"></a>col_names <span class="ot">&lt;-</span> <span class="fu">names</span>(X1)</span>
+<span id="cb361-50"><a href="cata-and-hedonics.html#cb361-50" tabindex="-1"></a>X3 <span class="ot">&lt;-</span> X3[,col_names]</span>
+<span id="cb361-51"><a href="cata-and-hedonics.html#cb361-51" tabindex="-1"></a></span>
+<span id="cb361-52"><a href="cata-and-hedonics.html#cb361-52" tabindex="-1"></a><span class="co"># LPLS function only accepts matrix. Convert data frames to matrices.</span></span>
+<span id="cb361-53"><a href="cata-and-hedonics.html#cb361-53" tabindex="-1"></a>X1_mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X1)</span>
+<span id="cb361-54"><a href="cata-and-hedonics.html#cb361-54" tabindex="-1"></a>X2_mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X2)</span>
+<span id="cb361-55"><a href="cata-and-hedonics.html#cb361-55" tabindex="-1"></a>X3_mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X3)</span></code></pre></div>
 </div>
 <div id="building-the-model-the-l-pls-model-can-be-built-using-the-lpls" class="section level2 hasAnchor" number="16.6">
 <h2><span class="header-section-number">16.6</span> Building the model: The L-PLS model can be built, using the <em>lpls</em><a href="cata-and-hedonics.html#building-the-model-the-l-pls-model-can-be-built-using-the-lpls" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>function from the <em>multiblock</em> package.</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="cata-and-hedonics.html#cb360-1" tabindex="-1"></a><span class="fu">library</span>(multiblock)</span>
-<span id="cb360-2"><a href="cata-and-hedonics.html#cb360-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb360-3"><a href="cata-and-hedonics.html#cb360-3" tabindex="-1"></a><span class="co">#Scale the Z-matrix as we have semi-contious and binary data. </span></span>
-<span id="cb360-4"><a href="cata-and-hedonics.html#cb360-4" tabindex="-1"></a>lp_exo <span class="ot">&lt;-</span> <span class="fu">lpls</span>(X1_mat,X2_mat,X3_mat,<span class="at">type =</span> <span class="st">&quot;exo&quot;</span>,<span class="at">scale =</span> <span class="fu">c</span>(F,F,T),<span class="at">doublecenter =</span> T,<span class="at">ncomp =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="cata-and-hedonics.html#cb362-1" tabindex="-1"></a><span class="fu">library</span>(multiblock)</span>
+<span id="cb362-2"><a href="cata-and-hedonics.html#cb362-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb362-3"><a href="cata-and-hedonics.html#cb362-3" tabindex="-1"></a><span class="co">#Scale the Z-matrix as we have semi-contious and binary data. </span></span>
+<span id="cb362-4"><a href="cata-and-hedonics.html#cb362-4" tabindex="-1"></a>lp_exo <span class="ot">&lt;-</span> <span class="fu">lpls</span>(X1_mat,X2_mat,X3_mat,<span class="at">type =</span> <span class="st">&quot;exo&quot;</span>,<span class="at">scale =</span> <span class="fu">c</span>(F,F,T),<span class="at">doublecenter =</span> T,<span class="at">ncomp =</span> <span class="dv">5</span>)</span></code></pre></div>
 <div id="finding-the-explained-variance-for-exo-l-pls" class="section level3 hasAnchor" number="16.6.1">
 <h3><span class="header-section-number">16.6.1</span> Finding the explained variance for exo L-PLS<a href="cata-and-hedonics.html#finding-the-explained-variance-for-exo-l-pls" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The explained variance for the exo L-PLS can easily be sacked from the
 model object, and displayed nicely in a table using the <em>kableExtra</em>
 package.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="cata-and-hedonics.html#cb361-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb361-2"><a href="cata-and-hedonics.html#cb361-2" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb361-3"><a href="cata-and-hedonics.html#cb361-3" tabindex="-1"></a>expVarExo <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">as.data.frame</span>(lp_exo<span class="sc">$</span>vars)<span class="sc">*</span><span class="dv">100</span>)</span>
-<span id="cb361-4"><a href="cata-and-hedonics.html#cb361-4" tabindex="-1"></a><span class="fu">colnames</span>(expVarExo) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Comp &quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb361-5"><a href="cata-and-hedonics.html#cb361-5" tabindex="-1"></a><span class="fu">rownames</span>(expVarExo) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;X&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb361-6"><a href="cata-and-hedonics.html#cb361-6" tabindex="-1"></a></span>
-<span id="cb361-7"><a href="cata-and-hedonics.html#cb361-7" tabindex="-1"></a><span class="co">#Create a table</span></span>
-<span id="cb361-8"><a href="cata-and-hedonics.html#cb361-8" tabindex="-1"></a><span class="fu">kbl</span>(expVarExo, <span class="at">caption =</span> <span class="st">&quot;Explained Variance by Component (%)&quot;</span>,<span class="at">digits =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb361-9"><a href="cata-and-hedonics.html#cb361-9" tabindex="-1"></a>  <span class="fu">kable_paper</span>(<span class="st">&quot;hover&quot;</span>,<span class="at">full_width =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="cata-and-hedonics.html#cb363-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb363-2"><a href="cata-and-hedonics.html#cb363-2" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb363-3"><a href="cata-and-hedonics.html#cb363-3" tabindex="-1"></a>expVarExo <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">as.data.frame</span>(lp_exo<span class="sc">$</span>vars)<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb363-4"><a href="cata-and-hedonics.html#cb363-4" tabindex="-1"></a><span class="fu">colnames</span>(expVarExo) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Comp &quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb363-5"><a href="cata-and-hedonics.html#cb363-5" tabindex="-1"></a><span class="fu">rownames</span>(expVarExo) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;X&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb363-6"><a href="cata-and-hedonics.html#cb363-6" tabindex="-1"></a></span>
+<span id="cb363-7"><a href="cata-and-hedonics.html#cb363-7" tabindex="-1"></a><span class="co">#Create a table</span></span>
+<span id="cb363-8"><a href="cata-and-hedonics.html#cb363-8" tabindex="-1"></a><span class="fu">kbl</span>(expVarExo, <span class="at">caption =</span> <span class="st">&quot;Explained Variance by Component (%)&quot;</span>,<span class="at">digits =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb363-9"><a href="cata-and-hedonics.html#cb363-9" tabindex="-1"></a>  <span class="fu">kable_paper</span>(<span class="st">&quot;hover&quot;</span>,<span class="at">full_width =</span> F)</span></code></pre></div>
 <p>The explained variance is first sacked from the L-PLS object, and stored
 in a data-frame, from where it is transposed, and converted to
 percentage (%). <em>kbl</em> function is then used to get a nice table.</p>
@@ -918,8 +918,8 @@ descriptors.</p>
 <h3><span class="header-section-number">16.6.2</span> Cross-validation Next let us have a look how many components we<a href="cata-and-hedonics.html#cross-validation-next-let-us-have-a-look-how-many-components-we" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>should look at, by doing a jack-knifing cross-validation on the
 consumers:</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="cata-and-hedonics.html#cb362-1" tabindex="-1"></a>lp.cv2 <span class="ot">&lt;-</span> <span class="fu">lplsCV</span>(lp_exo, <span class="at">segments2 =</span> <span class="fu">as.list</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(X1)[<span class="dv">2</span>]))</span>
-<span id="cb362-2"><a href="cata-and-hedonics.html#cb362-2" tabindex="-1"></a>lp.cv2<span class="sc">$</span>rmsep</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="cata-and-hedonics.html#cb364-1" tabindex="-1"></a>lp.cv2 <span class="ot">&lt;-</span> <span class="fu">lplsCV</span>(lp_exo, <span class="at">segments2 =</span> <span class="fu">as.list</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(X1)[<span class="dv">2</span>]))</span>
+<span id="cb364-2"><a href="cata-and-hedonics.html#cb364-2" tabindex="-1"></a>lp.cv2<span class="sc">$</span>rmsep</span></code></pre></div>
 <p>It looks like 2 components is sufficient.</p>
 </div>
 <div id="vizulization-now-we-would-like-to-visuzlalize-our-l-pls-model.-when" class="section level3 hasAnchor" number="16.6.3">
@@ -927,15 +927,15 @@ consumers:</p>
 <p>using L-PLS for vizulization one should use the orthognoal exo, as this
 will give the orthogonal scores. We build the orthogonal exo in the same
 way as before, but chainging the type.</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="cata-and-hedonics.html#cb363-1" tabindex="-1"></a>lp_exo_ort <span class="ot">&lt;-</span> <span class="fu">lpls</span>(X1_mat,X2_mat,X3_mat,<span class="at">type =</span> <span class="st">&quot;exo_ort&quot;</span>,<span class="at">scale =</span> <span class="fu">c</span>(F,F,T),<span class="at">doublecenter =</span> T,<span class="at">ncomp =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="cata-and-hedonics.html#cb365-1" tabindex="-1"></a>lp_exo_ort <span class="ot">&lt;-</span> <span class="fu">lpls</span>(X1_mat,X2_mat,X3_mat,<span class="at">type =</span> <span class="st">&quot;exo_ort&quot;</span>,<span class="at">scale =</span> <span class="fu">c</span>(F,F,T),<span class="at">doublecenter =</span> T,<span class="at">ncomp =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>Now we plot the L-PLS model. One can chose to plot, the X1, X2 or X3
 correlations, or perhaps a combination of 2, or all.</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="cata-and-hedonics.html#cb364-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb364-2"><a href="cata-and-hedonics.html#cb364-2" tabindex="-1"></a><span class="fu">plot</span>(lp_exo,<span class="at">doplot =</span> <span class="fu">c</span>(F,F,T)) <span class="co">#X3 correlations</span></span>
-<span id="cb364-3"><a href="cata-and-hedonics.html#cb364-3" tabindex="-1"></a><span class="fu">plot</span>(lp_exo,<span class="at">doplot =</span> <span class="fu">c</span>(F,T,F)) <span class="co">#X1 correlations</span></span>
-<span id="cb364-4"><a href="cata-and-hedonics.html#cb364-4" tabindex="-1"></a><span class="fu">plot</span>(lp_exo,<span class="at">doplot =</span> <span class="fu">c</span>(T,T,F)) <span class="co">#X2 and X1 correlations</span></span>
-<span id="cb364-5"><a href="cata-and-hedonics.html#cb364-5" tabindex="-1"></a><span class="fu">plot</span>(lp_exo,<span class="at">doplot =</span> <span class="fu">c</span>(F,T,T)) <span class="co">#X1 and X3 correlations</span></span></code></pre></div>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="cata-and-hedonics.html#cb365-1" tabindex="-1"></a><span class="fu">plot</span>(lp_exo,<span class="at">doplot =</span> <span class="fu">c</span>(T,T,T)) <span class="co">#combined</span></span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="cata-and-hedonics.html#cb366-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb366-2"><a href="cata-and-hedonics.html#cb366-2" tabindex="-1"></a><span class="fu">plot</span>(lp_exo,<span class="at">doplot =</span> <span class="fu">c</span>(F,F,T)) <span class="co">#X3 correlations</span></span>
+<span id="cb366-3"><a href="cata-and-hedonics.html#cb366-3" tabindex="-1"></a><span class="fu">plot</span>(lp_exo,<span class="at">doplot =</span> <span class="fu">c</span>(F,T,F)) <span class="co">#X1 correlations</span></span>
+<span id="cb366-4"><a href="cata-and-hedonics.html#cb366-4" tabindex="-1"></a><span class="fu">plot</span>(lp_exo,<span class="at">doplot =</span> <span class="fu">c</span>(T,T,F)) <span class="co">#X2 and X1 correlations</span></span>
+<span id="cb366-5"><a href="cata-and-hedonics.html#cb366-5" tabindex="-1"></a><span class="fu">plot</span>(lp_exo,<span class="at">doplot =</span> <span class="fu">c</span>(F,T,T)) <span class="co">#X1 and X3 correlations</span></span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="cata-and-hedonics.html#cb367-1" tabindex="-1"></a><span class="fu">plot</span>(lp_exo,<span class="at">doplot =</span> <span class="fu">c</span>(T,T,T)) <span class="co">#combined</span></span></code></pre></div>
 <p>From the plots, the sensory attribute <em>Berries</em> is correlated with the
 sensory attribute <em>Herbs</em>. These two sensory attributes is in turn
 correlated with the beer <em>River Beer</em>. In turn <em>River Beer</em> is opposite

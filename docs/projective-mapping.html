@@ -461,9 +461,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>[An image of a PM]</p>
 <div id="example-from-mapping-of-xx" class="section level2 hasAnchor" number="17.1">
 <h2><span class="header-section-number">17.1</span> Example from mapping of XX<a href="projective-mapping.html#example-from-mapping-of-xx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="projective-mapping.html#cb366-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb366-2"><a href="projective-mapping.html#cb366-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;tempetotemperature&quot;</span>)</span>
-<span id="cb366-3"><a href="projective-mapping.html#cb366-3" tabindex="-1"></a>tempetotemperature</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="projective-mapping.html#cb368-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb368-2"><a href="projective-mapping.html#cb368-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;tempetotemperature&quot;</span>)</span>
+<span id="cb368-3"><a href="projective-mapping.html#cb368-3" tabindex="-1"></a>tempetotemperature</span></code></pre></div>
 <pre><code>##    Productname  Product Sousvidetemperature_C Sousvidetime_days  id Assessor   X1   Y1   X2   Y2
 ## 1       45C-2D Sample 1                    45                 2 903        1 32.2 34.9  0.0  0.0
 ## 2       45C-3D Sample 2                    45                 3 714        1 15.1 23.2  0.0  0.0
@@ -540,11 +540,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 13    0     0     0         0     0     0     0      0     0
 ## 14    0     0     0         0     0     0     0      0     0
 ##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 85 rows ]</code></pre>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="projective-mapping.html#cb368-1" tabindex="-1"></a><span class="fu">table</span>(tempetotemperature<span class="sc">$</span>Productname)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="projective-mapping.html#cb370-1" tabindex="-1"></a><span class="fu">table</span>(tempetotemperature<span class="sc">$</span>Productname)</span></code></pre></div>
 <pre><code>## 
 ## 45C-2D 45C-3D 45C-4D 50C-2D 50C-3D 50C-4D 55C-2D 55C-3D 55C-4D 
 ##     11     11     11     11     11     11     11     11     11</code></pre>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="projective-mapping.html#cb370-1" tabindex="-1"></a><span class="fu">table</span>(tempetotemperature<span class="sc">$</span>Assessor)</span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="projective-mapping.html#cb372-1" tabindex="-1"></a><span class="fu">table</span>(tempetotemperature<span class="sc">$</span>Assessor)</span></code></pre></div>
 <pre><code>## 
 ##  1  2  3  4  5  6  7  8  9 10 11 
 ##  9  9  9  9  9  9  9  9  9  9  9</code></pre>

@@ -576,7 +576,7 @@ Here, <span class="math inline">\(Y_{ij}\)</span> represents the jth observation
 <span id="cb72-4"><a href="inferential-statistics.html#cb72-4" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer)</span>
 <span id="cb72-5"><a href="inferential-statistics.html#cb72-5" tabindex="-1"></a></span>
 <span id="cb72-6"><a href="inferential-statistics.html#cb72-6" tabindex="-1"></a><span class="fu">plot</span>(model,<span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-56-1.png" width="672" /><img src="bookdownproj_files/figure-html/unnamed-chunk-56-2.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-97-1.png" width="672" /><img src="bookdownproj_files/figure-html/unnamed-chunk-97-2.png" width="672" /></p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="inferential-statistics.html#cb73-1" tabindex="-1"></a><span class="fu">anova</span>(model)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
@@ -608,7 +608,7 @@ Here, <span class="math inline">\(Y_{ij}\)</span> represents the jth observation
 <span id="cb75-4"><a href="inferential-statistics.html#cb75-4" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> Age)</span>
 <span id="cb75-5"><a href="inferential-statistics.html#cb75-5" tabindex="-1"></a></span>
 <span id="cb75-6"><a href="inferential-statistics.html#cb75-6" tabindex="-1"></a><span class="fu">plot</span>(model2,<span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-57-1.png" width="672" /><img src="bookdownproj_files/figure-html/unnamed-chunk-57-2.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-98-1.png" width="672" /><img src="bookdownproj_files/figure-html/unnamed-chunk-98-2.png" width="672" /></p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="inferential-statistics.html#cb76-1" tabindex="-1"></a><span class="fu">drop1</span>(model2, <span class="at">test =</span> <span class="st">&#39;F&#39;</span>)</span></code></pre></div>
 <pre><code>## Single term deletions
 ## 
@@ -624,7 +624,7 @@ Here, <span class="math inline">\(Y_{ij}\)</span> represents the jth observation
 <span id="cb78-2"><a href="inferential-statistics.html#cb78-2" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> Age <span class="sc">+</span> Beer<span class="sc">:</span>Age)</span>
 <span id="cb78-3"><a href="inferential-statistics.html#cb78-3" tabindex="-1"></a></span>
 <span id="cb78-4"><a href="inferential-statistics.html#cb78-4" tabindex="-1"></a><span class="fu">plot</span>(model3,<span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-57-3.png" width="672" /><img src="bookdownproj_files/figure-html/unnamed-chunk-57-4.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-98-3.png" width="672" /><img src="bookdownproj_files/figure-html/unnamed-chunk-98-4.png" width="672" /></p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="inferential-statistics.html#cb79-1" tabindex="-1"></a><span class="fu">drop1</span>(model3, .<span class="sc">~</span>., <span class="at">test =</span> <span class="st">&#39;F&#39;</span>)</span></code></pre></div>
 <pre><code>## Single term deletions
 ## 
@@ -665,21 +665,21 @@ Here, <span class="math inline">\(Y_{ij}\)</span> represents the jth observation
 ## 
 ## Linear Hypotheses:
 ##                                   Estimate Std. Error t value Pr(&gt;|t|)    
-## NY Lager - Brown Ale == 0       -6.399e-01  1.979e-01  -3.233   0.0160 *  
-## Porse Bock - Brown Ale == 0     -8.364e-01  1.976e-01  -4.233   &lt;0.001 ***
-## Ravnsborg Red - Brown Ale == 0  -2.325e-01  1.976e-01  -1.177   0.8480    
-## River Beer - Brown Ale == 0     -8.364e-01  1.976e-01  -4.233   &lt;0.001 ***
-## Wheat IPA - Brown Ale == 0      -9.405e-01  1.979e-01  -4.752   &lt;0.001 ***
-## Porse Bock - NY Lager == 0      -1.965e-01  1.973e-01  -0.996   0.9192    
-## Ravnsborg Red - NY Lager == 0    4.074e-01  1.973e-01   2.065   0.3066    
-## River Beer - NY Lager == 0      -1.965e-01  1.973e-01  -0.996   0.9192    
-## Wheat IPA - NY Lager == 0       -3.007e-01  1.976e-01  -1.522   0.6504    
-## Ravnsborg Red - Porse Bock == 0  6.039e-01  1.969e-01   3.066   0.0270 *  
-## River Beer - Porse Bock == 0     1.943e-15  1.969e-01   0.000   1.0000    
-## Wheat IPA - Porse Bock == 0     -1.042e-01  1.973e-01  -0.528   0.9951    
-## River Beer - Ravnsborg Red == 0 -6.039e-01  1.969e-01  -3.066   0.0270 *  
-## Wheat IPA - Ravnsborg Red == 0  -7.080e-01  1.973e-01  -3.589   0.0047 ** 
-## Wheat IPA - River Beer == 0     -1.042e-01  1.973e-01  -0.528   0.9951    
+## NY Lager - Brown Ale == 0       -6.399e-01  1.979e-01  -3.233  0.01586 *  
+## Porse Bock - Brown Ale == 0     -8.364e-01  1.976e-01  -4.233  &lt; 0.001 ***
+## Ravnsborg Red - Brown Ale == 0  -2.325e-01  1.976e-01  -1.177  0.84805    
+## River Beer - Brown Ale == 0     -8.364e-01  1.976e-01  -4.233  &lt; 0.001 ***
+## Wheat IPA - Brown Ale == 0      -9.405e-01  1.979e-01  -4.752  &lt; 0.001 ***
+## Porse Bock - NY Lager == 0      -1.965e-01  1.973e-01  -0.996  0.91920    
+## Ravnsborg Red - NY Lager == 0    4.074e-01  1.973e-01   2.065  0.30668    
+## River Beer - NY Lager == 0      -1.965e-01  1.973e-01  -0.996  0.91921    
+## Wheat IPA - NY Lager == 0       -3.007e-01  1.976e-01  -1.522  0.65038    
+## Ravnsborg Red - Porse Bock == 0  6.039e-01  1.969e-01   3.066  0.02695 *  
+## River Beer - Porse Bock == 0     1.943e-15  1.969e-01   0.000  1.00000    
+## Wheat IPA - Porse Bock == 0     -1.042e-01  1.973e-01  -0.528  0.99506    
+## River Beer - Ravnsborg Red == 0 -6.039e-01  1.969e-01  -3.066  0.02710 *  
+## Wheat IPA - Ravnsborg Red == 0  -7.080e-01  1.973e-01  -3.589  0.00478 ** 
+## Wheat IPA - River Beer == 0     -1.042e-01  1.973e-01  -0.528  0.99506    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
@@ -726,7 +726,7 @@ For instance, the relation between <code>Hunger</code> and the intake <code>AdLi
 <span id="cb85-8"><a href="inferential-statistics.html#cb85-8" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> x, <span class="fu">aes</span>(<span class="at">x =</span> Hunger, <span class="at">y =</span> AdLibg)) <span class="sc">+</span> </span>
 <span id="cb85-9"><a href="inferential-statistics.html#cb85-9" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb85-10"><a href="inferential-statistics.html#cb85-10" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> F)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 <p>Naturally, the more hungry, the higher the intake.</p>
 <p>A model describing this relation is shown below.</p>
 <p>The first line of code uses the <code>lm()</code> function to fit a linear regression model.</p>
@@ -777,7 +777,7 @@ For instance, in the chili data set there are two instances for each judge, and 
 <span id="cb88-3"><a href="inferential-statistics.html#cb88-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Judge)) <span class="sc">+</span> </span>
 <span id="cb88-4"><a href="inferential-statistics.html#cb88-4" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> F) <span class="sc">+</span> </span>
 <span id="cb88-5"><a href="inferential-statistics.html#cb88-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>TestDay<span class="sc">&gt;</span><span class="dv">5</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 <p>The above-mentioned structure is encoded in the modelling. <strong>lmer</strong> is used, when creating a mixed effect model. The judges and the test day are considered random effects, and are assigned to be so by adding a 1 and a horizontal line when creating the model.</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="inferential-statistics.html#cb89-1" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
 <span id="cb89-2"><a href="inferential-statistics.html#cb89-2" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>

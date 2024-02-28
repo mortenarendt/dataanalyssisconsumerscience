@@ -15,13 +15,14 @@ That includes:\
 
 ### Exercise 1 - Solution
 
-Start by importing the data and combine them row wise with the *rbind()* function.
+Start by importing the data and combine them row wise with the *rbind()* function. These datasets look exactly like the ones that you will receive from Compusense, but for the sake of simplicity, they have been included in the *data4consumerscience*-package.
 
 ```{r,warning=FALSE,message=FALSE}
-control <- rio::import("~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/data/Ibuffet_data_MST_ex (2024)/kontrol.csv")
-intervension <- rio::import("~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/data/Ibuffet_data_MST_ex (2024)/Intervention.csv")
-questionare <- rio::import("~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/data/Ibuffet_data_MST_ex (2024)/questionare.csv")
-consumption <- rbind(control,intervension)
+library(data4consumerscience)
+data("mstcontrol")
+data("mstintervension")
+data("mstquestionare")
+consumption <- rbind(mstcontrol,mstintervension)
 
 ```
 
@@ -44,11 +45,11 @@ consumption$Person <- gsub("^A:\\s*(\\d+).*", "\\1", consumption$Person) # Only 
 Then we merge the questionnaire and consumption data using *left_join* by a common variable "Person"
 
 ```{r,warning=FALSE}
-questionare$Person <- as.factor(questionare$Person) 
+mstquestionare$Person <- as.factor(mstquestionare$Person) 
 consumption$Person <- as.factor(consumption$Person)
 
 Buffet_quest <- consumption %>%
-  left_join(questionare, by = c("Person"))
+  left_join(mstquestionare, by = c("Person"))
 Buffet_quest <- na.omit(Buffet_quest) #remove rows with NA values
 ```
 
@@ -117,9 +118,9 @@ You should use tableone as a way to present your descriptive statistics! See cha
 
 ### Exercise 2 - solution
 
-Lets have a quick overview of the data by the use of *CreateTableOne*. Note: If you want to showcase e.g. "Age" with median and IQR, you need to add the variable to the *nonnormal* argument in the *kableone* function. One can alternatively to *kableone* use *print*.
+Lets have a quick overview of the data by the use of *CreateTableOne*. Note: If you want to showcase e.g. "Age" with median and IQR, you need to add the variable to the *nonnormal* argument in the *print* function. 
 
-```{r,warning=FALSE}
+```{r,warning=FALSE, fig.width=7}
 library(tableone)
 #it seems the variable "Consumption in grams" was a character. We want it to be numeric in our tableone!
 Buffet_quest$`Consumption in grams` = as.numeric(Buffet_quest$`Consumption in grams`) 
@@ -129,7 +130,7 @@ tb1 <- CreateTableOne(data = Buffet_quest, vars = c("Gender", "Age", "Nationalit
 "Dietary_lifestyle", "Oat/Oatmeal_familiarity", "Freq_oat_consumption", 
 "Freq_ryebread_consumption","I_like_oat_/_oatmeal", "I_like_ryebread","Consumption in grams"),strata = "Buffet name")
 
-kableone(tb1,showAllLevels = TRUE,nonnormal = "Age")
+print(tb1, showAllLevels = TRUE, nonnormal = 'Age')
 ```
 
 From these results, we can quickly gather information such as:
@@ -149,7 +150,7 @@ tb2 <- CreateTableOne(data = Buffet_quest, vars = c("Gender", "Age", "Nationalit
 "Dietary_lifestyle", "Oat/Oatmeal_familiarity", "Freq_oat_consumption", 
 "Freq_ryebread_consumption","I_like_oat_/_oatmeal", "I_like_ryebread","Consumption in grams"),strata = c("Station name", "Buffet name"))
 
-kableone(tb2,showAllLevels = TRUE, autoWidth = TRUE)
+print(tb2, showAllLevels = TRUE)
 ```
 
 Lets visualize the difference in consumption based on Station Name and Buffet Name, with a boxplot, violin plot.
@@ -159,22 +160,29 @@ library(ggplot2)
 ggplot(data = Buffet_quest,aes(x = interaction(`Buffet name`,`Station name`),y = `Consumption in grams`, fill = interaction(`Buffet name`,`Station name`)))+
   geom_boxplot()+
   geom_jitter()+
+  guides(fill=guide_legend(title = "Buffet & Station")) +
   theme_bw()+
-  theme(axis.text.x = element_text(angle = 90)) 
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank()) 
 ```
 
 ```{r}
 ggplot(data = Buffet_quest,aes(x = interaction(`Buffet name`,`Station name`),y = `Consumption in grams`, fill = interaction(`Buffet name`,`Station name`)))+
   geom_violin()+
-   theme_bw()+
-  theme(axis.text.x = element_text(angle = 90))
+  guides(fill=guide_legend(title = "Buffet & Station")) +
+  theme_bw()+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank()) 
 ```
 
 Or use a histogram to show the distribution of consumption in control and intervention.
 
 ```{r}
 ggplot(data = Buffet_quest, aes(x = `Consumption in grams`, fill = `Station name`))+
-  geom_histogram()+facet_wrap(~`Buffet name`)
+  geom_histogram()+
+  facet_wrap(~`Buffet name`)
 ```
 
 ## Exercise 3 - Creating an outcome table

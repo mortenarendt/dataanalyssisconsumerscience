@@ -482,7 +482,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb98-9"><a href="buffet-and-survey-data.html#cb98-9" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> Person, <span class="at">color =</span> Person)) <span class="sc">+</span> </span>
 <span id="cb98-10"><a href="buffet-and-survey-data.html#cb98-10" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
 <span id="cb98-11"><a href="buffet-and-survey-data.html#cb98-11" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Day&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 <p>The plot shows a boxplot of the consumption for each day and for each serving station, and each point is the consumption of one person from one station. The colors are added to make it easier to see, how the consumption of the same person changes from day to day, as well as for each of the stations. For more information on plotting, see <a href="plotting-data.html#plotting-data">Plotting data</a>.</p>
 <p>Both the days and the stations look quite similar, but it also looks as if the variation in consumption is dependent on person. To test whether this is the case, we create a mixed model.</p>
 </div>
@@ -551,7 +551,7 @@ Secondly, a histogram of the liking scores for each station, shown as the number
 <span id="cb101-6"><a href="buffet-and-survey-data.html#cb101-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pasta, <span class="fu">aes</span>(<span class="at">x =</span> Did_you_consider_the_proteincontent_of_the_dishes_you_choose)) <span class="sc">+</span> </span>
 <span id="cb101-7"><a href="buffet-and-survey-data.html#cb101-7" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
 <span id="cb101-8"><a href="buffet-and-survey-data.html#cb101-8" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span><span class="fu">factor</span>(Day))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="buffet-and-survey-data.html#cb102-1" tabindex="-1"></a><span class="co">#Arranging to plots together</span></span>
 <span id="cb102-2"><a href="buffet-and-survey-data.html#cb102-2" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
 <span id="cb102-3"><a href="buffet-and-survey-data.html#cb102-3" tabindex="-1"></a></span>
@@ -564,7 +564,7 @@ Secondly, a histogram of the liking scores for each station, shown as the number
 <span id="cb102-10"><a href="buffet-and-survey-data.html#cb102-10" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Mushrooms - liking&#39;</span>)</span>
 <span id="cb102-11"><a href="buffet-and-survey-data.html#cb102-11" tabindex="-1"></a></span>
 <span id="cb102-12"><a href="buffet-and-survey-data.html#cb102-12" tabindex="-1"></a><span class="fu">grid.arrange</span>(legumes,mushrooms, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-75-2.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-116-2.png" width="672" /></p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="buffet-and-survey-data.html#cb103-1" tabindex="-1"></a><span class="co">#The fancy way:</span></span>
 <span id="cb103-2"><a href="buffet-and-survey-data.html#cb103-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb103-3"><a href="buffet-and-survey-data.html#cb103-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
@@ -577,12 +577,12 @@ Secondly, a histogram of the liking scores for each station, shown as the number
 <span id="cb103-10"><a href="buffet-and-survey-data.html#cb103-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(<span class="at">x =</span> Answer)) <span class="sc">+</span> </span>
 <span id="cb103-11"><a href="buffet-and-survey-data.html#cb103-11" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
 <span id="cb103-12"><a href="buffet-and-survey-data.html#cb103-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Question)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-75-3.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-116-3.png" width="672" /></p>
 <p>Another nice plot is a bivariate plot, plotting two variables against each other and adding a regression line (using <strong>geom_smooth()</strong>, and specifying <code>method = 'lm'</code> for a linear regression for <code>formula = 'y ~ x')</code>. This has been done below, to see if there is a correlation between the liking and the rating of the visual appearance for pasta with legumes:</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="buffet-and-survey-data.html#cb104-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb104-2"><a href="buffet-and-survey-data.html#cb104-2" tabindex="-1"></a></span>
 <span id="cb104-3"><a href="buffet-and-survey-data.html#cb104-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pasta, <span class="fu">aes</span>(<span class="at">x =</span> Pasta_with_legumes_is_visually_appealing, <span class="at">y =</span> I_like_taste_of_pasta_with_legumes)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">formula =</span> <span class="st">&#39;y ~ x&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
 </div>
 <div id="linear-model-for-buffet-data" class="section level3 hasAnchor" number="8.2.2">
 <h3><span class="header-section-number">8.2.2</span> Linear model for buffet data<a href="buffet-and-survey-data.html#linear-model-for-buffet-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -637,7 +637,7 @@ Secondly, a histogram of the liking scores for each station, shown as the number
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="buffet-and-survey-data.html#cb109-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb109-2"><a href="buffet-and-survey-data.html#cb109-2" tabindex="-1"></a><span class="co">#Bivariate plot</span></span>
 <span id="cb109-3"><a href="buffet-and-survey-data.html#cb109-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pasta[pasta<span class="sc">$</span>StationName<span class="sc">==</span><span class="st">&#39;Pasta with legumes&#39;</span>,], <span class="fu">aes</span>(<span class="at">x =</span> I_like_taste_of_pasta_with_legumes, <span class="at">y =</span> Consumption)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">formula =</span> <span class="st">&#39;y ~ x&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="buffet-and-survey-data.html#cb110-1" tabindex="-1"></a><span class="co">#Model</span></span>
 <span id="cb110-2"><a href="buffet-and-survey-data.html#cb110-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb110-3"><a href="buffet-and-survey-data.html#cb110-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
@@ -701,12 +701,12 @@ Further the yes/no answers are included, and also needs to be changed.</p>
 <h3><span class="header-section-number">8.4.3</span> Bi-plot<a href="buffet-and-survey-data.html#bi-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>And a plot of the model</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="buffet-and-survey-data.html#cb115-1" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">varname.size =</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">5</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
 <p>What does component 1 (PC1) reflect? What does PC2 reflect?</p>
 <p>Lets plot the model and color the samples according to the consumption (of legumes) cutted at the median.</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="buffet-and-survey-data.html#cb116-1" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">groups =</span> <span class="fu">factor</span>(x<span class="sc">$</span>Consumption<span class="sc">&gt;</span><span class="dv">130</span>), <span class="at">ellipse =</span> T,</span>
 <span id="cb116-2"><a href="buffet-and-survey-data.html#cb116-2" tabindex="-1"></a>         <span class="at">varname.size =</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">5</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
 </div>
 <div id="extract-the-components-and-run-all-associations." class="section level3 hasAnchor" number="8.4.4">
 <h3><span class="header-section-number">8.4.4</span> Extract the components and run all associations.<a href="buffet-and-survey-data.html#extract-the-components-and-run-all-associations." class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -729,7 +729,7 @@ It is a little complicated, but here goes</p>
 <span id="cb118-4"><a href="buffet-and-survey-data.html#cb118-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>effect,<span class="sc">-</span>group) <span class="sc">%&gt;%</span> </span>
 <span id="cb118-5"><a href="buffet-and-survey-data.html#cb118-5" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">x =</span> .,<span class="at">caption =</span> <span class="st">&#39;Slopes according to components&#39;</span>, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">format =</span> <span class="st">&#39;simple&#39;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-86">Table 8.1: </span>Slopes according to components</caption>
+<caption><span id="tab:unnamed-chunk-127">Table 8.1: </span>Slopes according to components</caption>
 <thead>
 <tr class="header">
 <th align="left">StationName</th>
@@ -802,7 +802,7 @@ It is a little complicated, but here goes</p>
 <span id="cb119-5"><a href="buffet-and-survey-data.html#cb119-5" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
 <span id="cb119-6"><a href="buffet-and-survey-data.html#cb119-6" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>StationName) <span class="sc">+</span> </span>
 <span id="cb119-7"><a href="buffet-and-survey-data.html#cb119-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
 <p>Interpret the results.</p>
 
 </div>

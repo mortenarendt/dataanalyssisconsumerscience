@@ -468,15 +468,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Create data set with CATA counts per product and make a table thereof</p>
 <p>Plot the CATA counts such that product differences are emphasized.</p>
 <p>Which characteristics is most pronounced overall? And where are the largest product differences observed?</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="tfih-exercises.html#cb372-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb372-2"><a href="tfih-exercises.html#cb372-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="tfih-exercises.html#cb374-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb374-2"><a href="tfih-exercises.html#cb374-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beercata&quot;</span>)</span></code></pre></div>
 </div>
 <div id="hedonics" class="section level3 hasAnchor" number="18.1.2">
 <h3><span class="header-section-number">18.1.2</span> Hedonics<a href="tfih-exercises.html#hedonics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Plot hedonic ratings (beerliking$Liking) per product in histograms to see the distribution</p>
 <p>Calculate descriptive statistics for hedonic rating for each product.</p>
 <p>Which beer is in general more likable? Is the disagreement in liking similar across beers?</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="tfih-exercises.html#cb373-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="tfih-exercises.html#cb375-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="exercise-2-consumer-background-and-pca" class="section level2 hasAnchor" number="18.2">
@@ -487,20 +487,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Age, Gender, Income and Household size is classical demographic characteristics. As the evaluation of the products is done using a specific group of people, the generalizability of the results naturally condition of the characteristics of this population.</p>
 <p>Construct the distributions of the demographic characteristics. You can use the table() function, or maybe do it all at once using the <strong>tableone</strong> package. For inspiration, modify the code below to serve your needs.</p>
 <p>Is there any demographic bias in this dataset?</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="tfih-exercises.html#cb374-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb374-2"><a href="tfih-exercises.html#cb374-2" tabindex="-1"></a><span class="fu">library</span>(tableone)</span>
-<span id="cb374-3"><a href="tfih-exercises.html#cb374-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerdemo&quot;</span>)</span>
-<span id="cb374-4"><a href="tfih-exercises.html#cb374-4" tabindex="-1"></a></span>
-<span id="cb374-5"><a href="tfih-exercises.html#cb374-5" tabindex="-1"></a><span class="fu">CreateTableOne</span>(<span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&#39;Age&#39;</span>,<span class="st">&#39;Gender&#39;</span>),<span class="at">data =</span> beerdemo)</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="tfih-exercises.html#cb376-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb376-2"><a href="tfih-exercises.html#cb376-2" tabindex="-1"></a><span class="fu">library</span>(tableone)</span>
+<span id="cb376-3"><a href="tfih-exercises.html#cb376-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerdemo&quot;</span>)</span>
+<span id="cb376-4"><a href="tfih-exercises.html#cb376-4" tabindex="-1"></a></span>
+<span id="cb376-5"><a href="tfih-exercises.html#cb376-5" tabindex="-1"></a><span class="fu">CreateTableOne</span>(<span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&#39;Age&#39;</span>,<span class="st">&#39;Gender&#39;</span>),<span class="at">data =</span> beerdemo)</span></code></pre></div>
 </div>
 <div id="pca-on-interests" class="section level3 hasAnchor" number="18.2.2">
 <h3><span class="header-section-number">18.2.2</span> PCA on <em>Interests</em><a href="tfih-exercises.html#pca-on-interests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Calculate a PCA model including the Variables 7 ( <em>Interest in food</em> ) to 12 ( <em><code>Future interest in beer</code></em> ). Remember to standardize/scale the variables</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="tfih-exercises.html#cb375-1" tabindex="-1"></a>mdlPCA <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(beerdemo[,<span class="dv">7</span><span class="sc">:</span><span class="dv">12</span>],<span class="at">scale. =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="tfih-exercises.html#cb377-1" tabindex="-1"></a>mdlPCA <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(beerdemo[,<span class="dv">7</span><span class="sc">:</span><span class="dv">12</span>],<span class="at">scale. =</span> T)</span></code></pre></div>
 <p>Plot the scores and loadings in a biplot and look for groupings of the consumers in the scores.</p>
 <p>Group and color according to the background information not used in the model (Gender, Age,..)</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="tfih-exercises.html#cb376-1" tabindex="-1"></a><span class="fu">library</span>(ggbiplot)</span>
-<span id="cb376-2"><a href="tfih-exercises.html#cb376-2" tabindex="-1"></a><span class="fu">ggbiplot</span>(mdlPCA, <span class="at">groups =</span> beerdemo<span class="sc">$</span>Gender, <span class="at">ellipse =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="tfih-exercises.html#cb378-1" tabindex="-1"></a><span class="fu">library</span>(ggbiplot)</span>
+<span id="cb378-2"><a href="tfih-exercises.html#cb378-2" tabindex="-1"></a><span class="fu">ggbiplot</span>(mdlPCA, <span class="at">groups =</span> beerdemo<span class="sc">$</span>Gender, <span class="at">ellipse =</span> T)</span></code></pre></div>
 <p>Describe what you find:
 For instance, is the loading making sense?</p>
 </div>
@@ -509,11 +509,11 @@ For instance, is the loading making sense?</p>
 <h2><span class="header-section-number">18.3</span> Exercise 3: PCA on CATA counts<a href="tfih-exercises.html#exercise-3-pca-on-cata-counts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>From this exercise you should be able to describe your samples (beers) from the CATA counts, and which attributes that occur together, as well as which attribute patterns that discriminate products.</p>
 <p>Calculate a PCA model including all Variables and all Objects.</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="tfih-exercises.html#cb377-1" tabindex="-1"></a>PCAmdl <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(beercata[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>], <span class="at">scale. =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="tfih-exercises.html#cb379-1" tabindex="-1"></a>PCAmdl <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(beercata[,<span class="dv">3</span><span class="sc">:</span><span class="dv">29</span>], <span class="at">scale. =</span> T)</span></code></pre></div>
 <p>Plot the scores and describe the groupings of the samples.</p>
 <p>Plot the loadings and describe the correlations between the variables.</p>
 <p>Both of these plots are present in a biplot, but you may want to play around with the settings (such as varname.size, varname.adjust, …) to get all information out.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="tfih-exercises.html#cb378-1" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">groups =</span> beercata<span class="sc">$</span>Beer, <span class="at">ellipse =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="tfih-exercises.html#cb380-1" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">groups =</span> beercata<span class="sc">$</span>Beer, <span class="at">ellipse =</span> T)</span></code></pre></div>
 <p>Use this biplot to find out which samples are described by which CATA attributes. as well as similarity of products.</p>
 </div>
 <div id="exercise-4-cochrans-q-test-on-cata-binary-data" class="section level2 hasAnchor" number="18.4">
@@ -524,11 +524,11 @@ For instance, is the loading making sense?</p>
 <p>Which descriptors are most different between products?
 Are the overall most pronounced descriptors also the ones most different?</p>
 <p>Try this procedure out on a different dataset, e.g. the tempeto data.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="tfih-exercises.html#cb379-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;tempetofermentation&quot;</span>)</span>
-<span id="cb379-2"><a href="tfih-exercises.html#cb379-2" tabindex="-1"></a><span class="fu">library</span>(RVAideMemoire)</span>
-<span id="cb379-3"><a href="tfih-exercises.html#cb379-3" tabindex="-1"></a>tempetofermentation<span class="sc">$</span>Product2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(tempetofermentation<span class="sc">$</span>Product) <span class="co"># needs to be a factor for getting labels on results.</span></span>
-<span id="cb379-4"><a href="tfih-exercises.html#cb379-4" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">cochran.qtest</span>(Sour <span class="sc">~</span> Product2 <span class="sc">|</span> Assessor,</span>
-<span id="cb379-5"><a href="tfih-exercises.html#cb379-5" tabindex="-1"></a>                   <span class="at">data =</span> tempetofermentation)</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="tfih-exercises.html#cb381-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;tempetofermentation&quot;</span>)</span>
+<span id="cb381-2"><a href="tfih-exercises.html#cb381-2" tabindex="-1"></a><span class="fu">library</span>(RVAideMemoire)</span>
+<span id="cb381-3"><a href="tfih-exercises.html#cb381-3" tabindex="-1"></a>tempetofermentation<span class="sc">$</span>Product2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(tempetofermentation<span class="sc">$</span>Product) <span class="co"># needs to be a factor for getting labels on results.</span></span>
+<span id="cb381-4"><a href="tfih-exercises.html#cb381-4" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">cochran.qtest</span>(Sour <span class="sc">~</span> Product2 <span class="sc">|</span> Assessor,</span>
+<span id="cb381-5"><a href="tfih-exercises.html#cb381-5" tabindex="-1"></a>                   <span class="at">data =</span> tempetofermentation)</span></code></pre></div>
 </div>
 <div id="exercise-5-hedonic-ratings-and-consumer-characteristics" class="section level2 hasAnchor" number="18.5">
 <h2><span class="header-section-number">18.5</span> Exercise 5: Hedonic ratings and consumer characteristics<a href="tfih-exercises.html#exercise-5-hedonic-ratings-and-consumer-characteristics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -536,44 +536,44 @@ Are the overall most pronounced descriptors also the ones most different?</p>
 <div id="pca-on-joint-data" class="section level3 hasAnchor" number="18.5.1">
 <h3><span class="header-section-number">18.5.1</span> PCA on joint data<a href="tfih-exercises.html#pca-on-joint-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Calculate a PCA model including all Variables and all Objects.</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="tfih-exercises.html#cb380-1" tabindex="-1"></a>include_these <span class="ot">&lt;-</span> <span class="fu">complete.cases</span>(beerliking)</span>
-<span id="cb380-2"><a href="tfih-exercises.html#cb380-2" tabindex="-1"></a>PCAliking <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(beerliking[include_these,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>)], <span class="at">scale. =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="tfih-exercises.html#cb382-1" tabindex="-1"></a>include_these <span class="ot">&lt;-</span> <span class="fu">complete.cases</span>(beerliking)</span>
+<span id="cb382-2"><a href="tfih-exercises.html#cb382-2" tabindex="-1"></a>PCAliking <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(beerliking[include_these,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>)], <span class="at">scale. =</span> T)</span></code></pre></div>
 <p>Plot a biplot or loading plot, and use the loadings and describe the correlations between the variables (liking of beers in this case).</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="tfih-exercises.html#cb381-1" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAliking)</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="tfih-exercises.html#cb383-1" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAliking)</span></code></pre></div>
 <p>Plot the scores and describe the groupings of the samples by colouring the score plot according to the consumer background variables. Note that the 160 rows in both datasets match each-other, so we can glue the demo information directly onto the liking model. If that was not the case, matching using left_join() or inner_join() would be necessary before analysis.</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="tfih-exercises.html#cb382-1" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAliking,<span class="at">groups =</span> beerdemo<span class="sc">$</span>Age[include_these], <span class="at">ellipse =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="tfih-exercises.html#cb384-1" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAliking,<span class="at">groups =</span> beerdemo<span class="sc">$</span>Age[include_these], <span class="at">ellipse =</span> T)</span></code></pre></div>
 <p>Any trends? For instance, how is liking related to the individual consumer diversity of beer ( <em>Beer types/month</em>)?</p>
 </div>
 <div id="all-demographics" class="section level3 hasAnchor" number="18.5.2">
 <h3><span class="header-section-number">18.5.2</span> All demographics<a href="tfih-exercises.html#all-demographics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>… Some code to get all 7-scale demo information plots. You may want to export and view in a pdf viewer for zooming etc.</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="tfih-exercises.html#cb383-1" tabindex="-1"></a>gall <span class="ot">&lt;-</span> <span class="fu">cbind</span>(PCAliking<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], beerdemo[include_these,]) <span class="sc">%&gt;%</span> </span>
-<span id="cb383-2"><a href="tfih-exercises.html#cb383-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;var&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>,<span class="at">cols =</span> <span class="st">`</span><span class="at">Interest in food</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Future interest in beer</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb383-3"><a href="tfih-exercises.html#cb383-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(PC1,PC2, <span class="at">color =</span> <span class="fu">factor</span>(val))) <span class="sc">+</span> </span>
-<span id="cb383-4"><a href="tfih-exercises.html#cb383-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb383-5"><a href="tfih-exercises.html#cb383-5" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span> </span>
-<span id="cb383-6"><a href="tfih-exercises.html#cb383-6" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>var)</span>
-<span id="cb383-7"><a href="tfih-exercises.html#cb383-7" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&#39;anicebigfigure.pdf&#39;</span>,gall, <span class="at">height =</span> <span class="dv">20</span>, <span class="at">width =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="tfih-exercises.html#cb385-1" tabindex="-1"></a>gall <span class="ot">&lt;-</span> <span class="fu">cbind</span>(PCAliking<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], beerdemo[include_these,]) <span class="sc">%&gt;%</span> </span>
+<span id="cb385-2"><a href="tfih-exercises.html#cb385-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;var&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>,<span class="at">cols =</span> <span class="st">`</span><span class="at">Interest in food</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Future interest in beer</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb385-3"><a href="tfih-exercises.html#cb385-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(PC1,PC2, <span class="at">color =</span> <span class="fu">factor</span>(val))) <span class="sc">+</span> </span>
+<span id="cb385-4"><a href="tfih-exercises.html#cb385-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb385-5"><a href="tfih-exercises.html#cb385-5" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span> </span>
+<span id="cb385-6"><a href="tfih-exercises.html#cb385-6" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>var)</span>
+<span id="cb385-7"><a href="tfih-exercises.html#cb385-7" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&#39;anicebigfigure.pdf&#39;</span>,gall, <span class="at">height =</span> <span class="dv">20</span>, <span class="at">width =</span> <span class="dv">20</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="exercise-6-pca-on-cata-counts-and-hedonic-ratings" class="section level2 hasAnchor" number="18.6">
 <h2><span class="header-section-number">18.6</span> Exercise 6: PCA on CATA counts and hedonic ratings<a href="tfih-exercises.html#exercise-6-pca-on-cata-counts-and-hedonic-ratings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>From this exercise you should be able to conclude <em>what</em> attributes that overall drives the liking of products (beers).</p>
 <p>For each beer, the collated CATA counts and the averaged liking constitutes the multivariate response matrix.</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="tfih-exercises.html#cb384-1" tabindex="-1"></a>likingsum <span class="ot">&lt;-</span> beerliking <span class="sc">%&gt;%</span></span>
-<span id="cb384-2"><a href="tfih-exercises.html#cb384-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Beer) <span class="sc">%&gt;%</span> </span>
-<span id="cb384-3"><a href="tfih-exercises.html#cb384-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">lik =</span> <span class="fu">mean</span>(Liking, <span class="at">na.rm =</span> T))</span>
-<span id="cb384-4"><a href="tfih-exercises.html#cb384-4" tabindex="-1"></a></span>
-<span id="cb384-5"><a href="tfih-exercises.html#cb384-5" tabindex="-1"></a>catasum <span class="ot">&lt;-</span> beercata <span class="sc">%&gt;%</span> </span>
-<span id="cb384-6"><a href="tfih-exercises.html#cb384-6" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;attrib&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>,<span class="at">cols =</span> S_Flowers<span class="sc">:</span>S_Vinous ) <span class="sc">%&gt;%</span> </span>
-<span id="cb384-7"><a href="tfih-exercises.html#cb384-7" tabindex="-1"></a>  <span class="fu">group_by</span>(Beer,attrib) <span class="sc">%&gt;%</span> </span>
-<span id="cb384-8"><a href="tfih-exercises.html#cb384-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">mn =</span> <span class="fu">mean</span>(val, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
-<span id="cb384-9"><a href="tfih-exercises.html#cb384-9" tabindex="-1"></a>  <span class="fu">spread</span>(attrib,mn)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="tfih-exercises.html#cb386-1" tabindex="-1"></a>likingsum <span class="ot">&lt;-</span> beerliking <span class="sc">%&gt;%</span></span>
+<span id="cb386-2"><a href="tfih-exercises.html#cb386-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Beer) <span class="sc">%&gt;%</span> </span>
+<span id="cb386-3"><a href="tfih-exercises.html#cb386-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">lik =</span> <span class="fu">mean</span>(Liking, <span class="at">na.rm =</span> T))</span>
+<span id="cb386-4"><a href="tfih-exercises.html#cb386-4" tabindex="-1"></a></span>
+<span id="cb386-5"><a href="tfih-exercises.html#cb386-5" tabindex="-1"></a>catasum <span class="ot">&lt;-</span> beercata <span class="sc">%&gt;%</span> </span>
+<span id="cb386-6"><a href="tfih-exercises.html#cb386-6" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;attrib&#39;</span>,<span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>,<span class="at">cols =</span> S_Flowers<span class="sc">:</span>S_Vinous ) <span class="sc">%&gt;%</span> </span>
+<span id="cb386-7"><a href="tfih-exercises.html#cb386-7" tabindex="-1"></a>  <span class="fu">group_by</span>(Beer,attrib) <span class="sc">%&gt;%</span> </span>
+<span id="cb386-8"><a href="tfih-exercises.html#cb386-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">mn =</span> <span class="fu">mean</span>(val, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb386-9"><a href="tfih-exercises.html#cb386-9" tabindex="-1"></a>  <span class="fu">spread</span>(attrib,mn)</span></code></pre></div>
 <p>Join the two.</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="tfih-exercises.html#cb385-1" tabindex="-1"></a>cata_lik <span class="ot">&lt;-</span> catasum <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(likingsum, <span class="at">by =</span> <span class="st">&#39;Beer&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="tfih-exercises.html#cb387-1" tabindex="-1"></a>cata_lik <span class="ot">&lt;-</span> catasum <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(likingsum, <span class="at">by =</span> <span class="st">&#39;Beer&#39;</span>)</span></code></pre></div>
 <p>Do a PCA</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="tfih-exercises.html#cb386-1" tabindex="-1"></a>PCAcata_lik <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(cata_lik[,<span class="sc">-</span><span class="dv">1</span>],<span class="at">scale. =</span> T)</span>
-<span id="cb386-2"><a href="tfih-exercises.html#cb386-2" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAcata_lik, <span class="at">labels =</span> cata_lik<span class="sc">$</span>Beer)</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="tfih-exercises.html#cb388-1" tabindex="-1"></a>PCAcata_lik <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(cata_lik[,<span class="sc">-</span><span class="dv">1</span>],<span class="at">scale. =</span> T)</span>
+<span id="cb388-2"><a href="tfih-exercises.html#cb388-2" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAcata_lik, <span class="at">labels =</span> cata_lik<span class="sc">$</span>Beer)</span></code></pre></div>
 <p>What charaterizes <em>River Beer</em> ?
 Which descriptors are in general associated with liking? (and dis-liking?)</p>
 </div>
@@ -581,18 +581,18 @@ Which descriptors are in general associated with liking? (and dis-liking?)</p>
 <h2><span class="header-section-number">18.7</span> Exercise 7: Mixed modelling on hedonic ratings<a href="tfih-exercises.html#exercise-7-mixed-modelling-on-hedonic-ratings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this exercise we want to model <em>Liking</em> as a response. We want to use the beer type as the main predictor, but take into account that the responses is repeated within consumers. The same judges have evaluated all beers. This is a mixed model</p>
 <p>Start with a plot</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="tfih-exercises.html#cb387-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> beerliking, <span class="fu">aes</span>(Beer, Liking)) <span class="sc">+</span> </span>
-<span id="cb387-2"><a href="tfih-exercises.html#cb387-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="tfih-exercises.html#cb388-1" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb388-2"><a href="tfih-exercises.html#cb388-2" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
-<span id="cb388-3"><a href="tfih-exercises.html#cb388-3" tabindex="-1"></a>lik_mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID))</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="tfih-exercises.html#cb389-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> beerliking, <span class="fu">aes</span>(Beer, Liking)) <span class="sc">+</span> </span>
+<span id="cb389-2"><a href="tfih-exercises.html#cb389-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="tfih-exercises.html#cb390-1" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb390-2"><a href="tfih-exercises.html#cb390-2" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb390-3"><a href="tfih-exercises.html#cb390-3" tabindex="-1"></a>lik_mdl <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Consumer.ID))</span></code></pre></div>
 <p>Evaluate this model by anova() and summary(), and interpret the result. How much within individual consumer variation is there compared to between consumer?</p>
 <p>You should get that the beers are not equally likable. But are there maybe some which are more similar?
 Perform a all-pairs post hoc test and try to group beers based on liking.</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="tfih-exercises.html#cb389-1" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
-<span id="cb389-2"><a href="tfih-exercises.html#cb389-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glht</span>(lik_mdl, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Beer =</span> <span class="st">&quot;Tukey&quot;</span>)), </span>
-<span id="cb389-3"><a href="tfih-exercises.html#cb389-3" tabindex="-1"></a>        <span class="at">test =</span> <span class="fu">adjusted</span>(<span class="st">&quot;fdr&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="tfih-exercises.html#cb391-1" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb391-2"><a href="tfih-exercises.html#cb391-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glht</span>(lik_mdl, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Beer =</span> <span class="st">&quot;Tukey&quot;</span>)), </span>
+<span id="cb391-3"><a href="tfih-exercises.html#cb391-3" tabindex="-1"></a>        <span class="at">test =</span> <span class="fu">adjusted</span>(<span class="st">&quot;fdr&quot;</span>))</span></code></pre></div>
 <p>Try to add consumer demographics and interest to the model to evaluate general consumer patterns as well as interactions with beer type.</p>
 <p>Try to answer questions such as:</p>
 <ul>
