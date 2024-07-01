@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 11 Consumer segmentation | Data Analysis in R for Sensory and Consumer Science</title>
-  <meta name="description" content="Chapter 11 Consumer segmentation | Data Analysis in R for Sensory and Consumer Science" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <title>Chapter 10 Consumer segmentation | Data Analysis in R for Sensory and Consumer Science</title>
+  <meta name="description" content="Chapter 10 Consumer segmentation | Data Analysis in R for Sensory and Consumer Science" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 11 Consumer segmentation | Data Analysis in R for Sensory and Consumer Science" />
+  <meta property="og:title" content="Chapter 10 Consumer segmentation | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 11 Consumer segmentation | Data Analysis in R for Sensory and Consumer Science" />
+  <meta name="twitter:title" content="Chapter 10 Consumer segmentation | Data Analysis in R for Sensory and Consumer Science" />
   
   
   
@@ -52,19 +52,19 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.28/datatables.js"></script>
-<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<script src="libs/datatables-binding-0.31/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -149,294 +149,294 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction to the book</a></li>
-<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to get started - understanding R (and RStudio)</a>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-get-started---understanding-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> How to get started - understanding R (and RStudio)</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#organise-and-save-scripts"><i class="fa fa-check"></i><b>2.1.1</b> Organise and save scripts</a></li>
+<li class="chapter" data-level="1.1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#organise-and-save-scripts"><i class="fa fa-check"></i><b>1.1.1</b> Organise and save scripts</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-import-data"><i class="fa fa-check"></i><b>2.2</b> How to import data</a>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-import-data"><i class="fa fa-check"></i><b>1.2</b> How to import data</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-data-from-r-package"><i class="fa fa-check"></i><b>2.2.1</b> Import data from R-package</a></li>
-<li class="chapter" data-level="2.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-a-csv-file"><i class="fa fa-check"></i><b>2.2.2</b> Importing a csv file</a></li>
-<li class="chapter" data-level="2.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-an-excel-filesheet"><i class="fa fa-check"></i><b>2.2.3</b> Importing an Excel file/sheet</a></li>
-<li class="chapter" data-level="2.2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#clipboard-import"><i class="fa fa-check"></i><b>2.2.4</b> Clipboard import</a></li>
-<li class="chapter" data-level="2.2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-at-the-imported-elements"><i class="fa fa-check"></i><b>2.2.5</b> Looking at the imported elements</a></li>
-<li class="chapter" data-level="2.2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#numbers-and-factors---changing-categorisation"><i class="fa fa-check"></i><b>2.2.6</b> Numbers and factors - changing categorisation</a></li>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#import-data-from-r-package"><i class="fa fa-check"></i><b>1.2.1</b> Import data from R-package</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-a-csv-file"><i class="fa fa-check"></i><b>1.2.2</b> Importing a csv file</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#importing-an-excel-filesheet"><i class="fa fa-check"></i><b>1.2.3</b> Importing an Excel file/sheet</a></li>
+<li class="chapter" data-level="1.2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#clipboard-import"><i class="fa fa-check"></i><b>1.2.4</b> Clipboard import</a></li>
+<li class="chapter" data-level="1.2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-at-the-imported-elements"><i class="fa fa-check"></i><b>1.2.5</b> Looking at the imported elements</a></li>
+<li class="chapter" data-level="1.2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#numbers-and-factors---changing-categorisation"><i class="fa fa-check"></i><b>1.2.6</b> Numbers and factors - changing categorisation</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-edit-and-merge-datasets"><i class="fa fa-check"></i><b>2.3</b> How to edit and merge datasets</a>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-edit-and-merge-datasets"><i class="fa fa-check"></i><b>1.3</b> How to edit and merge datasets</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#edit-using-tidyverse"><i class="fa fa-check"></i><b>2.3.1</b> Edit using Tidyverse</a></li>
+<li class="chapter" data-level="1.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#edit-using-tidyverse"><i class="fa fa-check"></i><b>1.3.1</b> Edit using Tidyverse</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-save-the-data"><i class="fa fa-check"></i><b>2.4</b> How to save the data</a></li>
-<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-export-data-results-to-excel-and-the-like"><i class="fa fa-check"></i><b>2.5</b> How to export data / results to Excel and the like</a></li>
-<li class="chapter" data-level="2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-load-your-rdata"><i class="fa fa-check"></i><b>2.6</b> How to load your RData</a></li>
-<li class="chapter" data-level="2.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-clear-your-environment"><i class="fa fa-check"></i><b>2.7</b> How to clear your environment</a></li>
-<li class="chapter" data-level="2.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-r-project"><i class="fa fa-check"></i><b>2.8</b> How to R project</a>
+<li class="chapter" data-level="1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-save-the-data"><i class="fa fa-check"></i><b>1.4</b> How to save the data</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-export-data-results-to-excel-and-the-like"><i class="fa fa-check"></i><b>1.5</b> How to export data / results to Excel and the like</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-load-your-rdata"><i class="fa fa-check"></i><b>1.6</b> How to load your RData</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-clear-your-environment"><i class="fa fa-check"></i><b>1.7</b> How to clear your environment</a></li>
+<li class="chapter" data-level="1.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-r-project"><i class="fa fa-check"></i><b>1.8</b> How to R project</a>
 <ul>
-<li class="chapter" data-level="2.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-create-an-r-project"><i class="fa fa-check"></i><b>2.8.1</b> How to Create an R Project</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>3</b> Libraries</a></li>
-<li class="chapter" data-level="4" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>4</b> Plotting data</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="plotting-data.html"><a href="plotting-data.html#histograms-and-boxplots"><i class="fa fa-check"></i><b>4.1</b> Histograms and boxplots</a></li>
-<li class="chapter" data-level="4.2" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>4.2</b> Scatter plots</a></li>
-<li class="chapter" data-level="4.3" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>4.3</b> How to export plots</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>5</b> Descriptive statistics</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continuous-variable"><i class="fa fa-check"></i><b>5.1</b> Descriptives for a continuous variable</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-median"><i class="fa fa-check"></i><b>5.1.1</b> Mean / median</a></li>
-<li class="chapter" data-level="5.1.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>5.1.2</b> Variance</a></li>
-<li class="chapter" data-level="5.1.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>5.1.3</b> Standard deviation</a></li>
-<li class="chapter" data-level="5.1.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#calculations"><i class="fa fa-check"></i><b>5.1.4</b> Calculations</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>5.2</b> Distributions of count data</a></li>
-<li class="chapter" data-level="5.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#aggregate"><i class="fa fa-check"></i><b>5.3</b> Aggregate</a></li>
-<li class="chapter" data-level="5.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tidyverse"><i class="fa fa-check"></i><b>5.4</b> Tidyverse</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="inferential-statistics.html"><a href="inferential-statistics.html"><i class="fa fa-check"></i><b>6</b> Inferential statistics</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="inferential-statistics.html"><a href="inferential-statistics.html#intro"><i class="fa fa-check"></i><b>6.1</b> Intro</a></li>
-<li class="chapter" data-level="6.2" data-path="inferential-statistics.html"><a href="inferential-statistics.html#hypothesis-testing"><i class="fa fa-check"></i><b>6.2</b> Hypothesis testing</a>
-<ul>
-<li class="chapter" data-level="6.2.1" data-path="inferential-statistics.html"><a href="inferential-statistics.html#power"><i class="fa fa-check"></i><b>6.2.1</b> Power</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="inferential-statistics.html"><a href="inferential-statistics.html#confidence-intervals"><i class="fa fa-check"></i><b>6.3</b> Confidence intervals</a></li>
-<li class="chapter" data-level="6.4" data-path="inferential-statistics.html"><a href="inferential-statistics.html#t-test"><i class="fa fa-check"></i><b>6.4</b> T-test</a></li>
-<li class="chapter" data-level="6.5" data-path="inferential-statistics.html"><a href="inferential-statistics.html#f-test"><i class="fa fa-check"></i><b>6.5</b> F-test</a></li>
-<li class="chapter" data-level="6.6" data-path="inferential-statistics.html"><a href="inferential-statistics.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>6.6</b> Analysis of Variance (ANOVA)</a>
-<ul>
-<li class="chapter" data-level="6.6.1" data-path="inferential-statistics.html"><a href="inferential-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>6.6.1</b> One-way ANOVA</a></li>
-<li class="chapter" data-level="6.6.2" data-path="inferential-statistics.html"><a href="inferential-statistics.html#two-way-anova"><i class="fa fa-check"></i><b>6.6.2</b> Two-way ANOVA</a></li>
-<li class="chapter" data-level="6.6.3" data-path="inferential-statistics.html"><a href="inferential-statistics.html#post-hoc-test---tukeys-honest-significant-difference"><i class="fa fa-check"></i><b>6.6.3</b> Post hoc test - Tukey’s Honest Significant Difference</a></li>
-</ul></li>
-<li class="chapter" data-level="6.7" data-path="inferential-statistics.html"><a href="inferential-statistics.html#introduction-to-linear-and-mixed-models"><i class="fa fa-check"></i><b>6.7</b> Introduction to linear and mixed models</a></li>
-<li class="chapter" data-level="6.8" data-path="inferential-statistics.html"><a href="inferential-statistics.html#normal-and-mixed-models"><i class="fa fa-check"></i><b>6.8</b> Normal and Mixed models</a>
-<ul>
-<li class="chapter" data-level="6.8.1" data-path="inferential-statistics.html"><a href="inferential-statistics.html#normal-model"><i class="fa fa-check"></i><b>6.8.1</b> Normal model</a></li>
-<li class="chapter" data-level="6.8.2" data-path="inferential-statistics.html"><a href="inferential-statistics.html#mixed-model"><i class="fa fa-check"></i><b>6.8.2</b> Mixed model</a></li>
+<li class="chapter" data-level="1.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#how-to-create-an-r-project"><i class="fa fa-check"></i><b>1.8.1</b> How to Create an R Project</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html"><i class="fa fa-check"></i><b>7</b> Introduction to PCA and multivariate data</a>
+<li class="chapter" data-level="2" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>2</b> Libraries</a></li>
+<li class="chapter" data-level="3" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>3</b> Plotting data</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#a-bit-of-math"><i class="fa fa-check"></i><b>7.1</b> A bit of math</a></li>
-<li class="chapter" data-level="7.2" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#interpreting-model-output"><i class="fa fa-check"></i><b>7.2</b> Interpreting model output</a>
+<li class="chapter" data-level="3.1" data-path="plotting-data.html"><a href="plotting-data.html#histograms-and-boxplots"><i class="fa fa-check"></i><b>3.1</b> Histograms and boxplots</a></li>
+<li class="chapter" data-level="3.2" data-path="plotting-data.html"><a href="plotting-data.html#scatter-plots"><i class="fa fa-check"></i><b>3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="3.3" data-path="plotting-data.html"><a href="plotting-data.html#how-to-export-plots"><i class="fa fa-check"></i><b>3.3</b> How to export plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#biplot"><i class="fa fa-check"></i><b>7.2.1</b> Biplot</a></li>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptives-for-a-continuous-variable"><i class="fa fa-check"></i><b>4.1</b> Descriptives for a continuous variable</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-median"><i class="fa fa-check"></i><b>4.1.1</b> Mean / median</a></li>
+<li class="chapter" data-level="4.1.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>4.1.2</b> Variance</a></li>
+<li class="chapter" data-level="4.1.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>4.1.3</b> Standard deviation</a></li>
+<li class="chapter" data-level="4.1.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#calculations"><i class="fa fa-check"></i><b>4.1.4</b> Calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions-of-count-data"><i class="fa fa-check"></i><b>4.2</b> Distributions of count data</a></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#aggregate"><i class="fa fa-check"></i><b>4.3</b> Aggregate</a></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tidyverse"><i class="fa fa-check"></i><b>4.4</b> Tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="inferential-statistics.html"><a href="inferential-statistics.html"><i class="fa fa-check"></i><b>5</b> Inferential statistics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="inferential-statistics.html"><a href="inferential-statistics.html#intro"><i class="fa fa-check"></i><b>5.1</b> Intro</a></li>
+<li class="chapter" data-level="5.2" data-path="inferential-statistics.html"><a href="inferential-statistics.html#hypothesis-testing"><i class="fa fa-check"></i><b>5.2</b> Hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="inferential-statistics.html"><a href="inferential-statistics.html#power"><i class="fa fa-check"></i><b>5.2.1</b> Power</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="inferential-statistics.html"><a href="inferential-statistics.html#confidence-intervals"><i class="fa fa-check"></i><b>5.3</b> Confidence intervals</a></li>
+<li class="chapter" data-level="5.4" data-path="inferential-statistics.html"><a href="inferential-statistics.html#t-test"><i class="fa fa-check"></i><b>5.4</b> T-test</a></li>
+<li class="chapter" data-level="5.5" data-path="inferential-statistics.html"><a href="inferential-statistics.html#f-test"><i class="fa fa-check"></i><b>5.5</b> F-test</a></li>
+<li class="chapter" data-level="5.6" data-path="inferential-statistics.html"><a href="inferential-statistics.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>5.6</b> Analysis of Variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="inferential-statistics.html"><a href="inferential-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>5.6.1</b> One-way ANOVA</a></li>
+<li class="chapter" data-level="5.6.2" data-path="inferential-statistics.html"><a href="inferential-statistics.html#two-way-anova"><i class="fa fa-check"></i><b>5.6.2</b> Two-way ANOVA</a></li>
+<li class="chapter" data-level="5.6.3" data-path="inferential-statistics.html"><a href="inferential-statistics.html#post-hoc-test---tukeys-honest-significant-difference"><i class="fa fa-check"></i><b>5.6.3</b> Post hoc test - Tukey’s Honest Significant Difference</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="inferential-statistics.html"><a href="inferential-statistics.html#introduction-to-linear-and-mixed-models"><i class="fa fa-check"></i><b>5.7</b> Introduction to linear and mixed models</a></li>
+<li class="chapter" data-level="5.8" data-path="inferential-statistics.html"><a href="inferential-statistics.html#normal-and-mixed-models"><i class="fa fa-check"></i><b>5.8</b> Normal and Mixed models</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="inferential-statistics.html"><a href="inferential-statistics.html#normal-model"><i class="fa fa-check"></i><b>5.8.1</b> Normal model</a></li>
+<li class="chapter" data-level="5.8.2" data-path="inferential-statistics.html"><a href="inferential-statistics.html#mixed-model"><i class="fa fa-check"></i><b>5.8.2</b> Mixed model</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html"><i class="fa fa-check"></i><b>8</b> Buffet and survey data</a>
+<li class="chapter" data-level="6" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html"><i class="fa fa-check"></i><b>6</b> Introduction to PCA and multivariate data</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#buffet-data"><i class="fa fa-check"></i><b>8.1</b> Buffet data</a>
+<li class="chapter" data-level="6.1" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#a-bit-of-math"><i class="fa fa-check"></i><b>6.1</b> A bit of math</a></li>
+<li class="chapter" data-level="6.2" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#interpreting-model-output"><i class="fa fa-check"></i><b>6.2</b> Interpreting model output</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#introduction-to-buffet-data"><i class="fa fa-check"></i><b>8.1.1</b> Introduction to buffet data</a></li>
-<li class="chapter" data-level="8.1.2" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#plotting-buffet-data"><i class="fa fa-check"></i><b>8.1.2</b> Plotting buffet data</a></li>
-<li class="chapter" data-level="8.1.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#mixed-model-for-buffet-data"><i class="fa fa-check"></i><b>8.1.3</b> Mixed model for buffet data</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#survey-data"><i class="fa fa-check"></i><b>8.2</b> Survey data</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#plotting-survey-data"><i class="fa fa-check"></i><b>8.2.1</b> Plotting survey data</a></li>
-<li class="chapter" data-level="8.2.2" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#linear-model-for-buffet-data"><i class="fa fa-check"></i><b>8.2.2</b> Linear model for buffet data</a></li>
-<li class="chapter" data-level="8.2.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#post-hoc-test-for-survey-data"><i class="fa fa-check"></i><b>8.2.3</b> Post-hoc test for survey data</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#combining-consumption-and-survey-data"><i class="fa fa-check"></i><b>8.3</b> Combining consumption and survey data</a></li>
-<li class="chapter" data-level="8.4" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#pca-on-survey-answers"><i class="fa fa-check"></i><b>8.4</b> PCA on survey answers</a>
-<ul>
-<li class="chapter" data-level="8.4.1" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#wrangle-data"><i class="fa fa-check"></i><b>8.4.1</b> Wrangle data</a></li>
-<li class="chapter" data-level="8.4.2" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#build-the-model"><i class="fa fa-check"></i><b>8.4.2</b> Build the model</a></li>
-<li class="chapter" data-level="8.4.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#bi-plot"><i class="fa fa-check"></i><b>8.4.3</b> Bi-plot</a></li>
-<li class="chapter" data-level="8.4.4" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>8.4.4</b> Extract the components and run all associations.</a></li>
+<li class="chapter" data-level="6.2.1" data-path="introduction-to-pca-and-multivariate-data.html"><a href="introduction-to-pca-and-multivariate-data.html#biplot"><i class="fa fa-check"></i><b>6.2.1</b> Biplot</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="mst-exercises.html"><a href="mst-exercises.html"><i class="fa fa-check"></i><b>9</b> MST exercises</a>
+<li class="chapter" data-level="7" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html"><i class="fa fa-check"></i><b>7</b> Buffet and survey data</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1---cleaning-compusense-data-with-r"><i class="fa fa-check"></i><b>9.1</b> Exercise 1 - cleaning Compusense data with R</a>
+<li class="chapter" data-level="7.1" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#buffet-data"><i class="fa fa-check"></i><b>7.1</b> Buffet data</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1---solution"><i class="fa fa-check"></i><b>9.1.1</b> Exercise 1 - Solution</a></li>
+<li class="chapter" data-level="7.1.1" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#introduction-to-buffet-data"><i class="fa fa-check"></i><b>7.1.1</b> Introduction to buffet data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#plotting-buffet-data"><i class="fa fa-check"></i><b>7.1.2</b> Plotting buffet data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#mixed-model-for-buffet-data"><i class="fa fa-check"></i><b>7.1.3</b> Mixed model for buffet data</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2---creating-a-tableone-and-visualization"><i class="fa fa-check"></i><b>9.2</b> Exercise 2 - creating a tableone and visualization</a>
+<li class="chapter" data-level="7.2" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#survey-data"><i class="fa fa-check"></i><b>7.2</b> Survey data</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2---solution"><i class="fa fa-check"></i><b>9.2.1</b> Exercise 2 - solution</a></li>
+<li class="chapter" data-level="7.2.1" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#plotting-survey-data"><i class="fa fa-check"></i><b>7.2.1</b> Plotting survey data</a></li>
+<li class="chapter" data-level="7.2.2" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#linear-model-for-buffet-data"><i class="fa fa-check"></i><b>7.2.2</b> Linear model for buffet data</a></li>
+<li class="chapter" data-level="7.2.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#post-hoc-test-for-survey-data"><i class="fa fa-check"></i><b>7.2.3</b> Post-hoc test for survey data</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3---creating-an-outcome-table"><i class="fa fa-check"></i><b>9.3</b> Exercise 3 - Creating an outcome table</a>
+<li class="chapter" data-level="7.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#combining-consumption-and-survey-data"><i class="fa fa-check"></i><b>7.3</b> Combining consumption and survey data</a></li>
+<li class="chapter" data-level="7.4" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#pca-on-survey-answers"><i class="fa fa-check"></i><b>7.4</b> PCA on survey answers</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3---solution"><i class="fa fa-check"></i><b>9.3.1</b> Exercise 3 - Solution</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html"><i class="fa fa-check"></i><b>10</b> Intro to large survey data</a>
-<ul>
-<li class="chapter" data-level="10.0.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#looking-at-the-data-and-checking-formating"><i class="fa fa-check"></i><b>10.0.1</b> Looking at the data and checking formating</a></li>
-<li class="chapter" data-level="10.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>10.1</b> Descriptive statistics</a>
-<ul>
-<li class="chapter" data-level="10.1.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#numeric-values"><i class="fa fa-check"></i><b>10.1.1</b> Numeric values</a></li>
-</ul></li>
-<li class="chapter" data-level="10.2" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#plots"><i class="fa fa-check"></i><b>10.2</b> Plots</a>
-<ul>
-<li class="chapter" data-level="10.2.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#within-groups-of-data"><i class="fa fa-check"></i><b>10.2.1</b> Within groups of data</a></li>
-</ul></li>
-<li class="chapter" data-level="10.3" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#categorical-ordinal-variables"><i class="fa fa-check"></i><b>10.3</b> Categorical / Ordinal variables</a>
-<ul>
-<li class="chapter" data-level="10.3.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#tables"><i class="fa fa-check"></i><b>10.3.1</b> Tables</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#table-1"><i class="fa fa-check"></i><b>10.4</b> Table 1</a></li>
-<li class="chapter" data-level="10.5" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#the-tidyverse-way"><i class="fa fa-check"></i><b>10.5</b> The tidyverse way</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>11</b> Consumer segmentation</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation"><i class="fa fa-check"></i><b>11.1</b> Segmentation</a>
-<ul>
-<li class="chapter" data-level="11.1.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#using-k-means-for-clustering"><i class="fa fa-check"></i><b>11.1.1</b> Using K-means for clustering</a></li>
-<li class="chapter" data-level="11.1.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#initial-characterization-of-clusters"><i class="fa fa-check"></i><b>11.1.2</b> Initial characterization of clusters</a></li>
-<li class="chapter" data-level="11.1.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#vizualization-of-the-clusters"><i class="fa fa-check"></i><b>11.1.3</b> Vizualization of the clusters</a></li>
-<li class="chapter" data-level="11.1.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#sums-of-squares-from-the-clustering"><i class="fa fa-check"></i><b>11.1.4</b> Sums of Squares from the clustering</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#selecting-the-number-of-clusters---a-data-driven-approach"><i class="fa fa-check"></i><b>11.2</b> Selecting the number of clusters - a data-driven approach</a></li>
-<li class="chapter" data-level="11.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation---another-example"><i class="fa fa-check"></i><b>11.3</b> Segmentation - another example</a>
-<ul>
-<li class="chapter" data-level="11.3.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#cluster-analysis"><i class="fa fa-check"></i><b>11.3.1</b> Cluster analysis</a></li>
-<li class="chapter" data-level="11.3.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#plot-the-model-using-pca"><i class="fa fa-check"></i><b>11.3.2</b> Plot the model using PCA</a></li>
-<li class="chapter" data-level="11.3.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#add-to-dataset"><i class="fa fa-check"></i><b>11.3.3</b> Add to dataset</a></li>
-<li class="chapter" data-level="11.3.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#comments"><i class="fa fa-check"></i><b>11.3.4</b> Comments</a></li>
+<li class="chapter" data-level="7.4.1" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#wrangle-data"><i class="fa fa-check"></i><b>7.4.1</b> Wrangle data</a></li>
+<li class="chapter" data-level="7.4.2" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#build-the-model"><i class="fa fa-check"></i><b>7.4.2</b> Build the model</a></li>
+<li class="chapter" data-level="7.4.3" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#bi-plot"><i class="fa fa-check"></i><b>7.4.3</b> Bi-plot</a></li>
+<li class="chapter" data-level="7.4.4" data-path="buffet-and-survey-data.html"><a href="buffet-and-survey-data.html#extract-the-components-and-run-all-associations."><i class="fa fa-check"></i><b>7.4.4</b> Extract the components and run all associations.</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="profiling-segments.html"><a href="profiling-segments.html"><i class="fa fa-check"></i><b>12</b> Profiling segments</a>
+<li class="chapter" data-level="8" data-path="mst-exercises.html"><a href="mst-exercises.html"><i class="fa fa-check"></i><b>8</b> MST exercises</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="profiling-segments.html"><a href="profiling-segments.html#table-1-as-a-profiling-tool"><i class="fa fa-check"></i><b>12.1</b> Table 1 as a profiling tool</a></li>
-<li class="chapter" data-level="12.2" data-path="profiling-segments.html"><a href="profiling-segments.html#visualization-of-consumer-segments"><i class="fa fa-check"></i><b>12.2</b> Visualization of Consumer Segments</a></li>
-<li class="chapter" data-level="12.3" data-path="profiling-segments.html"><a href="profiling-segments.html#creating-the-contingency-table"><i class="fa fa-check"></i><b>12.3</b> Creating the contingency table</a></li>
-<li class="chapter" data-level="12.4" data-path="profiling-segments.html"><a href="profiling-segments.html#plot-the-numbers"><i class="fa fa-check"></i><b>12.4</b> Plot the numbers</a></li>
-<li class="chapter" data-level="12.5" data-path="profiling-segments.html"><a href="profiling-segments.html#contingency-table"><i class="fa fa-check"></i><b>12.5</b> Contingency table</a>
+<li class="chapter" data-level="8.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1---cleaning-compusense-data-with-r"><i class="fa fa-check"></i><b>8.1</b> Exercise 1 - cleaning Compusense data with R</a>
 <ul>
-<li class="chapter" data-level="12.5.1" data-path="profiling-segments.html"><a href="profiling-segments.html#pearson-chi-square-test"><i class="fa fa-check"></i><b>12.5.1</b> Pearson Chi-square test</a></li>
+<li class="chapter" data-level="8.1.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-1---solution"><i class="fa fa-check"></i><b>8.1.1</b> Exercise 1 - Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="12.6" data-path="profiling-segments.html"><a href="profiling-segments.html#correspondence-analysis"><i class="fa fa-check"></i><b>12.6</b> Correspondence Analysis</a></li>
+<li class="chapter" data-level="8.2" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2---creating-a-tableone-and-visualization"><i class="fa fa-check"></i><b>8.2</b> Exercise 2 - creating a tableone and visualization</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-2---solution"><i class="fa fa-check"></i><b>8.2.1</b> Exercise 2 - solution</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>13</b> Logistic Regression</a>
+<li class="chapter" data-level="8.3" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3---creating-an-outcome-table"><i class="fa fa-check"></i><b>8.3</b> Exercise 3 - Creating an outcome table</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="logistic-regression.html"><a href="logistic-regression.html#segmentationclustering"><i class="fa fa-check"></i><b>13.1</b> Segmentation/Clustering</a></li>
-<li class="chapter" data-level="13.2" data-path="logistic-regression.html"><a href="logistic-regression.html#fitting-the-logistic-regression-model"><i class="fa fa-check"></i><b>13.2</b> Fitting the logistic regression-model</a></li>
-<li class="chapter" data-level="13.3" data-path="logistic-regression.html"><a href="logistic-regression.html#probabilities-of-segment-membership"><i class="fa fa-check"></i><b>13.3</b> Probabilities of segment membership:</a></li>
-<li class="chapter" data-level="13.4" data-path="logistic-regression.html"><a href="logistic-regression.html#odds-ratios"><i class="fa fa-check"></i><b>13.4</b> Odds ratios</a></li>
-<li class="chapter" data-level="13.5" data-path="logistic-regression.html"><a href="logistic-regression.html#ors-and-probs"><i class="fa fa-check"></i><b>13.5</b> ORs and Probs</a></li>
-<li class="chapter" data-level="13.6" data-path="logistic-regression.html"><a href="logistic-regression.html#effect-of-age"><i class="fa fa-check"></i><b>13.6</b> Effect of Age</a></li>
-<li class="chapter" data-level="13.7" data-path="logistic-regression.html"><a href="logistic-regression.html#multivariate-analysis"><i class="fa fa-check"></i><b>13.7</b> Multivariate analysis</a>
-<ul>
-<li class="chapter" data-level="13.7.1" data-path="logistic-regression.html"><a href="logistic-regression.html#descriptives"><i class="fa fa-check"></i><b>13.7.1</b> Descriptives</a></li>
-<li class="chapter" data-level="13.7.2" data-path="logistic-regression.html"><a href="logistic-regression.html#two-nested-models"><i class="fa fa-check"></i><b>13.7.2</b> Two nested models</a></li>
-<li class="chapter" data-level="13.7.3" data-path="logistic-regression.html"><a href="logistic-regression.html#coefficients"><i class="fa fa-check"></i><b>13.7.3</b> Coefficients</a></li>
-<li class="chapter" data-level="13.7.4" data-path="logistic-regression.html"><a href="logistic-regression.html#re-level"><i class="fa fa-check"></i><b>13.7.4</b> Re-level</a></li>
-<li class="chapter" data-level="13.7.5" data-path="logistic-regression.html"><a href="logistic-regression.html#all-pairwise-comparisons"><i class="fa fa-check"></i><b>13.7.5</b> All pairwise comparisons</a></li>
-</ul></li>
-<li class="chapter" data-level="13.8" data-path="logistic-regression.html"><a href="logistic-regression.html#segment-2-and-3"><i class="fa fa-check"></i><b>13.8</b> Segment 2 and 3</a></li>
-<li class="chapter" data-level="13.9" data-path="logistic-regression.html"><a href="logistic-regression.html#a-new-set-of-data"><i class="fa fa-check"></i><b>13.9</b> A new set of data</a></li>
-<li class="chapter" data-level="13.10" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-for-demographic-characterization"><i class="fa fa-check"></i><b>13.10</b> Logistic regression for demographic characterization</a>
-<ul>
-<li class="chapter" data-level="13.10.1" data-path="logistic-regression.html"><a href="logistic-regression.html#age"><i class="fa fa-check"></i><b>13.10.1</b> Age</a></li>
-<li class="chapter" data-level="13.10.2" data-path="logistic-regression.html"><a href="logistic-regression.html#gender"><i class="fa fa-check"></i><b>13.10.2</b> Gender</a></li>
-</ul></li>
-<li class="chapter" data-level="13.11" data-path="logistic-regression.html"><a href="logistic-regression.html#task"><i class="fa fa-check"></i><b>13.11</b> TASK</a></li>
-<li class="chapter" data-level="13.12" data-path="logistic-regression.html"><a href="logistic-regression.html#the-tidyverse-way-1"><i class="fa fa-check"></i><b>13.12</b> The tidyverse way</a></li>
-<li class="chapter" data-level="13.13" data-path="logistic-regression.html"><a href="logistic-regression.html#comment"><i class="fa fa-check"></i><b>13.13</b> Comment</a></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html"><i class="fa fa-check"></i><b>14</b> CATA data (Check-All-That-Apply)</a>
-<ul>
-<li class="chapter" data-level="14.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#importing-and-looking-at-the-beer-data"><i class="fa fa-check"></i><b>14.1</b> Importing and looking at the beer data</a></li>
-<li class="chapter" data-level="14.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>14.2</b> Two versions of the data</a></li>
-<li class="chapter" data-level="14.3" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#cochrans-q-test"><i class="fa fa-check"></i><b>14.3</b> Cochran’s Q test</a>
-<ul>
-<li class="chapter" data-level="14.3.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#post-hoc-test"><i class="fa fa-check"></i><b>14.3.1</b> Post hoc test</a></li>
-<li class="chapter" data-level="14.3.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#for-all-attributes-in-one-run-nice-to-know"><i class="fa fa-check"></i><b>14.3.2</b> For all attributes in one run (nice to know)</a></li>
-</ul></li>
-<li class="chapter" data-level="14.4" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#pca-on-cata-data"><i class="fa fa-check"></i><b>14.4</b> PCA on CATA data</a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html"><i class="fa fa-check"></i><b>15</b> Hedonic rating (e.g. liking scores)</a>
-<ul>
-<li class="chapter" data-level="15.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#plotting-liking-scores"><i class="fa fa-check"></i><b>15.1</b> Plotting liking scores</a>
-<ul>
-<li class="chapter" data-level="15.1.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#pca-of-hedonic-ratings"><i class="fa fa-check"></i><b>15.1.1</b> PCA of hedonic ratings</a></li>
-</ul></li>
-<li class="chapter" data-level="15.2" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#simple-mixed-models"><i class="fa fa-check"></i><b>15.2</b> Simple mixed models</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#post-hoc-test-1"><i class="fa fa-check"></i><b>15.2.1</b> Post hoc test</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#multivariable-models"><i class="fa fa-check"></i><b>15.3</b> Multivariable models</a>
-<ul>
-<li class="chapter" data-level="15.3.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#additive-models"><i class="fa fa-check"></i><b>15.3.1</b> Additive models</a></li>
-<li class="chapter" data-level="15.3.2" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#effect-modification-and-interactions"><i class="fa fa-check"></i><b>15.3.2</b> Effect modification and Interactions</a></li>
+<li class="chapter" data-level="8.3.1" data-path="mst-exercises.html"><a href="mst-exercises.html#exercise-3---solution"><i class="fa fa-check"></i><b>8.3.1</b> Exercise 3 - Solution</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html"><i class="fa fa-check"></i><b>16</b> CATA and Hedonics</a>
+<li class="chapter" data-level="9" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html"><i class="fa fa-check"></i><b>9</b> Intro to large survey data</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#individual-attributes-and-liking"><i class="fa fa-check"></i><b>16.1</b> Individual attributes and liking</a>
+<li class="chapter" data-level="9.0.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#looking-at-the-data-and-checking-formating"><i class="fa fa-check"></i><b>9.0.1</b> Looking at the data and checking formating</a></li>
+<li class="chapter" data-level="9.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>9.1</b> Descriptive statistics</a>
 <ul>
-<li class="chapter" data-level="16.1.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#an-example-with-refreshing"><i class="fa fa-check"></i><b>16.1.1</b> An example with Refreshing</a></li>
-<li class="chapter" data-level="16.1.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#all-attributes"><i class="fa fa-check"></i><b>16.1.2</b> All attributes</a></li>
+<li class="chapter" data-level="9.1.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#numeric-values"><i class="fa fa-check"></i><b>9.1.1</b> Numeric values</a></li>
 </ul></li>
-<li class="chapter" data-level="16.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pca-on-cata-and-liking"><i class="fa fa-check"></i><b>16.2</b> PCA on CATA and Liking</a>
+<li class="chapter" data-level="9.2" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#plots"><i class="fa fa-check"></i><b>9.2</b> Plots</a>
 <ul>
-<li class="chapter" data-level="16.2.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#a-beer-centric-model"><i class="fa fa-check"></i><b>16.2.1</b> A beer centric model</a></li>
+<li class="chapter" data-level="9.2.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#within-groups-of-data"><i class="fa fa-check"></i><b>9.2.1</b> Within groups of data</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#analysis-by-pls"><i class="fa fa-check"></i><b>16.3</b> Analysis by PLS</a>
+<li class="chapter" data-level="9.3" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#categorical-ordinal-variables"><i class="fa fa-check"></i><b>9.3</b> Categorical / Ordinal variables</a>
 <ul>
-<li class="chapter" data-level="16.3.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pls-basics"><i class="fa fa-check"></i><b>16.3.1</b> PLS basics</a></li>
-<li class="chapter" data-level="16.3.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pls-to-predict-liking-based-on-cata-data"><i class="fa fa-check"></i><b>16.3.2</b> PLS to predict liking based on CATA data</a></li>
-<li class="chapter" data-level="16.3.3" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#regression-coefficients"><i class="fa fa-check"></i><b>16.3.3</b> Regression coefficients</a></li>
+<li class="chapter" data-level="9.3.1" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#tables"><i class="fa fa-check"></i><b>9.3.1</b> Tables</a></li>
 </ul></li>
-<li class="chapter" data-level="16.4" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#l-pls"><i class="fa fa-check"></i><b>16.4</b> L-PLS</a></li>
-<li class="chapter" data-level="16.5" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#creating-x1-x2-x3."><i class="fa fa-check"></i><b>16.5</b> Creating X1, X2, X3.</a></li>
-<li class="chapter" data-level="16.6" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#building-the-model-the-l-pls-model-can-be-built-using-the-lpls"><i class="fa fa-check"></i><b>16.6</b> Building the model: The L-PLS model can be built, using the <em>lpls</em></a>
+<li class="chapter" data-level="9.4" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#table-1"><i class="fa fa-check"></i><b>9.4</b> Table 1</a></li>
+<li class="chapter" data-level="9.5" data-path="intro-to-large-survey-data.html"><a href="intro-to-large-survey-data.html#the-tidyverse-way"><i class="fa fa-check"></i><b>9.5</b> The tidyverse way</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html"><i class="fa fa-check"></i><b>10</b> Consumer segmentation</a>
 <ul>
-<li class="chapter" data-level="16.6.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#finding-the-explained-variance-for-exo-l-pls"><i class="fa fa-check"></i><b>16.6.1</b> Finding the explained variance for exo L-PLS</a></li>
-<li class="chapter" data-level="16.6.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#cross-validation-next-let-us-have-a-look-how-many-components-we"><i class="fa fa-check"></i><b>16.6.2</b> Cross-validation Next let us have a look how many components we</a></li>
-<li class="chapter" data-level="16.6.3" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#vizulization-now-we-would-like-to-visuzlalize-our-l-pls-model.-when"><i class="fa fa-check"></i><b>16.6.3</b> Vizulization Now we would like to visuzlalize our L-PLS model. When</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>17</b> Projective mapping</a>
+<li class="chapter" data-level="10.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation"><i class="fa fa-check"></i><b>10.1</b> Segmentation</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>17.1</b> Example from mapping of XX</a></li>
-<li class="chapter" data-level="17.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>17.2</b> A Collated version of the data</a></li>
-<li class="chapter" data-level="17.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>17.3</b> PCA on Collated data</a></li>
-<li class="chapter" data-level="17.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>17.4</b> </a></li>
+<li class="chapter" data-level="10.1.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#using-k-means-for-clustering"><i class="fa fa-check"></i><b>10.1.1</b> Using K-means for clustering</a></li>
+<li class="chapter" data-level="10.1.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#initial-characterization-of-clusters"><i class="fa fa-check"></i><b>10.1.2</b> Initial characterization of clusters</a></li>
+<li class="chapter" data-level="10.1.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#vizualization-of-the-clusters"><i class="fa fa-check"></i><b>10.1.3</b> Vizualization of the clusters</a></li>
+<li class="chapter" data-level="10.1.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#sums-of-squares-from-the-clustering"><i class="fa fa-check"></i><b>10.1.4</b> Sums of Squares from the clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="tfih-exercises.html"><a href="tfih-exercises.html"><i class="fa fa-check"></i><b>18</b> TFIH Exercises</a>
+<li class="chapter" data-level="10.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#selecting-the-number-of-clusters---a-data-driven-approach"><i class="fa fa-check"></i><b>10.2</b> Selecting the number of clusters - a data-driven approach</a></li>
+<li class="chapter" data-level="10.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#segmentation---another-example"><i class="fa fa-check"></i><b>10.3</b> Segmentation - another example</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-1-descriptive-statistics-and-plots"><i class="fa fa-check"></i><b>18.1</b> Exercise 1: Descriptive statistics and plots</a>
+<li class="chapter" data-level="10.3.1" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#cluster-analysis"><i class="fa fa-check"></i><b>10.3.1</b> Cluster analysis</a></li>
+<li class="chapter" data-level="10.3.2" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#plot-the-model-using-pca"><i class="fa fa-check"></i><b>10.3.2</b> Plot the model using PCA</a></li>
+<li class="chapter" data-level="10.3.3" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#add-to-dataset"><i class="fa fa-check"></i><b>10.3.3</b> Add to dataset</a></li>
+<li class="chapter" data-level="10.3.4" data-path="consumer-segmentation.html"><a href="consumer-segmentation.html#comments"><i class="fa fa-check"></i><b>10.3.4</b> Comments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="profiling-segments.html"><a href="profiling-segments.html"><i class="fa fa-check"></i><b>11</b> Profiling segments</a>
 <ul>
-<li class="chapter" data-level="18.1.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#cata-counts"><i class="fa fa-check"></i><b>18.1.1</b> CATA counts</a></li>
-<li class="chapter" data-level="18.1.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#hedonics"><i class="fa fa-check"></i><b>18.1.2</b> Hedonics</a></li>
-</ul></li>
-<li class="chapter" data-level="18.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-2-consumer-background-and-pca"><i class="fa fa-check"></i><b>18.2</b> Exercise 2: Consumer background and PCA</a>
+<li class="chapter" data-level="11.1" data-path="profiling-segments.html"><a href="profiling-segments.html#table-1-as-a-profiling-tool"><i class="fa fa-check"></i><b>11.1</b> Table 1 as a profiling tool</a></li>
+<li class="chapter" data-level="11.2" data-path="profiling-segments.html"><a href="profiling-segments.html#visualization-of-consumer-segments"><i class="fa fa-check"></i><b>11.2</b> Visualization of Consumer Segments</a></li>
+<li class="chapter" data-level="11.3" data-path="profiling-segments.html"><a href="profiling-segments.html#creating-the-contingency-table"><i class="fa fa-check"></i><b>11.3</b> Creating the contingency table</a></li>
+<li class="chapter" data-level="11.4" data-path="profiling-segments.html"><a href="profiling-segments.html#plot-the-numbers"><i class="fa fa-check"></i><b>11.4</b> Plot the numbers</a></li>
+<li class="chapter" data-level="11.5" data-path="profiling-segments.html"><a href="profiling-segments.html#contingency-table"><i class="fa fa-check"></i><b>11.5</b> Contingency table</a>
 <ul>
-<li class="chapter" data-level="18.2.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#demographics"><i class="fa fa-check"></i><b>18.2.1</b> Demographics</a></li>
-<li class="chapter" data-level="18.2.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#pca-on-interests"><i class="fa fa-check"></i><b>18.2.2</b> PCA on <em>Interests</em></a></li>
+<li class="chapter" data-level="11.5.1" data-path="profiling-segments.html"><a href="profiling-segments.html#pearson-chi-square-test"><i class="fa fa-check"></i><b>11.5.1</b> Pearson Chi-square test</a></li>
 </ul></li>
-<li class="chapter" data-level="18.3" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-3-pca-on-cata-counts"><i class="fa fa-check"></i><b>18.3</b> Exercise 3: PCA on CATA counts</a></li>
-<li class="chapter" data-level="18.4" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-4-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>18.4</b> Exercise 4: Cochran’s Q test on CATA binary data</a></li>
-<li class="chapter" data-level="18.5" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-5-hedonic-ratings-and-consumer-characteristics"><i class="fa fa-check"></i><b>18.5</b> Exercise 5: Hedonic ratings and consumer characteristics</a>
+<li class="chapter" data-level="11.6" data-path="profiling-segments.html"><a href="profiling-segments.html#correspondence-analysis"><i class="fa fa-check"></i><b>11.6</b> Correspondence Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression</a>
 <ul>
-<li class="chapter" data-level="18.5.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#pca-on-joint-data"><i class="fa fa-check"></i><b>18.5.1</b> PCA on joint data</a></li>
-<li class="chapter" data-level="18.5.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#all-demographics"><i class="fa fa-check"></i><b>18.5.2</b> All demographics</a></li>
-</ul></li>
-<li class="chapter" data-level="18.6" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-6-pca-on-cata-counts-and-hedonic-ratings"><i class="fa fa-check"></i><b>18.6</b> Exercise 6: PCA on CATA counts and hedonic ratings</a></li>
-<li class="chapter" data-level="18.7" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-7-mixed-modelling-on-hedonic-ratings"><i class="fa fa-check"></i><b>18.7</b> Exercise 7: Mixed modelling on hedonic ratings</a></li>
-</ul></li>
-<li class="chapter" data-level="19" data-path="chapters-to-appear.html"><a href="chapters-to-appear.html"><i class="fa fa-check"></i><b>19</b> CHAPTERS to APPEAR</a></li>
-<li class="chapter" data-level="20" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>20</b> Latent Factor Models</a></li>
-<li class="chapter" data-level="21" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>21</b> LPLS</a></li>
-<li class="chapter" data-level="22" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>22</b> Confirmatory Factor Analysis using lavaan</a>
+<li class="chapter" data-level="12.1" data-path="logistic-regression.html"><a href="logistic-regression.html#segmentationclustering"><i class="fa fa-check"></i><b>12.1</b> Segmentation/Clustering</a></li>
+<li class="chapter" data-level="12.2" data-path="logistic-regression.html"><a href="logistic-regression.html#fitting-the-logistic-regression-model"><i class="fa fa-check"></i><b>12.2</b> Fitting the logistic regression-model</a></li>
+<li class="chapter" data-level="12.3" data-path="logistic-regression.html"><a href="logistic-regression.html#probabilities-of-segment-membership"><i class="fa fa-check"></i><b>12.3</b> Probabilities of segment membership:</a></li>
+<li class="chapter" data-level="12.4" data-path="logistic-regression.html"><a href="logistic-regression.html#odds-ratios"><i class="fa fa-check"></i><b>12.4</b> Odds ratios</a></li>
+<li class="chapter" data-level="12.5" data-path="logistic-regression.html"><a href="logistic-regression.html#ors-and-probs"><i class="fa fa-check"></i><b>12.5</b> ORs and Probs</a></li>
+<li class="chapter" data-level="12.6" data-path="logistic-regression.html"><a href="logistic-regression.html#effect-of-age"><i class="fa fa-check"></i><b>12.6</b> Effect of Age</a></li>
+<li class="chapter" data-level="12.7" data-path="logistic-regression.html"><a href="logistic-regression.html#multivariate-analysis"><i class="fa fa-check"></i><b>12.7</b> Multivariate analysis</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>22.1</b> Example - Food Neophobia</a></li>
+<li class="chapter" data-level="12.7.1" data-path="logistic-regression.html"><a href="logistic-regression.html#descriptives"><i class="fa fa-check"></i><b>12.7.1</b> Descriptives</a></li>
+<li class="chapter" data-level="12.7.2" data-path="logistic-regression.html"><a href="logistic-regression.html#two-nested-models"><i class="fa fa-check"></i><b>12.7.2</b> Two nested models</a></li>
+<li class="chapter" data-level="12.7.3" data-path="logistic-regression.html"><a href="logistic-regression.html#coefficients"><i class="fa fa-check"></i><b>12.7.3</b> Coefficients</a></li>
+<li class="chapter" data-level="12.7.4" data-path="logistic-regression.html"><a href="logistic-regression.html#re-level"><i class="fa fa-check"></i><b>12.7.4</b> Re-level</a></li>
+<li class="chapter" data-level="12.7.5" data-path="logistic-regression.html"><a href="logistic-regression.html#all-pairwise-comparisons"><i class="fa fa-check"></i><b>12.7.5</b> All pairwise comparisons</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>23</b> Structured Equation Modelling</a>
+<li class="chapter" data-level="12.8" data-path="logistic-regression.html"><a href="logistic-regression.html#segment-2-and-3"><i class="fa fa-check"></i><b>12.8</b> Segment 2 and 3</a></li>
+<li class="chapter" data-level="12.9" data-path="logistic-regression.html"><a href="logistic-regression.html#a-new-set-of-data"><i class="fa fa-check"></i><b>12.9</b> A new set of data</a></li>
+<li class="chapter" data-level="12.10" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-for-demographic-characterization"><i class="fa fa-check"></i><b>12.10</b> Logistic regression for demographic characterization</a>
 <ul>
-<li class="chapter" data-level="23.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>23.1</b> Example - Theory of Planned Behaviour</a></li>
+<li class="chapter" data-level="12.10.1" data-path="logistic-regression.html"><a href="logistic-regression.html#age"><i class="fa fa-check"></i><b>12.10.1</b> Age</a></li>
+<li class="chapter" data-level="12.10.2" data-path="logistic-regression.html"><a href="logistic-regression.html#gender"><i class="fa fa-check"></i><b>12.10.2</b> Gender</a></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="plsda-on-cata-and-liking.html"><a href="plsda-on-cata-and-liking.html"><i class="fa fa-check"></i><b>24</b> PLSDA on CATA and liking</a></li>
-<li class="chapter" data-level="25" data-path="text-mining-of-comsumer-reviews.html"><a href="text-mining-of-comsumer-reviews.html"><i class="fa fa-check"></i><b>25</b> Text mining of comsumer reviews</a></li>
-<li class="chapter" data-level="26" data-path="text-mining-of-open-ended-survey-responses.html"><a href="text-mining-of-open-ended-survey-responses.html"><i class="fa fa-check"></i><b>26</b> Text mining of open-ended survey responses</a></li>
+<li class="chapter" data-level="12.11" data-path="logistic-regression.html"><a href="logistic-regression.html#task"><i class="fa fa-check"></i><b>12.11</b> TASK</a></li>
+<li class="chapter" data-level="12.12" data-path="logistic-regression.html"><a href="logistic-regression.html#the-tidyverse-way-1"><i class="fa fa-check"></i><b>12.12</b> The tidyverse way</a></li>
+<li class="chapter" data-level="12.13" data-path="logistic-regression.html"><a href="logistic-regression.html#comment"><i class="fa fa-check"></i><b>12.13</b> Comment</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html"><i class="fa fa-check"></i><b>13</b> CATA data (Check-All-That-Apply)</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#importing-and-looking-at-the-beer-data"><i class="fa fa-check"></i><b>13.1</b> Importing and looking at the beer data</a></li>
+<li class="chapter" data-level="13.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#two-versions-of-the-data"><i class="fa fa-check"></i><b>13.2</b> Two versions of the data</a></li>
+<li class="chapter" data-level="13.3" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#cochrans-q-test"><i class="fa fa-check"></i><b>13.3</b> Cochran’s Q test</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#post-hoc-test"><i class="fa fa-check"></i><b>13.3.1</b> Post hoc test</a></li>
+<li class="chapter" data-level="13.3.2" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#for-all-attributes-in-one-run-nice-to-know"><i class="fa fa-check"></i><b>13.3.2</b> For all attributes in one run (nice to know)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="cata-data-check-all-that-apply.html"><a href="cata-data-check-all-that-apply.html#pca-on-cata-data"><i class="fa fa-check"></i><b>13.4</b> PCA on CATA data</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html"><i class="fa fa-check"></i><b>14</b> Hedonic rating (e.g. liking scores)</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#plotting-liking-scores"><i class="fa fa-check"></i><b>14.1</b> Plotting liking scores</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#pca-of-hedonic-ratings"><i class="fa fa-check"></i><b>14.1.1</b> PCA of hedonic ratings</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#simple-mixed-models"><i class="fa fa-check"></i><b>14.2</b> Simple mixed models</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#post-hoc-test-1"><i class="fa fa-check"></i><b>14.2.1</b> Post hoc test</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#multivariable-models"><i class="fa fa-check"></i><b>14.3</b> Multivariable models</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#additive-models"><i class="fa fa-check"></i><b>14.3.1</b> Additive models</a></li>
+<li class="chapter" data-level="14.3.2" data-path="hedonic-rating-e.g.-liking-scores.html"><a href="hedonic-rating-e.g.-liking-scores.html#effect-modification-and-interactions"><i class="fa fa-check"></i><b>14.3.2</b> Effect modification and Interactions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html"><i class="fa fa-check"></i><b>15</b> CATA and Hedonics</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#individual-attributes-and-liking"><i class="fa fa-check"></i><b>15.1</b> Individual attributes and liking</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#an-example-with-refreshing"><i class="fa fa-check"></i><b>15.1.1</b> An example with Refreshing</a></li>
+<li class="chapter" data-level="15.1.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#all-attributes"><i class="fa fa-check"></i><b>15.1.2</b> All attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pca-on-cata-and-liking"><i class="fa fa-check"></i><b>15.2</b> PCA on CATA and Liking</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#a-beer-centric-model"><i class="fa fa-check"></i><b>15.2.1</b> A beer centric model</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#analysis-by-pls"><i class="fa fa-check"></i><b>15.3</b> Analysis by PLS</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pls-basics"><i class="fa fa-check"></i><b>15.3.1</b> PLS basics</a></li>
+<li class="chapter" data-level="15.3.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#pls-to-predict-liking-based-on-cata-data"><i class="fa fa-check"></i><b>15.3.2</b> PLS to predict liking based on CATA data</a></li>
+<li class="chapter" data-level="15.3.3" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#regression-coefficients"><i class="fa fa-check"></i><b>15.3.3</b> Regression coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#l-pls"><i class="fa fa-check"></i><b>15.4</b> L-PLS</a></li>
+<li class="chapter" data-level="15.5" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#creating-x1-x2-x3."><i class="fa fa-check"></i><b>15.5</b> Creating X1, X2, X3.</a></li>
+<li class="chapter" data-level="15.6" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#building-the-model-the-l-pls-model-can-be-built-using-the-lpls"><i class="fa fa-check"></i><b>15.6</b> Building the model: The L-PLS model can be built, using the <em>lpls</em></a>
+<ul>
+<li class="chapter" data-level="15.6.1" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#finding-the-explained-variance-for-exo-l-pls"><i class="fa fa-check"></i><b>15.6.1</b> Finding the explained variance for exo L-PLS</a></li>
+<li class="chapter" data-level="15.6.2" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#cross-validation-next-let-us-have-a-look-how-many-components-we"><i class="fa fa-check"></i><b>15.6.2</b> Cross-validation Next let us have a look how many components we</a></li>
+<li class="chapter" data-level="15.6.3" data-path="cata-and-hedonics.html"><a href="cata-and-hedonics.html#vizulization-now-we-would-like-to-visuzlalize-our-l-pls-model.-when"><i class="fa fa-check"></i><b>15.6.3</b> Vizulization Now we would like to visuzlalize our L-PLS model. When</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="projective-mapping.html"><a href="projective-mapping.html"><i class="fa fa-check"></i><b>16</b> Projective mapping</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="projective-mapping.html"><a href="projective-mapping.html#example-from-mapping-of-xx"><i class="fa fa-check"></i><b>16.1</b> Example from mapping of XX</a></li>
+<li class="chapter" data-level="16.2" data-path="projective-mapping.html"><a href="projective-mapping.html#a-collated-version-of-the-data"><i class="fa fa-check"></i><b>16.2</b> A Collated version of the data</a></li>
+<li class="chapter" data-level="16.3" data-path="projective-mapping.html"><a href="projective-mapping.html#pca-on-collated-data"><i class="fa fa-check"></i><b>16.3</b> PCA on Collated data</a></li>
+<li class="chapter" data-level="16.4" data-path="projective-mapping.html"><a href="projective-mapping.html#section"><i class="fa fa-check"></i><b>16.4</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="tfih-exercises.html"><a href="tfih-exercises.html"><i class="fa fa-check"></i><b>17</b> TFIH Exercises</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-1-descriptive-statistics-and-plots"><i class="fa fa-check"></i><b>17.1</b> Exercise 1: Descriptive statistics and plots</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#cata-counts"><i class="fa fa-check"></i><b>17.1.1</b> CATA counts</a></li>
+<li class="chapter" data-level="17.1.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#hedonics"><i class="fa fa-check"></i><b>17.1.2</b> Hedonics</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-2-consumer-background-and-pca"><i class="fa fa-check"></i><b>17.2</b> Exercise 2: Consumer background and PCA</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#demographics"><i class="fa fa-check"></i><b>17.2.1</b> Demographics</a></li>
+<li class="chapter" data-level="17.2.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#pca-on-interests"><i class="fa fa-check"></i><b>17.2.2</b> PCA on <em>Interests</em></a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-3-pca-on-cata-counts"><i class="fa fa-check"></i><b>17.3</b> Exercise 3: PCA on CATA counts</a></li>
+<li class="chapter" data-level="17.4" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-4-cochrans-q-test-on-cata-binary-data"><i class="fa fa-check"></i><b>17.4</b> Exercise 4: Cochran’s Q test on CATA binary data</a></li>
+<li class="chapter" data-level="17.5" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-5-hedonic-ratings-and-consumer-characteristics"><i class="fa fa-check"></i><b>17.5</b> Exercise 5: Hedonic ratings and consumer characteristics</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="tfih-exercises.html"><a href="tfih-exercises.html#pca-on-joint-data"><i class="fa fa-check"></i><b>17.5.1</b> PCA on joint data</a></li>
+<li class="chapter" data-level="17.5.2" data-path="tfih-exercises.html"><a href="tfih-exercises.html#all-demographics"><i class="fa fa-check"></i><b>17.5.2</b> All demographics</a></li>
+</ul></li>
+<li class="chapter" data-level="17.6" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-6-pca-on-cata-counts-and-hedonic-ratings"><i class="fa fa-check"></i><b>17.6</b> Exercise 6: PCA on CATA counts and hedonic ratings</a></li>
+<li class="chapter" data-level="17.7" data-path="tfih-exercises.html"><a href="tfih-exercises.html#exercise-7-mixed-modelling-on-hedonic-ratings"><i class="fa fa-check"></i><b>17.7</b> Exercise 7: Mixed modelling on hedonic ratings</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="chapters-to-appear.html"><a href="chapters-to-appear.html"><i class="fa fa-check"></i><b>18</b> CHAPTERS to APPEAR</a></li>
+<li class="chapter" data-level="19" data-path="latent-factor-models.html"><a href="latent-factor-models.html"><i class="fa fa-check"></i><b>19</b> Latent Factor Models</a></li>
+<li class="chapter" data-level="20" data-path="lpls.html"><a href="lpls.html"><i class="fa fa-check"></i><b>20</b> LPLS</a></li>
+<li class="chapter" data-level="21" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html"><i class="fa fa-check"></i><b>21</b> Confirmatory Factor Analysis using lavaan</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="confirmatory-factor-analysis-using-lavaan.html"><a href="confirmatory-factor-analysis-using-lavaan.html#example---food-neophobia"><i class="fa fa-check"></i><b>21.1</b> Example - Food Neophobia</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html"><i class="fa fa-check"></i><b>22</b> Structured Equation Modelling</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="structured-equation-modelling.html"><a href="structured-equation-modelling.html#example---theory-of-planned-behaviour"><i class="fa fa-check"></i><b>22.1</b> Example - Theory of Planned Behaviour</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="plsda-on-cata-and-liking.html"><a href="plsda-on-cata-and-liking.html"><i class="fa fa-check"></i><b>23</b> PLSDA on CATA and liking</a></li>
+<li class="chapter" data-level="24" data-path="text-mining-of-comsumer-reviews.html"><a href="text-mining-of-comsumer-reviews.html"><i class="fa fa-check"></i><b>24</b> Text mining of comsumer reviews</a></li>
+<li class="chapter" data-level="25" data-path="text-mining-of-open-ended-survey-responses.html"><a href="text-mining-of-open-ended-survey-responses.html"><i class="fa fa-check"></i><b>25</b> Text mining of open-ended survey responses</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -456,17 +456,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="consumer-segmentation" class="section level1 hasAnchor" number="11">
-<h1><span class="header-section-number">Chapter 11</span> Consumer segmentation<a href="consumer-segmentation.html#consumer-segmentation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="consumer-segmentation" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Consumer segmentation<a href="consumer-segmentation.html#consumer-segmentation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The data used in the first part of this chapter is from the paper: <em>Verbeke, Wim, Federico JA Pérez-Cueto, and Klaus G. Grunert. “To eat or not to eat pork, how frequently and how varied? Insights from the quantitative Q-PorkChains consumer survey in four European countries.” Meat science 88.4 (2011): 619-626.</em> and can be found in the <em>data4consumerscience</em>-package as <strong>pork</strong>.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="consumer-segmentation.html#cb178-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb178-2"><a href="consumer-segmentation.html#cb178-2" tabindex="-1"></a><span class="fu">data</span>(pork)</span></code></pre></div>
-<div id="segmentation" class="section level2 hasAnchor" number="11.1">
-<h2><span class="header-section-number">11.1</span> Segmentation<a href="consumer-segmentation.html#segmentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="consumer-segmentation.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb178-2"><a href="consumer-segmentation.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pork)</span></code></pre></div>
+<div id="segmentation" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Segmentation<a href="consumer-segmentation.html#segmentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To create the consumer segments, a cluster analysis, based on behavioral data (frequency and variety of consumption), will be carried out.</p>
 <p>This example shows k-means clustering as the clustering analysis, but there are many more options out there - some more data-driven and some using common sense or domain knowledge. Both types of segmentation can be valid, as long as the scientific reasoning behind makes sense.</p>
-<div id="using-k-means-for-clustering" class="section level3 hasAnchor" number="11.1.1">
-<h3><span class="header-section-number">11.1.1</span> Using K-means for clustering<a href="consumer-segmentation.html#using-k-means-for-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="using-k-means-for-clustering" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Using K-means for clustering<a href="consumer-segmentation.html#using-k-means-for-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>K-means is a popular algorithm used for clustering, which is a fancy word for grouping. This means, that we can group un-grouped data, if the different attributes create such groups.</p>
 <p>The algorithm works by you selecting a value for “k,” which is the number of clusters/groups that the algorithm will attempt to group the data points into. Then, it randomly selects “k” points from the dataset as the initial centroids. These centroids represent the centers of each cluster.</p>
 <p>Next, the algorithm iteratively assigns each data point to the nearest centroid based on the squared Euclidean distance between the point and the centroid (also known as the “Within Cluster Sum of Squares”(WCSS)). After all data points have been assigned, the centroid for each cluster is recalculated by taking the mean of all the points assigned to that cluster. This step updates the center of each cluster.</p>
@@ -477,90 +477,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Below is shown an example with both 2 and 3 clusters (“centers = _“).</p>
 <p>The “nstart”-input specifies, that the clustering will start at 25 different random points, and selects the best. Doing this will help getting the same result every time, especially if data are less clustered by nature. For details on the algorithm type <em>?kmeans</em> to get help.</p>
 <p>Note, the <em>set.seed(123)</em> is only for reproducibility and hence only nice-to-know.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="consumer-segmentation.html#cb179-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb179-2"><a href="consumer-segmentation.html#cb179-2" tabindex="-1"></a>km.cluster3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], <span class="at">centers =</span> <span class="dv">3</span>,<span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb179-3"><a href="consumer-segmentation.html#cb179-3" tabindex="-1"></a>km.cluster2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], <span class="at">centers =</span> <span class="dv">2</span>,<span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="consumer-segmentation.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb179-2"><a href="consumer-segmentation.html#cb179-2" aria-hidden="true" tabindex="-1"></a>km.cluster3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], <span class="at">centers =</span> <span class="dv">3</span>,<span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb179-3"><a href="consumer-segmentation.html#cb179-3" aria-hidden="true" tabindex="-1"></a>km.cluster2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], <span class="at">centers =</span> <span class="dv">2</span>,<span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
 <p>First, we run a clustering with the function <em>kmeans</em> for the dataset <em>pork</em>. We will use the two variables “VarietyTotal” &amp; “TotalPorkWeek” to calculate the three best clusters, and we will choose the random centers 25 times, by specifying the argument <em>nstart</em>. You can off course change this number yourself. We save it as <em>km.cluster3</em> (remember you choose this name). Secondly, we run almost the same clustering, changing only the name and the number of centers to 2.</p>
 </div>
-<div id="initial-characterization-of-clusters" class="section level3 hasAnchor" number="11.1.2">
-<h3><span class="header-section-number">11.1.2</span> Initial characterization of clusters<a href="consumer-segmentation.html#initial-characterization-of-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="initial-characterization-of-clusters" class="section level3 hasAnchor" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> Initial characterization of clusters<a href="consumer-segmentation.html#initial-characterization-of-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Below are some of the outputs, that you can get from the clustering. Here you can see the size of the clusters as well as the positions of their centroids. Positions here means the value of the centroid for each variable. For example, below we see, that the cluster 1’s centriod has a value for VarietyTotal of 25.04562. Size means the number of members in each cluster.</p>
 <p>Here for 3 clusters:</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="consumer-segmentation.html#cb180-1" tabindex="-1"></a>km.cluster3<span class="sc">$</span>centers</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="consumer-segmentation.html#cb180-1" aria-hidden="true" tabindex="-1"></a>km.cluster3<span class="sc">$</span>centers</span></code></pre></div>
 <pre><code>##   VarietyTotal TotalPorkWeek
-## 1     22.85949      4.957372
-## 2     27.26288     11.343699
-## 3     27.10061     22.969634</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="consumer-segmentation.html#cb182-1" tabindex="-1"></a>km.cluster3<span class="sc">$</span>size</span></code></pre></div>
-<pre><code>## [1] 548 757 328</code></pre>
+## 1     27.10061     22.969634
+## 2     22.85949      4.957372
+## 3     27.26288     11.343699</code></pre>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="consumer-segmentation.html#cb182-1" aria-hidden="true" tabindex="-1"></a>km.cluster3<span class="sc">$</span>size</span></code></pre></div>
+<pre><code>## [1] 328 548 757</code></pre>
 <p>… and for 2 clusters:</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="consumer-segmentation.html#cb184-1" tabindex="-1"></a>km.cluster2<span class="sc">$</span>centers</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="consumer-segmentation.html#cb184-1" aria-hidden="true" tabindex="-1"></a>km.cluster2<span class="sc">$</span>centers</span></code></pre></div>
 <pre><code>##   VarietyTotal TotalPorkWeek
 ## 1     25.04562      7.571986
 ## 2     27.28738     20.140544</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="consumer-segmentation.html#cb186-1" tabindex="-1"></a>km.cluster2<span class="sc">$</span>size</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="consumer-segmentation.html#cb186-1" aria-hidden="true" tabindex="-1"></a>km.cluster2<span class="sc">$</span>size</span></code></pre></div>
 <pre><code>## [1] 1118  515</code></pre>
 <p>Centers will give you the average values for the variables “VarietyTotal” &amp; “TotalPorkWeek” in the center of each of the three (in km.cluster3) clusters. Size will give you the the number of members per cluster. It is a good idea to check that the clusters are not too uneven in number of members. The third line above is just another way of asking for the size of the clusters in km.cluster3. All command are repeated for the km.cluster2; that is the cluster analysis with two clusters, you made and saved above.</p>
 </div>
-<div id="vizualization-of-the-clusters" class="section level3 hasAnchor" number="11.1.3">
-<h3><span class="header-section-number">11.1.3</span> Vizualization of the clusters<a href="consumer-segmentation.html#vizualization-of-the-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="vizualization-of-the-clusters" class="section level3 hasAnchor" number="10.1.3">
+<h3><span class="header-section-number">10.1.3</span> Vizualization of the clusters<a href="consumer-segmentation.html#vizualization-of-the-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>It is, however, a lot easier to understand clustering, when it is visualized. Below is shown two different ways of plotting the clusters - one using the build-in plotting function, and one using the package <strong>ggplot2</strong>. <strong>ggplot2</strong> maybe looks a bit more complicated, but has a lot of functions built into it, which means that it can be nice to learn!</p>
 <p>Try to make the plots yourself, and try to see what happens if you change different inputs.</p>
 <p><strong>Using Basic R-plotting</strong></p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="consumer-segmentation.html#cb188-1" tabindex="-1"></a><span class="fu">plot</span>(TotalPorkWeek <span class="sc">~</span> VarietyTotal, <span class="at">data =</span> pork, <span class="at">col =</span> km.cluster3[[<span class="st">&quot;cluster&quot;</span>]] <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb188-2"><a href="consumer-segmentation.html#cb188-2" tabindex="-1"></a><span class="fu">points</span>(km.cluster3[[<span class="st">&quot;centers&quot;</span>]], <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">cex =</span> <span class="fl">1.3</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="consumer-segmentation.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(TotalPorkWeek <span class="sc">~</span> VarietyTotal, <span class="at">data =</span> pork, <span class="at">col =</span> km.cluster3[[<span class="st">&quot;cluster&quot;</span>]] <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb188-2"><a href="consumer-segmentation.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(km.cluster3[[<span class="st">&quot;centers&quot;</span>]], <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">cex =</span> <span class="fl">1.3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
 <p>The first line creates a scatter plot, by plotting the variables <em>TotalPorkWeek</em> on the y-axis and <em>VarietyTotal</em> on the x-axis.
 <em>points()</em> function adds the cluster centers as points from the <em>km.clusters3</em> object to the existing scatter plot. The <em>pch</em> argument specifies the point type, and the <em>cex</em> argument controls the size of the point.</p>
 <p><strong>Using ggplot2 with 3 centers</strong></p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="consumer-segmentation.html#cb189-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb189-2"><a href="consumer-segmentation.html#cb189-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(km.cluster3[[<span class="st">&quot;centers&quot;</span>]])</span>
-<span id="cb189-3"><a href="consumer-segmentation.html#cb189-3" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(km.cluster2[[<span class="st">&quot;centers&quot;</span>]])</span>
-<span id="cb189-4"><a href="consumer-segmentation.html#cb189-4" tabindex="-1"></a></span>
-<span id="cb189-5"><a href="consumer-segmentation.html#cb189-5" tabindex="-1"></a><span class="co">#ggplot 2</span></span>
-<span id="cb189-6"><a href="consumer-segmentation.html#cb189-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pork, <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek)) <span class="sc">+</span> </span>
-<span id="cb189-7"><a href="consumer-segmentation.html#cb189-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(km.cluster3<span class="sc">$</span>cluster))) <span class="sc">+</span> </span>
-<span id="cb189-8"><a href="consumer-segmentation.html#cb189-8" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="st">&#39;Cluster&#39;</span>)) <span class="sc">+</span> </span>
-<span id="cb189-9"><a href="consumer-segmentation.html#cb189-9" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df, </span>
-<span id="cb189-10"><a href="consumer-segmentation.html#cb189-10" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek), </span>
-<span id="cb189-11"><a href="consumer-segmentation.html#cb189-11" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, </span>
-<span id="cb189-12"><a href="consumer-segmentation.html#cb189-12" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb189-13"><a href="consumer-segmentation.html#cb189-13" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-164-1.png" width="672" />
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="consumer-segmentation.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb189-2"><a href="consumer-segmentation.html#cb189-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(km.cluster3[[<span class="st">&quot;centers&quot;</span>]])</span>
+<span id="cb189-3"><a href="consumer-segmentation.html#cb189-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(km.cluster2[[<span class="st">&quot;centers&quot;</span>]])</span>
+<span id="cb189-4"><a href="consumer-segmentation.html#cb189-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb189-5"><a href="consumer-segmentation.html#cb189-5" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot 2</span></span>
+<span id="cb189-6"><a href="consumer-segmentation.html#cb189-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pork, <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek)) <span class="sc">+</span> </span>
+<span id="cb189-7"><a href="consumer-segmentation.html#cb189-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(km.cluster3<span class="sc">$</span>cluster))) <span class="sc">+</span> </span>
+<span id="cb189-8"><a href="consumer-segmentation.html#cb189-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="st">&#39;Cluster&#39;</span>)) <span class="sc">+</span> </span>
+<span id="cb189-9"><a href="consumer-segmentation.html#cb189-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df, </span>
+<span id="cb189-10"><a href="consumer-segmentation.html#cb189-10" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek), </span>
+<span id="cb189-11"><a href="consumer-segmentation.html#cb189-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, </span>
+<span id="cb189-12"><a href="consumer-segmentation.html#cb189-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb189-13"><a href="consumer-segmentation.html#cb189-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-117-1.png" width="672" />
 When using ggplot2, as data frame is needed. Therefore two data frames a made, one for each of the centers from the clustering objects previously made.
 <em>ggplot</em> creates a scatter plot using the <em>pork</em> data, with the variables <em>TotalPorkWeek</em> on the y-axis and <em>VarietyTotal</em> on the x-axis.
 <em>geom_point()</em> adds the first layer of points. These points are colored according to the clusters in <em>km.cluster3</em>. <em>factor()</em> is used to ensure that the cluster variable is treated as a categorical variable.
 <em>guides()</em> modifies the legend title for the color guide in the plot. It changes the legend title to “Cluster.”
 <em>geom_point()</em> adds the second layer of points to the plot using the df data frame. These points represent the cluster centers.</p>
 <p><strong>Using ggplot2 with 2 centers</strong></p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="consumer-segmentation.html#cb190-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pork, <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek)) <span class="sc">+</span> </span>
-<span id="cb190-2"><a href="consumer-segmentation.html#cb190-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(km.cluster2<span class="sc">$</span>cluster))) <span class="sc">+</span> </span>
-<span id="cb190-3"><a href="consumer-segmentation.html#cb190-3" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="st">&#39;Cluster&#39;</span>)) <span class="sc">+</span> </span>
-<span id="cb190-4"><a href="consumer-segmentation.html#cb190-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df2, </span>
-<span id="cb190-5"><a href="consumer-segmentation.html#cb190-5" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek), </span>
-<span id="cb190-6"><a href="consumer-segmentation.html#cb190-6" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, </span>
-<span id="cb190-7"><a href="consumer-segmentation.html#cb190-7" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb190-8"><a href="consumer-segmentation.html#cb190-8" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-165-1.png" width="672" />
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="consumer-segmentation.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pork, <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek)) <span class="sc">+</span> </span>
+<span id="cb190-2"><a href="consumer-segmentation.html#cb190-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(km.cluster2<span class="sc">$</span>cluster))) <span class="sc">+</span> </span>
+<span id="cb190-3"><a href="consumer-segmentation.html#cb190-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="st">&#39;Cluster&#39;</span>)) <span class="sc">+</span> </span>
+<span id="cb190-4"><a href="consumer-segmentation.html#cb190-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df2, </span>
+<span id="cb190-5"><a href="consumer-segmentation.html#cb190-5" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> VarietyTotal, <span class="at">y =</span> TotalPorkWeek), </span>
+<span id="cb190-6"><a href="consumer-segmentation.html#cb190-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, </span>
+<span id="cb190-7"><a href="consumer-segmentation.html#cb190-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb190-8"><a href="consumer-segmentation.html#cb190-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-118-1.png" width="672" />
 The method for creating the ggplot with 2 centers, is the same, only changing the data frame being used, when adding the second layer of points.</p>
 </div>
-<div id="sums-of-squares-from-the-clustering" class="section level3 hasAnchor" number="11.1.4">
-<h3><span class="header-section-number">11.1.4</span> Sums of Squares from the clustering<a href="consumer-segmentation.html#sums-of-squares-from-the-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="sums-of-squares-from-the-clustering" class="section level3 hasAnchor" number="10.1.4">
+<h3><span class="header-section-number">10.1.4</span> Sums of Squares from the clustering<a href="consumer-segmentation.html#sums-of-squares-from-the-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As mentioned in [K-means], k-means set the clusters such that the between clusters (sort of differences between centers) are <em>large</em> while the distance within a cluster (from each sample to is cluster-center) is <em>small</em>.</p>
 <p>R can also display these numbers, as shown below:</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="consumer-segmentation.html#cb191-1" tabindex="-1"></a><span class="co">#Within Sum of Squares</span></span>
-<span id="cb191-2"><a href="consumer-segmentation.html#cb191-2" tabindex="-1"></a>km.cluster3<span class="sc">$</span>withinss</span></code></pre></div>
-<pre><code>## [1] 12534.737  9854.921  9293.210</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="consumer-segmentation.html#cb193-1" tabindex="-1"></a><span class="co">#Total Within Sum of Squares</span></span>
-<span id="cb193-2"><a href="consumer-segmentation.html#cb193-2" tabindex="-1"></a>km.cluster3<span class="sc">$</span>tot.withinss</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="consumer-segmentation.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Within Sum of Squares</span></span>
+<span id="cb191-2"><a href="consumer-segmentation.html#cb191-2" aria-hidden="true" tabindex="-1"></a>km.cluster3<span class="sc">$</span>withinss</span></code></pre></div>
+<pre><code>## [1]  9293.210 12534.737  9854.921</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="consumer-segmentation.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Total Within Sum of Squares</span></span>
+<span id="cb193-2"><a href="consumer-segmentation.html#cb193-2" aria-hidden="true" tabindex="-1"></a>km.cluster3<span class="sc">$</span>tot.withinss</span></code></pre></div>
 <pre><code>## [1] 31682.87</code></pre>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="consumer-segmentation.html#cb195-1" tabindex="-1"></a><span class="co">#Between Sum of Squares</span></span>
-<span id="cb195-2"><a href="consumer-segmentation.html#cb195-2" tabindex="-1"></a>km.cluster3<span class="sc">$</span>betweenss</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="consumer-segmentation.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Between Sum of Squares</span></span>
+<span id="cb195-2"><a href="consumer-segmentation.html#cb195-2" aria-hidden="true" tabindex="-1"></a>km.cluster3<span class="sc">$</span>betweenss</span></code></pre></div>
 <pre><code>## [1] 73532.81</code></pre>
 </div>
 </div>
-<div id="selecting-the-number-of-clusters---a-data-driven-approach" class="section level2 hasAnchor" number="11.2">
-<h2><span class="header-section-number">11.2</span> Selecting the number of clusters - a data-driven approach<a href="consumer-segmentation.html#selecting-the-number-of-clusters---a-data-driven-approach" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="selecting-the-number-of-clusters---a-data-driven-approach" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Selecting the number of clusters - a data-driven approach<a href="consumer-segmentation.html#selecting-the-number-of-clusters---a-data-driven-approach" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Usually there is no given set of clusters, so we want to also learn that from data.</p>
 <p>Below we show how to use the Gap-statistics (from the <strong>cluster</strong>-package) for <span class="math inline">\(2\)</span> up to <span class="math inline">\(10\)</span> clusters to select the optimal number of clusters.</p>
 <p>The concept of Gap statistics is based on the idea that if a dataset truly contains distinct clusters, then the dispersion within each cluster should be smaller than the dispersion between clusters. The gap statistic measures the difference between the observed dispersion and the expected dispersion under a null reference distribution. By comparing this gap statistic for different numbers of clusters, one can identify the optimal number of clusters that best captures the underlying structure of the data.</p>
@@ -568,28 +568,25 @@ The method for creating the ggplot with 2 centers, is the same, only changing th
 <p>When interpreting the plot, the highest Gap-value (the y-axis) shows the number of clusters, that best represent the data. However, since we are trying to use the data to as a generalization of a larger population, one should be conservative when choosing the number of clusters. If a less complicated/more general model (less clusters) can explain almost the same, one should always choose the less complicated model.</p>
 <p>As a rule of thumb, when interpreting the Gap-statistics plot, a model with a number of clusters within the standard deviation of the model with the best Gap-statistic will be sufficient. In our case, this means, that a model with 3 clusters should do the job, as seen below.</p>
 <p>Another check is of course to make both models, and plot it, to check if the clustering makes sense. This is equally as important as looking at the Gap-statistics.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="consumer-segmentation.html#cb197-1" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
-<span id="cb197-2"><a href="consumer-segmentation.html#cb197-2" tabindex="-1"></a>gapStatistic <span class="ot">&lt;-</span> <span class="fu">clusGap</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], kmeans, <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>## Clustering k = 1,2,..., K.max (= 10): .. done
-## Bootstrapping, b = 1,2,..., B (= 100)  [one &quot;.&quot; per sample]:
-## .................................................. 50 
-## .................................................. 100</code></pre>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="consumer-segmentation.html#cb199-1" tabindex="-1"></a><span class="fu">plot</span>(gapStatistic, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-167-1.png" width="672" />
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="consumer-segmentation.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
+<span id="cb197-2"><a href="consumer-segmentation.html#cb197-2" aria-hidden="true" tabindex="-1"></a>gapStatistic <span class="ot">&lt;-</span> <span class="fu">clusGap</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], kmeans, <span class="dv">10</span>)</span>
+<span id="cb197-3"><a href="consumer-segmentation.html#cb197-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-4"><a href="consumer-segmentation.html#cb197-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gapStatistic, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-120-1.png" width="672" />
 The package <em>cluster</em> is initially loaded. The gap statistics is then calculated using the function <em>clusGap()</em>, with the data <em>pork</em> and only containing the columns <em>TotalPorkWeek</em> and <em>VarietyTotal</em>, <em>kmeans</em> is used as the clustering algorithm. The <em>10</em> specifies that the analysis is performed for up to 10 clusters. The <em>plot()</em> function is then used to plot the results.</p>
 <p>The point at which the gap statistic starts to level off or decrease can provide insight into the appropriate number of clusters to use for the data. Therefore the appropiate number of clusters seems to be <span class="math inline">\(10\)</span></p>
 <p><strong>Using Nbclust</strong></p>
 <p>Another package able to aid when trying to determine the number of clusters is <strong>NbClust</strong>. This package runs a variety of different tests, each resulting in an optimal number of clusters. This means, that while you get a lot of opinion on the number of clusters, the <em>NbClust</em>-function might take a while to run.</p>
 <p><em>NbClust</em> will show a lot of plots and show results for the different methods. You can look at them if you want, but the most important part is the last output of the function, where the voting for the different number of clusters as well as the conclusion is displayed.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="consumer-segmentation.html#cb200-1" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
-<span id="cb200-2"><a href="consumer-segmentation.html#cb200-2" tabindex="-1"></a>Nbclusters <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], <span class="at">method =</span> <span class="st">&#39;kmeans&#39;</span> )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="consumer-segmentation.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
+<span id="cb198-2"><a href="consumer-segmentation.html#cb198-2" aria-hidden="true" tabindex="-1"></a>Nbclusters <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(pork[, <span class="fu">c</span>(<span class="st">&quot;VarietyTotal&quot;</span>, <span class="st">&quot;TotalPorkWeek&quot;</span>)], <span class="at">method =</span> <span class="st">&#39;kmeans&#39;</span> )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
 <pre><code>## *** : The Hubert index is a graphical method of determining the number of clusters.
 ##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
 ##                 significant increase of the value of the measure i.e the significant peak in Hubert
 ##                 index second differences plot. 
 ## </code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-168-2.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-121-2.png" width="672" /></p>
 <pre><code>## *** : The D index is a graphical method of determining the number of clusters. 
 ##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
 ##                 second differences plot) that corresponds to a significant increase of the value of
@@ -613,34 +610,30 @@ The package <em>cluster</em> is initially loaded. The gap statistics is then cal
 <p>The gap-statistics seems to suggest k=3, whereas NbClust suggests k=2-4, which shows how important it is, that you know your data enough to be able to make the right decision, such as number of clusters.</p>
 <p>The rule of thumb is to use these data driven approaches together with interpretability of the resulting clusters, such that the solution is meaningful.</p>
 </div>
-<div id="segmentation---another-example" class="section level2 hasAnchor" number="11.3">
-<h2><span class="header-section-number">11.3</span> Segmentation - another example<a href="consumer-segmentation.html#segmentation---another-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="segmentation---another-example" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Segmentation - another example<a href="consumer-segmentation.html#segmentation---another-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The data <strong>plantbaseddiet</strong> constitute data from the following study, and can be found in the <strong>data4consumerscience</strong>-package:</p>
 <p><em>Reipurth, Malou FS, Lasse Hørby, Charlotte G. Gregersen, Astrid Bonke, and Federico JA Perez Cueto. “Barriers and facilitators towards adopting a more plant-based diet in a sample of Danish consumers.” Food quality and preference 73 (2019): 288-292.</em></p>
 <p>These we will use as a second example for cluster analysis.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="consumer-segmentation.html#cb203-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb203-2"><a href="consumer-segmentation.html#cb203-2" tabindex="-1"></a><span class="fu">data</span>(plantbaseddiet)</span></code></pre></div>
-<div id="cluster-analysis" class="section level3 hasAnchor" number="11.3.1">
-<h3><span class="header-section-number">11.3.1</span> Cluster analysis<a href="consumer-segmentation.html#cluster-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="consumer-segmentation.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb201-2"><a href="consumer-segmentation.html#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(plantbaseddiet)</span></code></pre></div>
+<div id="cluster-analysis" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Cluster analysis<a href="consumer-segmentation.html#cluster-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this example, 3 variables are included in the clustering: ‘a_meat’, ‘a_dairy’ and ‘a_eggs’. Otherwise, the same procedure applies: Finding the appropriate amount of clusters, and running the analysis.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="consumer-segmentation.html#cb204-1" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
-<span id="cb204-2"><a href="consumer-segmentation.html#cb204-2" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
-<span id="cb204-3"><a href="consumer-segmentation.html#cb204-3" tabindex="-1"></a></span>
-<span id="cb204-4"><a href="consumer-segmentation.html#cb204-4" tabindex="-1"></a>gapStatistic <span class="ot">&lt;-</span> <span class="fu">clusGap</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], kmeans, <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>## Clustering k = 1,2,..., K.max (= 10): .. done
-## Bootstrapping, b = 1,2,..., B (= 100)  [one &quot;.&quot; per sample]:
-## .................................................. 50 
-## .................................................. 100</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="consumer-segmentation.html#cb206-1" tabindex="-1"></a><span class="fu">plot</span>(gapStatistic, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="consumer-segmentation.html#cb207-1" tabindex="-1"></a>Nbclusters_plant <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)],<span class="at">method =</span> <span class="st">&#39;kmeans&#39;</span> )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-170-2.png" width="672" /></p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="consumer-segmentation.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
+<span id="cb202-2"><a href="consumer-segmentation.html#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
+<span id="cb202-3"><a href="consumer-segmentation.html#cb202-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb202-4"><a href="consumer-segmentation.html#cb202-4" aria-hidden="true" tabindex="-1"></a>gapStatistic <span class="ot">&lt;-</span> <span class="fu">clusGap</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], kmeans, <span class="dv">10</span>)</span>
+<span id="cb202-5"><a href="consumer-segmentation.html#cb202-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gapStatistic, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="consumer-segmentation.html#cb203-1" aria-hidden="true" tabindex="-1"></a>Nbclusters_plant <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)],<span class="at">method =</span> <span class="st">&#39;kmeans&#39;</span> )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-123-2.png" width="672" /></p>
 <pre><code>## *** : The Hubert index is a graphical method of determining the number of clusters.
 ##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
 ##                 significant increase of the value of the measure i.e the significant peak in Hubert
 ##                 index second differences plot. 
 ## </code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-170-3.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-123-3.png" width="672" /></p>
 <pre><code>## *** : The D index is a graphical method of determining the number of clusters. 
 ##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
 ##                 second differences plot) that corresponds to a significant increase of the value of
@@ -664,40 +657,40 @@ The package <em>cluster</em> is initially loaded. The gap statistics is then cal
 ##  
 ##  
 ## *******************************************************************</code></pre>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="consumer-segmentation.html#cb210-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb210-2"><a href="consumer-segmentation.html#cb210-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="consumer-segmentation.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb206-2"><a href="consumer-segmentation.html#cb206-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
 </div>
-<div id="plot-the-model-using-pca" class="section level3 hasAnchor" number="11.3.2">
-<h3><span class="header-section-number">11.3.2</span> Plot the model using PCA<a href="consumer-segmentation.html#plot-the-model-using-pca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="plot-the-model-using-pca" class="section level3 hasAnchor" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> Plot the model using PCA<a href="consumer-segmentation.html#plot-the-model-using-pca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The thing is, that now that we are dealing with more than 2 dimensions, it can be harder to visualize, how well the clustering has worked. One way though, is to use Principal Component Analysis (PCA), as PCA aims to describe the most variance from the data as possible, in the fewest dimensions as possible. This means, that if indeed the clusters are a result of variation in the data, a PCA should show it.</p>
 <p>For more information on PCA, see <a href="introduction-to-pca-and-multivariate-data.html#introduction-to-pca-and-multivariate-data">Introduction to PCA and multivariate data</a>.</p>
 <p>A PCA with the same data as the clustering is created (using the <strong>prcomp</strong>) and plotted (using <strong>ggbiplot</strong>)</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="consumer-segmentation.html#cb211-1" tabindex="-1"></a><span class="fu">library</span>(ggbiplot)</span>
-<span id="cb211-2"><a href="consumer-segmentation.html#cb211-2" tabindex="-1"></a></span>
-<span id="cb211-3"><a href="consumer-segmentation.html#cb211-3" tabindex="-1"></a>PCAmdl <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], <span class="at">center =</span> T, <span class="at">scale. =</span> F)</span>
-<span id="cb211-4"><a href="consumer-segmentation.html#cb211-4" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">groups =</span> <span class="fu">factor</span>(res<span class="sc">$</span>cluster), <span class="at">ellipse =</span> T)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="consumer-segmentation.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggbiplot)</span>
+<span id="cb207-2"><a href="consumer-segmentation.html#cb207-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-3"><a href="consumer-segmentation.html#cb207-3" aria-hidden="true" tabindex="-1"></a>PCAmdl <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(plantbaseddiet[,<span class="fu">c</span>(<span class="st">&#39;a_meat&#39;</span>, <span class="st">&#39;a_dairy&#39;</span>,<span class="st">&#39;a_eggs&#39;</span>)], <span class="at">center =</span> T, <span class="at">scale. =</span> F)</span>
+<span id="cb207-4"><a href="consumer-segmentation.html#cb207-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">groups =</span> <span class="fu">factor</span>(res<span class="sc">$</span>cluster), <span class="at">ellipse =</span> T)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
 </div>
-<div id="add-to-dataset" class="section level3 hasAnchor" number="11.3.3">
-<h3><span class="header-section-number">11.3.3</span> Add to dataset<a href="consumer-segmentation.html#add-to-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="add-to-dataset" class="section level3 hasAnchor" number="10.3.3">
+<h3><span class="header-section-number">10.3.3</span> Add to dataset<a href="consumer-segmentation.html#add-to-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As the clustering is a characteristic for each sample, similar to age, gender, name,… we can simply add it to the dataset.
 Here the interpretation from above gives rise to some intuitive names. These can be used directly. Here is how to add it to the dataset:</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="consumer-segmentation.html#cb212-1" tabindex="-1"></a><span class="co">#First, check the centriods, to see if they make sense.</span></span>
-<span id="cb212-2"><a href="consumer-segmentation.html#cb212-2" tabindex="-1"></a>res<span class="sc">$</span>centers</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="consumer-segmentation.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="co">#First, check the centriods, to see if they make sense.</span></span>
+<span id="cb208-2"><a href="consumer-segmentation.html#cb208-2" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>centers</span></code></pre></div>
 <pre><code>##      a_meat   a_dairy   a_eggs
 ## 1 19.150000 21.850000 7.678571
 ## 2  4.688508 18.854839 3.601815
 ## 3  3.719886  5.167045 2.915909
 ## 4 18.812500  5.729167 4.492188</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="consumer-segmentation.html#cb214-1" tabindex="-1"></a><span class="co">#Then matched the label names, according to the plot above.</span></span>
-<span id="cb214-2"><a href="consumer-segmentation.html#cb214-2" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>clusters <span class="ot">&lt;-</span> <span class="fu">factor</span>(res<span class="sc">$</span>cluster,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;High Meat&#39;</span>,<span class="st">&#39;Low All&#39;</span>,<span class="st">&#39;High Dairy&#39;</span>,<span class="st">&#39;High All&#39;</span>))</span>
-<span id="cb214-3"><a href="consumer-segmentation.html#cb214-3" tabindex="-1"></a></span>
-<span id="cb214-4"><a href="consumer-segmentation.html#cb214-4" tabindex="-1"></a><span class="co">#And here the plot, now with the right labels.</span></span>
-<span id="cb214-5"><a href="consumer-segmentation.html#cb214-5" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">groups =</span> plantbaseddiet<span class="sc">$</span>clusters, <span class="at">ellipse =</span> T)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="consumer-segmentation.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Then matched the label names, according to the plot above.</span></span>
+<span id="cb210-2"><a href="consumer-segmentation.html#cb210-2" aria-hidden="true" tabindex="-1"></a>plantbaseddiet<span class="sc">$</span>clusters <span class="ot">&lt;-</span> <span class="fu">factor</span>(res<span class="sc">$</span>cluster,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;High Meat&#39;</span>,<span class="st">&#39;Low All&#39;</span>,<span class="st">&#39;High Dairy&#39;</span>,<span class="st">&#39;High All&#39;</span>))</span>
+<span id="cb210-3"><a href="consumer-segmentation.html#cb210-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-4"><a href="consumer-segmentation.html#cb210-4" aria-hidden="true" tabindex="-1"></a><span class="co">#And here the plot, now with the right labels.</span></span>
+<span id="cb210-5"><a href="consumer-segmentation.html#cb210-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbiplot</span>(PCAmdl, <span class="at">groups =</span> plantbaseddiet<span class="sc">$</span>clusters, <span class="at">ellipse =</span> T)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
 </div>
-<div id="comments" class="section level3 hasAnchor" number="11.3.4">
-<h3><span class="header-section-number">11.3.4</span> Comments<a href="consumer-segmentation.html#comments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="comments" class="section level3 hasAnchor" number="10.3.4">
+<h3><span class="header-section-number">10.3.4</span> Comments<a href="consumer-segmentation.html#comments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>Try to investigate if the number of clusters using gab-statistics and extract between and within variances.</p></li>
 <li><p>Plot the different versions using PCA.</p></li>
