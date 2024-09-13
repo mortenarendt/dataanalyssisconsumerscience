@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Plotting data | Data Analysis in R for Sensory and Consumer Science</title>
   <meta name="description" content="Chapter 3 Plotting data | Data Analysis in R for Sensory and Consumer Science" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Plotting data | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   
   
 
-<meta name="author" content="Morten Arendt Rasmussen, Julius Jessen Terp, Mads Rønnow Staffe, Helene C. Reinbach and Bodil H. Allesen-Holm" />
+<meta name="author" content="Morten Arendt Rasmussen, Julius Jessen Terp, Mads Rønnow Staffe, Helene C. Reinbach, Qian Janice Wang and Bodil H. Allesen-Holm" />
 
 
 
@@ -52,9 +52,10 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.31/datatables.js"></script>
+<script src="libs/datatables-binding-0.33/datatables.js"></script>
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
@@ -64,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -470,16 +471,16 @@ Especially, looking at the raw data will enable you to point towards outliers an
 <p>Loading the needed datasets <em>chili</em> and <em>pasta</em>:</p>
 <p><code>library(data4consumerscience)</code> load the package <em>data4consumerscience</em>, which contains the data <em>chili</em> and <em>pasta</em>, which are loaded using the <strong>data()</strong>-function.</p>
 <p><code>pasta &lt;- pasta[pasta$StationName=='Pasta with legumes',]</code> subsets the dataset <em>pasta</em> to only contain the rows, where the value in the column <code>StationName</code> is equal to <code>'Pasta with legumes'</code>.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="plotting-data.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb35-2"><a href="plotting-data.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(chili)</span>
-<span id="cb35-3"><a href="plotting-data.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
-<span id="cb35-4"><a href="plotting-data.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we subset to only have the &quot;Pasta with legumes&quot; data. </span></span>
-<span id="cb35-5"><a href="plotting-data.html#cb35-5" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> pasta[pasta<span class="sc">$</span>StationName<span class="sc">==</span><span class="st">&#39;Pasta with legumes&#39;</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="plotting-data.html#cb35-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb35-2"><a href="plotting-data.html#cb35-2" tabindex="-1"></a><span class="fu">data</span>(chili)</span>
+<span id="cb35-3"><a href="plotting-data.html#cb35-3" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
+<span id="cb35-4"><a href="plotting-data.html#cb35-4" tabindex="-1"></a><span class="co"># we subset to only have the &quot;Pasta with legumes&quot; data. </span></span>
+<span id="cb35-5"><a href="plotting-data.html#cb35-5" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> pasta[pasta<span class="sc">$</span>StationName<span class="sc">==</span><span class="st">&#39;Pasta with legumes&#39;</span>,]</span></code></pre></div>
 <div id="histograms-and-boxplots" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Histograms and boxplots<a href="plotting-data.html#histograms-and-boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To show the total consumption a histogram is useful.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="plotting-data.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb36-2"><a href="plotting-data.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> AdLibg)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="plotting-data.html#cb36-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb36-2"><a href="plotting-data.html#cb36-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> AdLibg)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p><code>ggplot(data = chili, aes(x = AdLibg)) + geom_histogram()</code> creates of a <strong>ggplot()</strong> object using the data from the <code>chili</code> dataset.
 It also specifies the aesthetics (visual mappings) for the plot, where <code>AdLibg</code> is mapped to the x-axis.</p>
@@ -487,35 +488,35 @@ It also specifies the aesthetics (visual mappings) for the plot, where <code>AdL
 <p>The plot reveals a bi-modal distribution with an upper tail.</p>
 <p>These observations comes from 5 different treatments, 27 different judges and at 10 test days. We can infer this using a boxplot with jittered raw data on top.</p>
 <p>Per treatment:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="plotting-data.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> Treatment, <span class="at">y =</span> AdLibg)) <span class="sc">+</span> </span>
-<span id="cb37-2"><a href="plotting-data.html#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="plotting-data.html#cb37-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> Treatment, <span class="at">y =</span> AdLibg)) <span class="sc">+</span> </span>
+<span id="cb37-2"><a href="plotting-data.html#cb37-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>Again, the <strong>ggplot()</strong>-function is used, specifying the data frame <code>chili</code> as the data source for the plot. The <code>aes()</code> function is used to define aesthetic mappings. <code>x = Treatment</code> maps the variable <code>Treatment</code> to the x-axis, and <code>y = AdLibg</code> maps the variable <code>AdLibg</code> to the y-axis.</p>
 <p><code>geom_boxplot()</code> adds a box plot layer to the plot, showing the median, quartiles, and possible outliers in the data. Each box plot will be created for each unique value in the <code>Treatment</code> variable on the x-axis.</p>
 <p><code>geom_jitter()</code> adds a jitter plot layer to the plot. A jitter plot is used to show individual data points along the x-axis with a small amount of random horizontal jitter to avoid overlapping points. This is especially useful when you have multiple data points with the same x-value. The <code>AdLibg</code> values for each <code>Treatment</code> will be represented as jittered points along the x-axis.</p>
 <p>Per Judge:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="plotting-data.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Judge), <span class="at">y =</span> AdLibg)) <span class="sc">+</span> </span>
-<span id="cb38-2"><a href="plotting-data.html#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="plotting-data.html#cb38-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Judge), <span class="at">y =</span> AdLibg)) <span class="sc">+</span> </span>
+<span id="cb38-2"><a href="plotting-data.html#cb38-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p>The only thing changed here is what is displayed on the x-axis, which is now <code>factor(Judge)</code>. <strong>factor()</strong> is used to specify, that while the values in the column <code>Judge</code> are numerical, and thus can be considered continuous, R should treat them as categorical.</p>
 <p>None of these explains the bi-modality seen in the histogram. However, we can combine test-day information, which essentially is reflecting whether it is first or second trial splitting at day 5 (<code>color = factor(TestDay&gt;5)</code>).
 Note that we also added <code>group = factor(Judge)</code>, to ensure that the boxplots are grouped according to Judge, rather than according to <code>factor(TestDay&gt;5)</code>, as <code>color</code> also groups, but is overwritten by <code>group</code>.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="plotting-data.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Judge), <span class="at">y =</span> AdLibg, <span class="at">group =</span> <span class="fu">factor</span>(Judge), <span class="at">color =</span> <span class="fu">factor</span>(TestDay<span class="sc">&gt;</span><span class="dv">5</span>))) <span class="sc">+</span></span>
-<span id="cb39-2"><a href="plotting-data.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="plotting-data.html#cb39-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Judge), <span class="at">y =</span> AdLibg, <span class="at">group =</span> <span class="fu">factor</span>(Judge), <span class="at">color =</span> <span class="fu">factor</span>(TestDay<span class="sc">&gt;</span><span class="dv">5</span>))) <span class="sc">+</span></span>
+<span id="cb39-2"><a href="plotting-data.html#cb39-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p>This coloring shows a clear difference between trials, which explains the bi-modal distribution. It also explains why the two modes of the distribution are overlapping, and why the distribution is skewed. Because while most judges have consumed more during the first trial, some judges did the opposite - higher consumption during the second trial.</p>
 </div>
 <div id="scatter-plots" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Scatter plots<a href="plotting-data.html#scatter-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lets plot the consumption (AdLibg) as a function of LikingAppearance, and add a tendency line:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="plotting-data.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> LikingAppearance, <span class="at">y =</span> AdLibg)) <span class="sc">+</span> </span>
-<span id="cb40-2"><a href="plotting-data.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">formula =</span> <span class="st">&#39;y ~ x&#39;</span>, <span class="at">se =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="plotting-data.html#cb40-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> LikingAppearance, <span class="at">y =</span> AdLibg)) <span class="sc">+</span> </span>
+<span id="cb40-2"><a href="plotting-data.html#cb40-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">formula =</span> <span class="st">&#39;y ~ x&#39;</span>, <span class="at">se =</span> F)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <p>This plot shows <code>AdLibg</code> on the y-axis plotted against <code>LikingApperance</code> on the x-axis, with <code>stat_smooth()</code> adding a tendency line. <code>formula = 'y ~ x'</code> specifies, that the tendency line should be fitted to reflect y as a function of x. <code>se = F</code> indicates that the standard error around the regression line should not be displayed. Try adding <code>method = lm</code> inside the brackets of <code>stat_smooth</code>(), and see how the line changes.</p>
 <p>Now, lets funk this up by splitting into test-days and get colors according to product:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="plotting-data.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> Hunger, <span class="at">y =</span> AdLibg, <span class="at">color =</span> Treatment)) <span class="sc">+</span> </span>
-<span id="cb41-2"><a href="plotting-data.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">formula =</span> <span class="st">&#39;y ~ x&#39;</span>, <span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
-<span id="cb41-3"><a href="plotting-data.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> TestDay<span class="sc">&gt;</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="plotting-data.html#cb41-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> Hunger, <span class="at">y =</span> AdLibg, <span class="at">color =</span> Treatment)) <span class="sc">+</span> </span>
+<span id="cb41-2"><a href="plotting-data.html#cb41-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">formula =</span> <span class="st">&#39;y ~ x&#39;</span>, <span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> </span>
+<span id="cb41-3"><a href="plotting-data.html#cb41-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> TestDay<span class="sc">&gt;</span><span class="dv">5</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <p>The only thing added here is <code>facet_wrap(~ TestDay&gt;5)</code>. It adds a faceting layer to the plot, which allows you to create multiple small plots (facets) based on the values of a specific variable. Here, <code>TestDay &gt; 5</code> is used as the condition for faceting. It means that the data will be divided into facets based on the <code>TestDay</code> column, and each facet will show data points and smoothing lines for cases where the value of <code>TestDay</code> is lower and greater than 5, respectively.</p>
 <p>The plot shows, that the tendency of food intake increasing with increased hunger, is true for all treatments, as well as during both trial days.</p>
@@ -525,10 +526,10 @@ Note that we also added <code>group = factor(Judge)</code>, to ensure that the b
 <p>The plots shown in the <em>Plots</em> pane (lower right of RStudio) can be saved using the <em>Export</em> bottom.</p>
 <p>You can also save the plots to a file using the <strong>ggsave()</strong>-function.</p>
 <p>If you run <strong>ggsave()</strong> without specifying which plot to export, it will use the latest. You can also directly specify the plot to export:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="plotting-data.html#cb42-1" aria-hidden="true" tabindex="-1"></a>myplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(Hunger,AdLibg, <span class="at">color =</span> Treatment)) <span class="sc">+</span> </span>
-<span id="cb42-2"><a href="plotting-data.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> TestDay<span class="sc">&gt;</span><span class="dv">5</span>)</span>
-<span id="cb42-3"><a href="plotting-data.html#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="plotting-data.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&#39;./data/YourFolderForNicePlots/hunger_vs_consumption.pdf&#39;</span>,myplot)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="plotting-data.html#cb42-1" tabindex="-1"></a>myplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(Hunger,AdLibg, <span class="at">color =</span> Treatment)) <span class="sc">+</span> </span>
+<span id="cb42-2"><a href="plotting-data.html#cb42-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> lm) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> TestDay<span class="sc">&gt;</span><span class="dv">5</span>)</span>
+<span id="cb42-3"><a href="plotting-data.html#cb42-3" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="plotting-data.html#cb42-4" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&#39;./data/YourFolderForNicePlots/hunger_vs_consumption.pdf&#39;</span>,myplot)</span></code></pre></div>
 <p>The first line of code saves the plot as a <strong>ggplot</strong>-object named <code>myplot</code>, and the second line saves the object <code>myplot</code> to the path that you specify (<code>'./data/YourFolderForNicePlots/hunger_vs_consumption.pdf'</code>),</p>
 <p><strong>ggsave()</strong> supports different formats (.png, .tiff, .pdf,…) and further allows for editing the size (height = , width = ). Just change the <em>.pdf</em> in to the format your need.</p>
 

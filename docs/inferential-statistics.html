@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Inferential statistics | Data Analysis in R for Sensory and Consumer Science</title>
   <meta name="description" content="Chapter 5 Inferential statistics | Data Analysis in R for Sensory and Consumer Science" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Inferential statistics | Data Analysis in R for Sensory and Consumer Science" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   
   
 
-<meta name="author" content="Morten Arendt Rasmussen, Julius Jessen Terp, Mads Rønnow Staffe, Helene C. Reinbach and Bodil H. Allesen-Holm" />
+<meta name="author" content="Morten Arendt Rasmussen, Julius Jessen Terp, Mads Rønnow Staffe, Helene C. Reinbach, Qian Janice Wang and Bodil H. Allesen-Holm" />
 
 
 
@@ -52,9 +52,10 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.31/datatables.js"></script>
+<script src="libs/datatables-binding-0.33/datatables.js"></script>
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
@@ -64,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -512,11 +513,11 @@ Which alternative hypothesis to choose depends on the question that one wants an
 <li><p>conf.level: The confidence level of choice. Default is 0.95.</p></li>
 </ul>
 <p>Here is an example using the BuffetSurvey data set:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="inferential-statistics.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb68-2"><a href="inferential-statistics.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
-<span id="cb68-3"><a href="inferential-statistics.html#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-4"><a href="inferential-statistics.html#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> pasta<span class="sc">$</span>Pasta_with_legumes_is_visually_appealing, </span>
-<span id="cb68-5"><a href="inferential-statistics.html#cb68-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> pasta<span class="sc">$</span>Pasta_with_mushrooms_is_visually_appealing)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="inferential-statistics.html#cb68-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb68-2"><a href="inferential-statistics.html#cb68-2" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
+<span id="cb68-3"><a href="inferential-statistics.html#cb68-3" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="inferential-statistics.html#cb68-4" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> pasta<span class="sc">$</span>Pasta_with_legumes_is_visually_appealing, </span>
+<span id="cb68-5"><a href="inferential-statistics.html#cb68-5" tabindex="-1"></a>       <span class="at">y =</span> pasta<span class="sc">$</span>Pasta_with_mushrooms_is_visually_appealing)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -536,11 +537,11 @@ Which alternative hypothesis to choose depends on the question that one wants an
 <p>The hypotheses of an F-test: <span class="math display">\[ H_{0}: var_{1}=var_{2} \\ H_{A}: var_{1}\neq var_{2}, \ var_{1}&gt;var_{2}  \ or \ var_{1}&lt;var_{2}\]</span></p>
 <p>To conduct an F-test in R, you can use the <strong>var.test()</strong> function. This function takes two numeric vectors as input, and returns the F-value and p-value of the test.</p>
 <p>Here is an example using the BuffetSurvey data set:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="inferential-statistics.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb70-2"><a href="inferential-statistics.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
-<span id="cb70-3"><a href="inferential-statistics.html#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-4"><a href="inferential-statistics.html#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(<span class="at">x =</span> pasta<span class="sc">$</span>Pasta_with_legumes_is_visually_appealing, </span>
-<span id="cb70-5"><a href="inferential-statistics.html#cb70-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> pasta<span class="sc">$</span>Pasta_with_mushrooms_is_visually_appealing)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="inferential-statistics.html#cb70-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb70-2"><a href="inferential-statistics.html#cb70-2" tabindex="-1"></a><span class="fu">data</span>(pasta)</span>
+<span id="cb70-3"><a href="inferential-statistics.html#cb70-3" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="inferential-statistics.html#cb70-4" tabindex="-1"></a><span class="fu">var.test</span>(<span class="at">x =</span> pasta<span class="sc">$</span>Pasta_with_legumes_is_visually_appealing, </span>
+<span id="cb70-5"><a href="inferential-statistics.html#cb70-5" tabindex="-1"></a>         <span class="at">y =</span> pasta<span class="sc">$</span>Pasta_with_mushrooms_is_visually_appealing)</span></code></pre></div>
 <pre><code>## 
 ##  F test to compare two variances
 ## 
@@ -570,14 +571,14 @@ When conducting a one-way ANOVA, the model looks like this:
 Here, <span class="math inline">\(Y_{ij}\)</span> represents the jth observation of the ith treatment level (i = 1 to k and j = 1 to <span class="math inline">\(n_i\)</span>).This means, that e.g., <span class="math inline">\(Y_{23}\)</span> represents the 3rd observation of the 2nd factor. <span class="math inline">\(\mu\)</span> is the grand mean of the dataset, and <span class="math inline">\(\alpha\)</span> is effect of the i-th level of our factor A (e.g. Argentina or France as wine-producing countries, or pescetarian as your dietary preference).</p>
 <p>The ANOVA works, when the above-mentioned assumptions are true: The residuals (<span class="math inline">\(e_{ij}\)</span>) are normally distributed around 0, and independent. A way to check the assumptions, is to use the built-in <strong>plot()</strong>-function in R, and look at whether the data are normally distributed using the QQ-plot, and looking at the residuals, to check if the assumptions are viable.</p>
 <p>To show how to perform a one-way ANOVA in R, here is an example using the <em>beerliking</em>-dataset:</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="inferential-statistics.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb72-2"><a href="inferential-statistics.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span>
-<span id="cb72-3"><a href="inferential-statistics.html#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-4"><a href="inferential-statistics.html#cb72-4" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer)</span>
-<span id="cb72-5"><a href="inferential-statistics.html#cb72-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-6"><a href="inferential-statistics.html#cb72-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model,<span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="inferential-statistics.html#cb72-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb72-2"><a href="inferential-statistics.html#cb72-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span>
+<span id="cb72-3"><a href="inferential-statistics.html#cb72-3" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="inferential-statistics.html#cb72-4" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer)</span>
+<span id="cb72-5"><a href="inferential-statistics.html#cb72-5" tabindex="-1"></a></span>
+<span id="cb72-6"><a href="inferential-statistics.html#cb72-6" tabindex="-1"></a><span class="fu">plot</span>(model,<span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-50-1.png" width="672" /><img src="bookdownproj_files/figure-html/unnamed-chunk-50-2.png" width="672" /></p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="inferential-statistics.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="inferential-statistics.html#cb73-1" tabindex="-1"></a><span class="fu">anova</span>(model)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: Liking
@@ -602,14 +603,14 @@ Here, <span class="math inline">\(Y_{ij}\)</span> represents the jth observation
 <p>If for some reason we are interested in both the main effects and the interaction (if the interaction effect is significant), we can perform what is called a Type III ANOVA. This will test all effects against a model without said effect. As this will over-parameterise the model, in R, one has to choose a contrasts setting that sums to zero, otherwise the ANOVA analysis will give incorrect results. This is what is done with <code>options</code>. Then model3 is created to also test the interaction, and in <strong>drop1()</strong> it is specified, that we want all model components to be tested (Type III ANOVA), using <code>.~.</code>.</p>
 <p>If there is no significant interaction effect, a Type II ANOVA is a stronger test, which is why one should choose it if possible.</p>
 <p>More on the different types of ANOVA <a href="https://towardsdatascience.com/anovas-three-types-of-estimating-sums-of-squares-don-t-make-the-wrong-choice-91107c77a27a">here</a> and <a href="https://mcfromnz.wordpress.com/2011/03/02/anova-type-iiiiii-ss-explained/">here</a>.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="inferential-statistics.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb75-2"><a href="inferential-statistics.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(beerliking)</span>
-<span id="cb75-3"><a href="inferential-statistics.html#cb75-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-4"><a href="inferential-statistics.html#cb75-4" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> Age)</span>
-<span id="cb75-5"><a href="inferential-statistics.html#cb75-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-6"><a href="inferential-statistics.html#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model2,<span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="inferential-statistics.html#cb75-1" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb75-2"><a href="inferential-statistics.html#cb75-2" tabindex="-1"></a><span class="fu">data</span>(beerliking)</span>
+<span id="cb75-3"><a href="inferential-statistics.html#cb75-3" tabindex="-1"></a></span>
+<span id="cb75-4"><a href="inferential-statistics.html#cb75-4" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> Age)</span>
+<span id="cb75-5"><a href="inferential-statistics.html#cb75-5" tabindex="-1"></a></span>
+<span id="cb75-6"><a href="inferential-statistics.html#cb75-6" tabindex="-1"></a><span class="fu">plot</span>(model2,<span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-51-1.png" width="672" /><img src="bookdownproj_files/figure-html/unnamed-chunk-51-2.png" width="672" /></p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="inferential-statistics.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(model2, <span class="at">test =</span> <span class="st">&#39;F&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="inferential-statistics.html#cb76-1" tabindex="-1"></a><span class="fu">drop1</span>(model2, <span class="at">test =</span> <span class="st">&#39;F&#39;</span>)</span></code></pre></div>
 <pre><code>## Single term deletions
 ## 
 ## Model:
@@ -620,12 +621,12 @@ Here, <span class="math inline">\(Y_{ij}\)</span> represents the jth observation
 ## Age     6    37.493 2729.6 1012.5  2.1076    0.0501 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="inferential-statistics.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">contrasts =</span> <span class="fu">c</span>(<span class="st">&#39;contr.sum&#39;</span>,<span class="st">&#39;contr.poly&#39;</span>))</span>
-<span id="cb78-2"><a href="inferential-statistics.html#cb78-2" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> Age <span class="sc">+</span> Beer<span class="sc">:</span>Age)</span>
-<span id="cb78-3"><a href="inferential-statistics.html#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-4"><a href="inferential-statistics.html#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model3,<span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="inferential-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">contrasts =</span> <span class="fu">c</span>(<span class="st">&#39;contr.sum&#39;</span>,<span class="st">&#39;contr.poly&#39;</span>))</span>
+<span id="cb78-2"><a href="inferential-statistics.html#cb78-2" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer <span class="sc">+</span> Age <span class="sc">+</span> Beer<span class="sc">:</span>Age)</span>
+<span id="cb78-3"><a href="inferential-statistics.html#cb78-3" tabindex="-1"></a></span>
+<span id="cb78-4"><a href="inferential-statistics.html#cb78-4" tabindex="-1"></a><span class="fu">plot</span>(model3,<span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-51-3.png" width="672" /><img src="bookdownproj_files/figure-html/unnamed-chunk-51-4.png" width="672" /></p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="inferential-statistics.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(model3, .<span class="sc">~</span>., <span class="at">test =</span> <span class="st">&#39;F&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="inferential-statistics.html#cb79-1" tabindex="-1"></a><span class="fu">drop1</span>(model3, .<span class="sc">~</span>., <span class="at">test =</span> <span class="st">&#39;F&#39;</span>)</span></code></pre></div>
 <pre><code>## Single term deletions
 ## 
 ## Model:
@@ -646,15 +647,15 @@ Here, <span class="math inline">\(Y_{ij}\)</span> represents the jth observation
 <p>To compare more than two groups, one would have to conduct multiple pairwise T-tests. This does, however, not hold up, as probabilities are cumulative, which means that while the first test would yield a p-value lower than <span class="math inline">\(\alpha\)</span> (often 0.05), when conducting multiple tests, the cumulative p-value could exceed <span class="math inline">\(\alpha\)</span>.</p>
 <p>A Tukey test corrects for this, and is therefore a better fit when dealing with more than two groups.</p>
 <p>There are several ways to conduct a Tukey test in R, but the one that works in most usecases is the one shown below, using the <em>multcomp</em>-package and the <strong>glht()</strong>-function. The dataset used here is the <em>beerliking</em>-dataset.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="inferential-statistics.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
-<span id="cb81-2"><a href="inferential-statistics.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb81-3"><a href="inferential-statistics.html#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span>
-<span id="cb81-4"><a href="inferential-statistics.html#cb81-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-5"><a href="inferential-statistics.html#cb81-5" aria-hidden="true" tabindex="-1"></a>beerliking<span class="sc">$</span>Beer <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(beerliking<span class="sc">$</span>Beer)</span>
-<span id="cb81-6"><a href="inferential-statistics.html#cb81-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-7"><a href="inferential-statistics.html#cb81-7" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer)</span>
-<span id="cb81-8"><a href="inferential-statistics.html#cb81-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-9"><a href="inferential-statistics.html#cb81-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glht</span>(model, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Beer =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="inferential-statistics.html#cb81-1" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb81-2"><a href="inferential-statistics.html#cb81-2" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb81-3"><a href="inferential-statistics.html#cb81-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;beerliking&quot;</span>)</span>
+<span id="cb81-4"><a href="inferential-statistics.html#cb81-4" tabindex="-1"></a></span>
+<span id="cb81-5"><a href="inferential-statistics.html#cb81-5" tabindex="-1"></a>beerliking<span class="sc">$</span>Beer <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(beerliking<span class="sc">$</span>Beer)</span>
+<span id="cb81-6"><a href="inferential-statistics.html#cb81-6" tabindex="-1"></a></span>
+<span id="cb81-7"><a href="inferential-statistics.html#cb81-7" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> beerliking, Liking <span class="sc">~</span> Beer)</span>
+<span id="cb81-8"><a href="inferential-statistics.html#cb81-8" tabindex="-1"></a></span>
+<span id="cb81-9"><a href="inferential-statistics.html#cb81-9" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glht</span>(model, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Beer =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -665,25 +666,25 @@ Here, <span class="math inline">\(Y_{ij}\)</span> represents the jth observation
 ## 
 ## Linear Hypotheses:
 ##                                   Estimate Std. Error t value Pr(&gt;|t|)    
-## NY Lager - Brown Ale == 0       -6.399e-01  1.979e-01  -3.233  0.01605 *  
+## NY Lager - Brown Ale == 0       -6.399e-01  1.979e-01  -3.233  0.01602 *  
 ## Porse Bock - Brown Ale == 0     -8.364e-01  1.976e-01  -4.233  &lt; 0.001 ***
-## Ravnsborg Red - Brown Ale == 0  -2.325e-01  1.976e-01  -1.177  0.84804    
+## Ravnsborg Red - Brown Ale == 0  -2.325e-01  1.976e-01  -1.177  0.84803    
 ## River Beer - Brown Ale == 0     -8.364e-01  1.976e-01  -4.233  &lt; 0.001 ***
 ## Wheat IPA - Brown Ale == 0      -9.405e-01  1.979e-01  -4.752  &lt; 0.001 ***
-## Porse Bock - NY Lager == 0      -1.965e-01  1.973e-01  -0.996  0.91922    
-## Ravnsborg Red - NY Lager == 0    4.074e-01  1.973e-01   2.065  0.30658    
-## River Beer - NY Lager == 0      -1.965e-01  1.973e-01  -0.996  0.91922    
-## Wheat IPA - NY Lager == 0       -3.007e-01  1.976e-01  -1.522  0.65037    
-## Ravnsborg Red - Porse Bock == 0  6.039e-01  1.969e-01   3.066  0.02705 *  
-## River Beer - Porse Bock == 0    -2.831e-15  1.969e-01   0.000  1.00000    
+## Porse Bock - NY Lager == 0      -1.965e-01  1.973e-01  -0.996  0.91923    
+## Ravnsborg Red - NY Lager == 0    4.074e-01  1.973e-01   2.065  0.30662    
+## River Beer - NY Lager == 0      -1.965e-01  1.973e-01  -0.996  0.91920    
+## Wheat IPA - NY Lager == 0       -3.007e-01  1.976e-01  -1.522  0.65039    
+## Ravnsborg Red - Porse Bock == 0  6.039e-01  1.969e-01   3.066  0.02696 *  
+## River Beer - Porse Bock == 0     3.442e-15  1.969e-01   0.000  1.00000    
 ## Wheat IPA - Porse Bock == 0     -1.042e-01  1.973e-01  -0.528  0.99506    
-## River Beer - Ravnsborg Red == 0 -6.039e-01  1.969e-01  -3.066  0.02696 *  
+## River Beer - Ravnsborg Red == 0 -6.039e-01  1.969e-01  -3.066  0.02694 *  
 ## Wheat IPA - Ravnsborg Red == 0  -7.080e-01  1.973e-01  -3.589  0.00466 ** 
 ## Wheat IPA - River Beer == 0     -1.042e-01  1.973e-01  -0.528  0.99506    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="inferential-statistics.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(<span class="fu">glht</span>(model, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Beer =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="inferential-statistics.html#cb83-1" tabindex="-1"></a><span class="fu">cld</span>(<span class="fu">glht</span>(model, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Beer =</span> <span class="st">&quot;Tukey&quot;</span>)))</span></code></pre></div>
 <pre><code>##     Brown Ale      NY Lager    Porse Bock Ravnsborg Red    River Beer 
 ##           &quot;a&quot;          &quot;bc&quot;           &quot;c&quot;          &quot;ab&quot;           &quot;c&quot; 
 ##     Wheat IPA 
@@ -718,16 +719,16 @@ For instance, the relation between <code>Hunger</code> and the intake <code>AdLi
 - <code>y = AdLibg</code>: The y-axis is mapped to the <code>AdLibg</code> column in the dataset.</p>
 <p><code>geom_point()</code> adds individual points to the plot, where each point represents a combination of <code>Hunger</code> and <code>AdLibg</code> values from the dataset.</p>
 <p><code>stat_smooth(method = lm, se = F)</code> adds a smoothed regression line to the plot using linear regression (<code>method = lm</code>). The <code>se = F</code> argument indicates that the standard error around the regression line should not be displayed.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="inferential-statistics.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb85-2"><a href="inferential-statistics.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
-<span id="cb85-3"><a href="inferential-statistics.html#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&#39;chili&#39;</span>)</span>
-<span id="cb85-4"><a href="inferential-statistics.html#cb85-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> chili <span class="sc">%&gt;%</span>   <span class="co"># only include a single treatment</span></span>
-<span id="cb85-5"><a href="inferential-statistics.html#cb85-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Treatment<span class="sc">==</span><span class="st">&#39;Capsaicin&#39;</span>) <span class="sc">%&gt;%</span> <span class="co"># only include the first trial for each judge</span></span>
-<span id="cb85-6"><a href="inferential-statistics.html#cb85-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(Judge)) </span>
-<span id="cb85-7"><a href="inferential-statistics.html#cb85-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-8"><a href="inferential-statistics.html#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> x, <span class="fu">aes</span>(<span class="at">x =</span> Hunger, <span class="at">y =</span> AdLibg)) <span class="sc">+</span> </span>
-<span id="cb85-9"><a href="inferential-statistics.html#cb85-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb85-10"><a href="inferential-statistics.html#cb85-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="inferential-statistics.html#cb85-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb85-2"><a href="inferential-statistics.html#cb85-2" tabindex="-1"></a><span class="fu">library</span>(data4consumerscience)</span>
+<span id="cb85-3"><a href="inferential-statistics.html#cb85-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&#39;chili&#39;</span>)</span>
+<span id="cb85-4"><a href="inferential-statistics.html#cb85-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> chili <span class="sc">%&gt;%</span>   <span class="co"># only include a single treatment</span></span>
+<span id="cb85-5"><a href="inferential-statistics.html#cb85-5" tabindex="-1"></a>  <span class="fu">filter</span>(Treatment<span class="sc">==</span><span class="st">&#39;Capsaicin&#39;</span>) <span class="sc">%&gt;%</span> <span class="co"># only include the first trial for each judge</span></span>
+<span id="cb85-6"><a href="inferential-statistics.html#cb85-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(Judge)) </span>
+<span id="cb85-7"><a href="inferential-statistics.html#cb85-7" tabindex="-1"></a></span>
+<span id="cb85-8"><a href="inferential-statistics.html#cb85-8" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> x, <span class="fu">aes</span>(<span class="at">x =</span> Hunger, <span class="at">y =</span> AdLibg)) <span class="sc">+</span> </span>
+<span id="cb85-9"><a href="inferential-statistics.html#cb85-9" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb85-10"><a href="inferential-statistics.html#cb85-10" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> F)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <p>Naturally, the more hungry, the higher the intake.</p>
 <p>A model describing this relation is shown below.</p>
@@ -736,8 +737,8 @@ For instance, the relation between <code>Hunger</code> and the intake <code>AdLi
 <p><code>data = x</code> specifies, that <code>x</code> is the dataset used for the linear regression.</p>
 <p><code>AdLibg ~ Hunger</code> specifies the formula of the model. Here, <code>AdLibg</code> is the dependent variable and <code>Hunger</code> is the independent variable. The tilde (<code>~</code>) separates the dependent and independent variables.</p>
 <p>The <strong>summary()</strong>-function is used to display information about the model <code>mdl</code>.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="inferential-statistics.html#cb86-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> x, AdLibg<span class="sc">~</span>Hunger)</span>
-<span id="cb86-2"><a href="inferential-statistics.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="inferential-statistics.html#cb86-1" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> x, AdLibg<span class="sc">~</span>Hunger)</span>
+<span id="cb86-2"><a href="inferential-statistics.html#cb86-2" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = AdLibg ~ Hunger, data = x)
@@ -774,18 +775,18 @@ For instance, the relation between <code>Hunger</code> and the intake <code>AdLi
 <p>A <em>mixed</em> model refers to the situation, where more than one part of the model is handling the uncertainty.
 For instance, in the chili data set there are two instances for each judge, and hence the uncertainty can be split into <em>between</em> judges and <em>within</em> judges.</p>
 <p>In this plot the intake is shown across products (<em>Treatment</em>) and labelled with the <em>Judge</em> number. For instance, Judge 1 is in general high and 24 generally low. Further, the plot is splitted according to the two test-repetition (First: TestDays = 1,..,5, Second: TestDays = 6,..,10).</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="inferential-statistics.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb88-2"><a href="inferential-statistics.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> Hunger, <span class="at">y =</span> AdLibg, <span class="at">color =</span> Treatment)) <span class="sc">+</span> </span>
-<span id="cb88-3"><a href="inferential-statistics.html#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Judge)) <span class="sc">+</span> </span>
-<span id="cb88-4"><a href="inferential-statistics.html#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> F) <span class="sc">+</span> </span>
-<span id="cb88-5"><a href="inferential-statistics.html#cb88-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>TestDay<span class="sc">&gt;</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="inferential-statistics.html#cb88-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb88-2"><a href="inferential-statistics.html#cb88-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> chili, <span class="fu">aes</span>(<span class="at">x =</span> Hunger, <span class="at">y =</span> AdLibg, <span class="at">color =</span> Treatment)) <span class="sc">+</span> </span>
+<span id="cb88-3"><a href="inferential-statistics.html#cb88-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Judge)) <span class="sc">+</span> </span>
+<span id="cb88-4"><a href="inferential-statistics.html#cb88-4" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> F) <span class="sc">+</span> </span>
+<span id="cb88-5"><a href="inferential-statistics.html#cb88-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>TestDay<span class="sc">&gt;</span><span class="dv">5</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 <p>The above-mentioned structure is encoded in the modelling. <strong>lmer</strong> is used, when creating a mixed effect model. The judges and the test day are considered random effects, and are assigned to be so by adding a 1 and a horizontal line when creating the model.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="inferential-statistics.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb89-2"><a href="inferential-statistics.html#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
-<span id="cb89-3"><a href="inferential-statistics.html#cb89-3" aria-hidden="true" tabindex="-1"></a>chili<span class="sc">$</span>TestDay2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(chili<span class="sc">$</span>TestDay<span class="sc">&gt;</span><span class="dv">5</span>) <span class="co"># adding a new testday variable</span></span>
-<span id="cb89-4"><a href="inferential-statistics.html#cb89-4" aria-hidden="true" tabindex="-1"></a>mdlmix <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> chili, AdLibg <span class="sc">~</span> Hunger<span class="sc">*</span>Treatment <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Judge)  <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>(TestDay2)))</span>
-<span id="cb89-5"><a href="inferential-statistics.html#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdlmix)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="inferential-statistics.html#cb89-1" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb89-2"><a href="inferential-statistics.html#cb89-2" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb89-3"><a href="inferential-statistics.html#cb89-3" tabindex="-1"></a>chili<span class="sc">$</span>TestDay2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(chili<span class="sc">$</span>TestDay<span class="sc">&gt;</span><span class="dv">5</span>) <span class="co"># adding a new testday variable</span></span>
+<span id="cb89-4"><a href="inferential-statistics.html#cb89-4" tabindex="-1"></a>mdlmix <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="at">data =</span> chili, AdLibg <span class="sc">~</span> Hunger<span class="sc">*</span>Treatment <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Judge)  <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>(TestDay2)))</span>
+<span id="cb89-5"><a href="inferential-statistics.html#cb89-5" tabindex="-1"></a><span class="fu">summary</span>(mdlmix)</span></code></pre></div>
 <pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
 ## lmerModLmerTest]
 ## Formula: AdLibg ~ Hunger * Treatment + (1 | Judge) + (1 | (TestDay2))
@@ -832,7 +833,7 @@ For instance, in the chili data set there are two instances for each judge, and 
 ## Hngr:Trtmn4  0.023 -0.041  0.192  0.169  0.193 -0.841 -0.247 -0.222 -0.233</code></pre>
 <p>The summary spits out the model estimates, and especially the random effects shows that the within individual residual variation is <span class="math inline">\(130g\)</span> while the between individual variation is larger: <span class="math inline">\(164g\)</span>. I.e. the consumption is more depend on the individual than the repetitions. Further, the testday also has a little effect (<span class="math inline">\(54g\)</span>).</p>
 <p>We can evaluate the systematic effect overall by <strong>anova</strong>. When <strong>anova</strong> is used on a model created by <strong>lmer</strong>, it conducts a Type III ANOVA.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="inferential-statistics.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mdlmix)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="inferential-statistics.html#cb91-1" tabindex="-1"></a><span class="fu">anova</span>(mdlmix)</span></code></pre></div>
 <pre><code>## Type III Analysis of Variance Table with Satterthwaite&#39;s method
 ##                   Sum Sq Mean Sq NumDF  DenDF  F value Pr(&gt;F)    
 ## Hunger           2324398 2324398     1 239.00 137.7801 &lt;2e-16 ***

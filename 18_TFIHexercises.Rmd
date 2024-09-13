@@ -78,22 +78,27 @@ For instance, is the loading making sense?
 
 ## Exercise 3: PCA on CATA counts
 
-From this exercise you should be able to describe your samples (beers) from the CATA counts, and which attributes that occur together, as well as which attribute patterns that discriminate products.  
+From this exercise you should be able to describe your samples (beers) from the summed CATA counts (see the Chapter on "PCA on CATA data"), and which attributes that occur together, as well as which attribute patterns that discriminate products.  
 
 Calculate a PCA model including all Variables and all Objects.
 
 ```{r, eval=FALSE}
-PCAmdl <- prcomp(beercata[,3:29], scale. = T)
+beercatasum <- beercata %>% 
+  pivot_longer(names_to = 'attrib',values_to = 'val', cols = S_Flowers:S_Vinous) %>% 
+  group_by(Beer,attrib) %>%
+  summarize(n = sum(val)) %>% 
+  pivot_wider(names_from = attrib, values_from = n)
+PCAmdl <- prcomp(beercatasum[,-1], scale. = T)
 ```
 
 Plot the scores and describe the groupings of the samples.
 
 Plot the loadings and describe the correlations between the variables.
 
-Both of these plots are present in a biplot, but you may want to play around with the settings (such as varname.size, varname.adjust, ...) to get all information out. 
+Both of these plots are present in a biplot, but you may want to play around with the settings (such as labels.size, varname.size, varname.adjust, ...) to get all information out. 
 
 ```{r, eval=FALSE}
-ggbiplot(PCAmdl, groups = beercata$Beer, ellipse = T)
+ggbiplot(PCAmdl, labels = beercatasum$Beer)
 ```
 
 Use this biplot to find out which samples are described by which CATA attributes. as well as similarity of products.  
@@ -126,11 +131,14 @@ From this exercise you should be able to describe the liking of the beer samples
 
 ### PCA on joint data
 
-Calculate a PCA model including all Variables and all Objects.
+Calculate a PCA model including liking for all beers.
 
 ```{r, eval=FALSE}
-include_these <- complete.cases(beerliking)
-PCAliking <- prcomp(beerliking[include_these,-c(1:7)], scale. = T)
+beerliking_wider <- beerliking %>% 
+  pivot_wider(names_from = Beer,values_from = Liking) %>% # make into wide format
+  drop_na()
+
+PCAliking <- prcomp(beerliking_wider[,13:18], scale. = T)
 ```
 
 Plot a biplot or loading plot, and use the loadings and describe the correlations between the variables (liking of beers in this case).
@@ -140,10 +148,10 @@ ggbiplot(PCAliking)
 ```
 
 
-Plot the scores and describe the groupings of the samples by colouring the score plot according to the consumer background variables. Note that the 160 rows in both datasets match each-other, so we can glue the demo information directly onto the liking model. If that was not the case, matching using left_join() or inner_join() would be necessary before analysis.
+Plot the scores and describe the groupings of the samples by colouring the score plot according to the consumer background variables. 
 
 ```{r, eval=FALSE}
-ggbiplot(PCAliking,groups = beerdemo$Age[include_these], ellipse = T)
+ggbiplot(PCAliking,groups = beerliking_wider$Age, ellipse = T)
 ```
 
 Any trends? For instance, how is liking related to the individual consumer diversity of beer ( _Beer types/month_)? 
@@ -153,7 +161,7 @@ Any trends? For instance, how is liking related to the individual consumer diver
 ... Some code to get all 7-scale demo information plots. You may want to export and view in a pdf viewer for zooming etc.  
 
 ```{r, eval=FALSE}
-gall <- cbind(PCAliking$x[,1:2], beerdemo[include_these,]) %>% 
+gall <- cbind(PCAliking$x[,1:2], beerliking_wider) %>% 
   pivot_longer(names_to = 'var',values_to = 'val',cols = `Interest in food`:`Future interest in beer`) %>% 
   ggplot(data = ., aes(PC1,PC2, color = factor(val))) + 
   geom_point() + 
@@ -172,27 +180,29 @@ For each beer, the collated CATA counts and the averaged liking constitutes the 
 ```{r, eval = F}
 likingsum <- beerliking %>%
   group_by(Beer) %>% 
-  dplyr::summarise(lik = mean(Liking, na.rm = T))
+  summarize(Liking = mean(Liking, na.rm = T))
 
 catasum <- beercata %>% 
-  pivot_longer(names_to = 'attrib',values_to = 'val',cols = S_Flowers:S_Vinous ) %>% 
-  group_by(Beer,attrib) %>% 
-  dplyr::summarise(mn = mean(val, na.rm = T)) %>% 
-  spread(attrib,mn)
+  pivot_longer(names_to = 'attrib',values_to = 'val', cols = S_Flowers:S_Vinous) %>% 
+  group_by(Beer,attrib) %>%
+  summarize(n = sum(val, na.rm = T)) %>% 
+  pivot_wider(names_from = attrib, values_from = n)
 ```
 
 
 Join the two. 
 
 ```{r, eval=FALSE}
-cata_lik <- catasum %>% left_join(likingsum, by = 'Beer')
+cata_like <- catasum %>% 
+  left_join(likingsum, by = 'Beer')
+
 ```
 
 Do a PCA 
 
 ```{r, eval=FALSE}
-PCAcata_lik <- prcomp(cata_lik[,-1],scale. = T)
-ggbiplot(PCAcata_lik, labels = cata_lik$Beer)
+PCAcata_like <- prcomp(cata_like[,-1],scale. = T)
+ggbiplot(PCAcata_like, labels = cata_like$Beer)
 ```
 What charaterizes _River Beer_ ? 
 Which descriptors are in general associated with liking? (and dis-liking?)

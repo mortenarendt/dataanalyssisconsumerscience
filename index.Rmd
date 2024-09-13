@@ -1,7 +1,7 @@
 --- 
 title: "Data Analysis in R for Sensory and Consumer Science"
-author: "Morten Arendt Rasmussen, Julius Jessen Terp, Mads Rønnow Staffe, Helene C. Reinbach and Bodil H. Allesen-Holm"
-date: "February 2024"
+author: "Morten Arendt Rasmussen, Julius Jessen Terp, Mads Rønnow Staffe, Helene C. Reinbach, Qian Janice Wang and Bodil H. Allesen-Holm"
+date: "September 2024"
 site: bookdown::bookdown_site
 ---
 
